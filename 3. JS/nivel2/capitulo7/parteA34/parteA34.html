@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 34</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Objeto Location</h1>
+	<h4 class="enlace-volver"><a href="../capitulo7.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que es el objeto Location? -->
+	<h3>Que es el objeto Location?</h3>
+	<p>
+		Es un objeto contenido dentro de objeto <em>window</em> (que no esta contenido hay xd?), el cual contiene informacion importante referente al archivo donde estamos actualmente ubicados.
+	</p>
+	<!-- codigo -->
+	<code>
+		console.log(window.location); <strong>// Location { ... }</strong>
+	</code>
+
+
+	<!-- href -->
+	<h3>href</h3>
+	<p>Contiene el <em>hipertext reference</em> (en vinculo, enlace, link) del archivo en el que estamos ubicados.</p>
+	<!-- codigo -->
+	<code>
+		let href = window.location.href; <br><br>
+
+		console.log(href); <strong>// 'file:///C:/Users/Admin/Desktop/ ... /parteA34.html'</strong>
+	</code>
+
+
+	<!-- hostname -->
+	<h3>hostname</h3>
+	<p>Contiene el nombre del host donde estamos ubicados. Como este es un archivo (actualmente no esta en ningun servidor), no retorna nada. Pero en una pagina web alojada en un servidor real o local si retorna el nombre de host.</p>
+	<!-- codigo -->
+	<code>
+		let hostname = window.location.hostname; <br><br>
+
+		console.log(hostname); <strong>// ''</strong>
+	</code>
+
+
+	<!-- pathname -->
+	<h3>pathname</h3>
+	<p>Retorna el nombre de la ruta utilizada para acceder al archivo.</p>
+	<!-- codigo -->
+	<code>
+		let pathname = window.location.pathname; <br><br>
+
+		console.log(pathname); <strong>// '/C:/Users/Admin/Desktop/ ... /parteA34.html'</strong>
+	</code>
+
+
+	<!-- protocol -->
+	<h3>protocol</h3>
+	<p>Retorna el nombre del protocolo utilizado para acceder al archivo. Como este es un archivo local el protocolo utilizado es <em>file</em>... en una web podria ser <em>http</em> o <em>https</em>.</p>
+	<!-- codigo -->
+	<code>
+		let protocol = window.location.protocol; <br><br>
+
+		console.log(protocol); <strong>// file:</strong>
+	</code>
+
+
+	<!-- origin -->
+	<h3>origin</h3>
+	<p>Contiene el origen del documento. En este caso como es un archivo retorna 'file://'.</p>
+	<!-- codigo -->
+	<code>
+		let origin = window.location.origin; <br><br>
+
+		console.log(origin); <strong>// 'file://'</strong>
+	</code>
+
+
+	<!-- port -->
+	<h3>port</h3>
+	<p>Contiene el puerto desde donde se tiene el archivo. Como es un archivo local no retorna nada porque no esta en ningun puerto.</p>
+	<!-- codigo -->
+	<code>
+		let port = window.location.port; <br><br>
+
+		console.log(port); <strong>// ''</strong>
+	</code>
+
+
+	<!-- assign() -->
+	<h3>assign()</h3>
+	<p>Sirve para cargar un nuevo documento en la ubicacion actual.</p>
+	<!-- codigo -->
+	<code>
+		window.location.assign('https://google.com'); <strong>// Carga la pagina de google en la ubicacion actual</strong>
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

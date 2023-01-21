@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 32</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Screen y Scroll</h1>
+	<h4 class="enlace-volver"><a href="../capitulo7.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Screen y scroll -->
+	<h2>Screen y scroll</h2>
+	<p>Estas propiedades contienen informacions sobre la pantalla y el scroll del documento.</p>
+
+
+	<!-- screen -->
+	<h3>screen</h3>
+	<p>Devuelve una referencia al Objeto Screen (pantalla) asociado al Objeto Window (ventana).</p>
+	<p>
+		En otros terminos, el objeto window contiene en su interior un <strong>objeto 'pantalla'</strong> que guarda muchos detalles sobre la pantalla en la que se aloja la ventana.
+	</p>
+	<!-- codigo -->
+	<code>
+		let pantalla = window.screen; <br><br>
+
+		<strong>console.log(pantalla); // Screen { ... width: 1366, height: 768 ... }</strong>
+	</code>
+
+	<p>Entre las propiedades mas interesantes que posee el objeto <em>Screen</em> estan:</p>
+
+	<ul>
+		<li>
+			<strong><em>availHeight</em></strong>: contiene el alto disponible.
+		</li>
+		<li>
+			<strong><em>availWidth</em></strong>: contiene el ancho disponible.
+		</li>
+		<li>
+			<strong><em>width</em></strong>: contiene el ancho actual de la ventana.
+		</li>
+		<li>
+			<strong><em>heigth</em></strong>: contiene el alto actual de la ventana.
+		</li>
+		<li>
+			<strong><em>pixelDepht</em></strong>: contiene la profundidad de pixeles de la pantalla.
+		</li>
+	</ul>
+
+
+	<!-- screenLeft -->
+	<h3>screenLeft</h3>
+	<p>Contiene la distancia horizontal izquierda (pixeles) entre el borde izquierdo de la ventana del navegador y el borde izquierdo de la pantalla.</p>
+	<!-- codigo -->
+	<code>
+		let screenLeft = window.screenLeft; <br><br>
+
+		console.log(screenLeft); <strong>// Distancia izquierda horizontal en pixels</strong>
+	</code>
+
+
+	<!-- screenTop -->
+	<h3>screenTop</h3>
+	<p>Contiene la distancia vertical superior (pixeles) entre el borde superior de la ventana del navegador y el borde superior de la pantalla.</p>
+	<!-- codigo -->
+	<code>
+		let screenTop = window.screenTop; <br><br>
+
+		console.log(screenTop); <strong>// Distancia superior vertical en pixels</strong>
+	</code>
+
+
+	<!-- scrollX -->
+	<h3>scrollX</h3>
+	<p>Contiene el numero de pixels que el documento se desplaza actualmente horizontalmente.</p>
+	<!-- codigo -->
+	<code>
+		let scrollX = window.scrollX; <br><br>
+
+		console.log(scrollX); <strong>// Desplazamiento horizontal actual (pixels)</strong>
+	</code>
+
+
+	<!-- scrollY -->
+	<h3>scrollY</h3>
+	<p>Contiene el numero de pixels que el documento se desplaza actualmente verticalmente.</p>
+	<!-- codigo -->
+	<code>
+		let scrollY = window.scrollY; <br><br>
+
+		console.log(scrollY); <strong>// Desplazamiento vertical actual (pixels)</strong>
+	</code>
+
+
+	<!-- scroll() -->
+	<h3>scroll()</h3>
+	<p>Desplaza la ventana hacia una coordenada particular X y Y (en pixels) del documento.</p>
+
+	<p>
+		<strong>Con Pixels:</strong> recibe como primer argumento la posicion X (en pixels), y como segundo argumento la posicion Y (en pixels).
+	</p>
+	<!-- codigo -->
+	<code>
+		window.scroll(0, 100); <strong>// 0px en X, 100px en Y</strong>
+	</code>
+
+	<p>
+		<strong>Con Options:</strong> Recibe un Objeto con tres atributos. Con esta forma se puede hacer un desplazamiento mas suave.
+	</p>
+	<ul>
+		<li><strong><em>top</em>:</strong> la posicion X (en pixels).</li>
+		<li><strong><em>left</em>:</strong> la posicion y (en pixels).</li>
+		<li><strong><em>behavior</em>:</strong> un string cuyo valor puede ser <em>smooth</em>, <em>instant</em>, o <em>auto</em> (Por defecto el valor es auto).</li>
+	</ul>
+	<!-- codigo -->
+	<code>
+		const options = { <br> &nbsp&nbsp&nbsp
+			top: 100, <br> &nbsp&nbsp&nbsp
+			left: 0, <br> &nbsp&nbsp&nbsp
+			behavior: 'smooth' <strong>// instant (al instante), smooth (mas lentamente)</strong> <br>
+		} <br><br>
+
+		window.scroll(options);
+	</code>
+
+
+	<!-- scrollBy() -->
+	<h3>scroolBy()</h3>
+	<p>Desplaza la ventana de forma relativa segun una distancia X y Y (en pixels) del documento.</p>
+
+	<p>
+		<strong>Con Pixels:</strong> recibe como primer argumento el desplazamiento X (en pixels), y como segundo argumento el desplazamiento Y (en pixels).
+	</p>
+	<!-- codigo -->
+	<code>
+		window.scrollBy(0, 100); <strong>// Desplaza el documento 100px hacia abajo</strong>
+	</code>
+
+	<p>
+		<strong>Con Options:</strong> Recibe un Objeto con tres atributos. Con esta forma se puede hacer un desplazamiento mas suave.
+	</p>
+	<ul>
+		<li><strong><em>top</em>:</strong> el desplazamiento X (en pixels).</li>
+		<li><strong><em>left</em>:</strong> el desplazamiento y (en pixels).</li>
+		<li><strong><em>behavior</em>:</strong> un string cuyo valor puede ser <em>smooth</em>, <em>instant</em>, o <em>auto</em> (Por defecto el valor es auto).</li>
+	</ul>
+	<!-- codigo -->
+	<code>
+		const options = { <br> &nbsp&nbsp&nbsp
+			top: 500, <br> &nbsp&nbsp&nbsp
+			left: 0, <br> &nbsp&nbsp&nbsp
+			behavior: 'smooth' <strong>// instant (al instante), smooth (mas lentamente)</strong> <br>
+		} <br><br>
+
+		window.scrollBy(options);
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

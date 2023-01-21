@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 11</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Arrays</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Definicion y usos -->
+	<h3>Definicion y usos</h3>
+	<p>Un array es un arreglo de datos ordenados segun un indice que inicia en 0. Tambien es conocido como vector y en su interior puede contener muchos datos de distintos tipos:</p>
+	<code>let array = [dato0, dato1, dato2... , datoN];</code> <br>
+	<code>alert(array[0]); // dato0</code> <br>
+	<code>alert(array[1]); // dato1</code>
+
+	<!-- Inicializacion de posiciones -->
+	<h3>Inicializacion de posiciones</h3>
+	<p>
+		Cuando creamos un arreglo automaticamente declaramos todas sus posiciones desde -infinito hasta 0 y hasta +infinito. <br>
+		Aunque estas posiciones estan declaradas siguen sin inicializarse porque sus valores no fueron definidos (estan como undefined).
+	</p>
+	<code>let array = [dato0, dato1, dato2];</code> <br>
+	<code>alert(array[11]); // undefined</code> <br>
+	<code>alert(array[556]); // undefined</code> <br>
+	<code>alert(waifus[45]); // error</code>
+
+	<!-- Ingresarle una propiedad -->
+	<h3>Ingresarle una propiedad</h3>
+	<p>Es posible ingresarle una propiedad al array de la siguiente forma:</p>
+	<code>
+		let array = ['elemento0', 'elemento1', 'elemento2', 'elemento3']; <br><br>
+
+		array.numero = 20; <br><br>
+
+		console.log(array.numero); // 20 <br><br>
+
+		console.log(array); // ['elemento0', 'elemento1', 'elemento2', 'elemento3', numero: 20]
+	</code>
+	
+
+	<script src="programa.js"></script>
+</body>
+</html>

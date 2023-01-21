@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Crear Soluciones</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Historia de Cofla</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Problema de los helados -->
+	<h3>Problema de los helados</h3>
+	<p>
+		3 chicos de 23 anios perfectamente normales entran en una heladeria a comprar un helado pero hay un problema: los precios no estan al lado de cada estante con su respectivo helado. <br>
+		Ellos quieren comprar el helado mas caro que puedan con el dinero que tienen, asi que... veamos como podemos ayudarles.
+	</p>
+
+	<p>
+		Roberto tiene $1.5 <br>
+		Pedro tiene $1.7 <br>
+		Cofla tiene $3.0
+	</p>
+
+	<style>
+		.en-linea {
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.margen { margin-left: 50px; }
+	</style>
+
+	<table class="tabla en-linea">
+		<thead>
+			<tr>
+				<th>Nombre del Helado</th> <th>Precio</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Palito en agua</td> <td>$0.6</td>
+			</tr>
+			<tr>
+				<td>Palito en crema</td> <td>$1.0</td>
+			</tr>
+			<tr>
+				<td>Bombon Heladix</td> <td>$1.6</td>
+			</tr>
+			<tr>
+				<td>Bombon Heladovich</td> <td>$1.7</td>
+			</tr>
+			<tr>
+				<td>Bombon Helardo</td> <td>$1.8</td>
+			</tr>
+			<tr>
+				<td>Pote con confites</td> <td>$2.9</td>
+			</tr>			
+			<tr>
+				<td>Pote de 1/4 KG</td> <td>$2.9</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="en-linea margen">
+		<h4>Crear Soluciones</h4>
+		<ol>
+			<li>
+				Pedirles que ingresen el monto que tienen y mostrarles el helado mas caro que pueden comprar
+			</li>
+			<li>
+				Si hay dos o mas con el mismo precio, entonces mostrar ambos
+			</li>
+			<li>
+			 	Cofla quiere que el programa les permita saber cual es el vuelto
+			</li>
+		</ol>
+	</div>
+
+	<button class="btn-programa" id="btnHelados">Inicia el programa!</button>
+
+	<script src="programa.js"></script>
+</body>
+</html>

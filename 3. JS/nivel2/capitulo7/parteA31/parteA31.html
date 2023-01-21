@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 31</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Objeto window (introduccion)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo7.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que es el Objeto window? -->
+	<h3>Que es el Objeto window?</h3>
+	<p>
+		Es un objeto, pero no cualquiera: es el objeto mas grande que hay porque es quien esta mas alto en la jerarquia... de modo que hasta el DOM depende de window.
+	</p>
+	<p>
+		Contiene los metodos y propiedades para manipular la ventana del navegador por lo que tiene muchos usos:
+	</p>
+
+	<ul>
+		<li>
+			Conocer la resolucion de la pantalla.
+		</li>
+		<li>
+			Conocer cuanto scroll se hizo en X o en Y.
+		</li>
+		<li>
+			Navegar a otro sitio web sin la nesecidad de usar href.
+		</li>
+		<li>
+			Cerrar la ventana sin usar el mouse ni el teclado.
+		</li>
+		<li>
+			Conocer datos importantes del sitio (host name, protocolo utilizado, historial, objeto document... etc).
+		</li>
+		<li>
+			Mover, redimencionar o manipular la ventana.
+		</li>
+	</ul>
+
+	<p>
+		Hay muchos usos mas que estos (y hasta mas utiles incluso), el objeto window es verdaderamente
+		impresionante.
+	</p>
+
+	<p>
+		Pendiente por explicar: El objeto window hereda las propiedades de Event Target (?). Investigar despues.
+	</p>
+
+
+
+
+	<!-- Metodos y Atributos Basicos -->
+	<h2>Metodos y Atributos Basicos</h2>
+	<p>Estos metodos y propiedades son los basicos del objeto window, tambien son bastante utiles.</p>
+
+
+	<!-- open() -->
+	<h3>open()</h3>
+	<p>Abre una ventana nueva. Carga un recurso en el contexto del navegador que ya existe o uno nuevo.</p>
+	<!-- codigo -->
+	<code>
+		window.open(); <strong>// Abre una nueva ventana</strong> <br><br>
+
+		window.open('https://google.com') <strong>// Abre google</strong> <br><br>
+	</code>
+
+	<p>Retorna la ventana que fue abierta como un nuevo objeto window.</p>
+	<!-- codigo -->
+	<code>
+		let ventana = window.open('https://youtube.com'); <br><br>
+
+		console.log(ventana); <strong>// Window { ... }</strong>
+	</code>
+
+
+	<!-- close() -->
+	<h3>close()</h3>
+	<p>Cierra la ventana ventana actual, por razones de seguridad solo se pueden cerrar ventanas que fueron abiertas con el metodo <em>open()</em>.</p>
+	<!-- codigo -->
+	<code>
+		window.close(); <strong>// Los scripts solo pueden cerrar ventanas que fueron abiertas por ellos</strong> <br><br>
+
+		let ventana = window.open('https://google.com'); <strong>// La ventana se abrio</strong> <br><br>
+
+		ventana.close(); <strong>// Y la ventana se cerro</strong>
+	</code>
+
+
+	<!-- closed -->
+	<h3>closed</h3>
+	<p>Contiene si la ventana referenciada esta cerrada o no. Solo lectura.</p>
+	<!-- codigo -->
+	<code>
+		let ventana = window.open('https://youtube.com'); <br><br>
+
+		console.log(ventana.closed); <strong>// false</strong> <br><br>
+
+		ventana.close(); <br><br>
+
+		console.log(ventana.closed); <strong>// true</strong>
+	</code>
+
+
+	<!-- name -->
+	<h3>name</h3>
+	<p>Basicamente solo es una propiedad que se usa para darle un nombre a la ventana, o definir el nombre del 'contexto de exploracion...</p>
+	<p>
+		Obtiene / establece el nombre del contexto de exploracion de la ventana.
+	</p>
+	<!-- codigo -->
+	<code>
+		let ventana = window.open('https://youtube.com'); <br><br>
+
+		console.log(ventana.name); <strong>// ''</strong> <br><br>
+
+		console.log(ventana) <strong>// Window { ... name: '' ... }</strong> <br><br>
+
+		ventana.name = 'Espinosaurio'; <br><br>
+
+		console.log(ventana.name); <strong>// 'Espinosaurio'</strong> <br><br>
+ 
+		console.log(ventana); <strong>// Window { ... name: 'Espinosaurio' ... }</strong> <br><br>
+
+		ventana.close();
+	</code>
+
+
+	<!-- stop() -->
+	<h3>stop()</h3>
+	<p>Es apretar el boton X izquierdo para parar que carge el sitio web.</p>
+	<p>
+		Detiene la carga de recursos en el contexto de exploracion actual.
+	</p>
+	<!-- codigo -->
+	<code>
+		let ventana = window.open('https://youtube.com'); <br><br>
+
+		ventana.stop(); <strong>// Detuvo inmediatamente la carga del sitio web</strong>
+	</code>
+
+
+	<!-- alert() -->
+	<h3>alert()</h3>
+	<p>Muestra una alerta en el contexto de exploracion actual.</p>
+	<!-- codigo -->
+	<code>
+		window.alert('Hola Mundo!'); <strong>// Hola Mundo!</strong>
+	</code>
+
+	<p>Tambien funciona en otros contextos de exploracion referenciados, porque ellos tambien son objetos window y poseen ese metodo.</p>
+	<!-- codigo -->
+	<code>
+		let ventana = window.open('https://youtube.com'); <br><br>
+
+		ventana.alert('Hola Mundo!!'); <strong>// Hola Mundo!!</strong>
+	</code>
+
+
+	<!-- print() -->
+	<h3>print()</h3>
+	<p>Abre el cuadro de dialogo <strong>Imprimir</strong> para imprimir el documento actual.</p>
+	<!-- codigo -->
+	<code>
+		window.print(); <strong>// Abre el cuadro para enviar el sitio web a la impresora XD</strong>
+	</code>
+
+
+	<!-- prompt() -->
+	<h3>prompt()</h3>
+	<p>Abre un cuadro de dialogo que solicita al usuario un dato. El dato es retornado como String.</p>
+	<!-- codigo -->
+	<code>
+		let dato = window.prompt('Ingrese un dato');
+
+		console.log(dato); // dato
+	</code>
+
+
+	<!-- confirm() -->
+	<h3>confirm()</h3>
+	<p>Abre un cuadro de dialogo con un mensaje y pregunta al usuario si aceptar o cancelar. Dependiendo de la respuesta del usuario retorna <em>true</em> o <em>false</em>.</p>
+	<!-- codigo -->
+	<code>
+		let eleccion = window.confirm('Desea ejecutar la accion?'); <br><br>
+
+		console.log(eleccion); <strong>// true / false</strong>
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html

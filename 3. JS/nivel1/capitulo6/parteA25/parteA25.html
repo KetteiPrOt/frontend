@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 25</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Document Object Module (DOM)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Presentacion del DOM -->
+	<h3>Presentacion del DOM</h3>
+	<p>Es una interfaz de plataforma, o API de programación para documentos HTML, que proporciona un conjunto estándar de objetos para representar documentos HTML en los programas de JavaScript. Nos da un modelo estándar sobre cómo pueden combinarse dichos objetos, y una interfaz estándar para acceder a ellos y manipularlos.</p>
+
+	<ul>
+		<li>
+			<strong>Nodo:</strong> un nodo en el DOM es cualquier etiqueta del cuerpo, como un parrafo, el mismo body o incluso las etiquetas de una lista.
+		</li>
+		<li>
+			<strong><em>document</em>:</strong> el nodo <em>document</em> es el nodo raiz a partir del cual derivan el resto de nodos.
+		</li>
+		<li>
+			<strong><em>element</em>:</strong> nodos definidos por etiquetas html.
+		</li>
+		<li>
+			<strong><em>text</em>:</strong> el texto dentro de un nodo <em>element</em> se considera un nuevo nodo hijo de tipo <em>text</em>.
+		</li>
+		<li>
+			<strong><em>attribute</em>:</strong> los atributos de las etiquetas definen nodos, en JavaScript no los vemos como nodos, sino como informacion asociada al nodo de tipo element.
+		</li>
+		<li>
+			<strong>Comentarios y otros:</strong> los comentarios y otros (como las declaraciones de tipo DOCTYPE en el elemento head) generan nodos.
+		</li>
+	</ul>
+
+	<!-- Seleccionar Elementos -->
+	<h2>Seleccionar Elementos</h2>
+	<p>Utilizamos los siguientes metodos para seleccionar elementos del documento (objeto <em>document</em>).</p>
+
+	<!-- getElementById() -->
+	<h3>getElementById()</h3>
+	<p>Selecciona un elemento por su id.</p>
+
+	<!-- elementos -->
+	<div id="elemento1" class="elementoDOM">
+		id="elemento1"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let elemento = document.getElementById(<strong>'elemento1'</strong>);
+	</code>
+
+	<!-- getElementsByTagName() -->
+	<h3>getElementsByTagName()</h3>
+	<p>Selecciona un conjunto de elementos por su etiqueta. Retorna en una lista similar a un array, pero no es un array.</p>
+
+	<!-- elementos -->
+	<div class="elementoDOM">
+		<cite>cite0</cite>
+		<cite>cite1</cite>
+		<cite>cite2</cite>
+		<cite>cite3</cite>
+		<cite>cite4</cite>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let citas = document.getElementsByTagName(<strong>'cite'</strong>); <br><br>
+
+		console.log(citas); // HTMLCollection(5) [cite, cite, cite, cite, cite]
+	</code>
+
+	<!-- getElementsByClassName() -->
+	<h3>getElementsByClassName()</h3>
+	<p>Selecciona un conjunto de elementos por su clase. Retorna en una lista similar a un array, pero no es un array.</p>
+
+	<!-- elementos -->
+	<div class="cerdo elementoDOM">
+		class="cerdo"
+	</div>
+	<div class="cerdo elementoDOM">
+		class="cerdo"
+	</div>
+	<div class="cerdo elementoDOM">
+		class="cerdo"
+	</div>
+	<div class="cerdo elementoDOM">
+		class="cerdo"
+	</div>
+	<div class="cerdo elementoDOM">
+		class="cerdo"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let cerdos = document.getElementsByClassName(<strong>'cerdo'</strong>); <br><br>
+
+		console.log(cerdos);  <br>
+		/* HTMLCollection(5) [ <br>
+		div.cerdo.elementoDOM,  <br>
+		div.cerdo.elementoDOM,  <br>
+		div.cerdo.elementoDOM,  <br>
+		div.cerdo.elementoDOM,  <br>
+		div.cerdo.elementoDOM <br>
+		] */
+	</code>
+
+	<!-- querySelector() -->
+	<h3>querySelector()</h3>
+	<p>Devuelve el primer elemento que coincida con la clase, id, o etiqueta especificada.</p>
+	
+	<p>Para buscar por id: '#identificador'</p>
+
+	<!-- elementos -->
+	<div id="elemento2" class="elementoDOM">
+		id="elemento2"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let elemento = document.querySelector(<strong>'#elemento2'</strong>);
+	</code>
+
+	<p>Para buscar por clase: '.clase'</p>
+
+	<!-- elementos -->
+	<div class="paloma elementoDOM">
+		class="paloma"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let paloma = document.querySelector(<strong>'.paloma'</strong>); <br><br>
+	</code>
+
+	<p>Para buscar por etiqueta: 'etiqueta'</p>
+
+	<!-- elementos -->
+	<div class="elementoDOM">
+		<i>Etiqueta 'i'</i>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let italic = document.querySelector(<strong>'i'</strong>); <br><br>
+	</code>
+
+	<!-- querySelectorAll() -->
+	<h3>querySelectorAll()</h3>
+	<p>Devuelve todos los elementos que coincidan con la clase, id, o etiqueta especificada.</p>
+
+	<p>Para buscar los elementos por sus ids: '#identificador'</p>
+
+	<!-- elementos -->
+	<div id="elemento3" class="elementoDOM">
+		id="elemento3"
+	</div>
+	<div id="elemento3" class="elementoDOM">
+		id="elemento3"
+	</div>
+	<div id="elemento3" class="elementoDOM">
+		id="elemento3"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let elementos = document.querySelectorAll(<strong>'#elemento3'</strong>); <br><br>
+
+		console.log(elementos) // NodeList(3) [div#elemento3.elementoDOM, div#elemento3.elementoDOM, div#elemento3.elementoDOM]
+	</code>
+
+	<p>Para buscar los elementos por su clase: '.clase'</p>
+
+	<!-- elementos -->
+	<div class="elefante elementoDOM">
+		class="elefante"
+	</div>
+	<div class="elefante elementoDOM">
+		class="elefante"
+	</div>
+	<div class="elefante elementoDOM">
+		class="elefante"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let elefantes = document.querySelectorAll(<strong>'.elefante'</strong>); <br><br>
+
+		console.log(elefantes) // NodeList(3) [div.elefante.elementoDOM, div.elefante.elementoDOM, div.elefante.elementoDOM]
+	</code>
+
+	<!-- Modificar Atributos -->
+	<h2>Modificar Atributos</h2>
+	<p>Utilizamos los siguientes metodos para modificar los atributos de los elementos.</p>
+
+	<!-- setAttribute() -->
+	<h3>setAttribute()</h3>
+	<p>Modifica el valor de un atributo. Recibe el nombre del atributo, y luego su nuevo valor.</p>
+
+	<!-- elementos -->
+	<div id="fantasma" class="elementoDOM">
+		id="fantasma"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		/* --- Codigo CSS --- */ <br>
+		.txt-blue { <br> &nbsp&nbsp&nbsp
+			color: blue; <br>
+		} <br><br>
+
+		/* --- Codigo JS --- */ <br>
+		let fantasma = document.getElementById('fantasma'); <br><br>
+
+		fantasma.setAttribute('class', <strong>'txt-blue elementoDOM'</strong>);
+	</code>
+
+	<!-- getAttribute() -->
+	<h3>getAttribute()</h3>
+	<p>Muestra el valor de un atributo. Recibe como parametro el nombre del atributo que se desea consultar.</p>
+
+	<!-- elementos -->
+	<div name="Simung Freud" id="pescado" class="elementoDOM">
+		name="Simung Freud" id="pescado"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let pescado = document.getElementById('pescado'); <br><br>
+
+		let informacion = pescado.getAttribute('name'); <br>
+		console.log(informacion); <strong>// Simung Freud</strong>
+	</code>
+
+	<!-- removeAttrubute() -->
+	<h3>removeAttrubute()</h3>
+	<p>Elimina un atributo. Recibe como parametro el nombre del atributo que se desea remover.</p>
+
+	<!-- elementos -->
+	<div name="Ricardo" id="rinoceronte" class="elementoDOM">
+		id="rinoceronte" name="Ricardo"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let rinoceronte = document.getElementById('rinoceronte'), <br> &nbsp&nbsp&nbsp
+			nombre = rinoceronte.getAttribute('name'); <br><br>
+
+		console.log(nombre); <strong>// Ricardo</strong> <br><br>
+
+		rinoceronte.removeAttribute('name'); <br><br>
+
+		nombre = rinoceronte.getAttribute('name');  <br><br>
+
+		console.log(nombre); <strong>// null</strong>
+	</code>
+
+
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

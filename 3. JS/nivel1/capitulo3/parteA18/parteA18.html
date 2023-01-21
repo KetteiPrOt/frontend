@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 18</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Caracteristicas de JavaScript</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Herencia -->
+	<h3>Herencia</h3>
+	<p>
+		Se usa con la palabre <em>extends</em> y sirve para ahorrar codigo haciendo que unas clases hereden sus atributos y metodos de otras.
+	</p>
+	<!-- codigo -->
+	<code>
+		class Usuario { <br>
+		&nbsp constructor(nombre, apellido) { <br>
+		&nbsp &nbsp this.nombre = nombre; <br>
+		&nbsp &nbsp this.apellido = apellido; <br>
+		&nbsp } <br>
+		} <br><br>
+
+		class Programador <strong>extends</strong> Usuario { <br>
+		&nbsp constructor(nombre, apellido, lenguaje) { <br>
+		&nbsp &nbsp <strong>super(nombre, apellido)</strong>; <br>
+		&nbsp &nbsp this.lenguaje = lenguaje; <br>
+		&nbsp } <br>
+		} <br><br>
+
+		const joel = new Programador('Joel', 'Mero', 'JavaScript'); <br>
+
+		console.log(joel); <strong>// Programador {nombre: 'Joel', apellido: 'Mero', lenguaje: 'JavaScript'}</strong>
+	</code>
+
+
+	<!-- Metodos estaticos -->
+	<h3>Metodos estaticos</h3>
+	<p>Los metodos estaticos son aquellos que no nesecitan que la clase sea instanciada para que puedan ser usadod... es decir se los puede invocar directamente desde la clase sin haber creado un objeto.</p>
+	<!-- codigo -->
+	<code>
+		class Programador { <br>
+	    &nbsp constructor(nombre, apellido, lenguaje) { <br>
+		&nbsp &nbsp this.nombre = nombre; <br>
+		&nbsp &nbsp this.apellido = apellido; <br>
+		&nbsp &nbsp this.lenguaje = lenguaje; <br>
+		&nbsp } <br><br>
+
+		&nbsp presentarse() { <br>
+		&nbsp &nbsp console.log(`Hola soy ${this.nombre} ${this.apellido}, mucho gusto!`); <br>
+		&nbsp } <br><br>
+
+		&nbsp <strong>static</strong> hola() { <br>
+		&nbsp &nbsp console.log('Hola'); <br>
+		&nbsp } <br>
+		} <br><br>
+
+		Programador.presentarse() <strong>// Error</strong> <br><br>
+
+		Programador.hola() <strong>// Hola</strong>
+	</code>
+
+	<!-- Metodos Accespres -->
+	<h3>Metodos Accesores</h3>
+	<p>
+		Se usan con las palabras claves <em>set</em> y <em>get</em>, ya que sirven para acceder y modificar datos que han sido encapsulados. Ademas cuando invocamos los metodos los hacemos como si fueran propiedades.
+	</p>
+	<!-- codigo -->
+	<code>
+		class Programador { <br>
+		&nbsp constructor(nombre, lenguaje) { <br>
+		&nbsp &nbsp this.nombre = nombre; <br>
+		&nbsp &nbsp this.lenguaje = lenguaje; <br>
+		&nbsp &nbsp this.experiencia = null; <br>
+		&nbsp } <br> <br>
+
+		&nbsp presentarse() { <br>
+		&nbsp &nbsp console.log(`Hola soy ${this.nombre} ${this.apellido}, mucho gusto!`); <br>
+		&nbsp } <br> <br>
+
+		&nbsp <strong>get</strong> getLevel() { <br>
+		&nbsp &nbsp return this.level; <br>
+		&nbsp } <br> <br>
+
+		&nbsp <strong>set</strong> setLevel(time) { <br>
+		&nbsp &nbsp this.level = time; <br>
+		&nbsp } <br>
+		} <br> <br>
+
+		const joel = new Programador('Joel', 'JavaScript'); <br> <br>
+
+		<strong>joel.setLevel = 5;</strong> <br> <br>
+
+		console.log(joel); // Programador {nombre: 'Joel', lenguaje: 'JavaScript', <strong>experiencia: 5</strong>} <br>
+		<strong>console.log(joel.getLevel); // 5</strong>
+	</code>
+	
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

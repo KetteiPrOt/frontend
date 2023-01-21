@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 6</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Concatenacion</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que es la concatenacion -->
+	<h3>Que es la concatenacion</h3>
+	<p>Concatenar significa unir dos o mas cadenas de texto.</p>
+	<code>"texto1" + " " + "texto2" ---> "texto1 texto2"</code>
+
+	<!-- Concatenar con + -->
+	<h3>Concatenar con +</h3>
+	<p>Puedo concatenar cadenas de texto con otras cadenas de texto o datos numericos usando el operador +.</p>
+	<code>nombre = "Joel"; edad = 18; 
+	presentacion = "Hola soy " + nombre + ". Y tengo " + edad + " anios!";</code> <br>
+	<code>alert(presentacion); // Hola soy Joel. Y tengo 18 anios!</code>
+
+	<!-- Forzar String -->
+	<h3>Forzar String</h3>
+	<p>No es posible concatenar dos numeros usando solo el operador +, ya que acabaria sumandolos. Para lograrlo es nesesario forzar el cambio de los datos numericos a Strings:</p>
+	<code>forzarString = "" + 1 + 2 + 3 + 4 + 5 + 6;</code> <br>
+	<code>alert(forzarString); // 123456</code>
+
+	<!-- Funcion concat() -->
+	<h3>Funcion concat()</h3>
+	<p>Es una funcion que sirve para concatenar algun dato a una cadena de texto. Se aplica obligatoriamente sobre un dato de tipo String.</p>
+	<code>texto1 = "Hola"; texto2 = " Mundo"; concatenacion = texto1.concat(texto2);</code> <br>
+	<code>alert(concatenacion); // Hola Mundo</code> <br> <br>
+
+	<code>numero = 5; texto = "Hola"; concatenacion = texto.concat(numero);</code> <br>
+	<code>alert(concatenacion); // Hola5</code>
+
+	<!-- Con backtiks y ${} -->
+	<h3>Con backtiks y ${}</h3>
+	<p>Se puede concatenar datos de tipo numerico o String utilizando backtiks (``) de la siguiente forma:</p>
+	<code>nombre = "Joel", edad = 18, apellido = "Mero";</code> <br>
+	<code>alert(`Hola ${nombre} ${apellido}! Tienes ${edad} anios`); // Hola Joel Mero! Tienes 18 anios</code>
+
+</body>
+</html>

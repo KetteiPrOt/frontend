@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Propiedades de texto</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Propiedades de texto -->
+	<section>
+		<h2>Propiedades de texto</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<h3>line-height</h3>
+		<p>Controla la altura de linea en los parrafos</p>
+		<style>
+			/*Estamos usando multiclases para comparar dos elementos
+			que solo difieren en un punto*/
+			.parrafo {
+				width: 30%;
+				background-color: skyblue;
+			}
+
+			.lineaAlta {
+				line-height: 30px;
+			}
+		</style>
+		<p class="parrafo">Lorem ipsum dolor sit amet consectetur, adipisicing, elit. Et quae sint harum praesentium, deleniti nulla, repellat tempore ipsa ratione, animi itaque, sunt facere cum pariatur autem commodi excepturi corrupti dolore.</p>
+		<p class="parrafo lineaAlta">Lorem ipsum dolor sit amet consectetur, adipisicing, elit. Debitis officia, temporibus accusantium tenetur non, facilis aspernatur excepturi ut blanditiis, expedita laudantium amet iste velit? Illum laboriosam voluptatem hic laborum, nam.</p>
+
+		<h3>text-align</h3>
+		<p>Controla la alineacion del texto.</p>
+		<p>A la izquierda [left] (por defecto)</p>
+		<style>
+			.izquierda {
+				text-align: left;
+			}
+		</style>
+		<p class="parrafo Izquierda">Lorem ipsum, dolor.</p>
+
+		<p>Centrado [center]</p>
+		<style>
+			.centrado {
+				text-align: center;
+			}
+		</style>
+		<p class="parrafo centrado">Lorem, ipsum, dolor.</p>
+
+		<p>A la derecha [right]</p>
+		<style>
+			.derecha {
+				text-align: right;
+			}
+		</style>
+		<p class="parrafo derecha">Lorem, ipsum, dolor.</p>
+
+		<p>Justificado [justify]</p>
+		<style>
+			.justificado {
+				text-align: justify;
+			}
+		</style>
+		<p class="parrafo justificado">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum nostrum harum impedit, incidunt vel magni enim consequuntur quas laborum a.</p>
+
+		<h3>float</h3>
+		<p>En su funcion mas basica controla como flotan las imagenes a un lado del texto</p>
+
+		<p>Flotar imagen a la izquierda [left]</p>
+		<style>
+			.flotarIzquierda {
+				float: left;
+				height: 300px;
+			}
+		</style>
+		<p class="parrafo"><img class="flotarIzquierda" src="../../media/asuna.png">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, laudantium! Consequuntur fuga autem cum fugiat aliquam, natus qui sed odio non vel, tempore similique accusamus architecto quibusdam necessitatibus modi. Ullam eveniet, rem corporis, sint eos voluptate. Minus neque odit harum ipsum in consequuntur, aliquid nulla ipsa sint deleniti consectetur corrupti quia maiores. Assumenda perferendis tempora, odio sapiente labore nulla voluptatem?</p>
+
+		<p>Flotar imagen a la derecha [right]</p>
+		<style>
+			.flotarDerecha {
+				float: right;
+				height: 300px;
+			}
+		</style>
+		<p class="parrafo"><img class="flotarDerecha" src="../../media/asuna.png">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, laudantium! Consequuntur fuga autem cum fugiat aliquam, natus qui sed odio non vel, tempore similique accusamus architecto quibusdam necessitatibus modi. Ullam eveniet, rem corporis, sint eos voluptate. Minus neque odit harum ipsum in consequuntur, aliquid nulla ipsa sint deleniti consectetur corrupti quia maiores. Assumenda perferendis tempora, odio sapiente labore nulla voluptatem?</p>
+
+		<h3>text-decoration-line</h3>
+		<p>Permite agregar una linea decorativa al texto</p>
+		<p>Subrayado [underline]</p>
+		<style>
+			.subrayado {
+				text-decoration-line: underline;
+			}
+		</style>
+		<p class="parrafo subrayado">Lorem, ipsum dolor.</p>
+
+		<p>En medio [line-through]</p>
+		<style>
+			.medio {
+				text-decoration-line: line-through;
+			}
+		</style>
+		<p class="parrafo medio">Lorem, ipsum, dolor.</p>
+
+		<p>Arriba [overline]</p>
+		<style>
+			.arriba {
+				text-decoration-line: overline;
+			}
+		</style>
+		<p class="parrafo arriba">Lorem, ipsum, dolor.</p>
+
+		<h3>text-decoration-color</h3>
+		<p>Define el color de la linea decorativa</p>
+		<style>
+			.colorRojo {
+				text-decoration-color: red;
+			}
+		</style>
+		<p class="parrafo subrayado colorRojo">Lorem, ipsum, dolor.</p>
+
+		<h3>text-decoration-style</h3>
+		<p>Define el estilo de la linea decorativa</p>		
+		<p>Solido [solid] (por defecto)</p>
+		<style>
+			.solido {
+				text-decoration-style: solid;
+			}
+		</style>
+		<p class="parrafo subrayado solido">Lorem, ipsum dolor.</p>
+
+		<p>Doble linea [double]</p>
+		<style>
+			.doble {
+				text-decoration-style: double;
+			}
+		</style>
+		<p class="parrafo subrayado doble">Lorem, ipsum dolor.</p>
+
+		<p>Onda [wavy]</p>
+		<style>
+			.onda {
+				text-decoration-style: wavy;
+			}
+		</style>
+		<p class="parrafo subrayado onda">Lorem, ipsum dolor.</p>
+
+		<p>Punteado [dotted]</p>
+		<style>
+			.punteado {
+				text-decoration-style: dotted;
+			}
+		</style>
+		<p class="parrafo subrayado punteado">Lorem, ipsum dolor.</p>
+
+		<h3>text-decoration</h3>
+		<p>Es un resumen de las tres propiedades anteriores</p>
+		<code>elemento { text-decoration: line style color }</code>
+
+		<h3>font-family</h3>
+		<p>Permite cambiar la fuente de texto en un elemento</p>
+		<style>
+			.sansSerif {
+				font-family: sans-serif;
+			}
+		</style>
+		<p>Fuente Sans Serif:</p>
+		<p class="parrafo sansSerif">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, assumenda.</p>
+
+		<h3>font-size</h3>
+		<p>Cambia el tamaño del texto</p>
+		<style>
+			.textoGrande {
+				font-size: 22px;
+			}
+		</style>
+		<p class="parrafo textoGrande">Lorem, ipsum, dolor.</p>
+
+		<h3>font-weight</h3>
+		<p>Controla el grosor de la fuente</p>
+		<p>Funete normal [lighter] (por defecto)</p>
+		<style>
+			.fuenteLigera {
+				font-weight: lighter;
+			}
+		</style>
+		<p class="parrafo fuenteLigera">Lorem, ipsum, dolor.</p>
+
+		<p>Fuente negrita [bold]</p>
+		<style>
+			.negrita {
+				font-weight: bold;
+			}
+		</style>
+		<p class="parrafo negrita">Lorem, ipsum, dolor.</p>
+
+		<h3>font-style</h3>
+		<p>Controla el estilo de la fuente para crear texto en cursiva</p>
+		<p>Estilo normal [normal] (por defecto)</p>
+		<style>
+			.estiloNormal {
+				font-style: normal;
+			}
+		</style>
+		<p class="parrafo estiloNormal">Lorem ipsum, dolor.</p>
+
+		<p>Estilo italica [italic]</p>
+		<style>
+			.estiloItalico {
+				font-style: italic;
+			}
+		</style>
+		<p class="parrafo estiloItalico">Lorem ipsum, dolor.</p>
+
+		<h3>white-space</h3>
+		<p>Controla la creacion de nuevas lineas de texto.</p>
+		<p>Normal (por defecto) [normal]. Crea nuevas lines para que entre todo el texto.</p>
+		<style>
+			.espacioNormal {
+				white-space: normal;
+			}
+		</style>
+		<p class="parrafo espacioNormal">Lorem ipsum, dolor, sit amet consectetur adipisicing elit. Eius dolores recusandae laboriosam exercitationem aperiam voluptatibus tempora, voluptates quasi molestias, vero vitae necessitatibus eveniet veritatis porro?</p>
+
+		<p>No espaciar [nowrap]. Impide que se cree nuevas lineas de texto, obligandolo a que se acomode en una sola.</p>
+		<style>
+			.espaciadoNo {
+				white-space: nowrap;
+			}
+		</style>
+		<p class="parrafo espaciadoNo">Lorem ipsum, dolor, sit amet consectetur adipisicing elit. Eius dolores recusandae laboriosam exercitationem aperiam voluptatibus tempora, voluptates quasi molestias</p>
+
+		<h3>writing-mode</h3>
+		<p>Controla la direccion en la que se escribe el texto.</p>
+		<p>Horizontal [horizontal-tb]. Escritura normal.</p>
+		<style>
+			.escrituraHorizontal {
+				writing-mode: horizontal-tb;
+			}
+		</style>
+		<p class="parrafo escrituraHorizontal">Hola mundo</p>
+
+		<p>Vertical izquierda a derecha [vertical-lr].</p>
+		<style>
+			.vertical {
+				margin: 0;
+				height: 50px;
+			}
+			.escrituraVerticalLR {
+				writing-mode: vertical-lr;
+			}
+		</style>
+		<p class="parrafo vertical escrituraVerticalLR">
+			Hola mundo1 Hola mundo2 Hola mundo3 Hola mundo4 Hola mundo5 
+		</p>
+
+		<p>Vertical derecha a izquierda [vertical-rl].</p>
+		<style>
+			.escrituraVerticalRL {
+				writing-mode: vertical-rl;
+			}
+		</style>
+		<p class="parrafo vertical escrituraVerticalRL">
+			Hola mundo1 Hola mundo2 Hola mundo3 Hola mundo4 Hola mundo5 
+		</p>
+
+		<h3>word-spacing</h3>
+		<p>Controla el espacio que tiene cada palabra en el texto.</p>
+		<style>
+			.espaciado30px {
+				word-spacing: 30px;
+			}
+		</style>
+		<p class="parrafo">Lorem ipsum dolor sit amet</p>
+		<p class="parrafo espaciado30px">Lorem ipsum dolor sit amet</p>
+	</section>	
+</body>
+</html>

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Seccion 2</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../nivel1/styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Conceptos Basicos de POO en JavaScript</h1>
+	<h4 class="enlace-volver"><a href="../indice.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Propiedades -->
+	<h3>Propiedades</h3>
+	<p>Son las particularidades que presenta el objeto, en JavaScript los atributos se representan como pares de clave y valor:</p>
+	<code>
+		let object = { <br>
+		&nbsp key: value, <br>
+		&nbsp key2: value2, <br>
+		&nbsp ... <br>
+		&nbsp keyN: valueN <br>
+		}
+	</code>
+	<p>A la clave de le conoce como llave (<em>key</em>).</p>
+
+	<!-- Metodos -->
+	<h3>Metodos</h3>
+	<p>Son acciones que pueden realizar los objetos, en JavaScript los metodos son funciones que cumplen las acciones realizadas por los objetos:</p>
+	<code>
+		let perro = { <br>
+		&nbsp morder: function () { ... }, <br>
+		&nbsp ladrar: function () { ... }, <br>
+		&nbsp sentarse: function () { ... } <br>
+		} <br><br>
+
+		perro.morder(); // muerde <br>
+		perro.ladrar(); // ladra <br>
+		perro.sentarse(); // se sienta
+	</code>
+
+	<h4>Ejemplo</h4>
+
+	<code>
+		const user = { <br>
+		&nbsp name: 'Joel', <br>
+		&nbsp lastName: 'Mero', <br>
+		&nbsp age: 18, <br>
+		&nbsp showName() {  <br>
+		&nbsp &nbsp console.log(user.name + ' ' + user.lastName); <br>
+		&nbsp } <br>
+		} <br><br>
+
+		user.showName(); // Joel Mero
+	</code>
+
+	<h4>Sintaxis</h4>
+	<p>Los metodos se pueden definir de tres formas, la primera es:</p>
+	<code>
+		const user = { <br>
+		&nbsp name: 'Joel', <br>
+		&nbsp lastName: 'Mero', <br>
+		&nbsp age: 18, <br>
+		&nbsp showName: function() {  <br>
+		&nbsp &nbsp console.log(user.name + ' ' + user.lastName); <br>
+		&nbsp } <br>
+		} <br><br>
+
+		user.showName(); // Joel Mero
+	</code>
+
+	<p>La segunda es desde afuera:</p>
+
+	<code>
+		function showName() {  <br>
+		&nbsp console.log(user.name + ' ' + user.lastName); <br>
+		} <br><br>
+
+		const user = { <br>
+		&nbsp name: 'Joel', <br>
+		&nbsp lastName: 'Mero', <br>
+		&nbsp age: 18, <br>
+		&nbsp showName: showName <br>
+		} <br><br>
+
+		user.showName(); // Joel Mero
+	</code>
+
+	<p>La ultima y mas actual es como vimos arriba, desde adentro:</p>
+
+	<code>
+		const user = { <br>
+		&nbsp name: 'Joel', <br>
+		&nbsp lastName: 'Mero', <br>
+		&nbsp age: 18, <br>
+		&nbsp showName() {  <br>
+		&nbsp &nbsp console.log(user.name + ' ' + user.lastName); <br>
+		&nbsp } <br>
+		} <br><br>
+
+		user.showName(); // Joel Mero
+	</code>
+
+	<!-- Palabra clave this -->
+	<h3>Palabra clave this</h3>
+	<p>Sirve para hacer referencia al objeto donde esta alojada la funcion y operar desde ella con los atributos del objeto. Esta es una forma mas optima de crear metodos:</p>
+	<code>
+		const user = { <br>
+		&nbsp name: 'Joel', <br>
+		&nbsp lastName: 'Mero', <br>
+		&nbsp age: 18, <br>
+		&nbsp showName() {  <br>
+		&nbsp &nbsp console.log(this.name + ' ' + this.lastName); <br>
+		&nbsp } <br>
+		} <br><br>
+
+		user.showName(); // Joel Mero
+	</code>
+
+	<h4>Ejemplo</h4>
+	<p>Con un objeto mas complejo:</p>
+	<code>
+		const cuenta = { <br>
+		&nbsp nombre: 'Joel Mero Travez', <br>
+		&nbsp numero: '129837767674867384', <br>
+		&nbsp monto: 100, <br>
+		&nbsp depositar(cantidad) { this.monto += cantidad; }, <br>
+		&nbsp retirar(cantidad) { this.monto -= cantidad; }, <br>
+		&nbsp consultarMonto() { console.log(this.monto); } <br>
+		} <br><br>
+
+		cuenta.consultarMonto(); // 100 <br>
+		cuenta.depositar(25); <br>
+		cuenta.consultarMonto(); // 125
+	</code>
+
+	<!-- Constructor -->
+	<h3>Constructor</h3>
+	<p>
+		Los objetos que he estado usando hasta haora creados a mano se conocen como Objetos Literales. <br>
+		Cuando se nesecita crear muchos objetos se vuelve desventajoso utilizar esta notacion y por eso en la POO existe un concepto llamado Constructor que en teoria funciona como una especie de generador automatico de objetos.
+	</p>
+
+	<p>
+		Al usar POO en JavaScript el Constructor son funciones que nos permiten crear objetos con propiedades y metodos. <br>
+	</p>
+
+	<h4>Sintaxis</h4>
+	<p>
+		Para indicar que una funcion ejerce el roll de "Constructor" en JavaScript por convenio se escribe el nombre con mayusculas. <br>
+		En otros leguajes de POO a este nombre de la funcion se le conoce como clase (<em>class</em>), que es una plantilla desde la cual se definen las propiedades y metodos que van a tener los objetos:
+	</p>
+	<code>
+		function Person() { <br>
+		&nbsp this.name = ''; <br>
+		&nbsp this.lastname = ''; <br>
+		&nbsp this.age = 0; <br>
+		&nbsp this.showFullName = function() { <br>
+		&nbsp &nbsp return this.name + ' ' + this.lastname; <br>
+		&nbsp } <br>
+		} <br>
+		<strong>// Importante: en la funcion constructora no su puede usar la sintaxis "nombreFuncion () { ... }"</strong>
+	</code>
+
+	<p>
+		No quiero que cuando esta funcion se ejecute me devuelva una respuesta, quiero que cree un objeto. Para decirle esto a JavaScript se usa la palabra clave <em>new</em> al ejecutar la funcion:
+	</p>
+	<code>
+		const person1 = new Person(); <br><br>
+
+		console.log(person1); // { name: '', lastname: '', age: 0, showFullName: f() }
+	</code>
+
+	<p>El interprete de JavaScript entiende que los objetos creados de esta forma no son iguales a los Objetos Literales, sino que han venido de un Constructor (una funcion Constructora).</p>
+
+	<h4>Ejemplo</h4>
+	<p>
+		Ahora con esta funcion constructora voy a crear algunos objetos de Person(), algunas personas. <br>
+		Y esto es genial porque asi ya no es nesesario estar escribiendo un Objeto Literal por cada persona que nesecitemos registrar en el programa:
+	</p>
+	<code>
+		const persona1 = new Person(); <br>
+		persona1.name = 'Joel'; <br>
+		persona1.lastname = 'Mero'; <br>
+		persona1.age = '18'; <br>
+		console.log(persona1.showFullName()); <strong>// Joel Mero</strong> <br> <br>
+
+		const persona2 = new Person(); <br>
+		persona2.name = 'Matias'; <br>
+		persona2.lastname = 'Travez'; <br>
+		persona2.age = 13; <br>
+		console.log(persona2.showFullName()); <strong>// Matias Travez</strong>
+	</code>
+	<p>Importante: crear un objeto utilizando la funcion constructora Person(), es lo mismo que decir 'crear un objeto que va a ser una instancia del Constructor Person()'.</p>
+
+	<p>En POO al Constructor de objetos tambien se lo llama 'Instancia', y a crear un objeto utilizando un constructor tambien se le llama 'Instanciar una Clase', porque si recuerdas la 'Clase' es como le llaman al nombre de la funcion constructora de JavaScript.</p>
+
+	<!-- Constructor Object() -->
+	<h3>Constructor Object()</h3>
+	<p>
+		Asi como en el subtema de arriba defini mi propio constructor Person() hay que entender que JavaScript tambien tiene funciones constructoras definidas de manera nativa. <br>
+		Una de esas funciones mas importantes es el constructor Object() que crea un objeto vacio al activarla.
+	</p>
+	<code>
+		const objeto = new Object(); <br> 
+		console.log(objeto);  // {} <br> <br>
+
+		const objetoLiteral = {}; <br>
+		console.log(objetoLiteral); // {}
+	</code>
+
+	<p>
+		Crear un Objeto Literal o crearlo desde la funcion constructora Object() es en realidad lo mismo. <br>
+		Solo que hacerlo de la primera forma es mas practico en este caso que andar invocando a cada rato la funcion constructora para crear Objetos Literales.
+	</p>
+
+	<p>
+		Pero todos los objetos tienen una propiedad llamada <em>constructor</em> que contiene la funcion constructora con la que fueron creados:
+	</p>
+	<code>
+		const persona1 = new Person(); <br>
+		persona1.name = 'Joel'; <br>
+		persona1.lastname = 'Mero'; <br>
+		persona1.age = '18'; <br> <br>
+
+		let objeto = new Object(); <br> <br>
+
+		console.log(persona1.constructor); // Person() { ... } <br>
+		console.log(objeto.constructor); // Object() { [native code] }
+	</code>
+
+	<h4>Crear datos primitivos con Object()</h4>
+	<p>Con esta funcion constructora de objetos podemos crear datos primitivos que admiten propiedades y metodos de objetos, lo cual tambien en basicamente lo 	mismo que crearlos con las funciones constructoras de sus porpios tipos de datos:</p>
+	<code>
+		const numero = new Object(23); <br>
+		console.log(numero); // { 23 } <br><br>
+
+		const numero2 = new Number(23); <br>
+		console.log(numero2) // { 23 } <br><br>
+
+		const string = new Object('Hola Mundo!'); <br>
+		console.log(string); // { 'Hola Munfo!' } <br><br>
+
+		const string2 = new String('Hola Mundo!') <br>
+		console.log(string2); // { 'Hola Munfo!' } <br><br>
+
+		const bool = new Object(true); <br>
+		console.log(bool); // { true } <br><br>
+
+		const bool2 = new Boolean(true); <br>
+		console.log(bool2); // { true } <br>
+	</code>
+
+	<p>La diferencia es que estos datos primitivos ya no son datos tipo number/string/boolean Literales como los habia estado creando antes, ahora son objetos y admiten propiedades y metodos:</p>
+	<code>
+		const string = new Object('Hola Mundo!'); <br>
+		console.log(string); // { 'Hola Mundo!' } <br> <br>
+
+		string.extender = function () {	return this + ' ' + 'Texto Extendido' }; <br>
+		console.log(string.extender()); // Hola Mundo! Texto Extendido <br> <br>
+
+		string.nombre = 'Mi primer String'; <br>
+		console.log(string); // { 'Hola Mundo!', nombre:  'Mi primer String', extender: f() } <br> <br>
+
+		console.log(string.extender()); // Hola Mundo! Texto Extendido
+	</code>
+
+	<!-- Metodos del objeto Object -->
+	<h3>Metodos del objeto Object</h3>
+	<p>A parte de existir una funcion constructora <em>Object()</em>, tambien existe un objeto llamado <em>Object</em> el cual tiene propiedades y metodos:</p>
+
+	<h4>Metodo keys()</h4>
+	<p>Este metodo de <em>Object</em> recibe como argumento un objeto creado por nosotros (ya sea Literalmente o con una funcion constructora) y retorna un array con todas las claves que posee ese objeto:</p>
+	<code>
+		const miObjeto = { <br>
+		&nbsp llave1: 'valor1', <br>
+		&nbsp llave2: 'valor2', <br>
+		&nbsp llave3: 'valor3', <br>
+		&nbsp llave4: 'valor4' <br>
+		} <br> <br>
+
+		let llaves = Object.keys(miObjeto); <br> <br>
+
+		console.log(llaves) // [ 'llave1', 'llave2', 'llave3', 'llave4' ]
+	</code>
+
+	<h4>Metodo values()</h4>
+	<p>Este metodo de <em>Object</em> recibe como argumento un objeto creado por nosotros (ya sea Literalmente o con una funcion constructora) y retorna un array con todos los valores que posee ese objeto:</p>
+	<code>
+		const miObjeto = { <br>
+		&nbsp llave1: 'valor1', <br>
+		&nbsp llave2: 'valor2', <br>
+		&nbsp llave3: 'valor3', <br>
+		&nbsp llave4: 'valor4' <br>
+		} <br> <br>
+
+		let valores = Object.values(miObjeto); <br><br>
+
+		console.log(valores) // [ 'valor1', 'valor2', 'valor3', 'valor4' ]
+	</code>
+
+	<!-- Palabra clave new -->
+	<h3>Palabra clave new</h3>
+	<p>La palabra clave <em>new</em> se usa para indicarle a JavaScript que queremos que cree un nuevo objeto, si no le decimos eso lo que hara sera (gracias a <em>this</em>) agregarle las propiedades de la funcion constructora a el siguiente objeto que este por encima de nuestro codigo en la jerarquia... en este caso el objeto <em>window</em> y no a la constante a la que deseamos asignarle nuestro nuevo objeto:</p>
+	<code>
+		function Person() { <br>
+		&nbsp this.name = 'Joel'; <br>
+		&nbsp this.lastname = 'Mero'; <br>
+		} <br> <br>
+
+		const persona = new Person(); <br>
+		console.log(persona); // { name: 'Joel', lastname: 'Mero' } <br> <br>
+
+		const persona2 = Person(); <br>
+		console.log(persona2); // undefined <br> <br>
+
+		console.log(window.name); // Joel <br>
+		console.log(window.lastname); // Mero <br> <br>
+
+		delete window.name; // Elimino las propiedades para que no se queden guardadas en el objeto window <br>
+		delete window.lastname; <br>
+	</code>
+
+	<h4>"use strict"</h4>
+	<p>Este string se usa para prevenir que al olvidar poner la palabra clave <em>new</em> en una nueva instancia este error pase inadvertido... lo que hace es que al ejecutar la funcion convierte la palabra clave <em>this</em> de la funcion constructora en <em>undefined</em> y esto si avisa que hay un error en el codigo.</p>
+	<code>
+		function Person() { <br>
+		&nbsp 'use strict';
+		&nbsp this.name = 'Joel'; <br>
+		&nbsp this.lastname = 'Mero'; <br>
+		} <br> <br>
+
+		const persona = new Person(); <br>
+		console.log(persona); // { name: 'Joel', lastname: 'Mero' } <br> <br>
+
+		const persona2 = Person(); <strong>// error</strong> <br>
+	</code>
+
+	<p>Fue introducida en ECMAScript 5, sin embargo si nuestra funcion contructora esta contenida dentro de otro objeto creado por nosotros... 'use strict' no la va a detener ya que al unico objeto que no intentara asignarle las propiedades y los metodos de la funcion constructora es a window, pero si se dara el gusto de ponerselos a nuestro otro objeto que esta en medio de la jerarquia.</p>
+	<p>Por eso es muy importante escribir la palabra clave <em>new</em> al crear objetos para generar una nueva instancia... de lo contrario solo activamos una funcion que ejecuta codigo impredecible.</p>
+
+	<!-- Prototipo (prototype) -->
+	<h3>Prototipo (prototype)</h3>
+	<p>
+		Cuando creamos un nuevo objeto a partir de una funcion constructora, este objeto nuevo no esta totalmente separado de la funcion con la que fue creado... por esto es que aun despues de crearlos sigue siendo posible 'modificar/agregar/alterar' los metodos y las propiedades de todos los objetos creados con una misma funcion constructora.
+	</p>
+	<p>
+		Para hacer esto en JavaScript no basta con agregar el nuevo metodo o propiedad a la funcion constructora como si la funcion fuera un objeto, porque no lo es. <br>
+		Lo que debemos hacer es acceder al Prototipo de la funcion, es decir al modelo que la funcion usa para definir los objetos al crearlos. Hacemos esto utilizando la propiedad <em>prototype</em> de la funcion constructora con la siguiente sintaxis:
+	</p>
+
+	<h4>Agregar nuevos metodos y propiedades con prototype</h4>
+	<p>Aqui creamos dos objetos con la funcion constructora Persona():</p>
+	<code>
+		function Persona(nombre, apellido) { <br>
+		&nbsp this.nombre = nombre; <br>
+		&nbsp this.apellido = apellido; <br>
+		} <br><br>
+
+		// Estos dos objetos son instancias de la clase Persona <br>
+		const jhon = new Persona('Jhon', 'Van'), <br>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsppedro = new Persona('Pedro', 'Arteaga');  <br>
+		console.log(jhon); // { 'Jhon', 'Van' } <br>
+		console.log(pedro); // { 'Pedro', 'Arteaga' }
+	</code>
+
+	<p>Despues alteramos el Prototipo de la funcion constructora Persona() para poder agregar un metodo nuevo a todos los objetos creados con la funcion, incluso despues de haber creado estos objetos. Lo hacemos con la siguiente sintaxis:</p>
+	<code>
+		Persona.prototype.saludar = function() { return `Hola! Soy ${this.nombre}.` };
+	</code>
+
+	<p>
+		Con esta linea de codigo hemos alterado el protipo de todos los objetos que fueron creados con la funcion constructora Persona()... resulta que aun despues de haber sido creados, los objetos sigen enlazados a la funcion contructora porque estos objetos (al igual que la funcion constructora) tambien poseen la propiedad <em>prototype</em>.
+	</p>
+	<p>
+		En los objetos esta propiedad tiene cumple la funcion de mantener enlazados los objetos con los prototipos de sus funciones constructoras originales... por lo que si llamamos un metodo que el objeto no posee lo que hara sera buscar en los prototipos que tiene enlazados para ver si estos prototipos si los tienen definidos. Lo que hacemos es al final definir el metodo en el Prototipo de la funcion constructora para que este disponible para todos los objetos creados por ella aunque el nuevo metodo no haya sido definido en los objetos individualmente:
+	</p>
+	<code>
+		console.log(jhon.saludar()); <strong>// Hola! Soy Jhon</strong> <br>
+		console.log(jhon); <strong>// { 'Jhon', 'Van' }</strong> <br>
+		console.log(pedro.saludar()); <strong>// Hola! Soy Pedro</strong> <br>
+		console.log(pedro); <strong>// { 'Pedro', 'Arteaga' }</strong> 
+	</code>
+
+	<p>Esto mismo se puede usar para agregar tambien propiedades al prototipo Gobal de los objetos:</p>
+	<code>
+		function Persona(nombre, apellido) { <br>
+		&nbsp this.nombre = nombre; <br>
+		&nbsp this.apellido = apellido; <br>
+		} <br><br>
+
+		const jhon = new Persona('Jhon', 'Van'), <br> &nbsp&nbsp&nbsp&nbsp&nbsp
+		      pedro = new Persona('Pedro', 'Arteaga'); <br> <br>
+
+		<strong>Persona.prototype.especie = 'Homo Sapies';</strong> <br><br>
+
+		console.log(jhon.especie); <strong>// Homo Sapies</strong> <br>
+		console.log(pedro.especie); <strong>// Homo Sapies</strong>
+	</code>
+
+	<h4>Usar prototype en funciones constructoras nativas</h4>
+	<p>
+		Asi como utilizamos <em>prototype</em> para agregar y modificar metodos y propiedades de funciones constructoras credas por mi mismo, tambien es posible utilizarlo para modificar funciones constructoras nativas de JavaScript como <em>String()</em>, <em>Number()</em>, <em>Boolean()</em>... y muchas mas.
+	</p>
+	<code>
+		const string = new String('Hola Mundo'); <br><br>
+
+		String.prototype.gritar = function () { return 'AHHHHH QUE DOLOR DE CABEZA!!! XD' }; <br><br>
+
+		console.log(string.gritar()); <strong>// AHHHHH QUE DOLOR DE CABEZA!!! XD</strong>
+	</code>
+
+	<p>Podemos ver que ahora este metodo gritar() esta disponible para todos los Strings del programa, incluso para los que son creados de manera literal sin llamar a la funcion constructora String() porque a la final todos los Strings del programa son creados usando el prototipo de la funcion constructora String:</p>
+	<code>
+		let texto = 'Texto'; <br><br>
+
+		console.log(texto.gritar()); <strong>//AHHHHH QUE DOLOR DE CABEZA!!! XD</strong>
+	</code>
+
+	<h4>Orientacion a Objetos basado en prototipos</h4>
+	<p>Esta capacidad de alterar el prototipo de una funcion constructora es una de las mas importantes de JavaScript que otros lenguajes de programacion no tienen. Por esa razon aveces se le llama a la POO en JavaScript como <strong><em>Programacion Orientada a Objetos Basada en Prototipos</em></strong>.</p>
+	<p>
+		Esto puede ser un arma de doble filo a la hora de aprender otros lenguajes de programacion orientada a objetos basados en clases. Ya que en estos lenguajes es muy dificil que un constructor sea alterado una vez ya fue creado... pero en JavaScript es posible y muy comun hacer este pecado.
+	</p>
+
+	<!-- Palabra clave class -->
+	<h3>Palabra clave class</h3>
+	<p>
+		En lenguajes de POO que utilizan la POO basada en Clases no existe esta forma de crear Constructores/Instancias/Clases de la forma que lo hemos hecho hasta ahora (con funciones constructoras y Prototipos).
+	</p>
+	<p>
+		En su lugar lo que existe es una palabra clave: <em>class</em>, para indicar que el siguiente codigo es un/a nuevo/a Clase (en el lenguaje de programacion)/Constructor (en el paradigma de POO).
+	</p>
+	<p>
+		Es por eso que para facilitar utilizar el paradigma de POO en JavaScript a los programadores de otros lenguajes como C#, Java, C++, en ECMAScript 6 decidieron agregar la palabra clave <em>class</em>  JavaScript... que es una forma en que les resulta mas familiar escribir las funciones constructoras de las que hemos estado hablando:
+	</p>
+
+	<h4>Usando la palabra clave class</h4>
+	<p>Lo que quiere decir es que hacer esto:</p>
+	<code>
+		function Persona(nombre, apellido, edad) { <br>
+		&nbsp 'use strict';
+		&nbsp this.nombre = nombre; <br>
+		&nbsp this.apellido = apellido; <br>
+		&nbsp this.edad = edad; <br>
+		&nbsp this.saludar = function() { return `Hola! Soy ${this.nombre} ${this.apellido}.` }; <br>
+		} <br> <br>
+
+		let usuario1 = new Persona('Joel', 'Mero', 18); <br> <br>
+
+		console.log(usuario1); <strong>// Persona {name: 'Joel', apellido: 'Mero', edad: 18, saludar: ƒ}</strong> <br>
+		console.log(usuario1.saludar()); // Hola! Soy Joel Mero
+	</code>
+
+	<p>Es lo mismo que hacer esto:</p>
+	<code>
+		class Persona { <br>
+		&nbsp constructor(nombre, apellido, edad) { <br>
+		&nbsp &nbsp this.nombre = nombre; <br>
+		&nbsp &nbsp this.apellido = apellido; <br>
+		&nbsp &nbsp this.edad = edad; <br>
+		&nbsp } <br>
+		&nbsp saludar() { <br>
+		&nbsp &nbsp return `Hola! Soy ${this.nombre} ${this.apellido}.`; <br>
+		&nbsp } <br>
+		} <br><br>
+
+		let usuario1 = new Persona('Joel', 'Mero', 18); <br> <br>
+
+		console.log(usuario1); <strong>// Persona {name: 'Joel', apellido: 'Mero', edad: 18}</strong> <br>
+		console.log(usuario1.saludar()); // Hola! Soy Joel Mero
+	</code>
+
+	<p>Esto se le conoce como "Azucar sintáctico" o <em>syntactic suggar</em>. Que quiere decir que escribir de cualquiera de las dos formas es lo mismo, solo que una es mas familiar para programadores que vengan de ciertos lenguajes de programacion y la otra tendra mas sentido para los que hayan empezado con JavaScript... ademas de otras mejoras:</p>
+
+	<h4>Mejoras de la palabra clave class</h4>
+	<p>
+		Las clases intentan seguir las 'mejores practicas' para crear funciones constructoras, por eso:
+	</p>
+
+	<ol>
+		<li>
+			Viene incluida automaticamente la palabra clave 'use strict' para no asignarle accidentalmente propiedades que no le corresponden al objeto <em>window</em>.
+		</li>
+		<li>
+			Los metodos creados en la funcion <em>constructor()</em> de la palabra clave <em>class</em> son agregados directamente al Prototipo, en lugar de copiar el metodo en cada objeto creado ya que asi se ahorran muchos recursos.
+		</li>
+		<li>
+			Utilizar <em>class</em> (Clase), en lugar de una funcion constructora (<em>function</em>) es mas fiel al paradigma de POO:
+		</li>
+	</ol>
+
+	<p>
+		Definir una funcion constructora en JavaScript despues de llamarla para crear objetos es valido porque las <em>funciones</em> son una de las primeras cosas que se crean en JavaScript:
+	</p>
+	<code>
+		let usuario1 = new Persona('Joel', 'Mero', 18); <br> <br>
+
+		console.log(usuario1); <strong>// Persona {name: 'Joel', apellido: 'Mero', edad: 18, saludar: ƒ}</strong> <br>
+		console.log(usuario1.saludar()); <strong>// Hola! Soy Joel Mero</strong> <br> <br>
+
+		function Persona(nombre, apellido, edad) { <br>
+		&nbsp 'use strict';
+		&nbsp this.nombre = nombre; <br>
+		&nbsp this.apellido = apellido; <br>
+		&nbsp this.edad = edad; <br>
+		&nbsp this.saludar = function() { return `Hola! Soy ${this.nombre} ${this.apellido}.` }; <br>
+		} 
+	</code>
+
+	<p>
+		Pero si hacemos esto con una Clase (<em>class</em>) nos va a dar un error ya que las Clases primero se deben declarar e inicializar antes de invocarlas. Y asi es la forma mas tipica de leer el codigo y es mas sencillo de entender que tener esas consideraciones raras de las funciones de JavaScript:
+	</p>
+	<code>
+		let usuario1 = new Persona('Joel', 'Mero', 18); <br> <br>
+
+		console.log(usuario1); <strong>// Error Persona is not defined</strong> <br>
+		console.log(usuario1.saludar()); <strong>// Error Persona is not defined</strong> <br><br>
+
+		class Persona { <br>
+		&nbsp constructor(nombre, apellido, edad) { <br>
+		&nbsp &nbsp this.nombre = nombre; <br>
+		&nbsp &nbsp this.apellido = apellido; <br>
+		&nbsp &nbsp this.edad = edad; <br>
+		&nbsp } <br>
+		&nbsp saludar() { <br>
+		&nbsp &nbsp return `Hola! Soy ${this.nombre} ${this.apellido}.`; <br>
+		&nbsp } <br>
+		} 
+	</code>
+
+	<h4>Sintaxis anonima de class</h4>
+	<p>Tambien se puede definir una clase de forma similar a definir una funcion anonima:</p>
+	<code>
+		<strong>const Persona = class</strong> { <br>
+		&nbsp constructor(nombre, apellido, edad) { <br>
+		&nbsp &nbsp this.nombre = nombre; <br>
+		&nbsp &nbsp this.apellido = apellido; <br>
+		&nbsp &nbsp this.edad = edad; <br>
+		&nbsp } <br>
+		&nbsp saludar() { <br>
+		&nbsp &nbsp return `Hola! Soy ${this.nombre} ${this.apellido}.`; <br>
+		&nbsp } <br>
+		} <br><br>
+
+		let usuario1 = new Persona('Joel', 'Mero', 18); <br> <br>
+
+		console.log(usuario1); // Persona {name: 'Joel', apellido: 'Mero', edad: 18}<br>
+		console.log(usuario1.saludar()); // Hola! Soy Joel Mero
+	</code>
+
+	<p>Que es el equivalente, con las correspondientes diferencias entre una funcion constructora de JavaScript y una Clase de JavaScript, a hacer esto:</p>
+	<code>
+		<strong>const Persona = function (nombre, apellido, edad)</strong> { <br>
+		&nbsp 'use strict';
+		&nbsp this.nombre = nombre; <br>
+		&nbsp this.apellido = apellido; <br>
+		&nbsp this.edad = edad; <br>
+		&nbsp this.saludar = function() { return `Hola! Soy ${this.nombre} ${this.apellido}.` }; <br>
+		} <br> <br>
+
+		let usuario1 = new Persona('Joel', 'Mero', 18); <br> <br>
+
+		console.log(usuario1); // Persona {name: 'Joel', apellido: 'Mero', edad: 18, saludar: ƒ} <br>
+		console.log(usuario1.saludar()); // Hola! Soy Joel Mero
+	</code>
+
+	<p>
+		Como conclusion, una Clase no es mas que un conjunto de metodos (en el paradigma)/ funciones (en el lenguaje) para definir un objeto, empezando por el metodo <em>constructor()</em> que define los atributos/propiedades de los objetos creados utilizando esa Clase.
+	</p>
+
+	<!-- class { constructor() { ... } } -->
+	<h3>class { constructor() { ... } }</h3>
+	<p>Es importante entender que al invocar una Clase de JavaScript, para JavaScript esa clase es como una funcion, de echo tienen el mismo tipo de dato:</p>
+	<code>
+		function Nombre(argumento1, argumento2...) { <br>
+		&nbsp 'use strict'; <br>
+		&nbsp this.propiedad1 = argumento1; <br>
+		&nbsp this.propiedad2 = argumento2; <br>
+		... <br>
+		&nbsp this.metodo1 = function() { ... }; <br>
+		} <br> <br>
+
+		let usuario1 = new Nombre(valor1, valor2...); <br> <br>
+
+		console.log(typeof Nombre); <strong>// function</strong>
+	</code>
+
+	<p>El tipo de dato de la funcion contructora es el mismo que de la Clase (function):</p>
+	<code>
+		class Nombre { <br>
+		&nbsp constructor(argumento1, argumento2...) { <br>
+		&nbsp &nbsp this.propiedad1 = argumento1; <br>
+		&nbsp &nbsp this.propiedad2 = argumento2; <br>
+		&nbsp &nbsp ... <br>
+		&nbsp } <br>
+		&nbsp metodo1() { <br>
+		&nbsp &nbsp ... <br>
+		&nbsp } <br>
+		} <br><br>
+
+		let usuario1 = new Nombre(valor1, valor2...); <br> <br>
+
+		console.log(typeof Nombre); <strong>// function</strong>
+	</code>
+
+	<h4>La funcion que crea el objeto</h4>
+	<p>Sin embargo, en una Clase de JavaScript la funcion que retorna el objeto creado al instanciar la Clase, no es la propia Clase, si no que es su metodo <em>constructor()</em>. Asi que si le aplicamos un return al metodo constructor estariamos reescribiendo las propiedades que se le agregan al objeto automaticamente al instanciar la Clase:</p>
+	<code>
+		class Persona { <br>
+		&nbsp constructor(nombre, apellido, edad) { <br>
+		&nbsp &nbsp this.nombre = nombre; <br>
+		&nbsp &nbsp this.apellido = apellido; <br>
+		&nbsp &nbsp this.edad = edad; <br>
+		&nbsp &nbsp <strong>return { troleo: 'XDXDXD', autor: 'Anonymus' }</strong> <br>
+		&nbsp } <br>
+		&nbsp saludar() { <br>
+		&nbsp &nbsp return `Hola! Soy ${this.nombre} ${this.apellido}.`; <br>
+		&nbsp } <br>
+		} <br><br>
+
+		let usuario1 = new Persona('Joel', 'Mero', 18), <br> &nbsp&nbsp&nbsp
+			usuario2 = new Persona('Juan', 'Calvino', 200); <br> <br>
+
+		console.log(usuario1); <strong>// Persona {troleo: 'XDXDXD', autor: 'Anonymus'}</strong> <br>
+		console.log(usuario2); <strong>// Persona {troleo: 'XDXDXD', autor: 'Anonymus'}</strong>
+	</code>
+
+	<p>Esto tambien es una consideracion bastante tipica en los lenguajes de POO y en el propio paradigma en general.</p>
+
+	<h4>El Prototipo en las funciones de JavaScript</h4>
+	<p>En una Clase de JavaScript el Prototipo (<em>prototype</em>) es el nombre de la clase:</p>
+	<code>
+		class Persona { <br>
+		&nbsp constructor(nombre, apellido, edad) { <br>
+		&nbsp &nbsp this.nombre = nombre; <br>
+		&nbsp &nbsp this.apellido = apellido; <br>
+		&nbsp &nbsp this.edad = edad; <br>
+		&nbsp } <br>
+		&nbsp saludar() { <br>
+		&nbsp &nbsp return `Hola! Soy ${this.nombre} ${this.apellido}.`; <br>
+		&nbsp } <br>
+		} <br><br>
+
+		console.log(Persona.prototype); <strong>// Persona { ... }</strong>
+	</code>
+
+	<p>Mientras que en una funcion constructora de JavaScript el Prototipo es mas complicado: una propiedad 'constructor' que contienen como valor la funcion constructora Persona...</p>
+	<code>
+		function Persona(nombre, apellido, edad) { <br>
+		&nbsp 'use strict';
+		&nbsp this.nombre = nombre; <br>
+		&nbsp this.apellido = apellido; <br>
+		&nbsp this.edad = edad; <br>
+		&nbsp this.saludar = function() { return `Hola! Soy ${this.nombre} ${this.apellido}.` }; <br>
+		} <br> <br>
+
+		console.log(Persona.prototype); <strong>// { constructor: function Persona(...) { ... } }</strong>
+	</code>
+
+	<h4>Conclusion</h4>
+
+	<p>Por lo que en conclusion sin duda es mejor usar <em>class</em> (Clases) en lugar de funciones constructoras de JavaScript para trabajar con el paradigma de POO.</p>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

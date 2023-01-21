@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Utilidades de diseño 3</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Utilidades de diseño 2 -->
+	<section>
+		<h2>Utilidades de diseño 3</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<!-- resize -->
+		<h3>resize</h3>
+		<p>Permite quitarle el ajustador a los elementos textarea</p>
+		<style>
+			.sinResize {
+				resize: none;
+			}
+		</style>
+		<textarea>resize: both; (por defecto)</textarea>
+		<textarea class="sinResize">resize: none;</textarea>
+
+		<!-- max/min-width/height -->
+		<h3>max/min-width/height</h3>
+		<p>Permite establecer un maximo y un minimo de tamaño para los elementos textarea</p>
+		<style>
+			.maxMin {
+				max-width: 700px;
+				min-width: 700px;
+				max-height: 80px;
+				min-height: 80px;
+			}
+		</style>
+		<textarea class="maxMin">
+				max-width: 700px;
+				min-width: 700px;
+				max-height: 80px;
+				min-height: 80px;</textarea>
+
+		<!-- vertical-align -->
+		<h3>vertical-align</h3>
+		<p>Sirve para posicionar verticalmente los elementos en referencia a la linea de texto</p>
+		<p>En la base de la linea (por defecto) [baseline].</p>
+		<style>
+			.elementoAncho {
+				background-color: skyblue;
+				box-sizing: border-box;
+				height: 55px;
+				padding-top: 10px;
+			}
+
+			.enLinea { display: inline; }
+
+			.iconoNicolas {
+				background-color: red;
+				width: 30px;
+			}
+
+			.verticalLineaBase {
+				vertical-align: baseline;
+			}
+		</style>
+		<div class="elementoAncho">
+			<p class="enLinea">Texto</p>
+			<img src="../media/icon1.svg" class="iconoNicolas verticalLineaBase">
+		</div>
+
+		<p>En medio de la linea [middle].</p>
+		<style>
+			.verticalMedio {
+				vertical-align: middle;
+			}
+		</style>
+		<div class="elementoAncho">
+			<p class="enLinea">Texto</p>
+			<img src="../media/icon1.svg" class="iconoNicolas verticalMedio">
+		</div>
+
+		<p>Arriba en la linea [text-top].</p>
+		<style>
+			.verticalArriba {
+				vertical-align: text-top;
+			}
+		</style>
+		<div class="elementoAncho">
+			<p class="enLinea">Texto</p>
+			<img src="../media/icon1.svg" class="iconoNicolas verticalArriba">
+		</div>
+	</section>
+</body>
+</html>

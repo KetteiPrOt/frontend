@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Utilidades de diseño 2</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Utilidades de diseño 2 -->
+	<section>
+		<h2>Utilidades de diseño 2</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<!-- opacity -->
+		<h3>opacity</h3>
+		<p>Controla la opacidad de los elementos.</p>
+		<p>[1 (solido)- 0 (transparente)]</p>
+		<style>
+			.elemento {
+				text-align: center;
+				width: 100px;
+				height: 100px;
+				background: skyblue;
+				border: 2px solid black;
+			}
+
+			.bloqueLinea {				
+				display: inline-block;
+			}
+
+			.margen {
+				margin-left: 30px;
+			}
+
+			.opacidadUno {
+				opacity: 1;				
+			}
+
+			.opacidadMedia {
+				opacity: 0.5;
+			}
+
+			.opacidadBaja {
+				opacity: 0.2;
+			}
+		</style>
+		<div class="elemento bloqueLinea margen opacidadUno">opacity: 1;</div>
+		<div class="elemento bloqueLinea margen opacidadMedia">opacity: 0.5;</div>
+		<div class="elemento bloqueLinea margen opacidadBaja">opacity: 0.2;</div>
+
+		<!-- visibility -->
+		<h3>visibility</h3>
+		<p>Controla si un elemento es visible o no.</p>
+		<style>
+			.bloque {
+				display: block;
+			}
+			.visible {
+				visibility: visible;
+			}
+
+			.invisible {
+				visibility: hidden;
+			}
+		</style>
+		<p>[(por defecto) visible/hidden]</p>
+		<div class="elemento bloque visible" id="elementoVisibilidad">Elemento</div>
+		<button id="btnVisibilidad">Ocultar/Mostrar</button>
+		<script>
+			// Un poco de JS para la logica del boton, no le prestes atencion
+ 			let btnVisibilidad = document.getElementById('btnVisibilidad'),
+ 				elementoVisibilidad = document.getElementById('elementoVisibilidad');
+
+ 			btnVisibilidad.addEventListener('click', function() {
+ 				if (elementoVisibilidad.classList.contains('visible')) {
+ 					elementoVisibilidad.classList.remove('visible');
+ 					elementoVisibilidad.classList.add('invisible');
+ 				} else {
+ 					elementoVisibilidad.classList.remove('invisible');
+ 					elementoVisibilidad.classList.add('visible');
+ 				}
+ 			});
+		</script>
+
+		<!-- overflow -->
+		<h3>overflow</h3>
+		<p>Controla el desbordamiento del contenido de los elementos.</p>
+		<p>Desbordamiento visible (por defecto) [visible]. Por defecto el desbordemiento es visible.</p>
+		<style>
+			.desbordamientoVisible {
+				overflow: visible;
+			}
+
+			.m-bottom {
+				margin-bottom: 70px;
+			}
+		</style>
+		<div class="elemento m-bottom desbordamientoVisible">
+			Lorem ipsum dolor, sit amet, consectetur adipisicing elit. Dicta molestias incidunt, exercitationem quia officiis est?
+		</div>
+
+		<p>Desbordemiento oculto [hidden]. El desbordemiento queda oculto.</p>
+		<style>
+			.desbordamientoOculto {
+				overflow: hidden;
+			}
+		</style>
+		<div class="elemento desbordamientoOculto">
+			Lorem ipsum dolor, sit amet, consectetur adipisicing elit. Dicta molestias incidunt, exercitationem quia officiis est?
+		</div>
+
+		<p>Desbordamiento scroll [scroll]. Accede al contenido que se desborda con scroll.</p>
+		<style>
+			.desbordamientoScroll {
+				overflow: scroll;
+			}
+		</style>
+		<div class="elemento ancho desbordamientoScroll">
+			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam aperiam assumenda sint, sequi facere perspiciatis recusandae rem vel natus ut consectetur tempora excepturi sunt sapiente. Cum ipsa omnis officia ea tempore non recusandae soluta tenetur, accusamus accusantium, placeat vitae facilis id suscipit expedita sequi eius nemo molestias inventore harum rerum voluptas quo? Dolorum omnis, id a, nam maxime incidunt repudiandae molestias necessitatibus accusamus, corporis ducimus, cupiditate. Perferendis ipsam doloremque iste mollitia inventore illum quam quisquam animi omnis enim, natus aspernatur eum unde facilis aut sapiente reiciendis beatae magni commodi autem, blanditiis. Expedita quia ipsam quod totam perferendis reprehenderit voluptatem placeat dicta beatae! Distinctio aspernatur qui sequi. Unde dolorem odit ratione voluptas delectus doloribus, nemo provident autem corrupti corporis! Provident, itaque.</p>
+		</div>
+
+		<!-- oveflow-x/y -->
+		<h3>overflow-x/y</h3>
+		<p>Controla como se comporta el desbordamiento especificamente en los ejes x/y.</p>
+		<style>
+			.scrollY {
+				overflow-x: hidden;
+				overflow-y: scroll;
+			}
+
+			.scrollX {
+				overflow-x: scroll;
+				overflow-y: hidden;
+			}
+		</style>
+		<article>
+			<div class="bloqueLinea">
+				<p>overflow-x: hidden; overflow-y: scroll;</p>
+				<div class="elemento ancho scrollY">
+					Lorem, ipsum dolor sit amet, consectetur adipisicing elit. Laudantium dolore consectetur dolorem tenetur laboriosam et doloremque, mollitia quidem, maxime aliquam libero similique? Eaque consequatur nemo beatae atque, at mollitia sed qui rerum nobis esse nisi hic rem magni incidunt vitae! Consectetur dolorem tempore et quibusdam obcaecati dolore repellendus, deleniti harum amet doloribus facilis hic atque nemo inventore in! Possimus enim fugit soluta ratione ut deserunt, esse quas nulla tempora odio dolorum perspiciatis, est iure doloribus, nemo quaerat dignissimos nihil et, dicta ea. Quo fugit id fugiat dicta at et quos exercitationem dolorum atque a, in sint, error officiis omnis, eum! Totam in fuga eos vitae laboriosam quod quos iure incidunt laudantium, maiores, labore. Obcaecati perferendis tempora sed, aspernatur soluta, error.
+				</div>
+			</div>
+			<div class="bloqueLinea margen">
+				<p>overflow-x: scroll; overflow-y: hidden;</p>
+				<div class="elemento ancho scrollX">
+					Lorem, ipsum dolor sit amet, consectetur adipisicing elit. Laudantium dolore consectetur dolorem tenetur laboriosam et doloremque, mollitia quidem, maxime aliquam libero similique? Eaque consequatur nemo beatae atque, at mollitia sed qui rerum nobis esse nisi hic rem magni incidunt vitae! Consectetur dolorem tempore et quibusdam obcaecati dolore repellendus, deleniti harum amet doloribus facilis hic atque nemo inventore in! Possimus enim fugit soluta ratione ut deserunt, esse quas nulla tempora odio dolorum perspiciatis, est iure doloribus, nemo quaerat dignissimos nihil et, dicta ea. Quo fugit id fugiat dicta at et quos exercitationem dolorum atque a, in sint, error officiis omnis, eum! Totam in fuga eos vitae laboriosam quod quos iure incidunt laudantium, maiores, labore. Obcaecati perferendis tempora sed, aspernatur soluta, error.
+				</div>
+			</div>
+		</article>
+
+		<!-- overflow-wrap -->
+		<h3>overflow-wrap</h3>
+		<p>Sirve para definir como se acomodan las lineas de texto dentro de los contenedores.</p>
+		<p>Normal [normal]. Solo crea una nueva linea en los puntos normales de separacion de palabras (espacio entre dos palabras).</p>
+		<style>
+			.wrapNormal {
+				overflow-wrap: normal;
+			}
+
+			.alto {
+				height: 200px;
+			}
+		</style>
+		<div class="elemento alto wrapNormal">Lorem ipsum dolor, sit, amet consecteturdddddddddddddddddddddddddddddddddddddddd adipisicing elit. Molestiae.</div>
+
+		<p>Romper palabra [break-word]. Rompe las palabras para acomodar todas las letras dentro del elemento.</p>
+		<style>
+			.wrapBreak {
+				overflow-wrap: break-word;
+			}
+		</style>
+		<div class="elemento alto wrapBreak">Lorem ipsum dolor, sit, amet consecteturdddddddddddddddddddddddddddddddddddddddd adipisicing elit. Molestiae.</div>
+
+		<!-- text-overflow -->
+		<h3>text-overflow</h3>
+		<p>Controla como se comporta el desbordamiento del texto cuando el desbordamiento del elemento esta oculto.</p>
+		<p>Clip (por defecto) [clip].Simplemente no se muestra</p>
+		<style>
+			.textoDesbordado {
+				white-space: nowrap;
+				overflow: hidden;
+				width: 50px;
+				height: auto;
+			}
+
+			.clip {
+				text-overflow: clip;
+			}
+		</style>
+		<div class="elemento textoDesbordado clip">Hola mundoooo!</div>
+
+		<p>Elipsis [ellipsis]. Agrega "..." para indicar que hay contenido que no cabe.</p>
+		<style>
+			.ellipsis {
+				text-overflow:ellipsis;
+			}
+		</style>
+		<div class="elemento textoDesbordado ellipsis">Hola mundoooo!</div>
+
+		<!-- box-shadow -->
+		<h3>box-shadow</h3>
+		<p>Agrega sombras a los elementos.</p>
+		<p>Sombra simple [X Y color]. <em>X representa el desplazamiento de la sombra en x, Y representa el desplazamiento en y.</em></p>
+		<style>
+			.ancho {
+				width: 300px;
+			}
+
+			.sombra {
+				box-shadow: 10px 5px black;
+			}
+		</style>
+		<div class="elemento bloque ancho sombra">box-shadow: 10px 5px black;</div>
+
+		<p>Sombra difuminada (blur) [X Y blur color]. <em>blur representa el radio del difuminado de la sombra.</em></p>
+		<style>
+			.sombraDifuminada {
+				box-shadow: 10px 5px 5px black;
+			}
+		</style>
+		<div class="elemento bloque ancho sombraDifuminada">box-shadow: 10px 5px 5px black;</div>
+
+		<p>Sombra agrandada (spread) [X Y blur spread color]. <em>spread representa el radio de propagacion de la sombra (su tamaño), que originalmente es igual al elemento.</em></p>
+		<style>
+			.sombraAgrandada {
+				box-shadow: 0px 0px 0px 5px black;
+			}
+		</style>
+		<div class="elemento bloque ancho sombraAgrandada">box-shadow: 0px 0px 0px 5px black;</div>
+
+		<p>Multiples sombras [sombra1, sombra2, sombra3].</p>
+		<style>
+			.sombraMultiple {
+				box-shadow: 5px 5px red, 10px 10px green, 15px 15px blue;
+			}
+
+			.muyAncho {
+				width: 400px;
+			}
+		</style>
+		<div class="elemento bloque muyAncho sombraMultiple">
+			box-shadow: 5px 5px red, 10px 10px green, 15px 15px blue;
+		</div>
+
+		<p>Dentro del elemento (inset) [X Y blur spread color inset]. <em>Activar inset da una sensacion de profundidad.</em></p>
+		<style>
+			.sombraDentro {
+				box-shadow: 5px 5px 10px red inset;
+			}
+		</style>
+		<div class="elemento bloque ancho sombraDentro">box-shadow: 5px 5px 10px red inset;</div>
+
+		<!-- linear-gradient -->
+		<h3>linear-gradient</h3>
+		<p>Crea fondos con degradados en los elementos.</p>
+		<p>En su forma mas basica degradados lineales de 2 colores [to top/right/bottom/left, color1, color2].</p>
+		<style>
+			.gradienteDerecha {
+				background: linear-gradient(to right, blue, white);
+			}
+
+			.gradienteIzquierda {
+				background: linear-gradient(to left, blue, white);
+			}
+
+			.gradienteArriba {
+				background: linear-gradient(to top, blue, white);
+			}
+
+			.gradienteAbajo {
+				background: linear-gradient(to bottom, blue, white);
+			}
+
+			.mark {
+				color: red;
+			}
+		</style>
+		<article>
+			<div class="bloqueLinea">
+				<p>background: linear-gradient(<span class="mark">to right</span>, blue, white);</p>
+				<div class="elemento gradienteDerecha"></div>
+			</div>
+			<div class="bloqueLinea margen">
+				<p>background: linear-gradient(<span class="mark">to left</span>, blue, white);</p>
+				<div class="elemento gradienteIzquierda"></div>
+			</div>
+		</article>
+		<article>
+			<div class="bloqueLinea">
+				<p>background: linear-gradient(<span class="mark">to top</span>, blue, white);</p>
+				<div class="elemento gradienteArriba"></div>
+			</div>
+			<div class="bloqueLinea margen">
+				<p>background: linear-gradient(<span class="mark">to bottom</span>, blue, white);</p>
+				<div class="elemento gradienteAbajo"></div>
+			</div>			
+		</article>
+
+		<p>Degradados diagonales. [to bottom/top right/left, color1, color2]</p>
+		<style>
+			.gradDiagonalA {
+				background: linear-gradient(to bottom right, blue, white);
+			}
+
+			.gradDiagonalB {
+				background: linear-gradient(to top right, blue, white);
+			}
+
+			.gradDiagonalC {
+				background: linear-gradient(to bottom left, blue, white);
+			}
+
+			.gradDiagonalD {
+				background: linear-gradient(to top left, blue, white);
+			}
+		</style>
+		<article>
+			<div class="bloqueLinea">
+				<p>background: linear-gradient(to <span class="mark">bottom right</span>, blue, white);</p>
+				<div class="elemento gradDiagonalA">Baja a la derecha</div>
+			</div>
+			<div class="bloqueLinea margen">
+				<p>background: linear-gradient(to <span class="mark">top right</span>, blue, white);</p>
+				<div class="elemento gradDiagonalB">Sube a la derecha</div>
+			</div>
+		</article>
+		<article>
+			<div class="bloqueLinea">
+				<p>background: linear-gradient(to <span class="mark">bottom left</span>, blue, white);</p>
+				<div class="elemento gradDiagonalC">Baja a la izquierda</div>
+			</div>
+			<div class="bloqueLinea margen">
+				<p>background: linear-gradient(to <span class="mark">top left</span>, blue, white);</p>
+				<div class="elemento gradDiagonalD">Sube a la izquierda</div>
+			</div>
+		</article>		
+
+		<p>Degradado de varios colores. [top/right/bottom/left, color1, color2, color3...]</p>
+		<style>
+			.gradienteTriple {
+				background: linear-gradient(to right, blue, red, white, green);
+			}
+		</style>
+		<div class="elemento muyAncho gradienteTriple">background: linear-gradient(to right, blue, red, white, green);</div>
+
+		<p>Especificar el punto en que se inicia una transicion de color [0%-100%]</p>
+		<style>
+			.colorVeinte {
+				background: linear-gradient(to right, blue, white 20%, orange);
+			}
+
+			.colorCicuenta {
+				background: linear-gradient(to right, blue, white 50%, orange);
+			}
+
+			.colorOchenta {
+				background: linear-gradient(to right, blue, white 80%, orange);
+			}
+		</style>
+		<article>
+			<div class="bloqueLinea">
+				<p>background: linear-gradient(to right, blue, white <span class="mark">20%</span>, orange);</p>
+				<div class="elemento bloqueLinea muyAncho colorVeinte"></div>
+			</div>
+			<div class="bloqueLinea margen">
+				<p>background: linear-gradient(to right, blue, white <span class="mark">50%</span>, orange);</p>
+				<div class="elemento bloqueLinea muyAncho colorCicuenta"></div>
+			</div>
+			<div class="bloqueLinea margen">
+				<p>background: linear-gradient(to right, blue, white <span class="mark">80%</span>, orange);</p>
+				<div class="elemento bloqueLinea muyAncho colorOchenta"></div>
+			</div>
+		</article>
+
+		<p>Combinar mas de un degradado para formar fondos mas complejos. [background: linear-gradient(...), linear-gradient(...)...;]</p>
+		<style>
+			.gradienteIndividual {
+				background: linear-gradient(to right, blue, red);	
+			}
+
+			.gradienteCombinado {
+				background:
+					linear-gradient(to bottom, white, transparent),
+					linear-gradient(to right, blue, red
+				);		
+			}
+
+			.markBlue {
+				color: blue;
+			}
+		</style>			
+		<article>
+			<div class="bloqueLinea">
+				<p>background: linear-gradient(to right, <span class="markBlue">blue</span>, <span class="mark">red</span>);</p>
+				<div class="elemento muyAncho bloqueLinea gradienteIndividual"></div>
+			</div>
+			<div class="bloqueLinea margen">
+				<p>background: linear-gradient(to bottom, <strong>white</strong>, <strong>transparent</strong>), linear-gradient(to right, <span class="markBlue">blue</span>, <span class="mark">red</span>);</p>
+				<div class="elemento muyAncho bloqueLinea gradienteCombinado"></div>
+			</div>			
+		</article>
+
+		<p>Combinar degradado con imagen de fondo. [background: linear-gradient(...), url(...);]</p>
+		<style>
+			.marco {
+				text-align: center;
+				height: 300px;
+				width: 250px;
+				border: 2px solid black;
+			}
+
+			.gradienteImgIzquierda {
+				background: 
+					linear-gradient(to left, white, transparent),
+					url('../media/ganyu.jpg');
+			}
+
+			.gradienteImgDerecha {
+				background:
+					linear-gradient(to right, white, transparent),
+					url('../media/ganyu.jpg');		
+			}
+
+			.gradienteImgArriba {
+				background:
+					linear-gradient(to top, white, transparent),
+					url('../media/ganyu.jpg');		
+			}
+
+			.gradienteImgAbajo {
+				background:
+					linear-gradient(to bottom, white, transparent),
+					url('../media/ganyu.jpg');		
+			}			
+		</style>
+		<article>
+			<div class="bloqueLinea">
+				<p>linear-gradient(to left, white, transparent)</p>
+				<div class="marco bloqueLinea gradienteImgIzquierda"></div>
+			</div>
+			<div class="bloqueLinea margen">
+				<p>linear-gradient(to right, white, transparent)</p>
+				<div class="marco bloqueLinea gradienteImgDerecha"></div>
+			</div>
+			<div class="bloqueLinea margen">
+				<p>linear-gradient(to top, white, transparent)</p>
+				<div class="marco bloqueLinea gradienteImgArriba"></div>
+			</div>
+			<div class="bloqueLinea margen">
+				<p>linear-gradient(to bottom, white, transparent)</p>
+				<div class="marco bloqueLinea gradienteImgAbajo"></div>
+			</div>
+		</article>
+
+		<!-- Grado de inclinacion (linear-gradient) -->
+		<h3>Grado de inclinacion (linear-gradient)</h3>
+		<p>Controlar el angulo de inclinacion en grados sexagesimales (deg). [deg, color1, color2].</p>
+		<em>Los angulos permiten controlar la inclinacion de una forma mucho mas precisa porque se les puede dar cualquier valor entre 0 y 360.</em>
+		<style>
+			.angulo0 {
+				background: linear-gradient(to right, blue, white);
+			}
+
+			.angulo90 {
+				background: linear-gradient(to left, blue, white);
+			}
+
+			.angulo180 {
+				background: linear-gradient(to top, blue, white);
+			}
+
+			.angulo270 {
+				background: linear-gradient(to bottom, blue, white);
+			}
+		</style>
+		<article>
+			<div class="bloqueLinea">
+				<p>background: linear-gradient(<span class="mark">0deg</span>, blue, white);</p>
+				<div class="elemento angulo0"></div>
+			</div>
+			<div class="bloqueLinea margen">
+				<p>background: linear-gradient(<span class="mark">90deg</span>, blue, white);</p>
+				<div class="elemento angulo90"></div>
+			</div>
+		</article>
+		<article>
+			<div class="bloqueLinea">
+				<p>background: linear-gradient(<span class="mark">180deg</span>, blue, white);</p>
+				<div class="elemento angulo180"></div>
+			</div>
+			<div class="bloqueLinea margen">
+				<p>background: linear-gradient(<span class="mark">270deg</span>, blue, white);</p>
+				<div class="elemento angulo270"></div>
+			</div>			
+		</article>
+
+		<!-- radial-gradient -->
+		<h3>radial-gradient</h3>
+		<p>Crea fondos degradados circulares en los elementos.</p>
+		<p>En su forma mas basica degradados radiales de dos colores. [radial-gradient(color1, color2)]</p>
+		<style>
+			.gradienteRadial {
+				background: radial-gradient(red, yellow);
+			}
+		</style>
+		<div class="elemento ancho gradienteRadial">background: radial-gradient(red, yellow);</div>
+
+		<p>Degradado radial de varios colores [radial-gradient(color1, color2, color3, color4...)]</p>
+		<style>
+			.radialMultiple {
+				background: radial-gradient(red, yellow, blue, green);
+			}
+		</style>
+		<div class="elemento ancho radialMultiple"></div>
+
+		<p>Especificar el punto en que se inicia una transicion de color [0%-100%]</p>
+		<style>
+			.radialCambio30 {
+				background: radial-gradient(red, yellow 30%);
+			}
+		</style>
+		<div class="elemento ancho radialCambio30">background: radial-gradient(red, yellow <span class="mark">30%</span>);</div>
+		<!-- Tipo de degradado (radial-gradient) -->
+		<h3>Tipo de degradado (radial-gradient)</h3>
+		<p>Tipo elipse (por defecto) [ellipse]. background: radial-gradient(<span class="mark">ellipse</span>, color1, color2...);</p>
+		<em>Forma una elipse que ajusta sus proporciones segun el ancho y alto del elemento.</em>
+		<style>
+			.gradEllipse {
+				background: radial-gradient(
+					ellipse, 
+					red, 
+					yellow 10%, 
+					#1E90FF 50%, 
+					green
+				);
+			}
+		</style>
+		<div class="elemento ancho gradEllipse"></div>
+
+		<p>Tipo circulo [circle]. background: radial-gradient(<span class="mark">circle</span>, color1, color2...);</p>
+		<em>Forma un circulo que siempre mantiene sus proporciones sin importar el ancho ni el alto del elemento.</em>
+		<style>
+			.gradCirculo {
+				background: radial-gradient(
+					circle, 
+					red, 
+					yellow 10%, 
+					#1E90FF 50%, 
+					green
+				);
+			}
+		</style>
+		<div class="elemento ancho gradCirculo"></div>
+
+		<!-- Ajuste de degradado (radial-gradient) -->
+		<h3>Ajuste de degradado (radial-gradient)</h3>
+		<p>Defecto (por defecto) []. background: radial-gradient(circle, color1, color2...);</p>
+		<div class="elemento ancho gradCirculo"></div>
+
+		<p>Lado mas cercano [closest-side]. background: radial-gradient(circle <span class="mark">closest-side</span>, color1, color2...);</p>
+		<em>Ajusta el degradado para que entre totalmente en el elemento. Esto se consige al definir el las proporciones de colores (1%-100%) desde el centro hasta el lado mas cercano del elemento.</em>
+		<style>
+			.ladoMasCercano {
+				background: radial-gradient(
+					circle closest-side, 
+					red, 
+					yellow 10%, 
+					#1E90FF 50%, 
+					green
+				);
+			}
+		</style>
+		<div class="elemento ancho ladoMasCercano"></div>
+
+		<!-- outline-style -->
+		<h3>outline-style</h3>
+		<p>Sirve para establecer el estilo del contorno. Es util para personalizar los
+		formularios al hacerles focus. En los demas elementos, los contornos difieren
+		de los bordes de la siguiente manera:</p>
+		<ul>
+			<li><p>Los contornos no ocupan espacio, son dibujados por encima del elemento.
+			Por lo tanto, su aparición u ocultamiento no causa un redibujado de las cajas.
+		    No suma en el tamaño de la caja y no hay movimiento o desplazamiento de los 
+		    elementos como con border.</p></li>
+			<li><p>Los contornos pueden no ser rectangulares. Si el elemento se distribuye
+			en varias líneas, el contorno no forma un rectágulo para encerrar a todo el 
+			elemento. A diferencia de los bordes, el contorno no está abierto en algunos 
+			lados:</p></li>
+			<img src="../media/contornoVSborde.png">
+		</ul>
+		<style>
+			.sinContorno {
+				outline-style: none;
+			}
+		</style>
+		<article>
+			<div class="bloqueLinea">
+				<p>Por defecto hay un contorno en los inputs al hacer focus.</p>
+				<input placeholder="Clickea para mostrar">
+			</div>
+			<div class="bloqueLinea margen">
+				<p>Se puede quitar con esta propiedad.</p>
+				<input placeholder="outline-style: none;" class="sinContorno">
+			</div>
+		</article>
+
+		<h4>Todos los estilos de contornos:</h4>
+		<style>
+			.auto {	outline-style: auto; }
+
+			.solid {	outline-style: solid; }
+
+			.dashed { outline-style: dashed; }
+
+			.dotted { outline-style: dotted; }
+
+			.double { outline-style: double; }
+
+			.groove { outline-style: groove; }
+
+			.ridge { outline-style: ridge; }
+
+			.inset { outline-style: inset; }
+
+			.outset { outline-style: outset; }
+
+			.color { outline-color: yellow; }
+		</style>
+		<div>
+			<input placeholder="outline-style: auto;" class="auto m-bottom">
+			<input placeholder="outline-style: solid;" class="solid margen">
+			<input placeholder="outline-style: dashed;" class="dashed margen">
+			<input placeholder="outline-style: dotted;" class="dotted margen">
+			<input placeholder="outline-style: double;" class="double margen">
+		</div>
+		<div>
+			<input placeholder="outline-style: groove;" class="groove color m-bottom">
+			<input placeholder="outline-style: ridge;" class="ridge color margen">
+			<input placeholder="outline-style: inset;" class="inset color margen">
+			<input placeholder="outline-style: outset;" class="outset color margen">
+		</div>
+			
+		<!-- outline-color -->
+		<h3>outline-color</h3>
+		<p>Cambia el color del contorno.</p>
+		<style>
+			.azul {	outline-color: blue; }
+
+			.rojo { outline-color: red; }
+		</style>
+		<input placeholder="outline-color: yellow;" class="solid color">
+		<input placeholder="outline-color: blue;" class="solid azul margen">
+		<input placeholder="outline-color: red;" class="solid rojo margen">
+		
+		<!-- outline-width -->
+		<h3>outline-width</h3>
+		<p>Cambia el ancho del contorno.</p>
+		<style>
+			.anchoBajo { outline-width: 2px; } /*~thin*/
+
+			.anchoMedio { outline-width: 5px; } /*~medium*/
+
+			.anchoAlto { outline-width: 10px; } /*~thick*/
+		</style>
+		<input placeholder="outline-width: 2px;" class="solid anchoBajo">
+		<input placeholder="outline-width: 5px;" class="solid anchoMedio margen">
+		<input placeholder="outline-width: 10px;" class="solid anchoAlto margen">
+		
+
+		<h3>outline</h3>
+		<p>Es un resumen de las propiedades de contorno anteriores.</p>
+		<code>outline: color style width;</code>
+		<style>
+			.elementoContorno {
+				text-align: center;
+				background-color: skyblue;
+				width: 250px;
+				height: 100px;
+				margin-top: 10px;
+			}
+
+			.contornoResumen {				
+				outline: gray solid 5px;
+			}
+		</style>
+		<div class="elementoContorno contornoResumen">outline: gray solid 5px;</div>
+
+		<!-- border-collapse -->
+		<h3>border-collapse</h3>
+		<p>La propiedad CSS border-collapse establece si las celdas dentro de una tabla
+		tienen bordes compartidos o separados.</p>
+		<p>Bordes separados (por defecto) [separate].</p>
+		<style>
+			.tabla td {
+				border: 5px solid;
+				border-color: #dc143c #1e90ff orange #32cd32;
+				padding: 5px;
+			}
+
+			.bordesSeparados {
+				border-collapse: separate;
+			}
+		</style>
+		<table class="tabla bordesSeparados">
+			<tbody>
+				<tr>
+					<td>Cell 1.1</td>
+					<td>Cell 2.1</td>
+					<td>Cell 3.1</td>
+				</tr>
+				<tr>
+					<td>Cell 1.2</td>
+					<td>Cell 2.2</td>
+					<td>Cell 3.2</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>Bordes compartidos [collapse].</p>
+		<style>
+			.bordesCompartidos {
+				border-collapse: collapse;
+			}
+		</style>
+		<table class="tabla bordesCompartidos">
+			<tbody>
+				<tr>
+					<td>Cell 1.1</td>
+					<td>Cell 2.1</td>
+					<td>Cell 3.1</td>
+				</tr>
+				<tr>
+					<td>Cell 1.2</td>
+					<td>Cell 2.2</td>
+					<td>Cell 3.2</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- list-style-type -->
+		<h3>list-style-type</h3>
+		<p>Define el tipo de estilo que tiene una lista.</p>
+		
+		<p>Circulo [circle].</p>
+		<style>
+			.listaCirculo {
+				list-style-type: circle;
+			}
+		</style>
+		<ul class="listaCirculo">
+			<li>Elemento 1</li>
+			<li>Elemento 2</li>
+			<li>Elemento 3</li>
+			<li>Elemento 4</li>
+		</ul>
+
+		<p>Cuadrado [square].</p>
+		<style>
+			.listaCuadrado {
+				list-style-type: square;
+			}
+		</style>
+		<ul class="listaCuadrado">
+			<li>Elemento 1</li>
+			<li>Elemento 2</li>
+			<li>Elemento 3</li>
+			<li>Elemento 4</li>
+		</ul>
+
+		<p>Numeros romanos [upper-roman].</p>
+		<style>
+			.listaRoman {
+				list-style-type: upper-roman;
+			}
+		</style>
+		<ol class="listaRoman">
+			<li>Elemento 1</li>
+			<li>Elemento 2</li>
+			<li>Elemento 3</li>
+			<li>Elemento 4</li>
+		</ol>
+
+		<p>Abecedario [lower-alpha].</p>
+		<style>
+			.listaAlpha {
+				list-style-type: lower-alpha;
+			}
+		</style>
+		<ol class="listaAlpha">
+			<li>Elemento 1</li>
+			<li>Elemento 2</li>
+			<li>Elemento 3</li>
+			<li>Elemento 4</li>
+		</ol>
+
+		<p>Ninguno [none].</p>
+		<style>
+			.listaNinguno {
+				list-style-type: none;
+			}
+		</style>
+		<ul class="listaNinguno">
+			<li>Elemento 1</li>
+			<li>Elemento 2</li>
+			<li>Elemento 3</li>
+			<li>Elemento 4</li>
+		</ul>
+
+		<!-- list-style-position -->
+		<h3>list-style-position</h3>
+		<p>Controla la posicion de las viñetas en las listas.</p>
+
+		<p>Fuera del elemento (por defecto) [outside].</p>
+		<style>
+			.lista li {
+				border: 1px solid black;
+				width: 100px;
+			}
+
+			.estiloFuera {
+				list-style-position: outside;
+			}
+		</style>
+		<ul class="lista estiloFuera">
+			<li>Elemento 1</li>
+			<li>Elemento 2</li>
+			<li>Elemento 3</li>
+			<li>Elemento 4</li>
+		</ul>
+
+		<p>Dentro del elemento [inside].</p>
+		<style>
+			.estiloDentro {
+				list-style-position: inside;
+			}
+		</style>
+		<ul class="lista estiloDentro">
+			<li>Elemento 1</li>
+			<li>Elemento 2</li>
+			<li>Elemento 3</li>
+			<li>Elemento 4</li>
+		</ul>
+
+		<!-- list-style-image -->
+		<h3>list-style-image</h3>
+		<p>Sirve para agregar una pequeña imagen como viñeta para la lista.</p>
+		<style>
+			.listaImg {
+				list-style-image: url('../media/sqpurple.gif');
+			}
+		</style>
+		<ul class="listaImg">
+			<li>Elemento 1</li>
+			<li>Elemento 2</li>
+			<li>Elemento 3</li>
+			<li>Elemento 4</li>
+		</ul>
+
+		<!-- list-style -->
+		<h3>list-style</h3>
+		<p>Es un resumen de las tres propiedades anteriores.</p>
+		<code>list-style: type position image;</code>
+	</section>
+</body>
+</html>

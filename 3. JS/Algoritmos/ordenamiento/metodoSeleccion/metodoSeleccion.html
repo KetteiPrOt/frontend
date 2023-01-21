@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Metodo Seleccion</title>
+</head>
+<body>
+	<h1>Metodo Seleccion</h1>
+	<h4><a href="../index.html">Volver</a></h4>
+	<p>
+		Explicacion: <a href="http://lwh.free.fr/pages/algo/tri/tri_selection_es.html">Metodo Seleccion</a>. <br>
+	</p>
+
+	<p>
+		Consiste en encontrar el menor de todos los elementos del vector e intercambiarlo con el que está en la primera posición. Luego el segundo mas pequeño, y así sucesivamente hasta ordenarlo todo.
+	</p>
+
+	<h3>Rendimiento del algoritmo</h3>
+
+	<p>
+		Cada búsqueda requiere comparar todos los elementos no clasificados, de manera que el número de comparaciones C(n) no depende del orden de los términos, si no del número de términos; por lo que este algoritmo presenta un comportamiento constante independiente del orden de los datos. C(n)= n(n-1)/2. Luego la complejidad es del orden Θ(n2).
+	</p>
+
+	<code>
+		Consola: <br><br>
+
+		// [19, 6, 18, 14, 1, 5, 20, 2, 15, 8, 7, 3, 12, 11, 10, 9, 4, 17, 13, 16] <br><br>
+
+		// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+	</code>
+
+	<script src="algoritmo.js"></script>
+</body>
+</html>

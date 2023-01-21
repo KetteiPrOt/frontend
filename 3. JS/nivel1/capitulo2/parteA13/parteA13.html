@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 13</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Bucles e Iteracion</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Definicion y Usos -->
+	<h3>Definicion y Usos</h3>
+	<p>
+		Los bucles son estructuras de control que sirven para realizar procesos repetitivos donde tenga que iterar varias veces el mismo codigo. <br>
+		Hay varios tipos de bucles, y cada uno es mas o menos conveniente para distintas situaciones.
+	</p>
+
+	<!-- Bucle while (Mientras) -->
+	<h3>Bucle while (Mientras)</h3>
+	<p>Este es un bucle que repitira la ejecucion de su codigo mientras se cumpla una condicion:</p>
+	<code>
+		while (condicion) { <br>
+		&nbsp // codigo <br>
+		};
+	</code>
+
+	<!-- Bucle do while (Hacer Mientras) -->
+	<h3>Bucle do while (Hacer Mientras)</h3>
+	<p>Funciona de la misma manera que el bucle anterior, solo que este evaluara la condicion despues y no antes de ejecutar el codigo:</p>
+	<code>
+		do {
+		&nbsp // codigo	
+		} while (condicion);
+	</code>
+
+	<!-- Bucle for -->
+	<h3>Bucle for</h3>
+	<p>Es un bucle mas avanzado que tiene la siguiente estructura:</p>
+	<code>
+		for (let i = N; i >= 0; i--) { <br>
+		&nbsp console.log(i); // 5 4 3 2 1 0 <br>
+		}
+	</code>
+	<p>Donde:</p>
+	<ul>
+		<li>
+			<strong><em>i</em></strong> es una variable que se usara de contador.
+		</li>
+		<li>
+			<strong><em>N</em></strong> es un numero inicial cualquiera.
+		</li>
+		<li>
+			<strong><em>i >= 0;</em></strong> es una condicion cualquiera que el bucle usara para detenerse cuando esta no se cumpla.
+		</li>
+		<li>
+			<strong><em>i--</em></strong> 
+			es una sentencia que se ejecutara al finalizar cada iteracion del bucle para ir aproximando el valor de i hasta que la condicion no se cumpla.
+		</li>
+	</ul>
+	<p>Con estas herramientas el bucle <strong>for</strong> (Para...) nos proporcina una facilidad increible para mantener el control sobre las iteraciones de procesos repetitivos.</p>
+
+	<!-- Bucle for in -->
+	<h3>Bucle for in</h3>
+	<p>Este bucle esta hecho para recorrer automaticamente un arreglo utilizando una variable que en cada iteracion <strong>tomara el valor del indice</strong> del elemento del arreglo:</p>
+	<code>
+		let arreglo = [elemento0, elemento1, elemento2, elemento3]; <br> <br>
+
+		for (variable in arreglo) { <br>
+		&nbsp console.log(variable); // 0 1 2 3 <br>
+		}
+	</code>
+
+	<!-- Bucle for of -->
+	<h3>Bucle for of</h3>
+	<p>Este bucle esta hecho para recorrer automaticamente un arreglo utilizando una variable que en cada iteracion <strong>tomara el valor del elemento</strong> del elemento del arreglo:</p>
+	<code>
+		let arreglo = [elemento0, elemento1, elemento2, elemento3]; <br> <br>
+
+		for (variable of arreglo) { <br>
+		&nbsp console.log(variable); // elemento0, elemento1, elemento2, elemento3 <br>
+		}
+	</code>
+
+	<!-- Sentencia break -->
+	<h3>Sentencia break</h3>
+	<p>Esta sentencia (romper) se usa para indicarle a los bucles que detengan sus iteraciones:</p>
+	<code>
+		let contador = 5; <br> <br>
+
+		while (contador >= 0) { <br>
+		&nbsp console.log(contador); <strong>// 5 4 3 2 1 0</strong> <br>
+		&nbsp contador--; <br>
+	    } <br> <br>
+
+	    while (contador >= 0) { <br>
+	    &nbsp if (contador == 2) { <br>
+		&nbsp &nbsp <strong>break</strong>; <br>
+		&nbsp } <br>
+		&nbsp console.log(contar); <strong>// 5 4 3</strong><br>
+		&nbsp contador--; <br>
+	    } <br> <br>
+	</code>
+
+	<p>La sentencia break funciona para todos los tipos de bucles:</p>
+	<code>
+		let array = ['elemento0', 'elemento1', 'elemento2', 'elemento3', 'elemento4']; <br> <br>
+
+		for (indice in array) { <br>
+		&nbsp console.log(indice); <strong>// 0 1 2 3 4</strong> <br>
+	    } <br> <br>
+
+	    for (indice in array) { <br>
+	    &nbsp if (indice == 3) { <br>
+		&nbsp &nbsp <strong>break</strong>; <br>
+		&nbsp } <br>
+		&nbsp console.log(indice); <strong>// 0 1 2</strong><br>
+	    } <br> <br>
+	</code>
+
+	<!-- Sentencia continue -->
+	<h3>Sentencia continue</h3>
+	<p>La sentencia continue produce que el bucle detenga la iteracion actual, omita lo que le falte para terminarla, e inicie la siguiente:</p>
+	<code>
+		let contador = 5; <br> <br>
+
+		while (contador >= 0) { <br>
+		&nbsp console.log(contador); <strong>// 5 4 3 2 1 0</strong> <br>
+		&nbsp contador--; <br>
+	    } <br> <br>
+
+	    while (contador >= 0) { <br>
+	    &nbsp if (contador == 2) { <br>
+		&nbsp &nbsp <strong>continue</strong>; <br>
+		&nbsp } <br>
+		&nbsp console.log(contar); <strong>// 5 4 3 1 0</strong><br>
+		&nbsp contador--; <br>
+	    } <br> <br>
+	</code>
+
+	<p>La sentencia continue funciona para todos los tipos de bucles:</p>
+	<code>
+		let array = ['elemento0', 'elemento1', 'elemento2', 'elemento3', 'elemento4']; <br> <br>
+
+		for (indice in array) { <br>
+		&nbsp console.log(indice); <strong>// 0 1 2 3 4</strong> <br>
+	    } <br> <br>
+
+	    for (indice in array) { <br>
+	    &nbsp if (indice == 3) { <br>
+		&nbsp &nbsp <strong>continue</strong>; <br>
+		&nbsp } <br>
+		&nbsp console.log(indice); <strong>// 0 1 2 4</strong><br>
+	    } <br> <br>
+	</code>
+
+	<!-- Recorrer un array guardado en otro array -->
+	<h3>Recorrer un array dentro de otro array</h3>
+	<p>
+		Con el siguiente codigo es posible recorrer un array (mostrando por consola sus elementos) que esta guardado dentro de otro array (que de paso tambien recorrere):
+	</p>
+
+	<code>
+		let <strong>array1</strong> = ['gato', 'perro', 'loro', 'ganzo']; <br> <br>
+
+		let array2 = [ <br>
+		&nbsp 'elemento0', <br>
+		&nbsp 'elemento1', <br>
+		&nbsp 'elemento2', <br>
+		&nbsp <strong>array1</strong>, <br>
+		&nbsp 'elemento4' <br>
+		]; <br> <br>
+
+		for (indice in array2) { <br> <br>
+
+		&nbsp if (indice == 3) { <br>
+		&nbsp &nbsp // Segundo Bucle <br>
+		&nbsp &nbsp for (elemento of array1) { <br>
+		&nbsp &nbsp &nbsp console.log(elemento); <strong>// 'gato' 'perro' 'loro' 'ganzo'</strong> <br>
+		&nbsp &nbsp } <br>
+		&nbsp &nbsp break; <br>
+		&nbsp } <br> <br>
+
+		&nbsp console.log(array2[indice]); <strong>// 'elemento0' 'elemento1' 'elemento2'</strong><br>
+		}
+	</code>
+
+	<!-- Etiqueta (label) -->
+	<h3>Etiqueta (label)</h3>
+	<p>Una etiqueta es un nombre que se le da a un bucle de la siguiente manera para hacer referencia a el mas adelante en el programa:</p>
+	<code>
+		nombreEtiqueta: <br>
+		for (indice in array) { <br>
+		&nbsp // codigo <br>
+		}
+	</code>
+
+
+	<p>Utilizando este nombre de la etiqueta es posible aplicar las sentencias <em>continue</em> y <em>break</em> a un bucle desde otro bucle:</p>
+	<code>
+		<strong>nombreEtiqueta:</strong> <br>
+		for (indice in array1) { <br> <br>
+
+		&nbsp if (indice == N) { <br>
+		&nbsp &nbsp for (elemento of array2) { <br>
+		&nbsp &nbsp &nbsp if (elemento == 'elementoN') { <br>
+		&nbsp &nbsp &nbsp &nbsp <strong>break nombreEtiqueta;</strong> // Esta sentencia detiene el primer bucle desde el segundo <br>
+		&nbsp &nbsp &nbsp } <br>
+		&nbsp &nbsp &nbsp // codigo <br>
+		&nbsp &nbsp } <br>
+		&nbsp } <br> <br>
+
+		&nbsp // codigo <br>
+
+		}
+	</code>
+
+</body>
+</html>

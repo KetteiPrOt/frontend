@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Media Query</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Media Query -->
+	<section>
+		<h2>Media Query</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<h3>Consulta de Medios</h3>
+		<p>Este conjuro es el mas importante a la hora de trabajar con disenio responsivo. <br>
+		Con esta brujeria podemos hacer un consulta del tamanio de pantalla en el que estamos (es el medio, es el ambiente, es el dispositivo), y en base a eso ejecutar otros estilos para el sitio web ademas de los principales. En consecuencia podemos manejar estilos diferentes para dispositivos diferentes y hacer que la pagina se vea bien en cualquier tamanio de pantalla.</p>
+
+		<code>@media screen and (max-width:?px){ ... }</code>
+
+		<p>Los etilos normales usualmente se trabajan para el tamanio de pantalla mayor a 1200px. <br>
+		Ideal para PC de escritorio y laptops</p>
+
+		<p>Aqui dentro definimos estilos que se ejecutaran en un tamanio de pantalla inferior a 1200px. <br>
+		Ideal para laptops pequenias</p>
+		<code>@media screen and (max-width:1200px){ ... }</code>
+
+		<p>Aqui dentro definimos estilos que se ejecutaran en un tamanio de pantalla inferior a 992px. <br>
+		Ideal para laptops tablets</p>
+		<code>@media screen and (max-width:992px){ ... }</code>
+
+		<p>Aqui dentro definimos estilos que se ejecutaran en un tamanio de pantalla inferior a 768px. <br>
+		Ideal para laptops telefonos</p>
+		<code>@media screen and (max-width:768px){ ... }</code>
+
+		<p>Estos limites que he escrito pertenecen a un framework de CSS llamado Bootstrap 5, el cual estudiaremos mas adelante. <br>
+		En realidad no hay medidas recomendables ya que siempre es mejor ver poco a poco como corregir el disenio hasta que quede bien, pero esto es un buen marco de referencia.</p>
+
+		<em class="upNote">Prueba reducir el ancho de la pantalla a menos de 768px para ver como el Media Query le cambia de fondo a la pagina</em>
+
+		<style>
+			@media screen and (max-width:768px){
+				body {
+					background-color: grey;
+				}
+			}
+		</style>
+	</section>
+</body>
+</html>

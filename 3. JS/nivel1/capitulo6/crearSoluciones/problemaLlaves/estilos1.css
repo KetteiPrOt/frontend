@@ -1,0 +1,33 @@
+/* --- Generales --- */
+
+body {
+	font-family: sans-serif;
+}
+
+main .titulo-principal {
+	text-align: center;
+}
+
+/* Seccion */
+
+main .seccion {
+	width: 80%;
+	margin: 0 auto;
+	/*Flexbox*/
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+/* Articulos */
+
+main .seccion .articulo {
+	background: #F2F2F2;
+	width: 30%;
+	padding: 10px;
+	padding-top: 0;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-bottom: 40px;
+	box-sizing: border-box;
+}

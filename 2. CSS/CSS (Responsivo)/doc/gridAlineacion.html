@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Grid (Alineacion)</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Grid (Alineacion) -->
+	<section>
+		<h2>Grid (Alineacion)</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+		<p>Hay situaciones en las que al definir el tamanio de algun elemento hijo se desacomodara en una pantalla mas pequenia. Para solucionar esto, y otras cosas mas, utilizamos propiedades de alineacion para los elementos hijos.</p>
+
+		<!-- justify-items -->
+		<h3>justify-items</h3>
+		<p>Controla la alineacion de forma horizontal. Al activar esta propiedad el ancho de los elementos pasara a ser el que requiera su contenido, en lugar de ocupar todo el ancho disponible. <br>
+		Esta propiedad funciona alterando el valor de la propiedad justify-self (ver mas adelante) de cada elemento hijo.</p>
+
+		<p>Por defecto [initial]. Igual que sin activar la propiedad.</p>
+		<style>
+			.contenedorGrid {
+				background-color: skyblue;
+				width: 50%;
+				height: 500px;
+				border: 1px solid black;
+				margin: 0 auto;
+				/*CSS Grid*/
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				grid-template-rows: repeat(3, 1fr);
+			}
+
+			.elHijo {
+				background-color: pink;
+				width: auto; height: auto;
+				border: 1px solid black;
+			}
+
+			.justify-items-initial {
+				justify-items: initial;
+			}
+		</style>
+		<div class="contenedorGrid justify-items-initial">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Al inicio [start]. Alinea los elementos al inicio del espacio que tienen asignado. Su ancho tambien se reduce al que nesecita su contenido.</p>
+		<style>
+			.justify-items-start {
+				justify-items: start;
+			}
+		</style>
+		<div class="contenedorGrid justify-items-start">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>En el centro [center]. Alinea los elementos en el centro del espacio que tienen asignado. Su ancho tambien se reduce al que nesecita su contenido.</p>
+		<style>
+			.justify-items-center {
+				justify-items: center;
+			}
+		</style>
+		<div class="contenedorGrid justify-items-center">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Al final [end]. Alinea los elementos al final del espacio que tienen asignado. Su ancho tambien se reduce al que nesecita su contenido.</p>
+		<style>
+			.justify-items-end {
+				justify-items: end;
+			}
+		</style>
+		<div class="contenedorGrid justify-items-end">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Estirar [stretch]. Similar a initial. Dice explicitame que el elemento se estire hasta abarcar todo el ancho que tiene disponible.</p>
+		<style>
+			.justify-items-stretch {
+				justify-items: stretch;
+			}
+		</style>
+		<div class="contenedorGrid justify-items-stretch">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<!-- align-items -->
+		<h3>align-items</h3>
+		<p>Controla la alineacion de forma vertical. Al activar esta propiedad el alto de los elementos pasara a ser el que requiera su contenido, en lugar de ocupar todo el alto disponible. <br>
+		Esta propiedad funciona alterando el valor de la propiedad align-self (ver mas adelante) de cada elemento hijo.</p>
+
+		<p>Por defecto [initial]. Igual que sin activar la propiedad.</p>
+		<style>
+			.align-items-initial {
+				align-items: initial;
+			}
+		</style>
+		<div class="contenedorGrid align-items-initial">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Al inicio [start]. Alinea los elementos arriba del espacio que tienen asignado. Su alto tambien se reduce al que nesecita su contenido.</p>
+		<style>
+			.align-items-start {
+				align-items: start;
+			}
+		</style>
+		<div class="contenedorGrid align-items-start">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>En el centro [center]. Alinea los elementos en el centro del espacio que tienen asignado. Su alto tambien se reduce al que nesecita su contenido.</p>
+		<style>
+			.align-items-center {
+				align-items: center;
+			}
+		</style>
+		<div class="contenedorGrid align-items-center">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Al final [end]. Alinea los elementos abajo del espacio que tienen asignado. Su alto tambien se reduce al que nesecita su contenido.</p>
+		<style>
+			.align-items-end {
+				align-items: end;
+			}
+		</style>
+		<div class="contenedorGrid align-items-end">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Estirar [stretch]. Similar a initial. Dice explicitamente que el elemento se estire para abarcar todo el espacio vertical que tenga disponible.</p>
+		<style>
+			.align-items-stretch {
+				align-items: stretch;
+			}
+		</style>
+		<div class="contenedorGrid align-items-stretch">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Centrar totalmente [center] [center]. Usandola junto con justify-items se puede consegir un centrado tanto vertical como horizontal.</p>
+		<div class="contenedorGrid align-items-center justify-items-center">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<!-- justify-self -->
+		<h3>justify-self</h3>
+		<p>Controla la alineacion de forma horizontal. Al activar esta propiedad el ancho del elemento pasara a ser el que requiera su contenido, en lugar de ocupar todo el ancho disponible.
+		Esta propiedad se usa en cada elemento hijo para controlar su alineacion horizontal individualmente.</p>
+		<p>Esta propiedad puede tomar cualquier valor de justify-items.</p>
+		<style>
+			.justify-self-center {
+				background-color: hotpink;
+				justify-self: center;
+			}
+		</style>
+		<div class="contenedorGrid">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo justify-self-center">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<!-- align-self -->
+		<h3>align-self</h3>
+		<p>Controla la alineacion de forma vertical. Al activar esta propiedad el alto del elemento pasara a ser el que requiera su contenido, en lugar de ocupar todo el alto disponible.
+		Esta propiedad se usa en cada elemento hijo para controlar su alineacion vertical individualmente.</p>
+		<p>Esta propiedad puede tomar cualquier valor de align-items.</p>
+		<style>
+			.align-self-center {
+				background-color: hotpink;
+				align-self: center;
+			}
+		</style>
+		<div class="contenedorGrid">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo align-self-center">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<!-- justify-content -->
+		<h3>justify-content</h3>
+		<p>Se usa para alinear horizontalmente la estructura que contiene al grupo de elementos hijos dentro del contenedor grid. Esta estructura esta definida por unas lineas de CSS Grid llamadas tracks (pistas). Esta propiedad sirve para alinear los tracks (las pistas donde se acomodan los elementos... las lineas de la matriz).</p>
+
+		<p>Normal (por defecto) [normal]. Igual que sin la proiedad.</p>
+		<style>
+			.lineasPequenias {
+				/*CSS Grid*/
+				grid-template-columns: repeat(3, 120px);
+				grid-template-rows: repeat(3, 120px);
+			}
+
+			.justify-content-normal {
+				justify-content: normal;
+			}
+		</style>
+		<div class="contenedorGrid lineasPequenias justify-content-normal">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Al inicio [start]. Similar a normal, dice explicitamente que los tracks se alinien al inicio del contenedor grid.</p>
+		<style>
+			.justify-content-start {
+				justify-content: start;
+			}
+		</style>
+		<div class="contenedorGrid lineasPequenias justify-content-start">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Centrados [center]. Centra los tracks que contienen a los elementos.</p>
+		<style>
+			.justify-content-center {
+				justify-content: center;
+			}
+		</style>
+		<div class="contenedorGrid lineasPequenias justify-content-center">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Al final [end]. Posiciona los tracks al final del contenedor grid.</p>
+		<style>
+			.justify-content-end {
+				justify-content: end;
+			}
+		</style>
+		<div class="contenedorGrid lineasPequenias justify-content-end">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Espacio entre ellos [space-between]. Expande los tracks dejando el mismo espacio entre cada uno de ellos. </p>
+		<style>
+			.justify-content-space-between {
+				justify-content: space-between;
+			}
+		</style>
+		<div class="contenedorGrid lineasPequenias justify-content-space-between">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Espacio alrededor [space-between]. Expande los tracks dejando el mismo espacio alrededor de cada uno de ellos. </p>
+		<style>
+			.justify-content-space-around {
+				justify-content: space-around;
+			}
+		</style>
+		<div class="contenedorGrid lineasPequenias justify-content-space-around">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Espacio equivalente [space-evenly]. Centra los tracks dejando el mismo espacio entre de cada uno de ellos y los bordes del contenedor grid. <em>Similar a space-between.</em></p>
+		<style>
+			.justify-content-space-evenly {
+				justify-content: space-evenly;
+			}
+		</style>
+		<div class="contenedorGrid lineasPequenias justify-content-space-evenly">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<!-- align-content -->
+		<h3>align-content</h3>
+		<p>Se usa para alinear verticalmente la estructura que contiene al grupo de elementos hijos dentro del contenedor grid. Esta estructura esta definida por unas lineas de CSS Grid llamadas tracks (pistas). Esta propiedad sirve para alinear los tracks (las pistas donde se acomodan los elementos... las lineas de la matriz).</p>
+
+		<p>Normal (por defecto) [normal]. Igual que sin la proiedad.</p>
+		<style>
+			.align-content-normal {
+				align-content: normal;
+			}
+		</style>
+		<div class="contenedorGrid lineasPequenias align-content-normal">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Al inicio [start]. Similar a normal, dice explicitamente que los tracks se alinien al inicio del contenedor grid.</p>
+		<style>
+			.align-content-start {
+				align-content: start;
+			}
+		</style>
+		<div class="contenedorGrid lineasPequenias align-content-start">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Centrados [center]. Centra los tracks que contienen a los elementos.</p>
+		<style>
+			.align-content-center {
+				align-content: center;
+			}
+		</style>
+		<div class="contenedorGrid lineasPequenias align-content-center">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Espacio entre ellos [space-between]. Expande los tracks dejando el mismo espacio entre cada uno de ellos. </p>
+		<style>
+			.align-content-space-between {
+				align-content: space-between;
+			}
+		</style>
+		<div class="contenedorGrid lineasPequenias align-content-space-between">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Espacio alrededor [space-between]. Expande los tracks dejando el mismo espacio alrededor de cada uno de ellos. </p>
+		<style>
+			.align-content-space-around {
+				align-content: space-around;
+			}
+		</style>
+		<div class="contenedorGrid lineasPequenias align-content-space-around">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<p>Espacio equivalente [space-evenly]. Centra los tracks dejando el mismo espacio entre de cada uno de ellos y los bordes del contenedor grid. <em>Similar a space-between.</em></p>
+		<style>
+			.align-content-space-evenly {
+				align-content: space-evenly;
+			}
+		</style>
+		<div class="contenedorGrid lineasPequenias align-content-space-evenly">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+		</div>
+
+		<style>
+			/*Media Querie*/
+			@media screen and (max-width:800px) {
+				body {
+					background-color: blue;
+				}
+			}
+		</style>
+
+
+	</section>
+</body>
+</html>

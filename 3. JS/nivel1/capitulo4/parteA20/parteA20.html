@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 20</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Metodos de Arrays</h1>
+	<h4 class="enlace-volver"><a href="../capitulo4.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<h2>Metodos Transformadores</h2>
+	<p>Los siguientes metodos alteran el array original sobre el que son aplicados en cuestion, y retornan informacion referente al cambio.</p>
+
+	<!-- pop() -->
+	<h3>pop()</h3>
+	<p>Elimina el ultimo elemento de un array y lo retorna. Este metodo si altera el array original.</p>
+	<!-- codigo -->
+	<code>
+		let array = ['elemento0', 'elemento1', 'elemento2', 'elemento3', 'elemento4']; <br><br>
+
+		console.log(array.pop()); // elemento4 <br><br>
+
+		console.log(array); // ['elemento0', 'elemento1', 'elemento2', 'elemento3']
+	</code>
+
+	<!-- shift() -->
+	<h3>shift()</h3>
+	<p>Elimina el primer elemento de un array y lo retorna. Este metodo si altera el array original.</p>
+	<!-- codigo -->
+	<code>
+		let array = ['elemento0', 'elemento1', 'elemento2', 'elemento3', 'elemento4']; <br><br>
+
+		console.log(array.shift()); // elemento0 <br><br>
+
+		console.log(array); // ['elemento1', 'elemento2', 'elemento3', 'elemento4']
+	</code>
+
+	<!-- push() -->
+	<h3>push()</h3>
+	<p>Agrega uno o mas elementos al final del array, y retorna la nueva longitud del array. Este metodo altera el array original.</p>
+	<!-- codigo -->
+	<code>
+		let array = ['elemento0', 'elemento1', 'elemento2', 'elemento3', 'elemento4']; <br><br>
+
+		console.log(array.push('elemento5')); // 6 <br><br>
+
+		console.log(array); // ['elemento1', 'elemento2', 'elemento3', 'elemento4', 'elemento5'] <br><br>
+
+		console.log(array.push('elemento6', 'elemento7')); // 8 <br><br>
+
+		console.log(array); // ['elemento0', 'elemento1', 'elemento2', 'elemento3', 'elemento4', 'elemento5', 'elemento6', 'elemento7']
+	</code>
+
+	<!-- reverse() -->
+	<h3>reverse()</h3>
+	<p>Invierte el orden de los elementos de un array, retorna el array invertido y ademas invierte el array original.</p>
+	<!-- codigo -->
+	<code>
+		let array = ['elemento0', 'elemento1', 'elemento2', 'elemento3', 'elemento4']; <br><br>
+
+		console.log(array.reverse()); // ['elemento4', 'elemento3', 'elemento2', 'elemento1', 'elemento0'] <br><br>
+
+		console.log(array); // ['elemento4', 'elemento3', 'elemento2', 'elemento1', 'elemento0']
+	</code>
+
+	<!-- unshift() -->
+	<h3>unshift()</h3>
+	<p>Agrega uno o mas elementos al incio del array, y retorna la nueva longitud del array. Este metodo altera el array original.</p>
+	<!-- codigo -->
+	<code>
+		let array = ['elemento0', 'elemento1', 'elemento2']; <br><br>
+
+		console.log(array.unshift('elemento-1')); // 4 <br><br>
+
+		console.log(array); // ['elemento-1', 'elemento0', 'elemento1', 'elemento2'] <br><br>
+
+		console.log(array.unshift('elemento-3', 'elemento-2')); // 6 <br><br>
+
+		console.log(array); // ['elemento-3', 'elemento-2', 'elemento0', 'elemento1', 'elemento2']
+	</code>
+
+	<!-- sort() -->
+	<h3>sort()</h3>
+	<p>Ordena los elementos de un arreglo localmente (en orden alfabetico) retorna el arreglo ordenado y ademas ordena el array original.</p>
+	<!-- codigo -->
+	<code>
+		let array1 = [0, 6, 3, 4, 2, 1, 9, 5, 7, 8]; <br><br>
+
+		console.log(array1.sort()); // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] <br><br>
+
+		console.log(array1); // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] <br><br>
+
+		let array2 = ['D', 0, 'B', 2, 1, 'E', 'A']; <br><br>
+
+		array2.sort(); <br><br>
+
+		console.log(array2) // [0, 1, 2, 'A', 'B', 'D', 'E']
+	</code>
+
+	<!-- splice() -->
+	<h3>splice()</h3>
+	<p>Cambia el contenido de un array eliminando o creando nuevos elementos existentes. Recibe como parametro el indice del elemento que va a eliminar, y luego la cantidad de elementos que va a eliminar desde alli. Retorna un array con los elementos que ha eliminado del original.</p>
+	<!-- codigo -->
+	<code>
+		let array = ['elemento0', 'elemento1', 'elemento2', 'elemento3', 'elemento4']; <br><br>
+
+		console.log(array.splice(1, 2)); // ['elemento1', 'elemento2'] <br><br>
+
+		console.log(array) // ['elemento0', 'elemento3', 'elemento4']
+	</code>
+
+	<p>Para agregar nuevos elementos se empiezan a colocar desde el tercer parametro.</p>
+	<!-- codigo -->
+	<code>
+		let array = ['elemento0', 'elemento1', 'elemento2', 'elemento3', 'elemento4']; <br><br>
+
+		console.log(array.splice(1, 2, 'elementoX', 'elementoY')); // ['elemento1', 'elemento2'] <br><br>
+
+		console.log(array) // ['elemento0', 'elementoX', 'elementoY', 'elemento3', 'elemento4']
+	</code>
+
+	<p>Si se desea solo agregar elementos en una posicion determinada basta con simplemente indicarle que no elimine ningun elemento usando el parametro 0.</p>
+	<!-- codigo -->
+	<code>
+		let array = ['elemento0', 'elemento1', 'elemento2', 'elemento3', 'elemento4']; <br><br>
+
+		console.log(array.splice(1, 0, 'elementoX', 'elementoY')); // [] <br><br>
+
+		console.log(array) // ['elemento0', 'elementoX', 'elementoY', 'elemento1', 'elemento2', 'elemento3', 'elemento4']
+	</code>
+
+	
+	<h2>Metodos Accesores</h2>
+	<p>Los siguientes metodos acceden a informacion del array y retornan resultados interesantes del array en cuestion. No alteran al array original</p>
+
+	<!-- join() -->
+	<h3>join()</h3>
+	<p>Retorna todos los elementos del array como una cadena de texto. No altera el array original. Recibe como parametro un texto que sirva de separacion para cada elemento, por defecto es la coma.</p>
+	<!-- codigo -->
+	<code>
+		let array = ['elemento0', 'elemento1', 'elemento2', 'elemento3', 'elemento4'], <br> &nbsp&nbsp&nbsp
+			elementos = array.join(); <br><br>
+
+		console.log(array); // ['elemento0', 'elemento1', 'elemento2', 'elemento3', 'elemento4'] <br>
+		console.log(elementos) // 'elemento0,elemento1,elemento2,elemento3,elemento4' <br> <br>
+
+		let separar = array.join('_'); <br>
+		console.log(separar); // 'elemento0_elemento1_elemento2_elemento3_elemento4'
+	</code>
+
+	<!-- slice() -->
+	<h3>slice()</h3>
+	<p>Devuelve una parte del array dentro de un nuevo array. Recibe como argumento el indice del elemento desde donde va a iniciar [a], y como segundo argumento el elemento donde va aterminar [b], en intervalo [a, b).</p>
+	<!-- codigo -->
+	<code>
+		let array = ['elemento0', 'elemento1', 'elemento2', 'elemento3', 'elemento4'], <br>  &nbsp&nbsp&nbsp
+			subArray1 = array.slice(0, 3), <br>  &nbsp&nbsp&nbsp
+			subArray2 = array.slice(3, 5), <br>  &nbsp&nbsp&nbsp
+			subArray3 = array.slice(1, 4); <br><br>
+
+		console.log(subArray1); // ['elemento0', 'elemento1', 'elemento2'] <br>
+		console.log(subArray2); // ['elemento3', 'elemento4'] <br>
+		console.log(subArray3); // ['elemento1', 'elemento2', 'elemento3']
+	</code>
+
+	<!-- toString() [Para arrays] -->
+	<h3>toString() [Para arrays]</h3>
+	<p>Como ya vimos se puede convertir un array en una cadena de texto, a diferencia del metodo join() esta opcion siempre separa cada elemento por comas.</p>
+	<!-- codigo -->
+	<code>
+		let array = [12, 'Joel', true]; <br><br>
+
+		console.log(array.toString()); // '12,Joel,true'
+	</code>
+
+	<!-- indexOf() [Para arrays]  -->
+	<h3>indexOf() [Para arrays]</h3>
+	<p>Retorna el primer indice del elemento que le pasemos. Si esta repetido retorna siempre el primer indice (el mas bajo).</p>
+	<!-- codigo -->
+	<code>
+		let array = [12, 'Joel', true, 24, 'Mero', true, false]; <br><br>
+
+		console.log(array.indexOf(true)); // 2 <br><br>
+
+		console.log(array.indexOf(24)); // 3 <br><br>
+
+		console.log(array.indexOf('Joel')); // 1
+	</code>
+
+	<!-- lastIndexOf() [Para arrays]  -->
+	<h3>lastIndexOf() [Para arrays]</h3>
+	<p>Retorna el ultimo indice del elemento que le pasemos. Si esta repetido retorna siempre el ultimo indice (el mas alto).</p>
+	<!-- codigo -->
+	<code>
+		let array = [12, 'Joel', true, 24, 'Mero', true, false, 12]; <br><br>
+
+		console.log(array.lastIndexOf(true)); // 5 <br><br>
+
+		console.log(array.lastIndexOf(12)); // 7
+	</code>
+
+	<!-- includes() [Para arrays] -->
+	<h3>includes() [Para arrays]</h3>
+	<p>Recibe como parametro un elemento del array y evalua si esta dentro del array, si esta retorna true, caso contrario retorna false.</p>
+	<!-- codigo -->
+	<code>
+		let array = [12, 'Joel', true, 24, 'Mero', false]; <br><br>
+
+		console.log(array.includes(12)); // true <br><br>
+
+		console.log(array.includes(763)); // false <br><br>
+
+		console.log(array.includes('Mero')); // true
+	</code>
+
+	
+	<h2>Metodos de Repeticion</h2>
+	<p>Los siguientes metodos alteran el array original sobre el que son aplicados utilzando bucles repetidores en cuestion.</p>
+
+	<!-- filter() -->
+	<h3>filter()</h3>
+	<p>Este metodo se usa como filtro. Recibe como argumento una funcion la cual recibe hasta dos parametros. El primero de ellos sera una variable que tomara el valor de cada elemento del array en cada iteracion.</p>
+	<!-- codigo -->
+	<code>
+		let array = [12, 'Joel', true, 24, 'Mero', false]; <br><br>
+
+		array.filter(funcion = (i) => { console.log(i) }); <br>
+		// 12 <br>
+		// Joel <br>
+		// true <br>
+		// 24 <br>
+		// Mero <br>
+		// false
+	</code>
+
+	<p>El segundo sera una variable que tomara como valor el indice de cada elemento en cada iteracion.</p>
+	<!-- codigo -->
+	<code>
+		array.filter(funcion = (i, o) => { console.log(o) }); <br>
+		// 0 <br>
+		// 1 <br>
+		// 2 <br>
+		// 3 <br>
+		// 4 <br>
+		// 5
+	</code>
+
+	<p>Este metodo funciona como filtro porque reemplaza el elemento de la iteracion por el retorno de la funcion en cuestion. Aqui la funcion solo retorna los elementos mayores a 10 y en consecuencia el nuevo array ha sido filtrado y solo contiene los elementos mayores a 10.</p>
+	<!-- codigo -->
+	<code>
+		let array1 =  [12, 3, 5, 2, 15, 1, 24, 32]; <br><br>
+
+		let filtrado = array1.filter(funcion = (i) => { <br> &nbsp&nbsp&nbsp
+			if (i > 10) { <br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				return i; <br> &nbsp&nbsp&nbsp
+			} <br>
+		}); <br><br>
+
+		console.log(filtrado); // [12, 15, 24, 32]
+	</code>
+
+
+	<!-- forEach() -->
+	<h3>forEach()</h3>
+	<p>Este metodo es similar a filter ya que ejecuta una funcion por cada elemento del array de la misma manera.</p>
+	<!-- codigo -->
+	<code>
+		let array = [12, 'Joel', true, 24, 'Mero', false]; <br><br>
+
+		array.forEach(funcion = (i) => { console.log(i) }); <br>
+		// 12 <br>
+		// Joel <br>
+		// true <br>
+		// 24 <br>
+		// Mero <br>
+		// false <br><br>
+
+		array.forEach(funcion = (i, o) => { console.log(o) }); <br>
+		// 0 <br>
+		// 1 <br>
+		// 2 <br>
+		// 3 <br>
+		// 4 <br>
+		// 5
+	</code>
+
+	<p>La diferencia esta en que este metodo no utiliza el retorno de la funcion para crear un nuevo array, en lugar de eso el metodo devuelve <em>undefined</em>, permitiendome utilizar el retorno de la funcion para otras cosas.</p>
+	<!-- codigo -->
+	<code>
+		let array1 =  [12, 3, 5, 2, 15, 1, 24, 32]; <br><br>
+
+		let filtrado = array1.forEach(funcion = (i) => { <br> &nbsp&nbsp&nbsp
+			if (i > 10) { <br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				return i; <br> &nbsp&nbsp&nbsp
+			} <br>
+		}); <br><br>
+
+		console.log(filtrado); // undefined
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 7</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Saltos de linea y Escape</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Saltos de linea -->
+	<h3>Saltos de linea</h3>
+	<p>Si uso backticks para concatenar puedo crear saltos de linea directamente en el codigo:</p>
+	<code>alert(`Hola ${nombre} ${apellido}!<br>
+	Tienes ${edad} anios`); <br>
+	// Hola Joel Mero! <br>
+	// Tienes 18 anios</code>
+
+	<p>Pero si no se puede dar el caso (por ejemplo, a causa de la tabulacion del codigo) puedo escribir directamente el caracter "\n" para crear un salto de linea:</p>
+	<code>alert(`Hola ${nombre} ${apellido}!` + `\n` + `Tienes ${edad} anios`);</code> <br>
+	<code>// Hola Joel Mero! <br>
+	// Tienes 18 anios</code>
+
+	<!-- Escape de comillas simples -->
+	<h3>Escape de comillas simples</h3>
+	<p>Se refiere a utilizar comillas simples dentro de Strings definidos por comillas dobles para no afectar al dato:</p>
+	<code>string = "Texto Texto 'Texto' Texto Texto"; // Texto Texto 'Texto' Texto Texto</code>
+
+	<!-- Escape de comillas dobles -->
+	<h3>Escape de comillas dobles</h3>
+	<p>Se refiere a utilizar comillas dobles dentro de Strings definidos por comillas simples para no afectar al dato:</p>
+	<code>string = 'Texto Texto "Texto" Texto Texto'; // Texto Texto "Texto" Texto Texto</code>
+
+</body>
+</html>

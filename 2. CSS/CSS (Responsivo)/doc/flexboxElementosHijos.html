@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Flexbox (Elementos hijos)</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Flexbox (Elementos hijos) -->
+	<section>
+		<h2>Flexbox (Elementos hijos)</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<h3>order</h3>
+		<p>Los elementos dentro del contenedor flexbox tienen un orden asignado; 1,2,3... este orden por defecto se puede alterar mediante la propiedad order.</p>
+
+		<p>Orden normal (por defecto). [1, 2, 3, 4].</p>
+		<style>
+			.cntPadre {
+				background-color: skyblue;
+				width: 50%;
+				height: 500px;
+				border: 1px solid black;
+				margin: 0 auto;
+				/*Flexbox*/
+				display: flex;
+			}
+
+			.elHijo {
+				background-color: pink;
+				width: 50px; height: 50px;
+				border: 1px solid black;
+			}
+		</style>
+		<div class="cntPadre">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<p>Orden inverso. [4, 3, 2, 1].</p>
+		<style>
+			.O1 { order: 1; } .O2 { order: 2; } .O3 { order: 3; } .O4 { order: 4; }
+		</style>
+		<div class="cntPadre">
+			<div class="elHijo O4">1</div>
+			<div class="elHijo O3">2</div>
+			<div class="elHijo O2">3</div>
+			<div class="elHijo O1">4</div>
+		</div>
+
+		<h3>flex-grow</h3>
+		<p>Define el crecimiento y el espacio que ocupa cada elemento en relacion con los demas y su contenedor padre. 1 equivale a todo el tamanio, 0.5 la mitad, 0 es nada... y asi.</p>
+
+		<p>Normal (por defecto) [initial]. El tamanio que viene definido por defecto y crecimiento normal.</p>
+		<style>
+			.Ginitial {
+				flex-grow: initial;
+			}
+		</style>
+		<div class="cntPadre">
+			<div class="elHijo Ginitial">1</div>
+			<div class="elHijo Ginitial">2</div>
+			<div class="elHijo Ginitial">3</div>
+			<div class="elHijo Ginitial">4</div>
+		</div>
+
+		<p>Valor de 0 a 1 [1, 1, 1, 0.5]. El tamanio y crecimiento se da en relacion a los demas elementos usando el valor especificado. No se creara una nueva linea hasta que los elementos en la linea se reduzcan al limite (que es su tamanio original, en este caso 150px).</p>
+		<style>
+			.G100 {
+				flex-grow: 1;
+			}
+
+			.G50 {
+				flex-grow: 0.5;
+			}
+		</style>
+		<div class="cntPadre">
+			<div class="elHijo G100">1</div>
+			<div class="elHijo G100">2</div>
+			<div class="elHijo G100">3</div>
+			<div class="elHijo G50">4</div>
+		</div>
+
+		<h3>flex-shrink</h3>
+		<p>Define el encogimiento de un elemento de 0 (no se encoge) a 1 (encogimiento normal).</p>
+
+		<p>Valor de 1 (por defecto) [1]. El encogimiento es normal. <em>El elemento opaco esta afectado por la propiedad</em></p>
+		<style>
+			@keyframes encogerAncho {
+				0% { width: 50%; }
+				50% {width: 1%;}
+				100% { width: 50%; }
+			} /*width: 50%; --> width:  20%;*/
+
+			.AencogerAncho {
+				animation-name: encogerAncho;
+				animation-duration: 10s;
+				animation-iteration-count: infinite;
+				animation-timing-function: ease;
+			}
+
+			.wrap { flex-wrap: wrap; }
+
+			.ancho { width: 300px; }
+
+			.fshrink1 {
+				flex-shrink: 1;
+				opacity: 0.5;
+			}
+		</style>
+		<div class="cntPadre wrap AencogerAncho">
+			<div class="elHijo ancho">1</div>
+			<div class="elHijo ancho fshrink1">2</div>
+			<div class="elHijo ancho">3</div>
+			<div class="elHijo ancho">4</div>
+		</div>
+
+		<p>Valor de 0.9 [0.9]. Se encoge un poquito menos que antes.</p>
+		<style>
+			.fshrink9 {
+				flex-shrink: 0.9;
+				opacity: 0.5;
+			}
+		</style>
+		<div class="cntPadre wrap AencogerAncho">
+			<div class="elHijo ancho">1</div>
+			<div class="elHijo ancho fshrink9">2</div>
+			<div class="elHijo ancho">3</div>
+			<div class="elHijo ancho">4</div>
+		</div>
+
+		<p>Valor de 0.5 [0.5]. Se encoge mucho menos que antes.</p>
+		<style>
+			.fshrink5 {
+				flex-shrink: 0.5;
+				opacity: 0.5;
+			}
+		</style>
+		<div class="cntPadre wrap AencogerAncho">
+			<div class="elHijo ancho">1</div>
+			<div class="elHijo ancho fshrink5">2</div>
+			<div class="elHijo ancho">3</div>
+			<div class="elHijo ancho">4</div>
+		</div>
+
+		<p>Valor de 0 [0]. No se encoge.</p>
+		<em>Una aplicacion practica muy util: con flex-grow: 1; se puede obtener un elemento que ocupe todo el espacio y si se combina con esto (flex-shrink: 0;) se establece un ancho minimo.</em>
+		<style>
+			.fshrink0 {
+				flex-shrink: 0;
+				opacity: 0.5;
+			}
+		</style>
+		<div class="cntPadre wrap AencogerAncho">
+			<div class="elHijo ancho">1</div>
+			<div class="elHijo ancho fshrink0">2</div>
+			<div class="elHijo ancho">3</div>
+			<div class="elHijo ancho">4</div>
+		</div>
+
+		<h3>flex-basis</h3>
+		<p>Define el ancho base del elemento mediante el modulo de flexbox en lugar de tomarlo desde la propiedad width.</p>
+
+		<p>Pixeles, %, auto (por defecto), rem, em... [px, %, auto, rem, em...]. Ejemplo con 300px. <em>Elemento opaco es afectado por la propiedad.</em></p>
+		<style>
+			.fbasis50 {
+				flex-basis: 300px;
+				opacity: 0.5;
+			}
+
+			.reafirmarAncho { width: 50px; } 
+			/*Este ancho es ignorado porque ya se establecio la base en el elemento flex con flex-basis*/
+		</style>
+		<div class="cntPadre wrap">
+			<div class="elHijo reafirmarAncho fbasis50">1</div>
+			<div class="elHijo reafirmarAncho">2</div>
+			<div class="elHijo reafirmarAncho">3</div>
+			<div class="elHijo reafirmarAncho">4</div>
+		</div>
+
+		<h3>flex</h3>
+		<p>Resumen de las 3 propiedades anteriores. <em>Por defecto: flex: 1 1 auto;</em></p>
+		<code>flex: grow shrink basis;</code>
+
+		<h3>align-self</h3>
+		<p>Controla el posicionamiento vertical que tiene un elemento flex dentro de su linea. <em>Si la propiedad align-content esta activada en el contenedor padre, align-self no tendra efecto.</em></p>
+
+		<p>Al inicio (por defecto) [flex-start]. Alinea el elemento al inicio de la linea. <em>El elemento opaco esta afectado por la propiedad.</em></p>
+		<style>
+			.ASstart {
+				align-self: flex-start;
+				opacity: 0.5;
+			}
+		</style>
+		<div class="cntPadre wrap">
+			<div class="elHijo">1</div><div class="elHijo ASstart">2</div><div class="elHijo">3</div><div class="elHijo">4</div><div class="elHijo">5</div><div class="elHijo">6</div><div class="elHijo">7</div><div class="elHijo">8</div><div class="elHijo">9</div><div class="elHijo">10</div><div class="elHijo">11</div><div class="elHijo">12</div><div class="elHijo">13</div><div class="elHijo">14</div><div class="elHijo">15</div><div class="elHijo">16</div><div class="elHijo">17</div><div class="elHijo">18</div><div class="elHijo">19</div><div class="elHijo">20</div><div class="elHijo">21</div><div class="elHijo">22</div><div class="elHijo">23</div><div class="elHijo">24</div><div class="elHijo">25</div><div class="elHijo">26</div><div class="elHijo">27</div><div class="elHijo">28</div><div class="elHijo">29</div><div class="elHijo">30</div><div class="elHijo">31</div><div class="elHijo">32</div><div class="elHijo">33</div><div class="elHijo">34</div><div class="elHijo">35</div><div class="elHijo">36</div>
+		</div>
+
+		<p>Al final [flex-end]. Alinea el elemento al final de la linea.</p>
+		<style>
+			.ASend {
+				align-self: flex-end;
+				opacity: 0.5;
+			}
+
+			.content {
+				align-content: start;
+			} 
+			/*Prueba agregar align-content al contenedor padre
+			para ver como align-self ya no surte efecto*/
+		</style>
+		<div class="cntPadre wrap">
+			<div class="elHijo">1</div><div class="elHijo ASend">2</div><div class="elHijo">3</div><div class="elHijo">4</div><div class="elHijo">5</div><div class="elHijo">6</div><div class="elHijo">7</div><div class="elHijo">8</div><div class="elHijo">9</div><div class="elHijo">10</div><div class="elHijo">11</div><div class="elHijo">12</div><div class="elHijo">13</div><div class="elHijo">14</div><div class="elHijo">15</div><div class="elHijo">16</div><div class="elHijo">17</div><div class="elHijo">18</div><div class="elHijo">19</div><div class="elHijo">20</div><div class="elHijo">21</div><div class="elHijo">22</div><div class="elHijo">23</div><div class="elHijo">24</div><div class="elHijo">25</div><div class="elHijo">26</div><div class="elHijo">27</div><div class="elHijo">28</div><div class="elHijo">29</div><div class="elHijo">30</div><div class="elHijo">31</div><div class="elHijo">32</div><div class="elHijo">33</div><div class="elHijo">34</div><div class="elHijo">35</div><div class="elHijo">36</div>
+		</div>
+
+		<p>En el centro [center]. Alinea el elemento en el centro de la linea.</p>
+		<style>
+			.AScenter {
+				align-self: center;
+				opacity: 0.5;
+			}
+		</style>
+		<div class="cntPadre wrap">
+			<div class="elHijo">1</div><div class="elHijo AScenter">2</div><div class="elHijo">3</div><div class="elHijo">4</div><div class="elHijo">5</div><div class="elHijo">6</div><div class="elHijo">7</div><div class="elHijo">8</div><div class="elHijo">9</div><div class="elHijo">10</div><div class="elHijo">11</div><div class="elHijo">12</div><div class="elHijo">13</div><div class="elHijo">14</div><div class="elHijo">15</div><div class="elHijo">16</div><div class="elHijo">17</div><div class="elHijo">18</div><div class="elHijo">19</div><div class="elHijo">20</div><div class="elHijo">21</div><div class="elHijo">22</div><div class="elHijo">23</div><div class="elHijo">24</div><div class="elHijo">25</div><div class="elHijo">26</div><div class="elHijo">27</div><div class="elHijo">28</div><div class="elHijo">29</div><div class="elHijo">30</div><div class="elHijo">31</div><div class="elHijo">32</div><div class="elHijo">33</div><div class="elHijo">34</div><div class="elHijo">35</div><div class="elHijo">36</div>
+		</div>
+
+		<p>Estirar [strecth]. Estira el elemento verticalmente para que abarque todo el alto. <em>Se anula si el elemento tiene alto definido.</em></p>
+		<em style="display: block; text-align: center;">El elemento respetara el padding del contenedor padre.</em>
+		<style>
+			.cancelarAlto { height: auto; }
+
+			.padding10 { padding: 10px; }
+
+			.ASstrecth {
+				align-self: strecth;
+				opacity: 0.5;
+			}
+		</style>
+		<div class="cntPadre wrap padding10">
+			<div class="elHijo">1</div><div class="elHijo cancelarAlto ASstrecth">2</div><div class="elHijo">3</div><div class="elHijo">4</div><div class="elHijo">5</div><div class="elHijo">6</div><div class="elHijo">7</div><div class="elHijo">8</div><div class="elHijo">9</div><div class="elHijo">10</div><div class="elHijo">11</div><div class="elHijo">12</div><div class="elHijo">13</div><div class="elHijo">14</div><div class="elHijo">15</div><div class="elHijo">16</div><div class="elHijo">17</div><div class="elHijo">18</div><div class="elHijo">19</div><div class="elHijo">20</div><div class="elHijo">21</div><div class="elHijo">22</div><div class="elHijo">23</div><div class="elHijo">24</div><div class="elHijo">25</div><div class="elHijo">26</div><div class="elHijo">27</div><div class="elHijo">28</div><div class="elHijo">29</div><div class="elHijo">30</div><div class="elHijo">31</div><div class="elHijo">32</div><div class="elHijo">33</div><div class="elHijo">34</div><div class="elHijo">35</div><div class="elHijo">36</div>
+		</div>
+
+		<p>En la linea base del texto [baseline]. El elemento se alinea verticalmente con las bases de las lineas de texto de los demas elementos.</p>
+		<style>
+			.fontSize30 {
+				font-size: 30px;
+				opacity: 0.5;
+			}
+		</style>
+		<p>Normalmente (por defecto) [flex-start].</p>
+		<div class="cntPadre wrap">
+			<div class="elHijo">1</div>
+			<div class="elHijo fontSize30">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+		</div>
+		<p>Con la propiedad [baseline].</p>
+		<style>
+			.ASbaseline {
+				align-self: baseline;
+				opacity: 0.5;
+			}
+		</style>
+		<div class="cntPadre wrap">
+			<div class="elHijo">1</div>
+			<div class="elHijo fontSize30 ASbaseline">2</div>
+			<div class="elHijo ASbaseline">3</div>
+			<div class="elHijo ASbaseline">4</div>
+			<div class="elHijo">5</div>
+		</div>
+	</section>
+</body>
+</html>

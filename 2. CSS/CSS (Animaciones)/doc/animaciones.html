@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Animaciones</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Animaciones -->
+	<section>
+		<h2>Animaciones</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<!-- @keyframes -->
+		<h3>@keyframes</h3>
+		<p>Contiene los puntos donde va a haber un cambio dentro de la animacion.</p>
+		<code>@keyframes nombreAnimacion { from { propiedad: valor1; } to { propiedad: valor2; } }</code>
+		<style>
+			@keyframes cambiarFondo {
+				from { background: skyblue; } /*Desde celeste*/
+				to { background: pink; } /*Hasta rosa*/
+			}
+
+			.elemento {
+				background: skyblue;
+				box-sizing: border-box;
+				width: 150px;
+				height: 150px;
+				padding-top: 10px;
+				border: 1px solid black;
+			}
+		</style>
+		<div class="elemento"></div>
+
+		<!-- animation-name -->
+		<h3>animation-name</h3>
+		<p>Recive como valor el nombre que la animacion (keyframes) que va a ejecutarse en el elemento.</p>
+		<code>animation-name: nombreAnimacion;</code>
+		<style>
+			.nombreAnimacion {
+				animation-name: cambiarFondo;
+			}
+		</style>
+
+		<!-- animation-duration -->
+		<h3>animation-duration</h3>
+		<p>Segundos [s]. Esta propiedad define el tiempo que va a durar la animacion.</p>
+		<code>animation-duration: ?s;</code>
+		<style>
+			.tiempoAnimacion {
+				animation-duration: 2s;
+			}
+		</style>
+
+		<!-- animation-iteration-count -->
+		<h3>animation-iteration-count</h3>
+		<p>Numero cualquiera/infinito [X/infinite]. Esta propiedad define la cuenta de repeticion de la animacion permitiendo que esta se ejecute mas de una sola vez. <em>Para que la animacion se repita infinitamente se puede usar el valor 'infinite'.</em></p>
+		<style>
+			.repetirInfinitamente {
+				animation-iteration-count: infinite;
+			}
+		</style>
+		<div class="elemento nombreAnimacion tiempoAnimacion repetirInfinitamente">
+			name: cambiarFondo;<br>
+			duration: 2s;<br>
+			count: infinite;
+		</div>
+
+		<p>Ejemplo de animacion cambiando ancho:</p>
+		<style>
+			@keyframes cambiarAncho {
+				from { width: 150px; }
+				to { width: 300px; }
+			}
+
+			.animacionAncho {
+				animation-name: cambiarAncho;
+				animation-duration: 2s;
+				animation-iteration-count: infinite;
+			}
+		</style>
+		<div class="elemento animacionAncho">
+			name: cambiarAncho;<br>
+			duration: 2s;<br>
+			count: infinite;
+		</div>
+
+		<!-- animation-timing-function -->
+		<h3>animation-timing-function</h3>
+		<p>Permite establecer la funcion de tiempo de la animacion.</p>
+		<p>Linear [linear]. La animacion es lineal.</p>
+		<style>
+			.linear { animation-timing-function: linear; }
+		</style>
+		<div class="elemento animacionAncho linear"></div>
+
+		<p>Suave [ease]. La animacion es mas suave al inicio y al final.</p>
+		<style>
+			.ease { animation-timing-function: ease; }
+		</style>
+		<div class="elemento animacionAncho ease"></div>
+
+		<!-- animation-delay -->
+		<h3>animation-delay</h3>
+		<p>Permite establecer un tiempo de retraso en la animacion.</p>
+		<p>Sin retraso [0s].</p>
+		<style>
+			.sinRetraso { animation-delay: 0s; }
+		</style>
+		<div class="elemento sinRetraso" id="sinRetraso"></div>
+
+		<p>Retraso [s]. Retraso de 1 segundo.</p>
+		<style>
+			.retraso { animation-delay: 1s; }
+		</style>
+		<div class="elemento retraso" id="retraso"></div>
+
+		<p>Inicia las animaciones para ver el efecto del retraso (delay):</p>
+		<button id="btnDelay">Iniciar ambas animaciones a la vez</button>
+		<script>
+			let sinRetraso = document.querySelector('#sinRetraso'),
+			 	retraso = document.querySelector('#retraso'),
+			 	btnDelay = document.querySelector('#btnDelay');
+
+			 btnDelay.addEventListener('click', function() {
+			 	sinRetraso.classList.add('animacionAncho');
+			 	retraso.classList.add('animacionAncho');
+			 });
+
+
+		</script>
+
+		<!-- @keyframes (cambios) -->
+		<h3>@keyframes (cambios)</h3>
+		<p>Podemos crear mas de dos puntos de cambio en la animacion si usamos porcentajes en los keyframes</p>
+		<code>@keyframes nombreAnimacion { 0% { propiedad: valor1; } %50 { propiedad: valor2; } 100% { propiedad: valor3; } }</code>
+		<style>
+			@keyframes animacionAnchoSuave {
+				0% {width: 150px;} 
+				50% {width: 300px;} 
+				100% {width: 150px;}
+			}
+
+			@keyframes animacionFondoSuave {
+				0% {background: skyblue;}
+				50% {background: pink;}
+				100% {background: skyblue;}
+			}
+
+			.animacionAnchoSuave {
+				animation-name: animacionAnchoSuave;
+				animation-duration: 4s;
+				animation-iteration-count: infinite;
+				animation-timing-function: ease;
+				animation-delay: 0s;
+			}
+
+			.animacionFondoSuave {
+				animation-name:  animacionFondoSuave;
+				animation-duration: 4s;
+				animation-iteration-count: infinite;
+				animation-timing-function: ease;
+				animation-delay: 0s;
+			}
+		</style>
+		<p>Queda un efecto tan bonito en el ancho:</p>
+		<div class="elemento animacionAnchoSuave">
+			0% {width: 150px;} <br>
+			50% {width: 300px;} <br>
+			100% {width: 150px;}
+		</div>
+		<p>Como en el fondo:</p>
+		<div class="elemento animacionFondoSuave">
+			0% {background: skyblue;} <br>
+			50% {background: pink;} <br>
+			100% {background: skyblue;}
+		</div>
+		<p>Se puede hacer con muchos puntos de cambio:</p>
+		<style>
+			.ancho { width: 250px; }
+
+			.recortar { width: 100px; }
+
+			@keyframes animarMultiplesPuntos {
+				0% {background: #21295C;} 
+				25% {background: #1B3B6F;} 
+				50% {background: #065A82;} 
+				75% {background: #1C7293;} 
+				100% {background: #9EB3C2;}
+			}
+
+			.animarMultiplesPuntos {
+				animation-name:  animarMultiplesPuntos;
+				animation-duration: 5s;
+				animation-iteration-count: infinite;
+				animation-timing-function: ease;
+				animation-delay: 0s;
+			}
+
+			.gradienteIlustrativo {
+				background: linear-gradient(to top, 
+					#21295C , 
+					#1B3B6F 25%,
+					#065A82 50%,
+					#1C7293 75%,
+					#9EB3C2 100%
+				);
+				margin-left: 75px;
+				transform: rotate(90deg);
+			}
+		</style>
+		<div class="elemento ancho animarMultiplesPuntos">
+			0% {background: #21295C;} <br>
+			25% {background: #1B3B6F;} <br>
+			50% {background: #065A82;} <br>
+			75% {background: #1C7293;} <br>
+			100% {background: #9EB3C2;}
+		</div>
+		<div class="elemento ancho recortar gradienteIlustrativo"></div>
+
+		<!-- @keyframes (valores) -->
+		<h3>@keyframes (valores)</h3>
+		<p>Podemos incluir mas de un valor de cambio en cada animacion</p>
+		<code>@keyframes nombreAnimacion { from {propiedad1:valor1; propiedad2:valor1;...} to {propiedad1:valor2; propiedad2:valor2;...} }</code>
+		<style>
+			.muyAncho { width: 300px; }
+
+			@keyframes multiplesPropiedades {
+				0% {background: skyblue; width: 300px;}
+				50% {background: pink; width: 400px;}
+				100% {background: skyblue; width: 300px;}
+			}
+
+			.multiplesPropiedades {
+				animation-name: multiplesPropiedades;
+				animation-duration: 4s;
+				animation-iteration-count: infinite;
+				animation-timing-function: ease;
+				animation-delay: 0s;
+			}
+		</style>
+		<div class="elemento muyAncho multiplesPropiedades">
+			0% {background: skyblue; width: 300px;} <br>
+			50% {background: pink; width: 400px;} <br>
+			100% {background: skyblue; width: 300px;} 
+		</div>
+
+		<!-- animation (resumen) -->
+		<h3>animation (resumen)</h3>
+		<p>Resumen de las propiedades anteriores.</p>
+		<code>animation: name duration timing-function iteration-count delay;</code>
+		<style>
+			@keyframes animacion {
+				from { background: skyblue; }
+				to { background: pink; }
+			}
+
+			.animationResumen {
+				animation: animacion 1s linear infinite 0s;
+			}
+		</style>
+
+		<p>animation: animacion 1s linear infinite 0s;</p>
+		<div class="elemento animationResumen"></div>
+	</section>
+</body>
+</html>

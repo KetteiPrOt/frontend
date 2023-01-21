@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 27</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Lista de Clases (Class List)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que es classList -->
+	<h3>Que es classList</h3>
+	<p>Es un atributo de los elementos HTML que contiene la DOMTokenList de clases del elemento. Se diferencia de <em>className</em> en que esta contiene solo texto plano.</p>
+
+	<!-- elemento -->
+	<div id="minino" class="elementoDOM clase1 clase2 clase3">
+		id="minino" class="elementoDOM clase1 clase2 clase3"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let minino = document.getElementById('minino') <br><br>
+
+		console.log(minino.classList); <strong>// DOMTokenList(4) ['elementoDOM', 'clase1', 'clase2', 'clase3', value: 'elementoDOM clase1 clase2 clase3']</strong> <br><br>
+
+		console.log(minino.className); <strong>// elementoDOM clase1 clase2 clase3</strong>
+	</code>
+
+	<p>Esto es lo que contiene en el caso de los inputs, es lo mismo, incluso con el atributo<em>className</em>:</p>
+
+	<!-- elemento -->
+	<input type="text" id="canino" class="elementoDOM clase1 clase2 clase3" placeholder="id='canino' class='elementoDOM clase1 clase2 clase3'">
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let canino = document.getElementById('canino'); <br><br>
+
+		console.log(canino.className); <strong>// elementoDOM clase1 clase2 clase3</strong> <br><br>
+
+		console.log(canino.classList); <strong>// DOMTokenList(4) ['elementoDOM', 'clase1', 'clase2', 'clase3', value: 'elementoDOM clase1 clase2 clase3']</strong>
+	</code>
+
+
+
+	<!-- Metodos de classList -->
+	<h2>Metodos de classList</h2>
+	<p>Estos metodos sirven para manipular el atributo classList de los elementos.</p>
+
+
+	<!-- add() -->
+	<h3>add()</h3>
+	<p>Este metodo agrega una nueva clase a la lista.</p>
+
+	<!-- elemento -->
+	<div id="borrego" class="elementoDOM">
+		id="borrego"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let borrego = document.getElementById('borrego'); <br><br>
+
+		borrego.classList.add('txt-blue'); <strong>// El borrego se volvio azul!!</strong>
+	</code>
+
+
+	<!-- remove() -->
+	<h3>remove()</h3>
+	<p>Este metodo remueve una clase de la lista.</p>
+
+	<!-- elemento -->
+	<div id="ballena" class="elementoDOM txt-blue">
+		id="ballena" class="elementoDOM txt-blue"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let ballena = document.getElementById('ballena'); <br><br>
+
+		ballena.classList.remove('txt-blue'); <strong>// La ballena se volvio blanca!!</strong>
+	</code>
+
+	<p>Esto tambien se puede hacer con <em>className</em>... pero supongo que sera mejor y mas moderno trabajar las clases con la lista de clases.</p>
+
+	<!-- codigo -->
+	<code>
+		let ballena = document.getElementById('ballena'); <br><br>
+
+		ballena.className = 'elementoDOM'; <strong>// La ballena se volvio blanca!!</strong>
+	</code>
+
+
+	<!-- item() -->
+	<h3>item()</h3>
+	<p>Devuelve la clase del indice especificado.</p>
+
+	<!-- elemento -->
+	<div id="grandinosaurio" class="elementoDOM clase1 clase2 clase3">
+		id="grandinosaurio" class="elementoDOM clase1 clase2 clase3"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let grandinosaurio = document.getElementById('grandinosaurio'); <br><br>
+
+		console.log(grandinosaurio.classList); <strong>// DOMTokenList(4) ['elementoDOM', 'clase1', 'clase2', 'clase3', value: 'elementoDOM clase1 clase2 clase3']</strong> <br><br>
+
+		for (let i = 0; i < 4; i++) { <br> &nbsp&nbsp&nbsp
+			console.log( <br>  &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp 
+				<strong>grandinosaurio.classList.item(i)</strong> <br> &nbsp&nbsp&nbsp
+			); <br>
+		} <br><br>
+
+		<strong>// elementoDOM </strong> <br>
+		<strong>// clase 1 </strong> <br>
+		<strong>// clase 2 </strong> <br>
+		<strong>// clase 3</strong>
+	</code>
+
+
+	<!-- contains() -->
+	<h3>contains()</h3>
+	<p>Verifica si el elemento posee o no la clase especificada.</p>
+
+	<!-- elemento -->
+	<div id="raptor" class="elementoDOM clase1 clase2 clase3">
+		id="raptor" class="elementoDOM clase1 clase2 clase3"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let raptor = document.getElementById('raptor'); <br><br>
+
+		let cont1 = <strong>raptor.classList.contains('clase1')</strong>, <br> &nbsp&nbsp&nbsp
+			cont2 = <strong>raptor.classList.contains('latumpAbstrea')</strong>; <br><br>
+
+		console.log(cont1); // true <br>
+		console.log(cont2); // false 
+	</code>
+
+
+	<!-- replace() -->
+	<h3>replace()</h3>
+	<p>Reemplaza una clase por otra.</p>
+
+	<!-- elemento -->
+	<div id="paqui" class="elementoDOM clase1">
+		id="paqui" class="elementoDOM clase1"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let paqui = document.getElementById('paqui'); <br><br>
+
+		paqui.classList.<strong>replace('clase1', 'txt-blue')</strong>; <strong>// El Paqui se puso azul!!</strong> <br><br>
+
+		let newInfo = paqui.classList; <br><br>
+
+		console.log(newInfo); // DOMTokenList(2) [<strong>'elementoDOM', 'txt-blue'</strong>, value: <strong>'elementoDOM txt-blue'</strong>]
+	</code>
+
+
+	<!-- toggle() -->
+	<h3>toggle()</h3>
+	<p>Alterna una clase: si el elemento ya la tiene se la quita, si no la tiene se la pone.</p>
+
+	<!-- elemento -->
+	<div id="ovejaMulticolor" class="elementoDOM">
+		id="ovejaMulticolor" 
+	</div>
+	<button id="btnToggleClass">Presiona para cambiar!</button>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let ovejaMulticolor = document.getElementById('ovejaMulticolor'), <br>  &nbsp&nbsp&nbsp
+			btnToggleClass = document.getElementById('btnToggleClass'); <br><br>
+
+		btnToggleClass.addEventListener('click', funcion = () => { <br><br> &nbsp&nbsp&nbsp
+
+			<strong>ovejaMulticolor.classList.toggle('txt-blue');</strong> <br><br>
+			
+		});
+	</code>
+	<script>
+		let ovejaMulticolor = document.getElementById('ovejaMulticolor'),
+			btnToggleClass = document.getElementById('btnToggleClass');
+
+		btnToggleClass.addEventListener('click', funcion = () => {
+
+			ovejaMulticolor.classList.toggle('txt-blue');
+
+		});
+	</script>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

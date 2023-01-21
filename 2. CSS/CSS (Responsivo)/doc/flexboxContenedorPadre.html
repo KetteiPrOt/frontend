@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Flexbox (Contenedor Padre)</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Flexbox (Contenedor Padre) -->
+	<section>
+		<h2>Flexbox (Contenedor Padre)</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<!-- display: flex; -->
+		<h3>display: flex;</h3>
+		<p>Al poner esta propiedad se activa flexbox en el elemento.</p>
+
+		<p>Sin flexbox [display: block;].</p>
+		<style>
+			/*Contenedor Padre*/
+			.cntPadre {
+				background-color: skyblue;
+				width: 50%;
+				height: 500px;
+				border: 1px solid black;
+				margin: 0 auto;
+			}
+
+			/*Elemento Hijo*/
+			.elHijo {
+				background-color: pink;
+				width: 50px; height: 50px;
+				border: 1px solid black;
+			}
+		</style>
+		<div class="cntPadre">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<p>Con flexbox [display: flex;].</p>
+		<style>
+			/*Display Flex*/
+			.d-flex { display: flex; }
+		</style>
+		<div class="cntPadre d-flex">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<!-- flex-direction -->
+		<h3>flex-direction</h3>
+		<p>Esta propiedad controla la direccion en la que se organizan los elementos hijos.</p>
+
+		<p>En fila (por defecto) [row]. Los elementos se organizan en una fila horizontal.</p>
+		<style>
+			.fila { flex-direction: row; }
+		</style>
+		<div class="cntPadre d-flex fila">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<p>En columna [column]. Los elementos se organizan en una columna vertical.</p>
+		<style>
+			.columna { flex-direction: column; }
+		</style>
+		<div class="cntPadre d-flex columna">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<p>En fila inversa [row-reverse]. El orden de los elementos en fila se invierte.</p>
+		<style>
+			.fila-inversa { flex-direction: row-reverse; }
+		</style>
+		<div class="cntPadre d-flex fila-inversa">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<p>En columna inversa [column-reverse]. El orden de los elementos en columna se invierte.</p>
+		<style>
+			.columna-inversa { flex-direction: column-reverse; }
+		</style>
+		<div class="cntPadre d-flex columna-inversa">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<!-- flex-wrap -->
+		<h3>flex-wrap</h3>
+		<p>Esta propiedad controla los "saltos de linea" que hacen los elementos hijo cuando ya no caben en el ancho del contenedor padre.</p>
+
+		<p>No envolver (por defecto) [nowrap]. Lo elementos hijos se acomodan en una sola linea vertical.</p>
+		<style>
+			.nowrap { flex-wrap: nowrap; }
+		</style>
+		<div class="cntPadre d-flex fila nowrap">
+			<div class="elHijo">1</div><div class="elHijo">2</div><div class="elHijo">3</div><div class="elHijo">4</div><div class="elHijo">5</div><div class="elHijo">6</div><div class="elHijo">7</div><div class="elHijo">8</div><div class="elHijo">9</div><div class="elHijo">10</div><div class="elHijo">11</div><div class="elHijo">12</div><div class="elHijo">13</div><div class="elHijo">14</div><div class="elHijo">15</div><div class="elHijo">16</div><div class="elHijo">17</div><div class="elHijo">18</div><div class="elHijo">19</div><div class="elHijo">20</div>
+		</div>
+
+		<p>Envolver [wrap]. Los elementos hacen saltos de linea para entrar enteros. <em>En este caso la nueva linea tambien se centra automaticamente en el eje vertical.</em></p>
+		<style>
+			.wrap { flex-wrap: wrap; }
+		</style>
+		<div class="cntPadre d-flex fila wrap">
+			<div class="elHijo">1</div><div class="elHijo">2</div><div class="elHijo">3</div><div class="elHijo">4</div><div class="elHijo">5</div><div class="elHijo">6</div><div class="elHijo">7</div><div class="elHijo">8</div><div class="elHijo">9</div><div class="elHijo">10</div><div class="elHijo">11</div><div class="elHijo">12</div><div class="elHijo">13</div><div class="elHijo">14</div><div class="elHijo">15</div><div class="elHijo">16</div><div class="elHijo">17</div><div class="elHijo">18</div><div class="elHijo">19</div><div class="elHijo">20</div>
+		</div>
+
+		<p>Envoltura inversa [wrap-reverse]. Los elementos envuelven al contenedor en sentido inverso.</p>
+		<style>
+			.wrap-inverso { flex-wrap: wrap-reverse; }
+		</style>
+		<div class="cntPadre d-flex fila wrap-inverso">
+			<div class="elHijo">1</div><div class="elHijo">2</div><div class="elHijo">3</div><div class="elHijo">4</div><div class="elHijo">5</div><div class="elHijo">6</div><div class="elHijo">7</div><div class="elHijo">8</div><div class="elHijo">9</div><div class="elHijo">10</div><div class="elHijo">11</div><div class="elHijo">12</div><div class="elHijo">13</div><div class="elHijo">14</div><div class="elHijo">15</div><div class="elHijo">16</div><div class="elHijo">17</div><div class="elHijo">18</div><div class="elHijo">19</div><div class="elHijo">20</div>
+		</div>
+
+		<!-- flex-flow -->
+		<h3>flex-flow</h3>
+		<p>(flow = Caudal) Resumen de las dos propiedades: flex-row, y flex-wrap.</p>
+		<code>flex-flow: row wrap;</code>
+
+		<!-- justify-content -->
+		<h3>justify-content</h3>
+		<p>Esta propiedad controla el posicionamiento horizontal del contenido.</p>
+
+		<p>Al inicio (por defecto) [flex-start]. Pone el contenido a la derecha horizontalmente.</p>
+		<style>
+			/*H = Horizontal*/
+			.Hstart {
+				justify-content: flex-start;
+			}
+		</style>
+		<div class="cntPadre d-flex fila nowrap Hstart">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<p>Al final [flex-end]. Pone el contenido a la izquierda horizontalmente.</p>
+		<style>
+			.Hend {
+				justify-content: flex-end;
+			}
+		</style>
+		<div class="cntPadre d-flex fila nowrap Hend">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<p>En el centro [center]. Centra el contenido horizontalmente.</p>
+		<style>
+			.Hcenter {
+				justify-content: center;
+			}
+		</style>
+		<div class="cntPadre d-flex fila nowrap Hcenter">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<p>Espacio entre elementos [space-between]. Expande el contenido horizontalmente dejando el mismo espacio entre cada uno de los elementos.</p>
+		<style>
+			.Hspace-between {
+				justify-content: space-between;
+			}
+		</style>
+		<div class="cntPadre d-flex fila nowrap Hspace-between">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<p>Espacio alrededor de elementos [space-around]. Expande el contenido horizontalmente dejando el mismo espacio alrededor de cada uno de los elementos.</p>
+		<style>
+			.Hspace-around {
+				justify-content: space-around;
+			}
+		</style>
+		<div class="cntPadre d-flex fila nowrap Hspace-around">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<p>Espacio equivalente [space-evenly]. Centra el contenido horizontalmente dejando el mismo espacio entre de cada uno de los elementos y los bordes. <em>Similar a space-between.</em></p>
+		<style>
+			.Hspace-evenly {
+				justify-content: space-evenly;
+			}
+		</style>
+		<div class="cntPadre d-flex fila nowrap Hspace-evenly">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<!-- align-items -->
+		<h3>align-items</h3>
+		<p>Esta propiedad controla el posicionamiento vertical de los elementos hijos dentro de una linea. Lo hace alterando la propiedad align-self (alinearse a si mismo) que cada uno de ellos posee. <em>Esta propiedad no puede usarse junto a la propiedad align-content porque sus naturalezas las vuelven incompatibles.</em></p>
+
+		<p>Al inicio (por defecto) [flex-start]. Pone el contenido arriba verticalmente.</p>
+		<style>
+			/*V = Vertical*/
+			.Vstart {
+				align-items: flex-start;
+			}
+		</style>
+		<div class="cntPadre d-flex fila nowrap Vstart">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<p>Al final [flex-end]. Pone el contenido abajo verticalmente.</p>
+		<style>
+			.Vend {
+				align-items: flex-end;
+			}
+		</style>
+		<div class="cntPadre d-flex fila nowrap Vend">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<p>En el centro [center]. Centra el contenido verticalmente. <em>Muy util!</em></p>
+		<style>
+			.Vcenter {
+				align-items: center;
+			}
+		</style>
+		<div class="cntPadre d-flex fila nowrap Vcenter">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+		</div>
+
+		<p>Estirar [strecth]. Estira los elementos hijos verticalmente para que abarquen todo el alto. <em>Se anula si los elementos hijo tienen alto definido.</em></p>
+		<div class="centrarTexto"><em>Esta propiedad respeta el padding del contenedor padre.</em></div>
+		<style>
+			.Vstretch {	align-items: stretch; }
+
+			.reiniciarAlto { height: initial; }
+
+			.centrarTexto { text-align: center; }
+
+			.p-20 {
+				padding: 20px; 
+				box-sizing: border-box;
+			}
+		</style>
+
+		<div class="cntPadre d-flex fila nowrap Hstart Vstretch p-20">
+			<div class="elHijo reiniciarAlto">1</div>
+			<div class="elHijo reiniciarAlto">2</div>
+			<div class="elHijo reiniciarAlto">3</div>
+			<div class="elHijo reiniciarAlto">4</div>
+		</div>
+
+		<p>En la linea base del texto [baseline]. Alinea los elementos verticalmente en las bases de las lineas de texto.</p>
+		<style>
+			.fuenteGrande { font-size: 35px; }
+
+			.fuenteMediana { font-size: 25px; }
+
+			.Vbaseline {
+				align-items: baseline;
+			}
+		</style>
+		<div class="cntPadre d-flex fila nowrap Hcenter Vbaseline">
+			<div class="elHijo">1</div>
+			<div class="elHijo fuenteGrande">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo fuenteMediana">5</div>
+		</div>
+
+		<!-- align-content -->
+		<h3>align-content</h3>
+		<p>Esta propiedad controla el posicionamiento vertical del contenido dentro del elemento. Lo hace alterando la alineacion de las lineas que contienen a los elementos hijos, por lo que no tendra efecto en contenedores que posean solo una linea de elementos (nowrap). <em>Al activar algun valor de esta propiedad, align-items ya no sera utilizable en el elemento.</em></p>
+
+		<p>Inicial (por defecto) [initial]. Alinea las lineas de la forma que vienen por defecto.</p>
+		<style>
+			.Cinitial {
+				align-content: initial;
+			}
+		</style>
+		<div class="cntPadre d-flex fila wrap Hstart Vstart Cinitial">
+			<div class="elHijo">1</div><div class="elHijo">2</div><div class="elHijo">3</div><div class="elHijo">4</div><div class="elHijo">5</div><div class="elHijo">6</div><div class="elHijo">7</div><div class="elHijo">8</div><div class="elHijo">9</div><div class="elHijo">10</div><div class="elHijo">11</div><div class="elHijo">12</div><div class="elHijo">13</div><div class="elHijo">14</div><div class="elHijo">15</div><div class="elHijo">16</div><div class="elHijo">17</div><div class="elHijo">18</div><div class="elHijo">19</div><div class="elHijo">20</div><div class="elHijo">21</div><div class="elHijo">22</div><div class="elHijo">23</div><div class="elHijo">24</div><div class="elHijo">25</div><div class="elHijo">26</div><div class="elHijo">27</div><div class="elHijo">28</div><div class="elHijo">29</div><div class="elHijo">30</div><div class="elHijo">31</div><div class="elHijo">32</div><div class="elHijo">33</div><div class="elHijo">34</div><div class="elHijo">35</div><div class="elHijo">36</div>
+		</div>
+
+		<p>Al inicio [flex-start]. Alinea todas las lineas al inicio del elemento.</p>
+		<style>
+			.Cstart {
+				align-content: flex-start;
+			}
+		</style>
+		<div class="cntPadre d-flex fila wrap Hstart Vstart Cstart">
+			<div class="elHijo">1</div><div class="elHijo">2</div><div class="elHijo">3</div><div class="elHijo">4</div><div class="elHijo">5</div><div class="elHijo">6</div><div class="elHijo">7</div><div class="elHijo">8</div><div class="elHijo">9</div><div class="elHijo">10</div><div class="elHijo">11</div><div class="elHijo">12</div><div class="elHijo">13</div><div class="elHijo">14</div><div class="elHijo">15</div><div class="elHijo">16</div><div class="elHijo">17</div><div class="elHijo">18</div><div class="elHijo">19</div><div class="elHijo">20</div><div class="elHijo">21</div><div class="elHijo">22</div><div class="elHijo">23</div><div class="elHijo">24</div><div class="elHijo">25</div><div class="elHijo">26</div><div class="elHijo">27</div><div class="elHijo">28</div><div class="elHijo">29</div><div class="elHijo">30</div><div class="elHijo">31</div><div class="elHijo">32</div><div class="elHijo">33</div><div class="elHijo">34</div><div class="elHijo">35</div><div class="elHijo">36</div>
+		</div>
+
+		<p>En el centro [center]. Alinea todas las lineas en el centro del elemento.</p>
+		<style>
+			.Ccenter {
+				align-content: center;
+			}
+		</style>
+		<div class="cntPadre d-flex fila wrap Hstart Vstart Ccenter">
+			<div class="elHijo">1</div><div class="elHijo">2</div><div class="elHijo">3</div><div class="elHijo">4</div><div class="elHijo">5</div><div class="elHijo">6</div><div class="elHijo">7</div><div class="elHijo">8</div><div class="elHijo">9</div><div class="elHijo">10</div><div class="elHijo">11</div><div class="elHijo">12</div><div class="elHijo">13</div><div class="elHijo">14</div><div class="elHijo">15</div><div class="elHijo">16</div><div class="elHijo">17</div><div class="elHijo">18</div><div class="elHijo">19</div><div class="elHijo">20</div><div class="elHijo">21</div><div class="elHijo">22</div><div class="elHijo">23</div><div class="elHijo">24</div><div class="elHijo">25</div><div class="elHijo">26</div><div class="elHijo">27</div><div class="elHijo">28</div><div class="elHijo">29</div><div class="elHijo">30</div><div class="elHijo">31</div><div class="elHijo">32</div><div class="elHijo">33</div><div class="elHijo">34</div><div class="elHijo">35</div><div class="elHijo">36</div>
+		</div>
+
+		<p>Al final [flex-end]. Alinea todas las lineas al final del elemento.</p>
+		<style>
+			.Cend {
+				align-content: flex-end;
+			}
+		</style>
+		<div class="cntPadre d-flex fila wrap Hstart Vstart Cend">
+			<div class="elHijo">1</div><div class="elHijo">2</div><div class="elHijo">3</div><div class="elHijo">4</div><div class="elHijo">5</div><div class="elHijo">6</div><div class="elHijo">7</div><div class="elHijo">8</div><div class="elHijo">9</div><div class="elHijo">10</div><div class="elHijo">11</div><div class="elHijo">12</div><div class="elHijo">13</div><div class="elHijo">14</div><div class="elHijo">15</div><div class="elHijo">16</div><div class="elHijo">17</div><div class="elHijo">18</div><div class="elHijo">19</div><div class="elHijo">20</div><div class="elHijo">21</div><div class="elHijo">22</div><div class="elHijo">23</div><div class="elHijo">24</div><div class="elHijo">25</div><div class="elHijo">26</div><div class="elHijo">27</div><div class="elHijo">28</div><div class="elHijo">29</div><div class="elHijo">30</div><div class="elHijo">31</div><div class="elHijo">32</div><div class="elHijo">33</div><div class="elHijo">34</div><div class="elHijo">35</div><div class="elHijo">36</div>
+		</div>
+
+		<p>Espacio entre las lineas [space-between].Deja el mismo espacio entre cada linea ocupando todo el elemento.</p>
+		<style>
+			.Cspace-between {
+				align-content: space-between;
+			}
+		</style>
+		<div class="cntPadre d-flex fila wrap Hstart Vstart Cspace-between">
+			<div class="elHijo">1</div><div class="elHijo">2</div><div class="elHijo">3</div><div class="elHijo">4</div><div class="elHijo">5</div><div class="elHijo">6</div><div class="elHijo">7</div><div class="elHijo">8</div><div class="elHijo">9</div><div class="elHijo">10</div><div class="elHijo">11</div><div class="elHijo">12</div><div class="elHijo">13</div><div class="elHijo">14</div><div class="elHijo">15</div><div class="elHijo">16</div><div class="elHijo">17</div><div class="elHijo">18</div><div class="elHijo">19</div><div class="elHijo">20</div><div class="elHijo">21</div><div class="elHijo">22</div><div class="elHijo">23</div><div class="elHijo">24</div><div class="elHijo">25</div><div class="elHijo">26</div><div class="elHijo">27</div><div class="elHijo">28</div><div class="elHijo">29</div><div class="elHijo">30</div><div class="elHijo">31</div><div class="elHijo">32</div><div class="elHijo">33</div><div class="elHijo">34</div><div class="elHijo">35</div><div class="elHijo">36</div>
+		</div>
+
+		<p>Espacio alrededor [space-around]. Deja el mismo espacio alrededor de cada una de las lineas ocupando todo el elemento.</p>
+		<style>
+			.Cspace-around {
+				align-content: space-around;
+			}
+		</style>
+		<div class="cntPadre d-flex fila wrap Hstart Vstart Cspace-around">
+			<div class="elHijo">1</div><div class="elHijo">2</div><div class="elHijo">3</div><div class="elHijo">4</div><div class="elHijo">5</div><div class="elHijo">6</div><div class="elHijo">7</div><div class="elHijo">8</div><div class="elHijo">9</div><div class="elHijo">10</div><div class="elHijo">11</div><div class="elHijo">12</div><div class="elHijo">13</div><div class="elHijo">14</div><div class="elHijo">15</div><div class="elHijo">16</div><div class="elHijo">17</div><div class="elHijo">18</div><div class="elHijo">19</div><div class="elHijo">20</div><div class="elHijo">21</div><div class="elHijo">22</div><div class="elHijo">23</div><div class="elHijo">24</div><div class="elHijo">25</div><div class="elHijo">26</div><div class="elHijo">27</div><div class="elHijo">28</div><div class="elHijo">29</div><div class="elHijo">30</div><div class="elHijo">31</div><div class="elHijo">32</div><div class="elHijo">33</div><div class="elHijo">34</div><div class="elHijo">35</div><div class="elHijo">36</div>
+		</div>
+
+		<p>Espacio equivalente [space-evenly]. Centra las lineas horizontalmente dejando el mismo espacio entre de cada una de las lineas y los bordes. <em>Similar a space-between.</em></p>
+		<style>
+			.Cspace-evenly {
+				align-content: space-evenly;
+			}
+		</style>
+		<div class="cntPadre d-flex fila wrap Hstart Vstart Cspace-evenly">
+			<div class="elHijo">1</div><div class="elHijo">2</div><div class="elHijo">3</div><div class="elHijo">4</div><div class="elHijo">5</div><div class="elHijo">6</div><div class="elHijo">7</div><div class="elHijo">8</div><div class="elHijo">9</div><div class="elHijo">10</div><div class="elHijo">11</div><div class="elHijo">12</div><div class="elHijo">13</div><div class="elHijo">14</div><div class="elHijo">15</div><div class="elHijo">16</div><div class="elHijo">17</div><div class="elHijo">18</div><div class="elHijo">19</div><div class="elHijo">20</div><div class="elHijo">21</div><div class="elHijo">22</div><div class="elHijo">23</div><div class="elHijo">24</div><div class="elHijo">25</div><div class="elHijo">26</div><div class="elHijo">27</div><div class="elHijo">28</div><div class="elHijo">29</div><div class="elHijo">30</div><div class="elHijo">31</div><div class="elHijo">32</div><div class="elHijo">33</div><div class="elHijo">34</div><div class="elHijo">35</div><div class="elHijo">36</div>
+		</div>
+
+		
+	</section>
+</body>
+</html>

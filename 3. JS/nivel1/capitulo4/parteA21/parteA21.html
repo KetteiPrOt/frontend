@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 21</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Objeto Math</h1>
+	<h4 class="enlace-volver"><a href="../capitulo4.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<h2>Metodos</h2>
+
+	<!-- sqrt() -->
+	<h3>sqrt()</h3>
+	<p>Recibe un numero y retorna su raiz cuadrada.</p>
+	<!-- codigo -->
+	<code>
+		let raiz = Math.sqrt(25); <br><br>
+
+		console.log(raiz); // 5
+	</code>
+
+	<!-- cbrt() -->
+	<h3>cbrt()</h3>
+	<p>Recibe un numero y retorna su raiz cubica.</p>
+	<!-- codigo -->
+	<code>
+		let raiz = Math.cbrt(27); <br><br>
+
+		console.log(raiz); // 3
+	</code>
+
+	<!-- max() -->
+	<h3>max()</h3>
+	<p>Recibe como parametro 0 o mas numeros y retorna el numero mayor.</p>
+	<!-- codigo -->
+	<code>
+		let maximo = Math.max(1, 3, 6, 12, 5, 12, 11); <br><br>
+
+		console.log(maximo); // 12
+	</code>
+
+	<!-- min() -->
+	<h3>min()</h3>
+	<p>Recibe como parametro 0 o mas numeros y retorna el numero menor.</p>
+	<!-- codigo -->
+	<code>
+		let minimo = Math.min(1, 3, 6, 12, 5, 11, 1); <br><br>
+
+		console.log(minimo); // 1
+	</code>
+
+	<!-- random() -->
+	<h3>random()</h3>
+	<p>Devuelve un numero pseudo-aleatorio entre 0 y 1. Rango (0, 1).</p>
+	<!-- codigo -->
+	<code> 
+		for (let i = 0; i <= 5; i++) { <br> &nbsp&nbsp&nbsp
+		 	console.log(Math.random()); // ? ? ? ? ? <br>
+		}
+	</code>
+
+	<!-- round() -->
+	<h3>round()</h3>
+	<p>Devuelve el valor de un numero redondeando el numero entero mas cercano, osea que trunca los numeros decimales (o los redondea). <br>
+	Redondea al numero mayor si el primer decimal es mayor que 5, y al menor si es menor que 5.</p>
+	<!-- codigo -->
+	<code>
+		let decimal1 = 0.33345, decimal2 = 0.7777576, <br>
+			decimal3 = 3.222236, decimal4 = 46.23734; <br><br>
+
+		console.log(Math.round(decimal1)); // 0 <br>
+		console.log(Math.round(decimal2)); // 1 <br>
+		console.log(Math.round(decimal3)); // 3 <br>
+		console.log(Math.round(decimal4)); // 46
+	</code>
+
+	<p>Numeros pseudoaleatorios del 0 al 10. Rango [0, 10]</p>
+	<!-- codigo -->
+	<code>
+		let random = Math.random(); <br><br>
+
+		console.log(Math.round(random * 10));
+	</code>
+
+	<!-- fround() -->
+	<h3>fround()</h3>
+	<p>JavaScript utiliza internamente números de punto flotante doble de 64 bits, que ofrecen una precisión muy alta. Sin embargo, a veces puede estar trabajando con números de punto flotante de 32 bits, por ejemplo, si está leyendo valores de un Float32Array. Esto puede crear confusión: la verificación de la igualdad entre un flotante de 64 bits y un flotante de 32 bits puede fallar aunque los números parezcan idénticos. Para resolver esto, se puede usar Math.fround() para convertir el flotante de 64 bits en un flotante de 32 bits. Internamente, JavaScript continúa tratando el número como un flotante de 64 bits, solo realiza un "redondeo a par" en el bit 23 de la mantisa y establece todos los siguientes bits de mantisa en 0. Si el número está fuera del rango de un Se devuelve float de 32 bits, Infinity o -Infinity. Debido a que fround() es un método estático de Math, siempre lo usa como Math.fround(), en lugar de como un método de un objeto Math que creó (Math no es un constructor).</p>
+	<!-- codigo -->
+	<code>
+		console.log(Math.fround(4.5677)); // 4.567699909210205
+	</code>
+
+	<!-- floor() -->
+	<h3>floor()</h3>
+	<p>Redondea un numero decimal siempre hacia abajo, sin impportar si su primer digito decimal es mayor a 5.</p>
+	<!-- codigo -->
+	<code>
+		console.log(Math.floor(4.29)); // 4 <br>
+		console.log(Math.floor(4.59)); // 4 <br>
+		console.log(Math.floor(4.99)); // 4
+	</code>
+
+	<!-- trunc() -->
+	<h3>trunc()</h3>
+	<p>Elimina la parte decimal del numero y retorna su parte entera, a diferencia del redondeo no le importa si esta mas cerca del de arriba o del de abajo.</p>
+	<!-- codigo -->
+	<code>
+		let num1 = 3.2222, num2 = 3.8888, num3 = 3.9999;
+
+		console.log(Math.trunc(num1)); // 3
+		console.log(Math.trunc(num2)); // 3
+		console.log(Math.trunc(num3)); // 3
+	</code>
+
+	<h2>Propiedades</h2>
+	<hr>
+
+	<!-- PI -->
+	<h3>PI</h3>
+	<p>Retorna el valor del numero PI.</p>
+	<!-- codigo -->
+	<code>
+		console.log(Math.PI); // 3.141592653589793
+	</code>
+
+	<!-- SQRT1_2 -->
+	<h3>SQRT1_2</h3>
+	<p>Retorna el valor de la raiz cuadrada de 1/2.</p>
+	<!-- codigo -->
+	<code>
+		console.log(Math.SQRT1_2); // 0.7071067811865476
+	</code>
+
+	<!-- SQRT2 -->
+	<h3>SQRT2</h3>
+	<p>Retorna el valor de la raiz cuadrada de 2.</p>
+	<!-- codigo -->
+	<code>
+		console.log(Math.SQRT2); // 1.4142135623730951
+	</code>
+
+	<!-- E -->
+	<h3>E</h3>
+	<p>Retorna el valor de la constante euler.</p>
+	<!-- codigo -->
+	<code>
+		console.log(Math.E); // 2.718281828459045
+	</code>
+
+	<!-- LN2 -->
+	<h3>LN2</h3>
+	<p>Retorna el valor del Logaritmo Natural de 2.</p>
+	<code>
+		console.log(Math.LN2); // 0.6931471805599453
+	</code>
+
+	<!-- LN10 -->
+	<h3>LN10</h3>
+	<p>Retorna el valor del Logaritmo Natural de 10.</p>
+	<code>
+		console.log(Math.LN10); // 2.302585092994046
+	</code>
+
+	<!-- LOG2E -->
+	<h3>LOG2E</h3>
+	<p>Retorna el valor de logaritmo en base 2 del numero Euler.</p>
+	<code>
+		console.log(Math.LOG2E); // 1.4426950408889634
+	</code>
+
+	<!-- LOG10E -->
+	<h3>LOG10E</h3>
+	<p>Retorna el valor del Logaritmo en base 10 del numero Euler.</p>
+	<code>
+		console.log(Math.LOG10E); // 0.4342944819032518
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

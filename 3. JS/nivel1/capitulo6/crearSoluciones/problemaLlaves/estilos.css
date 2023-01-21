@@ -1,0 +1,97 @@
+/* --- Generales --- */
+
+body {
+	font-family: sans-serif;
+}
+
+main .titulo-principal {
+	text-align: center;
+}
+
+/* Seccion */
+
+main .seccion {
+	width: 80%;
+	margin: 0 auto;
+	/*Flexbox*/
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+/* Articulos */
+
+main .seccion .articulo {
+	background: #F2F2F2;
+	width: 30%;
+	padding: 10px;
+	padding-top: 0;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-bottom: 40px;
+	box-sizing: border-box;
+}
+
+main .seccion .articulo .titulo {
+	text-align: center;
+}
+
+main .seccion .articulo .img-llave {
+	width: 100%;
+	border: 1px solid white;
+	border-radius: 5px;
+	vertical-align: top;
+}
+
+main .seccion .articulo .btn-enviar {
+	color: white;
+	background: black;
+	display: block;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	margin: 0 auto;
+}
+
+/* Mediaqueries */
+
+@media screen and (max-width: 768px) {
+	main .seccion {
+		width: 95%;
+	}
+
+	main .seccion .articulo {
+		width: 32%;
+	}
+}
+
+@media screen and (max-width: 610px) {
+	main .seccion {
+		width: 90%;
+	}
+
+	main .seccion .articulo {
+		width: 47%;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	main .seccion {
+		width: 99%;
+	}
+
+	main .seccion .articulo {
+		width: 47%;
+	}
+}
+
+@media screen and (max-width: 375px) {
+	main .seccion {
+		width: 80%;
+	}
+
+	main .seccion .articulo {
+		width: 100%;
+		min-width: 200px;
+	}
+}

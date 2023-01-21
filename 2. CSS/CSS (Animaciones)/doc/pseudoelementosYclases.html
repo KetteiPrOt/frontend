@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pseudoelementos y clases</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Pseudoelementos y clases -->
+	<section>
+		<h2>Pseudoelementos y clases</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<!-- :hover -->
+		<h3>:hover</h3>
+		<p>Sirve para establecer nuevos estilos al momento de poner el mouse sobre el elemento.</p>
+		<style>
+			.elemento {
+				background: skyblue;
+				width: 200px;
+				height: 200px;
+				border: 1px solid black;
+				border-radius: 5px;
+			}
+
+			.elemento:hover {
+				background: red;
+			}
+		</style>
+		<div class="elemento"></div>
+
+		<!-- :root -->
+		<h3>:root</h3>
+		<p>Sirve para seleccionar la raiz del documento (en este caso html), aqui se crean variables css globales.</p>
+		<code>:root { --variable1: valor1; --variable2: valor2; --variable3: valor3;... }</code>
+
+		<!-- :visited -->
+		<h3>:visited</h3>
+		<p>Sirve para alterar el estilo de los enlaces que ya han sido visitados.</p>
+		<style>
+			/*Orden para estilizar enlaces*/
+			/* :link — :visited — :hover — :active */
+			.enlace:visited {
+				color: hotpink;
+			}
+		</style>
+		<a href="#" class="enlace">Hola Mundo!</a>
+		<a href="https://google.com" class="enlace">google</a>
+		<a href="https://youtube.com" class="enlace">youtube</a>
+		<a href="https://facebook.com" class="enlace">facebook</a>
+
+		<!-- :active -->
+		<h3>:active</h3>
+		<p>Cambia el estilo de enlaces al momento de hacerles click.</p>
+		<style>
+			/*Orden para estilizar enlaces*/
+			/* :link — :visited — :hover — :active */
+			.enlace:active {
+				background: yellow;
+			}
+		</style>
+		<a href="#" class="enlace">Hola Mundo!</a>
+		<a href="https://google.com" class="enlace">google</a>
+		<a href="https://youtube.com" class="enlace">youtube</a>
+		<a href="https://facebook.com" class="enlace">facebook</a>
+
+		<!-- ::placeholder -->
+		<h3>::placeholder</h3>
+		<p>Cambia el estilo del placeholder de los inputs.</p>
+		<style>
+			.inputAlterado::placeholder {
+				color: purple;
+				text-decoration: underline;
+			}
+		</style>
+		<input type="text" placeholder="Input normal">
+		<input type="text" placeholder="Color morado y subrayado" class="inputAlterado">
+
+		<!-- :focus -->
+		<h3>:focus</h3>
+		<p>Cambia el estilo de los elementos al hacerles focus (enfocarlos). Por ejemplo al escribir en un input.</p>
+		<style>
+			.enfocarInput:focus {
+				width: 500px;
+			}
+		</style>
+		<input type="text" placeholder="Haz click para focus" class="enfocarInput">
+
+		<!-- :before -->
+		<h3>:before</h3>
+		<p>Crea un pseudoelemento antes del elemento seleccionado.</p>
+		<style>
+			.elemento2 {
+				background: skyblue;
+				text-align: center;
+				width: 400px;
+				height: 20px;
+				border: 1px solid black;
+				margin: 0 auto;
+			}
+
+			.elemento2:before {
+				content: '<---Pseudoelemento--->';
+				color: red;
+			}
+		</style>
+		<p class="elemento2"><---Elemento---></p>
+
+		<!-- :after -->
+		<h3>:after</h3>
+		<p>Crea un pseudoelemento despues de elemento seleccionado.</p>
+		<style>
+			.elemento3 {
+				background: skyblue;
+				text-align: center;
+				width: 400px;
+				height: 20px;
+				border: 1px solid black;
+				margin: 0 auto;
+			}
+
+			.elemento3:after {
+				content: '<---Pseudoelemento--->';
+				color: red;
+			}
+		</style>
+		<p class="elemento3"><---Elemento---></p>
+
+
+
+
+	</section>
+</body>
+</html>

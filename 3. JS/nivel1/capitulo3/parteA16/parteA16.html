@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 16</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Conceptos Basicos de POO en JavaScript</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Clase -->
+	<h3>Clase</h3>
+	<p>Una Clase es como la receta, una plantilla que creamos para que con esa plantilla podamos crear objetos. Es como una fabrica de Objetos a la que le definimos que cosas van a tener los objetos que va a crear. Si queremos crear Objetos con caracteristicas diferentes creamos otras clase diferente.</p>
+
+	<!-- Objeto -->
+	<h3>Objeto</h3>
+	<p>Las clases lo que hacen es crear objetos, y los objetos son los resultados de estas clases.</p>
+
+	<!-- Atributo -->
+	<h3>Atributo</h3>
+	<p>Son las caracteristicas, las particularidades que tiene el objeto.</p>
+
+	<!-- Metodo -->
+	<h3>Metodo</h3>
+	<p>Son  las cosas que puede hacer un objeto.</p>
+
+	<!-- Constructor -->
+	<h3>Constructor</h3>
+	<p>Es una particularidad que tienen las clases, una funcion obligatoria: cuando creamos una clase tenemos que crear un construtor que nos va a definir los atributos que tiene el objeto.</p>
+
+	<!-- Instanciacion -->
+	<h3>Instanciacion</h3>
+	<p>Es cuando creamos un nuevo objeto con una clase.</p>
+
+	<!-- Ejemplo -->
+	<h3>Ejemplo</h3>
+	<code>
+		class Animal { <br>
+		&nbsp constructor(especie, edad, color) { <br>
+    	&nbsp &nbsp this.especie = especie; <br>
+    	&nbsp &nbsp this.edad = edad; <br>
+    	&nbsp &nbsp this.color = color; <br>
+    	&nbsp &nbsp this.info = `Soy un/a ${this.especie}, tengo ${this.edad} anios y soy de color ${this.color}`; <br>
+		&nbsp } <br><br>
+
+		&nbsp presentarse() { <br>
+		&nbsp &nbsp console.log(this.info); <br>
+		&nbsp } <br>
+		} <br><br>
+
+		const perro = new Animal('perro', '3', 'rojo'); <br>
+		console.log(perro); // Animal {especie: 'Perro', edad: '3', color: 'Rojo'} <br><br>
+
+		console.log(perro.edad); // 3 <br>
+		console.log(perro.color); // rojo <br><br>
+
+		perro.presentarse();
+	</code>
+
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

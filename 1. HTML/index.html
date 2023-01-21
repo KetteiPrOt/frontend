@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>HTML</title>
+	<link rel="icon" href="../media/book.ico">
+	<style>
+		h2 {
+			text-align: center;
+		}
+
+		.division {
+			width: 200px;
+			height: 100px;
+			border: 1px outset blueviolet;
+			background: skyblue;
+			text-align: center;
+			padding-top: 40px;
+			font-family: sans-serif;
+			font-size: 20px;
+			color: black;
+		}
+
+		.abarcador {
+			font-family: 'Arial';
+			font-weight: 700;
+			color: blue;
+			text-decoration: underline;
+			text-decoration-style: wavy;
+			text-decoration-color: red;
+		}
+	</style>
+</head>
+<body>
+	<!-- Indice -->
+	<section>
+		<h2>Indice</h2>
+		<h4><a href="../index.html">Volver a los cursos</a></h4>
+		<ul>
+			<li>
+				<strong>Etiquetas basicas </strong>
+				<ul>
+					<li>Encabezados</li>
+					<li>Parrafos</li>
+					<li>Saltos de linea</li>
+					<li>Separador de seccion</li>
+				</ul>
+			</li>
+			<li>
+				<strong>Marcado de texto</strong>
+				<ul>
+					<li>Negrita</li>
+					<li>Cursiva</li>
+					<li>Texto superior</li>
+					<li>Texto inferior</li>
+					<li>Texto tachado</li>
+					<li>Texto subrayado</li>
+				</ul>
+			</li>
+			<li>
+				<strong>Etiquetas Avanzadas</strong>
+				<ul>
+					<li>Enlaces</li>
+					<li>Lista ordenada</li>
+					<li>Lista desordenada</li>
+					<li>Imagenes</li>
+					<li>Tablas</li>
+					<li>Audio</li>
+					<li>Video</li>
+					<li>SVG</li>
+					<li>Favicon</li>
+				</ul>
+			</li>
+			<li>
+				<strong>Formularios</strong>
+				<ul>
+					<li>Formulario</li>
+					<li>Entrada</li>
+					<li>Tipos de entrada</li>
+					<li>Entrada de texto en area</li>
+					<li>Entrada de seleccion</li>
+					<li>Entrada con lista de sugerencias</li>
+					<li>Entrada de tipo radio</li>
+					<li>Entrada de tipo checkbox</li>
+					<li>Etiquetar elemento</li>
+					<li>Grupo de entradas</li>
+				</ul>
+			</li>
+			<li>
+				<strong>Mas tipos de entradas</strong>
+				<ul>
+					<li>Entrada tipo color</li>
+					<li>Entrada tipo numero</li>
+					<li>Entrada tipo rango</li>
+					<li>Entrada de tipo boton</li>
+					<li>Entrada de tipo fecha y tiempo</li>
+					<li>Entrada de tipo archivos</li>
+					<li>Entrada de tipo reiniciar</li>
+					<li>Entrada de tipo oculta</li>
+				</ul>
+			</li>
+			<li>
+				<strong>Meta datos</strong>
+				<ul>
+					<li>Charset</li>
+					<li>Description</li>
+					<li>Author</li>
+					<li>Viewport</li>
+				</ul>					
+			</li>
+			<li>
+				<strong>Etiquetas de Maquetado</strong>
+				<ul>
+					<li>Divisor</li>
+					<li>Abarcador de texto</li>
+					<li>
+						Cabezera
+						<ul>
+							<li>Navegacion</li>
+						</ul>
+					</li>
+					<li>
+						Contenido Principal
+						<ul>
+							<li>Seccion</li>
+							<li>Articulo</li>
+						</ul>
+					</li>
+					<li>Contenido Secundario</li>
+					<li>Pie de Pagina</li>
+				</ul>
+			</li>
+			<li>
+				<strong>Etiquetas Especiales</strong>
+				<ul>
+					<li>Link</li>
+					<li>Script</li>
+					<li>No Script</li>
+				</ul>
+			</li>
+		</ul>
+
+		<br><br>
+		<hr>
+	</section>
+	<!-- Etiquetas Basicas -->
+	<section>
+		<h2>Etiquetas basicas</h2>
+		<h3>Encabezados</h3>
+		<p>Se definen como h1, h2, h3, h4, h5, y h6</p>
+		
+		<h3>Parrafos</h3>
+		<p>Se definen con p <em>[paragraph]</em></p>
+
+		<h3>Saltos de linea</h3>
+		<p>Se definen con br <em>[break]</em></p>
+
+		<h3>Separador de seccion</h3>
+		<p>Se define con hr</p>
+
+		<br><br>
+		<hr>
+	</section>
+	<!-- Marcado de texto -->
+	<section>
+		<h2>Marcado de texto</h2>
+		<h3>Negrita</h3>
+		<p>Se define con <strong>strong</strong></p>
+
+		<h3>Cursiva</h3>
+		<p>Se define con <em>em</em></p>
+
+		<h3>Texto superior</h3>
+		<p>Se define con <sub>sub</sub></p>
+
+		<h3>Texto inferior</h3>
+		<p>Se define con <sup>sup</sup></p>
+
+		<h3>Texto tachado</h3>
+		<p>Se define con <del>del</del></p>
+
+		<h3>Texto subrayado</h3>
+		<p>Se define con <ins>ins</ins></p><em>Nota: en css se define este y mas estilos con las propiedades text-decoration-line, style ,y color</em>
+
+		<h3>Citas</h3>
+		<p>Se definen con blockquote</p>
+		<blockquote>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam repellendus maxime asperiores itaque consequuntur, distinctio, autem eius assumenda corrupti porro!</blockquote>
+
+		<p>Se definen tambien con <cite>cite</cite> cuando solo es en una linea</p>
+
+		<br><br>
+		<hr>
+	</section>
+	<!-- Etiquetas avanzadas -->
+	<section>
+		<h2>Etiquetas Avanzadas</h2>
+		<h3>Enlaces</h3>
+		<p>Se definen con <a href="#">a</a> y el atributo href</p> <em>Si quieres abrirlo en otra ventana usa el atributo target: [target="_blank"]</em>
+
+		<h3>Lista ordenada</h3>
+		<p>Se definen con ol y dentro cada elemento con li</p>
+		<ol>
+			<li>Elemento 1</li>
+			<li>Elemento 2</li>
+			<li>Elemento 3</li>
+		</ol>
+
+		<h3>Lista desordenada</h3>
+		<p>Se definen con ul y dentro cada elemento con li</p>
+		<ul>
+			<li>Elemento 1</li>
+			<li>Elemento 2</li>
+			<li>Elemento 3</li>
+		</ul>
+
+		<h3>Imagenes</h3>
+		<p>Se definen con img y el atributo src (recurso). Tiene varios atributos utiles:</p>
+		<ul>
+			<li>width/height; cambia el tamaño en px</li>
+			<li>alt; le da una descripcion</li>
+			<li>title; al sobreponer el cursor se muestra un texto</li>
+		</ul>
+		<img src="https://i.pinimg.com/originals/29/88/62/298862a0aede24b9142875849bc8e937.jpg" width="300" alt="Asuna" title="Asuna">
+
+		<h3>Tablas</h3>
+		<p>Sirven para mostrar informacion. Se definen con table; dentro thead, tbody y tfoot. <em>Dentro tr para filas y dentro td para columnas</em></p>
+		<table>
+			<thead>
+				<tr>
+					<th>Cabeza 1</th><th>Cabeza 2</th><th>Cabeza 3</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Celda 1</td><td>Celda 1</td><td>Celda 1</td>
+				</tr>
+				<tr>
+					<td>Celda 2</td><td>Celda 2</td><td>Celda 2</td>
+				</tr>
+				<tr>
+					<td>Celda 3</td><td>Celda 3</td><td>Celda 3</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td>Pie 1</td><td>Pie 2</td><td>Pie 3</td>
+				</tr>
+			</tfoot>
+		</table>
+
+		<h3>Audio</h3>
+		<p>Se define con audio, y sirve para agregar un audio. <em>Para que se pueda reproducir hay que agregarle el atributo controls.</em></p>
+		<audio src="media/assassinsCreedRap.mp3" controls></audio>
+
+		<h3>Video</h3>
+		<p>Se define con video, y sirve para agregar un video. <em>Para que se pueda reproducir hay que agregarle el atributo controls.</em></p>
+		<video src="media/kancolleEnding.mp4" controls></video>
+
+		<h3>SVG</h3>
+		<p>Se define con svg, y sirve para insertar una imagen de vectores escalables que no pierden resolucion al hacerle zoom</p>
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+			<circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="red"/>
+		</svg>
+
+		<h3>Iframe</h3>
+		<p>Se define con iframe, y sirve para insertar una pagina web o algun contenido dentro del documento. Se usa principalmente para agregar:</p>
+		<ul>
+			<li>Videos de youtube</li>
+			<li>Post de redes sociales</li>
+			<li>Algunos anuncios</li>
+		</ul>
+		<iframe
+			width="560"
+			height="315"
+			src="https://www.youtube.com/embed/fLjfOX0erTw"
+			title="YouTube video player"
+			frameborder="0"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+			allowfullscreen
+		>
+		</iframe>
+
+		<h3>Favicon</h3>
+		<p>Se define con link y el atributo [rel="icon"], sirve para agregar un icono a la pagina web. <em>Esta etiqueta se agrega en la cabeza (head) del documento.</em></p>
+		<p>>link rel="icon" href="media/icono.ico"<</p>
+		<img src="../media/book.ico">
+
+		<br><br>
+		<hr>
+	</section>
+	<!-- Formularios -->
+	<section>
+		<h2>Formularios</h2>
+		<h3>Formulario</h3>
+		<p>Se define con form y el atributo [action] (accion) para indicar el archivo al que se enviaran los datos. <em>Usa el atributo method para definir el metodo al enviar los datos: GET o POST</em></p>
+		
+		<h3>Entrada</h3>
+		<p>Se define dentro del formulario con input. Es una entrada para que el usuario ingrese datos.</p>
+		<p>Atributos basicos:</p>
+		<ul>
+			<li>value; es el valor que tiene la entrada, los datos ingresados</li>
+			<li>placeholder; describe que funcion tiene la entrada</li>
+			<li>type; define el tipo de entrada (text/submit)</li>
+			<li>name; define el identificador de los datos</li>
+		</ul>
+		<form>
+			<input type="text" placeholder="Escribe" value="" name="datoCualquiera"> <input type="submit" value="Subir datos">
+		</form>
+
+		<p>Atributos de control:</p>
+		<ul>
+			<li>maxlength; maximo de caracteres admitidos</li>
+			<li>minlength; minimo de caracteres admitidos</li>
+			<li>required; obligatorio completar</li>
+			<li>readonly; solo lectura no editar</li>
+			<li>disabled; desablita la entrada</li>
+		</ul>
+		<form>
+			<input type="text" maxlength="10" minlength="5" required> <input type="submit" value="subir datos"><br>
+			<input readonly placeholder="readonly">
+			<input disabled placeholder="disabled">
+		</form>
+
+		<h3>Tipos de entrada</h3>
+		<p>Diversos tipos de entradas para diversos usos</p>
+		<p>Tipos de control:</p>
+		<ul>
+			<li>Tipo email; valida el formato de un correo</li>
+			<li>Tipo password; valida una contraseña</li>
+			<li>Tipo url; valida una url</li>
+		</ul>
+		<form>
+			<input type="email" placeholder="Correo Electronico" required> 
+			<input type="password" placeholder="Contraseña" required>
+			<input type="url" placeholder="URL" required>
+			<input type="submit" value="enviar">
+		</form>
+
+		<h3>Entrada de texto en area</h3>
+		<p>Se define con textarea. Sirve para crear una entrada mas amplia y extensible.</p>
+		<textarea placeholder="Escribe un mensaje"></textarea>
+
+		<h3>Entrada de seleccion</h3>
+		<p>Se define con select. Un conjunto de opciones con diferentes valores</p>
+		<select>
+			<option value="valor1" name="dato1">Opcion1</option>
+			<option value="valor2" name="dato2">Opcion2</option>
+			<option value="valor3" name="dato3">Opcion3</option>
+		</select>
+		<p>Si se nesecitan crear grupos de diferentes valores, estos se definen con optgroup</p>
+		<select>
+			<optgroup label="Frutas">
+				<option>banana</option>
+				<option>manzana</option>
+				<option>naranja</option>
+			</optgroup>
+			<optgroup label="Especias">
+				<option>Apio</option>
+				<option>Cilantro</option>
+				<option>Romero</option>
+			</optgroup>
+		</select>
+
+		<h3>Entrada con lista de sugerencias</h3>
+		<p>Se define con una lista de sugerencias creada con datalist enlazada a una entrada usando un id</p>
+		<label for="comida">Que te gustaria comer? </label><input type="text" id="comida" list="sugerencias">
+		<datalist id="sugerencias">
+			<option>Opcion 1</option>
+			<option>Opcion 2</option>
+			<option>Opcion 3</option>
+		</datalist>
+
+		<h3>Entrada de tipo radio</h3>
+		<p>Se define con el atributo type="radio", define un radio de opciones</p>
+		<input type="radio" name="dato" value="valor1" id="opcion1"><label for="opcion1">Opcion 1</label>
+		<input type="radio" name="dato" value="valor2" id="opcion2"><label for="opcion2">Opcion 2</label>
+
+		<h3>Entrada de tipo checkbox</h3>
+		<p>Se define con el atributo type="checkbox", define una confirmacion</p>
+		<input type="checkbox" name="dato" value="confirmado" id="confirmar"><label for="confirmar">Confirmar acuerdo</label>
+
+		<h3>Etiquetar elemento</h3>
+		<p>Se define con label y la propiedad for, que apunta con el id a un elemento especifico</p>
+		<label for="entrada">Nombre:</label><input id="entrada" placeholder="Escribe...">
+
+		<h3>Grupo de entradas</h3>
+		<p>Se defiene con fieldset y legend, sirve para agrupar un conjunto de entradas</p>
+		<form action="archivo.php" method="GET">
+			<fieldset>
+				<legend>Datos personales</legend>
+				<table>
+					<tbody>
+						<tr>
+							<td><label for="nombre">Nombre:</label></td><td><input type="text" placeholder="Escribe tu nombre..." id="nombre" name="usuario" maxlength="20" minlength="5" required><td>
+						</tr>
+						<tr>
+							<td><label for="email">Correro:</label></td><td><input type="email" placeholder="Escribe tu email..." id="email" name="correo" maxlength="20" minlength="5" required></td>
+						</tr>
+						<tr>
+							<td><label for="contraseña">Contraseña:</label></td><td><input type="password" placeholder="Escribe tu contraseña..." id="contraseña" name="claveSeguridad" maxlength="20" minlength="5" required></td>
+						</tr>
+						<tr>
+							<td><input type="radio" value="mujer" name="genero" id="M" required><label for="M">Mujer</label></td>
+							<td><input type="radio" value="hombre" name="genero" id="H" required><label for="H">Hombre</label></td>
+						</tr>
+					</tbody>
+				</table>
+				<input type="checkbox" name="acuerdo" id="check" required><label for="check">Confirmar acuerdo</label>
+				<input type="submit" value="Enviar Informacion">
+			</fieldset>
+		</form>
+
+		<br><br>
+		<hr>
+	</section>
+	<!-- Mas tipos de entradas -->
+	<section>
+		<h2>Mas tipos de entradas</h2>
+		<h3>Entrada de tipo color</h3>
+		<p>Se define con el atributo type="color", y sirve para recolectar un color</p>
+		<input type="color" id="entradaColor"><label for="entradaColor"> Selecciona un color</label>
+
+		<h3>Entrada de tipo numero</h3>
+		<p>Se define con el atributo type="number", y sirve para recolectar un numero. <em>Los atributos de control min y max definen un intervalo limite en la recoleccion</em></p>
+		<form>
+			<label for="number">Selecciona un numero del 1 al 100:</label><br>
+			<input type="number" min="1" max="100" id="number"><input type="submit" value="Enviar">
+		</form>
+
+		<h3>Entrada de tipo rango</h3>
+		<p>Se define con el atributo type="range", y sirve para recolectar en un rango de numeros</p>
+		<label>Ajusta el numero (del 1 al 5):</label><br>
+		<sub>1</sub><input type="range" min="1" max="5"><sub>5</sub>
+
+		<p>Si le asociamos una lista de datos se mostraran marcadores en cada valor especificado:</p>
+		<input type="range" min="0" max="10" list="dataList">
+		<datalist id="dataList">
+			<option value="0"></option>
+			<option value="2"></option>
+			<option value="4"></option>
+			<option value="6"></option>
+			<option value="8"></option>
+			<option value="10"></option>
+		</datalist>
+
+		<h3>Entrada de tipo boton</h3>
+		<p>Se define con el atributo type="button", y se comporta como un boton</p>
+		<input type="button" value="Boton">
+
+		<h3>Entradas de tipo fecha y tiempo</h3>
+		<p>Se definen con el atributo type, y existen algunos valores utiles: </p>
+		<table>
+			<tbody>
+				<tr>
+					<td>date</td>
+					<td><input type="date"></td>
+					<td>recolecta una fecha</td>
+					<td><em>value = 'aaaa-mm-dd'</em></td>
+				</tr>
+				<tr>
+					<td>time</td>
+					<td><input type="time"></td>
+					<td>recolecta una hora</td>
+					<td><em>value = 'hh:mm'</em></td>
+				</tr>
+				<tr>
+					<td>datetime-local  </td>
+					<td><input type="datetime-local"></td>
+					<td>recolecta una fecha y hora </td>
+					<td><em>value = 'aaaa-mm-ddThh:mm'</em></td>
+				</tr>
+				<tr>
+					<td>month</td>
+					<td><input type="month"></td>
+					<td>recolecta un mes y año</td>
+					<td><em>value = 'aaaa-mm'</em></td>
+				</tr>
+				<tr>
+					<td>week</td>
+					<td><input type="week" id="week"></td>
+					<td>recolecta una semana</td>
+					<td><em>value = 'aaaa-ss'</em></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<h3>Entrada de tipo archivos</h3>
+		<p>Se define con type="file", y sirve para recolectar un archivo</p>
+		<input type="file">
+
+		<h3>Entrada de tipo reiniciar</h3>
+		<p>Se define con type="reset", y sirve para establecer todos los campos del formulario a sus valores preseterminados</p>
+		<form action="archivo.php" method="GET">
+			<fieldset>
+				<legend>Formulario</legend>
+				<table>
+					<tbody>
+						<tr>
+							<td><input placeholder="Ingresa un dato..." required><td>
+						</tr>
+						<tr>
+							<td><input placeholder="Ingresa algun dato..." required><td>
+						</tr>
+						<tr>
+							<td><input placeholder="Ingresa otro dato..." required><td>
+						</tr>
+						<tr>
+							<td><input type="reset" value="Reiniciar Campos"></td>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+		</form>
+
+		<h3>Entrada de tipo oculta</h3>
+		<p>Se define con el atributo type="hidden", y crea un campo que no se muestra pero su valor sera enviado al activar la accion del formulario</p>
+		<input type="hidden" value="valorOculto">
+		<form>
+			<input type="text"> <input type="text"> <input type="hidden" value="valorOculto">
+			<input type="submit" value="enviar">
+		</form>
+
+		<br><br>
+		<hr>
+	</section>
+	<!-- Metas datos -->
+	<section>
+		<h2>Meta Datos</h2>
+		<h3>Charset</h3>
+		<p>Establece la codificacion del sitio en utf-8 para mostrar caracteres especiales</p>
+		<blockquote>>meta charset="UTF-8"<</blockquote>
+
+		<h3>Description</h3>
+		<p>Describe el contenido del sitio web y debe contener entre 140-160 caracteres.</p>
+		<blockquote>>meta name="description" content="Decipcion del sitio web y su contenido..."<</blockquote>
+
+		<h3>Author</h3>
+		<p>Sirve para firmar el documento web. No esta de mas agregarla</p>
+		<blockquote>>meta name="author" content="nombres apellidos"<</blockquote>
+
+		<h3>Viewport</h3>
+		<p>Sirve para establecer la vista del sitio en otros dispositivos mas pequeños</p>
+		<blockquote>>meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"<</blockquote>
+
+		<br><br>
+		<hr>
+	</section>
+	<!-- Etiquetas de maquetado -->
+	<section>
+		<h2>Etiquetas de Maquetado</h2>
+		<h3>Divisor</h3>
+		<p>Se define con div, y sirve para crear una division en la estructura del documento sin significado semantico. <em>Por ejemplo para alterar su estilo con estructuras de clases de CSS.</em></p>
+		<div class="division"><p>Hola Mundo!</p></div>
+
+		<h3>Abarcador de texto</h3>
+		<p>Se define con span, y sirve para seleccionar una division de texto sin significado semantico en el documento. <em>Por ejemplo para alterar su estilo con estructuras de clases de CSS.</em></p>
+		<span class="abarcador">Hola Mundo!!!</span>
+
+		<h3>Cabezera</h3>
+		<p>Se define con header, y sirve para crear la estructura semantica de la cabezera en el documento</p>
+		<p>>header< Cabezera del documento >/header<</p>
+
+		<ul>
+			<li>
+				<h4>Navegacion</h4>
+				<p>Se define con nav, y sirve para crear una navegacion en el documento. <em>Generalmente va dentro del header</em></p>
+				<p>>nav< Navegacion >/nav<</p>
+			</li>
+		</ul>
+
+				
+
+		<h3>Contenido Principal</h3>
+		<p>Se define con main, y sirve para crear la estructura semantica del contenido principal del documento</p>
+		<p>>main< Contenido principal del documento >/main<</p>
+
+		<ul>
+			<li>
+				<h4>Seccion</h4>
+				<p>Se define con section, y sirve para crear una seccion en el documento</p>
+				<p>>section< Seccion >/section<</p>
+			</li>
+			<li>
+				<h4>Articulo</h4>
+				<p>Se define con article, y sirve para crear un articulo en el documento</p>
+				<p>>article< Articulo >/article<</p>
+			</li>
+		</ul>
+
+		<h3>Contenido secundario</h3>
+		<p>Se define con aside, y sirve para crear la estructura semantica de un contenido secundario a un lado. <em>Por ejemplo, una lista de articulos adicinales o un indice del contenido principal que se esta leyendo.</em></p>
+		<p>>aside< Contenido secundario >/aside<</p>
+
+		<h3>Pie de Pagina</h3>
+		<p>Se define con footer, y sirve para crear el pie de pagina del documento</p>
+		<p>>footer< Pie de pagina >/footer<</p>
+
+		<br><br>
+		<hr>
+	</section>
+	<!-- Etiquetas especiales -->
+	<section>
+		<h2>Etiquetas especiales</h2>
+		<h3>Link</h3>
+		<p>Se define con link, y sirve para enlazar un recurso. <em>Por ejemplo, una hoja de estilos CSS:</em></p>
+		<p>>link rel="stylesheet" href="css/styles.css"<</p>
+
+		<h3>Script</h3>
+		<p>Se define con script, y sirve para enlazar un archivo con codio JavaScript o bien escribirlo directamente dentro</p>
+		<p>>script src="js/script.js"< Codigo JavaScript >/script<</p>
+
+		<h3>No Script</h3>
+		<p>Se define con noscript, y sirve para crear contenido que se mostrara si el usuario tiene deshabilitado el codigo JavaScript</p>
+		<p>>noscript< Contenido a mostrar >/noscript<</p>
+	</section>
+
+</body>
+</html>

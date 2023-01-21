@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>El formulario de Cofla</title>
+	<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+	<h1>El formulario de Cofla</h1>
+	<h4><a href="../crearSoluciones.html">Volver</a></h4>
+	
+	<form class="formulario">
+		<fieldset>
+			<legend>Inscripcion para el supletorio</legend>
+			<table>
+				<tbody>
+					<tr>
+						<td><label for="nombre">Estudiante:</label></td>
+						<td>
+							<input 
+							    type="text" 
+							    id="nombre" 
+							    placeholder="Nombres y apellidos..." 
+							    maxlength="50" 
+							    minlength="10" 
+							    required
+							>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="email">Correo:</label></td>
+						<td>
+							<input 
+								type="email"
+								id="email"
+								placeholder="Escribe tu correo..."
+								maxlength="30"
+								minlength="10" 
+								required 
+							>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="materia">Materia:</label></td>
+						<td>
+							<input
+								type="text"
+								id="materia"
+								placeholder="A solicitar..."
+								maxlength="25"
+								minlength="5"
+								required
+							>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="submit" id="enviar" value="Enviar Solicitud">
+		</fieldset>
+	</form>
+</body>
+</html>

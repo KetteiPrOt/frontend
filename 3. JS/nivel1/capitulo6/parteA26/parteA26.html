@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 26</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Atributos</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Atributos Globales -->
+	<h3>Atributos Globales</h3>
+	<p>Existen un grupo de atributos que poseen todos los elementos.</p>
+
+	<ul>
+		<li>
+			<strong><em>class</em>:</strong> Este atributo contiene las clases del elemento.
+		</li>
+		<li>
+			<strong><em>contenteditable</em>:</strong> Indica si el elemento puede ser editado por el usuario (values: true, false).
+		</li>
+		<li>
+			<strong><em>dir</em>:</strong> Indica la direccionalidad del texto (values: ltr, rtl).
+		</li>
+		<li>
+			<strong><em>hidden</em>:</strong> Si esta propiedad esta definida (no lleva valor) oculta al elemento.
+		</li>
+		<li>
+			<strong><em>id</em>:</strong> Define un identificador unico.
+		</li>
+		<li>
+			<strong><em>tabindex</em>:</strong> Define el orden en que los elementos del sitio reciben focus desde el 0, 1, 2, 3... (values: 1, 2, 3, 4, 5...)
+		</li>
+		<li>
+			<strong><em>title</em>:</strong> Contiene un texto con informacion relacionada al elemento presente. (value: text).
+		</li>
+	</ul>
+
+	<p>Ejemplo de con el atributo <em>contenteditable</em>:</p>
+	<!-- elementos -->
+	<div id="textoEditable" name="gallo" class="elementoDOM">
+		id="textoEditable" name="gallo"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let gallo = document.getElementById('textoEditable'); <br><br>
+
+		gallo.setAttribute(<strong>'contenteditable', true</strong>); // Ahora gallo se puede editar
+	</code>
+
+	<p>Ejemplo con <em>tabindex</em>.</p>
+
+	<!-- elementos -->
+	<div id="firstTab" name="galloPretensioso" class="elementoDOM">
+		id="firstTab" name="galloPretensioso"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let galloPretensioso = document.getElementById('firstTab'); <br><br>
+
+		galloPretensioso.setAttribute(<strong>'tabindex', '0'</strong>); <strong>// Pesiona tab para enfocar al Gallo Pretensioso</strong>
+	</code>
+
+	<p>Ejemplo con <em>title</em>.</p>
+
+	<!-- elementos -->
+	<div id="hipopotamo" class="elementoDOM">
+		id="hipopotamo" 
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let hipopotamo = document.getElementById('hipopotamo'); <br><br>
+
+		hipopotamo.setAttribute(<strong>'title', 'Hola soy un Hipopotamo'</strong>); // Ahora el hipopotamo habla al ponerle encima el mouse
+	</code>
+
+	<!-- Atributos de Inputs -->
+	<h2>Atributos de Inputs</h2>
+	<p>Los siguientes son atributos importantes de los elementos tipo input. Es posible <strong>acceder a estos atributos directamente</strong> en el objeto, sin la nesecidad de utilizar el metodo setAttribute().</p>
+
+	<!-- className -->
+	<h3>className</h3>
+	<p>Contiene la lista de clases del input</p>
+
+	<!-- elementos -->
+	<input type="text" id="anguila" class="ninguna elementoDOM" value="id='anguila' class='ninguna elementoDOM'">
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let anguila = document.getElementById('anguila'); <br><br>
+
+		console.log(anguila.className); // ninguna elementoDOM
+	</code>
+
+	<!-- value -->
+	<h3>value</h3>
+	<p>Contiene el valor del input.</p>
+
+	<!-- elementos -->
+	<input type="text" id="globo" class="elementoDOM" value="id='globo'">
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let globo = document.getElementById('globo'); <br><br>
+
+		globo.value = 'Hola soy un Globo'; <strong>// El valor del input cambio!</strong>
+	</code>
+
+	<!-- type -->
+	<h3>type</h3>
+	<p>Contiene el tipo de input.</p>
+
+	<!-- elementos -->
+	<form>
+		<input type="text" id="castor" class="elementoDOM" value="id='castor'">
+	</form>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let castor = document.getElementById('castor'); <br><br>
+
+		castor.type = 'submit'; <strong>// El input Castor cambio a tipo submit!</strong>
+	</code>
+
+	<!-- accept -->
+	<h3>accept</h3>
+	<p>Contiene el tipo de archivo que van a aceptar por defecto los inputs de tipo <em>file</em>.</p>
+
+	<!-- elementos -->
+	<input type="file" id="maniozo" class="elementoDOM">
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let maniozo = document.getElementById('maniozo'); <br><br>
+
+		maniozo.accept = 'image/png'; <strong>// Por defecto esta aceptando archivos .png</strong>
+	</code>
+
+	<!-- placeholder -->
+	<h3>placeholder</h3>
+	<p>Contiene el <em>placeholder</em> del input.</p>
+
+	<!-- elementos -->
+	<input type="text" id="aguila" class="elementoDOM" placeholder="id='aguila">
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let aguila = document.getElementById('aguila'); <br><br>
+
+		aguila.placeholder = 'Soy un Aguila!!'; <strong>// El placeholder cambio!</strong>
+	</code>
+
+	<!-- required -->
+	<h3>required</h3>
+	<p>Es un atributo con valor boolean (true, false), el cual al ser <em>true</em> hace que el input se tenga que rellenar obligatoriamente para enviar el formulario.</p>
+
+	<!-- elementos -->
+	<form>
+		<input type="text" id="cerdoCreido" class="elementoDOM" placeholder="id='cerdoCreido'">
+		<input type="submit">
+	</form>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let cerdoCreido = document.getElementById('cerdoCreido'); <br><br>
+
+		cerdoCreido.required = true; <strong>// Ahora es obligatorio llenar el input cerdo creido!</strong> <br><br>
+
+		console.log(cerdoCreido);
+	</code>
+
+
+	<!-- form [No se puede acceder directo] -->
+	<h3>form [No se puede acceder directo]</h3>
+	<p>En los inputs de tipo <em>submit</em> contiene el <em>id</em> del formulario al que apunta el boton. <strong>NO SE PUEDE ACCEDER DIRECTAMENTE</strong>: hay que usar el metodo setAttribute().</p>
+
+	<!-- elemento -->
+	<form id="formulario1">
+		<div class="elementoDOM">
+			Formulario 1, id="formulario1"
+		</div>
+	</form><br>
+	<input type="submit" id="perdido" class="elementoDOM" value="estoy perdido afuera">
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let perdido = document.getElementById('perdido'); <br><br>
+
+		perdido.setAttribute('form', 'formulario1'); <strong>// Ahora el boton si lo envia!</strong>
+	</code>
+
+	<!-- minlength [No se puede acceder directo] -->
+	<h3>minlength [No se puede acceder directo]</h3>
+	<p>Contiene el numero minimo de caracteres que debe tener el input para poder ser enviado. <strong>NO SE PUEDE ACCEDER DIRECTAMENTE</strong>: hay que usar el metodo setAttribute().</p>
+
+	<!-- elementos -->
+	<form>
+		<input type="text" id="jirafa" class="elementoDOM" placeholder="id='jirafa'" required>
+		<input type="submit">
+	</form>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let jirafa = document.getElementById('jirafa'); <br><br>
+
+		jirafa.setAttribute('minlength', 30); //<strong> Ahora el campo requiere minimo 30 caracteres</strong> <br><br>
+
+		console.log(jirafa.getAttribute('minlength'));
+	</code>
+	
+	<!-- maxlength [No se puede acceder directo] -->
+	<h3>maxlength [No se puede acceder directo]</h3>
+	<p>Contiene el numero maximo de caracteres que debe tener el input para poder ser enviado. <strong>NO SE PUEDE ACCEDER DIRECTAMENTE</strong>: hay que usar el metodo setAttribute().</p>
+
+	<!-- elementos -->
+	<form>
+		<input type="text" id="serpiente" class="elementoDOM" placeholder="id='serpiente'" required>
+		<input type="submit">
+	</form>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let serpiente = document.getElementById('serpiente'); <br>
+
+		serpiente.setAttribute('maxlength', 5); <strong>// Ahora el campo tiene un maximo de 5 caracteres!</strong> <br>
+
+		console.log(serpiente.getAttribute('maxlength'));
+	</code>
+
+	<!-- Atributo Style -->
+	<h2>Atributo Style</h2>
+	<p>Contiene los estilos en linea del elemento y atributos internos para controlar el estilo. Con este atributo se pueden modificar casi todas las propiedades de CSS... en este apartado escribire solo algunos ejemplos.</p>
+
+	<!-- color -->
+	<h3>color</h3>
+	<p>Este atributo sirve para cambiar el color del elemento.</p>
+
+	<!-- elemento -->
+	<div id="berenjena" class="elementoDOM">
+		id="berenjena"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let berenjena = document.getElementById('berenjena'); <br><br>
+
+		berenjena.style.color = 'purple'; // La berenjena se volvio morada!
+	</code>
+
+	<!-- background -->
+	<h3>background</h3>
+	<p>Este atributo sirve para cambiar el color del elemento.</p>
+
+	<!-- elemento -->
+	<div id="choclo" class="elementoDOM">
+		id="choclo"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let choclo = document.getElementById('choclo'); <br><br>
+
+		choclo.style.background = 'blue'; // El fondo se volvio azul!
+	</code>
+
+	<!-- fontSize -->
+	<h3>fontSize</h3>
+	<p>Controla el tamanio de fuente del elemento.</p>
+
+	<!-- elemento -->
+	<div id="gigamax" class="elementoDOM">
+		id="gigamax"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let gigamax = document.getElementById('gigamax'); <br><br>
+
+		gigamax.style.fontSize = '25px'; // gigamax se volvio gigante!!
+	</code>
+
+	<!-- padding -->
+	<h3>padding</h3>
+	<p>Controla el padding del elemento.</p>
+
+	<!-- elemento -->
+	<div id="lechuza" class="elementoDOM">
+		id="lechuza"
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let lechuza = document.getElementById('lechuza'); <br><br>
+
+		lechuza.style.padding = '30px'; // El padding de la lechuza aumento al triple!!
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

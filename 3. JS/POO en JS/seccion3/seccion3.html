@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Seccion 3</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../nivel1/styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Principios de la POO</h1>
+	<h4 class="enlace-volver"><a href="../indice.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Definiciones -->
+	<h3>Definiciones</h3>
+	<p>Existen dos requerimientos basicos para que un lenguaje de programacion pueda considerarse Orientado a Objetos:</p>
+	<ol>
+		<li>Que sea capaz de modelar problemas a atravez de objetos.</li>
+		<li>Que soporte ciertos princiopios del paradigma OO que garantizen la modularidad y la reutilizacion del cosigo.</li>
+	</ol>
+
+	<!-- Modelar a travez de Objetos -->
+	<h3>Modelar a travez de Objetos</h3>
+	<p>Quiere decir describir la realidad a travez de Objetos y las relaciones entre ellos, en mas detalle se refiere a estas tres caracteristicas:</p>
+	<ul>
+		<li>
+			Asociacion
+			<ul>
+				<li>Que los Objetos tengan la capacidad de referir a otros Objetos. Es decir, poder unir dos Objetos y poder enlazarlos de cierta forma en codigo.</li>
+			</ul>
+		</li>
+		<li>
+			Agregacion
+			<ul>
+				<li>Es la capacidad de un Objeto para referir a otros Objetos <strong>independientes</strong>. Por ejemplo, si tengo un Objeto grande conformado por Objetos mas pequenios y extraigo un Objeto pequenio del grande, este Objeto pequenio se puede seguir utilizando en el codgio ya que es independiente del grande.</li>
+			</ul>
+		</li>
+		<li>
+			Composicion
+			<ul>
+				<li>Es la capacidad de un Objeto para referir a otros Objetos <strong>dependientes</strong>. Por ejemplo, si tengo un Objeto grande conformado por Objetos mas pequenios y extraigo un Objeto pequenio del grande, este Objeto ya no serviria porque es dependiente del grande.</li>
+			</ul>
+		</li>
+	</ul>
+
+	<!-- Principios de OO -->
+	<h3>Principios de OO</h3>
+	<p>Estos principios garantizan la moduralidad y la reutilizacion de codigo:</p>
+	
+	<h4>La encapsulacion</h4>
+	<p>En el caso del codigo se refiere a que nadie se meta donde no le llaman, cada objeto es responsable de su propia informacion y de su propio estado. La unica forma en la que estos se puedan modificar es mediante los propios metodos del Objeto, por lo tanto los atributos internos de un Objeto deberian ser inaccesibles desde afuera pudiendolos modificar solo llamando a las funciones correspondientes.</p>
+	<p>Con esto podemos mantener el estado del Objeto a salvo de usos indebidos que provoquen resultados inesperados.</p>
+
+	<p>Como consecuencia de esto aparecen ciertas funciones muy clasicas: los getters y los setters.</p>
+
+	<h4>La abstraccion</h4>
+	<p>Es la capacidad de encapsular datos y codigo en un sola entidad ocultando sus detalles internos, por ejemplo en el caso de un telefono no sabemos como funciona internamente ya que solo debemos hacer uso de sus funcionalidades para llegar a resolver problemas.</p>
+	<p>Esta es la forma en la que muchos de los Objetos de la vida real funcionan, ya su logica esta abstraida para que no nos enfoquemos en ella.</p>
+
+	<p>Con la abstraccion obtenemos algo muy importante: la capacidad de ser libres a la hora de modificar la implementacion. Desde fuera de una clase ningun objeto que la utilize deberia conocer como esta implementada por adentro. Por ejemplo, si tenemos una clase Repositorio encargada de devolvernos datos por fuera deberia ser igual si estos datos vienen de una Base de Datos SQL de un fichero TXT o de internet. Deberiamos ser capaces de modificar la implementacion sin que los Objetos que utilizan Repositorio se enteren.</p>
+	
+	<p>Con esto ganamos flexibilidad y se nos abren las puertas a muchas cosas y arquitecturas modulares.</p>
+
+	<h4>La herencia</h4>
+	<p>La herencia se basa en la reutilizacion, con la herencia podemos definir relaciones jerarquicas entre clases. De forma que atributos y metodos comunes pueden ser reutilizados.</p>
+
+	<p>Por ejemplo, si definimos la clase Animal con el atributo edad y el metodo envejecer, tambien luego quiero definir animales acuaticos y animales terrestres. Ahora bien los dos conjuntos nuevos de animales tienen edad y envejecen... pero tambien hacen cosas nuevas y diferentes: unos nadan y los otros caminan.</p>
+
+	<p>Con la herencia podemos definir las clases AnimalTerrestre y AnimalAcuatico. Las dos clases con hijas de Animal, por lo que las dos comparten la funcionalidad comun de envejecer... pero la clase AnimalAcuatico tiene una propiedad llamada numero de aletas y el metodo nadar(), mientras que la clase AnimalTerrestre tienen la propiedad numero de patas y el metodo caminar(). Los dos son animales, pero ambos estan especializados en ciertas cosas.</p>
+
+	<p>De esta forma con la herencia reultilizamos la logica de que 'los animales envejecen' en las dos clases y todos sus objetos, sin tener que escribir el codigo dos veces.</p>
+
+	<h4>El polimorfismo</h4>
+	<p>El polimorfismo nos da la habilidad de procesar objetos de distintas maneras. Para explicarlo con un ejemplo:</p>
+
+	<p>Tenemos dos nuevas clases: AnimalCuadrupedo y AnimalBipedo, ambas hijas de la clase AnimalTerrestre. Como los dos tipos de Objetos son capaces de caminar() hay una logica que deseamos reutilizar, ya que es una funcion comun entonces la queremos situar en la clase padre (AnimalTerrestre)... pero hay un problema con esto: pasa que un cuadrupedo no camina igual que un bipedo. Esto nos obliga a redefinir la logica de caminar() en cada uno de estos tipos de objetos.</p>
+
+	<p>Pero entonces, que ganamos poniendo caminar() en el padre? Algo muy importante: ganamos la opcion de utilizar tanto cuadrupedos como bipedos en el resto del programa de forma que esto sea transparente. Por ejemplo, si creamos una funcion de moverse() tipica de un videojuego para mover una entidad del punto A al punto B... asumiendo que a esta funcion le tenemos que pasar un animal terrestre, como tenemos definido que en la clase AnimalTerrestre esta la funcion caminar() podemos utilizar esta funcion para mover al animal a las coordenadas deseadas.</p>
+
+	<p>Aqui viene la magia: como la funcion moverse() espera un animal terrestre podemos utilizar tanto animales de la clase AnimalCuadrupedo como de AnimalBipedo, y al procesar la funcion respondera diferente dependiendo que tipo de animal ya que a pesar de que ambos tienen el metodo comun caminar() en AnimalTerrestre, su logica esta redefinida en sus propias clases hijas.</p>
+
+	<p>Entonces al ejecutar la funcion caminar() dependiendo del tipo de animal que sea el objeto, estaremos ejecutando un comportamiento u otro... esto es el polimorfismo.</p>
+
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 4</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Variables y constantes</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Variable -->
+	<h3>Variable</h3>
+	<p>Una variable es un espacio de memoria que utilizamos para guardar un dato, para declararla se usa el comando 'let', y para inicializarla se le asigna un valor. Despues de declararla es posible seguir invocandola a lo largo del programa, para solicitar o modificar el dato que contiene, sin la nesecidad de volver a utilizar el comando 'let'.</p>
+	<code>let variable = "dato";</code>
+	<p>Tambien se puede solo declarar la variable sin inicializarla al inicio, para asignarle su valor en cualquier otro punto del programa:</p>
+	<code>ler variable; variable = "dato";</code>
+
+	<!-- Tipos de datos primitivos -->
+	<h3>Tipos de datos primitivos</h3>
+	<p>Los datos que guardan las variables pueden ser de distintos tipos, y entre los datos simples o  primitivos mas importantes tenemos:</p>
+	<ul>
+		<li>Numericos: integer (int, enteros), floating point (float, punto flotante o decimales), ejemplos:
+			<ul class="eliminar-vinieta">
+				<li><code>int = '3';</code></li>
+				<li><code>float = '4.56';</code></li>
+			</ul>
+		</li>
+		<li>Logico: booleanos (boolean), ejemplos:
+			<ul class="eliminar-vinieta">
+				<li><code>boolean1 = true;</code></li>
+				<li><code>boolean2 = false;</code></li>
+			</ul>
+		</li>
+		<li>Alfanumerico: string (cadenas de texto), ejemplo:
+			<ul class="eliminar-vinieta">
+				<li><code>string1 = 'Hola Mundo';</code></li>
+				<li><code>string2 = `Hola Mundo!`;</code></li>
+			</ul>
+		</li>
+	</ul>
+
+	<!-- Tipos de datos especiales -->
+	<h3>Tipos de datos especiales</h3>
+	<p>Hay casos especiales de datos, es importante conocer los siguientes:</p>
+	<ul>
+		<li><code>undefined</code>
+			: se da cuando solicitamos el dato de una variable declarada pero no ha sido inicializada, entonces su valor no esta definido.
+		</li>
+		<li><code>null</code>
+			: es un dato que se asigna de forma intencional a una variable para indicar que su valor esta definido como nulo o vacio, por lo que la variable/constante ya esta inicializada.
+		</li>
+		<li><code>NaN</code>
+			: este dato se genera cuando intentemos operar aritmeticamente un dato de tipo numerico con cualquier otro tipo de dato que no sea numerico. Significa 'No es un numero' (Not is A Number).
+		</li>
+	</ul>
+
+	<!-- Constantes -->
+	<h3>Constantes</h3>
+	<p>Una constante es una variable a la que no se le puede cambiar su valor a lo largo de todo el programa,  y se declaran con el comando 'const'. Ademas, a diferencia de las variables, es obligatorio inicializarla a la vez que se declara ya que no es posible declarar una constante y luego inicializarla.</p>
+	<code>const constante = "dato";</code>
+
+	<!-- Declarar multiples variables/constantes -->
+	<h3>Declarar multiples variables/constantes</h3>
+	<p>Es posible declarar o/e inicializar multiples variables usando comas:</p>
+	<code>let num1 = 3, num2 = 11, num3 = 23;</code> <br>
+	<code>let num1, num2, num3;</code>
+
+	<p>Tambien es posible declarar e inicializar multiples constantes usando comas:</p>
+	<code>const num1 = 3, num2 = 11, num3 = null;</code>
+
+	<!-- Funcion prompt() -->
+	<h3>Funcion prompt()</h3>
+	<p>Esta funcion sirve para solicitar un dato al usuario de la pagina y luego almacenar ese dato en una variable:</p>
+	<code>let variable = prompt('Ingrese su dato');</code>
+
+	<!-- Funcion parseInt() -->
+	<h3>Funcion parseInt()</h3>
+	<p>Esta es una funcion que recive un dato de tipo String y lo convierte a uno de tipo numero entero (si es posible):</p>
+	<code>
+		let numero = parseInt('12'); <br>
+		alert(numero - 3); // 9
+	</code>
+
+	<p>Tambien es util para truncar numeros decimales solo a su parte entera:</p>
+	<code>
+		let numero2 = parseInt('12.5');
+		alert(numero); // 12
+	</code>
+
+	<!-- Funcion parseFloat() -->
+	<h3>Funcion parseFloat()</h3>
+	<p>Esta es una funcion que recive un dato de tipo String y lo convierte a uno de tipo numero decimal o Float (si es posible):</p>
+	<code>
+		let numero = parseFloat('12.5'); <br>
+		alert(numero - 3); // 9.5
+	</code>
+
+	<!-- Sentencia typeof -->
+	<h3>Sentencia typeof</h3>
+	<p>Esta sentencia se usa para evaluar el tipo de dato de un dato:</p>
+	<code>
+		console.log(typeof 100); <strong>// number</strong> <br>
+		console.log(typeof "Hola Mundo"); <strong>// string</strong> <br>
+		console.log(typeof true); <strong>// boolean</strong>
+	</code>
+	
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Posicion de elementos</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Posicion de elementos -->
+	<section>
+		<h2>Posicion de elementos</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<h3>position</h3>
+		<p>Controla la posicion que cada elemento ocupa en el documento</p>
+		<p>Estatica [static] (por defecto). Es el posicionamiento natural que tienen los elementos en el documento. No admite alteraciones en su posicion.</p>
+
+		<p>Relativa [relative]. Los elementos se posicionan en relacion a todos los demas que hay en la pagina como normalmente lo hacen. Admite alteraciones en la posicion.</p>
+		<style>
+			.elementoBloque {
+				display: block;
+				background-color: skyblue;
+				border: 1px solid black;
+				height: 100px;
+				width: 100px;
+			}
+
+			.bloqueMarcado {
+				background-color: pink;
+				width: 175px;
+			}
+
+			.relativa {
+				position: relative;
+			}
+		</style>
+		<div class="elementoBloque relativa">Bloque 1</div>
+		<div class="elementoBloque relativa">Bloque 2</div>
+		<div class="elementoBloque bloqueMarcado relativa">Bloque 3</div>
+		<div class="elementoBloque relativa">Bloque 4</div>
+
+		<p>Absoluta [absolute]. En un inicio a partir desde donde se indexo el elemento, este se colocara de manera independiente sin afectar a los demas elementos.</p>
+		<p>Es importante tomar en cuenta que si nos atrevemos a alterar la posicion de un elemento absoluto (top right bottom left) activaremos totalmente su absolutismo, con lo cual este se reseteara al inicio del documento como si fuera el unico que exiten en la pagina.</p>
+		<em>Nota: Se puede explotar para crear contenidos flotantes, ver mas adelante la propiedad z-index</em>
+		<style>
+			.absoluta {
+				position: absolute;
+				text-align: right;
+			}
+		</style>
+		<div class="elementoBloque relativa">Bloque 1</div>
+		<div class="elementoBloque relativa">Bloque 2</div>
+		<div class="elementoBloque bloqueMarcado absoluta">Bloque 3</div>
+		<div class="elementoBloque relativa">Bloque 4</div>
+
+		<p>Fijada [fixed]. Fija la posicion del elemento en la pantalla desde la esquina superior izquierda. El elemento se vuelve fijo y es independiente a los demas.</p>
+		<style>
+			.fija {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: red;
+			}
+		</style>
+		<div class="elementoBloque" id="blq">Bloque Fijo</div>
+		<button id="btnAct">Activar Posicion Fija</button>
+		<button id="btnDes">Desactivar Posicion Fija</button>
+		<script>
+			// Un poco de JS para la logica de los botones, no le prestes atencion
+			let btnAct = document.querySelector('#btnAct'),
+				btnDes = document.querySelector('#btnDes'),
+				elemento = document.querySelector('#blq');
+
+			btnAct.addEventListener('click', function() {
+				elemento.classList.add('fija');
+			});
+
+			btnDes.addEventListener('click', function() {
+				elemento.classList.remove('fija');
+			});
+		</script>
+
+		<p>Pegada [sticky]. Pega el elemento en la pantalla al momento de hacer scroll. Las medidas son en relacion a la pantalla y solo su posicion original afecta a los demas en el sitio.</p>
+		<style>
+			.pegada {
+				position: sticky;
+				top: 0px;
+				left: 0px;
+				right: 0px;
+				bottom: 20px;
+				background-color: red;
+			}
+		</style>
+		<div class="elementoBloque relativa" id="blqPegajoso">Bloque Pegajoso</div>
+		<button id="actPegajosidad">Activar Posicion Pegajosa</button>
+		<button id="desPegajosidad">Desactivar Posicion Pegajosa</button>
+		<script>
+			// Un poco de JS para la logica de los botones, no le prestes atencion
+			let actPegajosidad = document.querySelector('#actPegajosidad'),
+				desPegajosidad = document.querySelector('#desPegajosidad'),
+				bloquePegajoso = document.querySelector('#blqPegajoso');
+
+			actPegajosidad.addEventListener('click', function() {
+				bloquePegajoso.classList.add('pegada');
+			});
+
+			desPegajosidad.addEventListener('click', function() {
+				bloquePegajoso.classList.remove('pegada');
+			});
+		</script>
+
+		<h3>top</h3>
+		<p>Controla el posicionamiento superior del elemento.</p>
+		<p>Sin alteraciones</p>
+		<style>
+			/*Unos cuantos estilos para la parte visual y
+			didactica del apartado,	no le des importancia*/
+			.cajaPosicionamiento {
+				background-color: skyblue;
+				width: 30%;
+				height: 250px;
+				border: 3px solid black;
+				border-radius: 5px;
+			}
+
+			.marcadorPosicion {
+				width: 100px;
+				height: 100px;
+				border: 3px dashed black;
+				border-radius: 5px;
+				margin-left: 147px;
+				margin-top: 67px;
+				position: absolute;
+			}
+
+			.elementoMover {
+				background-color: pink;
+				text-align: center;
+				width: 100px;
+				height: 100px;
+				box-sizing: border-box;
+				padding-top: 40px;
+				border-radius: 5px;
+				margin: auto;
+				margin-top: 70px;
+				position: relative;
+			}
+		</style>
+		<div class="cajaPosicionamiento">
+			<div class="marcadorPosicion"></div>
+			<div class="elementoMover">Elemento</div>
+		</div>
+
+		<p>50px</p>
+		<style>
+			.arriba {
+				top: 50px;
+			}
+		</style>
+		<div class="cajaPosicionamiento">
+			<div class="marcadorPosicion"></div>
+			<div class="elementoMover arriba">Elemento</div>
+		</div>
+
+		<h3>right</h3>
+		<p>Controla el posicionamiento derecho del elemento.</p>
+		<style>
+			.derecha {
+				right: 50px;
+			}
+		</style>
+		<div class="cajaPosicionamiento">
+			<div class="marcadorPosicion"></div>
+			<div class="elementoMover derecha">Elemento</div>
+		</div>
+
+		<h3>bottom</h3>
+		<p>Controla el posicionamiento inferior del elemento.</p>
+		<style>
+			.abajo {
+				bottom: 50px;
+			}
+		</style>
+		<div class="cajaPosicionamiento">
+			<div class="marcadorPosicion"></div>
+			<div class="elementoMover abajo">Elemento</div>
+		</div>
+
+		<h3>left</h3>
+		<p>Controla el posicionamiento izquierdo del elemento.</p>
+		<style>
+			.izquierda {
+				left: 50px;
+			}
+		</style>
+		<div class="cajaPosicionamiento">
+			<div class="marcadorPosicion"></div>
+			<div class="elementoMover izquierda">Elemento</div>
+		</div>
+
+		<h3>display</h3>
+		<p>Controla la manera en la que se organizan en pantalla los elementos</p>
+		<p>Ninguno [none]. No muestra el elemento en la pantalla</p>
+		<style>
+			.sinDisplay {
+				display: none;
+			}
+		</style>
+		<div class="elementoBloque sinDisplay">Elemento sin display</div>
+
+		<p>Elemento Bloque [block]. Los elementos ocupan todo el espacio horizontal, se organizan uno debajo de otro, las dimensiones de todas sus capas y posicion son manipulables.</p>
+		<style>
+			.elemento {				
+				background-color: skyblue;
+				border: 1px solid black;
+			}
+
+			.bloque {
+				display: block;
+			}
+		</style>
+		<div class="elemento bloque">Bloque 1</div>
+		<div class="elemento bloque">Bloque 2</div>
+		<div class="elemento bloque">Bloque 3</div>
+
+		<p>Elemento en linea [inline]. Son elementos ubicados en linea horizontal a manera de texto en el documento. Solo ocupan el espacio que requiere su contenido interno.</p>	
+		<style>
+			.enLinea {
+				display: inline;				
+			}			
+		</style>
+		<div class="elemento enLinea">Elemento en linea 1</div>
+		<div class="elemento enLinea">Elemento en linea 2</div>
+		<div class="elemento enLinea">Elemento en linea 3</div>
+		<div class="elemento enLinea">Elemento en linea 4</div>
+		<div class="elemento enLinea">Elemento en linea 5</div>
+		<div class="elemento enLinea">Elemento en linea 6</div>
+
+		<ul>
+			<style>
+				.si { color: green;	} .no { color: #BB0000; }  .amarillo {	color: #BBBB00;	}
+			</style>
+			<li class="no">width height: no son manipulables</li>
+			<li class="si">padding: si es manipulable</li>
+			<li class="si">border: si es manipulable</li>
+			<li class="amarillo">margin: solo left y right son manipulables</li>
+			<li class="amarillo">position: funciona en relative y sticky, pero en fixed y absolute se rompen</li>
+		</ul>
+		<style>
+			.manipulabilidad {
+				width: 0;
+				height: 0;				
+				padding: 10px;
+				margin-left: 10px;
+				margin-right: 10px;
+				margin-bottom: 0;
+				margin-top: 0;
+				position: relative; /*relative, sticky
+				No usar fixed ni absolute porque se rompe*/
+				left: 50px;
+			}
+		</style>
+		<div class="elemento enLinea manipulabilidad">Elemento en linea 1</div>
+		<div class="elemento enLinea manipulabilidad">Elemento en linea 2</div>
+		<div class="elemento enLinea manipulabilidad">Elemento en linea 3</div>
+		<div class="elemento enLinea manipulabilidad">Elemento en linea 4</div>
+		<div class="elemento enLinea manipulabilidad">Elemento en linea 5</div>
+		<div class="elemento enLinea manipulabilidad">Elemento en linea 6</div>
+			
+
+		<p>Bloque en linea [inline-block]. Son elementos en linea con la misma manipulabilidad de los elementos bloque.</p>
+		<style>
+			.bloqueEnLinea {
+				display: inline-block;
+			}
+
+			.alterado {
+				background-color: skyblue;
+				text-align: center;
+				box-sizing: border-box;
+				width: 15%;
+				height: 150px;
+				padding: 10px;
+				padding-top: 60px;
+				border: 1px solid black;
+			}
+		</style>
+		<div class="elemento bloqueEnLinea alterado">Bloque en Linea 1</div>
+		<div class="elemento bloqueEnLinea alterado">Bloque en Linea 2</div>
+		<div class="elemento bloqueEnLinea alterado">Bloque en Linea 3</div>
+		<div class="elemento bloqueEnLinea alterado">Bloque en Linea 4</div>
+		<div class="elemento bloqueEnLinea alterado">Bloque en Linea 5</div>
+		<div class="elemento bloqueEnLinea alterado">Bloque en Linea 6</div>
+
+		<h3>z-index</h3>
+		<p>Controla la ubicacion de los elementos en la profundidad de la pantalla (dimension z) sin alterar su posicion en el documento (dimensiones x, y). Puede haber un control de hasta 6 capas, y cada elemento puede ser asignado a cualquiera de ellas</p>
+		<style>
+			.sobreponer {
+				box-sizing: border-box;
+				padding-top: 50px;
+				bottom: 30px;
+				background-color: pink;
+			}
+
+			.indexMayor{
+				z-index: 1;				
+			}
+
+			.indexMenor {
+				z-index: 0;
+			}
+		</style>
+		<em>Vista normal por defecto</em>
+		<div class="elementoBloque relativa">Bloque 1</div>
+		<div class="elementoBloque relativa sobreponer">Bloque 2</div>
+
+		<em>Vista con elementos intercambiados</em>
+		<div class="elementoBloque relativa indexMayor">Bloque 3</div>
+		<div class="elementoBloque relativa sobreponer indexMenor">Bloque 4</div>
+
+		<p>Se puede explotar para crear contenido flotante usandolo junto a posicion absoluta y los margenes del elemento.</p>
+		<em>Aqui no usar top/rigth/bottom/left porque la posicion absoluta lo enviaria de vuelta el inicio del documento</em>
+		<style>
+			.margen {
+				margin-left: 70px;
+				width: 140px;
+			}
+		</style>
+		<div class="elementoBloque relativa">Bloque 1</div>
+		<div class="elementoBloque relativa">Bloque 2</div>
+		<div class="elementoBloque bloqueMarcado absoluta indexMayor margen">Bloque 3</div>
+		<div class="elementoBloque relativa indexMenor">Bloque 4</div>
+		<div class="elementoBloque relativa">Bloque 3</div>		
+	</section>
+</body>
+</html>

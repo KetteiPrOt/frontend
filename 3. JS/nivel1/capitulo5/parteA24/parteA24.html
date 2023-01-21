@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 24</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Consola Modificar el estilo del texto</h1>
+	<h4 class="enlace-volver"><a href="../capitulo5.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Cambiar Colores -->
+	<h3>Cambiar Color</h3>
+	<p>Se pone '%c' frente al texto, y despues se para como segundo argumento el color: 'color: red'</p>
+	<!-- codigo -->
+	<code>
+		console.log('Rancio') // Rancio <br><br>
+
+		console.log('%cRancio', 'color:red'); // Rancio <br><br>
+
+		console.log('%cMinecraft', 'color:blue'); // Minecraft  <br><br>
+
+		console.log('%cFumetsu no Anata', 'color:#74ff60'); // Fumetsu no Anata
+	</code>
+
+	<!-- Agregar mas propiedades de estilo -->
+	<h3>Agregar mas propiedades de estilo</h3>
+	<p>A partir de aqui se puese agregar en el segundo parametro mas propiedades de estilos CSS:</p>
+	<code>
+		console.log('%cMinecraft', 'color: white; background: blue'); // Minecraft <br> <br>
+
+		console.log('%cMinecraft', 'color: white; background: blue; font-style: italic'); // Minecraft <br> <br>
+
+		console.log(<br> &nbsp&nbsp&nbsp
+			'%cMinecraft', <br> &nbsp&nbsp&nbsp
+			'color: white; background: blue; font-style: italic; padding: 10px' <br>
+		); // Minecraft <br><br>
+
+		console.log( <br>  &nbsp&nbsp&nbsp
+			'%cMinecraft', <br>   &nbsp&nbsp&nbsp
+			`color: white; background: blue; font-style: italic;  <br>   &nbsp&nbsp&nbsp
+			padding: 10px; border: 3px dashed grey` <br>
+		); // Minecraft 
+	</code>
+
+	<p>El elemento de consola se comporta como un elemento en linea (inline) de CSS.</p>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

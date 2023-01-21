@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 29</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Manipulacion de Hijos</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Metodos -->
+	<h2>Metodos</h2>
+	<p>Los siguientes metodos son para modificar los elementos hijos (childs).</p>
+
+
+	<!-- appendChild() -->
+	<h3>appendChild()</h3>
+	<p>Este metodo se usa para agregar un nodo texto o un elemento hijo a cualquier elemento. Retorna el nodo o el elemento que fue agregado como hijo.</p>
+
+	<!-- elementos -->
+	<div id="vacio" class="elementoDOM"></div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let vacio = document.getElementById('vacio'), <br> &nbsp&nbsp&nbsp
+     		hijo = document.createElement('P'); <br><br>
+
+ 		hijo.textContent = 'Ahora el div vacio tiene un elemento hijo "p"!!'; <br><br>
+
+  		vacio.appendChild(hijo); <strong>// Agrega el nuevo elemento hijo al div vacio</strong>
+	</code>
+
+	<!-- removeChild() -->
+	<h3>removeChild()</h3>
+	<p>Este metodo se usa para remover un nodo texto o un elemento hijo a cualquier elemento. Retorna el nodo o el elemento hijo que fue removido.</p>
+
+	<p>El siguiente elemento "div" (con id="padreAnguila") tiene como un hijo "p" (con id="miniSerpiente").</p>
+
+	<!-- elemento -->
+	<div id="padreAngila" class="elementoDOM">
+		<p id="miniSerpiente">Soy una miniSerpiente!</p>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let padreAngila = document.getElementById('padreAngila'), <br> &nbsp&nbsp&nbsp
+		 	miniSerpiente = document.getElementById('miniSerpiente'); <br><br>
+
+		 padreAngila.removeChild(miniSerpiente); <strong>// La anguila se quedo vacia!</strong>
+	</code>
+
+
+	<!-- replaceChild() -->
+	<h3>replaceChild()</h3>
+	<p>Este metodo reemplaza un nodo hijo, por cualquier otro. Recibe primero el nuevo hijo, y despues el anterior que va a descartar. El metodo retorna el nuevo elemento hijo que se acoplo.</p>
+
+	<p>El sigiente elemento padre "div" (con id="padreOso") contiene un elemento hijo "p" (con id="cachorro")</p>
+
+	<!-- elemento -->
+	<div id="padreOso" class="elementoDOM">
+		<p id="cachorro">Soy un cachorro!</p>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let osito = document.createElement('P'); <br><br>
+
+		osito.textContent = 'Ahora soy un osito!'; <br><br>
+
+		let padreOso = document.getElementById('padreOso'), <br> &nbsp&nbsp&nbsp
+		 	cachorro = document.getElementById('cachorro'); <br><br> 
+
+		padreOso.replaceChild(osito, cachorro); <strong>// El cachorro se fue y quedo el osito!!</strong>
+	</code>
+
+
+	<!-- hasChildNodes() -->
+	<h3>hasChildNodes()</h3>
+	<p>Este metodo retorna true si el elemento tiene algun nodo hijo, caso contrario retorna false.</p>
+
+	<p>A continuacion tenemos tres "div" elementos, con id igual a pinquino 1, 2, y 3.</p>
+	<!-- elementos -->
+	<div id="pinguino1" class="elementoDOM">
+		Nodo de texto
+	</div>
+	<div id="pinguino2" class="elementoDOM">
+		<p>Elemento Hijo</p>
+	</div>
+	<div id="pinguino3" class="elementoDOM"></div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let pinguino1 = document.getElementById('pinguino1'), <br> &nbsp&nbsp&nbsp
+			pinguino2 = document.getElementById('pinguino2'), <br> &nbsp&nbsp&nbsp
+			pinguino3 = document.getElementById('pinguino3'); <br><br>
+
+		console.log(pinguino1.hasChildNodes()); <strong>// true</strong><br>
+		console.log(pinguino2.hasChildNodes()); <strong>// true</strong><br>
+		console.log(pinguino3.hasChildNodes()); <strong>// false</strong>
+	</code>
+
+
+
+
+	<!-- Propiedades -->
+	<h2>Propiedades</h2>
+	<p>Las siguientes propiedades son para modificar los elementos hijos (childs).</p>
+
+
+	<!-- firstChild -->
+	<h3>firstChild</h3>
+	<p>Contiene el primer nodo hijo de un elemento. Esta propiedad toma en cuenta a los nodos de texto (espacios) generados por la tabulacion del codigo.</p>
+
+	<!-- elemento -->
+	<div id="sandia" class="elementoDOM">
+		<p>Elemento Hijo</p>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let sandia = document.getElementById('sandia'); <br><br>
+
+		console.log(sandia.firstChild); <strong>// #text</strong>
+	</code>
+
+
+	<!-- lastChild -->
+	<h3>lastChild</h3>
+	<p>Contiene el ultimo nodo hijo de un elemento. Esta propiedad toma en cuenta a los nodos de texto (espacios) generados por la tabulacion del codigo.</p>
+
+	<!-- elemento -->
+	<div id="pinia" class="elementoDOM">
+		<p>Elemento Hijo</p>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let pinia = document.getElementById('pinia'); <br><br>
+
+		console.log(pinia.lastChild); <strong>// #text</strong>
+	</code>
+
+
+	<!-- firstElementChild -->
+	<h3>firstElementChild</h3>
+	<p>Contiene el primer elemento hijo de un elemento.</p>
+
+	<!-- elemento -->
+	<div id="platano" class="elementoDOM">
+		<p>Elemento Hijo</p>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let platano = document.getElementById('platano'); <br><br>
+
+		console.log(platano.firstElementChild); <strong>// >p< Elemento Hijo >/p<</strong>
+	</code>
+
+
+	<!-- lastElementChild -->
+	<h3>lastElementChild</h3>
+	<p>Contiene el ultimo elemento hijo de un elemento.</p>
+
+	<!-- elemento -->
+	<div id="aguacate" class="elementoDOM">
+		<p>Elemento Hijo</p><p>Ultimo Elemento Hijo</p>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let aguacate = document.getElementById('aguacate'); <br><br>
+
+		console.log(aguacate.lastElementChild); <strong>// >p< Ultimo Elemento Hijo >/p<</strong>
+	</code>
+
+
+	<!-- childNodes -->
+	<h3>childNodes</h3>
+	<p>Contiene todos los nodos hijos de un elemento. Retorna una NodeList 
+	(lista de nodos) con todos los nodos hijos encontrados.</p>
+
+	<!-- elemento -->
+	<div id="meyoco" class="elementoDOM">
+		<p>Elemento Hijo</p>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let meyoco = document.getElementById('meyoco'); <br><br>
+
+		console.log(meyoco.childNodes); <strong>// NodeList(3) [text, p, text]</strong>
+	</code>
+
+
+	<!-- children -->
+	<h3>children</h3>
+	<p>Contiene todos los elementos hijos de un elemento. Retorna una HTMLCollection (coleccion html) con todos los elementos hijos encontrados.</p>
+
+	<!-- elementos -->
+	<div id="lechuga" class="elementoDOM">
+		<p>Elemento Hijo 1</p> 
+		<p>Elemento Hijo 2</p> 
+		<p>Elemento Hijo 3</p>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let lechuga = document.getElementById('lechuga'); <br><br>
+
+		console.log(lechuga.children); <strong>// HTMLCollection(3) [p, p, p]</strong>
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

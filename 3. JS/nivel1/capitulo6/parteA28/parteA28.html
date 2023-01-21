@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 28</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Manipulacion de Elemetos</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Contenido de Elementos -->
+	<h2>Contenido de Elementos</h2>
+	<p>Las siguientes propiedades sirven para obtener y modificar el contenido de los elementos.</p>
+
+	<!-- textContent -->
+	<h3>textContent</h3>
+	<p>Contiene el texto cualquier nodo (elemento, comentario, atributo...), esto incluye los espacios y saltos de linea del codigo. No incluye etiquetas.</p>
+
+	<!-- elementos -->
+	<div id="murcielago" class="elementoDOM">
+		Hola! Soy un <i>murcielago</i>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let muercielago = document.getElementById('murcielago'); <br><br>
+
+		let texto = murcielago.textContent; <br><br>
+
+		console.log(texto); <br>
+		<strong>
+			/* <br> &nbsp&nbsp&nbsp
+		 		Hola! Soy un murcielago <br>
+		 	*/
+		</strong>
+	</code>
+
+
+	<!-- innerText -->
+	<h3>innerText</h3>
+	<p>Contiene el texto de un elemento tal cual lo renderiza el navegador. No incluye etiquetas. Si hay texto oculto por algun atributo hidden, innerText tampoco lo mostrara.</p>
+
+	<!-- elementos -->
+	<div id="cangrejo" class="elementoDOM">
+		Hola! Soy un <i>cangrejo</i>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let cangrejo = document.getElementById('cangrejo'); <br><br>
+
+		let texto = cangrejo.innerText; <br><br>
+
+		console.log(texto); <strong>// Hola! Soy un cangrejo</strong>
+	</code>
+
+
+	<!-- outerText -->
+	<h3>outerText</h3>
+	<p>
+		Contiene el texto junto a la etiqueta de un elemento tal cual lo renderiza el navegador. No incluye etiquetas. Si hay texto oculto por algun atributo hidden, outerText tampoco lo mostrara.
+	</p>
+	<p>Importante: Si se cambia el valor de esta propiedad acabaras reemplazando tambien la etiqueta del elemento junto al texto que contiene.</p>
+
+	<!-- elementos -->
+	<div class="elementoDOM">
+		<p id="iguana">Hola! Soy una iguana en un elemento 'p'</p>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let iguana = document.getElementById('iguana'); <br><br>
+
+		iguana.outerText = 'Ahora soy iguana en el div elemento'; <strong>// elemento p de iguana murio</strong>
+	</code>
+
+
+	<!-- innerHTML -->
+	<h3>innerHTML</h3>
+	<p>Contiene el codigo html interno de un elemento.</p>
+
+	<!-- elemento -->
+	<div id="pulpo" class="elementoDOM">
+		Hola! Soy un <i>pulpo</i>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let pulpo = document.getElementById('pulpo'); <br><br>
+ 
+		console.log(pulpo.innerHTML); <br>
+		<strong>
+			/* <br> &nbsp&nbsp&nbsp
+		 		Hola! Soy un >i< pulpo >/i< <br>
+		 	*/
+		</strong>
+	</code>
+
+
+	<!-- outerHTML -->
+	<h3>outerHTML</h3>
+	<p>Contiene todo el codigo html del elemento.</p>
+
+	<!-- elemento -->
+	<div id="celacanto" class="elementoDOM">
+		Hola! Soy un <i>celacanto</i>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let celacanto = document.getElementById('celacanto');<br><br>
+
+		console.log(celacanto.outerHTML);<br>
+		/*<br> <strong>
+		>div id="celacanto" class="elementoDOM"< <br> &nbsp&nbsp&nbsp
+			Hola! Soy un >i< celacanto >/i>< <br>
+		>/div< <br> </strong>
+		*/
+	</code>
+
+
+
+
+	<!-- Creacion de Elementos -->
+	<h2>Creacion de Elementos</h2>
+	<p>Las siguientes propiedades sirven para crear elementos.</p>
+
+
+	<!-- createElement() -->
+	<h3>createElement()</h3>
+	<p>Este metodo crea un elemento utilizando su etiqueta (en letras mayusculas).</p>
+	<!-- codigo -->
+	<code>
+		let division = document.createElement('DIV'); <br><br>
+
+		console.log(division); <strong>// >div<&nbsp>/div<</strong> <br><br>
+
+		let parrafo = document.createElement('P'); <br><br>
+
+		console.log(parrafo); <strong>// >p<&nbsp>/p<</strong> <br><br>
+
+		let titulo = document.createElement('H1'); <br><br>
+
+		console.log(titulo); <strong>// >h1<&nbsp>/h1<</strong>
+	</code>
+
+	<!-- createTextNode() -->
+	<h3>createTextNode()</h3>
+	<p>Este metodo crea un nodo de texto que despues puede ser introducido en algun elemento [mas adelante con el metodo appendChild()].</p>
+	<!-- codigo -->
+	<code>
+		let nodoTexto = document.createTextNode('Este es un texto de prueba'); <br><br>
+
+		console.log(nodoTexto); <strong>// "Este es un texto de prueba"</strong>
+	</code>
+
+
+	<!-- createDocumentFragment() -->
+	<h3>createDocumentFragment()</h3>
+	<p>
+		Este metodo crea un "fragmento" del documento. Este fragmento se usa con el objetivo de ahorrar recursos. Porque cuando agregamos un nuevo nodo de texto o un nuevo elemento [mas adelante con el metodo appendChild()], el navegador se ve obligado a construir todo el arbol del DOM desde cero.
+	</p>
+	<p>
+		En consecuencia cuando queremos agregar muchos elementos al documento primero creamos un "fragmento" vacio, al que le vamos agregando todos los nuevos elementos. Despues le introducimos el fragmento al documento con todo lo nuevo y asi solo se tiene que reconstruir una sola vez con todos los cambios.
+	</p>
+	<!-- codigo -->
+	<code>
+		let fragmento = document.createDocumentFragment(); <br><br>
+
+		console.log(fragmento); <strong>// #document-fragment</strong>
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

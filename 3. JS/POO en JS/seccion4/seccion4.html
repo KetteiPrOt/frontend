@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Seccion 4</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../nivel1/styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Modelar a traves de Objetos en JS</h1>
+	<h4 class="enlace-volver"><a href="../indice.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- La Asociacion -->
+	<h3>La Asociacion</h3>
+	<p>
+	  	Esto es relacionar Objetos independientes, Por ejemplo si tenemos los Objetos independientes jhon y maria los puedo relacionar como padre e hija de la sigiente forma:
+	</p>
+	<!-- codigo -->
+	<code>
+		class Persona { <br>
+		&nbsp constructor(nombre, apellido) { <br>
+		&nbsp &nbsp this.nombre = nombre; <br>
+		&nbsp &nbsp this.apellido = apellido; <br>
+		&nbsp } <br>
+		} <br><br>
+
+		const jhon = new Persona('Jhon', 'Ray'), <br> &nbsp &nbsp &nbsp 
+		      maria = new Persona('Maria', 'Perez'); <br><br>
+
+		<strong>// Asociacion</strong> <br>
+		maria.padre = jhon; <br>
+		console.log(jhon); // Persona {nombre: 'Jhon', apellido: 'Ray'} <br>
+		console.log(maria); <strong>// Persona {nombre: 'Maria', apellido: 'Perez', padre: Persona}</strong>
+	</code>
+	<p>
+		Y hacer esta Asociacion no quiere decir que si quito la relacion de que Jhon es el padre de Maria los objetos ya no funcionaran, porque los objetos son <strong>independientes</strong>. Esta es la relacion en JavaScript.
+	</p>
+
+	<!-- Agregacion -->
+	<h3>Agregacion</h3>
+	<p>
+		En la agregacion tenemos una Asociacion jerarquica entre objetos. El objeto Mayor (mas alto en la jerarquia) contiene otros objetos Menores y es llamado <strong>Aggegate</strong>, mientras que los Menores quienes son contenidos son llamados <strong>Component</strong>. Pero aun asi, como es una Asociacion, cada objeto puede tener una existencia independiente.
+	</p>
+	<p>
+		Por ejemplo, si creo un nuevo Objeto Literal llamado 'companiia' puedo hacer una Agregacion de 'empleados' (Jhon, y Maria) de la siguiente manera:
+	</p>
+	<!-- codigo -->
+	<code>
+		const companiia = { <br>
+		&nbsp nombre: 'FreeD games Pro', <br>
+		&nbsp empleados: [] <br>
+		} <br><br>
+
+		.class Persona { <br>
+		&nbsp constructor(nombre, apellido) { <br>
+		&nbsp &nbsp this.nombre = nombre; <br>
+		&nbsp &nbsp this.apellido = apellido; <br>
+		&nbsp } <br>
+		} <br><br>
+
+		const jhon = new Persona('Jhon', 'Ray'), <br>&nbsp &nbsp &nbsp 
+		      maria = new Persona('Maria', 'Perez'); <br><br>
+
+		<strong>// Agregacion</strong> <br>
+		companiia.empleados.push(jhon); <br>
+		companiia.empleados.push(jhon); <br> <br>
+
+		console.log(companiia); <strong>// {nombre: 'FreeD games Pro', empleados: Array(2)}</strong>
+	</code>
+
+	<!-- Composicion -->
+	<h3>Composicion</h3>
+	<p>
+		Es similar a la Agregacion, muchos objetos pueden pertenecer a un objeto que va a tener un rol mayor pero ninguno de estos va a ser independiente del objeto mayor.
+	</p>
+	<p>
+		Por ejemplo, en el siguiente codigo tenemos un objeto que representa la direccion de una persona... si quito este objeto que representa la direccion del objeto que representa la persona, por si solo el objeto de la dirrecion no tiene sentido:
+	</p>
+	<!-- codigo -->
+	<code>
+		const persona = { <br>
+		&nbsp nombre: 'Joel', <br>
+		&nbsp apellido: 'Mero', <br>
+		&nbsp <strong>// Composicion</strong> <br>
+		&nbsp direccion: { calle: '23 Octubre', ciudad: 'Jaramijo', pais: 'Ecuador' } <br>
+		}
+	</code>
+	<p>
+		Entonces estamos hablando de que funciona como parte de la <strong>Composicion</strong> del objeto persona.
+	</p>
+
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

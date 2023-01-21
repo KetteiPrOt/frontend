@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Grid (Auto Optimizacion)</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Grid (Auto Optimizacion) -->
+	<section>
+		<h2>Grid (Auto Optimizacion)</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<!-- grid-auto-rows -->
+		<h3>grid-auto-rows</h3>
+		<p>Define la altura de las filas pertenecientes a la grid implicita (agregadas de manera automatica). Solo funciona en Grids con el flujo automatico de elementos en las filas (grid-auto-flow: row;).</p>
+
+		<p>Igual que sin la propiedad (por defecto) [initial]. Las filas automaticas toman el alto que requiera su contenido.</p>
+		<style>
+			.contenedorGrid {
+				background-color: skyblue;
+				width: 50%;
+				height: 500px;
+				border: 1px solid black;
+				margin: 0 auto;
+				/*CSS Grid*/
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				grid-template-rows: repeat(3, 1fr);
+				grid-gap: 10px;
+			}
+
+			.elHijo {
+				background-color: pink;
+				width: auto; height: auto;
+				border: 1px solid black;
+			}
+
+			.gridFlowRow {
+				grid-auto-flow: row;
+			}
+
+			.gridAutoRowsInitial {
+				grid-auto-rows: initial;
+			}
+		</style>
+		<div class="contenedorGrid gridFlowRow gridAutoRowsInitial">
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+		</div>
+ 
+		<p>Altura en PX [50px]. Las filas automaticas ahora son de 50px, tambien hay un elemento centrado (align-self: center; justify-self: center;).</p>
+		<style>
+			.centrar {
+				align-self: center;
+				justify-self: center;
+			}
+
+			.gridAutoRowsPx {
+				grid-auto-rows: 50px;
+			}
+		</style>
+		<div class="contenedorGrid gridFlowRow gridAutoRowsPx">
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo centrar">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+		</div>
+
+		<p>Altura en porcentaje [25%]. Ahora cada fila ocupa el 25% del contenedor padre (como son dos filas, entre las dos ocupan el 50% que seria la mitad de toda la grid).</p>
+		<style>
+			.gridAutoRowsPorcentaje {
+				grid-auto-rows: 25%;
+			}
+		</style>
+		<div class="contenedorGrid gridFlowRow gridAutoRowsPorcentaje">
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+		</div>
+
+		<p>Altura en fr [1fr]. Ahora cada fila implicita tiene la altura de 1fr, que es la misma que definimos para las filas explicitas.</p>
+		<style>
+			.gridAutoRowsFr {
+				grid-auto-rows: 1fr;
+			}
+		</style>
+		<div class="contenedorGrid gridFlowRow gridAutoRowsFr">
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+		</div>
+
+		<!-- grid-auto-columns -->
+		<h3>grid-auto-columns</h3>
+		<p>Define la altura de las columnas pertenecientes a la grid implicita (agregadas de manera automatica). Solo funciona en Grids con el flujo automatico de elementos en las columnas (grid-auto-flow: column;).</p>
+
+		<p>Igual que sin la propiedad (por defecto) [initial]. Las columnas automaticas toman el ancho que requiera su contenido, tambien he cambiado la escritua del texto a vertical (propiedad writing-mode:;).</p>
+		<style>
+			.gridFlowColumn {
+				grid-auto-flow: column;
+			}
+
+			.gridFlowColumn .elHijo {
+				writing-mode: vertical-lr;
+			}
+
+			.gridAutoColumnsInitial {
+				grid-auto-columns: initial;
+			}
+		</style>
+		<em class="upNote">El texto vertical es solo para que se vea mejor</em>
+		<div class="contenedorGrid gridFlowColumn gridAutoColumnsInitial">
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+		</div>
+ 
+		<p>Anchura en PX [50px]. Las columnas automaticas ahora son de 50px de ancho, tambien hay un elemento centrado. (align-self: center; justify-self: center;)</p>
+		<style>
+			.centrar {
+				align-self: center;
+				justify-self: center;
+			}
+
+			.gridAutoColumnsPx {
+				grid-auto-columns: 50px;
+			}
+		</style>
+		<div class="contenedorGrid gridFlowColumn gridAutoColumnsPx">
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo centrar">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+		</div>
+
+		<p>Anchura en porcentaje [25%]. Ahora cada columna ocupa el 25% del contenedor padre (como son dos columnas, entre las dos ocupan el 50% que seria la mitad de toda la grid).</p>
+		<style>
+			.gridAutoColumnsPorcentaje {
+				grid-auto-columns: 25%;
+			}
+		</style>
+		<div class="contenedorGrid gridFlowColumn gridAutoColumnsPorcentaje">
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+		</div>
+
+		<p>Anchura en fr [1fr]. Ahora cada columna implicita tiene la anchura de 1fr, que es la misma que definimos para las columnas explicitas.</p>
+		<style>
+			.gridAutoColumnsFr {
+				grid-auto-columns: 1fr;
+			}
+		</style>
+		<div class="contenedorGrid gridFlowColumn gridAutoColumnsFr">
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Explicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+			<div class="elHijo">Grid Implicita</div>
+		</div>
+
+		<!-- dense (Valor) -->
+		<h3>dense (Valor)</h3>
+		<p>Este valor (<em>dense</em>, denso) pertenece a las dos propiedades anteriores. Sirve para que CSS Grid rellene automaticamente espacios en blanco que puede haber en nuestra Grid porque no cabian los elementos hijos. Cuando se ha aplicado este conjuro, pero aun asi todavia quedan huecos, es porque ya no se pueden rellenar sin alterar las dimensiones de los elementos hijos.</p>
+
+		<p>Ejemplo de Grid con flujo automatico en filas [grid-auto-flow: row;], posee espacios en blanco.</p>
+		<style>
+			.dosColumnas {
+				background-color: hotpink;
+				grid-column: span 2;
+			}
+
+			.tresColumnas {
+				background-color: blueviolet;
+				grid-column: span 3;
+			}
+		</style>
+		<div class="contenedorGrid gridFlowRow">
+			<div class="elHijo dosColumnas">1</div>
+			<div class="elHijo tresColumnas">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo tresColumnas">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+			<div class="elHijo dosColumnas">13</div>
+			<div class="elHijo">14</div>
+			<div class="elHijo">15</div>
+		</div>
+
+		<p>Resultado despues de aplicar la propiedad <em>grid-auto-rows: row dense;</em></p>
+		<p>El resultado es que acomodo los elementos tal cual fuera tetris para dejar los mas comprimida posible (densa) la grid.</p>
+		<style>
+			.gridFlowRowDense {
+				grid-auto-flow: row dense;
+			}
+		</style>
+		<div class="contenedorGrid gridFlowRowDense">
+			<div class="elHijo dosColumnas">1</div>
+			<div class="elHijo tresColumnas">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo tresColumnas">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+			<div class="elHijo dosColumnas">13</div>
+			<div class="elHijo">14</div>
+			<div class="elHijo">15</div>
+		</div>
+
+		<p>Ejemplo de Grid con flujo automatico en columnas [grid-auto-flow: column;], posee espacios en blanco.</p>
+		<style>
+			.dosFilas {
+				background-color: hotpink;
+				grid-row: span 2;
+			}
+
+			.tresFilas {
+				background-color: blueviolet;
+				grid-row: span 3;
+			}
+		</style>
+		<div class="contenedorGrid gridFlowColumn">
+			<div class="elHijo dosFilas">1</div>
+			<div class="elHijo tresFilas">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo tresFilas">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+			<div class="elHijo dosFilas">13</div>
+			<div class="elHijo">14</div>
+			<div class="elHijo">15</div>
+		</div>
+
+		<p>Resultado despues de aplicar la propiedad <em>grid-auto-flow: column dense;</em></p>
+		<p>El resultado es que acomodo los elementos tal cual fuera tetris para dejar los mas comprimida posible (densa) la grid.</p>
+		<style>
+			.gridFlowColumnDense {
+				grid-auto-flow: column dense;
+			}
+		</style>
+		<div class="contenedorGrid gridFlowColumnDense">
+			<div class="elHijo dosFilas">1</div>
+			<div class="elHijo tresFilas">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo tresFilas">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+			<div class="elHijo dosFilas">13</div>
+			<div class="elHijo">14</div>
+			<div class="elHijo">15</div>
+		</div>
+
+		<!-- auto-fit (Valor) -->
+		<h3>auto-fit (Valor)</h3>
+		<p>Es un valor de la propiedades grid-template-columns/rows. En el disenio responsivo se usa junto a la funcion minmax(), para que la Grid agrege automaticamente nuevas filas o columnas explicitas (depende del flujo automatico) en la Matriz cuando los elementos en su interior se han encogido a su ancho/alto minimo.</p>
+
+		<p>Aqui las columnas estan especificadas en 3 . Cuando llevamos a un tamanio mas pequenio ya no caben los tres y se desborda.</p>
+		<code>grid-template-columns: repeat(3, minmax(100px, 1fr));</code><br><br>
+		<style>
+			@keyframes cambiarAncho {
+				0% {width: 50%;}
+				50% {width: 15%;}
+				100% {width: 50%;}
+			}
+
+			.cambiarAncho {
+				animation-name: cambiarAncho;
+				animation-duration: 5s;
+				animation-iteration-count: infinite;
+				animation-timing-function: ease;
+			}
+		
+			.nuevaDistribucion {
+				grid-template-columns: repeat(3, minmax(100px, 1fr));
+				grid-template-rows: repeat(3, 1fr);
+			}
+		</style>
+		<div class="contenedorGrid nuevaDistribucion cambiarAncho">
+			<div class="elHijo">Elemento Hijo #1</div>
+			<div class="elHijo">Elemento Hijo #2</div>
+			<div class="elHijo">Elemento Hijo #3</div>
+		</div>
+
+		<p>Este es el problema que viene a solucionar auto-fit. Crea automaticamente nuevas columnas cuando los elementos ya no caben.</p>
+		<code>grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));</code><br><br>
+		<style>
+			.autoFit {
+				grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+				grid-template-rows: repeat(3, 1fr);
+			}
+		</style>
+		<div class="contenedorGrid autoFit cambiarAncho">
+			<div class="elHijo">Elemento Hijo #1</div>
+			<div class="elHijo">Elemento Hijo #2</div>
+			<div class="elHijo">Elemento Hijo #3</div>
+		</div>
+
+		<!-- auto-fill -->
+		<h3>auto-fill (Valor)</h3>
+		<p>Es un valor de la propiedades grid-template-columns/rows. En el disenio responsivo se usa junto a la funcion minmax(), para que la Grid agrege automaticamente nuevas filas o columnas explicitas (depende del flujo automatico) en la Matriz cuando los elementos en su interior se han encogido a su ancho/alto minimo.</p>
+
+		<p>A diferencia de auto-fit (auto llenar) que busca llenar la fila expandiendo los elementos hasta su maximo, auto-fill no tomara en cuenta el maximo sino solo el minimo y por eso buscara mas elementos de abajo para introducirlos en la fila.</p>
+
+		<code>grid-template-columns: repeat(3, minmax(100px, 1fr));</code><br><br>
+		<style>
+			.nuevaDistribucion {
+				grid-template-columns: repeat(3, minmax(100px, 1fr));
+				grid-template-rows: repeat(3, 1fr);
+			}
+		</style>
+		<div class="contenedorGrid nuevaDistribucion cambiarAncho">
+			<div class="elHijo">Elemento Hijo #1</div>
+			<div class="elHijo">Elemento Hijo #2</div>
+			<div class="elHijo">Elemento Hijo #3</div>
+		</div>
+
+		<code>grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));</code><br><br>
+		<style>
+			.autoFill {
+				grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+				grid-template-rows: repeat(3, 1fr);
+			}
+		</style>
+		<div class="contenedorGrid autoFill cambiarAncho">
+			<div class="elHijo">Elemento Hijo #1</div>
+			<div class="elHijo">Elemento Hijo #2</div>
+			<div class="elHijo">Elemento Hijo #3</div>
+		</div>
+
+		<!-- CSS Subgrid -->
+		<h3>CSS Subgrid</h3>
+		<p>Esta es una propiedad maravillosa que permite utiizar las lineas guia (tracks) de un elemento padre para alinear elementos hijos de los elementos hijos... esto es reutilizar la grid del elemento padre en los elementos hijos para alinear los segundos elementos hijos mas profundos.</p>
+		<p>A dia de hoy que escribo esto, 23 de noviembre de 2022, el soporte para esta propiedad por parte de los navegadores es aun rancio. Solo el 8.6% de toda la red global lo soporta.</p>
+
+		<em class="upNote">Sin CSS Subgrid</em>
+		<div class="upNote">
+			<img src="../media/cssSubgrid1.png">
+		</div>
+		<br><br>
+
+		<em class="upNote">Con CSS Subgrid</em>
+		<div class="upNote">
+			<img src="../media/cssSubgrid2.png">
+		</div>
+
+		<p>Por eso aun no vale la pena aprender a trabajar con esta propiedad. Cuando haya mas soporte (30-40%) es momento de utilizar esta propiedad</p>
+	</section>
+</body>
+</html>

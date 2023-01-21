@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Utilidades de diseño 1</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Utilidades de diseño 1 -->
+	<section>
+		<h2>Utilidades de diseño 1</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<h3>Unidades de Medida</h3>
+		<p>Pixel [px]. Unidad absoluta. Se refiere al contenido que se muestra en la pantalla. Cada pantalla es capaz de mostrar un numero distinto de pixeles dependiendo de su resolucion o tamaño.</p>
+		<style>
+			.pixel {
+				width: 200px;
+				background-color: skyblue;
+			}
+		</style>
+		<p class="pixel">Ancho de 200px</p>
+
+		<p>Porcentaje [%]. Unidad relativa. Esta unidad hace referencia a una porcion de la dimension total del contenedor padre</p>
+		<style>
+			.padre {
+				background-color: skyblue;
+				height: 50px;
+			}
+
+			.porcentaje {
+				width: 50%;
+				background-color: pink;
+			}
+		</style>
+		<div class="padre">
+			Contenedor Padre
+			<p class="porcentaje">50% de ancho del contenedor padre</p>
+		</div>
+
+		<p>EM [em]. Una unidad em significa el tamaño de letra. De forma que si el font-size de un elemento es de 16px, 1em = 16px</p>
+		<em>Algunos desarrolladores prefieren utilizar un font-size de 62.5%. De este modo reducen el valor predeterminado de 16px hasta 10px y así pueden realizar los cálculos en múltiplos de 10, más simple y sencillo; por ejemplo, 1em = 10px, 1.2em = 12px, etc</em>
+		<style>
+			.em {
+				background-color: skyblue;
+				font-size: 16px;
+				height: 2em;
+			}
+		</style>
+		<div class="em">Altura de 32px (2em)</div>
+
+		<p>Root EM [rem]. Hace referencia al tamaño de letra definido en el elemento Raiz (etiqueta html) que por lo general es de 16px. De forma que si el font-size de html es de 16px, 1rem = 16px</p>
+		<em>Es mas facil de controlar que em, quien se vuelve loco al cambiar las fuentes de elementos padres</em>
+		<style>
+			.rem {
+				background-color: skyblue;
+				height: 2rem;
+			}
+		</style>
+		<div class="rem">Altura de 2 rem</div>
+
+		<h3>Funciones</h3>
+		<p>Sirven para hacer muchas cosas utiles.</p>
+		<p>rgba(). Calcula un color (red green blue) con transparencia (alpha). Los valores de colores van de 0 - 255 y de transparencia de 0 (transparente) hasta 1 (solido).</p>
+		<style>
+			.rgba {
+				background-color: rgba(0, 0, 0, 1.0);
+				color: white;
+			}
+		</style>
+		<p class="rgba">Color negro con funcion rgba</p>
+
+		<p>url(). Sirve un recurso atravez de una url. Es util cuando nesesitamos hacer referencia a algun recurso externo al documento, como otra imagen o incluso importar otro documento.</p>
+		<code>url('direccionURL')</code>
+
+		<p>var(). Sirve para crear variables con valores que se reutilizan en muchos elementos del documento. Es recomendable crearlas accediendo en la raiz del documento (:root {}) para que esten disponibles de forma global.</p>
+		<style>
+			:root{
+				--colorBotones: blue;
+			}
+
+			.btn1 {
+				background-color: var(--colorBotones);
+				color: white;
+			}
+
+			.btn2 {
+				background-color: var(--colorBotones);
+				color: white;
+			}
+
+			.btn3 {
+				background-color: var(--colorBotones);
+				color: white;
+			}
+		</style>
+		<button class="btn1">Boton 1</button><button class="btn2">Boton 2</button><button class="btn3">Boton 3</button>
+
+		<h3>background</h3>
+		<p>Sirve para poner una imagen como fondo a un elemento. La imagen se especifica mediante la funcion url().</p>
+		<code>background: url('direccionRecurso');</code>
+		<style>
+			.marco {
+				text-align: center;
+				font-family: sans-serif;
+				font-weight: bold;
+				font-size: 20px;
+				height: 300px;
+				width: 250px;
+				border: 2px solid black;
+			}
+
+			.fondo {
+				background: url('../media/ganyu.jpg');
+				
+			}
+		</style>
+		<div class="marco fondo">Imagen de Fondo</div>
+
+		<h3>background-repeat</h3>
+		<p>Controla como se repite la imagen de fondo para abarcar todo el elemento.</p>
+		<p>Repetir [repeat] (por defecto). Si la imagen es muy pequeña para el contendedor, esta se repetira para abarcar todo el elemento.</p>
+		<style>
+			.imgPequenia {
+				background: url('../media/ganyuPequenia.jpg');
+			}			
+		</style>
+		<div class="marco imgPequenia"></div>
+
+		<p>No repetir [no-repeat]. Cancela la repeticion de la imagen de fondo dentro del elemento</p>
+		<style>
+			.eliminarRepeticion {
+				background-repeat: no-repeat;
+			}
+		</style>
+		<div class="marco imgPequenia eliminarRepeticion"></div>
+
+		<p>Repetir en X [repeat-x]. Repite solo en el eje horizontal.</p>
+		<style>
+			.repetirX {
+				background-repeat: repeat-x;
+			}
+		</style>
+		<div class="marco imgPequenia repetirX"></div>
+
+		<p>Repetir en Y [repeat-y]. Repite solo en el eje vertical.</p>
+		<style>
+			.repetirY {
+				background-repeat: repeat-y;
+			}
+		</style>
+		<div class="marco imgPequenia repetirY"></div>
+
+		<h3>background-size</h3>
+		<p>Controla el ancho y el alto de la imagen de fondo.</p>
+		<code>background-size: width height;</code>
+
+		<p>Automatico [auto] (por defecto). La imagen tiene su tamanio original.</p>
+		<style>
+			.tamanioAutomatico {
+				background-size: auto;
+			}
+		</style>
+		<div class="marco imgGrande tamanioAutomatico"></div>
+		
+		<p>Redimensionar en pixeles [0px 0px]. Redimensiona la imagen al tamanio especificado.</p>
+		<style>
+			.bloqueEnLinea {
+				display: inline-block;
+				margin-left: 100px;
+			}
+		</style>
+		<article>
+			<div class="bloqueEnLinea">
+				<p>Ancho cambiado a 250px</p>
+				<style>
+					.imgGrande {
+						background: url('../media/ganyuGrande.jpg');
+					}
+
+					.anchoPx {
+						background-size: 250px;
+					}
+				</style>
+				<div class="marco imgGrande anchoPx"></div>
+			</div>
+			<div class="bloqueEnLinea">
+				<p>Ancho y alto cambiados a 250px y 300px</p>
+				<style>
+					.anchoYaltoPx {
+						background-size: 250px 300px;	
+					}
+				</style>
+				<div class="marco imgGrande anchoYaltoPx"></div>
+			</div>	
+		</article>
+
+		<p>Redimensionar al porcentaje [0% 0%].</p>
+		<article>
+			<div class="bloqueEnLinea">
+				<p>Ancho cambiado al 100%</p>
+				<style>
+					.anchoPorcentaje {
+						background-size: 100%;
+					}
+				</style>
+				<div class="marco imgGrande anchoPorcentaje"></div>
+			</div>
+			<div class="bloqueEnLinea">
+				<p>Ancho y alto cambiados al 100%</p>
+				<style>
+					.anchoAltoPorcentaje {
+						background-size: 100% 100%;
+					}
+				</style>
+				<div class="marco imgGrande anchoAltoPorcentaje"></div>
+			</div>
+		</article>
+
+		<p>Cubrir Elemento [cover]. Ajusta las dimensiones de la imagen automaticamente para que cubra el elemento.</p>
+		<style>
+			.cubrirElemento {
+				background-size: cover;
+			}
+
+			.marcoAncho {
+				width: 500px;
+			}
+		</style>
+		<article>
+			<div class="bloqueEnLinea">
+				<div class="marco imgGrande cubrirElemento"></div>
+			</div>
+			<div class="bloqueEnLinea">
+				<div class="marco marcoAncho imgGrande cubrirElemento"></div>
+			</div>
+		</article>			
+
+		<p>Contener imagen [contain]. Redimensiona la imagen hasta que se pueda mostrar totalmente dentro del elemento.</p>
+		<style>
+			.contenerImagen {
+				background-size: contain;				
+			}
+		</style>
+		<div class="marco imgGrande contenerImagen eliminarRepeticion"></div>
+		
+		<h3>background-attachment</h3>
+		<p>Controla como se muestra el fondo en relacion al elemento (como esta incrustado)</p>
+		<p>Fondo scroll [scroll] (por defecto). El fondo esta fijado al elemento y se mueve naturalmente junto al elemento cuando hacemos scroll.</p>
+		<style>
+			.scroll {
+				background-attachment: scroll;
+			}
+		</style>
+		<div class="marco fondo scroll"></div>
+
+		<p>Fondo fijo [fixed]. El fondo queda fijo en el viewport (la ventana del navegador) pero solo se muestra dentro del elemento que lo contiene.</p>
+		<em>Nota: cuando se activa este incrustamiento el tamaño de la imagen (background-size) tomara como referencia las dimensiones del viewport (la ventana del navegador).</em>
+		<style>
+			.fijar {
+				background-attachment: fixed;
+				width: 100%;
+				height: 500px;
+				color: white;
+			}
+
+			.cubrirViewport {
+				background-size: cover; 
+				/*No cubrira al elemento que lo muestra,
+				sino al viewport (la ventana del navegador)*/			
+			}
+		</style>
+		<div class="marco imgGrande fijar cubrirViewport">Si se incrusta asi en el body puede servir como imagen de fondo fijada al sitio web.</div>
+			
+		<h3>background-position</h3>
+		<p>Controla la posicion de la imagen de fondo en los elementos.</p>
+		<p>Posicionar en pixeles [Xpx Ypx]. Controla la imagen de fondo con coordenadas en pixeles.</p>
+		<style>
+			.defectoPixeles {
+				background-position: 0px 0px;
+			}
+
+			.posicionarPixeles {
+				background-position: 10px 50px; 
+			}
+
+			.fijarEnElemento {
+				background-attachment: fixed;
+				background-position: 825px 0px; /*Mueve el fondo hasta el elemento que lo muestra*/
+				background-size: auto 100%; /*Ajusta el alto a todo el viewport y*/
+			}
+		</style>
+		<article>
+			<div class="bloqueEnLinea">
+				<p>background-position: 0px 0px; (por defecto)</p>
+				<div class="marco imgPequenia eliminarRepeticion defectoPixeles"></div>
+			</div>
+			<div class="bloqueEnLinea">
+				<p>background-position: 10px 50px;</p>
+				<div class="marco imgPequenia eliminarRepeticion posicionarPixeles"></div>
+			</div>
+			<div class="bloqueEnLinea">
+				<p>Fijado y ajustado al viewport, posicionado al elemento</p>
+				<div class="marco imgGrande fijarEnElemento"></div>
+			</div>
+		</article>
+
+		<p>Posicionar en % [X% Y%]. Controla la posicion tomando como referencia las dimensiones del marco donde se muestra la imagen.</p>
+		<style>
+			.defectoPorcetaje {
+				background-position: 0% 0%;
+			}
+
+			.centrarPorcentaje {
+				background-position: 50% 50%;
+			}
+
+			.derechaAbajoPorcentaje {
+				background-position: 100% 100%;
+			}
+		</style>
+		<article>
+			<div class="bloqueEnLinea">
+				<p>background-position: 0% 0%;</p>
+				<div class="marco imgPequenia eliminarRepeticion defectoPorcetaje"></div>
+			</div>
+			<div class="bloqueEnLinea">
+				<p>background-position: 50% 50%;</p>
+				<div class="marco imgPequenia eliminarRepeticion centrarPorcentaje"></div>
+			</div>
+			<div class="bloqueEnLinea">
+				<p>background-position: 100% 100%;</p>
+				<div class="marco imgPequenia eliminarRepeticion derechaAbajoPorcentaje"></div>
+			</div>
+		</article>
+		<style>
+			.izquierdaAbajoPorcentaje {
+				background-position: 0% 100%;
+			}
+
+			.derechaArribaPorcentaje {
+				background-position: 100% 0%;
+			}
+		</style>
+		<article>
+			<div class="bloqueEnLinea">
+				<p>background-position: 0% 100%;</p>
+				<div class="marco imgPequenia eliminarRepeticion izquierdaAbajoPorcentaje"></div>
+			</div>
+			<div class="bloqueEnLinea">
+				<p>background-position: 50% 50%;</p>
+				<div class="marco imgPequenia eliminarRepeticion centrarPorcentaje"></div>
+			</div>
+			<div class="bloqueEnLinea">
+				<p>background-position: 100% 0%;</p>
+				<div class="marco imgPequenia eliminarRepeticion derechaArribaPorcentaje"></div>
+			</div>
+		</article>
+
+		<p>Centrar/Izquierda/Derecha/Abajo/Arriba [center/left/right/bottom/top]. Funciona igual que el porcentaje de arriba, solo que con palabras.</p>
+		<style>
+			.posicionarDefecto {
+				background-position: left top;
+			}
+
+			.posicionarCentrar {
+				background-position: center center;
+			}
+
+			.posicionarDerechaAbajo {
+				background-position: right bottom;
+			}
+		</style>
+		<article>
+			<div class="bloqueEnLinea">
+				<p>background-position: left top;</p>
+				<div class="marco imgPequenia eliminarRepeticion posicionarDefecto"></div>
+			</div>
+			<div class="bloqueEnLinea">
+				<p>background-position: center center;</p>
+				<div class="marco imgPequenia eliminarRepeticion posicionarCentrar"></div>
+			</div>
+			<div class="bloqueEnLinea">
+				<p>background-position: right bottom;</p>
+				<div class="marco imgPequenia eliminarRepeticion posicionarDerechaAbajo"></div>
+			</div>
+		</article>
+		<style>
+			.posicionarIzquierdaAbajo {
+				background-position: left bottom;
+			}
+
+			.posicionarDerechaArriba {
+				background-position: right top;
+			}
+		</style>
+		<article>
+			<div class="bloqueEnLinea">
+				<p>background-position: left bottom;</p>
+				<div class="marco imgPequenia eliminarRepeticion posicionarIzquierdaAbajo"></div>
+			</div>
+			<div class="bloqueEnLinea">
+				<p>background-position: center center;</p>
+				<div class="marco imgPequenia eliminarRepeticion posicionarCentrar"></div>
+			</div>
+			<div class="bloqueEnLinea">
+				<p>background-position: right top;</p>
+				<div class="marco imgPequenia eliminarRepeticion posicionarDerechaArriba"></div>
+			</div>
+		</article>
+
+		<h3>background (resumen)</h3>
+		<p>Se pueden resumir 4 de las 5 propiedades anteriores en 1 sola.</p>
+		<ul>
+			<li><code>background: ;</code></li>
+			<li><code>background-repeat: ;</code></li>
+			<li><code>background-attachment: ;</code></li>
+			<li><code>background-position: ;</code></li>
+		</ul>
+		<p><code>background: url() repeat attachment positionX positionY;</code></p>
+		<style>
+			.fondoImgResumen {
+				background: url('../media/ganyu.jpg') repeat scroll 0px 0px;
+			}
+		</style>
+		<div class="marco fondoImgResumen"></div>
+	</section>
+</body>
+</html>

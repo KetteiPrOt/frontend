@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 8</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Operadores intermedios</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Operadores de Comparacion -->
+	<h3>Operadores de Comparacion</h3>
+	<p>Estos operadores comparan dos condiciones para determinar si la proposicion planteada a partir de ellos es verdadera o es falsa.</p>
+	<style>
+		.tabla {
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+
+		.tabla td, .tabla th {
+			border: 1px solid black;
+			padding: 10px;
+			font-family: sans-serif;
+		}
+	</style>
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Nombres</th> <th>Sintaxis</th> <th>Significado</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Igual</td> <td>A == B</td> <td>A es igual a B? (solo valor)</td>
+			</tr>
+			<tr>
+				<td>Diferente</td> <td>A != B</td> <td>A es diferente a B? (solo valor)</td>
+			</tr>
+			<tr>
+				<td>Identidad</td> <td>A === B</td> <td>A es igual a B en tipo y en valor?</td>
+			</tr>
+			<tr>
+				<td>Identidad diferente</td> <td>A !== B</td> <td>A es diferente a B en tipo y en valor?</td>
+			</tr>
+			<tr>
+				<td>Mayor que</td> <td>A > B</td> <td>A es mayor que B?</td>
+			</tr>
+			<tr>
+				<td>Menor que</td> <td>A < B</td> <td>A es menor que B?</td>
+			</tr>
+			<tr>
+				<td>Mayor o igual que</td> <td>A >= B</td> <td>A es mayor o igual que B?</td>
+			</tr>
+			<tr>
+				<td>Menor o igual que</td> <td>A <= B</td> <td>A es menor o igual que B?</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- Operadores Logicos -->
+	<h3>Operadores Logicos</h3>
+	<p>Nos devuelven un valor booleano a partir de que se cumpla o no una condicion, sus operandos son valores logicos (true/false) o asimilables a ellos.</p>
+
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Nombres</th> <th>Sintaxis</th> <th>Significado</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>AND</td> 
+				<td>&&</td> 
+				<td>
+					Comprueba que se cumplan todas las proposiciones para que la operacion sea verdadera
+				</td>
+			</tr>
+			<tr>
+				<td>OR</td> 
+				<td>||</td> 
+				<td>
+					Comprueba que se cumplan al menos una de las proposiciones para que la operacion sea verdadera
+				</td>
+			</tr>
+			<tr>
+				<td>NOT</td> 
+				<td>!</td> 
+				<td>
+					Niega la proposicion, convirtiendola en su contrario
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- Ejempos del uso de Operadores Logicos -->
+	<h3>Ejempos del uso de Operadores Logicos</h3>
+	<p>En estos dos ejemplos voy a resolver una operacion logica compleja utizando los operadores logicos y de comparacion:</p>
+	<code>operacion-logica = (12 < 24 || 24 < 25) && (!(12 != 24) && 91 != 25)</code> <br>
+	<code>operacion-logica = (true || true) && (!(true) && true)</code> <br>
+	<code>operacion-logica = (true) && (false && true)</code> <br>
+	<code>operacion-logica = (true) && (false)</code> <br>
+	<code>operacion-logica = false</code>
+
+	<br><br>
+
+	<code>operacion-logica = (91 > 24 && 92 < 25) || (!(12 === 24) || 25 != 25)</code> <br>
+	<code>operacion-logica = (true && false) || (!(false) || false)</code> <br>
+	<code>operacion-logica = (false) || (true || false)</code> <br>
+	<code>operacion-logica = false || true</code> <br>
+	<code>operacion-logica = true</code>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 23</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Conteo, agrupacion, y temporalizacion</h1>
+	<h4 class="enlace-volver"><a href="../capitulo5.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<h2>Metodos de conteo</h2>
+
+	<!-- count() -->
+	<h3>count()</h3>
+	<p>Registra el numero de veces que se llama a count()... este argumento toma como argumento opcional una etiqueta.</p>
+	<!-- codigo -->
+	<code>
+		let conteo1 = 'Conteo 1'; <br>
+		let conteo2 = 'Conteo 2'; <br>
+		console.count(); // default: 1 <br>
+		console.count(); // default: 2 <br>
+		console.count(); // default: 3 <br>
+		console.count(); // default: 4 <br>
+		console.count(); // default: 5 <br>
+		console.count(); // default: 6 <br>
+		console.count(); // default: 7 <br>
+		console.count(); // default: 8 <br><br>
+
+		console.log('\n'); <br><br>
+
+		console.count(conteo1); // Conteo 1: 1 <br>
+		console.count(conteo1); // Conteo 1: 2 <br>
+		console.count(conteo1); // Conteo 1: 3 <br>
+		console.count(conteo1); // Conteo 1: 4 <br>
+		console.count(conteo1); // Conteo 1: 5 <br>
+		console.count(conteo1); // Conteo 1: 6 <br>
+		console.count(conteo1); // Conteo 1: 7 <br><br>
+
+		console.log('\n'); <br><br>
+
+		console.count(conteo2); // Conteo 2: 1 <br>
+		console.count(conteo2); // Conteo 2: 2 <br>
+		console.count(conteo2); // Conteo 2: 3 <br>
+		console.count(conteo2); // Conteo 2: 4 <br>
+		console.count(conteo2); // Conteo 2: 5 <br>
+		console.count(conteo2); // Conteo 2: 6 <br>
+		console.count(conteo2); // Conteo 2: 7
+	</code>
+
+	<!-- countReset() -->
+	<h3>countReset()</h3>
+	<p>Resetea una cuenta que se lleva, y retorna undefined.</p>
+	<!-- codigo -->
+	<code>
+		console.countReset(); // undefined <br>
+		console.countReset(conteo1); // undefined <br>
+		console.countReset(conteo2); // undefined
+	</code>
+
+	<h2>Metodos de Agrupacion</h2>
+
+	<!-- group() -->
+	<h3>group()</h3>
+	<p>Crea un nuevo grupo en linea en el registro de la consola. Admite un parametro, el nombre del grupo.</p>
+	<!-- codigo -->
+	<code>
+		console.group('Grupo 1'); <br><br>
+
+		console.assert(false); <br>
+		console.assert(false); <br>
+		console.assert(false);
+	</code>
+
+	<!-- groupEnd() -->
+	<h3>groupEnd()</h3>
+	<p>Finaliza el grupo en linea creado en el registro de la consola. Admite un parametro, el nombre del grupo a cerrar.</p>
+	<!-- codigo -->
+	<code>
+		console.group('Grupo 1'); <br><br>
+
+		console.assert(false); <br>
+		console.assert(false); <br>
+		console.assert(false); <br><br>
+
+		console.groupEnd();
+	</code>
+
+	<!-- groupCollapsed() -->
+	<h3>groupCollapsed()</h3>
+	<p>Igual a <em>console.group()</em>, solo que el nuevo grupo que se crea ya aparece colapsado.</p>
+	<!-- codigo -->
+	<code>
+		console.groupCollapsed('Grupo 1'); <br><br>
+
+		console.assert(false); <br>
+		console.assert(false); <br>
+		console.assert(false); <br><br>
+
+		console.groupEnd('Grupo 1');
+	</code>
+
+	<h2>Metodos de temporalizacion</h2>
+
+	<!-- time() -->
+	<h3>time()</h3>
+	<p>Inicia un temporalizador. Admite un parametro, el nombre del temporalizador... si no tiene nombre usara el temporalizador 'default'.</p>
+	<!-- codigo -->
+	<code>
+		let t1 = 'Reloj 1'; <br>
+		console.time(t1);
+	</code>
+
+	<!-- timeEnd() -->
+	<h3>timeEnd()</h3>
+	<p>Finaliza y muestra el valor actual de un temporalizador. Admite un parametro, el nombre del temporalizador... si no tiene nombre finalizara el temporalizador 'default'.</p>
+	<code>
+		let t1 = 'Reloj 1'; <br>
+		console.time(t1); <br>
+		console.timeEnd(t1); // Reloj 1: 0.005126953125 ms
+	</code>
+
+	<!-- timeLog() -->
+	<h3>timeLog()</h3>
+	<p>Muestra el valor actual de un temporalizador. No lo finaliza, solo lo muestra.</p>
+	<!-- codigo -->
+	<code>
+		let t1 = 'Reloj 1'; <br><br>
+
+		console.time(t1); <br>
+		console.timeLog(t1); // Reloj 1: 0.06298828125 ms <br>
+		console.timeEnd(t1); // Reloj 1: 0.32275390625 ms
+	</code>
+
+	<p>Esta propiedades se ven muy utiles para saber cuanto tarda en ejecutarse el codigo.</p>
+
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,99 @@
+:root {
+	--colorFondo: #E9ECF4;
+	--headerFondo: #12203E;
+	--sidebarFondo: #FAA43D;
+	--widgetsFondo: #55A8FD;
+}
+
+/* --- --- Estilos Generales --- --- */
+
+* {
+	box-sizing: border-box;
+	margin: 0; padding: 0;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	background: var(--colorFondo);
+}
+
+.contenedor {
+	width: 90%;
+	max-width: 1000px;
+	margin: 20px auto;
+	/* CSS Grid */
+	display: grid;
+	grid-gap: 20px;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(4, auto);
+	grid-template-areas: 'header    header    header'
+						 'contenido contenido sidebar'
+						 'widget-1  widget-2  sidebar'
+						 'footer    footer    footer';
+}
+
+.contenedor .header,
+.contenedor .contenido,
+.contenedor .sidebar,
+.contenedor .widget-1, .contenedor .widget-2,
+.contenedor .footer {
+	background: white;
+	padding: 20px;
+	border-radius: 4px;
+}
+
+/* --- --- Estilos de los elementos --- --- */
+
+.contenedor .header {
+	color: white;
+	background-color: var(--headerFondo);
+	grid-area: header;
+}
+
+.contenedor .contenido {
+	text-align: justify;
+	grid-area: contenido;
+}
+
+.contenedor .sidebar {
+	background-color: var(--sidebarFondo);
+	min-height: 100px;
+	grid-area: sidebar;
+	/*Flexbox*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.contenedor .widget-1, .contenedor .widget-2 {
+	color: white;
+	background-color: var(--widgetsFondo);
+	height: 100px;
+	/*Flexbox*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.contenedor .widget-1 { grid-area: widget-1; }
+
+.contenedor .widget-2 { grid-area: widget-2; }
+
+.contenedor .footer {
+	color: white;
+	background-color: var(--headerFondo);
+	grid-area: footer;
+}
+
+/* --- --- Media Queries --- --- */
+@media screen and (max-width:768px) {
+
+	.contenedor {
+		grid-template-rows: repeat(5, auto);
+		grid-template-areas: 'header    header    header'
+							 'contenido contenido contenido'
+							 'sidebar   sidebar   sidebar'
+							 'widget-1  widget-1  widget-2'
+							 'footer    footer    footer';
+	}
+}

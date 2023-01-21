@@ -1,0 +1,261 @@
+:root {
+	--celeste: #00bdd6;
+	--celesteOscuro: #00b0c7;
+	--naranja: #fe9143;
+	--gris: #4b4c4d;
+	--blanco: #ebf3f5;
+	--negro: #323333;
+}
+
+body {
+	margin: 0;
+	font-family: 'Montserrat', sans-serif;
+}
+
+
+/* --- Header --- */
+/*Layout*/
+header .Cvideo {
+	width: 100%;
+	height: 405px;
+	overflow: hidden;
+}
+
+header .Cvideo video {
+	width: 110%;
+	position: relative;
+	right: 100px;
+	bottom: 190px;
+}
+
+header .Cheader {
+	color: white;
+	background: rgba(0, 0, 0,0.7);
+	text-align: center;
+	width: 100%;
+	height: 405px;
+	position: absolute;
+	top: 0; right: 0; left: 0; bottom: 0;
+	opacity: 0.8;
+}
+
+/*Elementos*/
+header .Cheader img {
+	margin: 80px 0 15px 0;
+}
+
+header .Cheader h1 {
+	font-weight: 500;
+	font-size: 30px;
+	margin: 0;
+	margin-bottom: 15px;
+}
+
+header .Cheader strong {
+	letter-spacing: 5px;
+	font-weight: 500;
+	font-size: 25px;
+	margin: 0;
+}
+
+/* --- Navegacion --- */
+/*Layout*/
+nav {
+	background-color: var(--celeste);
+	box-sizing: border-box;
+	height: 55px;
+	padding: 13px;
+	padding-right: 0px;
+	box-shadow: 0px 4px 4px rgba(128, 128, 128,0.7);
+	position: sticky;
+	top: 0;
+}
+
+/*Elementos*/
+nav p {
+	font-size: 14px;
+	display: inline-block;
+	margin: 0;
+	margin-left: 5px;
+	position: relative;
+	bottom: 5px;
+}
+
+nav p span {
+	font-weight: 300;
+	font-size: 13px;
+}
+
+nav a {
+	color: white;
+	text-decoration: none;
+	font-weight: 500;
+	font-size: 24px;
+	display: inline-block;
+	margin-left: 1025px;
+	position: relative;
+	bottom: 5px;
+}
+
+/* --- --- Main --- --- */
+
+/* --- Seccion Portfolio --- */
+/* Elementos */
+main .portafolio img {
+	width: 30%;
+	margin-top: 15px;
+	box-shadow: 0px 0px 6px 1px rgba(128, 128, 128,0.7);
+}
+
+/* --- Seccion Skillset --- */
+/*Elementos*/
+main .skillset article img {
+	display: inline-block;
+	width: 110px;
+	border-radius: 15%;
+	margin-right: 100px;
+	margin-left: 100px;
+}
+
+/* --- Seccion Experience --- */
+/*Elementos*/
+main .experiencia article div {
+	background: white;
+	box-sizing: border-box;
+	width: 220px;
+	height: 220px;
+	padding-top: 50px;
+	border: 5px solid var(--celeste);
+	border-radius: 15%;
+}
+
+main .experiencia article p {
+	color: var(--gris);
+	font-size: 17px;
+	font-weight: 600;
+	letter-spacing: 4px;
+	margin-bottom: 50px;
+}
+
+main .experiencia article div img {
+	width: 150px;
+}
+
+/* --- Seccion Contact --- */
+/*Elementos*/
+main .contacto form label {
+	color: white;
+	font-size: 19px;
+	margin-bottom: 15px;
+}
+
+main .contacto form .entrada {
+	background:rgba(0,0,0,0.1);
+	color: var(--negro);
+	font-size: 19px;
+	font-weight: 300;
+	box-sizing: border-box;
+	width: 700px;
+	height: 50px;
+	padding: 15px;
+	border: none;
+	border-radius: 5px;
+	margin-bottom: 65px;
+}
+
+main .contacto form textarea {
+	max-width: 700px;
+	min-width: 700px;
+	max-height: 80px;
+	min-height: 80px;
+	resize: none;
+}
+
+main .contacto form input[type="submit"] {
+	background: var(--naranja);
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	font-weight: 300;
+	padding: 15px 15px;
+	border: none;
+	border-radius: 10px;
+	margin-bottom: 65px;
+}
+
+main .contacto .redes a {
+	background: white;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	margin: 0px 20px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+/* --- --- Footer --- --- */
+
+footer {
+	background: var(--negro);
+	text-align: center;
+	font-size: 12px;
+	box-sizing: border-box;
+	height: 80px;
+	padding: 35px;
+}
+
+footer p {
+	color: var(--blanco);
+	margin: 0px;
+}
+
+/* --- Estilos Generales --- */
+/*layout*/
+.seccion {
+	text-align: center;
+	padding-top: 80px;
+	padding-bottom: 65px;
+}
+
+.fondoBlanco { background: var(--blanco); } 
+
+.fondoCeleste { background: var(--celeste); }
+
+.titulo {
+	font-weight: 500;
+	font-size: 33px;
+	letter-spacing: 5px;
+	margin-top: 0;
+}
+
+/*utilidades*/
+.gris { color: var(--gris); } .blanco { color:white }
+
+.gradiente {
+	width: 100%;
+	height: 1px;
+	margin-bottom: 80px;
+}
+
+.gradienteGrueso {
+	width: 100%;
+	height: 3px;
+	margin-bottom: 80px;
+}
+
+.gradBlanco { background: radial-gradient(white, transparent 70%); }
+
+.gradCeleste { background: radial-gradient(var(--celeste), transparent 70%); }
+
+.imgCircular {
+	border-radius: 50%;
+}
+
+.centrarBloque {
+	display: block;
+	margin: 0px auto 0 auto;
+}
+
+.margenT20 { margin-top: 20px; }
+
+.margenB0 { margin-bottom: 0px; }

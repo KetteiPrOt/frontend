@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 19</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Metodos de cadenas</h1>
+	<h4 class="enlace-volver"><a href="../capitulo4.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- concat() -->
+	<h3>concat()</h3>
+	<p>Junta dos o mas cadenas y retorna una nueva. No altera a la cadena original quien le aplicaron este metdo.</p>
+	<!-- codigo -->
+	<code>
+		let texto1 = 'Hola ', texto2 = 'Mundo'; <br>
+		let texto3 = texto1.concat(texto2); <br><br>
+
+		console.log(texto3); <strong>// Hola Mundo</strong>
+	</code>
+
+	<hr>
+	<h3></h3>
+	<p>Los siguientes metodos se aplican a cadenas y devuelven un valor que da informacion sobre la cadena en cuestion. No alteran la cedena original sobre la que fueron aplicados.</p>
+
+	<!-- startsWith() -->
+	<h3>startsWith()</h3>
+	<p>Si una cadena comienza con los caracteres de otra cadena devuelve true, sino false</p>
+	<!-- codigo -->
+	<code>
+		let texto1 = 'Hola Mundo', texto2 = 'Hola Joel', texto3 = 'Hola', texto4 = 'Ho'; <br><br>
+
+		console.log(texto1.startsWith(texto2)); // false <br>
+		console.log(texto1.startsWith(texto3)); // true <br>
+		console.log(texto1.startsWith(texto4)); // true
+	</code>
+
+	<!-- includes() -->
+	<h3>includes()</h3>
+	<p>Si una cadena puede encontrarse dentro de otra cadena devuelve true, sino false.</p>
+	<!-- codigo -->
+	<code>
+		let texto1 = 'Maniana hara mucho sol en la ciudad',  <br> &nbsp&nbsp&nbsp
+			texto2 = 'perro', texto3 = 'hara mucho sol', texto4 = 'ciudad'; <br> <br>
+
+		console.log(texto1.includes(texto2)); // false <br>
+		console.log(texto1.includes(texto3)); // true <br>
+		console.log(texto1.includes(texto4)); // true
+	</code>
+
+	<!-- indexOf() -->
+	<h3>indexOf()</h3>
+	<p>Devuelve el indice del primer caracter de la cadena, si no existe devuelve -1.</p>
+	<!-- codigo -->
+	<code>
+		let texto1 = 'Buenos dias hoy hace un buen tiempo', <br> &nbsp&nbsp&nbsp
+		    texto2 = 'dias', texto3 = 'hace un ', texto4 = 'hace un perro', texto5 = 'racio'; <br><br>
+
+		console.log(texto1.indexOf(texto2)); // 7 <br>
+		console.log(texto1.indexOf(texto3)); // 16 <br>
+		console.log(texto1.indexOf(texto4)); // -1 <br>
+		console.log(texto1.indexOf(texto5)); // -1 <br> <br>
+
+		console.log(texto1[7] + texto1[8] + texto1[9] + texto1[10]); // dias
+	</code>
+
+	<!-- lastIndexOf() -->
+	<h3>lastIndexOf()</h3>
+	<p>Devuelve el ultimo indice del primer caracter de la cadena,  si no existe devuelve -1.</p>
+	<!-- codigo -->
+	<code>
+		let texto1 = 'Buenos dias hoy hace un buen tiempo, <strong>hoy</strong> es un buen dias', <br> &nbsp&nbsp&nbsp
+			texto2 = <strong>'hoy'</strong>, texto3 = 'hoy hace', texto4 = 'hace un perro', texto5 = 'rancio'; <br><br>
+
+		console.log(texto1.lastIndexOf(texto2)); // 37 <br>
+		console.log(texto1.lastIndexOf(texto3)); // 12 <br>
+		console.log(texto1.lastIndexOf(texto4)); // -1 <br>
+		console.log(texto1.lastIndexOf(texto5)); // -1 <br><br>
+
+		console.log(texto1[37] + texto1[38] + texto1[39]); // hoy
+	</code>
+
+	<hr>
+	<h3></h3>
+	<p>
+		Los siguientes metodos rellenan la cadena a la que son aplicados en cuestion. No alteran la cedena original sobre la que fueron aplicados.
+	</p>
+
+	<!-- padStart() -->
+	<h3>padStart()</h3>
+	<p>Rellena la cadena al principio con los caracteres deseados. Recibe dos argumentos: la cantidad de caracteres totales del resultado y el relleno que va a usar al inicio para alcanzar esa cantidad de carateres en el resultado final (si es nesesario los va a repetir):</p>
+	<!-- codigo -->
+	<code>
+		let texto1 = '3456'; <br><br>
+
+		let rellenar1 = texto1.padStart(6, '12'), <br>
+			rellenar2 = texto1.padStart(10, '12'); <br><br>
+
+		console.log(rellenar1); // 123456 <br>
+		console.log(rellenar2); // 1212123456
+	</code>
+
+	<!-- padEnd() -->
+	<h3>padEnd()</h3>
+	<p>Rellena la cadena al final con los caracteres deseados. Recibe dos argumentos: la cantidad de caracteres totales del resultado y el relleno que va a usar al final para alcanzar esa cantidad de carateres en el resultado final (si es nesesario los va a repetir):</p>
+	<!-- codigo -->
+	<code>
+		let texto1 = '1234'; <br><br>
+
+		let rellenar1 = texto1.padEnd(6, '56'), <br>
+			rellenar2 = texto1.padEnd(10, '56'); <br><br>
+
+		console.log(rellenar1); // 123456 <br>
+		console.log(rellenar2); // 1234565656
+	</code>
+
+	<!-- repeat() -->
+	<h3>repeat()</h3>
+	<p>Devuelve la cadena repetida el numero de veces que le pedimos:</p>
+	<!-- codigo -->
+	<code>
+		let texto = 'Hola ', <br> &nbsp&nbsp&nbsp
+			repetir = texto.repeat(5); <br><br>
+
+		console.log(repetir); // 'Hola Hola Hola Hola Hola '<br><br>
+
+		console.log(texto.repeat(0)); // ''
+	</code>
+
+	<hr>
+	<h3></h3>
+	<p>Los siguientes metodos tambien hacen modificaciones sobre la cadena origial, y del mismo modo sin alterarla, sino mas bien retornan una nueva cadena con la modificacion hecha.</p>
+
+	<!-- split() -->
+	<h3>split()</h3>
+	<p>Divide la cadena segun un caracter y retorna un array con las partes de la cadena dividida segun ese caracter. No altera a la cadena original sobre la que fue aplicado.</p>
+	<!-- codigo -->
+	<code>
+		let texto = 'Hola.como.estas'; <br>
+		let partes = texto.split('.'); <br> <br>
+
+		console.log(partes); // ['Hola', 'como', 'estas'] <br><br>
+
+		let texto2 = 'Hola como estas joel CRACK'; <br><br>
+
+		console.log(texto2.split(' ')); // ['Hola', 'como', 'estas', 'joel', 'CRACK'] <br><br>
+
+		console.log(texto.split('como')); // ['Hola.', '.estas']
+	</code>
+
+	<!-- substring() -->
+	<h3>substring()</h3>
+	<p>Nos retorna un pedazo de la cadena seleccionda utilizando como argumentos las posiciones de inicio y final para la nueva cadena en cuestion. [index, index)</p>
+	<!-- codigo -->
+	<code>
+		let texto = '0123456789', <br> &nbsp&nbsp&nbsp
+			subTexto1 = texto.substring(0, 4), <br> &nbsp&nbsp&nbsp
+			subTexto2 = texto.substring(1, 10); <br><br>
+
+		console.log(subTexto1); // 0123 <br>
+		console.log(subTexto2); // 123456789
+	</code>
+
+	<!-- toLowerCase() -->
+	<h3>toLowerCase()</h3>
+	<p>Retorna una nueva cadena en la que convierte todos los caracteres en mayusculas a caracteres en minusculas. No altera la cadena original.</p>
+	<!-- codigo -->
+	<code>
+		let texto = 'Hola Mundo', <br> &nbsp&nbsp&nbsp
+			minusculas = texto.toLowerCase(); <br> <br>
+
+		console.log(minusculas); //  hola mundo
+	</code>
+
+	<!-- toUpperCase() -->
+	<h3>toUpperCase()</h3>
+	<p>Retorna una nueva cadena en la que convierte todos los caracteres en minusculasa caracteres en mayusculas. No altera la cadena original.</p>
+	<!-- codigo -->
+	<code>
+		let texto = 'Hola Mundo', <br> &nbsp&nbsp&nbsp
+			mayusculas = texto.toUpperCase(); <br> <br>
+
+		console.log(mayusculas); //  HOLA MUNDO
+	</code>
+
+	<!-- toString() -->
+	<h3>toString()</h3>
+	<p>Convierte cualquier otro tipo de dato en una cadena de texto (siempre que sea posible), la cual retorna. No afecta el dato original.</p>
+	<!-- codigo -->
+	<code>
+		let numero = 1500375, <br>  &nbsp&nbsp&nbsp
+			array = [12, 'Joel', true] <br>  &nbsp&nbsp&nbsp
+		 	texto = numero.toString(); <br><br>
+
+		console.log(texto); // 1500375 <br><br>
+
+		console.log(array.toString()); // 12,Joel,true
+	</code>
+
+	<!-- trim() -->
+	<h3>trim()</h3>
+	<p>Elimina los espacios en blanco al inicio y al fin de la cadena.</p>
+	<!-- codigo -->
+	<code>
+		let texto = '   Hola Mundo   ', <br>  &nbsp&nbsp&nbsp
+		  	sinEspacios = texto.trim(); <br><br>
+
+		console.log('|' + sinEspacios + '|'); // |HolaMundo|
+	</code>
+
+	<!-- trimEnd() -->
+	<h3>trimEnd()</h3>
+	<p>Elimina los espacios al final de la cadena.</p>
+	<!-- codigo -->
+	<code>
+		let texto = '   Hola Mundo   ', <br>  &nbsp&nbsp&nbsp
+		  	sinEspacios = texto.trimEnd(); <br><br>
+
+		console.log('|' + sinEspacios + '|'); // |   HolaMundo|
+	</code>
+
+	<!-- trimStart() -->
+	<h3>trimStart()</h3>
+	<p>Elimina los espacios al final de la cadena.</p>
+	<!-- codigo -->
+	<code>
+		let texto = '   Hola Mundo   ', <br>  &nbsp&nbsp&nbsp
+		  	sinEspacios = texto.trimStart(); <br><br>
+
+		console.log('|' + sinEspacios + '|'); // |HolaMundo   |
+	</code>
+
+	<!-- valueOf() -->
+	<h3>valueOf()</h3>
+	<p>Retorna el valor primitivo de un objeto String.</p>
+	<!-- codigo -->
+	<code>
+		let textoObjeto = new String('Hola Mundo'), <br> &nbsp&nbsp&nbsp
+		  	textoPrimitivo = textoObjeto.valueOf(); <br><br>
+
+		console.log(textoObjeto); // String {'Hola Mundo'} <br>
+		console.log(textoPrimitivo) // Hola Mundo
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

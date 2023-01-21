@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Grid (Posicionamiento)</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Grid (Posicionamiento) -->
+	<section>
+		<h2>Grid (Posicionamiento)</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<!-- grid-row-start/end -->
+		<h3>grid-row-start/end</h3>
+		<p>Estas propiedades sirven para especificar como queremos que se acomode un elemento hijo en las filas dentro de nuestra grid. <br>
+		Las filas y las columnas se cuentan entre los elementos, no en el centro de ellos.</p>
+
+		<p>Inicia en 1 y acaba en 2 [start: 1;] [end: 2;]. El elemento se pociciona entre las filas 1 y 2.</p>
+		<em class="upNote">Abrir la consola->Elements->Layout(abajo)->Grid Overlays (Activar Visualizacion de Grid para ver los numeros entre las filas y las columnas)</em>
+		<style>
+			.cntPadre {
+				background-color: skyblue;
+				width: 50%;
+				height: 500px;
+				border: 1px solid black;
+				margin: 0 auto;
+			}
+
+			.elHijo {
+				background-color: pink;
+				width: auto; height: auto;
+				border: 1px solid black;
+			}
+
+			.grid { display: grid; }
+
+			.cuatroXcuatro {
+				grid-template-columns: repeat(4, 1fr);
+				grid-template-rows: repeat(4, 1fr);
+			}
+
+			.brecha10px {
+				grid-gap: 10px;
+			}
+
+			.filasUnoDos {
+				background-color: hotpink;
+				grid-row-start: 1; grid-row-end: 2;
+			}
+		</style>
+		<div class="cntPadre grid cuatroXcuatro brecha10px">
+			<div class="elHijo filasUnoDos">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Inicia en 1 y acaba en 3 [start: 1;] [end: 3;]. El elemento se pociciona entre las filas 1 y 3.</p>
+		<style>
+			.filasUnoTres {
+				background-color: hotpink;
+				grid-row-start: 1; grid-row-end: 3;
+			}
+		</style>
+		<div class="cntPadre grid cuatroXcuatro brecha10px">
+			<div class="elHijo filasUnoTres">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Inicia en 1 y acaba en 5 [start: 1;] [end: 5;]. El elemento se pociciona entre las filas 1 y 5, abarcando todo el espacio de la columna 1.</p>
+		<style>
+			.filasUnoCinco {
+				background-color: hotpink;
+				grid-row-start: 1; grid-row-end: 5;
+			}
+		</style>
+		<div class="cntPadre grid cuatroXcuatro brecha10px">
+			<div class="elHijo filasUnoCinco">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Abarca todas las filas de la columna [start: 1;] [end: -1;]. <br>
+		Como del otro lado de la matriz se cuenta con negativos si nosotros invocamos el numero -1 automaticamente estamos pidiendole que abarque hasta la fila final. <br>
+		Sin importar el alto del contenedor padre ni, mas importante, cuantas filas poseea la columna (por si agregan de manera automatica con algun media querie). <em> Importante: Si se crean automaticamente nuevas filas porque ya no caben los elementos la orden -1 no las tomara en cuenta, porque solo toma en cuenta las filas explicitas.</em></p>
+		<style>
+			.filasUnoFinal {
+				background-color: hotpink;
+				grid-row-start: 1; grid-row-end: -1;
+			}
+
+			@keyframes cambiarAlto {
+				0% {height: 500px;}
+				50% {height: 200px;}
+				100% {height: 500px;}
+			}
+
+			.cambiarAlto {
+				animation-name: cambiarAlto;
+				animation-duration: 5s;
+				animation-iteration-count: infinite;
+				animation-timing-function: ease;
+			}
+
+			.cntPrevenirAltura {
+				width: 100%;
+				height: 500px;
+			}
+		</style>
+		<div class="cntPrevenirAltura">
+			<div class="cntPadre grid cuatroXcuatro cambiarAlto brecha10px">
+				<div class="elHijo filasUnoFinal">1</div>
+				<div class="elHijo">2</div>
+				<div class="elHijo">3</div>
+				<div class="elHijo">4</div>
+				<div class="elHijo">5</div>
+				<div class="elHijo">6</div>
+				<div class="elHijo">7</div>
+				<div class="elHijo">8</div>
+				<div class="elHijo">9</div>
+				<div class="elHijo">10</div>
+				<div class="elHijo">11</div>
+				<div class="elHijo">12</div>
+			</div>
+		</div>
+
+		<p>Abarcar filas y dejar espacio [start: 1;] [end: -X;]. <br>
+		Para dejar filas sin ocupar se aumenta las que desees al -1, siguien la misma logica de arriba.</p>
+		<style>
+			.filasUnoFinalUno {
+				background-color: hotpink;
+				grid-row-start: 1; grid-row-end: -2;
+			}
+		</style>
+		<em class="upNote">grid-row-start: 1; grid-row-end: -2;</em>
+		<div class="cntPrevenirAltura">
+			<div class="cntPadre grid cuatroXcuatro cambiarAlto brecha10px">
+				<div class="elHijo filasUnoFinalUno">1</div>
+				<div class="elHijo">2</div>
+				<div class="elHijo">3</div>
+				<div class="elHijo">4</div>
+				<div class="elHijo">5</div>
+				<div class="elHijo">6</div>
+				<div class="elHijo">7</div>
+				<div class="elHijo">8</div>
+				<div class="elHijo">9</div>
+				<div class="elHijo">10</div>
+				<div class="elHijo">11</div>
+				<div class="elHijo">12</div>
+			</div>
+		</div>
+
+		<p>Toda esta logica se puede aplicar a cualquier elemento.</p>
+			
+		<!-- grid-column-start/end -->
+		<h3>grid-column-start/end</h3>
+		<p>Estas propiedades sirven para especificar como queremos que se acomode un elemento hijo en las columnas dentro de nuestra grid. <br>
+		Las filas y las columnas se cuentan entre los elementos, no en el centro de ellos.</p>
+
+		<p>Inicia en 1 y acaba en 2 [start: 1;] [end: 2;]. El elemento se pociciona entre las columnas 1 y 2.</p>
+		<style>
+			.columnasUnoDos {
+				background-color: hotpink;
+				grid-column-start: 1; grid-column-end: 2;
+			}
+		</style>
+		<em class="upNote">Abrir la consola->Elements->Layout(abajo)->Grid Overlays (Activar Visualizacion de Grid para ver los numeros entre las filas y las columnas)</em>
+		<div class="cntPadre grid cuatroXcuatro brecha10px">
+			<div class="elHijo columnasUnoDos">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Inicia en 1 y acaba en 3 [start: 1;] [end: 3;]. El elemento se pociciona entre las columnas 1 y 3.</p>
+		<style>
+			.columnasUnoTres {
+				background-color: hotpink;
+				grid-column-start: 1; grid-column-end: 3;
+			}
+		</style>
+		<div class="cntPadre grid cuatroXcuatro brecha10px">
+			<div class="elHijo columnasUnoTres">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Inicia en 1 y acaba en 5 [start: 1;] [end: 5;]. El elemento se pociciona entre las columnas 1 y 5, abarcando todo el espacio de la fila 1.</p>
+		<style>
+			.columnasUnoCinco {
+				background-color: hotpink;
+				grid-column-start: 1; grid-column-end: 5;
+			}
+		</style>
+		<div class="cntPadre grid cuatroXcuatro brecha10px">
+			<div class="elHijo columnasUnoCinco">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Abarca todas las columnas de la fila [start: 1;] [end: -1;]. <br>
+         Como del otro lado de la matriz se cuenta con negativos si nosotros invocamos el numero -1 automaticamente estamos pidiendole que abarque hasta la columna final. <br>
+         Sin importar el ancho del contenedor padre ni, mas importante, cuantas columnas explicitas poseea la fila (por si agregan de manera automatica con algun media querie). <em> Importante: Si se crean automaticamente nuevas columnas porque ya no caben los elementos la orden -1 no las tomara en cuenta, porque solo toma en cuenta las columnas explicitas.</em></p>
+		<style>
+			.columnasUnoFinal {
+				background-color: hotpink;
+				grid-column-start: 1; grid-column-end: -1;
+			}
+
+			@keyframes cambiarAncho {
+				0% {width: 50%;}
+				50% {width: 10%;}
+				100% {width: 50%;}
+			}
+
+			.cambiarAncho {
+				animation-name: cambiarAncho;
+				animation-duration: 5s;
+				animation-iteration-count: infinite;
+				animation-timing-function: ease;
+			}
+		</style>
+		<div class="cntPadre grid cuatroXcuatro cambiarAncho brecha10px">
+			<div class="elHijo columnasUnoFinal">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Abarcar columnas y dejar espacio [start: 1;] [end: -X;]. <br>
+        Para dejar columnas sin ocupar se aumenta las que desees al -1, siguien la misma logica de arriba.</p>
+        <style>
+        	.columnasUnoFinalUno {
+				background-color: hotpink;
+				grid-column-start: 1; grid-column-end: -2;
+			}
+        </style>
+        <em class="upNote">grid-column-start: 1; grid-column-end: -2;</em>
+        <div class="cntPadre grid cuatroXcuatro cambiarAncho brecha10px">
+			<div class="elHijo columnasUnoFinalUno">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<!-- grid-row/column -->
+		<h3>grid-row/column</h3>
+		<p>Son resumenes de las propiedades anteriores.</p>
+		<code>grid-row: start / end;	grid-column: start/end;</code>
+
+		<p>grid-row: 1 / 3; grid-column: 1 / 3; = Ocupa la fila 1 hasta la 3, y la columna 1 hasta la 3.</p>
+		<style>
+			.elementoDosDos {
+				background-color: hotpink;
+				grid-row: 1 / 3;
+				grid-column: 1 / 3;
+			}
+		</style>
+		<div class="cntPadre grid cuatroXcuatro brecha10px">
+			<div class="elHijo elementoDosDos">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>grid-row: 1 / 4; grid-column: 1 / 3; = Ocupa la fila 1 hasta la 4, la columna 1 hasta la 3.</p>
+		<style>
+			.elementoTresDos {
+				background-color: hotpink;
+				grid-row: 1 / 4;
+				grid-column: 1 / 3;
+			}
+		</style>
+		<em class="upNote">Quite el elemento hijo 12 porque ya no cabia bien dentro de la grid. <br>
+		Se estaba creando automaticamente una nueva fila implicita ajustada a la altura del contenedor padre.</em>
+		<div class="cntPadre grid cuatroXcuatro brecha10px">
+			<div class="elHijo elementoTresDos">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+		</div>
+
+		<p>grid-row: 2 / 4; grid-column: 2 / 4; = Ocupa la fila 2 hasta la 4, la columna 2 hasta la 4.</p>
+		<style>
+			.elementoSeis {
+				background-color: hotpink;
+				grid-row: 2 / 4;
+				grid-column: 2 / 4;
+			}
+		</style>
+		<div class="cntPadre grid cuatroXcuatro brecha10px">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo elementoSeis">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Esta logica sirve no solo para alterar el tamanio sino tambien la posicion dentro de la grid de cualquier elemento hijo. <br>
+		grid-row: 2 / 4; grid-column: 4 / 5; = Ocupa la fila 2 hasta la 4, la columna 4 hasta la 5.</p>
+		<style>
+			.cambioPosicion {
+				background-color: hotpink;
+				grid-row: 2 / 4;
+				grid-column: 4 / 5;
+			}
+		</style>
+		<div class="cntPadre grid cuatroXcuatro brecha10px">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo cambioPosicion">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<!-- grid-area -->
+		<h3>grid-area</h3>
+		<p>Resumen de las cuatro propiedades anteriores.</p>
+		<code>grid-area: row-start column-start row-end column-end;</code>
+
+		<p>grid-area: 1 / 1 / 3 / 2; = Ocupa la fila 1 hasta la 3, la columna 1 hasta la 2</p>
+		<style>
+			.areaUnoDos {
+				background-color: hotpink;
+				grid-area: 1 / 1 / 3 / 2;
+			}
+		</style>
+		<div class="cntPadre grid cuatroXcuatro brecha10px">
+			<div class="elHijo areaUnoDos">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>grid-area: 1 / 4 / -1 / 5; = Ocupa la fila 1 hasta la ultima (explicita), y la columna 4 hasta la 5.</p>
+		<style>
+			.areaUnoFinal {
+				background-color: hotpink;
+				grid-area: 1 / 4 / -1 / 5;
+			}
+		</style>
+		<div class="cntPadre grid cuatroXcuatro brecha10px">
+			<div class="elHijo">1</div>
+			<div class="elHijo areaUnoFinal">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<!-- span (valor) -->
+		<h3>span (valor)</h3>
+		<p>Es un valor muy util (span=abarcar) de las propiedades grid-column:; y grid-row:; porque sirve para referirse a las filas y las columnas de una forma mucho mas intuitiva y practica. <br>
+		n = literalmente el numero de filas/columnas que deseamos que abarque dentro de la grid sin tomar en cuenta las confusas coordenadas especificas de la matriz.</p>
+		<code>grid-column: start / span n;	 grid-row: start / span n;</code>
+		<p>Al omitir el primer valor tomara la posicion original del elemento (muy practico).</p>
+		<code>grid-column: span n;	 grid-row: span n;</code>
+
+		<p>grid-row: span 2; grid-column: span 3; = Ocupa desde tu fila original dos filas mas, y desde tu columna original, tres columnas mas.</p>
+		<style>
+			.spanDosTres {
+				background-color: hotpink;
+				grid-row: span 2;
+				grid-column: span 3;
+			}
+		</style>
+		<em class="upNote">Se esta creando automaticamente una nueva fila implicita ajustada a la altura del contenedor padre. <br>
+		Porque el elemento hijo 12 ya no cabia en la disposicion anterior.</em>
+		<div class="cntPadre grid cuatroXcuatro brecha10px">
+			<div class="elHijo spanDosTres">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>grid-row: 3 / span 1; grid-column: 2 / span 2; = Ocupa desde la fila 3 una fila mas, y desde la columna numero dos ocupa otras dos columnas mas.</p>
+		<style>
+			.spanTresDos {
+				background-color: hotpink;
+				grid-row: 3 / span 1; 
+				grid-column: 2 / span 2;
+			}
+		</style>
+		<div class="cntPadre grid cuatroXcuatro brecha10px">
+			<div class="elHijo spanTresDos">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<!-- grid-template-areas -->
+		<h3>grid-template-areas</h3>
+		<p>Con grid area podemos separar un espacio dentro del contenedor padre (un area) y nombrarlo con una etiqueta. Esto es para asignarle ese espacio a un elemento usando la etiqueta y sin preocuparnos por los molestos numeros. Esta propiedad permite crear una de esas areas dentro del contenedor padre y nombrarla con una etiqueta.</p>
+
+		<p>Area de 1 x 1 ['label']. Ocupa la fila uno y columna uno. Recibe el nombre de areaUno.</p>
+		<code>grid-template-areas: 'areaUno';</code>
+		<style>
+			.contenedorGrid {
+				background-color: skyblue;
+				width: 50%;
+				height: 500px;
+				border: 1px solid black;
+				margin: 0 auto;
+				/*CSS Grid*/
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				grid-template-rows: repeat(5, 1fr);
+			}
+			.areaUno {
+				grid-template-areas: 'areaUno';
+			}
+		</style>
+		<em class="upNote">Activa la visualizacion de Grid en DevTools para ver el area y su etiqueta.</em>
+		<div class="contenedorGrid areaUno">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Area de 1 x 2 ['label label']. Ocupa la fila uno, y las columnas uno y dos. Recibe el nombre de areaDos.</p>
+		<code>grid-template-areas: 'areaDos areaDos';</code>
+		<style>
+			.areaDos {
+				grid-template-areas: 'areaDos areaDos';
+			}
+		</style>
+		<div class="contenedorGrid areaDos">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Area de 1 x 3 ['label label label']. Ocupa la fila uno, y las columnas uno dos y tres. Recibe el nombre de areaTres.</p>
+		<code>grid-template-areas: 'areaTres areaTres areaTres';</code>
+		<style>
+			.areaTres {
+				grid-template-areas: 'areaTres areaTres areaTres';
+			}
+		</style>
+		<div class="contenedorGrid areaTres">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Para incluir mas filas en el area debemos agregar un salto de linea. En la nueva linea especificamos el numero de columnas. No se admiten areas que no sean rectangulares.<br>
+		Area de 2 x 3 ['label label label'] ['label label label']. Ocupa las dos primeras filas y tres columnas.</p>
+		<code>grid-template-areas: 'areaCuatro areaCuatro areaCuatro'<br>
+		.....................'areaCuatro areaCuatro areaCuatro';</code>
+		<style>
+			.areaCuatro {
+				grid-template-areas: 'areaCuatro areaCuatro areaCuatro'
+		                             'areaCuatro areaCuatro areaCuatro';
+			}
+		</style>
+		<div class="contenedorGrid areaCuatro">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Area de 2 x 2 ['label label'] ['label label']. Ocupa las dos primeras filas y dos columnas.</p>
+		<code>grid-template-areas: 'areaCinco areaCinco'<br>
+		.....................'areaCinco areaCinco';</code>
+		<style>
+			.areaCinco {
+				grid-template-areas: 'areaCinco areaCinco'
+									 'areaCinco areaCinco';
+			}
+		</style>
+		<div class="contenedorGrid areaCinco">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+
+		<!-- Asignar Areas -->
+		<h3>Asignar Areas</h3>
+		<p>Una vez que hemos definido un area, el siguiente paso es asignarsela a un elemento para que la ocupe. Para hacer esto utilizamos la propiedades de posicionamiento grid-row y grid-column en el elemento. <br>
+		A las propiedades les damos como valor la etiqueta (el nombre) del area donde deseamos ubicar nuestro elemento.</p>
+
+		<p>areaUno asignada al elemento hijo 1 [row: areaUno/areaUno; column: areaUno/areaUno;]</p>
+		<style>
+			.posicionarAreaUno {
+				background-color: hotpink;
+				grid-row: areaUno/areaUno;
+				grid-column: areaUno/areaUno;
+			}
+		</style>
+		<em class="upNote">Activa la visualizacion de Grid en DevTools para ver el area y su etiqueta.</em>
+		<div class="contenedorGrid areaUno">
+			<div class="elHijo posicionarAreaUno">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>areaDos asignada al elemento hijo 1 [row: areaDos/areaDos; column: areaDos/areaDos;]</p>
+		<style>
+			.posicionarAreaDos {
+				background-color: hotpink;
+				grid-row: areaDos/areaDos;
+				grid-column: areaDos/areaDos;
+			}
+		</style>
+		<div class="contenedorGrid areaDos">
+			<div class="elHijo posicionarAreaDos">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>areaTres asignada al elemento hijo 1 [row: areaTres/areaTres; column: areaTres/areaTres;]</p>
+		<style>
+			.posicionarAreaTres {
+				background-color: hotpink;
+				grid-row: areaTres/areaTres;
+				grid-column: areaTres/areaTres;
+			}
+		</style>
+		<div class="contenedorGrid areaTres">
+			<div class="elHijo posicionarAreaTres">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>areaCuatro asignada al elemento hijo 1 [row: areaCuatro/areaCuatro; column: areaCuatro/areaCuatro;]</p>
+		<style>
+			.posicionarAreaCuatro {
+				background-color: hotpink;
+				grid-row: areaCuatro/areaCuatro;
+				grid-column: areaCuatro/areaCuatro;
+			}
+		</style>
+		<div class="contenedorGrid areaCuatro">
+			<div class="elHijo posicionarAreaCuatro">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>areaCinco asignada al elemento hijo 1 [row: areaCinco/areaCinco; column: areaCinco/areaCinco;]</p>
+		<style>
+			.posicionarAreaCinco {
+				background-color: hotpink;
+				grid-row: areaCinco/areaCinco;
+				grid-column: areaCinco/areaCinco;
+			}
+		</style>
+		<div class="contenedorGrid areaCinco">
+			<div class="elHijo posicionarAreaCinco">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Multiples areas distintas asignadas a multiples elementos.</p>
+		<style>
+			.areaMultiple {
+				grid-template-areas: 'header  header    header   '
+									 'sidebar contenido contenido'
+									 'sidebar contenido contenido'
+									 'widgets contenido contenido'
+									 'footer  footer    footer   '
+				;
+			}
+
+			.textoBlanco {
+				color: white;
+				padding: 10px;
+				font-size: 22px;
+			}
+
+			.headerArea {
+				background-color: blue;
+				grid-row: header/header;
+				grid-column: header/header;
+			}
+
+			.sidebarArea {
+				background-color: red;
+				grid-row: sidebar/sidebar;
+				grid-column: sidebar/sidebar;
+			}
+
+			.contenidoArea {
+				background-color: orange;
+				grid-row: contenido/contenido;
+				grid-column: contenido/contenido;
+			}
+
+			.widgetsArea {
+				background-color: purple;
+				grid-row: widgets/widgets;
+				grid-column: widgets/widgets;
+			}
+
+			.footerArea {
+				background-color: seagreen;
+				grid-row: footer/footer;
+				grid-column: footer/footer;
+			}
+
+		</style>
+		<em class="upNote">Abre el codigo para ver como estan distribuidas y asignadas las areas.</em>
+		<div class="contenedorGrid areaMultiple">
+			<div class="elHijo textoBlanco headerArea">HEADER</div>
+			<div class="elHijo textoBlanco sidebarArea">SIDEBAR</div>
+			<div class="elHijo textoBlanco contenidoArea">CONTENIDO</div>
+			<div class="elHijo textoBlanco widgetsArea">WIDGETS</div>
+			<div class="elHijo textoBlanco footerArea">FOOTER</div>
+		</div>
+
+		<p>El gran poder de CSS Grid esta en que utilizando mediaqueries podemos cambiar facilmente la ubicacion de los elementos dentro de la estructura, o incluso la estructura misma para hacer nuestro disenio web adaptable a dispositivos moviles. Por ejemplo aqui hay una muestra del mismo disenio pero con los elementos header y aside intercambiados de lugar sin alterar el codigo HTML, sino solo su clase.</p>
+		<style>
+			.areaMultipleAlterada {
+				grid-template-areas: 'sidebar sidebar   sidebar'
+									 'header  contenido contenido'
+									 'header  contenido contenido'
+									 'widgets contenido contenido'
+									 'footer  footer    footer   '
+				;
+			}
+		</style>
+		<em class="upNote">Abre el codigo para ver como estan distribuidas y asignadas las areas.</em>
+		<div class="contenedorGrid areaMultipleAlterada">
+			<div class="elHijo textoBlanco headerArea">HEADER</div>
+			<div class="elHijo textoBlanco sidebarArea">SIDEBAR</div>
+			<div class="elHijo textoBlanco contenidoArea">CONTENIDO</div>
+			<div class="elHijo textoBlanco widgetsArea">WIDGETS</div>
+			<div class="elHijo textoBlanco footerArea">FOOTER</div>
+		</div>
+
+		<!-- grid-template-row -->
+		<h3>grid-auto-flow</h3>
+		<p>Controla en que sentido se van agregando automaticamante los nuevos elementos dentro de nuestra grid, si mediante las filas o mediante las columnas.</p>
+		<style>
+			.segundoContGrid {
+				background-color: skyblue;
+				width: 50%;
+				height: 500px;
+				border: 1px solid black;
+				margin: 0 auto;
+				/*CSS Grid*/
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				grid-template-rows: repeat(3, 1fr);
+			}
+		</style>
+
+		<p>Agregar nuevos elementos en las filas (por defecto) [row].</p>
+		<style>
+			.grid-auto-flow-row {
+				grid-auto-flow: row;
+			}
+		</style>
+		<div class="segundoContGrid grid-auto-flow-row">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+			<div class="elHijo">13</div>
+			<div class="elHijo">14</div>
+			<div class="elHijo">15</div>
+		</div>
+
+		<p>Agregar nuevos elementos en las columnas [column].</p>
+		<style>
+			.grid-auto-flow-column {
+				grid-auto-flow: column;
+			}
+		</style>
+		<div class="segundoContGrid grid-auto-flow-column">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+			<div class="elHijo">13</div>
+			<div class="elHijo">14</div>
+			<div class="elHijo">15</div>
+		</div>
+
+	</section>
+</body>
+</html>

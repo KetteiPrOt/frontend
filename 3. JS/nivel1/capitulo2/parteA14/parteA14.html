@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 14</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Funciones</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Definicion y usos -->
+	<h3>Definicion y usos</h3>
+	<p>
+		Una funcion es un bloque del programa quien recibe uno o varios valores llamados <strong>argumentos</strong> y retorna un <strong>unico valor de salida</strong> al finalizar sus procesos internos. Son estructuras muy utiles para no repetir codigo en programas que requieran realizar un proceso mismo proceso en mas de una ocasion, y tambien para tener el codigo mas estructurado y ordenado dentro del programa.
+	</p>
+
+	<!-- Formas de crear e invocar funciones -->
+	<h3>Formas de crear e invocar funciones</h3>
+	<p>Hay dos formas de crear una funcion, una de ellas es:</p>
+	<code>
+		function nombre (argumento1, argumento2...) { <br>
+		&nbsp // codigo <br>
+		} 
+	</code>
+
+	<p>La otra es la siguiente:</p>
+	<code>
+		const nombre = function (argumento1, argumento2...) { <br>
+		&nbsp // codigo <br>
+		} 
+	</code>
+
+	<p> Y para llamarla a ejecutar su codigo se la invoca de la siguiente manera sin importar la forma en que fue creada:</p>
+	<code>
+		nombre('valor1', 'valor2'...);
+	</code>
+
+	<!-- Retorno de la funcion (return) -->
+	<h3>Retorno de la funcion (return)</h3>
+	<p>Las funciones reciben varios argumentos de entrada y retornan un unico valor de salida. Este valor se especifica con la sentencia <em>return</em>:</p>
+	<code>
+		function sumar (numero1, numero2) { <br>
+		&nbsp let suma = numero1 + numero2; <br>
+		&nbsp <strong>return</strong> suma; <br>
+		} 
+	</code>
+
+	<p>De esta forma, al invocarla y pasarle los argumentos la funcion devolvera el valor de la variable suma:</p>
+	<code>
+		let resultado = sumar(5, 18); <br> <br>
+		console.log(resultado); <strong>// 23</strong>
+	</code>
+	<p>
+		Tambien es importante saber que al ejecutar la sentencia <em>return</em> la funcion finaliza su ejecucion de manera similar a cuando un bucle se para por la sentencia <em>break</em>. <br> 
+		Ya que ha cumplido su mision de retornar su valor de salida se puede ir en paz.
+	</p>
+
+	<!-- Declaracion de argumentos -->
+	<h3>Declaracion de argumentos</h3>
+	<p>Definir un argumento al crear una funcion es equivalente a declarar una variable sin inicializarla, por lo que:</p>
+	<code>
+		function (argumento1, argumento2) { ... }; <br>
+	</code>
+	<p>Es equivalente a:</p>
+	<code>
+		let argumento1, argumento2;
+	</code>
+	<p>Y los valores de argumento1 y argumento2, en ambas situaciones, son indefinidos (undefined) ya que no han sido inicializados.</p>
+
+	<!-- Funcion flecha -->
+	<h3>Funcion flecha</h3>
+	<p>Una funcion flecha es una alternativa compacta a una funcion normal, con algunas
+	<a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Functions/Arrow_functions">
+		limitaciones especiales
+	</a> . Cuando son funciones de una sola linea se puede abreviar bastante:</p>
+	<code>
+		<strong>// Funcion Normal Escrita de la forma 1</strong> <br>
+		function sumarCentena (a) { <br> 
+		&nbsp return 100 + a; <br>
+		} <br>
+		console.log(sumarCentena(7)); // 107 <br> <br>
+
+
+		<strong>// Funcion Normal Escrita de la forma 2</strong> <br>
+		const sumarCentena = function (a) { <br> 
+		&nbsp return 100 + a; <br>
+		} <br>
+		console.log(sumarCentena(7)); // 107 <br> <br>
+
+		<strong>// Funcion Flecha</strong> <br>
+		const sumarCentena = a => a + 100; <br>
+		console.log(sumarCentena(7)); // 107
+	</code>
+
+	<p>Cuando la funcion tiene mas argumentos y/o mas lineas de codigo se vuelve nesesario utilizar signos de agrupacion (parentesis y corchetes), asi como especificarle el retorno (<em>return</em>) que antes era implicito:</p>
+	<code>
+		<strong>// Funcion Normal</strong> <br>
+		function nombre (argumento1, argumento2...) { <br> 
+		&nbsp // codigo
+		&nbsp return valorRetorno; <br>
+		} <br>
+
+		<strong>// Funcion Flecha</strong> <br>
+		const nombre = (argumento1, argumento2...) => { <br>
+		&nbsp // codigo <br>
+		&nbsp return valorRetorno <br>
+		}
+	</code>
+	
+</body>
+</html>

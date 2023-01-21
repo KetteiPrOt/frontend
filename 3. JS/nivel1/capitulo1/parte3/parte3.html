@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 3</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Formas de enlazar JavaScript</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- En linea -->
+	<h3>En linea</h3>
+	<p>Se puede agregar JavaScript en el atributo onclick="" de un elemento html y el codigo se ejecutara a hacerle click al elemento. No se recomienda hacerlo al menos que sea para realizar pruebas rapidas.</p>
+	<h4 onclick="alert('Hola Mundo!');">Presioname!</h4>
+	
+	<!-- Etiqueta script -->
+	<h3>Etiqueta script</h3>
+	<p>Se puede agregar JavaScript dentro del documento html utilizando la etiqueta "script" y el codigo se ejecutara al inicializar el documento.</p>
+	<code> < script > "codigo JavaScript" < / script ></code>
+
+	<!-- Archivo de formato .js -->
+	<h3>Archivo de formato .js</h3>
+	<p>Se puede enlazar un archivo externo con codigo JavaScript (formato .js). El codigo se ejecutara al cargar el archivo en el documento html.</p>
+	<code> < script src="archivo.js" >  < / script ></code>
+
+	<!-- Con un Require -->
+	<h3>Con un Require</h3>
+	<p>Esto es cuando trabaje con Node.js</p>
+</body>
+</html>

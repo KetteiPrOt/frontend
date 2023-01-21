@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Propiedades Basicas</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Propiedades basicas -->
+	<section>
+		<h2>Propiedades Basicas</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<h3>color</h3>
+		<p>Sirve para cambiar el color del texto</p>
+		<style>
+			.texto {
+				color: red;
+				/*Acepta algunos colores en ingles y valores hexadecimales, ejemplo:
+				#FF0000(rojo) #00FF00(verde) #0000FF(azul) #FFFFF(blanco) #000000(negro)*/
+			}
+		</style>
+		<p class="texto">Texto con color</p>
+
+		<h3>background-color</h3>
+		<p>Sirve para cambiar el fondo de un elemento</p>
+		<style>
+			.articulo {
+				background-color: skyblue;
+			}
+		</style>
+		<article class="articulo">
+			<h4>SubTitulo</h4>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum beatae, ad corporis harum reprehenderit delectus suscipit temporibus, molestias ratione earum voluptate ea ipsam maiores quaerat veniam amet! Deserunt dolore corrupti velit asperiores tempore facilis, sed dolorum, accusamus iste repudiandae, omnis adipisci nemo ullam inventore cum assumenda, quaerat enim rem repellat a. Totam minima, natus provident eum rem, repellendus aliquid culpa distinctio magni commodi nihil dicta quasi excepturi. Quasi qui, necessitatibus illo perferendis nulla deserunt voluptatibus, cumque, nisi non error nam!</p>
+		</article>
+
+		<h3>width</h3>
+		<p>Sirve para cambiar el ancho de un elemento</p>
+		<style>
+			.articuloLigero {
+				background-color: skyblue;
+				width: 50%;
+				/*La medida se calcula en funcion de las dimensiones del contendor
+				padre, mas no de las dimensiones del elemento. Aqui 50% de ancho del
+				contenedor padre (section)*/
+			}
+		</style>
+		<article class="articuloLigero">
+			<h4>SubTitulo</h4>
+			<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut fugiat autem, pariatur quos, animi dolorem fuga consequuntur minus eius est quia repudiandae quis vel error nobis quam beatae quae nostrum quasi numquam, possimus iure! Dolor, delectus enim debitis iusto dignissimos?</p>
+		</article>
+
+		<h3>height</h3>
+		<p>Sirve para cambiar el alto de un elemento</p>
+		<style>
+			.articuloAlto {
+				background-color: skyblue;
+				height: 200px; 
+				/*El alto no se puede controlar con % en este caso
+				porque el alto hacia abajo es indefinido*/
+				/*Si el elemento estuviera contenido en un padre el
+				cual si tenga definido su altura en px, seria posible
+				controlar las dimensiones % del elemento hijo en funcion
+				de esas medidas definidas del padre*/
+			}
+		</style>
+		<article class="articuloAlto">
+			<h4>SubTitulo</h4>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad similique, voluptatum. Aliquid corrupti natus, similique laboriosam ipsa laudantium, odio cum eligendi distinctio, aspernatur maxime eum voluptas fugiat nihil recusandae dolorem inventore eos tempore. Maiores enim optio sunt quo iure accusamus magnam culpa, atque quasi, esse iusto. Repudiandae modi numquam quasi necessitatibus nisi eum dolor delectus facilis odit ea unde quod porro earum voluptate molestiae veniam aliquam ducimus repellat culpa eaque cupiditate sit pariatur blanditiis ipsa, quidem. Consequatur, totam nulla.</p>
+		</article>
+	</section>
+</body>
+</html>

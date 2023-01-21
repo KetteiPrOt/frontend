@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Seccion 5</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../nivel1/styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Principiios de OO en JS</h1>
+	<h4 class="enlace-volver"><a href="../indice.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Aclaracion -->
+	<h3>Aclaracion</h3>
+	<p>JavaScript es un lenguaje de POO basado en <em><strong>Prototipos</strong></em> por lo que hay mucha distancia entre la forma en la que un lenguaje de POO basado en clases maneja estos principios... y de echo en esos otros tipos de lenguajes es mucho mas facil ver como se cumplen estos pincipios que en JavaScript.</p>
+
+	<!-- Encapsulacion en JavaScript -->
+	<h3>Encapsulacion y abstraccion en JavaScript</h3>
+	<p>
+		La <a href="../parteA17/parteA17.html">encapsulacion y la abstraccion</a> tienen como finalidad que sea sencillo utilizar el objeto (ya que su logica interna esta oculta), ademas de que cada objeto sea responsable de su propia informacion y estado el cual deberia ser inaccesible desde afuera salvo por los propios metodos del objeto.
+	</p>
+
+	<!-- Subtitulo -->
+	<h4>El problema con JavaScript</h4>
+	<p>
+		Imaginemos que tengo un objeto con un metodo que sirve para mostrar informacion del objeto:
+	</p>
+	<!-- codigo -->
+	<code>
+		const companiia = { <br>
+		&nbsp nombre: 'FrankG games Pro', <br>
+		&nbsp empleados: ['Maria', 'Jose', 'Cofla', 'Agustin', 'Emilia', 'Shizuku'], <br>
+		&nbsp mostrarEmpleados() { return this.empleados } <br>
+		} <br><br>
+
+		console.log(companiia.mostrarEmpleados()); <strong>// ['Maria', 'Jose', 'Cofla', 'Agustin', 'Emilia', 'Shizuku']</strong>
+	</code>
+	<p>
+		Pero un nuevo programador novato esta modificando el codigo y sin querer (o sin saber) reescribe mi metodo como un simple texto:
+	</p>
+	<!-- codigo -->
+	<code>
+		companiia.mostrarEmpleados = 'jjkjjkkkjkjkjk';
+	</code>
+	<p>
+		Lo que va a pasar es que al yo volver a llamar en mi programa a la funcion mostrarEmpleados() me va a dar un error porque estaria llamando a un <strong>string</strong> como si fuera una funcion.
+	</p>
+	<!-- codigo -->
+	<code>
+		console.log(companiia.mostrarEmpleados()); <strong>// Error</strong>
+	</code>
+
+	<!-- Subtitulo -->
+	<h4>Solucion de otros leguajes</h4>
+	<p>
+		En otros lenguajes de tipado fuerte esto no pasa porque desde el inicio la propiedad mostrarEmpleados era de tipo <em><strong>function</strong></em> y no seria posible asignarle un nuevo valor de tipo <em>string</em>. Para cumplir con el principio de la encapsulacion y evitar estos errores existen unos metodos clasicos.
+	</p>
+	<p>
+		Los metodos adquiridores (getters) y colocadores (setters) se crean y utilizan para modificar la informacion y el estado del objeto, sin darle acceso directo al usuario o al programador para alterar el objeto.
+	</p>
+	<p>
+		Por ejemplo con una funcion constructora creo el Objeto companiia que contiene oculto una variable 'empleados' con un array:
+	</p>
+	<!-- codigo -->
+	<code>
+		function Companiias(nombre) { <br>
+		&nbsp 'use strict'; <br>
+		&nbsp let empleados = []; <br>
+		&nbsp this.nombre = nombre; <br><br>
+
+		&nbsp this.getEmpleados = function() { <br>
+		&nbsp 	return empleados; <br>
+		&nbsp } <br><br>
+
+		&nbsp this.setEmpleado = function(empleado) { <br>
+		&nbsp 	empleados.push(empleado); <br>
+		&nbsp } <br>
+		} <br><br>
+
+		const companiia = new Companiias('Coca-Cola'); <br><br>
+
+		console.log(companiia); // {nombre: 'Coca-Cola', getEmpleados: ƒ, setEmpleado: ƒ}
+	</code>
+	<p>
+		Ocurre que la unica forma de acceder a la variable oculta (empleados) es mediante los metodos que defini: 
+	</p>
+	<!-- codigo -->
+	<code>
+		console.log(companiia.getEmpleados()); // [] <br>
+		companiia.setEmpleado('Joel');  <br>
+		companiia.setEmpleado('Juan');  <br>
+		companiia.setEmpleado('Haruka'); <br>
+		console.log(companiia.getEmpleados()); // ['Joel', 'Juan', 'Haruka']
+	</code>
+	<p><strong>Importante:</strong> hacer esto con una clase en lugar de una funcion constructora no es posible.</p>
+
+	<!-- Herencia en JavScript -->
+	<h3>Herencia en JavScript</h3>
+	<p>
+		La herencia se utiliza para ahorrar codigo al crear nuevos objetos mas especificos a partir de objetos generales.
+	</p>
+	<p>
+		Por ejemplo si tengo la clase Usuario con las propiedades nombre y apellido:
+	</p>
+	<!-- codigo -->
+	<code>
+		class Usuario { <br>
+		&nbsp constructor(nombre, apellido) { <br>
+		&nbsp &nbsp this.nombre = nombre; <br>
+		&nbsp &nbsp this.apellido = apellido; <br>
+		&nbsp } <br>
+		}
+	</code>
+	<p>
+		Entonces luego quiero crear una nueva clase de objetos llamada Programador que a la final tambien va a tener las propiedades nombre y apellido, pues para no repetirme utilizamos la herencia con la palabra clave <em><strong>extends</strong></em> (extender) y el metodo <em><strong>super()</strong></em>:
+	</p>
+	<!-- codigo -->
+	<code>
+		class Programador <strong>extends</strong> Usuario { <br>
+		&nbsp constructor(nombre, apellido, lenguaje) { <br>
+		&nbsp &nbsp <strong>super(nombre, apellido)</strong>; <br>
+		&nbsp &nbsp this.lenguaje = lenguaje; <br>
+		&nbsp } <br>
+		} <br><br>
+
+		const joel = new Programador('Joel', 'Mero', 'JavaScript'); <br>
+
+		console.log(joel); <strong>// Programador {nombre: 'Joel', apellido: 'Mero', lenguaje: 'JavaScript'}</strong>
+	</code>
+	<p>
+		El metodo <em>super()</em> trae todas la propiedades y tambien recibe los parametros  de la clase Usuario para que realizar la herencia sea posible.
+	</p>
+
+	<!-- Polimorfismo -->
+	<h3>Polimorfismo</h3>
+	<p>Hay tres tipos de polimorfismo: la Sobrecarga, el Polimorfismo Parametrico, y el Subtipo de Polimorfismo.</p>
+
+	<!-- Subtitulo -->
+	<h4>La Sobrecarga</h4>
+	<p>
+		Hace referencia a que un mismo metodo pueda ejecutarse correctamente sin importar que reciba distintos tipos parametros, por ejemplo aqui el metodo funciona tanto para numeros como para textos gracias a la funcion <em>toString()</em> y esto es Sobrecarga.
+	</p>
+	<!-- codigo -->
+	<code>
+		class Clase { <br>
+		&nbsp constructor() { <br>
+		&nbsp &nbsp this.propiedad = null; <br>
+		&nbsp } <br><br>
+
+		&nbsp contarDigitos(parametro) { <br>
+		&nbsp 	return parametro.toString().length; <br>
+		&nbsp } <br>
+		} <br><br>
+
+		const objeto = new Clase(); <br><br>
+
+		console.log(objeto.contarDigitos(457345)); // 6 <br>
+		console.log(objeto.contarDigitos('hola')); // 4
+	</code>
+	<p>
+		La Sobrecarga tambien implica que el metodo funcione aunque el numero de parametros que le pasamos no sea el mismo en todas las ocasiones. Por ejemplo, aqui es posible que funcine el metodo sumar gracias a los valores iniciales de x, y, z, los cuales son 0 en lugar de ser undefined y generar un error en la ultima llamada del metodo (donde no tiene parametro z):
+	</p>
+	<!-- codigo -->
+	<code>
+		class Clase { <br>
+		&nbsp constructor() { <br>
+		&nbsp &nbsp this.propiedad = null; <br>
+		&nbsp } <br><br>
+
+		&nbsp sumar(x = 0, y = 0, z = 0) { <br>
+		&nbsp &nbsp return x + y + z; <br>
+		&nbsp } <br>
+		} <br><br>
+
+		const objeto = new Clase(); <br><br>
+
+		console.log(objeto.sumar(5, 6, 3)); // 14 <br>
+		console.log(objeto.sumar(4, 11)); // 15
+	</code>
+
+	<!-- Subtitulo -->
+	<h4>Polimorfismo parametrico</h4>
+	<p>
+	 	Hace referencia a metodos que pueden trabajar con parametros de cualquier tipo, tambien llamados genericos. Esto es mas complejo en lenguajes de programacion de tipado fuerte, pero JavaScript ya puede por defecto trabajar con todo tipo de datos en sus metodos:
+	</p>
+	<!-- codigo -->
+	<code>
+		class Clase { <br>
+		&nbsp constructor() { <br>
+		&nbsp &nbsp this.stack = []; <br>
+		&nbsp } <br><br>
+
+		&nbsp agregar(elemento) { <br>
+		&nbsp 	this.stack.push(elemento); <br>
+		&nbsp } <br>
+		} <br><br>
+
+		const objeto1 = new Clase(); <br>
+		objeto1.agregar('23'); objeto1.agregar('43'); objeto1.agregar('15'); <br>
+		console.log(objeto1.stack); <strong>// ['23', '43', '15']</strong> <br><br>
+
+		const objeto2 = new Clase(); <br>
+		objeto2.agregar('Hola'); objeto2.agregar('Mundo'); objeto2.agregar('!!!'); <br>
+		console.log(objeto2.stack); <strong>// ['Hola', 'Mundo', '!!!']</strong>
+	</code>
+
+	<!-- Subtitulo -->
+	<h4>Subtipo de polimorfismo</h4>
+	<p>
+		Permite a los objetos con distintos tipos de datos ser procesados, pero no solo con distintos tipos de datos sino tambien con una relacion de una herencia. Aqui el polimorfismo parametrico esta en que la funcion nombreCompleto() es capaz de procesar tanto objetos de la clase Persona, como de sus clases heredadas (en este caso Programador).
+	</p>
+	<!-- codigo -->
+	<code>
+		class Usuario { <br>
+		&nbsp constructor(nombre, apellido) { <br>
+		&nbsp &nbsp this.nombre = nombre; <br>
+		&nbsp &nbsp this.apellido = apellido; <br>
+		&nbsp } <br>
+		} <br><br>
+
+		class Programador <strong>extends</strong> Usuario { <br>
+		&nbsp constructor(nombre, apellido, lenguaje) { <br>
+		&nbsp &nbsp <strong>super(nombre, apellido)</strong>; <br>
+		&nbsp &nbsp this.lenguaje = lenguaje; <br>
+		&nbsp } <br>
+		} <br><br>
+
+		const ray = new Person('Ray', 'Bryan'); <br>
+		const joel = new Programador('Joel', 'Mero', 'JavaScript'); <br> <br>
+
+		console.log(joel); <strong>// Programador {nombre: 'Joel', apellido: 'Mero', lenguaje: 'JavaScript'}</strong> <br><br>
+
+		function nombreCompleto(objeto) { <br>
+		&nbsp console.log(objeto.nombre + ' ' + objeto.apellido); <br>
+		}
+	</code>
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

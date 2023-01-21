@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 41</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Eventos del Mouse</h1>
+	<h4 class="enlace-volver"><a href="../capitulo9.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Mouse -->
+	<h2>Mouse</h2>
+	<p>Eventos sobre el mouse.</p>
+
+	<!-- Click -->
+	<h3>Click</h3>
+	<p>Ocurre con un click sobre un elemento. Se llama con 'click'.</p>
+
+	<!-- elementos -->
+	<button id="pajazo">id="pajazo"</button>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let pajazo = document.getElementById('pajazo'); <br><br>
+
+		pajazo.addEventListener(<strong>'click'</strong>, () => { alert('Has activado el evento click!') });
+	</code>
+	<script>
+		let pajazo = document.getElementById('pajazo');
+
+		pajazo.addEventListener('click', () => { alert('Has activado el evento click!') });
+	</script>
+
+
+	<!-- Doble Click -->
+	<h3>Doble Click</h3>
+	<p>Ocurre cuando sehace doble click sobre un elemento. Se llama con 'dblclick'.</p>
+
+	<!-- elementos -->
+	<button id="gallozo">id="gallozo" (Haceme doble click :v)</button>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let gallozo = document.getElementById('gallozo'); <br><br>
+
+		gallozo.addEventListener(<strong>'dblclick'</strong>, () => { <br> &nbsp&nbsp&nbsp
+			alert('Hiciste Doble Click!'); <br>
+		});
+	</code>
+	<script>
+		let gallozo = document.getElementById('gallozo');
+
+		gallozo.addEventListener('dblclick', () => {
+			alert('Hiciste Doble Click!');
+		});
+	</script>
+
+
+	<!-- mouseover -->
+	<h3>mouseover</h3>
+	<p>Mouse encima. Ocurre cuando el puntero se mueve sobre un elemento, o sobre uno de sus hijos. Se llama con 'mouseover'.</p>
+
+	<!-- elementos -->
+	<div class="elementoDOM" id="codrilaxo">
+		Pon la flecha sobre mi!
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let codrilaxo = document.getElementById('codrilaxo'); <br><br>
+
+		codrilaxo.addEventListener(<strong>'mouseover'</strong>, () => { <br> &nbsp&nbsp&nbsp
+			alert('Activaste el Evento!'); <br>
+		});
+	</code>
+	<script>
+		let codrilaxo = document.getElementById('codrilaxo');
+
+		codrilaxo.addEventListener('mouseover', () => {
+			alert('Activaste el Evento!');
+		});
+	</script>
+
+
+	<!-- mouseout -->
+	<h3>mouseout</h3>
+	<p>Mouse fuera. Ocurre cuando se mueve el puntero fuera de un elemento o de sus elementos secundarios. Se llama con 'mouseout'.</p>
+
+	<!-- elementos -->
+	<div class="elementoDOM" id="dongup">
+		Pon el puntero sobre mi, y sacalo!
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let dongup = document.getElementById('dongup'); <br><br>
+
+		dongup.addEventListener(<strong>'mouseout'</strong>, () => { <br> &nbsp&nbsp&nbsp
+			alert('Activaste el Evento mouseout!!'); <br>	
+		});
+	</code>
+	<script>
+		let dongup = document.getElementById('dongup');
+
+		dongup.addEventListener('mouseout', () => {
+			alert('Activaste el Evento mouseout!!');
+		});
+	</script>
+
+
+	<!--contextmenu -->
+	<h3>contextmenu</h3>
+	<p>Menu contextual. Ocurre cuando se hace click derecho en algun elemento para abrir el menu contextual. Se llama con 'contextmenu'.</p>
+
+	<!-- elementos -->
+	<div class="elementoDOM" id="torotocho">
+		Hasme click derecho!
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let trotocho = document.getElementById('torotocho'); <br><br>
+
+		torotocho.addEventListener(<strong>'contextmenu'</strong>, () => { <br> &nbsp&nbsp&nbsp
+			alert('Ejecutaste el Evento contextmenu!!'); <br>
+		});
+	</code>
+	<script>
+		let trotocho = document.getElementById('torotocho');
+
+		torotocho.addEventListener('contextmenu', () => {
+			alert('Ejecutaste el Evento contextmenu!!');
+		});
+	</script>
+
+
+	<!-- mousemove -->
+	<h3>mousemove</h3>
+	<p>Ocurre cuando el puntero se mueve mientras esta sobre un elemento.</p>
+	<p>
+		Este evento tiene muchas propiedades. Entre ellas las coordenadas x, z donde esta el cursor dentro el elemento... ellas se podrian usar en un juego o para dibujar con la <em>API Canvas</em>.
+	</p>
+
+	<!-- elemento -->
+	<div class="elementoDOM" id="udon">
+		Muevete encima para activar el evento!
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let udon = document.getElementById('udon'); <br><br>
+
+		udon.addEventListener(<strong>'mousemove'</strong>, () => { <br> &nbsp&nbsp&nbsp
+			console.log('Se Activo el Evento!!'); <strong>// Se Activo el Evento!!</strong> <br>
+		});
+	</code>
+	<script>
+		let udon = document.getElementById('udon');
+
+		udon.addEventListener('mousemove', () => {
+			console.log('Se Activo el Evento!!');
+		});
+	</script>
+
+
+	<!-- mousedown -->
+	<h3>mousedown</h3>
+	<p>Cae el mouse. Ocurre cuando presionamos hacia abajo el click del mouse sobre un elemento, aunque luego no lo subamos. Se llama con 'mousedown'.</p>
+
+	<!-- elemento -->
+	<div class="elementoDOM" id="roedxr">
+		Deja caer el click!
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let roedxr = document.getElementById('roedxr'); <br><br>
+
+		roedxr.addEventListener(<strong>'mousedown'</strong>, () => { <br> &nbsp&nbsp&nbsp
+			alert('Activaste el evento mousedown!!'); <br>
+		});
+	</code>
+	<script>
+		let roedxr = document.getElementById('roedxr');
+
+		roedxr.addEventListener('mousedown', () => {
+			alert('Activaste el evento mousedown!!');
+		});
+	</script>
+
+
+	<!-- mouseup -->
+	<h3>mouseup</h3>
+	<p>Sube el mouse. Ocurre cuando subimos el click del mouse sobre un elemento, aunque no lo hayamos dejado caer sobre el mismo elemento. Se llama con 'mouseup'.</p>
+
+	<!-- elemento -->
+	<div class="elementoDOM" id="deinslef">
+		Sube el click aqui!
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let deinsleif = document.getElementById('deinslef'); <br><br>
+
+		deinsleif.addEventListener(<strong>'mouseup'</strong>, () => { <br> &nbsp&nbsp&nbsp
+			alert('Activaste el Evento mouseup!!'); <br>
+		});
+	</code>
+	<script>
+		let deinsleif = document.getElementById('deinslef');
+
+		deinsleif.addEventListener('mouseup', () => {
+			alert('Activaste el Evento mouseup!!');
+		});
+	</script>
+
+
+
+
+	<!-- Teclado -->
+	<h2>Teclado</h2>
+	<p>Eventos sobre el teclado.</p>
+
+
+	<!-- keydown -->
+	<h3>keydown</h3>
+	<p>Ocurre cuando una tecla se presiona. Se llama con 'keydown'.</p>
+	<p>
+		Este evento tiene muchas propiedades, entre ellas <em>code</em> retorna un string con el codigo de la tecla fisica que fue presionada (ignora la disposicion de teclado del usuario, siempre trabaja con teclado QWERTY, si quieres que funcione con otras puedes usar <em>Keyboard.getLayoutMap()</em>).
+	</p>
+
+	<!-- elementos -->
+	<input type="text" id="rexcapto" class="elementoDOM" placeholder="Escribe para activar el evento">
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let rexcapto = document.getElementById('rexcapto'); <br><br>
+
+		rexcapto.addEventListener(<strong>'keydown'</strong>, (eventObject) => { <br>
+			console.log('Activaste el Evento keydown!!'); <br><br>
+
+			let codigo = eventObject.code; <br><br> <strong>// Tecla que fue presionada</strong>
+
+			console.log(codigo); <br>
+		});
+	</code>
+	<script>
+		let rexcapto = document.getElementById('rexcapto');
+
+		rexcapto.addEventListener('keydown', (eventObject) => {
+			console.log('Activaste el Evento keydown!!');
+
+			let codigo = eventObject.code;
+
+			console.log(codigo);
+		});
+	</script>
+
+
+	<!-- keyup -->
+	<h3>keyup</h3>
+	<p>Ocurre cuando una tecla se suelta. Se llama con 'keyup'. En orden, ocurre despues de keydown.</p>
+	<p>
+		Este evento tiene muchas propiedades, entre ellas <em>code</em> retorna un string con el codigo de la tecla fisica que fue presionada (ignora la disposicion de teclado del usuario, siempre trabaja con teclado QWERTY, si quieres que funcione con otras puedes usar <em>Keyboard.getLayoutMap()</em>).
+	</p>
+
+	<!-- elementos -->
+	<input type="text" id="fortanx" class="elementoDOM" placeholder="Escribe para activar el evento">
+	<br><br>
+	<!-- codigo -->
+	<script>
+		let fortanx = document.getElementById('fortanx');
+
+		fortanx.addEventListener('keyup', (eventObject) => {
+			console.log('Activaste el Evento keyup!!');
+
+			let codigo = eventObject.code;
+
+			console.log(codigo);
+		});
+	</script>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 12</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Objetos (Diccionarios)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Definicion -->
+	<h3>Definicion</h3>
+	<p>Un Objeto en JavaScript es un diccionario que tiene propiedades o pares clave-valor. Cada propiedad tiene un nombre llamado 'clave' y cada clave corresponde a su 'valor' dentro del objeto.</p>
+	<code>
+		const objeto = { <br>
+		&nbsp &nbsp propiedad1: valor1, <br>
+	    &nbsp &nbsp propiedad2: valor2, <br>
+	    &nbsp &nbsp propiedad3: valor3, <br>
+	    &nbsp &nbsp ... <br>
+	    &nbsp &nbsp propiedadN: valorN <br>
+	    }
+	</code>
+	<p>
+		El valor puede ser un dato de cualquier tipo, una varible, un array, e incluso otros objetos. <br>
+		La llave puede ser una cadena de texto que debe ir entre comillas si tiene espacios, un simbolo, o un numero.
+	</p>
+
+	<!-- Sintaxis y usos -->
+	<h3>Sintaxis y usos</h3>
+	<p>Para llamar un valor contenido dentro del objeto debemos pasarle, entre comillas, la llave que le corresponde a ese valor.</p>
+	<code>
+		alert(objeto['propiedad1']); // valor1 <br>
+		alert(objeto['propiedad2']); // valor2 <br>
+	</code>
+
+	<!-- Agregar un nuevo valor con su llave -->
+	<h3>Agregar un nuevo valor con su llave</h3>
+	<p>Podemos agregar un nuevo valor con su llave al objeto utilizando con dos sintaxis. La primera es:</p>
+	<code>
+		const objeto = {}; <br>
+		objeto.llaveNueva = valorNuevo; <br>
+		alert(objeto); // { llaveNueva: valorNuevo }
+	</code>
+
+	<p>La segunda es util cuando queremos agregar una llave que tenga espacios:</p>
+	<code>
+		const objeto = {}; <br>
+		objeto.['llave nueva'] = valorNuevo; <br>
+		alert(objeto); // { 'llave nueva': valorNuevo }
+	</code>
+
+	<!-- Agregar metodos a un objeto -->
+	<h3>Agregar metodos a un objeto</h3>
+	<p>Podemos agregar un Metodo a un objeto utilizando la siguiente notacion</p>
+	<code>
+		const objeto = { <br>
+		&nbsp &nbsp nombreMetodo () { ... } <br>
+	    }
+	</code>
+
+	<p>Luego para invocarlo debe ser de la siguiente forma:</p>
+	<code>
+		objeto.nombreMetodo();
+	</code>
+	<p>Invocar el metodo ejecutara todo el codigo que este contenga.</p>
+
+	<!-- Funcion keys() -->
+	<h3>Funcion keys()</h3>
+	<p>Esta funcion nos retorna un arreglo que contiene todas las llaves de un objeto que le pasemos de la siguiente manera:</p>
+	<code>
+		let llaves = Object.keys(miObjeto); <br>
+		alert(llaves); // [llave1, llave2, ... , llaveN]
+	</code>
+
+	<!-- Funcion values() -->
+	<h3>Funcion values()</h3>
+	<p>Esta funcion nos retorna un arreglo que contiene todos los valores de un objeto que le pasemos de la siguiente manera:</p>
+	<code>
+		let valores = Object.values(miObjeto); <br>
+		alert(valores); // [valor1, valor2, ... , valorN]
+	</code>
+
+	<!-- Eliminar una llave y un valor -->
+	<h3>Eliminar una llave y un valor</h3>
+	<p>Se puede eliminar una propiedad (una llave y un valor) de un objeto con la siguiente orden:</p>
+	<code>delete miObjeto.llave;</code>
+	<p>Esto eliminara del objeto la llave indicada junto a su valor asociado.</p>
+
+</body>
+</html>

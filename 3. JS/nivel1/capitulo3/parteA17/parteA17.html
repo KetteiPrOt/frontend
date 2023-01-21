@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 17</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Principios de la POO</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Abstraccion -->
+	<h3>Abstraccion</h3>
+	<p>Se trata de abstraer detalles de un objeto hasta que quede solo no nesesario para funcionar en el programa... reducimos las cosas a sus componentes basicos.</p>
+
+	<!-- Moduralidad -->
+	<h3>Moduralidad</h3>
+	<p>Es la capacidad de resolver un problema grande resumiendolo en pedacitos mas pequenios e independientes.</p>
+
+	<!-- Encapsulamiento -->
+	<h3>Encapsulamiento</h3>
+	<p>Es hacer que todos los datos esten privados para que el usuario no pueda acceder a los datos tan facil.</p>
+
+	<!-- Polimorfismo -->
+	<h3>Polimorfismo</h3>
+	<p>Es como un Objeto se comporta distinto ante un metodo solamente por sus propiedades. Por ejemplo un objeto vaca no va a usar el metoto caminar() igual que un objeto dinosaurio.</p>
+
+	<!-- Ejemplo -->
+	<h3>Ejemplo</h3>
+	<code>
+		class Animal { <br>
+		&nbsp constructor(especie, edad, color) { <br>
+    	&nbsp &nbsp this.especie = especie; <br>
+    	&nbsp &nbsp this.edad = edad; <br>
+    	&nbsp &nbsp this.color = color; <br>
+    	&nbsp &nbsp this.info = `Soy un/a ${this.especie}, tengo ${this.edad} anios y soy de color ${this.color}`; <br>
+		&nbsp } <br><br>
+
+		&nbsp presentarse() { <br>
+		&nbsp &nbsp console.log(this.info); <br>
+		&nbsp } <br>
+		} <br><br>
+
+		const gato = new Animal('gato', '2', 'negrisimo'); <br>
+		gato.presentarse(); <strong>// info</strong><br><br>
+
+		class Canino extends Animal { <br>
+		&nbsp constructor(especie, edad, color) { <br>
+		&nbsp &nbsp super(especie, edad, color); <br>
+		&nbsp } <br><br>
+
+		&nbsp ladrar() { <br>
+		&nbsp &nbsp console.log('Gua Gua!'); <br>
+		&nbsp } <br>
+		} <br><br>
+
+		const perro = new Canino('doberman', '3', 'morado'); <br>
+		perro.presentarse(); <strong>// info</strong> <br>
+		perro.ladrar(); <strong>// Gua Gua!</strong>
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

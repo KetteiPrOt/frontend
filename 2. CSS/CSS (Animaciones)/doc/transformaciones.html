@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tranformaciones</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Tranformaciones -->
+	<section>
+		<h2>Tranformaciones</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<!-- transform -->
+		<h3>transform</h3>
+		<p>Permite hacer que los elementos se transformen al cambiar sus estilos.</p>
+		<style>
+			.elemento {
+				background: skyblue;
+				width: 150px;
+				height: 150px;
+				border: 1px solid black;
+			}
+		</style>
+		<div class="elemento"></div>
+
+		<!-- translate() -->
+		<h3>translate()</h3>
+		<p>Valor de transform. Permite trasladar elementos en animaciones.</p>
+		<p>Pixeles [X, Y]. Elemento trasladado 200px en X y 0px en Y. <em>Usar valor tranlateX()/translateY() para alterar un parametro especifico.</em></p>
+		<style>
+			.trasladar {
+				transform: translate(200px, 0px);
+			}
+		</style>
+		<div class="trasladar elemento"></div>
+
+		<!-- scale() -->
+		<h3>scale()</h3>
+		<p>Ancho y alto [width, height]. Permite escalar en base a 1 el tamaño de los elementos.</p>
+		<style>
+			.escalar {
+				position: relative; left: 500px;
+				transform: scale(1.5,1.5);
+			}
+
+			.enLinea { display: inline-block; }
+		</style>
+		<div class="elemento enLinea">scale(1,1)</div>
+		<div class="escalar elemento enLinea">scale(1.5,1.5)</div>
+
+		<!-- rotate() -->
+		<h3>rotate()</h3>
+		<p class="mb-30">Grados sexagesimales [deg]. Permite rotar los elementos en grados sexagesimales.</p>
+		<style>
+			.rotar45 {
+				transform: rotate(45deg);
+			}
+
+			.rotar90 {
+				transform: rotate(90deg);
+			}
+
+			.mb-30 { margin-bottom:30px; }
+		</style>
+		<div class="elemento enLinea">rotate(0deg)</div>
+		<div class="rotar45 elemento enLinea">rotate(45deg)</div>
+		<div class="rotar90 elemento enLinea">rotate(90deg)</div>
+
+		<!-- skew() -->
+		<h3>skew()</h3>
+		<p class="mb-30">Grados y grados sexagesimales [Xdeg, Ydeg]. Sirve para crear triangulos.</p>
+		<style>
+			.sesgarX {
+				transform: skewX(20deg);
+			}
+
+			.sesgarY {
+				transform: skewY(20deg);
+			}
+		</style>
+		<div class="elemento enLinea">skew(0)</div>
+		<div class="sesgarX elemento enLinea">skewX(20deg)</div>
+		<div class="sesgarY elemento enLinea">skewY(20deg)</div>
+
+		<!-- transform (resumen) -->
+		<h3>transform (resumen)</h3>
+		<p>Se pueden poner varios valores a la vez.</p>
+		<code>transform: translate(X,Y) scale(width,height) rotate(deg) skew(Xdeg,Ydeg);</code>
+	</section>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 22</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Consola funciones de registro</h1>
+	<h4 class="enlace-volver"><a href="../capitulo5.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- assert() -->
+	<h3>assert()</h3>
+	<p>Aparece un mensaje por la consola si la afirmacion es falsa, si es verdadera no aparecera nada y retorna <em>undefined</em> en ambos casos.</p>
+	<!-- codigo -->
+	<code>
+		console.assert(true); // <br>
+		console.assert(false); // Assertion failed: console.assert
+	</code>
+
+	<!-- clear() -->
+	<h3>clear()</h3>
+	<p>Limpia los valores de la consola.</p>
+	<!-- codigo -->
+	<code>
+		console.assert(false); // ERROR <br>
+		console.assert(false); // ERROR <br>
+		console.clear()		   // Console was cleared
+	</code>
+
+	<!-- info() -->
+	<h3>info()</h3>
+	<p>Emite un mensaje de tipo informacion en la consola. Similar a log()</p>
+	<!-- codigo -->
+	<code>
+		console.info('Hola Mundo!!'); // Hola Mindo!!
+	</code>
+
+	<!-- log() -->
+	<h3>log()</h3>
+	<p>Muestra un mensaje de parte del interprete de JS... lo hemos estado usando todo este tiempo no es asi?</p>
+	<!-- codigo -->
+	<code>
+		console.log('Hola Mundo!!'); // Hola Mundo!!
+	</code>
+
+	<!-- table() -->
+	<h3>table()</h3>
+	<p>Muestra una tabla por la consola. Recibe como argumento primero <strong>un array o un objeto</strong>, y lo muestra como una tabla en la consola.</p>
+	<!-- codigo -->
+	<code>
+		let array = ['Joel', 'Matias', 'Elias', 'Dana', 'Tobias', '???'], <br> &nbsp&nbsp&nbsp
+			objeto = { perro: 'firulais', gato: 'Maniozo', ganzo: 'Garbagio' } <br> <br>
+
+		console.table(array); // Tabla de los datos y el indice <br>
+		console.table(objeto) // Tabla de los valores y sus llaves
+	</code>
+
+	<!-- warn() -->
+	<h3>warn()</h3>
+	<p>Muestra un mensaje de advertencia por consola.</p>
+	<!-- codigo -->
+	<code>
+		console.warn('Ten cuidado con esoooo!!'); // (!) Ten cuidado con esoooo!!
+	</code>
+
+	<!-- dir() -->
+	<h3>dir()</h3>
+	<p>Despliega una lista interactiva de las propiedades del objeto JavaScript identificado.</p>
+	<!-- codigo -->
+	<code>
+		const objeto = { <br> &nbsp&nbsp&nbsp
+			dia1: 'Lunes', <br> &nbsp&nbsp&nbsp
+			dia2: 'Martes', <br> &nbsp&nbsp&nbsp
+			dia3: 'Miercoles', <br> &nbsp&nbsp&nbsp
+			dia4: 'Jueves' <br><br>
+		}
+
+		console.dir(objeto); // Lista de las propiedades  <br>
+		console.log(objeto); // {dia1: 'Lunes', dia2: 'Martes', dia3: 'Miercoles', dia4: 'Jueves'}
+	</code>
+
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

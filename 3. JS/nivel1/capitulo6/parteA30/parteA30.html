@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 30</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Elemento Parent y Siblings</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Propiedades de Parent (padres) -->
+	<h2>Propiedades de Parent (padres)</h2>
+	<p>Es el elemento padre de cualquier nodo o elemento html.</p>
+
+	<!-- parentElement -->
+	<h3>parentElement</h3>
+	<p>Contiene el elemento padre del cualquier elemento o nodo.</p>
+
+	<!-- elemento -->
+	<div id="tigreTocho" class="elementoDOM">
+		<p id="tigreJunior">Tigre Junior</p>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let tigreJunior = document.getElementById('tigreJunior'); <br><br>
+
+		console.log(tigreJunior.parentElement) <strong>// div id="tigreTocho"</strong>
+	</code>
+
+
+	<!-- parentNode -->
+	<h3>parentNode</h3>
+	<p>Contiene el nodo padre de cualquier nodo o elemento html. Casi siempre sera otro nodo de tipo elemento html.</p>
+
+	<!-- elemento -->
+	<div id="leonTocho" class="elementoDOM">
+		<p id="leonJunior">Leon Junior</p>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let leonJunior = document.getElementById('leonJunior'); <br><br>
+
+		console.log(leonJunior.parentElement) <strong>// div id="leonTocho"</strong>
+	</code>
+
+
+	<!-- closest() -->
+	<h3>closest()</h3>
+	<p>Este metodo selecciona el elemento padre mas cercano que coincida con nuestro selector.</p>
+
+	<!-- elemento -->
+	<div class="clase-1">
+		<div class="clase-2">
+			<div class="clase-3">
+				<div id="hijoFinal" class="elementoDOM">
+					id="hijoFinal"
+				</div>
+			</div>
+		</div>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let hijoFinal = document.getElementById('hijoFinal'); <br><br>
+
+		console.log(hijoFinal.closest('.clase-2')); <strong>// div class="clase-2"</strong>
+	</code>
+
+
+
+	<!-- Propiedades de Siblings (hermanos) -->
+	<h2>Propiedades de Siblings (hermanos)</h2>
+	<p>Los elementos siblings (hermanos) son los que estan contenidos junto al elemento en cuestion dentro de un mismo padre.</p>
+
+
+	<!-- nextSibling/previusSibling -->
+	<h3>nextSibling/previusSibling</h3>
+	<p>Contiene el siguiente y el anterior nodo hermano del elemento, en cuestion. Como es natural, tambien incluye lo nodos de texto generados por la tabulacion del codigo.</p>
+
+	<!-- elemento -->
+	<div id="centauroTocho" class="elementoDOM">
+		<p id="centauroJunior1">Centauro Jr. 1</p>
+		<p id="centauroJunior2">Centauro Jr. 2</p>
+		<p id="centauroJunior3">Centauro Jr. 3</p>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let centJunior1 = document.getElementById('centauroJunior1'); <br><br>
+
+		console.log(centJunior1.nextSibling); <strong>// #text</strong> <br>
+		console.log(centJunior1.previousSibling); <strong>// #text</strong>
+	</code>
+
+
+	<!-- nextElementSibling/previusElementSibling -->
+	<h3>nextElementSibling/previusElementSibling</h3>
+	<p>Contiene el siguiente y el anterior elemento hermano del elemento, en cuestion.</p>
+
+	<!-- elemento -->
+	<div id="pavoTocho" class="elementoDOM">
+		<p id="pavoJunior1">Pavo Jr. 1</p>
+		<p id="pavoJunior2">Pavo Jr. 2</p>
+		<p id="pavoJunior3">Pavo Jr. 3</p>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let pavoJunior2 = document.getElementById('pavoJunior2'); <br><br>
+
+		console.log(pavoJunior2.nextElementSibling); <strong>// p id="pavoJunior3"</strong> <br>
+		console.log(pavoJunior2.previousElementSibling); <strong>// p id="pavoJunior1"</strong>
+	</code>
+
+
+
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Modelo de Caja</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Modelo de Caja -->
+	<section>
+		<h2>Modelo de Caja</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<h3>Caja</h3>
+		<p>Los elementos HTML estan creados como una caja con diferentes capas las cuales poseen medidas manipulables.</p>
+		<img src="../../media/modeloCaja.jpg">
+
+		<h3>border</h3>
+		<p>Se divide en 3 subpropiedades</p>
+
+		<ul>
+			<li>border-width: ancho del borde</li>
+			<li>border-style: el estilo del borde</li>
+			<li>border-color: el color del borde</li>
+		</ul>
+
+		<p>Borde negro [1px solid black]</p>
+		<style>
+			.parrafo {
+				background-color: skyblue;
+				width: 30%;
+			}
+			.bordeNegro {
+				border-width: 1px;
+				border-style: solid;
+				border-color: black;
+			}
+		</style>
+		<p class="parrafo bordeNegro">Lorem ipsum dolor sit, amet.</p>
+
+		<p>La propiedad border es un resumen de las tres siguientes</p>
+		<code>elemento { boder: width style color }</code>
+
+		<h3>border-style</h3>
+		<p>Define el estilo del borde</p>
+		<p>Solido [solid]</p>
+		<style>
+			.borde {
+				border-width: 3px;
+				border-color: black;
+			}
+
+			.solido {
+				border-style: solid;
+			}
+		</style>
+		<p class="parrafo borde solido">Lorem ipsum dolor sit amet.</p>
+
+		<p>Lineas punteadas [dashed]</p>
+		<style>
+			.lineaPunteada {
+				border-style: dashed;
+			}
+		</style>
+		<p class="parrafo borde lineaPunteada">Lorem ipsum dolor, sit amet.</p>
+
+		<p>Puntos [dotted]</p>
+		<style>
+			.puntos {
+				border-style: dotted;
+			}
+		</style>
+		<p class="parrafo borde puntos">Lorem ipsum dolor, sit amet.</p>
+
+		<p>Doble [double]</p>
+		<style>
+			.doble {
+				border-style: double;
+			}
+		</style>
+		<p class="parrafo borde doble">Lorem ipsum dolor sit amet.</p>
+
+		<p>Surcado [groove]</p>
+		<style>
+			.bordeAmarillo {
+				border-width: 3px;
+				border-color: yellow; /*Algunos bordes no se ven con el color negro*/
+			}
+
+			.surcos {
+				border-style: groove;
+			}
+		</style>
+		<p class="parrafo bordeAmarillo surcos">Lorem ipsum dolor sit amet.</p>
+
+		<p>Cresta [ridge]</p>
+		<style>
+			.cresta {
+				border-style: ridge;
+			}
+		</style>
+		<p class="parrafo bordeAmarillo cresta">Lorem ipsum, dolor sit amet.</p>
+
+		<p>Enterrado [inset]</p>
+		<style>
+			.enterrado {
+				border-style: inset;
+			}
+		</style>
+		<p class="parrafo bordeAmarillo enterrado">Lorem ipsum dolor, sit amet.</p>
+
+		<p>Sobresaliente [outset]</p>
+		<style>
+			.sobresaliente {
+				border-style: outset;
+			}
+		</style>
+		<p class="parrafo bordeAmarillo sobresaliente">Lorem ipsum, dolor sit amet.</p>
+
+		<p>Sin borde [hidden] (por defecto)</p>
+		<style>
+			.oculto {
+				border-style: hidden;
+			}
+		</style>
+		<p class="parrafo borde oculto">Lorem ipsum dolor, sit amet.</p>
+
+		<h3>border-left/top/right/bottom</h3>
+		<p>Estas propiedades sirven para controlar cada borde de los elementos</p>
+		<p>border-left</p>
+		<style>
+			.bordeNegro {
+				border: 3px solid black;
+			}
+
+			.izquierdoRojo {
+				border-left: 3px solid red;
+			}
+		</style>
+		<p class="parrafo bordeNegro izquierdoRojo">Lorem ipsum, dolor sit amet.</p>
+
+		<p>border-top</p>
+		<style>
+			.superiorRojo {
+				border-top: 3px solid red;
+			}
+		</style>
+		<p class="parrafo bordeNegro superiorRojo">Lorem ipsum, dolor sit amet.</p>
+
+		<p>border-right</p>
+		<style>
+			.derechoRojo {
+				border-right:  3px solid red;
+			}
+		</style>
+		<p class="parrafo bordeNegro derechoRojo">Lorem ipsum dolor sit amet.</p>
+
+		<p>border-bottom</p>
+		<style>
+			.inferiorRojo {
+				border-bottom: 3px solid red;
+			}
+		</style>
+		<p class="parrafo bordeNegro inferiorRojo">Lorem ipsum dolor sit amet.</p>
+
+		<h3>border-radius</h3>
+		<p>Sirve para poner bordes redondeados en los elementos</p>
+		<style>
+			.bordeRedondo {
+				border-radius: 5px;
+				height: 50px;
+			}
+		</style>
+		<p class="parrafo bordeNegro bordeRedondo">Lorem ipsum dolor sit amet.</p>
+
+		<h3>padding</h3>
+		<p>Es la capa que separa el contenido del borde</p>
+		<style>
+			.pequeño {
+				width: 200px;
+			}
+
+			.contenerImg {
+				width: 200px;
+				border: 3px solid black;
+				background-color: skyblue;
+			}
+
+			.separar {
+				padding: 20px;
+			}
+		</style>
+		<div class="contenerImg separar"><img class="pequeño" src="../../media/asuna.png"></div>
+
+		<p>padding-top</p>
+		<style>
+			.separarArriba {
+				padding-top: 20px;
+			}
+		</style>
+		<div class="contenerImg separarArriba"><img class="pequeño" src="../../media/asuna.png"></div>
+
+		<p>padding-right</p>
+		<style>
+			.separarDerecha {
+				padding-right: 20px;
+			}
+		</style>
+		<div class="contenerImg separarDerecha"><img class="pequeño" src="../../media/asuna.png"></div>
+
+		<p>padding-bottom</p>
+		<style>
+			.separarAbajo {
+				padding-bottom: 20px;
+			}
+		</style>
+		<div class="contenerImg separarAbajo"><img class="pequeño" src="../../media/asuna.png"></div>
+
+		<p>padding-left</p>
+		<style>
+			.separarIzquierda {
+				padding-left: 20px;
+			}
+		</style>
+		<div class="contenerImg separarIzquierda"><img class="pequeño" src="../../media/asuna.png"></div>
+
+
+		<p>Tambien acepta valores diferentes en linea</p>
+		<code>elemento { padding: top right bottom left; }</code>
+		<style>
+			.separarResumido {
+				padding: 20px 20px 20px 20px;
+			}
+		</style>
+		<div class="contenerImg separarResumido"><img class="pequeño" src="../../media/asuna.png"></div>
+
+		<h3>margin</h3>
+		<p>Es la capa que existe entre los elementos, el margen de cada elemento respecto a los demas</p>
+		<p>Sin margen</p>
+		<style>
+			.bloque {
+				background-color: skyblue;
+			}
+		</style>
+		<div class="bloque">Bloque arriba</div>
+		<input placeholder="elemento en linea"><input placeholder="elemento en linea">
+		<div class="bloque">Bloque abajo</div>
+		<p>Con margen</p>
+		<style>
+			.margen {
+				margin: 20px;
+			}
+		</style>
+		<div class="bloque">Bloque arriba</div>
+		<input class="margen" placeholder="elemento en linea"><input class="margen" placeholder="elemento en linea">
+		<div class="bloque">Bloque abajo</div>
+
+		<p>margin-top</p>
+		<style>
+			.margenSuperior {
+				margin-top: 20px;
+			}
+		</style>
+		<div class="bloque">Bloque arriba</div>
+		<input class="margenSuperior" placeholder="Margen Arriba"><input class="margenSuperior" placeholder="Margen Arriba">
+		<div class="bloque">Bloque abajo</div>
+
+		<p>margin-right</p>
+		<style>
+			.margenDerecho {
+				margin-right: 20px;
+			}
+		</style>
+		<div class="bloque">Bloque arriba</div>
+		<input class="margenDerecho" placeholder="Margen Derecho"><input placeholder="Sin margen">
+		<div class="bloque">Bloque abajo</div>
+
+		<p>margin-bottom</p>
+		<style>
+			.margenAbajo {
+				margin-bottom: 20px;
+			}
+		</style>
+		<div class="bloque">Bloque arriba</div>
+		<input class="margenAbajo" placeholder="Margen Abajo"><input class="margenAbajo" placeholder="Margen Abajo">
+		<div class="bloque">Bloque abajo</div>
+
+		<p>margin-left</p>
+		<style>
+			.margenIzquierdo {
+				margin-left: 20px;
+				box-sizing: content-box;
+			}
+		</style>
+		<div class="bloque">Bloque arriba</div>
+		<input class="margenIzquierdo" placeholder="Margen Izquierdo"><input class="margenIzquierdo" placeholder="Margen Izquierdo">
+		<div class="bloque">Bloque abajo</div>
+
+		<h3>box-sizing</h3>
+		<p>Controla que capa de los elementos definen las propiedades width y height.</p>
+		<p>Definir en el contenido [content-box] (por defecto). Al definir width y height no se toma en cuenta a los padding ni a los border , porque definen la capa contenido del elemento.</p>
+		<style>
+			.ancho500 {
+				width: 500px;				
+			}
+
+			.izquierda50 {
+				padding-left: 50px;
+			}
+
+			.definirContenido {
+				box-sizing: content-box;
+			}
+		</style>
+		<p class="parrafo borde solido ancho500 izquierda50 definirContenido">Ancho definido: 500, Padding izquierdo: 50, Ancho total: 550px</p>
+
+		<p>Definir en el borde [border-box]. Al definir width y height aqui si se toma en cuenta a los padding y los border, porque definen la capa del borde del elemento.</p>
+		<style>
+			.definirBorde {
+				box-sizing: border-box;
+			}
+		</style>
+		<p class="parrafo borde solido ancho500 izquierda50 definirBorde">Ancho definido: 500, Padding izquierdo: 50, Ancho total: 500px</p>
+
+	</section>
+</body>
+</html>

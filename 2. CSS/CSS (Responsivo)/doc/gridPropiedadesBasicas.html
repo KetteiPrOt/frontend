@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Grid (Propiedades Basicas)</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Grid (Propiedades Basicas) -->
+	<section>
+		<h2>Grid (Propiedades Basicas)</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<!-- display: grid; -->
+		<h3>display: grid;</h3>
+		<p>Activa Grid en el elemento permitiendo usar las propiedades de cuadricula.</p>
+		<style>
+			.cntPadre {
+				background-color: skyblue;
+				width: 50%;
+				height: 500px;
+				border: 1px solid black;
+				margin: 0 auto;
+			}
+
+			.elHijo {
+				background-color: pink;
+				width: auto; height: auto;
+				border: 1px solid black;
+			}
+
+			.grid { display: grid; }
+		</style>
+
+		<p>display: block;</p>
+		<div class="cntPadre">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>display: grid;</p>
+		<div class="cntPadre grid">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<!-- grid-template-columns -->
+		<h3>grid-template-columns</h3>
+		<p>Permite definir el numero de columnas que existen dentro del contenedor padre. Para crear una nueva columnas hay que pasarle el tamanio que esta tendra dentro del contenedor padre.</p>
+
+		<p>Tamanio automatico [auto auto]. Crea dos columnas, si el ancho del contenedor esta definido (por el flujo en las filas, o definicion por propiedad) ocuparan todo el espacio, caso contrario tendran el ancho que requiera el contenido que llevan dentro.</p>
+		<style>
+			.dosColumnasAuto {
+				grid-template-columns: auto auto;
+			}
+		</style>
+		<div class="cntPadre grid dosColumnasAuto">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>En pixeles dos columnas [100px 100px]. Crea dos columnas de 100px cada una.</p>
+		<style>
+			.dosColumnasPx {
+				grid-template-columns: 100px 100px;
+			}
+		</style>
+		<div class="cntPadre grid dosColumnasPx">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>En porcentaje dos columnas [50% 50%]. Crea dos columnas de 50% de ancho del contenedor padre cada una.</p>
+		<style>
+			.dosColPorcentaje {
+				grid-template-columns: 50% 50%;
+			}
+		</style>
+		<div class="cntPadre grid dosColPorcentaje">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>En porcentaje tres columnas [33.33% 33.33% 33.33%]. Crea tres columnas de 33.33% (~100/3) de ancho del contenedor padre cada una.</p>
+		<style>
+			.tresColPorcentaje {
+				grid-template-columns: 33.33% 33.33% 33.33%;
+			}
+		</style>
+		<div class="cntPadre grid tresColPorcentaje">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>Columna sin elementos [25% 25% 25% 25%]. Es posible crear nuevas columnas sin nesecidad de que haya elementos que ocupen el nuevo espacio.</p>
+		<style>
+			.cuatroColExtra {
+				grid-template-columns: 25% 25% 25% 25%;
+			}
+		</style>
+		<div class="cntPadre grid cuatroColExtra">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+		</div>
+
+		<!-- grid-template-rows -->
+		<h3>grid-template-rows</h3>
+		<p>Permite definir el tamanio de las filas que existen dentro del contenedor padre. Para asignarle un nuevo tamanio a una fila hay que pasarle el tamanio que esta tendra dentro del contenedor padre empezando de arriba a abajo.</p>
+
+		<p>Tamanio automatico [auto auto]. Define las dos primeras filas en auto, si el alto del contenedor esta definido (por el flujo en las columnas, o definicion por propiedad) ocuparan todo el espacio, caso contrario tendran el ancho que requiera el contenido que llevan dentro.</p>
+		<style>
+			.dosFilasAuto {
+				grid-template-rows: auto auto;
+			}
+		</style>
+		<div class="cntPadre grid dosColumnasPx dosFilasAuto">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>Dos primeras filas de 100px [100px 100px].</p>
+		<style>
+			.dosFilasPx {
+				grid-template-rows: 100px 100px;
+			}
+		</style>
+		<div class="cntPadre grid dosColumnasPx dosFilasPx">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>Segunda fila de 100px [auto 100px]</p>
+		<style>
+			.segundaFilaPx {
+				grid-template-rows: auto 100px;
+			}
+		</style>
+		<div class="cntPadre grid dosColumnasPx segundaFilaPx">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>Las 3 filas de 100px [100px 100px 100px]</p>
+		<style>
+			.tresFilasPx {
+				grid-template-rows: 100px 100px 100px;
+			}
+		</style>
+		<div class="cntPadre grid dosColumnasPx tresFilasPx">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>Dos filas de 25%, y la ultima de 50% [25% 25% 50%]</p>
+		<style>
+			.filasCuartosMitad {
+				grid-template-rows: 25% 25% 50%;
+			}
+		</style>
+		<div class="cntPadre grid dosColumnasPx filasCuartosMitad">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>Dos filas de 25%, y la ultima del 10% [25% 25% 10%]</p>
+		<style>
+			.filasCuartosDiez {
+				grid-template-rows: 25% 25% 10%;
+			}
+		</style>
+		<div class="cntPadre grid dosColumnasPx filasCuartosDiez">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>Fila sin elementos [25% 25% 25% 25%]. Es posible crear nuevas filas sin nesecidad de que haya elementos que ocupen el nuevo espacio.</p>
+		<style>
+			.cuatroFilasExtra {
+				grid-template-rows: 25% 25% 25% 25%;
+			}
+		</style>
+		<div class="cntPadre grid dosColPorcentaje cuatroFilasExtra">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<!-- grid-gap -->
+		<h3>grid-gap</h3>
+		<p>Define una brecha (gap) entre los elementos.</p>
+
+		<p>Espaciado de 20px [20px].</p>
+		<style>
+			.dosColAutomatico {
+				grid-template-columns: auto auto auto;
+			}
+
+			.brecha10px {
+				grid-gap: 20px;
+			}
+		</style>
+		<em class="upNote">grid-template-columns: auto auto auto;</em>
+		<div class="cntPadre grid dosColAutomatico brecha10px">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<!-- Unidad de medida fr -->
+		<h3>Unidad de medida fr</h3>
+		<p>Esta es una nueva unidad relativa exclusiva de CSS Grid (fr = fraccion) que nos ayuda a trabajar mejor. <br>
+		Por ejemplo para definir 6 columnas que abarquen el mismo espacio cada una deberiamos pasarle el valor decimal de 6/10 a cada columna. Para evitar estos calculos molestos existe esta unidad.</p>
+
+		<p>grid-template-columns: 1fr;</p>
+		<style>
+			.unaCol1fr {
+				grid-template-columns: 1fr;
+			}
+		</style>
+		<em class="upNote">Una columna de 1fr</em>
+		<div class="cntPadre grid unaCol1fr">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>grid-template-columns: 1fr 1fr;</p>
+		<style>
+			.dosCol1fr {
+				grid-template-columns: 1fr 1fr;
+			}
+		</style>
+		<em class="upNote">Dos columnas de 1fr</em>
+		<div class="cntPadre grid dosCol1fr">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;</p>
+		<style>
+			.seisCol1fr {
+				grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+			}
+		</style>
+		<em class="upNote">Seis columnas de 1fr</em>
+		<div class="cntPadre grid seisCol1fr">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>grid-template-columns: 1fr 1fr 2fr;</p>
+		<style>
+			.dosCol1frUnaCol2fr {
+				grid-template-columns: 1fr 1fr 2fr;
+			}
+		</style>
+		<em class="upNote">Dos columnas de 1fr, Una de 2fr</em>
+		<div class="cntPadre grid dosCol1frUnaCol2fr">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>grid-template-rows: 1fr 1fr 2fr; Sin alto definido en el contenedor padre, fr igual hace su trabajo.</p>
+		<style>
+			.tresFilasCuartosMitad {
+				grid-template-rows: 1fr 1fr 2fr;
+			}
+
+			.reiniciarAlto {
+				height: auto;
+			}
+		</style>
+		<em class="upNote">Dos columnas de 100px, grid-template-rows: 1fr 1fr 2fr;</em>
+		<div class="cntPadre reiniciarAlto grid dosColumnasPx tresFilasCuartosMitad">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>En resumen fr (fraccion) es una unidad relativa la cual hace que el tamanio de un elemento se acomode en funcion de los demas, por lo que sera muy util para el disenio responsivo.</p>
+
+		<!-- minmax() -->
+		<h3>minmax()</h3>
+		<p>Esta es una funcion de CSS Grid que se puede usar en las filas y las columnas para establecerles un tamanio minimo y un tamanio maximo.</p>
+
+		<p>Aqui se establece tres columnas de igual ancho (1fr), pero la primera tiene un minimo de 100px. <br>
+		grid-template-columns: <span class="markRed">minmax(100px, 1fr)</span> 1fr 1fr;</p>
+		<style>
+			.markRed { color:red; }
+
+			.tresColIgualesMin100px {
+				grid-template-columns: minmax(100px, 1fr) 1fr 1fr;
+			}
+
+			@keyframes cambiarAncho {
+				0% {width: 50%;}
+				50% {width: 10%;}
+				100% {width: 50%;}
+			}
+
+			.cambiarAncho {
+				animation-name: cambiarAncho;
+				animation-duration: 5s;
+				animation-iteration-count: infinite;
+				animation-timing-function: ease;
+			}
+		</style>
+		<div class="cntPadre grid tresColIgualesMin100px cambiarAncho">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>Aqui se establecemos tres columnas: la primera tiene el doble de ancho que las otras dos (2fr), y un minimo de 100px. Las otras dos tienen el mismo ancho (1fr).<br>
+		grid-template-columns: <span class="markRed">minmax(100px, 2fr)</span> 1fr 1fr;</p>
+		<style>
+			.tresColMitadMin100pxCuartos {
+				grid-template-columns: minmax(100px, 2fr) 1fr 1fr;
+			}
+		</style>
+		<div class="cntPadre grid tresColMitadMin100pxCuartos cambiarAncho">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>Aqui se trabaja con 4 filas todas tienen el mismo alto (1fr), pero la segunda tiene un alto minimo de 100px. <br>
+			grid-template-rows: 1fr <span class="markRed">minmax(100px, 1fr)</span> 1fr 1fr;</p>
+		<style>
+			.tresColIguales {
+				grid-template-columns: 1fr 1fr 1fr;
+			}
+
+			.cuatroFilasIgualesMin100px {
+				grid-template-rows: 1fr minmax(100px, 1fr) 1fr 1fr;
+			}
+
+			@keyframes cambiarAlto {
+				0% {height: 500px;}
+				50% {height: 200px;}
+				100% {height: 500px;}
+			}
+
+			.cambiarAlto {
+				animation-name: cambiarAlto;
+				animation-duration: 5s;
+				animation-iteration-count: infinite;
+				animation-timing-function: ease;
+			}
+
+			.cntPrevenirAltura {
+				width: 100%;
+				height: 500px;
+			}
+		</style>
+		<div class="cntPrevenirAltura">
+			<div class="cntPadre grid tresColIguales cuatroFilasIgualesMin100px cambiarAlto">
+				<div class="elHijo">1</div>
+				<div class="elHijo">2</div>
+				<div class="elHijo">3</div>
+				<div class="elHijo">4</div>
+				<div class="elHijo">5</div>
+				<div class="elHijo">6</div>
+				<div class="elHijo">7</div>
+				<div class="elHijo">8</div>
+				<div class="elHijo">9</div>
+				<div class="elHijo">10</div>
+				<div class="elHijo">11</div>
+				<div class="elHijo">12</div>
+			</div>
+		</div>
+
+		<p>Normalmente, como no sabemos cual va a ser la altura del contenido, en el disenio responsivo no aplicamos alto maximo de medidas estaticas. Aplicamos un alto maximo automatico para evitar bugs (como que el contenido se desborde o no quepa en el contenedor).</p>
+		<style>
+			.cuatroFilasIguales {
+				grid-template-rows: 1fr minmax(100px, 1fr) 1fr 1fr;
+			}
+		</style>
+		<em class="upNote">Alto maximo de la fila dos definido en 1fr, minimo 100px. Todas las demas filas tienen el mismo alto.</em>
+		<div class="cntPrevenirAltura">
+			<div class="cntPadre grid tresColIguales cuatroFilasIguales">
+				<div class="elHijo">1</div>
+				<div class="elHijo">2</div>
+				<div class="elHijo">3</div>
+				<div class="elHijo">
+					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem expedita vero velit. Quae nesciunt qui excepturi facere reprehenderit adipisci cupiditate, corrupti sit dolore animi architecto voluptatum esse nam repudiandae tenetur doloremque optio. Nobis sed suscipit vel ratione, ex ipsam quaerat excepturi sapiente culpa odio iusto quae enim voluptate dolore officia quos amet voluptatum repudiandae in! Quia sunt eum numquam, nulla adipisci, delectus quibusdam at sit voluptatibus vitae quis, minus eos.</p>
+				</div>
+				<div class="elHijo">5</div>
+				<div class="elHijo">6</div>
+				<div class="elHijo">7</div>
+				<div class="elHijo">8</div>
+				<div class="elHijo">9</div>
+				<div class="elHijo">10</div>
+				<div class="elHijo">11</div>
+				<div class="elHijo">12</div>
+			</div>
+		</div>
+		<style>
+			.cuatroFilasAuto {
+				grid-template-rows: 1fr minmax(100px, auto) 1fr 1fr;
+			}
+		</style>
+		<br><br>
+
+		<em class="upNote">Alto maximo de la fila 2 definido en automatico, minimo 100px. Todas las demas filas tienen un alto de 1fr.</em>
+		<div class="cntPrevenirAltura">
+			<div class="cntPadre grid tresColIguales cuatroFilasAuto">
+				<div class="elHijo">1</div>
+				<div class="elHijo">2</div>
+				<div class="elHijo">3</div>
+				<div class="elHijo">
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam porro omnis soluta magni similique velit doloremque quasi reprehenderit, exercitationem molestiae impedit ab vel sint maiores? Corporis provident dolore, quis doloremque, nihil unde tempora deserunt iste deleniti excepturi consequuntur doloribus aspernatur voluptatem necessitatibus rerum, minima odit ducimus vel cum, eum eos. Quaerat beatae, nulla! Facilis dolorum officia, nesciunt commodi ratione, molestiae, quasi quidem cum explicabo beatae sequi non aperiam saepe accusamus.</p>
+				</div>
+				<div class="elHijo">5</div>
+				<div class="elHijo">6</div>
+				<div class="elHijo">7</div>
+				<div class="elHijo">8</div>
+				<div class="elHijo">9</div>
+				<div class="elHijo">10</div>
+				<div class="elHijo">11</div>
+				<div class="elHijo">12</div>
+			</div>
+		</div>
+
+		<!-- repeat() -->
+		<h3>repeat()</h3>
+		<p>Sirve para crear muchas filas o columnas con la misma medida sin nesecidad de escribirlas una por una. Funciona tanto para alterar filas como columnas.</p>
+		<code>grid-template-columns/rows: repeat(n, m); n= numero de filas/columnas m= medida que tendran</code>
+
+		<p>Tres columnas de 1fr cada una [repeat(3, 1fr)].</p>
+		<style>
+			.tresColumnasRepeat {
+				grid-template-columns: repeat(3, 1fr);
+			}
+		</style>
+		<div class="cntPadre grid tresColumnasRepeat">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Primera columna de 2fr, las demas de 1fr [1fr repeat(2, 1fr)].</p>
+		<style>
+			.tresColumnasRepeatI {
+				grid-template-columns: 2fr repeat(2, 1fr);
+			}
+		</style>
+		<div class="cntPadre grid tresColumnasRepeatI">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Primeras 2 columnas de 1fr, tercera de 2fr [repeat(2, 1fr) 2fr].</p>
+		<style>
+			.tresColumnasRepeatII {
+				grid-template-columns: repeat(2, 1fr) 2fr;
+			}
+		</style>
+		<div class="cntPadre grid tresColumnasRepeatII">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+		</div>
+
+		<p>Seis columnas de 1fr, creadas de forma automatica [repeat(6, 1fr)].</p>
+		<style>
+			.seisColumnasRepeat {
+				grid-template-columns: repeat(6, 1fr);
+			}
+		</style>
+		<div class="cntPadre grid seisColumnasRepeat">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+			<div class="elHijo">7</div>
+			<div class="elHijo">8</div>
+			<div class="elHijo">9</div>
+			<div class="elHijo">10</div>
+			<div class="elHijo">11</div>
+			<div class="elHijo">12</div>
+			<div class="elHijo">13</div>
+			<div class="elHijo">14</div>
+			<div class="elHijo">15</div>
+			<div class="elHijo">16</div>
+			<div class="elHijo">17</div>
+			<div class="elHijo">18</div>
+		</div>
+	</section>
+</body>
+</html>

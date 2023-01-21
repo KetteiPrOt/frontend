@@ -1,0 +1,362 @@
+:root {
+	--blanco: rgb(239, 239, 239);
+}
+
+* {
+	font-family: BlinkMacSystemFont,-apple-system,Segoe UI,sans-serif;
+}
+
+body {
+	margin: 0;
+}
+
+/* --- Navegacion --- */
+/*Layout*/
+nav {
+	background-color: white;
+	box-sizing: border-box;
+	height: 58px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.07);
+	position: sticky;
+	top: 0px;
+	z-index: 1;
+}
+
+/*Elementos*/
+nav .icono {
+	width: 30px;
+	margin-right: 15px;
+	position: relative;
+	top: 10px; left: 15px; 
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 16px;
+	color: rgba(74, 74, 74, 1);
+	display: inline-block;
+	margin-left: 20px;
+	margin-top: 19px;
+	position: relative;
+	bottom: 2px;
+}
+
+nav .linkTwitter {
+	background-color: white;
+	display: inline-block;
+	box-sizing: border-box;
+	width: 94px;
+	height: 40px;
+	border: 1px solid rgba(74, 74, 74, 0.2);
+	border-radius: 5px;
+	margin-left: 630px;
+	position: relative;
+	top: 8px;
+	vertical-align: text-bottom;
+}
+
+nav .linkTwitter img {
+	width: 16px;
+	margin: 0;
+	opacity: 0.8;
+	position: relative;
+	top: 2px; right: 0px; bottom: 0px; left: -4px;
+}
+
+nav .linkTwitter p {
+	font-size: 16px;
+	color: rgba(74, 74, 74, 1);
+	display: inline-block;
+	margin: 0;
+	margin-bottom: 1px;
+}
+
+/* --- Header --- */
+
+/*Layout*/
+header {
+	background-image: 
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='126' height='84' viewBox='0 0 126 84'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M126 83v1H0v-2h40V42H0v-2h40V0h2v40h40V0h2v40h40V0h2v83zm-2-1V42H84v40h40zM82 42H42v40h40V42zm-50-6a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm96 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm-42 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm30-12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM20 54a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm12 24a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM8 54a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm24 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM8 78a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm12 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm54 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM50 54a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm24 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM50 78a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm54-12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm12 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM92 54a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm24 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM92 78a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm24-42a4 4 0 1 1 0-8 4 4 0 0 1 0 8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+		linear-gradient(rgb(12, 49, 81), rgb(34, 128, 204))
+	;
+	text-align: center;
+	height: 651px;
+	position: relative;
+	bottom: 58px;
+	z-index: 0;
+}
+
+header div {
+	display: inline-block;
+	width: 43.3%;
+	height: 100%;
+	overflow: hidden;
+}
+
+/*Elementos verCursos*/
+header .verCursos {
+	text-align: left;
+	box-sizing: border-box;
+	padding-top: 183px;
+	padding-right: 11px;
+	padding-bottom: 11px;
+	padding-left: 10px;
+}
+
+header .verCursos .parrafoAcademia {
+	color: var(--blanco);
+	font-size: 40px;
+	font-weight: 600;
+	line-height: 45px;
+	margin: 0;
+	margin-bottom: 2px;
+	opacity: 0.96;
+}
+
+header .verCursos .parrafoAlumnos {
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 32px;
+	font-weight: 300;
+	margin: 0;
+}
+
+header .verCursos button {
+	color: white;
+	background-color: #33c191;
+	font-size: 24px;
+	font-weight: 400;
+	width: 100%;
+	height: 60px;
+	border: none;
+	border-radius: 4px;
+	margin-top: 23px;
+	margin-left: 1px;
+
+}
+
+/*Elementos suscribirse*/
+header .suscribirse {
+	box-sizing: border-box;
+	padding-top: 172px;
+	padding-right: 22px;
+	padding-bottom: 20px;
+	padding-left: 22px;
+}
+
+header .suscribirse form {
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 4.5px;
+	box-sizing: border-box;
+	height: 305px;
+	padding: 35px;
+	padding-top: 20px;
+}
+
+header .suscribirse form p {
+	color: white;
+	font-size: 32px;
+	font-weight: 300;
+	line-height: 35px;
+	margin: 0;
+}
+
+/* --- aside --- */
+
+aside {
+	background-color: blue;
+	writing-mode: vertical-lr;
+	position: fixed;
+	left: 1316px;
+	top: 259px;
+	visibility: hidden;
+	z-index: 5;
+}
+
+aside img {
+	margin-top: 7px;
+}
+
+aside a {	
+	color: white;
+	background-color: rgb(244, 54, 76);
+	font-size: 14px;
+	text-decoration: none;
+	padding: 10px;
+	padding-top: 11px;
+	padding-bottom: 12px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	opacity: 0.97;
+}
+
+/* --- Main --- */
+/*Layout*/
+main {
+	background: #f5f5f5;
+	text-align: center;
+	position: relative;
+	bottom: 58px;
+}
+
+main article {
+	background-color: white;
+	text-align: center;
+	display: inline-block;
+	width: 357px;
+	height: 420px;
+	padding: auto 0 auto 0;
+	border-radius: 5px;
+	margin: 7.5px;
+	margin-bottom: 5px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.07);
+	position: relative;
+	bottom: 86px;
+}
+
+main article h2 {
+	color: rgb(62, 67, 72);
+	font-size: 16px;
+	font-weight: 600;
+	margin: 28px 30px auto 30px;
+}
+
+main article .etiqueta {
+	font-size: 14.2px;
+	margin-top: 21px;
+	margin-bottom: 3px;
+	opacity: 0.4;
+}
+
+main article .imagen {
+	width: 100%;
+	height: 182px;
+}
+
+main article .descripcion {
+	color: rgb(62, 67, 72);
+	text-align: left;
+	line-height: 28px;
+	margin: 15px 26.5px;
+	margin-bottom: 0;
+	position: absolute;
+}
+
+/*Elementos*/
+main .cleanCode .imagen {
+	background: url('media/clean-code.jpg') no-repeat;
+	background-size: cover;
+}
+
+main .renderProp .imagen {
+	background: url('media/render-props.png') no-repeat;
+	background-size: cover;
+}
+
+main .apiRest .imagen {
+	background: url('media/serverless-zeit.png') no-repeat;
+	background-size: cover;
+}
+
+main .apiRest { bottom: 66px; }
+
+main .composicion .imagen {
+	background: url('media/composicion-vs-herencia.png') no-repeat;
+	background-size: cover;
+}
+
+main .velocidad .imagen {
+	background: url('media/velocidad-desarrollo.png') no-repeat;
+	background-size: cover;
+}
+
+main .velocidad { bottom: 66px; }
+
+main .trabajosBasura .imagen {
+	background: url('media/trabajos-basura.png') no-repeat;
+	background-size: cover;
+}
+
+main .trabajosBasura { bottom: 66px; }
+
+/* --- Footer --- */
+/*Layout*/
+footer {
+	background: /*#f5f5f5*/ red;
+	height: 350px;
+}
+
+footer .fondoDeSeccion {
+	background: #f5f5f5;
+	text-align: center;
+	width: 100%;
+	height: 529px;
+	position: relative; /* En esta pagina todos los elementos estan 
+	posicionados hacia arriba 58px, por lo que para no crear huecos
+	entre el footer ni el main, o dejar un hueco abajo de toda la 
+	pagina, se crea este fondo artificial que cubrira el hueco de 58px
+	que existe entre las secciones superiores y el footer. */
+	bottom: 79px;
+}
+
+footer .fondoDeSeccion h3 {
+	color: rgb(54,54,54);
+	font-size: 20px;
+	font-weight: 600;
+	padding-top: 30px;
+}
+
+footer .fondoDeSeccion .parrafoSuscripcion {
+	color: rgb(136,136,136);
+	margin-bottom: 15px;
+}
+
+footer .fondoDeSeccion form {
+	width: 75%;
+	margin: 0 auto;
+}
+
+footer .fondoDeSeccion form input[type="text"] {
+	border: 0.8px solid rgba(136,136,136,0.55);
+	margin-top: 0px;
+}
+
+footer .fondoDeSeccion .parrafoDerechos {
+	color: rgb(62,67,72);
+	position: relative;
+	top: 205px; right: 420px;
+}
+
+/*Elementos*/
+
+
+/* --- Componentes --- */
+/*Inputs*/
+.entrada {
+	font-size: 24px;
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	height: 60px;
+	padding: 10px;
+	padding-left: 18px;
+	border: none;
+	border-radius: 4.5px;
+	margin-top: 39px;
+}
+
+::placeholder {
+	color: black;
+	opacity: 0.13;
+}
+
+.btnEnviar {
+	color: white;
+	background-color: #2280cc;
+	font-size: 24px;
+	font-weight: 400;
+	width: 100%;
+	height: 60px;
+	border: none;
+	border-radius: 4.5px;
+	margin-top: 12px;
+}

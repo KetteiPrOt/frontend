@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 33</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Manipular la Ventana</h1>
+	<h4 class="enlace-volver"><a href="../capitulo7.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Manipular la Ventana -->
+	<h2>Manipular la Ventana</h2>
+	<p>Los siguientes metodos sirven para manipular la ventana del navegador. Algunos de ellos estan limitados por razones de seguridad y solo se pueden utilizar de formas especificas (como resizeTo y resizeBy).</p>
+
+	<!-- resizeTo() -->
+	<h3>resizeTo()</h3>
+	<p>Cambia el tamanio de una ventana controlada por el script <strong>a una</strong> cantidad especificada.</p>
+	<p>
+		Para que le sea posible al script cambiar el tamanaio de la ventana hace falta pasarle el atributo <em>resizable</em> al metodo <em>open()</em>.
+	</p>
+	<!-- codigo -->
+	<code>
+		const nuevaVentana = window.open('https://youtube.com', 'nombreVentana', 'resizable'); <br><br>
+
+		nuevaVentana.resizeTo(800, 800); <strong>// La nueva ventana se redimenciono a 800x800 pixeles</strong>
+	</code>
+
+
+	<!-- resizeBy() -->
+	<h3>resizeBy()</h3>
+	<p>Cambia el tamanio de una ventana controlada por el script <strong>en una</strong> cantidad especificada. Para encoger la ventana se le pasan valores negativos.</p>
+	<p>
+		Para que le sea posible al script cambiar el tamanaio de la ventana hace falta pasarle el atributo <em>resizable</em> al metodo <em>open()</em>.
+	</p>
+	<!-- codigo -->
+	<code>
+		const nuevaVentana = window.open('https://youtube.com', 'nombreVentana', 'resizable'); <br><br>
+
+		nuevaVentana.resizeTo(500, 500); <br><br>
+
+		nuevaVentana.resizeBy(100, 100); <strong>// La ventana final es de 600x600 pixeles</strong>
+	</code>
+
+
+	<!-- moveTo() -->
+	<h3>moveTo()</h3>
+	<p>Mueve la ventana a una ubicacion absoluta. Recibe como primer parametro el eje x (en pixels) mueve esa disntancia hacia la izquierda, como segundo parametro el eje y (en pixels) mueve esa distancia hacia abajo.</p>
+	<!-- codigo -->
+	<code>
+		let nuevaVentana = window.open('https://google.com', 'nombreVentana', 'resizable');  <br><br>
+
+		nuevaVentana.resizeTo(500, 500); <strong>// Redimensiona la ventana a 500x500 pixels </strong> <br><br>
+
+		nuevaVentana.moveTo(200, 100); <strong>// La mueve 200px a la izquierda y 100px abajo</strong>
+	</code>
+
+
+	<!-- moveBy() -->
+	<h3>moveBy()</h3>
+	<p>Mueve la ventana de forma relativa segun las medidas especificadas. Recibe como primer parametro el eje x (en pixels) mueve esa disntancia hacia la izquierda, como segundo parametro el eje y (en pixels) mueve esa distancia hacia abajo.</p>
+	<!-- codigo -->
+	<code>
+		let nuevaVentana = window.open('https://google.com', 'nombreVentana', 'resizable');  <br><br>
+
+		nuevaVentana.resizeTo(500, 500); <strong>// Redimensiona la ventana a 500x500 pixels </strong> <br><br>
+
+		nuevaVentana.moveTo(200, 100); <strong>// La mueve 200px a la izquierda y 100px abajo</strong> <br><br>
+
+		nuevaVentana.moveBy(100, 50); <strong>// El movimiento final es de 300 px a la izquierda y 150px abajo</strong>
+	</code>
+
+
+	<!-- Objetos BarProp -->
+	<h3>Objetos BarProp</h3>
+	<p>
+		Son objetos pertenecientes al prototipo <em>BarProp</em> (apoyo de barra), se usaban para comprobar si ciertos de la interfaz del navegador son actualmente es visible o no.
+	</p>
+	<p>
+		Por motivos de privacidad e interoperabilidad, el valor de las propiedad <em>visible</em> ahora es falso si esta ventana es una ventana emergente y verdadero en caso contrario.
+	</p>
+
+	<h4>locationbar.visible</h4>
+	<p>Cotenia si la ventana esta visible en la barra de ubicaciones.</p>
+
+	<p>
+		Ahora en una ventana emergente no es visible y retorna false:
+	</p>
+	<!-- codigo -->
+	<code>
+		let nueva = window.open('', 'nombre', 'resizable'); <br><br>
+
+		nueva.resizeTo(500, 500); <br><br>
+
+		console.log(nueva.locationbar.visible); <strong>// false</strong>
+	</code>
+
+	<p>
+		Pero una ventana normal que esta abierta y visible junto a las demas si retornara true:
+	</p>
+	<!-- codigo -->
+	<code>
+		let nueva = window.open(); <br><br>
+
+		console.log(nueva.locationbar.visible); <strong>// true</strong>
+	</code>
+
+	<p>Este comportamiento se repite con todos los objetos <em>BarProps</em>.</p>
+	<ul>
+		<li>locationbar.visible</li>
+		<li>menubar.visible</li>
+		<li>personalbar.visible</li>
+		<li>scrollbars.visible</li>
+		<li>statusbar.visible</li>
+		<li>toolbar.visible</li>
+	</ul>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

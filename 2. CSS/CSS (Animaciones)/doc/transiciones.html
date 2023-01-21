@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Transiciones</title>	
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	<!-- Transiciones -->
+	<section>
+		<h2>Transiciones</h2>
+		<h4><a href="../index.html">Volver al indice</a></h4>
+
+		<!-- transition -->
+		<h3>transition</h3>
+		<p>Sirve para establecer transiciones fluidas para los cambios de estilo en los elementos.</p>
+		<p>Resumen [duration property delay timing-function]. transition: 2s background 0.5s ease;</p>
+		<style>
+			.elemento {
+				background: skyblue;
+				width: 150px;
+				height: 150px;
+				border: 1px solid black;
+			}
+
+			.transicion {
+				transition: 2s background 0.5s ease;
+				/*transition-duration: ;
+				transition-property: ;
+				transition-delay: ;
+				transition-timing-function: ;*/
+			}
+
+			.transicion:hover {
+				background: hotpink;
+			}
+		</style>
+		<div class="elemento transicion"></div>
+
+		<!-- transition-duration -->
+		<h3>transition-duration</h3>
+		<p>Segundos [s]. Sirve para establecer la duracion de la transicion.</p>
+		<style>
+			.duracionLarga {
+				transition-duration: 5s;
+			}
+		</style>
+		<div class="transicion elemento duracionLarga">Duration de 5 segundos</div>
+
+		<!-- transition-property -->
+		<h3>transition-property</h3>
+		<p>Propiedad/todas [property/all]. Sirve para establecer la propiedad a la que se le aplicara la transicion. <em>Amenudo se usa el valor all para aplicar la transicion a todas.</em></p>
+		<style>
+			.propiedad{
+				transition-property: background; /*all*/
+			}
+		</style>
+		<div class="transicion elemento propiedad"></div>
+
+		<!-- transition-delay -->
+		<h3>transition-delay</h3>
+		<p>Segundos [s]. Sirve para establecer un tiempo de retraso (delay) antes del cual se iniciara la transicion.</p>
+		<style>
+			.retrasoTransicion {
+				transition-delay: 2s;
+			}
+		</style>
+		<div class="transicion elemento retrasoTransicion">Delay de 2 segundos</div>
+
+		<!-- transition-timing-function -->
+		<h3>transition-timing-function</h3>
+		<p>Funcion tiempo[ease/linear]. Sirve para definir una funcion de tiempo en la que avanzara la transicion.</p>
+		<style>
+			.transicionAncho {
+				transition-duration: 3s;
+				transition-property: width;
+				transition-delay: 0s;
+			}
+
+			.transicionAncho:hover {
+				width: 300px;
+			}
+
+			.ease {
+				transition-timing-function: ease; /* ease-in/ease-out/ease-in-out */
+			}
+
+			.linear {
+				transition-timing-function: linear;
+			}
+
+			.mb-10 { margin-bottom: 10px; }
+		</style>
+		<div class="elemento transicionAncho linear mb-10">transicion linear</div>
+		<div class="elemento transicionAncho ease">transicion ease</div>
+
+		<!-- transition (resumen) -->
+		<h3>transition (resumen)</h3>
+		<p>Es un resumen de las propiedades anteriores.</p>
+		<code>transition: duration property delay timing-function;</code>
+	</section>
+</body>
+</html>
