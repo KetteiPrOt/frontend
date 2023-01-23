@@ -30,6 +30,39 @@
 
 	<button id="btnIf" class="btn-programa">Iniciar el programa!</button>
 
+	<!-- Sentencia switch -->
+	<h3>Sentencia switch</h3>
+	<p>Esta sentencia de control de flujo utiliza una variable la cual compara con varios 'casos', ejecutara un codigo u otro segun el valor de la variable en cuestion.</p>
+	<p>
+		Para que pare de compara la variable y seguir ejecutando codigo, hay que darle la orden <em>break</em>.
+	</p>
+	<p>
+		Para que ejecute un codigo por defecto se usa el caso <em>'default'</em>.
+	</p>
+	<!-- codigo -->
+	<code>
+		let variable = 'rojo'; <br><br>
+
+		switch (variable) { <br> &nbsp&nbsp&nbsp
+			case 'amarillo': <br>  &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				console.log('El color es amarillo!'); <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				break;  <br> &nbsp&nbsp&nbsp
+			case 'azul': <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				console.log('El color es azul!'); <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				break; <br> &nbsp&nbsp&nbsp
+			case 'rojo': <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				console.log('El color es rojo!'); <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				break; <br> &nbsp&nbsp&nbsp
+			case 'purpura': <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				console.log('El color es purpura!'); <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				break; <br> &nbsp&nbsp&nbsp
+			default: <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				console.log('El color es desconocido'); <br>
+		} <br><br>
+
+		<strong>// El color es rojo</strong>
+	</code>
+
 	<script src="programa.js"></script>
 </body>
 </html>

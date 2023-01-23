@@ -8,32 +8,362 @@
 	<link rel="stylesheet" href="../../styles.css">
 </head>
 <body>
-	<h1 class="titulo-principal">Pestaña Elements (DevTools)</h1>
+	<h1 class="titulo-principal">Eventos</h1>
 	<h4 class="enlace-volver"><a href="../capitulo8.html">Volver al capitulo</a></h4>
 	<hr>
 
-	<!-- Filtros y buscar por palabras claves -->
-	<h3>Filtros y buscar por palabras claves</h3>
-	<p>La opcion <em>search</em> (ctrl + shift + f) permite buscar por palabras clave en los elementos del archivo html.</p>
+	<!-- Definicion -->
+	<h3>Definicion</h3>
+	<p>Los eventos son el reguistro de todas las cosas que ocurren en el sitio web al pasar el tiempo. Por si solos ocurren simplemente y desaparecen, su utilidad clave esta en asociarles codigo para que el sitio reaccione al ocurrir ciertos eventos.</p>
 
 
-	<!-- Modificar crear y eliminar etiquetas -->
-	<h3>Modificar crear y eliminar etiquetas</h3>
-	<p>Se pueden modificar eliminar y crear elementos html localmente en la pestania <em>elements</em>.</p>
+	<!-- Manipuladores de Eventos -->
+	<h3>Manipuladores de Eventos</h3>
+	<p>Event Handlers. Se escriben como atributos HTML segun el evento (onclick, onautocomplete, onblur...) y como valor tienen el codigo JavaScript asociado al evento. Son tegnologia obsoleta.</p>
+
+	<!-- elementos -->
+	<button onclick="saludar()">Activa el Evento</button> 
+	<br><br>
+	<!-- codigo -->
+	<code>
+		function saludar() { <br> &nbsp&nbsp&nbsp
+			alert('Hola'); <br>
+		}
+	</code>
+	<script>
+		function saludar() {
+		    alert('Hola');
+		}
+	</script>
 
 
-	<!-- Modificar propiedades de CSS -->
-	<h3>Modificar propiedades de CSS</h3>
-	<p>Se pueden cambiar localmente los estilos y ver que estilos se aplican a los elementos utilizando la pestaña <em>styles</em>, que se ubica dentro de <em>elements</em>.</p>
+	<!-- Escuchadores de Eventos -->
+	<h3>Escuchadores de Eventos</h3>
+	<p>Event Listeners. Es la forma mas actual y recomendable que tenemos para trabajar con eventos. A un elemento HTML se le asocia un 'escucha' que estara vigilando al elemento hasta que ocurra un evento particular previamente especificado, cuando ocurra el evento ejecutara el codigo necesario.</p>
+	<p>
+		Todo esto ocurre en el programa JavaScript sin nesecidad de mezclarlo con HTML. <br>
+		<em><strong>Importante:</strong> estas funciones no aceptan parametros normales.</em>
+	</p>
 
 
-	<!-- Event Listeners -->
-	<h3>Event Listeners</h3>
-	<p>Se ubica dentro de <em>elements</em>, esta pestania permite ver los escuchadores de eventos asociados a un elemento html seleccionado.</p>
+	<!-- addEventListener() -->
+	<h3>addEventListener()</h3>
+	<p>Agrega un 'escucha' de eventos al elemento, en cuestion.</p>
 
-	<!-- Properties -->
-	<h3>Properties</h3>
-	<p>Se ubica dentro de <em>elements</em>, esta pestania permite ver todas la propiedades que tiene asociadas un elemento html seleccionado.</p>
+	<!-- elementos -->
+	<button id="golondrina">id="golondrina"</button>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let golondrina = document.getElementById('golondrina'); <br><br>
+
+		const <strong>funcion</strong> = () => { <br> &nbsp&nbsp&nbsp
+			alert('Hola!!!'); <br>
+		} <br><br>
+
+		golondrina.<strong>addEventListener('click', funcion);</strong> // Aqui se esta ejecutando la funcion al ocurrir el evento 'click'
+	</code>
+	<script>
+		let golondrina = document.getElementById('golondrina');
+
+		const funcion = () => {
+			alert('Hola!!!');
+		}
+
+		golondrina.addEventListener('click', funcion); // Aqui se esta ejecutando la funcion al ocurrir el evento 'click'
+	</script>
+
+
+	<!-- removeEventListener() -->
+	<h3>removeEventListener()</h3>
+	<p>Quita un 'escucha' de eventos al elemento, en cuestion.</p>
+
+	<!-- elementos -->
+	<button id="tejon">id="tejon"</button>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let tejon = document.getElementById('tejon'); <br><br>
+
+		const quitarEscucha = () => { <br> &nbsp&nbsp&nbsp
+			alert('Escucha Quitado!'); <br><br>&nbsp&nbsp&nbsp
+
+			tejon.<strong>removeEventListener('click', quitarEscucha)</strong>; // Quita el 'escucha' <br>
+		} <br><br>
+
+
+		tejon.addEventListener('click', quitarEscucha); <strong>// Agrega el 'escucha'</strong>
+	</code>
+	<script>
+		let tejon = document.getElementById('tejon');
+
+		const quitarEscucha = () => {
+			alert('Escucha Quitado!');
+
+			tejon.removeEventListener('click', quitarEscucha); // Quita el 'escucha'
+		}
+
+		tejon.addEventListener('click', quitarEscucha); // Agrega el 'escucha'
+	</script>
+
+
+	<!-- El Objeto Event -->
+	<h3>El Objeto Event</h3>
+	<p>Es un objeto que se crea el ocurrir un evento, y contiene todos los datos de este.</p>
+	<p>
+		Para acceder al <em>Event Object</em> hay que pasarle un parametro a la funcion del metodo <em>addEventListener()</em>... ese parametro se convertira en el <em>Event Object</em> al ocurrir el evento y ejecutarse la funcion.
+	</p>
+	<p>
+		Este caso porque se trataba del evento 'click' nos mostro un objeto <em>PointerEvent</em>, seguro que si se trata de otro tipo de evento (alguno que no tenga que ver con el cursor) devolvera otro tipo de objeto.
+	</p>
+	<p>
+		Nuestro <em>PointerEvent</em> contiene informacion muy interesante y util sobre el evento que ocurrio... por ejemplo su atributo 'objetivo' (eventObject.target) contitne el elemento que desencadeno el evento (button#ratablanca), en cuestion. 
+	</p>
+
+	<!-- elementos -->
+	<button id="ratablanca">id="ratablanca"</button>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let ratablanca = document.getElementById('ratablanca'); <br><br>
+
+		const mostrarEvent = (eventObject) => { <br> &nbsp&nbsp&nbsp
+			console.log(eventObject); <br><br> &nbsp&nbsp&nbsp
+
+			console.log(eventObject.target); <strong>// button#ratablanca</strong> <br>
+		} <br><br>
+
+		ratablanca.addEventListener('click', mostrarEvent); <strong>// PointerEvent { ... }</strong>
+	</code>
+	<script>
+		let ratablanca = document.getElementById('ratablanca');
+
+		const mostrarEvent = (eventObject) => {
+			console.log(eventObject); 
+
+			console.log(eventObject.target); // button#ratablanca
+		}
+
+		ratablanca.addEventListener('click', mostrarEvent); // PointerEvent { ... }
+	</script>
+
+
+	<!-- preventDefault() -->
+	<h3>preventDefault()</h3>
+	<p>Este metodo del <em>Event Object</em> previene el comportamiento por defecto de eventos, por ejemplo previene que se envien los datos al activar el evento 'click' de un formulario.</p>
+
+	<!-- elementos -->
+	<form>
+		<input type="text">	<input type="submit" id="dracon" value="Enviar Datos">
+	</form>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let btn = document.getElementById('dracon'); <br><br>
+
+		btn.addEventListener('click', (eventObject) => { <br> &nbsp&nbsp&nbsp
+			eventObject.preventDefault(); <strong>// Detuvo el envio de datos</strong> <br>
+		});
+	</code>
+	<script>
+		let btn = document.getElementById('dracon');
+
+		btn.addEventListener('click', (eventObject) => {
+			eventObject.preventDefault(); // Detuvo el envio de datos
+		});
+	</script>
+
+
+	<!-- Flujo de eventos (Event Flow) -->
+	<h3>Flujo de eventos (Event Flow)</h3>
+	<p>Se refiere al orden en el que se van a ejecutar los eventos cuando hay 'escuchas' definidos en elementos padres y sus elementos hijos. Tenemos dos tipos de orden: <em>Event Bubbling</em> (por defecto) y <em>Event Capturing</em></p>
+	<p>
+		Para cambiar el flujo de eventos hay que <strong>pasarle un tercer parametro</strong> al 'escucha'.
+	</p>
+	<ul>
+		<li>
+			<em><strong>false</strong></em>: Por defecto. Configura el flujo como <em>Event Bubbling</em>.
+		</li>
+		<li>
+			<em><strong>true</strong></em>: Configura el flujo como <em>Event Capturing</em>.
+		</li>
+	</ul>
+
+
+	<!-- Event Bubbling -->
+	<h3>Event Bubbling</h3>
+	<p>Es el orden que viene por defecto. En este flujo primero se ejecutan los eventos de los elementos hijos, y al final los de los elementos padres.</p>
+
+	<!-- elementos -->
+	<style>
+		.padre1, .padre2, .padre3 {
+			color: white;
+			text-align: center;
+			display: inline-block;
+			border-radius: 5px;
+		}
+
+		.padre1 {
+			background: red;
+			padding: 10px;
+		}
+
+		.padre2 {
+			background: blue;
+			padding: 15px;
+		}
+
+		.padre3 {
+			background: green;
+			padding: 20px;
+		}
+	</style>
+	<div class="padre3" id="padre3">
+		Padre 3 <br>
+		<div class="padre2" id="padre2">
+			Padre 2 <br>
+			<div class="padre1" id="padre1">
+				Padre 1 <br>
+				<button id="btnBubbling">id="btnBubbling"</button>
+			</div>
+		</div>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let padre1 = document.getElementById('padre1'), <br> &nbsp&nbsp&nbsp
+			padre2 = document.getElementById('padre2'), <br> &nbsp&nbsp&nbsp
+			padre3 = document.getElementById('padre3'), <br> &nbsp&nbsp&nbsp
+		 	btnBubbling = document.getElementById('btnBubbling'); <br><br>
+
+		btnBubbling.addEventListener('click', () => { alert('Ejecutado: Boton!') } ); <br><br>
+
+		padre1.addEventListener('click', () => { alert('Ejecutado: Padre 1!') } ); <br><br>
+
+		padre2.addEventListener('click', () => { alert('Ejecutado: Padre 2!') } ); <br><br>
+
+		padre3.addEventListener('click', () => { alert('Ejecutado: Padre 3!') } );
+	</code>
+	<script>
+		let padre1 = document.getElementById('padre1'),
+			padre2 = document.getElementById('padre2'),
+			padre3 = document.getElementById('padre3'),
+		 	btnBubbling = document.getElementById('btnBubbling');
+
+		btnBubbling.addEventListener('click', () => { alert('Ejecutado: Boton!') } );
+
+		padre1.addEventListener('click', () => { alert('Ejecutado: Padre 1!') } );
+
+		padre2.addEventListener('click', () => { alert('Ejecutado: Padre 2!') } );
+
+		padre3.addEventListener('click', () => { alert('Ejecutado: Padre 3!') } );
+	</script>
+
+
+	<!-- Event Capturing -->
+	<h3>Event Capturing</h3>
+	<p>Este es el flujo contrario al que viene por defecto. Primero se ejecutan los eventos de los elementos padres, y al final los de los elementos hijos.</p>
+
+	<!-- elementos -->
+	<div class="padre3" id="otroPadre3">
+		Padre 3 <br>
+		<div class="padre2" id="otroPadre2">
+			Padre 2 <br>
+			<div class="padre1" id="otroPadre1">
+				Padre 1 <br>
+				<button id="btnCapturing">id="btnCapturing"</button>
+			</div>
+		</div>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let otroPadre1 = document.getElementById('otroPadre1'), <br> &nbsp&nbsp&nbsp
+			otroPadre2 = document.getElementById('otroPadre2'), <br> &nbsp&nbsp&nbsp
+			otroPadre3 = document.getElementById('otroPadre3'), <br> &nbsp&nbsp&nbsp
+		 	btnCapturing = document.getElementById('btnCapturing'); <br><br>
+
+		btnCapturing.addEventListener('click', () => { alert('Ejecutado: Boton!') }, <strong>true</strong>); <br><br>
+
+		otroPadre1.addEventListener('click', () => { alert('Ejecutado: Padre 1!') }, <strong>true</strong>); <br><br>
+
+		otroPadre2.addEventListener('click', () => { alert('Ejecutado: Padre 2!') }, <strong>true</strong>); <br><br>
+
+		otroPadre3.addEventListener('click', () => { alert('Ejecutado: Padre 3!') }, <strong>true</strong>);
+	</code>
+	<script>
+		let otroPadre1 = document.getElementById('otroPadre1'),
+			otroPadre2 = document.getElementById('otroPadre2'),
+			otroPadre3 = document.getElementById('otroPadre3'),
+		 	btnCapturing = document.getElementById('btnCapturing');
+
+		btnCapturing.addEventListener('click', () => { alert('Ejecutado: Boton!') }, true);
+
+		otroPadre1.addEventListener('click', () => { alert('Ejecutado: Padre 1!') }, true);
+
+		otroPadre2.addEventListener('click', () => { alert('Ejecutado: Padre 2!') }, true);
+
+		otroPadre3.addEventListener('click', () => { alert('Ejecutado: Padre 3!') }, true);
+	</script>
+
+
+	<!-- event.StopPropagation() -->
+	<h3>event.StopPropagation()</h3>
+	<p>Este metodo del <em>Event Object</em> permite detener la propagacion de los eventos de un elemento a otro.</p>
+
+	<!-- elementos -->
+	<div class="padre3" id="evento3">
+		Padre 3 <br>
+		<div class="padre2" id="evento2">
+			Padre 2 <br>
+			<div class="padre1" id="evento1">
+				Padre 1 <br>
+				<button id="btnStopEvent">id="btnStopEvent"</button>
+			</div>
+		</div>
+	</div>
+	<br><br>
+	<!-- codigo -->
+	<code>
+		let evento1 = document.getElementById('evento1'), <br> &nbsp&nbsp&nbsp
+			evento2 = document.getElementById('evento2'), <br> &nbsp&nbsp&nbsp
+			evento3 = document.getElementById('evento3'), <br> &nbsp&nbsp&nbsp
+		 	btnStopEvent = document.getElementById('btnStopEvent'); <br><br>
+
+		btnStopEvent.addEventListener('click', (eventObject) => { <br><br> &nbsp&nbsp&nbsp
+
+			<strong>eventObject.stopPropagation();</strong> <br><br> &nbsp&nbsp&nbsp
+
+			alert('Boton ejecutado. Flujo de eventos detenido.'); <br><br>
+
+		}); <br><br>
+
+		evento1.addEventListener('click', () => { alert('Evento cancelado!') }); <br><br>
+
+		evento2.addEventListener('click', () => { alert('Evento cancelado!') }); <br><br>
+
+		evento3.addEventListener('click', () => { alert('Evento cancelado!') });
+	</code>
+	<script>
+		let evento1 = document.getElementById('evento1'),
+			evento2 = document.getElementById('evento2'),
+			evento3 = document.getElementById('evento3'),
+		 	btnStopEvent = document.getElementById('btnStopEvent');
+
+		btnStopEvent.addEventListener('click', (eventObject) => {
+
+			eventObject.stopPropagation();
+
+			alert('Boton ejecutado. Flujo de eventos detenido.');
+
+		});
+
+		evento1.addEventListener('click', () => { alert('Evento cancelado!') });
+
+		evento2.addEventListener('click', () => { alert('Evento cancelado!') });
+
+		evento3.addEventListener('click', () => { alert('Evento cancelado!') });
+	</script>	
 
 	<!-- <script src="programa.js"></script> -->
 </body>

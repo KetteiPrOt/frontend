@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Algoritmos de Ordenamiento</title>
+	<link rel="stylesheet" href="../styles.css">
+	<link rel="icon" href="../../../media/book.ico">
+</head>
+<body>
+	<h1 class="titulo-principal">Algoritmos de Ordenamiento</h1>
+	<h4 class="enlace-volver"><a href="../index.html">Volver a los Algoritmos</a></h4>
+
+
+	<!-- Insercion Directa -->
+	<h3>Insercion directa</h3>
+	<p>
+		<a href="https://juncotic.com/ordenamiento-por-insercion-algoritmos-de-ordenamiento/">
+			Enlace a la explicacion
+		</a>
+	</p>
+
+	<code>
+		Consola: <br><br>
+
+		// [3, 8, 2, 1, 4, 2] <br><br>
+
+		// [1, 2, 2, 3, 4, 8]
+	</code>
+
+	<script>
+		console.log('/* --- --- Insercion Directa --- --- */');
+
+		let arrayA = [3, 8, 2, 1, 4, 2], v, j;
+
+		console.log('Array A = ' + arrayA); // Arreglo desordenado
+
+		for (i = 1; i < arrayA.length; i++) {
+			v = arrayA[i];
+			j = i;
+
+			while ((j > 0) && (arrayA[j - 1] > v)) {
+				arrayA[j] = arrayA[j - 1];
+				j = j - 1;
+			}
+
+			arrayA[j] = v; 
+		}
+
+		console.log('Array A = ' + arrayA + '\n'); // Arreglo ordenado
+	</script>
+
+
+	<!-- Metodo Burbuja -->
+	<h3>Metodo Burbuja</h3>
+	<p>
+		<a href="https://juncotic.com/ordenamiento-de-burbuja-algoritmos-de-ordenamiento/">
+			Enlace a la explicacion
+		</a>
+	</p>
+
+	<code>
+		Consola: <br><br>
+
+		// [5, 2, 4, 1, 3] <br><br>
+
+		// [1, 2, 3, 4, 5]
+	</code>
+
+	<script>
+		console.log('/* --- --- Metodo Burbuja --- --- */');
+
+		let arrayB = [5, 2, 4, 1, 3], 
+			lon = arrayB.length,
+			l = lon,
+			n,
+			temp;
+
+		console.log('Array B = ' + arrayB); // Arreglo desordenado
+
+		do {
+			n = 0;
+
+			for (let i = 1; i < l; i++) {
+				
+				if (arrayB[i - 1] > arrayB[i]) {
+					temp = arrayB[i - 1];
+					arrayB[i - 1] = arrayB[i];
+					arrayB[i] = temp;
+					n = i;
+				}
+
+			}
+
+			l = n;
+		} while (n != 0);
+
+		console.log('Array B = ' + arrayB); // Arreglo ordenado
+	</script>
+
+
+	<!-- Metodo de Seleccion -->
+	<h3>Metodo de seleccion</h3>
+	<p>
+		<a href="http://lwh.free.fr/pages/algo/tri/tri_selection_es.html">
+			Enlace a la explicacion
+		</a>
+	</p>
+
+	<code>
+		Consola: <br><br>
+
+		// [19, 6, 18, 14, 1, 5, 20, 2, 15, 8, 7, 3, 12, 11, 10, 9, 4, 17, 13, 16] <br><br>
+
+		// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+	</code>
+
+	<script>
+		console.log('/* --- --- Metodo de Seleccion --- --- */');
+
+		let arrayC = [19, 6, 18, 14, 1, 5, 20, 2, 15, 8, 7, 3, 12, 11, 10, 9, 4, 17, 13, 16],
+			auxiliar;
+
+		console.log('Array C = ' + arrayC); // Arreglo desordenado
+
+		for (let i = 0; i < arrayC.length; i++) {
+
+			for (let j = i + 1; j < arrayC.length; j++) {
+				if (arrayC[j] < arrayC[i]) {
+					auxiliar = arrayC[i];
+					arrayC[i] = arrayC[j];
+					arrayC[j] = auxiliar;
+				}
+			}
+
+		}
+
+		console.log('Array C = ' +  arrayC); // Arreglo ordenado
+	</script>
+</body>
+</html>

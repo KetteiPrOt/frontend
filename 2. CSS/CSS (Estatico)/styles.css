@@ -5,3 +5,10 @@ h2 {
 h4	{
 	text-align: center;
 }
+
+ul li strong a {
+	text-decoration: none;
+	color: black;
+}
+
+h2 { text-align: center; }
