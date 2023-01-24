@@ -4,29 +4,109 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Calendario de Examenes</title>
-	<link rel="stylesheet" href="../../../styles.css">
+	<link rel="icon" href="../../../../../media/book.ico">
+	<style>
+		table {
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+
+		th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 10px;
+		}
+
+		input[type='submit'] {
+			margin: 10px 20px 0 175px
+		}
+	</style>
 </head>
 <body>
 
-	<h1>Calendario de Examenes</h1>
-	<h4><a href="../crearSoluciones.html">Volver</a></h4>
+	<h1>Horarios de Examenes</h1>
 
 	<form>
-		<fieldset>
-			<legend>Calendario de Examenes</legend>
-
-			<table class="tabla">
-				<thead>
-					<tr>
-						<th>Estudiante</th><th>Correo</th><th>Materia</th><th>Fecha Inscripcion</th>
-					</tr>
-				</thead>
-				<tbody id="cuerpoTabla">
-					
-				</tbody>
-			</table>
-			<input type="submit" value="Confirmar">
-		</fieldset>
+		<table>
+			<thead>
+				<tr>
+					<th>Estudiante</th><th>Correo</th><th>Materia</th><th>Fecha Inscripcion</th>
+				</tr>
+			</thead>
+			<tbody id="cuerpoTabla">
+				<tr>
+					<td>Nombre 1</td>
+					<td>example1@gmail.com</td>
+					<td>Materia 1</td>
+					<td>
+						<select id="seleccionar1">
+							<option value="Semana 1">Semana 1</option>
+							<option value="Semana 2">Semana 2</option>
+							<option value="Semana 3">Semana 3</option>
+							<option value="Semana 4">Semana 4</option>
+							<option value="Semana 5">Semana 5</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Nombre 2</td>
+					<td>example2@gmail.com</td>
+					<td>Materia 2</td>
+					<td>
+						<select id="seleccionar2">
+							<option value="Semana 1">Semana 1</option>
+							<option value="Semana 2">Semana 2</option>
+							<option value="Semana 3">Semana 3</option>
+							<option value="Semana 4">Semana 4</option>
+							<option value="Semana 5">Semana 5</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Nombre 3</td>
+					<td>example3@gmail.com</td>
+					<td>Materia 3</td>
+					<td>
+						<select id="seleccionar3">
+							<option value="Semana 1">Semana 1</option>
+							<option value="Semana 2">Semana 2</option>
+							<option value="Semana 3">Semana 3</option>
+							<option value="Semana 4">Semana 4</option>
+							<option value="Semana 5">Semana 5</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Nombre 4</td>
+					<td>example4@gmail.com</td>
+					<td>Materia 4</td>
+					<td>
+						<select id="seleccionar4">
+							<option value="Semana 1">Semana 1</option>
+							<option value="Semana 2">Semana 2</option>
+							<option value="Semana 3">Semana 3</option>
+							<option value="Semana 4">Semana 4</option>
+							<option value="Semana 5">Semana 5</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Nombre 5</td>
+					<td>example5@gmail.com</td>
+					<td>Materia 5</td>
+					<td>
+						<select id="seleccionar5">
+							<option value="Semana 1">Semana 1</option>
+							<option value="Semana 2">Semana 2</option>
+							<option value="Semana 3">Semana 3</option>
+							<option value="Semana 4">Semana 4</option>
+							<option value="Semana 5">Semana 5</option>
+						</select>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<input type="submit" id="btnEnviar" value="Confirmar">
 	</form>
 	
 	<script src="programa.js"></script>

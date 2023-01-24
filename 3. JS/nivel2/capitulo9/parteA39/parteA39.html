@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 39</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Titulo de la parte</h1>
+	<h4 class="enlace-volver"><a href="../capitulo9.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Funcion Retrollamada (callback) -->
+	<h3>Funcion Retrollamada (callback)</h3>
+	<p>Significa 'llamar de vuelta', 'retrollamada'.</p>
+	<p>
+		Una función de callback es una función que se pasa a otra función como un argumento. <br>
+		Luego la funcion callback se invoca dentro de esa función para completar algún tipo de rutina o acción.
+	</p>
+	<p>
+		El siguiente es un ejemplo de usar dos funciones callbacks sincronicas (porque se ejecutan inmediatamente).
+	</p>
+	<p>
+		Sin embargo, tenga en cuenta que las funciones callbacks tambien se utilizan para continuar con la ejecución del código después de que se haya completado una operación asincrónica — estas se denominan retrollamadas asincrónicas, como se explica al final. 
+	</p>
+
+	<code>
+		function saludar(nombre) { <br> &nbsp&nbsp&nbsp
+			console.log(`Hola ${nombre}!`); <br>
+		} <br>
+		function despedir(nombre) { <br> &nbsp&nbsp&nbsp
+			console.log(`Adios ${nombre}!`); <br>
+		} <br><br>
+
+		function procesarEntradaDeUsuario(<strong>callback</strong>) { <br> &nbsp&nbsp&nbsp
+			let respuesta = prompt('Ingresa tu nombre'); <br> &nbsp&nbsp&nbsp
+			callback(respuesta); <br>
+		} <br><br>
+
+		procesarEntradaDeUsuario(<strong>saludar</strong>); <br>
+		procesarEntradaDeUsuario(<strong>despedir</strong>); <br>
+	</code>
+
+	<p>
+		El siguiente es lo mismo pero con funciones flecha.
+	</p>
+
+	<code>
+		const saludar = (nombre) => { <br> &nbsp&nbsp&nbsp
+			console.log(`Hola ${nombre}!`); <br>
+		} <br>
+		const despedir = (nombre) => { <br> &nbsp&nbsp&nbsp
+			console.log(`Adios ${nombre}!`); <br>
+		} <br><br>
+
+		const procesarEntradaDeUsuario = (<strong>callback</strong>) => { <br> &nbsp&nbsp&nbsp
+			let respuesta = prompt('Ingresa tu nombre'); <br> &nbsp&nbsp&nbsp
+			callback(respuesta); <br>
+		} <br><br>
+
+		procesarEntradaDeUsuario(<strong>saludar</strong>); <br>
+		procesarEntradaDeUsuario(<strong>despedir</strong>); <br>
+	</code>
+
+	<p>
+		Una retrollamada o devolución de llamada (en inglés: callback), es una función ejecutable «A» que se usa como argumento de otra función «B».
+	</p>
+	<p>
+		De esta forma, al llamar a «B», esta ejecutará «A». Esta acción puede ser inmediata, lo que se denominará retrollamada sincronizada o puede producirse en un punto posterior, lo que se denominaría retrollamada asíncrona.
+	</p>
+
+
+	<!-- Promesa (Promise) -->
+	<h3>Promesa (Promise)</h3>
+	<p>
+		El objeto Promise representa la eventual finalización (o falla) de una operación asincrónica y su valor resultante.
+	</p>
+	<p>
+		El objeto tiene una funcion callback la cual recibe como argumento otras dos funciones callbaks: resolve, reject. <br>
+		Cada una de las dos funciones callback representa algo: <br>
+		Resolve (resolver): finalizacion (resultado) de una operacion asincrona <br>
+		Reject (rechazar): fracaso o error de la operacion asincrona
+	</p>
+
+	<!-- codigo -->
+	<code>
+		let nombre = 'Pedro'; <br><br>
+
+		const promesa = new Promise((resolve, reject) => { <br> &nbsp&nbsp&nbsp
+			if (nombre != 'Pedro') { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				reject('Lo siento, el nombre no es Pedro'); <br> &nbsp&nbsp&nbsp
+			} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				resolve(nombre); <br> &nbsp&nbsp&nbsp
+			} <br>
+		}); <br><br>
+
+		console.log(promesa); <strong>// Promise {>fulfilled<: 'Pedro'}</strong> <br>
+		/* <br>
+		[[Prototype]]: Promise <br>
+		[[PromiseState]]: "fulfilled" (Estado de la Promesa: totalmente cumplida) <br>
+		[[PromiseResult]]: "Pedro" (Resultado de la Promesa: 'Pedro') <br>
+		*/
+	</code>
+
+	<p>El objeto Promise tiene los datos encapsulados.</p>
+
+	<!-- codigo -->
+	<code>
+		let nombre = 'Garbancio'; <br><br>
+
+		const promesa = new Promise((resolve, reject) => { <br> &nbsp&nbsp&nbsp
+			if (nombre != 'Pedro') { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				reject('Lo siento, el nombre no es Pedro'); <br> &nbsp&nbsp&nbsp
+			} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				resolve(nombre); <br> &nbsp&nbsp&nbsp
+			} <br>
+		}); <br><br>
+
+		console.log(promesa); <strong>// Promise {>rejected<: ''Lo siento, el nombre no es Pedro''}</strong> <br>
+		// (!) Uncaught [no capturado] (in promise) Lo siento, el nombre no es Pedro <br>
+		/* <br>
+		[[Prototype]]: Promise <br>
+		[[PromiseState]]: "rejected" (Estado de la Promesa: rechazada) <br>
+		[[PromiseResult]]: "Pedro" (Resultado de la Promesa: 'Lo siento, el nombre no es Pedro') <br>
+		*/
+	</code>
+
+
+	<!-- then() -->
+	<h3>then()</h3>
+	<p>
+		Es un metodo del un objeto Promise que sirve para acceder al valor/resultado de un objeto Promise, si la promesa salio bien y se ejecuta la funcion callback resolve. <br>
+		Este metodo recibe una funcion callback, esta funcion recibe un parametro el cual se convertira en el valor/resultado del objeto Promise original.
+	</p>
+	<!-- codigo -->
+	<code>
+		let nombre = 'Pedro'; <br><br>
+
+		const promesa = new Promise((resolve, reject) => { <br> &nbsp&nbsp&nbsp
+			if (nombre != 'Pedro') { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				reject('Lo siento, el nombre no es Pedro'); <br> &nbsp&nbsp&nbsp
+			} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				resolve(nombre); <br> &nbsp&nbsp&nbsp
+			} <br>
+		}); <br><br>
+
+		console.log(promesa); // Promise {>fulfilled<: 'Pedro'} <br><br>
+
+		promesa.<strong>then</strong>((valorPromesa) => { <br> &nbsp&nbsp&nbsp
+			console.log(valorPromesa); <strong>// 'Pedro'</strong> <br>
+		});
+	</code>
+	<p>
+		Pero en caso falle la operacion y se ejecute la funcion callback reject ocurrira un error, el cual hay que atrapar de esta forma:
+	</p>
+	<!-- codigo -->
+	<code>
+		let nombre = 'Garbancio'; <br><br>
+
+		const promesa = new Promise((resolve, reject) => { <br> &nbsp&nbsp&nbsp
+			if (nombre != 'Pedro') { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				reject('Lo siento, el nombre no es Pedro'); <br> &nbsp&nbsp&nbsp
+			} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				resolve(nombre); <br> &nbsp&nbsp&nbsp
+			} <br>
+		}); <br><br>
+
+		console.log(promesa); <strong>// Promise {>rejected<: ''Lo siento, el nombre no es Pedro''}</strong> <br><br>
+
+		promesa.then((valorPromesa) => { <br> &nbsp&nbsp&nbsp
+			console.log(valorPromesa); <br> 
+		}).catch((error) => { <br> &nbsp&nbsp&nbsp
+			console.log(error); <strong>// Lo siento, el nombre no es Pedro</strong> <br>
+		});
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

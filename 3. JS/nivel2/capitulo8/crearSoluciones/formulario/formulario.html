@@ -4,60 +4,105 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>El formulario de Cofla</title>
-	<link rel="stylesheet" href="estilos.css">
+	<link rel="icon" href="../../../../../media/book.ico">
+	<style>
+		fieldset {
+			width: 30%;
+		}
+
+		.error {
+			color: red;
+			font-size: 10px;
+		}
+	</style>
 </head>
 <body>
-	<h1>El formulario de Cofla</h1>
-	<h4><a href="../crearSoluciones.html">Volver</a></h4>
+	<h1>Formulario</h1>
 	
 	<form class="formulario">
 		<fieldset>
-			<legend>Inscripcion para el supletorio</legend>
+			<legend>Datos de Inscripcion</legend>
 			<table>
 				<tbody>
 					<tr>
-						<td><label for="nombre">Estudiante:</label></td>
+						<td>
+							<label for="nombre">
+								Nombre:
+							</label>
+						</td>
 						<td>
 							<input 
-							    type="text" 
-							    id="nombre" 
-							    placeholder="Nombres y apellidos..." 
-							    maxlength="50" 
-							    minlength="10" 
-							    required
+								type="text" 
+								id="nombre" 
+								placeholder="Nombres y apellidos..." 
 							>
 						</td>
 					</tr>
 					<tr>
-						<td><label for="email">Correo:</label></td>
+						<td></td>
+						<td>
+							<span id="nombreError" class="error"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="email">
+								Correo: 
+							</label>
+						</td>
 						<td>
 							<input 
 								type="email"
 								id="email"
 								placeholder="Escribe tu correo..."
-								maxlength="30"
-								minlength="10" 
-								required 
 							>
 						</td>
 					</tr>
 					<tr>
-						<td><label for="materia">Materia:</label></td>
+						<td></td>
 						<td>
-							<input
-								type="text"
-								id="materia"
-								placeholder="A solicitar..."
-								maxlength="25"
-								minlength="5"
-								required
-							>
+							<span id="emailError" class="error"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="materia">
+								Materia: 
+							</label>
+						</td>
+						<td>
+							<select id="materia">
+								<option value="">
+									(Selecciona)
+								</option>
+								<option value="materia1">
+									Materia 1
+								</option>
+								<option value="materia2">
+									Materia 2
+								</option>
+								<option value="materia3">
+									Materia 3
+								</option>
+								<option value="materia4">
+									Materia 4
+								</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<span id="materiaError" class="error"></span>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<input type="submit" id="enviar" value="Enviar Solicitud">
+			<input type="submit" id="enviar" value="Enviar Solicitud"><br>
+			<span id="enviarError" class="error"></span>
 		</fieldset>
 	</form>
+
+	<script src="programa.js"></script>
 </body>
 </html>
