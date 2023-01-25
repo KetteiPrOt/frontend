@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 40</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Await y Async</h1>
+	<h4 class="enlace-volver"><a href="../capitulo9.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Asincronia de las Promesas -->
+	<h3>Asincronia de las Promesas</h3>
+	<p>
+		Las promesas son asincronas... es decir, no trabajan en tiempo real al mismo tiempo que se ejecuta secuencialmente el codigo del programa.
+	</p>
+	<p>
+		Se puede dejar 'pendiente' una promesa y ejecutar cierto codigo cuando esta se cumpla, dividiendo asi el flujo del programa para que no se quede estancado, por ejemplo, esperando la respuesta de un servidor lentoso o directamente caido.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Supongamos que este dato informativo viene de un servidor</strong> <br>
+		const dato = 'Este es un dato informativo'; <br><br>
+
+		const pedirInfo = (info) => { <br><br> &nbsp&nbsp&nbsp
+
+			const funcion = (resolve, reject) => { <br><br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+				<strong>// El server tarda 1 segundo en devolver el dato para resolver la promesa</strong> <br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				setTimeout(() => { resolve(info) }, 1000); <br><br> &nbsp&nbsp&nbsp
+
+			} <br><br> &nbsp&nbsp&nbsp
+
+			let promesa = new Promise(funcion); <br><br> &nbsp&nbsp&nbsp
+
+			return promesa; <br>
+		} <br><br>
+
+		const mostrarDato = (resultado) => { <br> &nbsp&nbsp&nbsp
+			console.log(resultado); <br>
+		} <br><br>
+
+		<strong>// Pide el dato y luego Despues de 1 segundo lo muestra sin interrumpir el flujo del codigo mas abajo</strong><br>
+		pedirInfo(dato).then(mostrarDato);<br><br>
+
+		console.log('Comando 1'); <br>
+		console.log('Comando 2'); <br>
+		console.log('Comando 3');
+	</code>
+
+
+	<!-- Await y Async -->
+	<h3>Await y Async</h3>
+	<p>
+		El codigo de arriba ya trabaja con una promesa asincrona, sin embargo hay una mejor forma de hacerlo... eso es con await y asycn.
+	</p>
+	<p>
+		El siguiente codigo invoca una funcion asincrona con <em><strong>async</strong></em>, quien 'espera' con <em><strong>await</strong></em> a que se cumpla la promesa pendiente de la funcion pedirInfo() [esta funcion simula la latencia de un servidor].
+	</p>
+	<p>
+		Cuando la promesa se cumple, la funcion asincrona reanuda la ejecucion de su codigo y de esta manera se evita detener el flujo del programa al igual que en el ejemplo anterior. Pero aqui esta escrito de forma mas explicita y es como deberia usarse.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Supongamos que este dato informativo viene de un servidor</strong><br>
+		const dato = 'Este es un dato informativo'; <br><br>
+
+		const pedirInfo = (info) => { <br><br> &nbsp&nbsp&nbsp
+
+			const funcion = (resolve, reject) => { <br><br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+				<strong>// El server tarda 1 segundo en devolver el dato para resolver la promesa</strong> <br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				setTimeout(() => { resolve(info) }, 1000); <br><br> &nbsp&nbsp&nbsp
+
+			} <br><br> &nbsp&nbsp&nbsp
+
+			let promesa = new Promise(funcion); <br><br> &nbsp&nbsp&nbsp
+
+			return promesa; <br>
+		} <br><br>
+
+		const mostrarDato = <strong>async</strong> (info) => { <br> &nbsp&nbsp&nbsp
+		    let resultado; <br><br> &nbsp&nbsp&nbsp
+
+		    resultado = <strong>await</strong> pedirInfo(info); <br><br> &nbsp&nbsp&nbsp
+
+		    console.log(resultado); <br>
+		} <br><br>
+
+		<strong>// Como es una funcion asincrona tarda 1 segundo en ejecutarse por completo, pero no llega a interrumpir el flujo del programa mas abajo</strong> <br>
+		mostrarDato(dato); <br><br>
+
+		console.log('Comando 1'); <br>
+		console.log('Comando 2'); <br>
+		console.log('Comando 3');
+	</code>
+
+	<!-- Con funciones normales -->
+	<h4>Con funciones normales</h4>
+	<p>Esto es lo mismo, pero con funciones tradicionales</p>
+	<code>
+		<strong>// Supongamos que este dato informativo viene de un servidor</strong><br>
+		const dato = 'Este es un dato informativo'; <br><br>
+
+		function pedirInfo(info) { <br><br> &nbsp&nbsp&nbsp
+
+			function funcion(resolve, reject) { <br><br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+				<strong>// El server tarda 1 segundo en devolver el dato para resolver la promesa</strong> <br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				setTimeout(() => { resolve(info) }, 1000); <br><br> &nbsp&nbsp&nbsp
+
+			} <br><br> &nbsp&nbsp&nbsp
+
+			let promesa = new Promise(funcion); <br><br> &nbsp&nbsp&nbsp
+
+			return promesa; <br>
+		} <br><br>
+
+		<strong>async</strong> function mostrarDato(info) { <br> &nbsp&nbsp&nbsp
+		    let resultado; <br><br> &nbsp&nbsp&nbsp
+
+		    resultado = <strong>await</strong> pedirInfo(info); <br><br> &nbsp&nbsp&nbsp
+
+		    console.log(resultado); <br>
+		} <br><br>
+
+		<strong>// Como es una funcion asincrona tarda 1 segundo en ejecutarse por completo, pero no llega a interrumpir el flujo del programa mas abajo</strong> <br>
+		mostrarDato(dato); <br><br>
+
+		console.log('Comando 1'); <br>
+		console.log('Comando 2'); <br>
+		console.log('Comando 3');
+	</code>
+
+
+	<!-- Await y Async VS then() -->
+	<h3>Await y Async VS then()</h3>
+	<p>
+		La ventaja de trabajar con <strong><em>await</em></strong> y <strong><em>async</em></strong>, en lugar de con <em>then()</em> esta en que, parte de ser mas actualizado, en la vida real un servidor responde en un tiempo incierto, aleatorio...
+	</p>
+	<p>
+		Entonces si tenemos varias promesas y usamos <em>then()</em> lo que va a pasar es que el codigo tambien se va a ejecutar en un orden incierto segun se vallan cumpliendo las promesas. En este ejemplo los datos son proporcionados en un orden incierto y por eso se muestran de forma desordenada:
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Supongamos que estos datos vienen de un servidor</strong> <br>
+		const dato1 = 'Dato 1', <br> &nbsp&nbsp&nbsp
+			  dato2 = 'Dato 2', <br> &nbsp&nbsp&nbsp
+			  dato3 = 'Dato 3', <br> &nbsp&nbsp&nbsp
+			  dato4 = 'Dato 4'; <br><br>
+
+		const pedirInfo = (info) => { <br><br> &nbsp&nbsp&nbsp
+
+			const funcion = (resolve, reject) => { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				<strong>// Tiempo aleatorio entre 1 y 200 milisegundos</strong> <br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				let tiempo = Math.random() * 200; <br><br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+				setTimeout(() => { resolve(info) }, tiempo); <br><br> &nbsp&nbsp&nbsp
+
+			} <br><br> &nbsp&nbsp&nbsp
+
+			let promesa = new Promise(funcion); <br><br> &nbsp&nbsp&nbsp
+
+			return promesa; <br>
+		} <br><br>
+
+		const mostrarDato = (resultado) => { <br> &nbsp&nbsp&nbsp
+		    console.log(resultado); <br>
+		} <br><br>
+
+		<strong>// Si ejecutas este codigo varias veces, veras que los datos se muestran en un orden distinto por cada ocasion</strong> <br>
+		pedirInfo(dato1).then(mostrarDato); <br>
+		pedirInfo(dato2).then(mostrarDato); <br>
+		pedirInfo(dato3).then(mostrarDato); <br>
+		pedirInfo(dato4).then(mostrarDato);
+	</code>
+
+	<p>
+		Esto se convierte en un problema cuando quiero pedir datos al servidor... pero no quiero que mostrarselos hechos un menjunge al usuario.
+	</p>
+	<p>
+		Aqui es donde viene la ventaja de las funciones asincronas (<strong><em>await</em></strong> y <strong><em>async</em></strong>), poque dentro de estas si podemos escribir de manera que los datos sean procesados en orden:
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Supongamos que estos datos vienen de un servidor</strong> <br>
+		const objeto = { <br> &nbsp&nbsp&nbsp
+			dato1: 'Dato 1', <br> &nbsp&nbsp&nbsp
+			dato2: 'Dato 2', <br> &nbsp&nbsp&nbsp
+			dato3: 'Dato 3', <br> &nbsp&nbsp&nbsp
+			dato4: 'Dato 4' <br>
+		} <br><br>
+
+		const pedirInfo = (info) => { <br><br> &nbsp&nbsp&nbsp
+
+			const funcion = (resolve, reject) => { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				<strong>// Tiempo aleatorio entre 1 y 200 milisegundos</strong> <br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				let tiempo = Math.random() * 200; <br><br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+				setTimeout(() => { resolve(info) }, tiempo); <br><br> &nbsp&nbsp&nbsp
+
+			} <br><br> &nbsp&nbsp&nbsp
+
+			let promesa = new Promise(funcion); <br><br> &nbsp&nbsp&nbsp
+
+			return promesa; <br>
+		} <br><br>
+
+		const mostrarDatos = async (datos) => { <br> &nbsp&nbsp&nbsp
+		    let resultado1 = await pedirInfo(datos.dato1), <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+		    	resultado2 = await pedirInfo(datos.dato2), <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+		    	resultado3 = await pedirInfo(datos.dato3), <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+		    	resultado4 = await pedirInfo(datos.dato4); <br><br> &nbsp&nbsp&nbsp
+
+		    console.log(resultado1); <br> &nbsp&nbsp&nbsp
+		    console.log(resultado2); <br> &nbsp&nbsp&nbsp
+		    console.log(resultado3); <br> &nbsp&nbsp&nbsp
+		    console.log(resultado4); <br>
+		} <br><br>
+
+		mostrarDatos(objeto); <br>
+		<strong>// Dato 1</strong> <br>
+ 		<strong>// Dato 2</strong> <br>
+ 		<strong>// Dato 3</strong> <br>
+ 		<strong>// Dato 4</strong>
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

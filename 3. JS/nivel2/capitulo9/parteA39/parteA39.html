@@ -8,51 +8,50 @@
 	<link rel="stylesheet" href="../../styles.css">
 </head>
 <body>
-	<h1 class="titulo-principal">Titulo de la parte</h1>
+	<h1 class="titulo-principal">Callbacks y Promesas</h1>
 	<h4 class="enlace-volver"><a href="../capitulo9.html">Volver al capitulo</a></h4>
 	<hr>
 
 	<!-- Funcion Retrollamada (callback) -->
 	<h3>Funcion Retrollamada (callback)</h3>
-	<p>Significa 'llamar de vuelta', 'retrollamada'.</p>
 	<p>
-		Una función de callback es una función que se pasa a otra función como un argumento. <br>
-		Luego la funcion callback se invoca dentro de esa función para completar algún tipo de rutina o acción.
+		Significa 'llamar de vuelta', 'retrollamada'. Una retrollamada o devolución de llamada (en inglés: callback), es una función ejecutable «A» que se usa como argumento de otra función «B».
 	</p>
 	<p>
-		El siguiente es un ejemplo de usar dos funciones callbacks sincronicas (porque se ejecutan inmediatamente).
+		De esta forma, al llamar a «B», esta ejecutará «A». Esta acción puede ser inmediata, lo que se denominará retrollamada sincronizada o puede producirse en un punto posterior, lo que se denominaría retrollamada asíncrona. El siguiente codigo es on funciones tradicionales.
 	</p>
-	<p>
-		Sin embargo, tenga en cuenta que las funciones callbacks tambien se utilizan para continuar con la ejecución del código después de que se haya completado una operación asincrónica — estas se denominan retrollamadas asincrónicas, como se explica al final. 
-	</p>
-
+	<!-- codigo -->
 	<code>
 		function saludar(nombre) { <br> &nbsp&nbsp&nbsp
 			console.log(`Hola ${nombre}!`); <br>
-		} <br>
-		function despedir(nombre) { <br> &nbsp&nbsp&nbsp
-			console.log(`Adios ${nombre}!`); <br>
 		} <br><br>
 
 		function procesarEntradaDeUsuario(<strong>callback</strong>) { <br> &nbsp&nbsp&nbsp
 			let respuesta = prompt('Ingresa tu nombre'); <br> &nbsp&nbsp&nbsp
-			callback(respuesta); <br>
+			<strong>callback</strong>(respuesta); <br>
 		} <br><br>
 
-		procesarEntradaDeUsuario(<strong>saludar</strong>); <br>
-		procesarEntradaDeUsuario(<strong>despedir</strong>); <br>
+		procesarEntradaDeUsuario(<strong>saludar</strong>);
 	</code>
 
-	<p>
-		El siguiente es lo mismo pero con funciones flecha.
-	</p>
+	<p>Tambien se puede escribir:</p>
+	<!-- codigo -->
+	<code>
+		function procesarEntradaDeUsuario(<strong>callback</strong>) { <br> &nbsp&nbsp&nbsp
+			let respuesta = prompt('Ingresa tu nombre'); <br> &nbsp&nbsp&nbsp
+			<strong>callback</strong>(respuesta); <br>
+		} <br><br>
 
+		procesarEntradaDeUsuario(<strong>function</strong>(nombre) { <br> &nbsp&nbsp&nbsp
+		    console.log(`Hola ${nombre}!`); <br>
+		});
+	</code>
+
+	<p>El siguiente es lo mismo pero con funciones flecha.</p>
+	<!-- codigo -->
 	<code>
 		const saludar = (nombre) => { <br> &nbsp&nbsp&nbsp
 			console.log(`Hola ${nombre}!`); <br>
-		} <br>
-		const despedir = (nombre) => { <br> &nbsp&nbsp&nbsp
-			console.log(`Adios ${nombre}!`); <br>
 		} <br><br>
 
 		const procesarEntradaDeUsuario = (<strong>callback</strong>) => { <br> &nbsp&nbsp&nbsp
@@ -60,120 +59,337 @@
 			callback(respuesta); <br>
 		} <br><br>
 
-		procesarEntradaDeUsuario(<strong>saludar</strong>); <br>
-		procesarEntradaDeUsuario(<strong>despedir</strong>); <br>
+		procesarEntradaDeUsuario(<strong>saludar</strong>);
 	</code>
 
-	<p>
-		Una retrollamada o devolución de llamada (en inglés: callback), es una función ejecutable «A» que se usa como argumento de otra función «B».
-	</p>
-	<p>
-		De esta forma, al llamar a «B», esta ejecutará «A». Esta acción puede ser inmediata, lo que se denominará retrollamada sincronizada o puede producirse en un punto posterior, lo que se denominaría retrollamada asíncrona.
-	</p>
-
-
-	<!-- Promesa (Promise) -->
-	<h3>Promesa (Promise)</h3>
-	<p>
-		El objeto Promise representa la eventual finalización (o falla) de una operación asincrónica y su valor resultante.
-	</p>
-	<p>
-		El objeto tiene una funcion callback la cual recibe como argumento otras dos funciones callbaks: resolve, reject. <br>
-		Cada una de las dos funciones callback representa algo: <br>
-		Resolve (resolver): finalizacion (resultado) de una operacion asincrona <br>
-		Reject (rechazar): fracaso o error de la operacion asincrona
-	</p>
-
+	<!-- Problema de los condicionales -->
+	<h3>Problema de los condicionales</h3>
+	<p>Supongamos que tengo este array con X objetos de clase Persona { ... } segun los datos de ciertos usuarios.</p>
 	<!-- codigo -->
 	<code>
-		let nombre = 'Pedro'; <br><br>
-
-		const promesa = new Promise((resolve, reject) => { <br> &nbsp&nbsp&nbsp
-			if (nombre != 'Pedro') { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
-				reject('Lo siento, el nombre no es Pedro'); <br> &nbsp&nbsp&nbsp
-			} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
-				resolve(nombre); <br> &nbsp&nbsp&nbsp
+		class Persona { <br> &nbsp&nbsp&nbsp
+			constructor(nombre, instagram) { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				this.nombre = nombre; <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				this.instagram = instagram; <br> &nbsp&nbsp&nbsp
 			} <br>
-		}); <br><br>
+		} <br><br>
 
-		console.log(promesa); <strong>// Promise {>fulfilled<: 'Pedro'}</strong> <br>
-		/* <br>
-		[[Prototype]]: Promise <br>
-		[[PromiseState]]: "fulfilled" (Estado de la Promesa: totalmente cumplida) <br>
-		[[PromiseResult]]: "Pedro" (Resultado de la Promesa: 'Pedro') <br>
-		*/
+		const datos = [ <br> &nbsp&nbsp&nbsp
+			['Lucas Dalto', '@Soydalto'], <br> &nbsp&nbsp&nbsp
+			['Robertico', '@Robertico'], <br> &nbsp&nbsp&nbsp
+			['Rancio Ramirez', <strong>null</strong>], <strong>// @Rancioramirez</strong> <br> &nbsp&nbsp&nbsp
+			['Kamila Nesa', '@Milanesa'] <br>
+		]; <br><br>
+
+		// Crear objetos Persona con los datos y guardarlos en un array <br>
+		let personas = []; <br><br>
+
+		for (i in datos) { <br> &nbsp&nbsp&nbsp
+			let nombre = datos[i][0], <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				instagram = datos[i][1]; <br><br> &nbsp&nbsp&nbsp
+
+			personas[i] = new Persona(nombre, instagram); <br>
+		} <br><br>
+
+		<strong>console.log(personas) // [Persona { ... } , Persona { ... }, Persona { ... }, Persona { ... }]</strong>
+	</code>
+	
+	<!-- Verificacion de Datos -->
+	<h4>Verificacion de Datos</h4>
+	<p>Ahora yo quiero crear una funcion que verifique si existe una persona en el indice de Array que yo elija, y despues quiero que si existe verifique si estan completos los datos (nombre e instagram), sino existe o falta algun dato muestre cual fue el error... puedo usar funciones con callbacks encadenados.</p>
+	<!-- codigo -->
+	<code>
+		const verificarIndice = (i, callback) => { <br> &nbsp&nbsp&nbsp
+			let error; <br> &nbsp&nbsp&nbsp
+			<strong>// Si no hay persona en el indice le pasa el error al callback. El indice y el otro callback van vacios</strong> <br> &nbsp&nbsp&nbsp
+			if (!personas[i]) { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				error = true; <br> <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+				callback(error, null, null); <br> &nbsp&nbsp&nbsp
+			} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				<strong>// Si tenemos una persona le comunica al callback que no tenemos error y le pasa el indice de la persona a mostrarDatos.</strong> <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				<strong>// Asi como su propio callback para verificarlos antes de mostralos</strong> <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				error = false; <br> <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+				callback(error, i, verificarDatos); <br> &nbsp&nbsp&nbsp
+			} <br> <br>
+
+		}
 	</code>
 
-	<p>El objeto Promise tiene los datos encapsulados.</p>
-
+	<p>Ahora escribo las funciones callbacks para verificar y mostrar los datos...</p>
 	<!-- codigo -->
 	<code>
-		let nombre = 'Garbancio'; <br><br>
-
-		const promesa = new Promise((resolve, reject) => { <br> &nbsp&nbsp&nbsp
-			if (nombre != 'Pedro') { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
-				reject('Lo siento, el nombre no es Pedro'); <br> &nbsp&nbsp&nbsp
+		const mostrarDatos = (error, i, callback) => { <br> &nbsp&nbsp&nbsp
+			if (error) { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				console.log('(!) El indice que buscas esta fuera del rango'); <br> &nbsp&nbsp&nbsp
 			} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
-				resolve(nombre); <br> &nbsp&nbsp&nbsp
+				<strong>// console.log(`Nombre: ${nombre}` + '\n' + `Instagram: ${instagram}`);</strong> <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				callback(i); <br> &nbsp&nbsp&nbsp
 			} <br>
-		}); <br><br>
+		} <br><br>
 
-		console.log(promesa); <strong>// Promise {>rejected<: ''Lo siento, el nombre no es Pedro''}</strong> <br>
-		// (!) Uncaught [no capturado] (in promise) Lo siento, el nombre no es Pedro <br>
-		/* <br>
-		[[Prototype]]: Promise <br>
-		[[PromiseState]]: "rejected" (Estado de la Promesa: rechazada) <br>
-		[[PromiseResult]]: "Pedro" (Resultado de la Promesa: 'Lo siento, el nombre no es Pedro') <br>
-		*/
+		const verificarDatos = (i) => { <br> &nbsp&nbsp&nbsp
+			let nombre = personas[i].nombre, <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				instagram = personas[i].instagram; <br><br>  &nbsp&nbsp&nbsp
+
+			if (!nombre && !instagram) { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				console.log('No tenemos datos'); <br> &nbsp&nbsp&nbsp
+			} else if (!nombre) { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				console.log('El nombre no fue encontrado' + '\n' + `Instagram: ${instagram}`); <br> &nbsp&nbsp&nbsp
+			} else if (!instagram) { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				console.log(`Nombre: ${nombre}` + '\n' + 'El instagram no fue encontrado'); <br> &nbsp&nbsp&nbsp
+			} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				console.log(`Nombre: ${nombre}` + '\n' + `Instagram: ${instagram}`); <br> &nbsp&nbsp&nbsp
+			} <br>
+		} <br><br>
+
+		verificarIndice(1, mostrarDatos); <br>
+		<strong>// mostrarDatos(false, 1, verificarDatos); <br>
+		// verificarDatos(1); <br>
+		// Nombre: Robertico <br>
+		// Instagram: @Robertico <br> <br></strong>
+
+		<strong>verificarIndice(2, mostrarDatos); <br>
+		// mostrarDatos(false, 2, verificarDatos); <br>
+		// verificarDatos(2); <br>
+		// Nombre: Rancio Ramirez <br>
+		// El instagram esta vacio <br> <br></strong>
+
+		<strong>verificarIndice(5, mostrarDatos); <br>
+		// mostrarDatos(true, null, null); <br>
+		// (!) El indice que buscas esta fuera del rango</strong>
+	</code>
+
+	<p>Esta es una buena estructura de control, en todo caso tambien es complejo de leer, incluso aqui donde la funcion verificarDatos() solo debe validar 2 datos del usuario, pero en el caso de que sean mas (3 xd) se vuelve un menjunge los condicionales en la funcion... para arreglar este problema de condicionales <strong>son de utilidad el uso de callbacks junto a las <em>Promesas</em></strong>.</p>
+
+
+	<!-- Promesas (promise) -->
+	<h3>Promesas (promise)</h3>
+	<p>
+		Las promesas son un objeto de Clase <em><strong>Promise</strong></em>. Para crear este objeto la funcion constructora recibe como argumento otra funcion A... esta funcion A recibe como argumento otras dos funciones B y C.
+	</p>
+	<p>
+		Las funciones B y C reciben el nombre de <strong><em>resolve</em></strong> y <strong><em>reject</em></strong>, en cuestion. Porque representan si la promesa fue rechazada (fracaso) o se resolvio (fue cumplida).
+	</p>
+	<!-- codigo -->
+	<code>
+		let llave = 'xMlf3'; <br><br>
+
+		function funcionA(resolve, reject) { <br> &nbsp&nbsp&nbsp
+			if (llave != 'xMlf3') { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				reject('La clave proporcionada no es la correcta'); <br> &nbsp&nbsp&nbsp
+			} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				resolve('Permiso concedido'); <br> &nbsp&nbsp&nbsp
+			} <br>
+		} <br><br>
+
+		const promesa1 = new Promise(funcionA); <br><br>
+
+		console.log(promesa1); <strong>// Promise {>fulfilled<: 'Permiso concedido'}</strong> <br><br>
+
+		llave = '12345'; <br><br>
+
+		const promesa2 = new Promise(funcionA); <strong>// (!) Error</strong> <br><br>
+
+		console.log(promesa2); <strong>// Promise {>rejected<: 'La clave proporcionada no es la correcta'}</strong>
 	</code>
 
 
 	<!-- then() -->
 	<h3>then()</h3>
 	<p>
-		Es un metodo del un objeto Promise que sirve para acceder al valor/resultado de un objeto Promise, si la promesa salio bien y se ejecuta la funcion callback resolve. <br>
-		Este metodo recibe una funcion callback, esta funcion recibe un parametro el cual se convertira en el valor/resultado del objeto Promise original.
+		Este metodo de un objeto <em><strong>Promise</strong></em> accede al valor que tiene una promesa que se resolvio (no fracaso).
 	</p>
-	<!-- codigo -->
-	<code>
-		let nombre = 'Pedro'; <br><br>
-
-		const promesa = new Promise((resolve, reject) => { <br> &nbsp&nbsp&nbsp
-			if (nombre != 'Pedro') { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
-				reject('Lo siento, el nombre no es Pedro'); <br> &nbsp&nbsp&nbsp
-			} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
-				resolve(nombre); <br> &nbsp&nbsp&nbsp
-			} <br>
-		}); <br><br>
-
-		console.log(promesa); // Promise {>fulfilled<: 'Pedro'} <br><br>
-
-		promesa.<strong>then</strong>((valorPromesa) => { <br> &nbsp&nbsp&nbsp
-			console.log(valorPromesa); <strong>// 'Pedro'</strong> <br>
-		});
-	</code>
 	<p>
-		Pero en caso falle la operacion y se ejecute la funcion callback reject ocurrira un error, el cual hay que atrapar de esta forma:
+		Recibe como parametro una funcion D, esa funcion D recibe otro argumento el cual tomara el valor de la promesa resuelta... es decir de <em><strong>resolve</strong></em>.
 	</p>
 	<!-- codigo -->
 	<code>
-		let nombre = 'Garbancio'; <br><br>
+		let llave = 'xMlf3'; <br><br>
 
-		const promesa = new Promise((resolve, reject) => { <br> &nbsp&nbsp&nbsp
-			if (nombre != 'Pedro') { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
-				reject('Lo siento, el nombre no es Pedro'); <br> &nbsp&nbsp&nbsp
+		function funcionA(resolve, reject) { <br> &nbsp&nbsp&nbsp
+			if (llave != 'xMlf3') { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				reject('La clave proporcionada no es la correcta'); <br> &nbsp&nbsp&nbsp
 			} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
-				resolve(nombre); <br> &nbsp&nbsp&nbsp
+				resolve('Permiso concedido'); <br> &nbsp&nbsp&nbsp
 			} <br>
-		}); <br><br>
+		} <br><br>
 
-		console.log(promesa); <strong>// Promise {>rejected<: ''Lo siento, el nombre no es Pedro''}</strong> <br><br>
+		const promesa1 = new Promise(funcionA); <br><br>
 
-		promesa.then((valorPromesa) => { <br> &nbsp&nbsp&nbsp
-			console.log(valorPromesa); <br> 
-		}).catch((error) => { <br> &nbsp&nbsp&nbsp
-			console.log(error); <strong>// Lo siento, el nombre no es Pedro</strong> <br>
-		});
+		console.log(promesa1); <strong>// Promise {>fulfilled<: 'Permiso concedido'}</strong> <br><br>
+
+		function funcionD(valor) { <br> &nbsp&nbsp&nbsp
+			console.log(valor); <strong>// Permiso concedido</strong> <br>
+		} <br><br>
+
+		promesa1.then(funcionD);
+	</code>
+
+
+	<!-- catch() -->
+	<h3>catch()</h3>
+	<p>
+		En todo caso el metodo anterior no sirve de nada si la promesa es rechazada (fracasa) escupiendo un error, por eso para tratar esto esta el metodo <em><strong>catch()</strong></em> de manejo de errores.
+	</p>
+	<p>
+		Este metodo recibe (al igual que then) una funcion F, la cual tiene un argumento que tomara el valor del error al ser rechazada la promesa... es decir de <em><strong>reject</strong></em>.
+	</p>
+	<!-- codigo -->
+	<code>
+		let llave = '12345'; <br><br>
+
+		function funcionA(resolve, reject) { <br> &nbsp&nbsp&nbsp
+			if (llave != 'xMlf3') { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				reject('La clave proporcionada no es la correcta'); <br> &nbsp&nbsp&nbsp
+			} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				resolve('Permiso concedido'); <br> &nbsp&nbsp&nbsp
+			} <br>
+		} <br><br>
+
+		const promesa1 = new Promise(funcionA); <br><br>
+
+		function funcionD(valor) { <br> &nbsp&nbsp&nbsp
+			console.log(valor); <br>
+		} <br><br>
+
+		function <strong>funcionF</strong>(error) { <br> &nbsp&nbsp&nbsp
+			console.log(error); <strong>// La clave proporcionada no es la correcta</strong> <br>
+		} <br><br>
+
+		promesa1.then(funcionD).catch(<strong>funcionF</strong>);
+	</code>
+
+
+	<!-- Solucion de los condicionales -->	
+	<h3>Solucion de los condicionales</h3>
+	<p>
+		En el menjunge de codigo para el problema de los condicionales estabamos manejando los errores en bloques anidados... lo que era ilegible y generaba confusion:
+	</p>
+	<img src="media/ifelse.png" alt="If Else anidados" height="200">
+
+	<p>
+		Ahora con las promesas junto a los metodos <em><strong>then()</strong></em> y <em><strong>catch()</strong></em> podemos hacer cada una de las verificaciones en su propio bloque...y si hay algun error pasar directamente al bloque al final:
+	</p>
+	<img src="media/promise.png" alt="Errores con Promesas" height="200">
+
+	<p>
+		Lo cual resulta mas legible e infinitamente mejor.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>/* --- --- Crear los objetos Persona --- --- */</strong><br><br>
+		class Persona { <br>
+		    constructor(nombre, instagram) { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+		         this.nombre = nombre; <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+		         this.instagram = instagram; <br> &nbsp&nbsp&nbsp
+		    } <br>
+		} <br><br>
+
+		const datos = [ <br> &nbsp&nbsp&nbsp
+		    ['Lucas Dalto', '@Soydalto'], <br> &nbsp&nbsp&nbsp
+		    [null, '@Robertico'], <br> &nbsp&nbsp&nbsp
+		    ['Rancio Ramirez', null], <br> &nbsp&nbsp&nbsp
+		    ['Kamila Nesa', '@Milanesa'] <br>
+		]; <br><br>
+
+		<strong>// Crear objetos Persona con los datos y guardarlos en un array</strong><br>
+		let personas = []; <br><br>
+
+		for (i in datos) { <br> &nbsp&nbsp&nbsp
+		    let nombre = datos[i][0], <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+		         instagram = datos[i][1]; <br><br> &nbsp&nbsp&nbsp
+
+		    personas[i] = new Persona(nombre, instagram); <br>
+		} <br><br>
+
+		console.log(personas) <strong>// [Persona { ... } , Persona { ... }, Persona { ... }, Persona { ... }]</strong> <br><br><br>
+
+
+		<strong>/* --- --- Nueva arquitectura --- --- */</strong> <br><br>
+		const verificarIndice = (i) => { <br><br> &nbsp&nbsp&nbsp
+
+			const funcion = (resolve, reject) => { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				<strong>// Si no hay persona en el indice rechaza la promesa</strong> <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				if (!personas[i]) { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+					reject('Error: El indice que buscas esta fuera del rango'); <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+					<strong>// Si tenemos una persona resuelve la promesa pasando el indice</strong> <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+					resolve(i); <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				} <br> &nbsp&nbsp&nbsp
+			} <br><br> &nbsp&nbsp&nbsp
+
+			let promesa = new Promise(funcion); <br><br> &nbsp&nbsp&nbsp
+
+			return promesa; <br>
+		} <br><br>
+
+		const verificarNombre = (i) => { <br><br> &nbsp&nbsp&nbsp
+
+			const funcion = (resolve, reject) => { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				if (!personas[i].nombre) { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+					reject('Error: No hemos encontrado el nombre'); <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+					resolve(i); <br> &nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp
+				} <br> &nbsp&nbsp&nbsp
+			} <br><br> &nbsp&nbsp&nbsp
+
+			let promesa = new Promise(funcion); <br><br> &nbsp&nbsp&nbsp
+
+			return promesa; <br>
+		}<br><br>
+
+		const verificarInstagram = (i) => { <br><br> &nbsp&nbsp&nbsp
+
+			const funcion = (resolve, reject) => { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				if (!personas[i].instagram) { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+					reject('Error: No hemos encontrado el instagram'); <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				} else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+					resolve(i); <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				} <br>  &nbsp&nbsp&nbsp
+			} <br><br>  &nbsp&nbsp&nbsp
+
+			let promesa = new Promise(funcion); <br><br>  &nbsp&nbsp&nbsp
+
+			return promesa; <br>
+		} <br><br>
+
+		const mostrarDatos = (i) => { <br> &nbsp&nbsp&nbsp 
+			let nombre = personas[i].nombre, <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+			    instagram = personas[i].instagram; <br> &nbsp&nbsp&nbsp 
+			console.log(`Nombre: ${nombre}` + '\n' + `Instagram: ${instagram}`); <br>
+		} <br><br>
+
+		const mostrarError = (error) => { <br> &nbsp&nbsp&nbsp 
+			console.log(error); <br>
+		} <br><br>
+
+		verificarIndice(0) <br>
+		.then(verificarNombre) <br>
+		.then(verificarInstagram) <br>
+		.then(mostrarDatos) <br>
+		.catch(mostrarError);  <br>
+		<strong>// Nombre: Lucas Dalto  <br>
+		// Instagram: @Soydalto </strong><br><br>
+
+		verificarIndice(1) <br>
+		.then(verificarNombre) <br>
+		.then(verificarInstagram) <br>
+		.then(mostrarDatos) <br>
+		.catch(mostrarError); <strong>// Error: No hemos encontrado el nombre</strong> <br><br>
+
+		verificarIndice(2) <br>
+		.then(verificarNombre) <br>
+		.then(verificarInstagram) <br>
+		.then(mostrarDatos) <br>
+		.catch(mostrarError); <strong>// Error: No hemos encontrado el instagram</strong> <br><br>
+
+		verificarIndice(6) <br>
+		.then(verificarNombre) <br>
+		.then(verificarInstagram) <br>
+		.then(mostrarDatos) <br>
+		.catch(mostrarError); <strong>// Error: El indice que buscas esta fuera del rango</strong> <br>
 	</code>
 
 	<!-- <script src="programa.js"></script> -->
