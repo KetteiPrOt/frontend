@@ -42,8 +42,45 @@
 
 		console.log(array); // ['elemento0', 'elemento1', 'elemento2', 'elemento3', numero: 20]
 	</code>
-	
 
-	<script src="programa.js"></script>
+	<!-- Destructuracion -->
+	<h3>Destructuracion</h3>
+	<p>
+		Proporciona una forma conveniente y eficiente de desempaquetar valores de arreglos, lo que facilita el trabajo con los datos guardados.
+	</p>
+	<p>
+		Aqui no invocamos el valor de una posicion en el arreglo, en su lugar asignamos directamente variables a las posiciones.
+	</p>
+	<!-- codigo -->
+	<code>
+		let arreglo = [1, 2, 3]; <br><br>
+
+		let [ primero, segundo, tercero] = arreglo; <br><br>
+
+		console.log(primero, segundo, tercero); <strong>// 1 2 3</strong>
+	</code>
+
+	<!-- Destructuracion de valores anidados -->
+	<h3>Destructuracion de valores anidados</h3>
+	<p>Esta tecnica tambien funciona con valores anidados:</p>
+	<!-- codigo -->
+	<code>
+		let arreglo = [ <br>&nbsp&nbsp&nbsp
+			1, <br>&nbsp&nbsp&nbsp
+			2, <br>&nbsp&nbsp&nbsp
+			3, <br>&nbsp&nbsp&nbsp
+			[ 'Elaina', 'Asuna', 'Rapthalia' ] <br>
+		];<br><br>
+
+		let [ primera, segunda, tercera, [ waifu1, waifu2, waifu3 ] ] = arreglo; <br><br>
+
+		let informacion = <br>
+		`Mis Waifus uwu: ${primera}. ${waifu1}, ${segunda}. ${waifu2}, ${tercera}. ${waifu3}`; <br><br>
+
+		console.log(informacion); <br>
+		<strong>// Mis Waifus uwu: 1. Elaina, 2. Asuna, 3. Rapthalia</strong>
+	</code>
+
+	<!-- <script src="programa.js"></script>  -->
 </body>
 </html>

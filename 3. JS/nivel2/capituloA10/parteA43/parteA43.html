@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 43</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Modulos</h1>
+	<h4 class="enlace-volver"><a href="../capituloA10.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Modulos -->
+	<h3>Modulos</h3>
+	<p>Un modulo es un archivo de JavaScript el cual se puede ïmportar a un archivo principal para obtener informacion de este.</p>
+	
+
+	<!-- Importar desde un modulo -->
+	<h3>Importar desde un modulo</h3>
+	<p>
+		Para importar hay que escribir las caracteristicas (Clases, Funciones, Variables, Constantes... etc) que se desean importar entre llaves despues de la declaracion <strong><em>import</em></strong>. 
+	</p>
+	<p>
+		Despues la palabra clave <strong><em>from</em></strong> para indicarle la ruta del modulo desde donde se desea importar. Empezar la ruta con './' indica que se inica desde la ubicacion actual del archivo, y no desde la raiz del proyecto.
+	</p>
+	<!-- code -->
+	<div class="elementoDOM" id="contenedor">
+		<!--  -->
+	</div>
+	<script type="module">
+		import { datos, mostrarUsuario, Usuario } from './usuarios.js';
+
+		let contendor = document.getElementById('contenedor');
+
+		let { usuario1: { nombre, apellido, rol } } = datos,
+			informacion = `Soy ${nombre} ${apellido}, trabajo como ${rol}`;
+
+		contenedor.textContent = informacion;
+
+		console.log(informacion);
+
+		datos.usuario1.nombre = 'Patricio';
+	</script>
+
+	<script type="module">
+		import { datos, mostrarUsuario, Usuario } from './usuarios.js';
+
+		let contendor = document.getElementById('contenedor');
+
+		let { usuario1: { nombre, apellido, rol } } = datos,
+			informacion = `Soy ${nombre} ${apellido}, trabajo como ${rol}`;
+
+		contenedor.textContent = informacion;
+
+		console.log(informacion);
+	</script>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

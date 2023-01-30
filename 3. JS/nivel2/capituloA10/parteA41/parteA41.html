@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 41</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">JSON</h1>
+	<h4 class="enlace-volver"><a href="../capituloA10.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que es una peticion HTTP? -->
+	<h3>Que es una peticion HTTP?</h3>
+	<p>
+		Es un protocolo de la septima capa (Aplicacion) del modelo de redes OSI, el cual se usa para hacer peticiones de datos a un servidor remoto. Este protocolo no guarda ninguna informacion solo sirve de "mensajero".
+	</p>
+	<p>
+		Para usar este protocolo en JavaScript se utilizan APIs como AJAX, Flecth, y librerias como AXIOS.
+	</p>
+
+
+	<!-- Datos estructurados JSON -->
+	<h3>Datos estructurados JSON</h3>
+	<p>Significa Notacion de Objetos en JavaScript (JavaScript Object Notation). Es simplemente una forma estructurada de escribir datos... la forma en que escribimos Objetos en JavaScript.</p>
+	<p>
+		Los Objetos JSON no tienen propiedades como los objetos, en su lugar solo son estructuras de datos. Se escriben con comillas dobles para que no haya problemas al enviar el Objeto JSON al servidor.
+	</p>
+	<!-- codigo -->
+	<code>
+		const objeto = { <br>&nbsp&nbsp&nbsp
+			propiedad1: 'dato1',<br>&nbsp&nbsp&nbsp
+			propiedad2: 'dato2',<br>&nbsp&nbsp&nbsp
+			propiedad3: 'dato3',<br>&nbsp&nbsp&nbsp
+			propiedad4: 'dato4'<br>
+		} <br><br>
+
+		const json = {<br>&nbsp&nbsp&nbsp
+			"identificador1": "dato1",<br>&nbsp&nbsp&nbsp
+			"identificador2": "dato2",<br>&nbsp&nbsp&nbsp
+			"identificador3": "dato3",<br>&nbsp&nbsp&nbsp
+			"identificador4": "dato4"<br>
+		} <br><br>
+
+		console.log(typeof objeto); <strong>// Object</strong> <br><br>
+
+		console.log(typeof json); <strong>// Object</strong>
+	</code>
+
+
+	<!-- Serializacion y Deserializacion -->
+	<h3>Serializacion y Deserializacion</h3>
+	<p>Un Objeto JSON esta serializado en JavaScript cuando ha sido escrito como una cadena de texto. Esto se hace para facilitar su envio a travez de la red.</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Objeto JSON deserializado</strong> <br>
+		const json1 = {<br>&nbsp&nbsp&nbsp
+			"identificador1": "valor1",<br>&nbsp&nbsp&nbsp
+			"identificador2": "valor2",<br>&nbsp&nbsp&nbsp
+			"identificador3": "valor3",<br>
+		} <br><br>
+
+		<strong>// Objeto JSON serializado</strong> <br>
+		const json2 = '{"identificador1": "valor1", "identificador2": "valor2", "identificador3": "valor3"}';
+	</code>
+
+
+	<!-- stringify() -->
+	<h3>stringify()</h3>
+	<p>Serializa un Objeto JSON para enviarlo a traves de la red.</p>
+	<!-- codigo -->
+	<code>
+		const json1 = {"identificador1": "valor1", "identificador2": "valor2"}; <br><br>
+		
+		const json2 = JSON.<strong>stringify</strong>(json1); <br><br>
+
+		console.log(json2); <strong>// '{"identificador1": "valor1", "identificador2": "valor2"}'</strong>
+	</code>
+
+
+	<!-- parse() -->
+	<h3>parse()</h3>
+	<p>Deserializa un Objeto JSON recibido a travez de la red.</p>
+	<!-- codigo -->
+	<code>
+		const json1 = '{"identificador1" : "valor1", "identificador2" : "valor2"}';<br><br>
+
+		const json2 = JSON.<strong>parse</strong>(json1);<br><br>
+
+		console.log(json2); <strong>// {"identificador1": "valor1", "identificador2": "valor2"}</strong>
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

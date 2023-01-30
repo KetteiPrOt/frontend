@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 42</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">AJAX</h1>
+	<h4 class="enlace-volver"><a href="../capituloA10.html">Volver al capitulo</a></h4>
+	<hr>
+    
+	<!-- Que es AJAX? -->
+	<h3>Que es AJAX?</h3>
+	<p>Son las siglas de <em>Asynchronous JavaScript And XML</em>.</p>
+	<p>
+		Es la tecnologia que usan las aplicaciones web de una sola pagina, ya que en ellas los datos no se transfieren de manera sincronizada con el sitio... eso permite que se actualize el contenido sin volver a cargar la pagina.
+	</p>
+	<p>
+		Para trabajar con AJAX es nesesario tener un servidor, o instalar un servidor local.
+	</p>
+
+
+	<!-- Objeto XMLHttpRequest -->
+	<h3> Objeto XMLHttpRequest</h3>
+	<p>Es una Clase de Objeto la cual sirve para enviar peticiones al servidor (GET o POST), en este caso vamos a trabajar con GET.</p>
+	<!-- codigo -->
+	<code>
+		const peticion = new XMLHttpRequest(); <br><br>
+
+		console.log(peticion); <strong>// XMLHttpRequest { ... }</strong>
+    </code>
+
+
+	<!-- open() y send() -->
+	<h3>open() y send()</h3>
+	<p>El metodo open() sirve para abrir la peticion, recibe como parametro el tipo de peticion y la url del servidor hacia donde va dirigida la peticion.</p>
+	<p>El metodo send() sirve para enviar la peticion.</p>
+	<!-- codigo -->
+	<code>
+		const peticion = new XMLHttpRequest(); <br><br>
+
+		peticion.<strong>open</strong>('GET', './datos.txt'); <br><br>
+
+		peticion.<strong>send</strong>(); <br><br>
+
+        console.log(peticion); <strong>// XMLHttpRequest { ... }</strong>
+	</code>
+
+
+    <!-- responseText -->
+    <h3>responseText</h3>
+    <p>Esta propiedad del Objeto <em>XMLHttpRequest</em> contiene la respuesta textual (texto) de nuestra peticion.</p>
+    <p>
+        Para que esta propiedad nos devuelva la informacion es nesesario que el codigo de estado (<em>readyState</em>) sea 3 o 4 y el estatus de la peticion (<em>status</em>) este en 200... para que esto sea asi es nesesario esperar hasta que la peticion se cumpla, y en ese momento solicitar los datos.
+    </p>
+    <!-- codigo -->
+    <code>
+        const peticion = new XMLHttpRequest(); <br><br>
+
+        peticion.open('GET', './datos.txt'); peticion.send(); <br><br>
+
+        let respuesta = peticion.responseText; <br><br>
+
+        console.log(respuesta); <strong>// </strong>
+    </code>
+
+
+    <!-- readyState -->
+    <h3>readyState</h3>
+    <p>
+        Esta propiedad del Objeto <em>XMLHttpRequest</em> contiene informacion sobre el estado de nuestra peticion. Cuando:
+    </p>
+    <ul>
+        <li>
+            <strong>El valor es 1</strong>: Indica que la peticion se creo correctamente.
+        </li>
+        <li>
+            <strong>El valor es 2</strong>: Indica que la peticion se envio y fue recibida correctamente.
+        </li>
+        <li>
+            <strong>El valor es 3</strong>: Indica que la peticion se esta procesando.
+        </li>
+        <li>
+            <strong>El valor es 4</strong>: Indica que la peticion esta lista, tenemos respuesta y el resultado se puede procesar.
+        </li>
+    </ul>
+
+
+    <!-- readystatechange -->
+    <h3>readystatechange</h3>
+    <p>
+        Es un evento que ocurre cuando hay un cambio (<em>change</em>) en el codigo de estado (<em>readyState</em>)... se puede usar para dejar programado el acceso a la respuesta con la propiedad <em>responseText</em>.
+    </p>
+    <!-- codigo -->
+    <code>
+        const peticion = new XMLHttpRequest(); <br><br>
+
+        peticion.open('GET', './datos.txt'); peticion.send(); <br><br>
+
+        const funcion = () => { <br> &nbsp&nbsp&nbsp
+            let estado = peticion.readyState; <br><br> &nbsp&nbsp&nbsp
+
+            if (estado == 4) { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+                let respuesta; <br><br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+                respuesta = peticion.responseText; <br><br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+                console.log(respuesta); <br> &nbsp&nbsp&nbsp
+            } <br>            
+        } <br><br>
+
+        peticion.addEventListener('readystatechange', funcion); <br>
+        <strong>/* <br>
+        { <br> &nbsp&nbsp&nbsp
+            "identificador1" : "dato1",<br> &nbsp&nbsp&nbsp
+            "identificador2" : "dato2",<br> &nbsp&nbsp&nbsp
+            "identificador3" : "dato3" <br>
+        } <br>
+        */</strong>
+    </code>
+
+
+    <!-- Error 404 -->
+    <h3>Error 404</h3>
+    <p>Cuando el servidor no logra encontrar un recurso solicitado el estatus de la peticion (<em>status</em>) se convierte en 404, que significa recurso no encontrado.</p>
+    <!-- codigo -->
+    <code>
+        const peticion = new XMLHttpRequest(); <br><br>
+
+        peticion.open('GET', './<strong>datosJJJJJJJJJJJJ</strong>.txt'); peticion.send(); <br><br>
+
+        const funcion = () => { <br> &nbsp&nbsp&nbsp
+            let estado = peticion.readyState; <br><br> &nbsp&nbsp&nbsp
+
+            if (estado == 4) { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+                let respuesta; <br><br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+                respuesta = peticion.responseText; <br><br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+                console.log(respuesta); <br> &nbsp&nbsp&nbsp
+            } <br>            
+        } <br><br>
+
+        peticion.addEventListener('readystatechange', funcion); <br>
+        <strong>// (!) Error GET http://localhost/ajax/datosJJJJJJJJJJJJ.txt 404 (Not Found) <br>
+        // Documento HTML: >title< 404 Not Found >/title<</strong>
+    </code>
+
+
+    <!-- Evento load -->
+    <h3>Evento load</h3>
+    <p>Este evento se usa para ejecutar una funcion al hacer la peticion.</p>
+    <!-- codigo -->
+    <code>
+        const peticion = new XMLHttpRequest();<br><br>
+
+        peticion.open('GET', './datos.txt'); peticion.send();<br><br>
+
+        const funcion = () => {<br> &nbsp&nbsp&nbsp
+            let estatus = peticion.status; <br><br> &nbsp&nbsp&nbsp
+
+            if (estatus == 200) { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+                let respuesta, json; <br><br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+                respuesta = peticion.responseText; <br><br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+                json = JSON.parse(respuesta); <br><br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+                console.log(json); <br> &nbsp&nbsp&nbsp
+            } else { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+                let error; <br><br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+                error = 'No hemos podido completar la peticion'; <br><br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+
+                console.log(error);<br> &nbsp&nbsp&nbsp
+            } <br>
+        } <br><br>
+
+        peticion.addEventListener('<strong>load</strong>', funcion); <br>
+        <strong>/* <br>
+            { <br> &nbsp&nbsp&nbsp
+                "identificador1" : "dato1",<br> &nbsp&nbsp&nbsp
+                "identificador2" : "dato2",<br> &nbsp&nbsp&nbsp
+                "identificador3" : "dato3" <br>
+            } <br>
+            */</strong>
+    </code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

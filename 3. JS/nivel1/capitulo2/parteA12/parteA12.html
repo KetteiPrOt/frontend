@@ -90,5 +90,99 @@
 	<code>delete miObjeto.llave;</code>
 	<p>Esto eliminara del objeto la llave indicada junto a su valor asociado.</p>
 
+	<!-- Destructuracion -->
+	<h3>Destructuracion</h3>
+	<p>
+		Proporciona una forma conveniente y eficiente de desempaquetar valores de objetos, lo que facilita el trabajo con datos de manera estructurada.
+	</p>
+	<p>
+		Aqui no invocamos el valor de una propiedad del objeto con un punto... sino que obtenemos la propiedad entera como una nueva variable. El objeto no sufre modificacion alguna al hacer esto.
+	</p>
+	<!-- codigo -->
+	<code>
+		const objeto = { <br>&nbsp&nbsp&nbsp
+			propiedad1: 'valor1',<br>&nbsp&nbsp&nbsp
+			propiedad2: 'valor2',<br>&nbsp&nbsp&nbsp
+			propiedad3: 'valor3',<br>&nbsp&nbsp&nbsp
+			propiedad4: 'valor4'<br>
+		} <br><br>
+
+		<strong>let { propiedad1 } = objeto;</strong> <br><br>
+
+		console.log(<strong>propiedad1</strong>); // valor1 <br><br>
+
+		console.log(objeto.propiedad1); // valor1
+	</code>
+
+	<!-- Destructuracion de valores anidados -->
+	<h3>Destructuracion de valores anidados</h3>
+	<p>Esta tecnica tambien funciona con valores anidados:</p>
+	<!-- codigo -->
+	<code>
+		const objeto = {<br>&nbsp&nbsp&nbsp
+			nombre: 'Joel',<br>&nbsp&nbsp&nbsp
+			oficio: 'Programador',<br>&nbsp&nbsp&nbsp
+			perfil: { rol: 'frontend',  lenguaje: 'JavaScript', experiencia: '6 meses' } <br>
+		} <br><br>
+
+		let { <strong>nombre</strong> } = objeto,<br>&nbsp&nbsp&nbsp
+			{ <strong>oficio</strong> } = objeto,<br>&nbsp&nbsp&nbsp
+			{ perfil: { <strong>rol</strong> } } = objeto,<br>&nbsp&nbsp&nbsp
+			{ perfil: { <strong>lenguaje</strong> } } = objeto,<br>&nbsp&nbsp&nbsp
+			{ perfil: { <strong>experiencia</strong> } } = objeto; <br><br>
+
+		let informacion = <br>
+		`Soy ${<strong>nombre</strong>}, trabajo como ${<strong>oficio</strong>} ${<strong>rol</strong>} en ${<strong>lenguaje</strong>}. Tengo ${<strong>experiencia</strong>} de experiencia.`; <br><br>
+
+		console.log(informacion);
+		<strong>// Soy Joel, trabajo como Programador frontend en JavaScript. Tengo 6 meses de experiencia.</strong>
+	</code>
+
+
+	<!-- Identidad de Objetos -->
+	<h3>Identidad de Objetos</h3>
+	<p>Cuando creamos un objeto A y luego lo asignamos como valor de la constante B, lo que estamos haciendo es decir que la constante B va a hacer referencia al mismo espacio en la memoria que esta haciendo referencia la constante A.</p>
+	<p>
+		Por eso cuando preguntamos con el operador de identidad si A es igual que B dice verdadero, ya que ambos estan haciendo referencia al mismmo espacio en la memoria.
+	</p>
+	<!-- codigo -->
+	<code>
+		const A = { propiedad: 'valor' }; <br><br>
+
+		const B = A;<br><br>
+
+		console.log(B === A); <strong>// true</strong>
+	</code>
+
+	<p>
+		Pero si creamos un nuevo objeto C con el mismo valor y preguntamos si tienen la misma identidad va adecir que es falso, porque B y C estan haciendo referencia a espacios diferentes en la memoria.
+	</p>
+	<!-- codigo -->
+	<code>
+		const C = { propiedad: 'valor' }; <br><br>
+
+		console.log(B === C); <strong>// false</strong>
+	</code>
+
+
+	<!-- Operador Spread -->
+	<h3>Operador Spread</h3>
+	<p>
+		Que ocurre si queremos tener una copia (B) de un objeto A con una identidad totalmente nueva (un nuevo espacio en la memoria), de modo que si modificamos el objeto B mas adelante no le ocurra nada al objeto A...
+	</p>
+	<p>
+		Para obtener esta copia con identidad totalmente separada usamos el operador de Propagacion (Spread):
+	</p>
+	<!-- codigo -->
+	<code>
+		const A = { propiedad: 'valor' }; <br><br>
+
+		const B = { ...A };<br><br>
+
+		console.log(B); <strong>// { propiedad: 'valor' }</strong> <br><br>
+
+		console.log(B === A); <strong>// false</strong>
+	</code>
+
 </body>
 </html>

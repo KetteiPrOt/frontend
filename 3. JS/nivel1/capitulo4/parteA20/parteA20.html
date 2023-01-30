@@ -137,6 +137,18 @@
 	<h2>Metodos Accesores</h2>
 	<p>Los siguientes metodos acceden a informacion del array y retornan resultados interesantes del array en cuestion. No alteran al array original</p>
 
+	<!-- Operador spread -->
+	<h3>Operador spread</h3>
+	<p>Este operador tambien se usa para crear una copia de un arreglo.</p>
+	<!-- codigo -->
+	<code>
+		let arreglo = [0, 1, 2, 3, 4, 5]; <br><br>
+
+		let copia = [<strong>...</strong>arreglo]; <br><br>
+
+		console.log(copia); <strong>// [0, 1, 2, 3, 4, 5]</strong>
+	</code>
+
 	<!-- join() -->
 	<h3>join()</h3>
 	<p>Retorna todos los elementos del array como una cadena de texto. No altera el array original. Recibe como parametro un texto que sirva de separacion para cada elemento, por defecto es la coma.</p>
