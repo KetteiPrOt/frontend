@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 46</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Modo estricto</h1>
+	<h4 class="enlace-volver"><a href="../capituloA11.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- 'use strict'; -->
+	<h3>'use strict';</h3>
+	<p>Esta cadena de texto de usa para activar el modo estricto, obligatoriamente tiene que ir al inicio del bloque. Este modo convierte algunos errores en aprentemente triviales en excepciones para tener un codigo mas optimo y veloz.</p>
+
+
+	<!-- Variables declaradas -->
+	<h3>Variables declaradas</h3>
+	<p>Al usar el modo estricto se vuelve obligatorio declarar las variables.</p>
+	<!-- codigo -->
+	<code>
+		'use strict'; <br><br>
+
+		nombre = 'Joel'; <strong>// (!) Error</strong>
+	</code>
+
+	<!-- Propiedades de solo lectura -->
+	<h3>Propiedades de solo lectura</h3>
+	<p>Al intentar escribir propiedades de solo lectura en modo estricto recibiremos un error.</p>
+	<!-- codigo -->
+	<code>
+		'use strict'; <br><br>
+
+		const perro = {}; <br><br>
+
+		Object.defineProperty(perro, 'color', { value: 'rojo', writeable: false }); <br><br>
+
+		perro.color = 'cafe'; <strong>// (!) Error</strong> <br><br>
+
+		console.log(perro); <br><br>
+	</code>
+
+
+	<!-- Objetos restringidos -->
+	<h3>Objetos restringidos</h3>
+	<p>Al intentar extender objetos restringidos por <em>preventExtensions</em> recibiremos un error.</p>
+	<!-- codigo -->
+	<code>
+		'use strict'; <br><br>
+
+		const objeto = {}; <br><br>
+
+		Object.preventExtensions(objeto); <br><br>
+
+		objeto.propiedad = 'DINOSAURIO'; <strong>// (!) Error</strong>
+	</code>
+
+
+	<!-- Sin propiedades en datos primitivos -->
+	<h3>Sin propiedades en datos primitivos</h3>
+	<p>El modo estricto prohibe agregar propiedades a datos primitivos lanzando una excepcion. En modo normal este intento no tendria ningun efecto.</p>
+	<!-- codigo -->
+	<code>
+		'use strict'; <br><br>
+
+		let texto = 'Joel'; <br><br>
+
+		texto.pais = 'Ecuador'; <strong>// (!) Error</strong>
+	</code>
+
+
+	<!-- No duplicar parametros de una funcion -->
+	<h3>No duplicar parametros de una funcion</h3>
+	<p>El modo estricto prohibe duplicar nombres de argumentos de funciones lanzando un error. En modo normal la funcion solo usaria el ultimo parametro escrito.</p>
+	<!-- codigo -->
+	<code>
+		'use strict'; <br><br>
+
+		const funcion = (arg1, arg2, arg1) => {} <strong>// (!) Error</strong>
+	</code>
+
+
+	<!-- Solo eliminar propiedades -->
+	<h3>Solo eliminar propiedades</h3>
+	<p>En el modo estricto intentar eliminiar alguna otra cosa que no sea una propiedad de un objeto con la sentencia <em>delete</em> arroja un error.</p>
+	<!-- codigo -->
+	<code>
+		'use strict'; <br><br>
+
+		let variable = 'Hola'; <br><br>
+
+		delete variable; <strong>// (!) Error</strong>
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

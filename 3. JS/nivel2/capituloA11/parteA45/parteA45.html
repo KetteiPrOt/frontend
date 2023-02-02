@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 45</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Prototipo</h1>
+	<h4 class="enlace-volver"><a href="../capituloA11.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- __proto__ (Dunder proto) -->
+	<h3>__proto__ (Dunder proto)</h3>
+	<p>Es una propiedad de los objetos que contiene el prototipo con el que fueron creados. Por ende, todo objeto hereda las propiedades y metodos de su prototipo contenido en esta propiedad.</p>
+	<!-- codigo -->
+	<code>
+		class Clase { constructor() {} }; <br><br>
+
+		let texto = 'Hola', <br>&nbsp&nbsp&nbsp
+		    numero = 23, <br>&nbsp&nbsp&nbsp
+		    booleano = true, <br>&nbsp&nbsp&nbsp
+		    funcion = function() {}, <br>&nbsp&nbsp&nbsp
+		    objeto = { propiedad: 'valor' },<br>&nbsp&nbsp&nbsp
+		    array = ['pedro', 'juan', 'burro']; <br><br>
+
+		console.log(texto.__proto__); <strong>// String { ... } <br></strong>
+		console.log(numero.__proto__); <strong>// Number { ... } <br></strong>
+		console.log(booleano.__proto__); <strong>// Boolean { ... } <br></strong>
+		console.log(funcion.__proto__); <strong>// ƒ () { [native code] } <br></strong>
+		console.log(objeto.__proto__); <strong>// { constructor: ƒ Object() ... }<br></strong>
+		console.log(Clase.__proto__); <strong>// ƒ () { [native code] } <br></strong>
+		console.log(array.__proto__); <strong>// { constructor: ƒ Array() ... }</strong>
+	</code>
+
+
+	<!-- prototype -->
+	<h3>prototype</h3>
+	<p>Es una propiedad de los objetos que tiene el prototipo actual del objeto, es decir el prototipo es un plantilla, entonces si un objeto tiene definida una plantilla para crear mas objetos (por ejemplo una funcion contructora, o una clase)... la propiedad prototype contendra esta plantilla.</p>
+	<!-- codigo -->
+	<code>
+		class Clase { constructor() {} }; <br><br>
+
+		let primitivo = 44, <br>&nbsp&nbsp&nbsp
+		    funcionConstructora = function() {}; <br><br>
+
+		console.log(primitivo.prototype); <strong>// undefined</strong><br>
+		console.log(funcionConstructora.prototype); <strong>// { constructor: ƒ () ... }</strong><br>
+		console.log(Clase.prototype); <strong>// { constructor: class Clase  ... }</strong>
+	</code>
+
+
+	<!-- Clases y prototipos -->
+	<h3>Clases y prototipos</h3>
+	<p>Crear una clase es crear un prototipo... a su vez los objetos que son creados usando esa clase heredan el prototipo creado con ella.</p>
+	<!-- codigo -->
+	<code>
+		class Clase { <br>&nbsp&nbsp&nbsp
+			constructor(valor) { <br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				this.propiedad = valor; <br>&nbsp&nbsp&nbsp
+			} <br>&nbsp&nbsp&nbsp
+			metodo() {} <br>
+		} <br><br>
+
+		const objeto = new Clase('valor'); <br><br>
+
+		console.log(objeto.__proto__); <strong>// { constructor: class Clase, metodo: ƒ metodo() ... }</strong>
+	</code>
+
+
+	<!-- Modificar prototipo -->
+	<h3>Modificar prototipo</h3>
+	<p>En esta programacion los Prototipos crean una conexion entre los objetos y su Clase... ya que es posible alterar la clase (el prototipo) y los futuros elementos creados con ella, accediendo a la clase/prototipo desde cualquier objeto. Esto en otros lenguajes basados en clases es muy extranio.</p>
+	<!-- codigo -->
+	<code>
+		class Objetos { <br>&nbsp&nbsp&nbsp
+			constructor(valor1, valor2, valor3) { <br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				this.propiedad1 = valor1; <br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				this.propiedad2 = valor2; <br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				this.propiedad3 = valor3; <br>&nbsp&nbsp&nbsp
+			} <br>&nbsp&nbsp&nbsp
+			metodo1() { console.log('Ejecutado: Metodo 1') } <br>&nbsp&nbsp&nbsp
+			metodo2() { console.log('Ejecutado: Metodo 2') } <br>&nbsp&nbsp&nbsp
+			metodo3() { console.log('Ejecutado: Metodo 3') } <br>
+		} <br><br>
+
+		const objeto1 = new Objetos(1, 2, 3); <br><br>
+
+		objeto1.metodo1(); <strong>// Ejecutado: Metodo 1</strong> <br><br>
+
+		objeto1.__proto__.metodo1 = () => { console.log('Metodo modificado') } <br><br>
+
+		const objeto2 = new Objetos(1, 2, 3); <br><br>
+
+		objeto2.metodo1(); <strong>// Metodo modificado</strong>
+	</code>
+
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

@@ -12,50 +12,203 @@
 	<h4 class="enlace-volver"><a href="../capituloA10.html">Volver al capitulo</a></h4>
 	<hr>
 
-	<!-- Modulos -->
-	<h3>Modulos</h3>
-	<p>Un modulo es un archivo de JavaScript el cual se puede ïmportar a un archivo principal para obtener informacion de este.</p>
+	<!-- type="module" -->
+	<h3>type="module"</h3>
+	<p>
+		Los modulos usan por defecto el <em>Modo Estricto</em>.
+	</p>
+	<p>
+		Un modulo es una parte del programa que cumple una funcion especifica, los modulos se usan para dividir los programas grandes en partes mas manejables. Gracias a esta division se puede tener el codigo mas ordenado y manejar mejor los errores.
+	</p>
+	<p>
+		Para incluir un modulo en el sitio web hay que indicarlo en el <em>script</em> con el atributo HTML <em>type="module"</em>.
+	</p>
+	<code>>script type="module" src="..."<&nbsp&nbsp&nbsp&nbsp>/script<</code>
+	<p>
+		Las sentencias <em>import</em> y <em>export</em> solo se pueden usar en un <em>script</em> con <em>type="module"</em>. Las características que se importan solo estan al alcance de un solo script (no están disponibles en el alcance global). Por lo tanto, no podrás acceder a ellas desde la consola, ni podrás utilizar algunas de las técnicas de depuración que esperabas utilizar.
+	</p>
+	<p>
+		Explicacion sobre porque características que se importan solo estan al alcance de un solo script: 
+		<a href="https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/">
+			El ambito de Modulo
+		</a>.
+	</p>
+
+
+	<!-- export -->
+	<h3>export</h3>
+	<p>
+		Para indicar que informacion se puede retirar de un modulo se usa la sentencia <em>export</em>.
+	</p>
+	<code>export { dato1, dato2, dato3 };</code>
+	<p>
+		La informacion puede ser <em>funciones</em>, <em>clases</em>, <em>variables</em>, y <em>constantes</em>.
+	</p>
+	<!-- codigo -->
+	<code>
+		const datos = { <br>&nbsp&nbsp&nbsp
+		    usuario1: 'Joel', <br>&nbsp&nbsp&nbsp
+		    usuario2: 'Rancio', <br>&nbsp&nbsp&nbsp
+		    usuario3: 'Debugger', <br>&nbsp&nbsp&nbsp
+		    usuario4: 'Kamila' <br>
+		} <br><br>
+
+		export { datos };
+	</code>
+	<p>
+		Nota: Es posible cambiar en nombre de los datos al exportarlos con la palabra clave <em>as</em>.
+	</p>
+	<code>
+		export { nombre1 <strong>as</strong> nombre2, nombre3 <strong>as</strong> nombre 4 };
+	</code>
 	
 
-	<!-- Importar desde un modulo -->
-	<h3>Importar desde un modulo</h3>
+	<!-- import -->
+	<h3>import</h3>
 	<p>
-		Para importar hay que escribir las caracteristicas (Clases, Funciones, Variables, Constantes... etc) que se desean importar entre llaves despues de la declaracion <strong><em>import</em></strong>. 
+		Para obtener informacion de un modulo hay que importarla desde el mismo, una vez importada se puede usar como si estuviera en el mismo programa. Se importa informacion de un modulo usando la sentencia <em>import</em>:
+	</p>
+	<code>import { dato1, dato2, dato3 } from './archivo.js';</code>
+	<p>
+		El script en el que importas las características del módulo básicamente actúa como el módulo de nivel superior.
 	</p>
 	<p>
-		Despues la palabra clave <strong><em>from</em></strong> para indicarle la ruta del modulo desde donde se desea importar. Empezar la ruta con './' indica que se inica desde la ubicacion actual del archivo, y no desde la raiz del proyecto.
+		 La informacion puede ser <em>funciones</em>, <em>clases</em>, <em>variables</em>, y <em>constantes</em>. Solo se puede importar en el nivel superior (preferiblemente al inicio del programa), no dentro de funciones ni cualquier otro bloque.
+	</p>
+	<p>
+		Los datos de un <em>script</em> con <em>type="module"</em> no estan disponibles en el ambito global.
 	</p>
 	<!-- code -->
-	<div class="elementoDOM" id="contenedor">
-		<!--  -->
-	</div>
-	<script type="module">
-		import { datos, mostrarUsuario, Usuario } from './usuarios.js';
+	<code>
+		import { datos } from './modulo.js'; <br><br>
 
-		let contendor = document.getElementById('contenedor');
+		let { usuario1 } = datos; <br><br>
 
-		let { usuario1: { nombre, apellido, rol } } = datos,
-			informacion = `Soy ${nombre} ${apellido}, trabajo como ${rol}`;
+		console.log(usuario1); <strong>// Joel</strong>
+	</code><br><br>
 
-		contenedor.textContent = informacion;
-
-		console.log(informacion);
-
-		datos.usuario1.nombre = 'Patricio';
-	</script>
+	<button id="btnRelampago">Inicia el programa!</button>
 
 	<script type="module">
-		import { datos, mostrarUsuario, Usuario } from './usuarios.js';
+		import { datos } from './modulo.js';
 
-		let contendor = document.getElementById('contenedor');
+		const btnRelampago = document.getElementById('btnRelampago');
 
-		let { usuario1: { nombre, apellido, rol } } = datos,
-			informacion = `Soy ${nombre} ${apellido}, trabajo como ${rol}`;
+		btnRelampago.addEventListener('click', function() {
+			let { usuario1 } = datos;
 
-		contenedor.textContent = informacion;
-
-		console.log(informacion);
+			console.log(usuario1); // Joel
+		});
 	</script>
+
+	<p>
+		Nota: Es posible cambiar en nombre de los datos al importarlos con la palabra clave <em>as</em>.
+	</p>
+	<code>import { nombre1 <strong>as</strong> nombre2, nombre3 <strong>as</strong> nombre 4 } from './modulo.js';</code>
+
+
+	<!-- export defaul -->
+	<h3>export default</h3>
+	<p>
+		Esta declaracion se usa para exportar un dato por defecto. Solo se permite una importacion por defecto.
+	</p>
+	<!-- codigo -->
+	<code>
+		const funcionX = () => { <br>&nbsp&nbsp&nbsp
+		    consolr.log('La funcion X fue ejecutada!'); <br>
+		} <br><br>
+
+		export default <strong>funcion</strong>;
+	</code>
+
+
+	<!-- Importar por defecto -->
+	<h3>Importar por defecto</h3>
+	<p>
+		Para importar por defecto se usa la declaracion <em>import { default as >nombre< }</em>. De esta manera se importa el dato por defecto con el nombre que elijas.
+	</p>
+	<!-- codigo -->
+	<code>
+		import { default as funcion } from './moduloDefecto.js'; <br><br>
+
+		funcion(); <strong>// La funcion fue ejecutada</strong>
+	</code> <br><br>
+
+	<button id="rayo">Inicia el programa!</button>
+
+	<script type="module">
+		import { default as funcion } from './moduloDefecto.js';
+
+		const rayo = document.getElementById('rayo');
+		
+		rayo.addEventListener('click', function() {
+
+			funcion(); // La funcion fue ejecutada
+
+		})
+	</script>
+
+
+	<!-- Importar en un Objeto -->
+	<h3>Importar en un Objeto</h3>
+	<p>
+		Se puede realizar todas las importaciones en un Objeto y despues acceder a ellas.
+	</p>
+	<!-- codigo -->
+	<code>
+		const funcion1 = () => { <br>&nbsp&nbsp&nbsp
+			console.log('Ejecutado: Funcion 1'); <br>
+		} <br><br>
+
+		const funcion2 = () => { <br>&nbsp&nbsp&nbsp
+			console.log('Ejecutado: Funcion 2'); <br>
+		} <br><br>
+
+		const funcion3 = () => { <br>&nbsp&nbsp&nbsp
+			console.log('Ejecutado: Funcion 3'); <br>
+		} <br><br>
+
+		const funcion4 = () => { <br>&nbsp&nbsp&nbsp
+			console.log('Ejecutado: Funcion 4'); <br>
+		} <br><br>
+
+		export { funcion1, funcion2, funcion3, funcion4 };
+	</code>
+	<p>
+		Importacion en el modulo:
+	</p>
+	<!-- codigo -->
+	<code>
+		import * as <strong>Objeto</strong> from './moduloObjeto.js'; <br><br>
+
+		Objeto.funcion1(); <strong>// Ejecutado: Funcion 1</strong> <br>
+
+		Objeto.funcion2(); <strong>// Ejecutado: Funcion 2</strong> <br>
+
+		Objeto.funcion3(); <strong>// Ejecutado: Funcion 3</strong> <br>
+
+		Objeto.funcion4(); <strong>// Ejecutado: Funcion 4</strong>
+	</code><br><br>
+	<button id="caballo">Inicia el programa!</button>
+
+	<script type="module">
+		import * as Objeto from './moduloObjeto.js';
+
+		const caballo = document.getElementById('caballo');
+
+		caballo.addEventListener('click', function() {
+
+			Objeto.funcion1(); // Ejecutado: Funcion 1
+
+			Objeto.funcion2(); // Ejecutado: Funcion 2
+
+			Objeto.funcion3(); // Ejecutado: Funcion 3
+
+			Objeto.funcion4(); // Ejecutado: Funcion 4
+
+		});
+	</script>
+
 
 	<!-- <script src="programa.js"></script> -->
 </body>

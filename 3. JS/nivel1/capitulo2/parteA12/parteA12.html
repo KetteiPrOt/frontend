@@ -84,8 +84,8 @@
 		alert(valores); // [valor1, valor2, ... , valorN]
 	</code>
 
-	<!-- Eliminar una llave y un valor -->
-	<h3>Eliminar una llave y un valor</h3>
+	<!-- delete -->
+	<h3>delete</h3>
 	<p>Se puede eliminar una propiedad (una llave y un valor) de un objeto con la siguiente orden:</p>
 	<code>delete miObjeto.llave;</code>
 	<p>Esto eliminara del objeto la llave indicada junto a su valor asociado.</p>
@@ -184,5 +184,44 @@
 		console.log(B === A); <strong>// false</strong>
 	</code>
 
+
+	<!-- defineProperty() -->
+	<h3>defineProperty()</h3>
+	<p>Este metodo estatico de la clase <em>Object</em> permite definir propiedades de solo lectura a los objetos.</p>
+	<!-- codigo -->
+	<code>
+		const objeto = {}; <br><br>
+
+		Object.defineProperty(objeto, 'propiedad', { value: 'valor', writeable: false }); <br><br>
+
+		console.log(objeto); <strong>// { propiedad: valor }</strong> <br><br>
+
+		objeto.propiedad = 'DINOSAURIO'; <br><br>
+
+		console.log(objeto); <strong>// { propiedad: valor }</strong>
+	</code>
+	<p>Nota: en el modo estricto (Capitulo 11) intentar escribir en una propiedad de solo lecturalanzara un error.</p>
+	<p>
+		Aparentemente con esta propiedad es posible encapsular los datos de un objeto...
+	</p>
+
+
+	<!-- preventExtensions() -->
+	<h3>preventExtensions()</h3>
+	<p>Este metodo estatico de la clase <em>Object</em> sirve para hacer que un objeto ya no sea modificable (extendible).</p>
+	<!-- codigo -->
+	<code>
+		const objeto = {}; <br><br>
+
+		Object.preventExtensions(objeto); <br><br>
+
+		objeto.propiedad = 'DINOSAURIO'; <br><br>
+
+		console.log(objeto); <strong>// {}</strong>
+	</code>
+	<p>Nota: en el modo estricto (Capitulo 11) intentar extender el objeto en esta situacion lanzaria un error.</p>
+
+
+	
 </body>
 </html>

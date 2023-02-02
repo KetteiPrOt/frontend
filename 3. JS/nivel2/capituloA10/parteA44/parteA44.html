@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 44</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Fecth (Emplumar)</h1>
+	<h4 class="enlace-volver"><a href="../capituloA10.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- fecth() -->
+	<h3>fecth()</h3>
+	<p>Este metodo (emplumar) sirve para hacer una peticion XMLHttpRequest. Recibe como primer parametro la URL del servidor a donde va dirigida la peticion y por defecto la hace mediante el verbo GET.</p>
+	<!-- codigo -->
+	<code>
+		const peticion = fetch('https://reqres.in/api/users/2'); <br><br>
+
+		peticion.then(console.log(peticion)); <strong>// Promise {>pending<}</strong>
+	</code>
+
+
+	<!-- Acceder a la respuesta -->
+	<h3>Acceder a la respuesta</h3>
+	<p>Se accede a la respuesta con una funcion callback... similar a AJAX, porque <em>flecth</em> es una mejora de AJAX.</p>
+	<!-- codigo -->
+	<code>
+		const peticion = fetch('https://reqres.in/api/users/2'); <br><br>
+
+		const funcion = (respuesta) => { <br> &nbsp&nbsp&nbsp
+			console.log(respuesta); <br>
+		} <br><br>
+
+		peticion.then(funcion); <strong>// Response { ... }</strong>
+	</code>
+	<p>
+		Aunque ya accedimos a la respuesta, esto no es la informacion que deberia devolver el servidor... esa informacion esta encapsulada, para acceder a ella hay que usar otros metodos.
+	</p>
+
+
+	<!-- text() -->
+	<h3>text()</h3>
+	<p>Haciendo uso de un callback, obtiene el valor textual (texto) de la respuesta de la peticion.</p>
+	<!-- codigo -->
+	<code>
+		const solicitarTexto = (respuesta) => { <br>&nbsp&nbsp&nbsp
+			return respuesta.text(); <br>
+		} <br><br>
+
+		const mostrarTexto = (texto) => {<br>&nbsp&nbsp&nbsp
+			let json; <br><br>&nbsp&nbsp&nbsp
+
+			console.log(texto); <strong>// Texto { ... }</strong> <br><br>&nbsp&nbsp&nbsp
+
+			json = JSON.parse(texto); <br><br>&nbsp&nbsp&nbsp
+
+			return json; <br>
+		} <br><br>
+
+		const solicitarDatos = async () => { <br>&nbsp&nbsp&nbsp
+			const peticion = fetch('https://reqres.in/api/users/2'); <br><br>&nbsp&nbsp&nbsp
+
+			let resultado = <br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				await peticion.then(solicitarTexto).then(mostrarTexto); <br><br>&nbsp&nbsp&nbsp
+
+			console.log(resultado); <strong>// JSON { ... }</strong> <br>
+		} <br><br>
+	
+		solicitarDatos();		
+	</code>
+
+
+	<!-- json() -->
+	<h3>json()</h3>
+	<p>Este metodo funciona igual que el anterior, y ademas ahorra tener que convertir de texto a JSON.</p>
+	<!-- codigo -->
+	<code>
+		const solicitarJSON = (respuesta) => { <br>&nbsp&nbsp&nbsp
+		    return respuesta.json(); <br>
+		} <br><br>
+
+		const mostrarJSON = (json) => { return json } <br><br>
+
+		const solicitarDatos = async () => { <br>&nbsp&nbsp&nbsp
+			const peticion = fetch('https://reqres.in/api/users/2'); <br><br>&nbsp&nbsp&nbsp
+
+		    let resultado = <br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+		         await peticion.then(solicitarJSON).then(mostrarJSON); <br><br>&nbsp&nbsp&nbsp
+
+		    console.log(resultado); <strong>// JSON { ... }</strong> <br>
+		} <br><br>
+
+		solicitarDatos();
+	</code>
+	
+	<!-- <script src="programa.js"></script> -->
+</body>
+</html>

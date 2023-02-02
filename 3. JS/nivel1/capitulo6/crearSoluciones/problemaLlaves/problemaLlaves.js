@@ -1,3 +1,4 @@
+'use strict';
 /* El problema de las llaves */
 
 /* ---- ---- Preparativos previos ---- ---- */
@@ -73,7 +74,7 @@ const agregarLlaves = (datos) => {
 	// Obtener y guardar los elementos en un Array
 	const keys = Object.keys(datos); // ['llave1', 'llave2', 'llave3' ... 'llaveN']
 	
-	for (key of keys) {
+	for (let key of keys) {
 		const array = datos[key]; // ['Nombre Llave', 'Modelo', 'Precio']
 		
 		nuevoElemento = crearLlave(array[0], array[1], array[2]);
@@ -83,7 +84,7 @@ const agregarLlaves = (datos) => {
 
 	// Agregar todos los elementos al documento
 
-	for (i in elementosHTML) {
+	for (let i in elementosHTML) {
 		fragmento.appendChild(elementosHTML[i]);
 	}
 
