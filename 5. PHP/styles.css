@@ -1,9 +1,5 @@
 /* Principal */
-.titulo-principal {
-	text-align: center;
-}
-
-.enlace-volver {
+.titulo-principal, .enlace-volver {
 	text-align: center;
 }
 
@@ -12,17 +8,13 @@
 	text-decoration: none;
 }
 
-.eliminar-vinieta {
-	list-style: none;
-}
-
-.styleNone {
+.sinEstilo {
 	list-style: none;
 	color: gray;
 	padding-top: 5px;
 }
 
-/* Crear Tabla */
+/* Tabla */
 
 .tabla {
 	border: 1px solid black;
@@ -35,26 +27,21 @@
 	font-family: sans-serif;
 }
 
-/* Estilizar titulos */
-
-h4::before {
-	color: rgb(75, 75, 75);
-	content: '/* ---- ---- ---- ';
-}
-
-.enlace-volver::before {
-	content: ''; /* Los enlaces de volver son H4. Esta regla les quita el seprador de arriba */
-}
-
-
-h3 {
-	margin-top: 75px;
-}
+/* Titulos */
 
 h2 {
 	text-align: center;
 	margin-top: 70px;
 	color: rgb(95.625, 95.625, 255);
+}
+
+h3 {
+	margin-top: 75px;
+}
+
+.titulo-secundario::before {
+	color: rgb(75, 75, 75);
+	content: '/* ---- ---- ---- ';
 }
 
 /* Estilizar codigo */
@@ -63,9 +50,7 @@ code {
 	color: rgb(150, 0, 0);
 }
 
-.txt-blue { color: blue; }
-
-/* Elemento de Ejemplo */
+/* Elemento div de ejemplo */
 
 .elementoDOM {
 	color: white;
@@ -74,6 +59,8 @@ code {
 	padding: 10px;
 	border-radius: 5px;
 }
+
+/* Elemento input de ejemplo */
 
 .elementoDOM::placeholder {
 	color: white;

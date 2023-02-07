@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comandos Basicos</title>
+	<link rel="icon" href="../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Comandos Basicos</h1>
+	<h4 class="enlace-volver"><a href="../git.html">Volver a Git</a></h4>
+
+    <!-- git initit -->
+	<h3>git init</h3>
+	<p>Este comando incia un repositorio de git en el directorio actual.</p>
+	<!-- codigo -->
+	<code>git init</code>
+
+
+	<!-- git status -->
+	<h3>git status</h3>
+	<p>Muestra el estado actual del repositorio, es decir si hay cambios para hacer commit o todo esta guardado.</p>
+	<!-- codigo -->
+	<code>git status</code>
+
+
+	<!-- git add -->
+	<h3>git add</h3>
+	<p>Este comando agrega los cambios no guardados para hacer commit. Recibe como parametro '.' para agregar todos los cambios, o el la ruta de un archivo en particular para agregar sus cambios.</p>
+	<!-- codigo -->
+	<code>git add . / nombre_archivo</code>
+
+
+	<!-- git rm -->
+	<h3>git rm</h3>
+	<p>Elimina un archivo el cual ha sido agregado para hacer commit.</p>
+	<!-- codigo -->
+	<code>git rm --cached nombre_archivo</code>
+
+
+	<!-- git commit -->
+	<h3>git commit</h3>
+	<p>Este comando se usa para hacer un commit y asi guardar los cambios del repositorio.</p>
+	<p>Recibe como parametro el nombre del commit con la siguiente sintaxis.</p>
+	<!-- codigo -->
+	<code>git commit -m "Nombre del commit"</code>
+
+
+	<!-- git log -->
+	<h3>git log</h3>
+	<p>Muestra una lista de los commits realizados.</p>
+	<!-- codigo -->
+	<code>git log</code>
+
+	<p>Mostrar las estadisticas de cada commit: '--stat'</p>
+	<!-- codigo -->
+	<code>git log --stat</code>
+
+	<p>Mostrar cada commit en una linea: '--oneline'</p>
+	<!-- codigo -->
+	<code>git log --oneline</code>
+
+	<p>Mostrar una grafica de las ramas: '--graph'</p>
+	<!-- codigo -->
+	<code>git log --graph</code>
+
+	<p>Mostrar una grafica de las ramas en una linea: '--oneline --graph --all'</p>
+	<!-- codigo -->
+	<code>git log --oneline --graph --all</code>
+
+
+	<!-- Archivo .gitignore -->
+	<h3>Archivo .gitignore</h3>
+	<p>Este archivo se usa para excluir archivos del repositorio de forma que Git no los tome en cuenta para los commits.</p>
+	<p>Para excluir un archivo hay que escribir su nombre con su extension.</p>
+	<!-- codigo -->
+	<code>
+		archivo.txt <br>
+		archivo2.pdf <br>
+		archivo3.html
+	</code>
+
+	<p>Para excluir todos los archivos que tengan cierta extension se escribe '*' (todos los archivos) y la extension. Aqui excluye todos los archivos .txt</p>
+	<!-- codigo -->
+	<code>*.txt</code>
+
+</body>
+</html>

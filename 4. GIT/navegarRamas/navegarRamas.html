@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Navegar entre ramas</title>
+	<link rel="icon" href="../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Navegar entre ramas</h1>
+	<h4 class="enlace-volver"><a href="../git.html">Volver a Git</a></h4>
+
+    <!-- git diff -->
+	<h3>git diff</h3>
+	<p>Muestra los cambios de un archivo actual en comparacion a su version pasada de cualquier commit.</p>
+	<p>Se usa el identificador del commit, seguido del archivo que deseeamos comparar.</p>
+	<!-- codigo -->
+	<code>git diff identificador_commit nombre_archivo</code>
+
+
+	<!-- git branch -->
+	<h3>git branch</h3>
+	<p>Muestra las ramas del repositorio y en cual nos encontramos.</p>
+	<!-- codigo -->
+	<code>git branch</code>
+
+	<p>Eliminar rama.</p>
+	<!-- codigo -->
+	<code>git branch -d nombre_rama</code>
+
+
+	<!-- git checkout -->
+	<h3>git checkout</h3>
+	<p>Sirve para moverse entre ramas.</p>
+
+	<p>Crear una nueva rama.</p>
+	<!-- codigo -->
+	<code>git checkout -b 'nombre_rama'</code>
+
+	<p>Cambiar de rama.</p>
+	<!-- codigo -->
+	<code>git checkout nombre_rama</code>
+
+	<p>Crear una nueva rama regresando a un commit pasado. Al hacerlo la rama se cambia a HEAD (rama temporal).</p>
+	<!-- codigo -->
+	<code>git checkout identificador_commit</code>
+
+
+	<!-- git merge -->
+	<h3>git merge</h3>
+	<p>Junta la rama actual con la rama indicada.</p>
+	<!-- codigo -->
+	<code>git merge nombre_rama</code>
+    
+</body>
+</html>
