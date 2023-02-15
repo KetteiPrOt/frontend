@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 2</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Tipos de Datos</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Integer (Entero) -->
+	<h3>Integer (Entero)</h3>
+	<p>Numeros enteros positivos y negativos.</p>
+	<!-- codigo -->
+	<code>$entero = 23;</code>
+
+ 
+	<!-- Float/Double (Reales) -->
+	<h3>Float/Double (Reales)</h3>
+	<p>Numeros con coma flotante (decimales) positivos y negativos.</p>
+	<p>Los numero con pocos decimales son de tipo <em>float</em>, los que tienen muchos son de tipo <em>double</em>.</p>
+	<!-- codigo -->
+	<code>$decimal = 12.345;</code>
+
+
+	<!-- String (Cadena) -->
+	<h3>String (Cadena)</h3>
+	<p>Cadenas de caracteres, o el texto. Pueden ir en comillas simples o comillas dobles (las dobles son mejor).</p>
+	<!-- codigo -->
+	<code>$texto = "Hola Mundo!";</code>
+
+
+	<!-- Escape de Comillas -->
+	<h3>Escape de Comillas</h3>
+	<p>Se puede escapar comillas usando el otro tipo de comillas (', ") o tambien con la barra invertida (mas recomendado).</p>
+	<p>La barra invertida tambien se puede usar para escapar otros caracteres como el simbolo de las variables ($).</p>
+	<!-- codigo -->
+	<code>
+		$escapeComillas = 'Mi nombre es "Joel".'; <br>
+		echo $escapeComillas; <strong>// Mi nombre es "Joel".</strong> <br><br>
+
+		$barraInvertida = "Mi nombre es \"Joel\"."; <br>
+		echo $barraInvertida; <strong>// Mi nombre es "Joel".</strong>
+	</code>
+
+
+	<!-- Boolean (Logicos) -->
+	<h3>Boolean (Logicos)</h3>
+	<p>Valor logico que solo admite <em>true</em> o <em>false</em>.</p>
+	<p>
+		En el sistema booleano <em>true</em> significa 1 y <em>false</em> significa 0.
+	</p>
+	<p>
+		Cualquier numero que sea evaluado como booleano (ej. en los condicionales), sea positivo o negativo, sera asumido como <em>true</em>. Solo el numero 0 es considerado como <em>false</em>.
+	</p>
+	<p>
+		Cualquier cadena de texto que sea evaluada como booleano sera considerada <em>true</em>, a menos que este vacia. En el caso de que este vacia sera considerada como <em>false</em>.
+	</p>
+	<!-- codigo -->
+	<code>
+		$verdadero = true; <br>
+		echo $verdadero; <strong>// 1</strong> <br><br>
+		
+		$falso = false; <br>
+		echo $falso; <strong>//</strong>
+	</code>
+
+
+	<!-- Null (Nulo) -->
+	<h3>Null (Nulo)</h3>
+	<p>Valor que indica la ausencia de valor.</p>
+	<!-- codigo -->
+	<code>
+		$nulo = null; <br>
+		echo $nulo; <strong>//</strong>
+	</code>
+
+
+	<!-- var_dump() -->
+	<h3>var_dump()</h3>
+	<p>Sirve para conocer el tipo de dato primitivo de una variable y su valor.</p>
+	<!-- codigo -->
+	<code>
+		$A = 23; $B = "Texto"; $C = 12.345; $D = 10 > 5; <br><br>
+
+		var_dump($A); <strong>// int(23)</strong> <br>
+		var_dump($B); <strong>// string(5) "Texto"</strong> <br>
+		var_dump($C); <strong>// float(12.345)</strong> <br>
+		var_dump($D); <strong>// bool(true)</strong>
+	</code>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 5</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Bucles e iteracion</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- while -->
+	<h3>while</h3>
+	<p>Se usa para ejecutar un bloque de codigo mientras una condicion se cumpla.</p>
+	<!-- codigo -->
+	<code>
+		$contador = 0; <br><br>
+
+		while ($contador < 10) { <br>&nbsp&nbsp&nbsp
+			echo $contador; <strong>// 0123456789</strong> <br>&nbsp&nbsp&nbsp
+			$contador++; <br>
+		}
+	</code>
+
+
+	<!-- do while -->
+	<h3>do while</h3>
+	<p>Funciona igual que el bucle while, con la diferencia que de primero ejecuta el codigo y despues pregunta por la condicion.</p>
+	<!-- codigo -->
+	<code>
+		$contador = 0; <br><br>
+
+		do { <br>&nbsp&nbsp&nbsp
+			echo $contador; <strong>// 0123456789</strong> <br>&nbsp&nbsp&nbsp
+			$contador++; <br>
+		} while ($contador < 10);
+	</code>
+
+
+	<!-- for -->
+	<h3>for</h3>
+	<p>Es un bucle que ya tiene una estructura definida.</p>
+	<ul>
+		<li><strong><code>$i = 0;</code></strong> variable incial que se usara como contador.</li>
+		<li><strong><code>$i < 10;</code></strong> el bucle se iterara mientras esta condicion se cumpla.</li>
+		<li><strong><code>$i++</code></strong> esta sentencia se ejecutara en cada iteracion para acercar al incumplimiento de la condicion y para el bucle.</li>
+	</ul>
+	<!-- codigo -->
+	<code>
+		for ($i = 0; $i < 10; $i++) { <br>&nbsp&nbsp&nbsp
+			echo $i; <strong>// 0123456789</strong> <br>
+		}
+	</code>
+
+
+	<!-- foreach -->
+	<h3>foreach</h3>
+	<p>Sirve para iterar sobre cada uno de los elementos de un array, como el bucle <code>for of</code> de JavaScript.</p>
+	<!-- codigo -->
+	<code>
+		$array = ["Joel", "Shimakaze", "Fubuki", "Yuudachi"]; <br><br>
+
+		foreach ($array as $elemento) { <br>&nbsp&nbsp&nbsp
+			print("$elemento >br<"); <br>
+		} <br><br>
+
+		<strong>
+			// Joel <br>
+			// Shimakaze <br>
+			// Fubuki <br>
+			// Yuudachi
+		</strong>
+	</code>
+
+
+	<!-- Sentencia break -->
+	<h3>Sentencia break</h3>
+	<p>Su funcion es detener un bucle al ejecutarse.</p>
+	<!-- codigo -->
+	<code>
+		$i = 0; <br><br>
+
+		while ($i < 10) { <br><br> &nbsp&nbsp&nbsp
+ 
+			if ($i == 6) { <br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				<strong>break;</strong> <br>&nbsp&nbsp&nbsp
+			} <br><br> &nbsp&nbsp&nbsp
+
+			echo $i . " "; <strong>// 1 2 3 4 5</strong> <br>&nbsp&nbsp&nbsp
+			$i++; <br>
+		}
+	</code>
+
+
+	<!-- Sentencia continue -->
+	<h3>Sentencia continue</h3>
+	<p>Su funcion es detener la iteracion actual y pasar a la siguiente. No funciona con el bucle while.</p>
+	<!-- codigo -->
+	<code>
+		for ($i = 0; $i < 10; $i++) { <br><br> &nbsp&nbsp&nbsp
+     
+			if ($i == 6) { <br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				continue; <br>&nbsp&nbsp&nbsp
+			} <br><br> &nbsp&nbsp&nbsp
+
+			echo $i . " "; <strong>// 1 2 3 4 5 7 8 9 10</strong> <br>
+		}
+	</code>
+
+
+	<!-- exit() y die() -->
+	<h3>exit() y die()</h3>
+	<p>Estas funciones finalizan con el programa PHP, los parentisis son opcionales para pasar un mensaje de error. Ambas funciones son exactamente iguales.</p>
+	<!-- codigo -->
+	<code>
+		echo "Hola"; <strong>// Hola</strong> <br><br>
+
+		exit(); <br><br>
+
+		echo "Mundo!";
+	</code>
+
+</body>
+</html>

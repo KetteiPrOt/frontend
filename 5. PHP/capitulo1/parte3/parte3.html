@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 3</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Operadores</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Asignacion Simple -->
+	<h3>Asignacion Simple</h3>
+	<p>Asigna el valor de la derecha al elemento de la izquierda.</p>
+	<!-- codigo -->
+	<code>&variable = "Valor";</code>
+
+
+	<!-- Asignacion por Referencia -->
+	<h3>Asignacion por Referencia</h3>
+	<p>Una variable es una referencia a un espacio de la memoria. Cuando asignamos por referencia una variable a otra lo que estamos diciendo es que ambas van a hacer referencia al mismmo espacio y si se altera una se cambia la otra.</p>
+	<!-- codigo -->
+	<code>
+		$A = 23; $B = <strong>&</strong>$A; <strong>// $B es una referencia para $A</strong> <br><br>
+
+		echo "$A - $B \n"; <strong>// 23 - 23</strong> <br><br>
+
+		$B = 12; <br><br>
+
+		echo "$A - $B"; <strong>// 12 - 12</strong>
+	</code>
+
+
+	<!-- Asignacion Combinada -->
+	<h3>Asignacion Combinada</h3>
+	<p>Sirven para operar con el valor de la misma variable.</p>
+	<table class="tabla">
+		<tr>
+			<th>Operador</th> <th>Significado</th>
+		</tr>
+		<tr>
+			<td>$A += 10;</td> <td>$A = $A + 10;</td>
+		</tr>
+		<tr>
+			<td>$A -= 10;</td> <td>$A = $A - 10;</td>
+		</tr>
+		<tr>
+			<td>$A *= 10;</td> <td>$A = $A * 10;</td>
+		</tr>
+		<tr>
+			<td>$A /= 10;</td> <td>$A = $A / 10;</td>
+		</tr>
+		<tr>
+			<td>$A %= 10;</td> <td>$A = $A % 10;</td>
+		</tr>
+		<tr>
+			<td>$A **= 10;</td> <td>$A = $A ** 10;</td>
+		</tr>
+	</table>
+
+
+	<!-- Operadores Aritmeticos -->
+	<h3>Operadores Aritmeticos</h3>
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Nombres</th> <th>Sintaxis</th> <th>Significado</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Adicion</td> <td>a + b</td> <td>Sumar a con b</td>
+			</tr>
+			<tr>
+				<td>Sustraccion</td> <td>a - b</td> <td>Restar a con b</td>
+			</tr>
+			<tr>
+				<td>Opuesto</td> <td>-a</td> <td>Multiplicar a * (-1)</td>
+			</tr>
+			<tr>
+				<td>Incremento</td> <td>x++</td> <td>x + 1</td>
+			</tr>
+			<tr>
+				<td>Incremento (invertido)</td> <td>++x</td> <td>1 + x</td>
+			</tr>
+			<tr>
+				<td>Decremento</td> <td>x--</td> <td>x - 1</td>
+			</tr>
+			<tr>
+				<td>Decremento (invertido)</td> <td>--x</td> <td>1 - x</td>
+			</tr>
+			<tr>
+				<td>Division</td> <td>a / b</td> <td>Dividir a / b</td>
+			</tr>
+			<tr>
+				<td>Residuo</td> <td>a % b</td> <td>Residuo de a / b</td>
+			</tr>
+			<tr>
+				<td>Multiplicacion</td> <td>a * b</td> <td>Multiplicar a * b</td>
+			</tr>
+			<tr>
+				<td>Exponenciacion</td> <td>a ** b</td> <td>Elevar a ** b</td>
+			</tr>
+			<tr>
+				<td>Agrupacion</td> <td>()</td> <td>Agrupar operaciones</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<!-- Asignacion de incremento -->
+	<h3>Asignacion de incremento</h3>
+	<p>Para asignar un incremento/decremento a una variable debemos indicar que primero se haga el incremento y despues la asignacion.</p>
+	<!-- codigo -->
+	<code>
+		$A = 10; <br>
+		$B = ++$A; <br><br>
+
+		echo "El valor de B es: $B >br<"; <strong>// 11</strong> <br>
+		echo "El valor de A es: $A"; <strong>// 11</strong>
+	</code>
+
+	<p>Si lo escribimos al revez va a suceder que primero se hace la asignacion del valor, y despues el incremento/decremento.</p>
+	<!-- codigo -->
+	<code>
+		$A = 10; <br>
+		$B = $A++; <br><br>
+
+		echo "El valor de B es: $B >br<"; <strong>// 10</strong> <br>
+		echo "El valor de A es: $A"; <strong>// 11</strong>
+	</code>
+
+
+	<!-- Operadores de Comparacion -->
+	<h3>Operadores de Comparacion</h3>
+	<p>Funcionan igual que en JavaScript.</p>
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Nombres</th> <th>Sintaxis</th> <th>Significado</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Igual</td> <td>A == B</td> <td>A es igual a B? (solo valor)</td>
+			</tr>
+			<tr>
+				<td>Diferente</td> <td>A != B</td> <td>A es diferente a B? (solo valor)</td>
+			</tr>
+			<tr>
+				<td>Identidad</td> <td>A === B</td> <td>A es igual a B en tipo y en valor?</td>
+			</tr>
+			<tr>
+				<td>Identidad diferente</td> <td>A !== B</td> <td>A es diferente a B en tipo y en valor?</td>
+			</tr>
+			<tr>
+				<td>Mayor que</td> <td>A > B</td> <td>A es mayor que B?</td>
+			</tr>
+			<tr>
+				<td>Menor que</td> <td>A < B</td> <td>A es menor que B?</td>
+			</tr>
+			<tr>
+				<td>Mayor o igual que</td> <td>A >= B</td> <td>A es mayor o igual que B?</td>
+			</tr>
+			<tr>
+				<td>Menor o igual que</td> <td>A <= B</td> <td>A es menor o igual que B?</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<!-- Operadores Logicos -->
+	<h3>Operadores Logicos</h3>
+	<p>
+		Los textos y los numeros se consideran <em>true</em> cuando son evaluados como booleanos. Solo un texto vacio (""), el valor nulo (<em>null</em>), o el numero cero se consideran <em>false</em>.
+	</p>
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Nombres</th> <th>Sintaxis</th> <th>Significado</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>AND</td> 
+				<td>&&</td> 
+				<td>
+					Comprueba que se cumplan todas las proposiciones para que la operacion sea verdadera
+				</td>
+			</tr>
+			<tr>
+				<td>OR</td> 
+				<td>||</td> 
+				<td>
+					Comprueba que se cumplan al menos una de las proposiciones para que la operacion sea verdadera
+				</td>
+			</tr>
+			<tr>
+				<td>NOT</td> 
+				<td>!</td> 
+				<td>
+					Niega la proposicion, convirtiendola en su contrario
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

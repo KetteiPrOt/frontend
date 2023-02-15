@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 4</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Condicionales</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- if else -->
+	<h3>if else</h3>
+	<p>Esta estructura de control divide el flujo del programa de manera logica segun se cumplan o no ciertas condiciones en la ejecucion del programa.</p>
+	<!-- codigo -->
+	<code>
+		$edad = 18; <br><br>
+
+		<strong>if</strong> ($edad >= 18) { <br> &nbsp&nbsp&nbsp
+			echo "Eres mayor de edad"; <strong>// Eres mayor de edad</strong> <br>
+		} <strong>elseif</strong> ($edad < 18) { <br> &nbsp&nbsp&nbsp
+			echo "Eres menor de edad"; <br>
+		} <strong>else</strong> { <br> &nbsp&nbsp&nbsp
+			echo "No conocemos tu edad"; <br>
+		}
+	</code>
+
+
+	<!-- Operador ternario -->
+	<h3>Operador ternario</h3>
+	<p>Este operador tiene tres simbolos (comparacion, ?, :) y funciona como un atajo a la sentencia if else. Ademas se pueden usar para guardar en alguna variable la expresion resultante.</p>
+	<!-- codigo -->
+	<code>
+		$edad = 18; <br><br>
+
+		$resultado = $edad <strong>>=</strong> 18 <strong>?</strong> "Eres Mayor de edad" <strong>:</strong> "Eres Menor de edad"; <br><br>
+
+        echo $resultado; <strong>// Eres Mayor de edad</strong>
+	</code>
+
+
+	<!-- Anidar Condiciones en operador ternario -->
+	<h3>Anidar Condiciones en operador ternario</h3>
+	<p>Se pueden anidar las condiciones repitiendo el operador ternario de la siguiente forma.</p>
+	<!-- codigo -->
+	<code>
+		$A = 10; $B = 5; <br><br>
+
+		$indicacion = $A > $B ? "mayor" : ( $A < $B ? "menor" : "igual" ); <br><br>
+
+		echo "El valor de A es $indicacion que el valor de B"; <strong>// El valor de A es mayor que el valor de B</strong>
+	</code>
+
+
+	<!-- switch -->
+	<h3>switch</h3>
+	<p>Es una estructura de seleccion multiple. Se usa para compara el valor de una variable con muchos posibles casos y segun el que se cumpla ejecutar codigo.</p>
+	<!-- codigo -->
+	<code>
+		$dia = 1; <br><br>
+
+		switch ($dia) { <br> &nbsp&nbsp&nbsp
+			case 1: <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				echo "Lunes"; <strong>// Lunes</strong> <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				break; <br> &nbsp&nbsp&nbsp
+			case 2: <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				echo"Martes"; <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				break; <br> &nbsp&nbsp&nbsp
+			case 3: <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				echo"Miercoles"; <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				break; <br> &nbsp&nbsp&nbsp
+			case 4: <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				echo"Jueves"; <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				break; <br> &nbsp&nbsp&nbsp
+			case 5: <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				echo"Viernes"; <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				break; <br> &nbsp&nbsp&nbsp
+			case 6: <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				echo"Sabado"; <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				break; <br> &nbsp&nbsp&nbsp
+			case 7: <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				echo"Domingo"; <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				break; <br> &nbsp&nbsp&nbsp
+			default: <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				echo "Numero no valido"; <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				break; <br>
+		}
+	</code>
+
+
+	<!-- match -->
+	<h3>match</h3>
+	<p>Esta nueva estructura sirve para seleccionar un valor a retornar de una variable.</p>
+	<p>Como es mucho mas legible, se puede usar como sustituta de la sentencia switch.</p>
+	<!-- codigo -->
+	<code>
+		$dia = 1; <br><br>
+
+		echo match($dia) { <br> &nbsp&nbsp&nbsp
+			1 => "Lunes", <strong>// Lunes</strong> <br> &nbsp&nbsp&nbsp
+			2 => "Martes", <br> &nbsp&nbsp&nbsp
+			3 => "Miercoles", <br> &nbsp&nbsp&nbsp
+			4 => "Jueves", <br> &nbsp&nbsp&nbsp
+			5 => "Viernes", <br> &nbsp&nbsp&nbsp
+			6 => "Sabado", <br> &nbsp&nbsp&nbsp
+			7 => "Domingo", <br> &nbsp&nbsp&nbsp
+			default => "El dia esta fuera de rango" <br>
+		}
+	</code>
+
+</body>
+</html>

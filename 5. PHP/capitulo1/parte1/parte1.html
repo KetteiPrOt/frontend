@@ -18,8 +18,7 @@
 	<p>El nombre de la variable es sensible a mayusculas y minusculas.</p>
 	<p>PHP es un lenguaje de tipado debil, las variables no nesecitan ser declaradas antes de ser usadas.</p>
 	<!-- codigo -->
-	<code>$variable = 'dato';</code><br><br>
-	<a href="programa.php" target="_blank">Prorgama</a>
+	<code>$variable = 'dato';</code>
 
 	<!-- Estilos de escritura -->
 	<h3>Estilos de escritura</h3>
@@ -45,5 +44,97 @@
 		Se recomienda usar para programacion el estilo Lower Camel Case.
 	</p>
 
+
+	<!-- Concatenacion -->
+	<h3>Concatenacion</h3>
+	<p>Para concatenar textos se usa el operador "." (punto), cuando escribimos una cadena con comillas dobles podemos utilizarla como un <em>template string</em>.</p>
+	<!-- codigo -->
+	<code>
+		$nombre = 'Joel'; <br><br>
+
+		echo 'Hola ' . 'Mundo!'; <strong>// Hola Mundo!</strong> <br>
+		echo "Mi nombre es <em>$nombre</em>"; <strong>// Mi nombre es Joel</strong>
+	</code>
+
+
+	<!-- Constantes (define) -->
+	<h3>Constantes (define)</h3>
+	<p>Se usan para guardar datos que no varian a lo largo del programa.</p>
+	<p>
+		Para crear una constante se usa el metodo <em>define</em> quien recibe dos valores: el nombre de la constante y su valor.
+	</p>
+	<p>
+		Para hacer uso de una constante simplemente se escribe su nombre. Se recomienda nombrarlas en mayusculas y usar "_" para nombres compuestos.
+	</p>
+	<!-- codigo -->
+	<code>
+		define('NUMBER_PI', 3.14); <br><br>
+
+		echo NUMBER_PI; <strong>// 3.14</strong>
+	</code>
+
+
+	<!-- defined() -->
+	<h3>defined()</h3>
+	<p>Este metodo se usa para saber si una constante ha sido definida usando su nombre.</p>
+	<p>
+		Si ha sido definida retorna 1 (true), caso contrario nada (0, false).
+	</p>
+	<code>
+		define('NUMBER_PI', 3.14); <br><br>
+
+		$respuesta = defined('NUMBER_PI'); <br><br>
+
+		echo $respuesta; <strong>// 1</strong>
+	</code>
+
+
+	<!-- Algunas Contantes Utiles -->
+	<h3>Algunas Contantes Utiles</h3>
+	<p>Las siguientes constantes ya vienen predefinidas por PHP:</p>
+
+
+	<!-- PHP_VERSION -->
+	<h4>PHP_VERSION</h4>
+	<p>Esta constante contiene la version de PHP.</p>
+	<!-- codigo -->
+	<code>
+		echo PHP_VERSION; <strong>// 8.2.0</strong>
+	</code>
+
+
+	<!-- PHP_OS -->
+	<h4>PHP_OS</h4>
+	<p>Contiene el sistema operativo donde se esta ejecutando PHP.</p>
+	<!-- codigo -->
+	<code>echo PHP_OS; <strong>// WINNT</strong></code>
+
+
+	<!-- PHP_EXTENSION_DIR -->
+	<h4>PHP_EXTENSION_DIR</h4>
+	<p>Contiene la ruta (el directorio) de las extensiones.</p>
+	<!-- codigo -->
+	<code>echo PHP_EXTENSION_DIR; <strong>// C:\php\ext</strong></code>
+
+
+	<!-- PHP_SAPI -->
+	<h4>PHP_SAPI</h4>
+	<p>Contiene la API del servidor (Server API).</p>
+	<!-- codigo -->
+	<code>echo PHP_SAPI; <strong>// apache2handler</strong></code>
+
+
+	<!-- __Line__ -->
+	<h4>__Line__</h4>
+	<p>Contiene en que linea del archivo se esta ejecutando la linea de codigo.</p>
+	<!-- codigo -->
+	<code>echo __LINE__; <strong>// 18</strong></code>
+
+
+	<!-- __FILE__ -->
+	<h4>__FILE__</h4>
+	<p>Contiene la ruta del archivo actual.</p>
+	<!-- codigo -->
+	<code>echo __FILE__; <strong>// C:\xampp\htdocs\frontend\5. PHP\programa.php</strong></code>
 </body>
 </html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 6</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Funciones</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Funciones predefinidas -->
+	<h3>Funciones predefinidas</h3>
+	<p>Son funciones que ya vienen con el lenguaje.</p>
+
+	<!-- time() -->
+	<h4>time()</h4>
+	<p>
+		Contiene valor numérico entero largo que representa el número de segundos transcurridos desde el 1 de enero de 1970 00:00:00 GMT.
+	</p>
+	<!-- codigo -->
+	<code>echo "Marca de tiempo: " . time(); <strong>// Marca de tiempo: 1676307246</strong></code>
+
+	<!-- sqrt() -->
+	<h4>sqrt()</h4>
+	<p>Esta funcion retorna la raiz cuadrada de un nuamero.</p>
+	<!-- codigo -->
+	<code>echo sqrt(25); <strong>// 5</strong></code>
+
+	<!-- rand() -->
+	<h4>rand()</h4>
+	<p>Retorna un numero aleatorio en un intervalo especificado.</p>
+	<!-- codigo -->
+	<code>echo "Numero aleatorio entre 90 y 100: " . rand(90, 100); <strong>// Numero aleatorio entre 90 y 100: ??</strong></code>
+
+	<!-- pi() -->
+	<h4>pi()</h4>
+	<p>Retorna el valor de PI.</p>
+	<!-- codigo -->
+	<code>echo pi(); <strong>// 3.1415926535898</strong></code>
+
+
+	<!-- Definir funciones -->
+	<h3>Definir funciones</h3>
+	<p>Las funciones se definen y retornan igual que en JavaScript.</p>
+	<!-- codigo -->
+	<code>
+        function nombre($argumento) { <br>&nbsp&nbsp&nbsp
+            // codigo <br>&nbsp&nbsp&nbsp
+			return $resultado; <br>
+        }
+	</code>
+
+	<p>Ejemplo de funcion para calcular el factorial de un numero:</p>
+	<!-- codigo -->
+	<code>
+		$numero = 4; // 1 * 2 * 3 * 4 = 24 <br><br>
+
+		function factorial($n) { <br>&nbsp&nbsp&nbsp
+			$acumulador = 1; <br><br>&nbsp&nbsp&nbsp
+
+			for ($i = 1; $i <= $n; $i++) { <br>&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				$acumulador *= $i; <br>&nbsp&nbsp&nbsp
+			} <br><br> &nbsp&nbsp&nbsp
+
+			return $acumulador; <br>
+		} <br><br>
+
+		echo factorial($numero); <strong>// 24</strong>
+	</code>
+
+
+	<!-- Ambitos de variables -->
+	<h3>Ambitos de variables</h3>
+	<p>
+		En PHP existen dos tipos de variables: las variables globales y las variables locales. Las variables globales son las que se declaran en el programa o dentro de estructuras de control de flujo.
+	</p>
+	<p>
+		Las funciones tienen un cuerpo delimitado por corchetes {}. Este cuerpo define un nuevo ambito de variables. Ninguna variable puede entrar ni salir de la funcion, a menos que sea por los argumentos, o se use la sentencia <em>return</em>. Las variables declaradas dentro de funciones se conocen como variables de ambito local.
+	</p>
+	<!-- codigo -->
+	<code>
+		$a = 5; <br><br>
+
+		function y() { <br>&nbsp&nbsp&nbsp
+			echo $a; <strong>// Error: $a is undefined</strong> <br>
+		} <br><br>
+
+		y();
+	</code>
+
+	<!-- Sentencia global -->
+	<h3>Sentencia global</h3>
+	<p>Sirve para acceder a una variable global.</p>
+	<!-- codigo -->
+	<code>
+		$a = 5; <br><br>
+
+		function y() { <br>&nbsp&nbsp&nbsp
+			<strong>global</strong> $a; <br> &nbsp&nbsp&nbsp
+			echo $a; <strong>// 5</strong> <br>
+		} <br><br>
+
+		y();
+	</code>
+
+
+	<!-- Argumentos opcionales de una funcion -->
+	<h3>Argumentos opcionales de una funcion</h3>
+	<p>
+		Si al crear un argumento de una funcion le pasamos un valor por defecto, este argumento se volvera opcinal y en el caso de que no se lo pasemos simplemente tomara su valor por defecto.
+	</p>
+	<!-- codigo -->
+	<code>
+		function valoracion($curso, $puntuacion = 5) { <br> &nbsp&nbsp&nbsp
+			echo "El $curso tiene una puntuacion de $puntuacion"; <br>
+		} <br><br>
+
+		valoracion("Curso de PHP 8"); <strong>// El Curso de PHP 8 tiene una puntuacion de 5</strong>
+	</code>
+
+
+	<!-- Argumentos variables de una funcion -->
+	<h3>Argumentos variables de una funcion</h3>
+	<p>Aveces no sabemos con exactitud cuantos argumentos va a recibir una funcion.</p>
+	<p>
+		En estos casos usamos el operador "..." para juntar automaticamente todos los datos que le pasemos en un solo array.
+	</p>
+	<p>Esta es una funcion que concatena palabras:</p>
+	<!-- codigo -->
+	<code>
+		function concatenar(...$palabras) { <br> &nbsp&nbsp&nbsp
+			$resultado = ""; <br> &nbsp&nbsp&nbsp
+			foreach ($palabras as $palabra) { <br> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+				$resultado .= " $palabra"; <br> &nbsp&nbsp&nbsp
+			} <br> &nbsp&nbsp&nbsp
+			return $resultado; <br>
+		} <br><br>
+
+		$mensaje = concatenar("Hola", "Mundo!", "Soy", "Joel", "Mero."); <br><br>
+		
+		echo $mensaje; <strong>// Hola Mundo! Soy Joel Mero</strong>
+	</code>
+
+
+	<!-- Argumentos con tipado definido -->
+	<h3>Argumentos con tipado definido</h3>
+	<p>Podemos definir el tipo de argumentos que va a recibir una funcion escribiendo el tipo de dato antes del parametro.</p>
+	<p>
+		PHP va a intentar convertir el dato recibido al tipo de dato especificado. Por ejemplo a un decimal lo va a trucar a entero si el argumento es de tipo <em>int</em>.
+	</p>
+	<p>Tipos que se pueden especificar: <em>int, float, string, bool, array, object, null</em>.</p>
+	<!-- codigo -->
+	<code>
+		function sumarEnteros (int $entero1, int $entero2) { <br><br> &nbsp&nbsp&nbsp
+
+			$suma = $entero1 + $entero2; <br><br> &nbsp&nbsp&nbsp
+
+			return $suma; <br>
+		} <br><br>
+
+		echo sumarEnteros(5, 6) . " -- "; <strong>// 11</strong> <br><br>
+
+		echo sumarEnteros(2, 5.4) . " -- "; <strong>// 7</strong> <br><br>
+
+		function sumarDecimales (float $decimal1, float $decimal2) { <br><br> &nbsp&nbsp&nbsp
+
+			$suma = $decimal1 + $decimal2; <br><br> &nbsp&nbsp&nbsp
+
+			return $suma; <br>
+		} <br><br>
+
+		echo sumarDecimales(5.1, 6.4); <strong>// 11.5</strong>
+	</code>
+
+
+	<!-- Tipado estricto -->
+	<h3>Tipado estricto</h3>
+	<p>Se usa cuando queremos que las funciones solo acepten argumentos del tipo de dato especificado.</p>
+	<p>
+		Usar el tipado estricto disminuye drasticamente los errores en los programas.
+	</p>
+	<p>
+		La declaracion "strict_types = 1" debe ser la primera en el programa.
+	</p>
+	<!-- codigo -->
+	<code>
+		declare(strict_types = 1); <br><br>
+
+		function sumarEnteros (int $entero1, int $entero2) { <br><br> &nbsp&nbsp&nbsp
+
+			$suma = $entero1 + $entero2; <br><br> &nbsp&nbsp&nbsp
+
+			return $suma; <br>
+		} <br><br>
+
+		echo sumarEnteros(5, 2.4); <strong>// (!) Error de tipado</strong>
+	</code>
+
+
+	<!-- Funciones con tipado definido -->
+	<h3>Funciones con tipado definido</h3>
+	<p>Podemos especificar el tipo de dato que debe retornar una funcion usando la siguiente sintaxis.</p>
+	<p>
+		Usando el tipado estricto si la funcion devuelve otro tipo de dato se producira un error.
+	</p>
+	<p>Tipos que se pueden especificar: <em>int, float, string, bool, array, object, null</em>.</p>
+	<!-- codigo -->
+	<code>
+		declare(strict_types = 1); <br><br>
+
+		function sumarEnteros (int $entero1, int $entero2): int <br>
+		{ <br> &nbsp&nbsp&nbsp
+			$suma = $entero1 + $entero2; <br><br> &nbsp&nbsp&nbsp
+		
+			return $suma/2; <strong>// 7/2 = 3.5</strong> <br>
+		} <br><br>
+		
+		echo sumarEnteros(2, 5) ; <strong>// (!) Error de tipado</strong>
+	</code>
+
+	<p>Se puede adicionar mas tipos de datos que opcionalmente podria retornar con el operador "|".</p>
+	<!-- codigo -->
+	<code>
+		declare(strict_types = 1); <br><br>
+
+		function sumarEnteros (int $entero1, int $entero2): int | float <br>
+		{ <br> &nbsp&nbsp&nbsp
+			$suma = $entero1 + $entero2; <br><br> &nbsp&nbsp&nbsp
+		
+			return $suma/2; <br>
+		} <br><br>
+		
+		echo sumarEnteros(2, 5) ; <strong>// 3.5</strong>
+	</code>
+
+
+	<!-- Funciones flecha -->
+	<h3>Funciones flecha</h3>
+	<p>Son una forma mas corta de escribir funciones anonimas normales. El return es implicito.</p>
+	<!-- codigo -->
+	<code>
+		fn() => /* codigo */;
+	</code>
+</body>
+</html>

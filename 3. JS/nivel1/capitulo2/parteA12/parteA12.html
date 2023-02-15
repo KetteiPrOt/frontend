@@ -125,11 +125,7 @@
 			perfil: { rol: 'frontend',  lenguaje: 'JavaScript', experiencia: '6 meses' } <br>
 		} <br><br>
 
-		let { <strong>nombre</strong> } = objeto,<br>&nbsp&nbsp&nbsp
-			{ <strong>oficio</strong> } = objeto,<br>&nbsp&nbsp&nbsp
-			{ perfil: { <strong>rol</strong> } } = objeto,<br>&nbsp&nbsp&nbsp
-			{ perfil: { <strong>lenguaje</strong> } } = objeto,<br>&nbsp&nbsp&nbsp
-			{ perfil: { <strong>experiencia</strong> } } = objeto; <br><br>
+		let { <strong>nombre</strong>, <strong>oficio</strong>, perfil: { <strong>rol</strong> }, perfil: { <strong>lenguaje</strong> }, perfil: { <strong>experiencia</strong> } }  = objeto; <br><br>
 
 		let informacion = <br>
 		`Soy ${<strong>nombre</strong>}, trabajo como ${<strong>oficio</strong>} ${<strong>rol</strong>} en ${<strong>lenguaje</strong>}. Tengo ${<strong>experiencia</strong>} de experiencia.`; <br><br>
@@ -220,6 +216,27 @@
 		console.log(objeto); <strong>// {}</strong>
 	</code>
 	<p>Nota: en el modo estricto (Capitulo 11) intentar extender el objeto en esta situacion lanzaria un error.</p>
+
+
+	<!-- Encadenamiento Opcional -->
+	<h3>Encadenamiento Opcional</h3>
+	<p>
+		El operador de encadenamiento opcional proporciona una forma de simplificar el acceso a los valores a través de objetos conectados cuando es posible que una referencia o función sea undefined o null
+	</p>
+	<p>
+		Puede usar el encadenamiento opcional cuando intente llamar a un método que puede no existir. Esto puede ser útil, por ejemplo, cuando se usa una API en la que un método podría no estar disponible, ya sea debido a la antigüedad de la implementación o debido a una característica que no está disponible en el dispositivo del usuario.
+	</p>
+	<p>
+		El uso de encadenamiento opcional con llamadas a funciones hace que la expresión regrese automáticamente undefined en lugar de lanzar una excepción si no se encuentra el método.
+	</p>
+	<!-- codigo -->
+	<code>
+		const objeto = { persona1: { nombre: "Joel", apellido: "Mero" } }; <br><br>
+
+		let apellido = objeto?.persona1.apellido; <br><br>
+
+		console.log(apellido); <strong>// Mero</strong>
+	</code>
 
 
 	
