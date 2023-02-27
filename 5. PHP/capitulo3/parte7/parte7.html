@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 7</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Funciones para Cadenas</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Acceder a un caracter -->
+	<h3>Acceder a un caracter</h3>
+	<p>Una cadena de caracteres es simplemente una sucesion de caracteres.</p>
+	<p>
+		Si quisieramos acceder a uno de sus caracteres podriamos acceder usando el indice del caracter como si fuera un array.
+	</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "Elaina"; <br>
+        echo $cadena[1]; <strong>// l</strong>
+	</code>
+
+
+	<!-- strlen() -->
+	<h3>strlen()</h3>
+	<p>Retorna la cantidad de bits que contiene una cadena. Hay caracteres que ocupan mas de un bit (las tildes).</p>
+	<p>
+		No se recomienda usarla para saber la longitud de la cadena, porque puede generar errores.
+	</p>
+	<!-- codigo -->
+	<code>
+		$cadena1 = "Elaina"; <br>
+        echo strlen($cadena1) . "&lt;br&gt;"; <strong>// 6</strong> <br><br>
+
+		$cadena2 = "Canción"; <br>
+        echo strlen($cadena2); <strong>// 8</strong>
+	</code>
+
+	<!-- mb_strlen() -->
+	<h3>mb_strlen()</h3>
+	<p>Retorna la cantidad caracteres que contiene una cadena.</p>
+	<!-- codigo -->
+	<code>
+		$cadena1 = "Elaina"; <br>
+        echo mb_strlen($cadena1) . "&lt;br&gt;"; <strong>// 6</strong> <br><br>
+
+		$cadena2 = "Canción"; <br>
+        echo mb_strlen($cadena2); <strong>// 7</strong>
+	</code>
+
+
+	<!-- strpos() -->
+	<h3>strpos()</h3>
+	<p>Devuelve el indice de un caracter en una cadena.</p>
+	<p>
+		Recibe la cadena a analizar y el caracter que buscara. Devuelve la primera coincidencia de izquierda a derecha.
+	</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "Elaina"; <br>
+        echo strpos($cadena, "a"); <strong>// 2</strong>
+	</code>
+
+
+	<!-- strrpos() -->
+	<h3>strrpos()</h3>
+	<p>Devuelve el indice de un caracter en una cadena.</p>
+	<p>
+		Recibe la cadena a analizar y el caracter que buscara. Devuelve la primera coincidencia de derecha a izquierda.
+	</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "Elaina"; <br>
+        echo strrpos($cadena, "a"); <strong>// 5</strong>
+	</code>
+
+
+	<!-- str_contains() -->
+	<h3>str_contains()</h3>
+	<p>Evalua si una cadena se enncuentra dentro de otra.</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "Hola Mundo"; <br>
+        echo str_contains($cadena, "Mundo") ? "Verdadero" : "Falso"; <strong>// Verdadero</strong>
+	</code>
+
+
+	<!-- str_starts_with() -->
+	<h3>str_starts_with()</h3>
+	<p>Verifica si una cadena empieza con otra.</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "Hola Mundo"; <br>
+        echo str_starts_with($cadena, "Hola") ? "Verdadero" : "Falso"; <strong>// Verdadero</strong>
+	</code>
+
+
+	<!-- str_ends_with() -->
+	<h3>str_ends_with()</h3>
+	<p>Verifica si una cadena termina con otra.</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "Hola Mundo"; <br>
+        echo str_ends_with($cadena, "Mundo") ? "Verdadero" : "Falso"; <strong>// Verdadero</strong>
+	</code>
+
+
+	<!-- strcmp() -->
+	<h3>strcmp()</h3>
+	<p>Compara dos cadenas.</p>
+	<p>
+		Si la primera es mas grande que la segunda devuelve 1.
+	</p>
+	<!-- codigo -->
+	<code>
+		$cadena1 = "123456"; <br>
+		$cadena2 = "1234"; <br><br>
+
+		echo strcmp($cadena1, $cadena2); <strong>// 1</strong>
+	</code>
+
+	<p>
+		Si la primera es mas pequenia que la segunda devuelve -1.
+	</p>
+	<!-- codigo -->
+	<code>
+		$cadena1 = "1234"; <br>
+		$cadena2 = "123456"; <br><br>
+
+		echo strcmp($cadena1, $cadena2); <strong>// -1</strong>
+	</code>
+
+	<p>
+		Si son estrictamente iguales (en mayusculas y minusculas) devuelve 0.
+	</p>
+	<!-- codigo -->
+	<code>
+		$cadena1 = "Palabra"; <br>
+		$cadena2 = "Palabra"; <br><br>
+
+		echo strcmp($cadena1, $cadena2) . "&lt;br&gt;"; <strong>// 0</strong> <br><br>
+
+		$cadena3 = "Palabra"; <br>
+		$cadena4 = "palabra"; <br><br>
+
+		echo strcmp($cadena3, $cadena4) . "&lt;br&gt;"; <strong>// -1</strong> <br><br>
+
+		$cadena5 = "palabra"; <br>
+		$cadena6 = "Palabra"; <br><br>
+
+		echo strcmp($cadena5, $cadena6); <strong>// 1</strong>
+	</code>
+
+
+	<!-- strcasecmp() -->
+	<h3>strcasecmp()</h3>
+	<p>Tiene la misma funcionalidad que el metodo <em>strcmp()</em>, con la diferencia que le da igual las mayusculas y minusculas.</p>
+	<!-- codigo -->
+	<code>
+		$cadena1 = "Palabra"; <br>
+		$cadena2 = "Palabra"; <br><br>
+		
+		echo strcasecmp($cadena1, $cadena2) . "&lt;br&gt;"; <strong>// 0</strong> <br><br>
+		
+		$cadena3 = "Palabra"; <br>
+		$cadena4 = "palabra"; <br><br>
+		
+		echo strcasecmp($cadena3, $cadena4) . "&lt;br&gt;"; <strong>// 0</strong> <br><br>
+		
+		$cadena5 = "palabra"; <br>
+		$cadena6 = "Palabra"; <br><br>
+		
+		echo strcasecmp($cadena5, $cadena6); <strong>// 0</strong>
+	</code>
+
+
+	<!-- substr() -->
+	<h3>substr()</h3>
+	<p>Retorna una porcion especificada de una cadena.</p>
+	<p>
+		El primer parametro indica desde donde inicia la extraccion de la subcadena.
+	</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "0123456789"; <br><br>
+            
+		echo substr($cadena, 3) . "&lt;br&gt;"; <strong>// Desde el 3: 3456789</strong> <br><br>
+
+		echo substr($cadena, -1) . "&lt;br&gt;"; <strong>// Desde el ultimo valor: 9</strong> <br><br>
+
+		echo substr($cadena, -2); <strong>// Desde el penultimo valor: 89</strong>
+	</code>
+
+	<p>
+		El segundo parametro indica cuantos caracteres seran extraidos de la cadena.
+	</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "0123456789"; <br><br>
+            
+		echo substr($cadena, 0, 2) . "&lt;br&gt;"; <strong>// Dos caracteres: 01</strong> <br><br>
+
+		echo substr($cadena, 3, 3) . "&lt;br&gt;"; <strong>// Tres caracteres: 345</strong> <br><br>
+
+		echo substr($cadena, -5, 3); <strong>// Tres caracteres: 567</strong>
+	</code>
+
+
+	<!-- str_replace() -->
+	<h3>str_replace()</h3>
+	<p>Reemplaza caracteres de una cadena por otros.</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "Hola Mundo"; <br><br>
+
+		$reemplazo = str_replace("Mundo", "Soy Joel", $cadena); <br><br>
+
+		echo $cadena . "&lt;br&gt;"; <strong>// "Hola Mundo"</strong> <br><br>
+
+		echo $reemplazo; <strong>// "Hola Soy Joel"</strong>
+	</code>
+
+	<p>
+		Si la palabra esta repetida varias veces, la reemplaza varias veces.
+	</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "Hola Mundo. Hola Mundo"; <br><br>
+
+		$reemplazo = str_replace("Mundo", "Soy Joel", $cadena); <br><br>
+
+		echo $cadena . "&lt;br&gt;"; <strong>// "Hola Mundo. Hola Mundo"</strong> <br><br>
+
+		echo $reemplazo;<strong> // "Hola Soy Joel. Hola Soy Joel"</strong>
+	</code>
+
+
+	<!-- strtolower() -->
+	<h3>strtolower()</h3>
+	<p>Convierte los caracteres de una cadena a minusculas.</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "Mis Waifus son Elaina, Rapthalia, y Asuna"; <br><br>
+
+		$minusculas = strtolower($cadena);<br><br>
+
+		echo $cadena . "&lt;br&gt;"; <strong>// Mis Waifus son Elaina, Rapthalia, y Asuna</strong> <br><br>
+
+		echo $minusculas; <strong>// mis waifus son elaina, rapthalia, y asuna</strong>
+	</code>
+
+
+	<!-- strtoupper() -->
+	<h3>strtoupper()</h3>
+	<p>Convierte los caracteres de una cadena a mayusculas.</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "Mis Waifus son Elaina, Rapthalia, y Asuna"; <br><br>
+
+		$mayusculas = strtoupper($cadena);<br><br>
+
+		echo $cadena . "&lt;br&gt;"; <strong>// Mis Waifus son Elaina, Rapthalia, y Asuna</strong> <br><br>
+
+		echo $mayusculas; <strong>// MIS WAIFUS SON ELAINA, RAPTHALIA, Y ASUNA</strong>
+	</code>
+
+
+	<!-- uc/lcfirst() -->
+	<h3>uc/lcfirst()</h3>
+	<p>Convierten el primer caracter de una cadena a mayuscula (uc: upper case) o minuscula (lc: lower case).</p>
+	<code>
+		$cadena = "hola mundo"; <br><br>
+
+		$mayuscula = ucfirst($cadena); <br><br>
+		
+		echo $mayuscula . "&lt;br&gt;"; <strong>// Hola mundo</strong> <br><br>
+
+		$minuscula = lcfirst($mayuscula); <br><br>
+
+		echo $minuscula; <strong>// hola mundo</strong>
+	</code>
+
+
+	<!-- ucwords() -->
+	<h3>ucwords()</h3>
+	<p>Convierte todas las palabras de una cadena en mayyusculas. No hay version de esta funcion que vaya a minusculas.</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "hola mundo"; <br><br>
+
+		$mayusculas = ucwords($cadena); <br><br>
+		
+		echo $mayusculas; <strong>// Hola Mundo</strong>
+	</code>
+
+
+	<!-- str_pad() -->
+	<h3>str_pad()</h3>
+	<p>Retorna un string rellenado segun una longitud especificada con otro string</p>
+	<p>
+		Recibe 4 parametros: el texto de entrada, la longitud final del string, el texto de relleno, y finalmente el lugar de relleno.
+	</p>
+	<!-- codigo -->
+	<code>
+		$texto = "hola"; <br><br>
+
+        $paddingR = str_pad($texto, 8, "-", STR_PAD_RIGHT); <br><br>
+
+        echo $paddingR . "&lt;br&gt;"; <strong>// Hola----</strong> <br><br>
+
+        $paddingL = str_pad($texto, 8, "-", STR_PAD_LEFT); <br><br>
+
+        echo $paddingL . "&lt;br&gt;"; <strong>// ----Hola</strong> <br><br>
+
+        $paddingB = str_pad($texto, 12, "-", STR_PAD_BOTH); <br><br>
+
+        echo $paddingB; <strong>// ----Hola----</strong>
+	</code>
+</body>
+</html>

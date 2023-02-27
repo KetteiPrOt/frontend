@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 16</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">POO - Autoload y Sentencia final (5)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo4.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Carga automatica -->
+	<h3>Carga automatica</h3>
+	<p>
+		Cuando nuestros proyectos van creciendo es posible que deseemos incluir mas carpetas y subcarpetas. Cargar todos esos archivos para poder usar sus clases y especificar todos sus namespaces seria hacer un doble trabajo. Seria muy util que cuando decidimos usar un namespace se importe automaticamente el archivo donde  debe buscar la clase.
+	</p>
+	<!-- codigo -->
+	<code>
+		use controladores\Controlador; <br>
+		use modelos\Modelo; <br><br>
+
+		require_once("controladores/Controlador.php"); <br>
+		require_once("modelos/Modelo.php");
+	</code>
+
+
+	<!-- spl_autoload_register() -->
+	<h3>spl_autoload_register()</h3>
+	<p>Esta funcion recibe como parametro una funcion callback que se ejecutara cada vez que se instancie una clase. La funcion callback recibe un parametro que tomara como valor el namespace que fue utilizado para llamar la clase.</p>
+	<p>Usando esta funcion podemos cargar automaticamente el archivo que contiene la clase al momento de usar su namespace con <em>use</em>.</p>
+	<!-- codigo -->
+	<code>
+		use controladores\Controlador; <br><br>
+
+		spl_autoload_register(function($clase) { <br>&nbsp;&nbsp;&nbsp;
+			echo $clase; <br>
+		}); <br><br>
+
+		$control1 = new Controlador; <br>
+		<strong>// controladores\Controlador</strong> <br>
+		<strong>// (!) Error: Class "controladores\Controlador" not found</strong>
+	</code>
+
+
+	<!-- Carga automatica -->
+	<h3>Carga automatica</h3>
+	<p>Para cargar automaticamente nuestros archivos al usar un namesapace usamos la funcion spl_autoload_register(), su funcion callback y el namespace.</p>
+	<!-- codigo -->
+	<code>
+		use controladores\Controlador; <br><br>
+
+		spl_autoload_register(function($namespace) { <br>&nbsp;&nbsp;&nbsp;
+			$ruta = str_replace("\\", "/", $namespace) . ".php"; <strong>// controladores/Controlador.php</strong> <br>&nbsp;&nbsp;&nbsp;
+			require_once($ruta); <br>
+		}); <br><br>
+
+		$control1 = new Controlador; <br><br>
+
+		echo $control1->metodo(); <strong>// Ejecutado Controlador</strong>
+	</code>
+
+
+	<!-- file_exist() -->
+	<h3>file_exist()</h3>
+	<p>Con esta funcion podemos saber si un archivo existe. Es util para cubrir el caso de que el archivo no exista en nuestra funcion de carga automatica, util si no se ha escrito bien el nombre en los directorios o en los archivos.</p>
+	<!-- codigo -->
+	<code>
+		use <strong>controladoress</strong>\Controlador; <br><br>
+
+		spl_autoload_register(function($namespace) { <br>&nbsp;&nbsp;&nbsp;
+			$ruta = str_replace("\\", "/", $namespace) . ".php"; <strong>// controladores/Controlador.php</strong> <br>&nbsp;&nbsp;&nbsp;			
+			if (<strong>file_exists($ruta)</strong>) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				require_once($ruta); <br>&nbsp;&nbsp;&nbsp;
+			} else { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo "Error de spl_autoload_register: El archivo no existe. Probablemente la ruta de archivo no coincide con el namespace y el nombre de clase usados." ." Linea: " . __LINE__; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}); <br><br>
+
+		$control1 = new Controlador; <br>
+		<strong>
+			// Error de spl_autoload_register: El archivo no existe. Probablemente la ruta de archivo no coincide con el namespace y el nombre de clase usados. Linea: 12 <br>
+			// Fatal error: Uncaught Error: Class "controladores\Controlador" not found
+		</strong>
+	</code>
+
+
+	<!-- Practica Autoload -->
+	<h3>Practica Autoload</h3>
+	<p>
+		Aqui esta escrito el codigo de esta seccion: <a href="practica/autoload/autoload.php" target="_blank">practica</a>.
+	</p>
+
+
+	<!-- Sentencia final -->
+	<h3>Sentencia final</h3>
+	<p>
+		Habra ocasiones en las que deseemos que una clase no se pueda heredar a otras clases. Para lograr esto usamos la palabra clave <em>final</em>. De este modo la clase ya no podra ser extendida por otras.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>final</strong> class Hogar { <br>&nbsp;&nbsp;&nbsp;
+			public $color, $seguridad; <br>
+		} <br><br>
+
+		class Departamento extends Hogar { <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Fatal error: Class Departamento cannot extend final class Hogar</strong><br>
+		}
+	</code>
+	
+	<p>
+		La sentencia final tambien puede ser usada en solo un metodo. Al aplicarla a un metodo, este ya no podra ser reescrito por las clases heredadas.
+	</p>
+	<!-- codigo -->
+	<code>
+		class Edificio { <br>&nbsp;&nbsp;&nbsp;
+			public $color, $seguridad; <br><br>&nbsp;&nbsp;&nbsp;
+	
+			<strong>final</strong> public function saludo(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Bienvenido, este es un Edificio."; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		class Casa extends Edificio { <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Fatal error: Cannot override final method Edificio::saludo()</strong> <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public function saludo(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Bienvenido, esta es una Casa."; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+
+
+	<!-- Practica Sentencia final -->
+	<h3>Practica Sentencia final</h3>
+	<p>
+		Aqui esta escrito el codigo de esta seccion: <a href="practica/final/final.php" target="_blank">practica</a>.
+	</p>
+
+</body>
+</html>

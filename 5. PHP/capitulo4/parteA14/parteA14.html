@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 14</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">POO - Interfazes y Clases Abstractas (3)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo4.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que es una interfaz -->
+	<h3>Que es una interfaz</h3>
+	<p>
+		Aveces es nesesario que un grupo de personas trabajen juntas. En este caso es imprescindible crear unas pautas generales de trabajo para que el resultado final sea el esperado. Si el desarrollo consiste en programar varios objetos, el analista de la aplicacion puede definir la estructura basica en papel o crear pequenia plantilla con metodos que el objeto final deberia tener obligatoriamente. Esta plantilla se le conoce como interfaz, y permite establecer una clase con fucniones definidas pero sin desarrollar. Esta plantilla obliga a todas las clases que la implementen declarar estos metodos, como minimo.
+	</p>
+	<p>En pocas palabras, las interfacez son plantillas.</p>
+
+	
+	<!-- Crear una interfaz -->
+	<h3>Crear una interfaz</h3>
+	<p>Usamos la palabra clave <em>inerface</em> y a continuacion definimos los metodos que deberian tener las clases que implementan esta interfaz. Estos metodos solo pueden ser publicos.</p>
+	<!-- codigo -->
+	<code>
+		interface iTemplate { <br>&nbsp;&nbsp;&nbsp;
+			public function setVariable(); <br>&nbsp;&nbsp;&nbsp;
+			public function getHTML(); <br>
+		}
+	</code>
+
+
+	<!-- Implementar una interfaz -->
+	<h3>Implementar una interfaz</h3>
+	<p>Para implementar una interfaz en una clase usamos <em>implements</em>. Si la clase creada no tiene los metodos escritos en la interfaz va a dar un error.</p>
+	<!-- codigo -->
+	<code>
+		interface iTemplate { <br>&nbsp;&nbsp;&nbsp;
+			public function setVariable($dato); <br>&nbsp;&nbsp;&nbsp;
+			public function getHTML(); <br>
+		} <br><br>
+
+		class Template <strong>implements</strong> iTemplate { <br>&nbsp;&nbsp;&nbsp;
+			<strong>// (!) Error: La clase Template tiene dos metodos abstractos</strong> <br>
+		}
+	</code>
+
+	<p>Si declaramos los metodos el error desaparece.</p>
+	<!-- codigo -->
+	<code>
+		interface iTemplate { <br>&nbsp;&nbsp;&nbsp;
+			public function setVariable($dato); <br>&nbsp;&nbsp;&nbsp;
+			public function getHTML(); <br>
+		} <br><br>
+
+		class Template <strong>implements</strong> iTemplate { <br>&nbsp;&nbsp;&nbsp;
+			public function setVariable($dato) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				// <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public function getHTML() { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				// <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+
+
+	<!-- Implementar Varias Interfacez -->
+	<h3>Implementar Varias Interfacez</h3>
+	<p>Una clase puede implementar varias interfacez.</p>
+	<!-- codigo -->
+	<code>
+		interface A { <br>&nbsp;&nbsp;&nbsp;
+			public function prueba1(); <br>
+		} <br><br>
+	
+		interface B{ <br>&nbsp;&nbsp;&nbsp;
+			public function prueba2(); <br>
+		} <br><br>
+	
+		class Testing <strong>implements A, B</strong> { <br>&nbsp;&nbsp;&nbsp;
+			public function prueba1() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				// <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public function prueba2() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				// <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+
+
+	<!-- Extender una interfaz -->
+	<h3>Extender una interfaz</h3>
+	<p>Es posible extender una interfaz al igual que una clase usando <em>extends</em>. Aqui la clase Testing se vera obligada a declarar los metodos prueba1 y prueba2, ya que la interfaz B es una extension de la interfaz A.</p>
+	<!-- codigo -->
+	<code>
+		interface A { <br>&nbsp;&nbsp;&nbsp;
+			public function prueba1(); <br>
+		} <br><br>
+	
+		interface B <strong>extends</strong> A { <br>&nbsp;&nbsp;&nbsp;
+			public function prueba2(); <br>
+		} <br><br>
+	
+		class Testing implements B { <br>&nbsp;&nbsp;&nbsp;
+			public function prueba1() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				// <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public function prueba2() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				// <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+
+	<p>Las interfacez admiten multiherencia.</p>
+	<!-- codigo -->
+	<code>
+		interface A { <br>&nbsp;&nbsp;&nbsp;
+			public function prueba1(); <br>
+		} <br><br>
+	
+		interface B { <br>&nbsp;&nbsp;&nbsp;
+			public function prueba2(); <br>
+		} <br><br>
+	
+		interface C extends A, B { <br>&nbsp;&nbsp;&nbsp;
+			public function prueba1(); <br>
+		} <br><br>
+	
+		class Testing implements C { <br>&nbsp;&nbsp;&nbsp;
+			public function prueba1() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				// <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public function prueba2() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				// <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			public function prueba3() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				// <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+
+
+	<!-- Clases Abstractas -->
+	<h3>Clases Abstractas</h3>
+	<p>Su funcion es similar a las interfacez. Pero a diferencia de ellas en las clases abstractas podemos desarrollar los metodos que definamos y tambien podemos definirlos como privados o protegidos, cosa que no era posible en las interfacez.</p>
+	<p>
+		Para crear una clase abstracta y sus metodos usamos <em>abstract</em>. Todas las clases que extiendan esta clase deberan definir los metodos abstractos (al igual que en una interfaz) escritos en ella, publicos, privados, o protegidos.
+	</p>
+	<!-- codigo -->
+	<code>
+		# Clase Abstracta <br>
+		<strong>abstract</strong> class ClaseAbstracta { <br>&nbsp;&nbsp;&nbsp;
+			<strong>abstract</strong> protected function getValor(); <strong>// Metodo Abstracto</strong><br><br> &nbsp;&nbsp;&nbsp;
+
+			public function setValor($dato) <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>// Metodo normal</strong> <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+
+
+	<!-- Usar una clase abstracta -->
+	<h3>Usar una clase abstracta</h3>
+	<p>Una clase abstracta no puede ser instanciada. Para poder usar una clase abstracta es nesesario primero que otra clase la extienda.</p>
+	<!-- codigo -->
+	<code>
+		# Clase Abstracta <br>
+		abstract class ClaseAbstracta { <br>&nbsp;&nbsp;&nbsp;
+			abstract protected function getValor();<br><br> &nbsp;&nbsp;&nbsp;
+
+			public function mostrarValor() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo $this->getValor(); <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+
+		class ClaseConcreta <strong>extends</strong> ClaseAbstracta { <br>&nbsp;&nbsp;&nbsp;
+			public function getValor(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Dato"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		$objeto = new ClaseConcreta; <br><br>
+
+		$objeto->mostrarValor(); <strong>// Dato</strong>
+	</code>
+
+
+	<!-- Practica -->
+	<h3>Practica</h3>
+	<p>
+		Aqui esta escrito el codigo de esta seccion: <a href="practica/practica.php" target="_blank">practica</a>.
+	</p>
+</body>
+</html>

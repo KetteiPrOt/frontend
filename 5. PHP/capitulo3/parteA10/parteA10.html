@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 10</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Funciones para Arreglos (2)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- range() -->
+	<h3>range()</h3>
+	<p>Esta funcion se puede usar para rellenar un array en un rango de numeros.</p>
+	<!-- codigo -->
+	<code>
+		$array = range(10, 15); <br><br>
+
+        print_r($array); <strong>// Array ( [0] => 10 [1] => 11 [2] => 12 [3] => 13 [4] => 14 [5] => 15 )</strong>
+	</code>
+
+
+	<!-- array_fill() -->
+	<h3>array_fill()</h3>
+	<p>Crea un array relleno con un valor.</p>
+	<p>
+		Recibe 3 parametros: primero el indice numerico donde empiezan las llaves, segundo la cantidad de elementos del array, y por ultimo el valor con el que va a ser rellenado.
+	</p>
+	<!-- codigo -->
+	<code>
+		$array = array_fill(0, 4, "Dinosaurio"); <br><br>
+
+        print_r($array); <strong>Array ( [0] => Dinosaurio [1] => Dinosaurio [2] => Dinosaurio [3] => Dinosaurio )</strong>
+	</code>
+
+
+	<!-- array_key_exists() -->
+	<h3>array_key_exists()</h3>
+	<p>Verifica si la clave dada o el indice dado existen dentro del arreglo.</p>
+	<!-- codigo -->
+	<code>
+		$array = ["cero", "uno", "dos", "tres", "waifu" => "Elaina-san"]; <br><br>
+
+        $existe = array_key_exists("waifu", $array); <br><br>
+
+        if ($existe) { <br>&nbsp;&nbsp;&nbsp;
+            echo "La clave \"waifu\" existe dentro del array"; <br>
+        } else { <br>&nbsp;&nbsp;&nbsp;
+			echo "La clave \"waifu\" no existe dentro del array"; <br>
+		}
+		<strong>// La clave "waifu" existe dentro del array</strong>
+	</code>
+
+
+	<!-- array_key_first() -->
+	<h3>array_key_first()</h3>
+	<p>Retorna la primera clave del array.</p>
+	<!-- codigo -->
+	<code>
+		$array = ["cero", "uno", "dos", "tres", "waifu" => "Elaina-san"]; <br><br>
+
+        $clave = array_key_first($array); <br><br>
+
+        echo $clave; <strong>// 0</strong>
+	</code>
+
+
+	<!-- array_key_last() -->
+	<h3>array_key_last()</h3>
+	<p>Retorna la ultima clave del array.</p>
+	<!-- codigo -->
+	<code>
+		$array = ["cero", "uno", "dos", "tres", "waifu" => "Elaina-san"]; <br><br>
+
+        $clave = array_key_last($array); <br><br>
+
+        echo $clave; <strong>// waifu</strong>
+	</code>
+
+
+	<!-- array_keys() -->
+	<h3>array_keys()</h3>
+	<p>Retorna un array con las claves de otro array.</p>
+	<!-- codigo -->
+	<code>
+		$array = ["cero", "uno", "dos", "tres", "waifu" => "Elaina-san"]; <br><br>
+
+        $claves = array_keys($array); <br><br>
+        
+        print_r($claves); <strong>// Array ( [0] => 0 [1] => 1 [2] => 2 [3] => 3 [4] => waifu )</strong>
+	</code>
+
+
+	<!-- array_values() -->
+	<h3>array_values()</h3>
+	<p>Retorna todos los valores del array indexandolos numericamente.</p>
+	<!-- codigo -->
+	<code>
+		$array = ["cero", "uno", "dos", "tres", "waifu" => "Elaina-san"]; <br><br>
+
+        $valores = array_values($array); <br><br>
+
+        print_r($valores); <strong>// Array ( [0] => cero [1] => uno [2] => dos [3] => tres [4] => Elaina-san )</strong>
+	</code>
+
+
+	<!-- array_flip() -->
+	<h3>array_flip()</h3>
+	<p>Intercambia todas las claves con sus valores asociados en un array.</p>
+	<!-- codigo -->
+	<code>
+		$array = ["cero", "uno", "dos", "tres", "cuatro"]; <br><br>
+
+        $volteado = array_flip($array); <br><br>
+
+        print_r($volteado); <strong>// Array ( [cero] => 0 [uno] => 1 [dos] => 2 [tres] => 3 [cuatro] => 4 )</strong>
+	</code>
+
+
+	<!-- array_pad() -->
+	<h3>array_pad()</h3>
+	<p>
+		Devuelve una copia de array rellenada al tamaño especificado por size con el valor value. Si size es positivo, el array se rellena hacia la derecha, si es negativo hacia la izquierda. Si el valor absoluto de size es menor o igual a la longitud de array, no se lleva a cabo el relleno. Es posible añadir como máximo 1048576 elementos de una sola vez.
+	</p>
+	<!-- codigo -->
+	<code>
+		array_pad(array $array, int $size, mixed $value);
+	</code>
+
+
+	<!-- list() -->
+	<h3>list()</h3>
+	<p>Se usa para extraer elementos de un arreglo como variables.</p>
+	<!-- codigo -->
+	<code>
+		$array = [0, 1, 2]; <br><br>
+
+        list($a, $b, $c) = $array; <br><br>
+
+        echo $a . " " . $b . " " . $c; <strong>// 0 1 2</strong>
+	</code>
+
+
+	<!-- unset() -->
+	<h3>unset()</h3>
+	<p>Elimina un elemento del arreglo usando su indice.</p>
+	<!-- codigo -->
+	<code>
+		$array = [0, 1, 2, 3, 4, 5]; <br><br>
+
+        unset($array[2]); <br><br>
+
+        unset($array[4]); <br><br>
+
+        print_r($array); <strong>// Array ( [0] => 0 [1] => 1 [3] => 3 [5] => 5 )</strong>
+	</code>
+
+	<p>Tambien elimina todo el arreglo si no tiene indice.</p>
+	<!-- codigo -->
+	<code>
+		$array = [0, 1, 2, 3, 4, 5]; <br><br>
+
+        unset($array); <br><br>
+
+        print_r($array); <strong>// (!) Error: undefined</strong>
+	</code>
+
+
+	<!-- array_map() -->
+	<h3>array_map()</h3>
+	<p>Aplica un callback a los elementos de los arrays especificados.</p>
+	<p>
+		Devuelve un array que contiene el resultado de aplicar una funcion callback a cada elemento de cada array usado como argumento de la funcion array_map().
+	</p>
+	<p>
+		El numero de parametros que acepta la funcion callback debe coincidir con la cantidad de arrays pasados a array_map(). Los arrays pasados de mas se ignoran, y se produce un error si no se pasan suficientes.
+	</p>
+	<!-- codigo -->
+	<code>
+		$array = [1, 2, 3, 4, 5]; <br><br>
+
+        function cubo(int $numero = null): int <br>
+        { <br> &nbsp;&nbsp;&nbsp;
+            $cubo = $numero * $numero * $numero; <br><br> &nbsp;&nbsp;&nbsp;
+
+            return $cubo; <br>
+        } <br><br>
+
+        $cubos = array_map("cubo", $array); <br><br>
+
+        print_r($cubos); <strong>// Array ( [0] => 1 [1] => 8 [2] => 27 [3] => 64 [4] => 125 )</strong>
+	</code>
+
+</body>
+</html>

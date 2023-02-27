@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 11</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Introduccion a formularios</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<p>
+		Usa los metodos http para mapear las operaciones CRUD (Create, Retrieve, Update, Delete) a peticiones HTTP.
+	</p>
+	<p>
+		Este apartado esta ilustrado con la practica "formulario.php" y "processar.php", archivos guardados en este mismo directorio.
+	</p>
+	<p>
+		Aunque el envio de los datos de este formulario funciona, en una aplicacion real deberiamos hacer una validacion tambien en el servidor... de lo contrario usuarios malintencionados (o con muy mala suerte) van a generar errores en nuestro sitio web.
+	</p>
+
+	<!-- Que es el metodo GET -->
+	<h3>Que es el metodo GET</h3>
+	<p>Al usar este metodo para enviar un formulario toda la informacion va a viajar en el header del objeto HTTPRequest, y sera visible en la url del sitio.</p>
+	<p>
+		Verbo GET: Recupera informacion. Ejemplo: GET /addresses/1 (Recupera una direccion con un ID de 1)
+	</p>
+	<!-- codigo -->
+	<code></code>
+
+
+	<!-- Que es el metodo POST -->
+	<h3>Que es el metodo POST</h3>
+	<p>Al usar este metodo para enviar un formulario toda la informacion se enviara en el body del objeto HTTPRequest, no sera visible en la url del sitio.</p>
+	<p>
+		Verbo POST: Pide que el recurso de la URI haga algo con la entidad proveida. Suele ser usado para crear una nueva entidad, pero tambien puede ser usado para actualizar una entidad. Ejemplo: POST /addresses (Crea una nueva entidad)
+	</p>
+	<!-- codigo -->
+	<code></code>
+
+
+	<!-- Cuando usar GET y POST -->
+	<h3>Cuando usar GET y POST</h3>
+	<p>Normalmente el metodo POST se usa cuando se envia informacion sensible (como una contrasenia).</p>
+	<p>
+		El metodo GET se usa para enviar informacion mas trivial, por ejemplo un boton que sirve para cambiar de pagina envia la solicitud de una nueva pagina al servidor usando el metodo GET (Obtener), y este mensaje de nueva pagina es visible en la url.
+	</p>
+	<!-- codigo -->
+	<code></code>
+
+
+	<!-- Usar GET -->
+	<h3>Usar GET</h3>
+	<p>Al enviar la informacion por el metodo GET esta queda almacenada en un array llamado $_GET. La informacion se muestra en la url.</p>
+	<p>
+		La clave que hace referencia al dato de cada input en el formulario es el texto de sus propiedades name="...".
+	</p>
+	<!-- codigo -->
+	<code>
+		&lt;input type="text" name="clave"&gt; <br><br>
+
+		// method="GET" <br><br>
+
+		$_GET["clave"] = "value del input";
+	</code>
+
+	<!-- Usar POST -->
+	<h3>Usar POST</h3>
+	<p>Al enviar la informacion por el metodo POST esta queda almacenada en un array llamado $_POST. La informacion no se muestra en la url.</p>
+	<p>
+		La clave que hace referencia al dato de cada input en el formulario es el texto de sus propiedades name="...".
+	</p>
+	<!-- codigo -->
+	<code>
+		&lt;input type="text" name="clave"&gt; <br><br>
+
+		// method="POST" <br><br>
+
+		$_POST["clave"] = "value del input";
+	</code>
+
+
+	<!-- $_REQUEST -->
+	<h3>$_REQUEST</h3>
+	<p>Cuando no estamos seguros de que metodo se usara para enviar la informacion (GET o POST) podemos acceder a ella mediante con el array $_REQUEST.</p>
+	<!-- codigo -->
+	<code>
+		&lt;input type="text" name="clave"&gt; <br><br>
+
+		// method="POST" o "GET" <br><br>
+
+		$_REQUEST["clave"] = "value del input";
+	</code>
+
+
+	<!-- Enviar array -->
+	<h3>Enviar array</h3>
+	<p>Podemos enviar varios posibles valores usando la propiedad name como un array en varios inputs.</p>
+	<!-- codigo -->
+	<code>
+		&lt;input type="checkbox" name="array[]" value="valor1"&gt; <br><br>
+
+		&lt;input type="checkbox" name="array[]" value="valor2"&gt; <br><br>
+
+		&lt;input type="checkbox" name="array[]" value="valor3"&gt; <br><br>
+
+		// method="POST" o "GET" <br>
+		$array = $_REQUEST["array"]; <br><br>
+
+		print_r($array); <strong>// Array ( [0] => valor1 [1] => valor2 [2] => valor3 )</strong>
+	</code>
+
+	<!-- Enviar imagen -->
+	<h3>Enviar imagen</h3>
+	<p>
+		Para enviar archivos al servidor es nesesario usar el metodo POST. Porque la url tiene un limite maximo de caracteres facilmente superado por la informacion de los archivos. Igual el envio de archivos en php tiene un tamanio limite.
+	</p>
+	<p>
+		Ademas hay que habilitar el envio de archivos en el formulario con el atributo enctype="multipart/form-data".
+	</p>
+	<p>
+		La informacion de archivos se guardan dentro del arreglo $_FILES. Los archivos enviados quedan almacenados de manera temporal en el servidor. Para guardarlos de forma permanente hay que hacer otros pasos.
+	</p>
+	<!-- codigo -->
+	<code>
+		&lt;input type="file" name="imagen" id="inputFile"&gt; <br><br>
+
+		// method="POST" enctype="multipart/form-data"<br>
+		$imagen = $_FILES["imagen"]; <br><br>
+
+		print_r($imagen); <br>
+		<strong>// Array ( [name] => KokomiGD.jpg [full_path] => KokomiGD.jpg [type] => image/jpeg [tmp_name] => C:\xampp\tmp\php7729.tmp [error] => 0 [size] => 473963 )</strong>
+	</code>
+
+
+	<!-- $_SERVER["DOCUMENT_ROOT"] -->
+	<h3>$_SERVER["DOCUMENT_ROOT"]</h3>
+	<p>Contiene la raiz del servidor.</p>
+	<!-- codigo -->
+	<code>
+		$patch = $_SERVER["DOCUMENT_ROOT"]; <br><br>
+
+		echo $patch; <strong>// C:/xampp/htdocs</strong>
+	</code>
+
+
+	<!-- move_uploaded_() -->
+	<h3>move_uploaded_()</h3>
+	<p>Esta funcion sirve para mover archivos a otros directorios.</p>
+	<p>
+		Recibe como primer parametro la ruta del archivo que deseamos mover, y como segundo parametro la nueva ruta donde acabara el archivo (nombre y extension incluidas).
+	</p>
+	<p>Podemos usar esta funcion para mover archivos recibidos en almacenamiento temporal.</p>
+	<!-- codigo -->
+	<code>
+		// Mover Imagen <br>
+		$imagen = $_FILES["imagen"]; $archivo = __FILE__;
+		$carpeta = str_replace("procesar.php", "media/", $archivo);
+		$ruta = $carpeta . $imagen["name"];
+		move_uploaded_file($imagen["tmp_name"], $ruta); <strong>// La imagen fue movida y guardada a la carpeta media</strong>
+	</code>
+
+
+	<!-- Practica -->
+	<h3>Practica</h3>
+	<p>Esta practica ilustra completamente todo lo escrito en esta seccion:</p>
+	<a href="practica/formulario.php" target="_blank">
+		Ir al formulario!
+	</a>
+</body>
+</html>

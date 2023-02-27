@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 20</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Metacaracteres (2)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo5.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Escapar meta caracter -->
+	<h3>Escapar meta caracter</h3>
+	<p>Cualquier metacaracter dentro de la expresion regular se puede escapar de la misma forma que las comillas en las cadenas de texto: con la barra invertida.</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["Hol<strong>a</strong>", "Hol<strong>e</strong>", "Hol<strong>]</strong>", "Hol<strong>i</strong>", "Hol<strong>o</strong>", "Hol<strong>u</strong>"]; <br><br>
+
+    	$expresion = "/hol<strong>[ae\]i]</strong>/i"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Verdadero <br>
+            // Verdadero <br>
+            // Verdadero <br>
+            // Verdadero <br>
+            // Falso <br>
+            // Falso
+		</strong>
+	</code>
+
+
+	<!-- Meta caracter . (punto) -->
+	<h3>Meta caracter . (punto)</h3>
+	<p>Este metacaracter hace referencia a cualquier caracter existente, ya sea numerico alfanumerico o especial.</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["Hol<strong>a</strong>", "Hol<strong>1</strong>", "Hol<strong>]</strong>", "Hol<strong>.</strong>", "Hol<strong>/</strong>", "Hol<strong>k</strong>"]; <br><br>
+
+    	$expresion = "<strong>/hol./i</strong>"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Verdadero <br>
+            // Verdadero <br>
+            // Verdadero <br>
+            // Verdadero <br>
+            // Verdadero <br>
+            // Verdadero
+		</strong>
+	</code>
+
+
+	<!-- Meta caracter \w -->
+	<h3>Meta caracter \w</h3>
+	<p>Este metacaracter hace referencia a cualquier caracter alfanumerico (letras, numeros, y el guion bajo "_").</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["Hol<strong>a</strong>", "Hol<strong>1</strong>", "Hol<strong>2</strong>", "Hol<strong>%</strong>", "Hol<strong>$</strong>", "Hol<strong>.</strong>"]; <br><br>
+
+    	$expresion = "<strong>/hol\w/i</strong>"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Verdadero <br>
+            // Verdadero <br>
+            // Verdadero <br>
+            // Falso <br>
+            // Falso <br>
+            // Falso
+		</strong>
+	</code>
+
+
+	<!-- Meta caracter \W -->
+	<h3>Meta caracter \W</h3>
+	<p>Este metacaracter hace referencia a cualquier caracter <strong>NO</strong> alfanumerico (letras, numeros, y el guion bajo "_"). Funciona como el opuesto del anterior.</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["Hol<strong>a</strong>", "Hol<strong>1</strong>", "Hol<strong>2</strong>", "Hol<strong>%</strong>", "Hol<strong>$</strong>", "Hol<strong>.</strong>"]; <br><br>
+
+    	$expresion = "<strong>/hol\W/i</strong>"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Falso <br>
+            // Falso <br>
+            // Falso <br>
+            // Verdadero <br>
+            // Verdadero <br>
+            // Verdadero
+		</strong>
+	</code>
+
+
+	<!-- Meta caracter \d -->
+	<h3>Meta caracter \d</h3>
+	<p>Este metacaracter hace referencia a los caracteres numericos (numeros).</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["Hol<strong>1</strong>", "Hol<strong>2</strong>", "Hol<strong>3</strong>", "Hol<strong>a</strong>", "Hol<strong>$</strong>", "Hol<strong>-</strong>"]; <br><br>
+
+    	$expresion = "<strong>/hol\d/i</strong>"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Verdadero <br>
+            // Verdadero <br>
+            // Verdadero <br>
+            // Falso <br>
+            // Falso <br>
+            // Falso
+		</strong>
+	</code>
+
+
+	<!-- Meta caracter \D -->
+	<h3>Meta caracter \D</h3>
+	<p>Este metacaracter hace referencia a los caracteres <strong>NO</strong> numericos (numeros). Funciona como el opuesto del anterior.</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["Hol<strong>1</strong>", "Hol<strong>2</strong>", "Hol<strong>3</strong>", "Hol<strong>a</strong>", "Hol<strong>$</strong>", "Hol<strong>-</strong>"]; <br><br>
+
+    	$expresion = "<strong>/hol\D/i</strong>"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+            // Falso <br>
+            // Falso <br>
+            // Falso <br>
+			// Verdadero <br>
+            // Verdadero <br>
+            // Verdadero
+		</strong>
+	</code>
+
+
+	<!-- Meta caracter * -->
+	<h3>Meta caracter *</h3>
+	<p>Cuando usamos este metacaracter indicamos que el caracter anterior podria existir opcionalmente en la cadena y si existe, hay la posibilidad de que se este repitiendo repetir inmediatamente un numero indefinido de veces. Esto es util cuando queremos verificar una palabra como "hola", y exista la posibilidad de que se escriba como "holaaa" o "holaaaaaaaaaaaaaaaaaaa".</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["Hol<strong>a</strong>", "Hol<strong>aa</strong>", "Hol<strong>aaaaaaaaaaaaaaa</strong>", "Hol<strong>aooo</strong>", "Hol<strong>ooo</strong>", "Hol<strong>111</strong>"]; <br><br>
+
+    	$expresion = "<strong>/holaa*/i</strong>"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Verdadero <br>
+            // Verdadero <br>
+			// Verdadero <br>
+            // Verdadero <br>
+			// Falso <br>
+            // Falso <br>
+		</strong>
+	</code>
+
+
+	<!-- Meta caracter + -->
+	<h3>Meta caracter +</h3>
+	<p>Cuando usamos este metacaracter indicamos que el caracter anterior podria repetirse inmediatamente un numero indefinido de veces. Funciona como el "*" pero mejorado. Esto es util cuando queremos verificar una palabra como "hola", y exista la posibilidad de que se escriba como "holaaa" o "holaaaaaaaaaaaaaaaaaaa".</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["Hol<strong>a</strong>", "Hol<strong>aa</strong>", "Hol<strong>aaaaaaaaaaaaaaa</strong>", "Hol<strong>aooo</strong>", "Hol<strong>ooo</strong>", "Hol<strong>111</strong>"]; <br><br>
+
+    	$expresion = "<strong>/hola+/i</strong>"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Verdadero <br>
+            // Verdadero <br>
+			// Verdadero <br>
+            // Verdadero <br>
+			// Falso <br>
+            // Falso <br>
+		</strong>
+	</code>
+
+
+	<!-- Meta caracter ? -->
+	<h3>Meta caracter ?</h3>
+	<p>Este metacaracter indica que la existencia de un caracter puede ser opcional.</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["Persona", "Personas", "Person"]; <br><br>
+
+    	$expresion = "/persona<strong>s?</strong>/i"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Verdadero <br>
+            // Verdadero <br>
+			// Falso
+		</strong>
+	</code>
+
+
+	<!-- Meta caracteres {} -->
+	<h3>Meta caracteres {}</h3>
+	<p>Se usan para indicar la cantidad de veces que de debe repetir un caracter en la expresion regular.</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["H<strong>o</strong>la", "H<strong>oo</strong>la", "H<strong>ooo</strong>la"]; <br><br>
+
+    	$expresion = "/h<strong>o{3}</strong>la/i"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Falso <br>
+            // Falso <br>
+            // Verdadero
+		</strong>
+	</code>
+
+	<p>Se pueden especificar intervalos usando una coma para ser mas flexible.</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["H<strong>o</strong>la", "H<strong>oo</strong>la", "H<strong>ooo</strong>la", "H<strong>oooo</strong>la", "H<strong>ooooo</strong>la", "H<strong>oooooo</strong>la"]; <br><br>
+
+    	$expresion = "/h<strong>o{3,5}</strong>la/i"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Falso <br>
+            // Falso <br>
+            // Verdadero <br>
+            // Verdadero <br>
+            // Verdadero <br>
+            // Falso
+		</strong>
+	</code>
+
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

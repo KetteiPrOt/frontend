@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 15</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">POO - traits y namesapace (4)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo4.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Multiherencia -->
+	<h3>Multiherencia</h3>
+	<p>En PHP no existe multiherencia, solo hay herencia simple: cada clase puede terner una y solo una clase padre. Para simular la multiherencia de otros lenguajes (como C++) podemos hacer uso de <em>traits</em> (rasgos).</p>
+
+
+	<!-- Crear y usar un trait -->
+	<h3>Crear y usar un trait</h3>
+	<p>Usamos la palabra reservada <em>trait</em> para crear un rasgo. Para usar este rasgo en una clase hay que incluir la palabra reservada <em>use</em> segida del nombre del <em>trait</em>.</p>
+	<!-- codigo -->
+	<code>
+		class Persona { <br>&nbsp;&nbsp;&nbsp;
+			private $nombre; <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public function setNombre(string $nombre = ""): null <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->nombre = $nombre; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br> &nbsp;&nbsp;&nbsp;
+	
+			public function getNombre(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return $this->nombre; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		<strong>trait</strong> Latino { <br>&nbsp;&nbsp;&nbsp;
+			public function saludo(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Hola rancio"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		<strong>trait</strong> Europeo { <br>&nbsp;&nbsp;&nbsp;
+			public function saludo(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Hola tio"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+
+		<strong>trait</strong> Armado { <br>&nbsp;&nbsp;&nbsp;
+			public function disparar(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "*le dispara epicamente*"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		class Peruano extends Persona { <br>&nbsp;&nbsp;&nbsp;
+			<strong>use Latino, Armado;</strong> <br>
+		} <br><br>
+	
+		class Espaniol extends Persona { <br>&nbsp;&nbsp;&nbsp;
+			<strong>use Europeo;</strong> <br>
+		}
+	</code>
+
+	<p>
+		Con esto conseguimos que las clases Peruano y Espaniol hereden tanto los metodos de la clase Persona, como los de los rasgos Latino y Europeo. Ademas los metodos escritos en los traits sobreescriben los metodos de las clases padre, igual que cuando son sobreescritos directamente en la clase hija.
+	</p>
+	<!-- codigo -->
+	<code>
+		$peruano1 = new Peruano; <br><br>
+
+		$peruano1->setNombre("Gutierrez Rancies"); <br><br>
+
+		$espaniol1 = new Espaniol; <br><br>
+
+		$espaniol1->setNombre("Guarro Lucias"); <br><br>
+
+		echo $peruano1->saludo() . ". Mi nombre es " . $peruano1->getNombre() . ". " . $peruano1->disparar() . "&lt;br&gt;"; <br>
+		<strong>// Hola rancio. Mi nombre es Gutierrez Rancies. *Le dispara epicamente*</strong> <br><br>
+
+		echo $espaniol1->saludo() . ". Mi nombre es " . $espaniol1->getNombre() . "."; <br>
+		<strong>// Hola tio. Mi nombre es Guarro Lucias.</strong>
+	</code>
+
+
+	<!-- Practica traits -->
+	<h3>Practica traits</h3>
+	<p>
+		Aqui esta escrito el codigo de esta seccion: <a href="practica/traits.php" target="_blank">practica</a>.
+	</p>
+
+
+	<!-- Usar traits en un trait -->
+	<h3>Usar traits en un trait</h3>
+	<p>Un trait tambien puede usar otros traits.</p>
+	<!-- codigo -->
+	<code>
+		trait A { <br>&nbsp;&nbsp;&nbsp;
+			public function metodo1(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Metodo A"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+
+		trait B { <br>&nbsp;&nbsp;&nbsp;
+			public function metodo2(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Metodo B"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		trait C { <br>&nbsp;&nbsp;&nbsp;
+			<strong>use A, B;</strong> <br><br>
+
+			public function metodo3(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Metodo C"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		class Clase { <br>&nbsp;&nbsp;&nbsp;
+			use C; <br>
+		} <br><br>
+	
+		$objeto = new Clase; <br><br>
+
+		echo $objeto->metodo1() . " " . $objeto->metodo2() . " " . $objeto->metodo3(); <strong>// Metodo A Metodo B Metodo C</strong>
+	</code>
+	
+
+	<!-- insteadOf -->
+	<h3>insteadOf</h3>
+	<p>Aveces va ha haber el mismo metodo en dos traits y si usamos los dos en una misma clase, estos entraran en conflicto.</p>
+	<!-- codigo -->
+	<code>
+		trait A { <br>&nbsp;&nbsp;&nbsp;
+			public function metodo(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Ejecutado trait A"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		trait B { <br>&nbsp;&nbsp;&nbsp;
+			public function metodo(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Ejecutado trait B"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+
+	<p>
+		Para arreglar este conflicto usamos <em>insteadOf</em>. Aqui le indico que quiero usar el metodo del trait A y descartar el del trait B.
+	</p>
+	<!-- codigo -->
+	<code>
+		class Clase { <br>&nbsp;&nbsp;&nbsp;
+			use A, B { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				A::metodo insteadOf B; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+
+		$objeto = new Clase; <br><br>
+
+		echo $objeto->metodo(); <strong>// Ejecutado trait A</strong>
+	</code>
+
+
+	<!-- Cambiar la visibilidad de un metodo -->
+	<h3>Cambiar la visibilidad de un metodo</h3>
+	<p>Los traits permiten cambiar la visibilidad de los metodos en las clases donde son usados. Aqui estoy cambiando un metodo protegido a publico.</p>
+	<!-- codigo -->
+	<code>
+		trait A { <br>&nbsp;&nbsp;&nbsp;
+			protected function metodo(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Metodo Ejecutado"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		class Clase { <br>&nbsp;&nbsp;&nbsp;
+			<strong>use A { saludo as public; }</strong> <br>
+		} <br><br>
+	
+		$objeto = new Clase; <br><br>
+
+		echo $objeto->metodo(); <strong>// Metodo Ejecutado</strong>
+	</code>
+
+
+	<!-- Espacios de nombre -->
+	<h3>Espacios de nombre</h3>
+	<p>
+		Aveces cuando tenemos una aplicacion grande puede haber archivos en diferentes carpetas que contengan clases con el mismo nombre. Si importamos esos archivos [require_once()] a nuestro archivo principal las clases que tengan el mismo nombre van a generar un conflicto. Para solucionar este conflicto sin tener que ir creando nombres de clases cada vez mas complejos se usan los <em>namespaces</em>.
+	</p>
+
+
+	<!-- Crear un namespace -->
+	<h3>Crear un namespace</h3>
+	<p>
+		Usamos la palabra clave <em>namespace</em> al inicio del documento que deseemos nombrar segido por convencion del nombre del directorio donde se encuentra el archivo.
+	</p>
+	<p>
+		Para hacer referencia a una clase u otra al momento de instanciar escribimos el namespace que le dimos a la clase que deseemos instanciar.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>
+			// Directorio carpeta 1 <br>
+			namespace carpeta1; <br><br>
+		</strong>
+
+		class Persona { <br>&nbsp;&nbsp;&nbsp;
+			public function metodo(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Metodo de la Carpeta 1"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+
+		<strong>
+			// Directorio carpeta 2 <br>
+			namespace carpeta2; <br><br>
+		</strong>
+
+		class Persona { <br>&nbsp;&nbsp;&nbsp;
+			public function metodo(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Metodo de la Carpeta 2"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+
+
+		<strong>// Archivo Principal</strong> <br>
+		require_once("carpeta1/Persona.php"); <br>
+		require_once("carpeta2/Persona.php"); <br><br>
+	
+		$humano1 = new <strong>carpeta1\</strong>Persona; <br>
+		$humano2 = new <strong>carpeta2\</strong>Persona; <br><br>
+
+		echo $humano1->metodo() . "&lt;br&gt;"; <strong>// Metodo de la Carpeta 1</strong> <br>
+        echo $humano2->metodo(); <strong>// Metodo de la Carpeta 2</strong>
+	</code>
+
+
+	<!-- Practica namespace -->
+	<h3>Practica namespace</h3>
+	<p>
+		Aqui esta escrito el codigo de esta seccion: <a href="practica/namespace.php" target="_blank">practica</a>.
+	</p>
+
+
+	<!-- Namespace con use -->
+	<h3>Namespace con use</h3>
+	<p>Podemos declarar que use una clase de un namespace con le palabra reservada <em>use</em>.</p>
+	<!-- codigo -->
+	<code>
+		<strong>use</strong> carpeta1/Persona; <br><br>
+
+		$humano1 = new Persona; <br><br>
+
+		echo $humano1->metodo(); <strong>// Metodo de la Carpeta 1</strong>
+	</code>
+
+	<p>
+		Para evitar conflictos con otras clases que se llamen igual, aqui podemos aplicar un cambio de nombre.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>use</strong> carpeta1\Persona <strong>as</strong> Persona1; <br>
+		<strong>use</strong> carpeta2\Persona <strong>as</strong> Persona2; <br><br>
+	
+		$humano1 = new Persona1; <br>
+		$humano2 = new Persona2; <br><br>
+
+		echo $humano1->metodo() . "&lt;br&gt;"; <strong>// Metodo de la Carpeta 1</strong> <br>
+        echo $humano2->metodo(); <strong>// Metodo de la Carpeta 2</strong>
+	</code>
+
+</body>
+</html>

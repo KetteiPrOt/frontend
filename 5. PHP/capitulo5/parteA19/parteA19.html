@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 19</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Introduccion y Metacaracteres (1)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo5.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que es una Expresion Regular -->
+	<h3>Que es una Expresion Regular</h3>
+	<p>
+		Aveces nesecitamos que el usuario escriba informacion estructurada como la url de un sitio web o un correo electronico. Para evitar que el usuario escriba y mande informacion que no tiene que ver se usan las expresiones regulares.
+	</p>
+
+
+	<!-- Crear una Expresion Regular -->
+	<h3>Crear una Expresion Regular</h3>
+	<p>
+		Para crear una expresion regular comunmente se usa cualquier caracter no alfanumerico (/, +, *, %... etc), excepto las barras invertidas (\), al inicio y al final de una cadena de texto. En PHP 8 se usan la barra, "/", y el procentaje "%".
+	</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "Hola Mundo! Como estas"; <br><br>
+
+    	$expresion1 = <strong>"/Mundo/"</strong>; <br><br>
+
+		$expresion2 = <strong>"%Mundo%"</strong>;
+	</code>
+
+
+	<!-- preg_macth() -->
+	<h3>preg_macth()</h3>
+	<p>Esta funcion sirve para verificar si una expresion regular se encuentra incluida dentro de una cadena de texto, es sensible a mayusculas y minusculas. Retorna true o false.</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "Hola <strong>Mundo</strong>! Como estas"; <br><br>
+
+    	$expresion = <strong>"/Mundo/"</strong>; <br><br>
+
+		$confirmacion = preg_match($expresion, $cadena); <br><br>
+
+        echo $confirmacion ? "Verdadero" : "Falso"; <strong>// Verdadero</strong>
+	</code>
+
+
+	<!-- Modificador i -->
+	<h3>Modificador i</h3>
+	<p>Un modificador es un caracter que se agrega al final de la expresion regular. El modificador "i" hace que la expresion regular ya no sea sensible a mayusculas y minusculas.</p>
+	<!-- codigo -->
+	<code>
+		$cadena1 = "Hola <strong>Mundo</strong>! Como estas"; <br><br>
+
+		$cadena2 = "Hola <strong>mundo</strong>! Como estas"; <br><br>
+
+		$expresion = <strong>"/Mundo/i"</strong>; <br><br>
+
+		echo preg_match($expresion, $cadena1) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <strong>// Verdadero</strong> <br>
+        echo preg_match($expresion, $cadena2) ? "Verdadero" : "Falso"; <strong>// Verdadero</strong>
+	</code>
+
+
+	<!-- Meta caracter ^ -->
+	<h3>Meta caracter ^</h3>
+	<p>Este caracter indica que la expresion regular que buscamos encontrar en la cadena de texto debe estar al inicio (de izquierda a derecha) para que se cumpla.</p>
+	<!-- codigo -->
+	<code>
+		$cadena1 = "Psj. <strong>Av</strong>iacion 13"; $cadena2 = "<strong>Av</strong>. Lima 123"; <br><br>
+
+		$expresion = <strong>"/^Av/"</strong>; <br><br>
+
+		echo preg_match($expresion, $cadena1) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <strong>// Falso</strong> <br>
+		echo preg_match($expresion, $cadena2) ? "Verdadero" : "Falso"; <strong>// Verdadero</strong>
+	</code>
+
+
+	<!-- Meta caracter $ -->
+	<h3>Meta caracter $</h3>
+	<p>Este caracter indica que la expresion regular que buscamos encontrar en la cadena de texto debe estar al final de la cadena para que se cumpla.</p>
+	<!-- codigo -->
+	<code>
+		$cadena1 = "Calle 23 Oct <strong>123</strong>"; $cadena2 = "Calle <strong>123</strong> May 45"; <br><br>
+
+		$expresion = <strong>"/123$/"</strong>; <br><br>
+
+		echo preg_match($expresion, $cadena1) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <strong>// Verdadero</strong> <br>
+		echo preg_match($expresion, $cadena2) ? "Verdadero" : "Falso"; <strong>// Falso</strong>
+	</code>
+
+
+	<!-- Meta caracteres [] -->
+	<h3>Meta caracteres []</h3>
+	<p>Estos caracteres siven para indicar todos los posibles valores que podria tomar un caracter en la expresion regular. Se escriben los posibles caracteres entre corchetes</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["Hol<strong>a</strong>", "Hol<strong>e</strong>", "Hol<strong>i</strong>", "Hol<strong>o</strong>", "Hol<strong>p</strong>"]; <br><br>
+
+    	$expresion = "/hol<strong>[aei]</strong>/i"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Verdadero <br>
+			// Verdadero <br>
+			// Verdadero <br>
+			// Falso <br>
+			// Falso
+		</strong>
+	</code>
+	
+	<p>De forma mas practica podemos definir un rango de caracteres que puede tomar la expresion con un guion. Este rango es de orden alfabetico, o numerico (0, 1, 2, 3, 4...).</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["Hol<strong>a</strong>", "Hol<strong>b</strong>", "Hol<strong>c</strong>", "Hol<strong>d</strong>", "Hol<strong>e</strong>"]; <br><br>
+
+    	$expresion = "/hol<strong>[a-d]</strong>/i"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Verdadero <br>
+			// Verdadero <br>
+			// Verdadero <br>
+			// Verdadero <br>
+			// Falso
+		</strong>
+	</code>
+
+	<p>Ademas despues de definir el rango se pueden seguir agregando mas caracteres directamente.</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["Hol<strong>a</strong>", "Hol<strong>b</strong>", "Hol<strong>c</strong>", "Hol<strong>k</strong>", "Hol<strong>j</strong>", "Hol<strong>f</strong>", "Hol<strong>m</strong>"]; <br><br>
+
+    	$expresion = "/hol<strong>[a-cjf]</strong>/i"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Verdadero <br>
+            // Verdadero <br>
+            // Verdadero <br>
+            // Falso <br>
+            // Verdadero <br>
+            // Verdadero <br>
+            // Falso
+		</strong>
+	</code>
+
+
+	<!-- Meta caracteres [^] -->
+	<h3>Meta caracteres [^]</h3>
+	<p>Cuando usamos el simbolo ^ dentro y al inicio de los meta caracteres [], la lista definida funcionara de manera contraria, es decir, como una rango de caracteres que NO puede tomar la expresion regular.</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["Hol<strong>a</strong>", "Hol<strong>b</strong>", "Hol<strong>c</strong>", "Hol<strong>d</strong>", "Hol<strong>e</strong>"]; <br><br>
+
+    	$expresion = "/hol<strong>[^a-d]</strong>/i"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Falso <br>
+			// Falso <br>
+			// Falso <br>
+			// Falso <br>
+			// Verdadero
+		</strong>
+	</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

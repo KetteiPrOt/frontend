@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 8</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Arreglos</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que son los Arreglos? -->
+	<h3>Que son los Arreglos?</h3>
+	<p>Son conjuntos de datos (de cualquier tipo), ordenados segun un indice (inicia en 0) que indica su posicion.</p>
+	<p>
+		Para recuperar un dato del arreglo usamos la posicion (el indice) para acceder al dato.
+	</p>
+	<!-- codigo -->
+	<code>
+		$waifus = ["Elaina-san", "Asuna", "Rapthalia", "Hifumi-senpai", "Ninym", "Gab-chan"]; <br><br>
+
+        echo $waifus[0] . "&lt;br&gt;"; <strong>// Elaina-san</strong> <br>
+        echo $waifus[5] . "&lt;br&gt;"; <strong>// Gab-chan</strong> <br><br>
+
+        $datos = ["Elaina-san", true, "Rapthalia", 13.56, "Ninym", 12]; <br><br>
+
+        echo $datos[4] . "____" . $datos[5]; <strong>// Ninym____12</strong> 
+	</code>
+
+
+	<!-- Estructura interna -->
+	<h3>Estructura interna</h3>
+	<p>
+		Un array en PHP es en realidad un mapa ordenado. Un mapa es un tipo de datos que asocia valores con claves. Este tipo se optimiza para varios usos diferentes; se puede emplear como un array, lista (vector), tabla asociativa (tabla hash - una implementación de un mapa), diccionario, colección, pila, cola, y posiblemente más. Ya que los valores de un array pueden ser otros arrays, también son posibles árboles y arrays multidimensionales.
+	</p>
+	<p>
+		Una explicación sobre tales estructuras de datos está fuera del alcance de este manual, aunque se proporciona al menos un ejemplo de cada uno de ellos. Para más información, consulte la extensa literatura que existe sobre este amplio tema.
+	</p>
+	<p>Un array puede ser creado con el constructor del lenguaje array(). Éste toma cualquier número de parejas clave => valor como argumentos.</p>
+	<!-- codigo -->
+	<code>
+		array( <br>
+		clave  => valor, <br>
+		clave2 => valor2, <br>
+		clave3 => valor3, <br>
+		... <br>
+		)
+	</code>
+
+	<p>
+		Además, se darán los siguientes amoldamientos de clave:
+	</p>
+	<ul>
+		<li>Strings que contiene un decimal válido integer, a menos que el número esté precedido por un signo +, será amoldado al tipo integer. Por ejemplo, la llave "8" será en realidad almacenado como 8. Por otro lado "08" no será moldeado, ya que no es un entero decimal válido.</li>
+		<li>Un floats también será amoldado a integer, lo que significa que la parte fraccionaria se elimina. P.ej., la clave 8.7 en realidad será almacenada como 8.</li>
+		<li>Un booleano son amoldados a integers también, es decir, la clave true en realidad será almacenada como 1 y la clave false como 0.</li>
+		<li>Un null será amoldado a un string vacío, es decir, la clave null en realidad será almacenada como "".</li>
+		<li>Los arrays y los objects no pueden utilizarse como claves. Si se hace, dará lugar a una advertencia: Illegal offset type.</li>
+	</ul>
+	<p>Si varios elementos en la declaración del array usan la misma clave, sólo se utilizará la última, siendo los demás sobrescritos.</p>
+	<!-- codigo -->
+	<code>
+		$array = array( <br> &nbsp;&nbsp;&nbsp;
+            1    => "a", <br> &nbsp;&nbsp;&nbsp;
+            "1"  => "b", <br> &nbsp;&nbsp;&nbsp;
+            1.5  => "c", <br> &nbsp;&nbsp;&nbsp;
+            true => "d", <br>
+        ); <br><br>
+
+        print_r($array); <strong>// Array ( [1] => d )</strong>
+	</code>
+
+
+	<!-- print_r() -->
+	<h3>print_r()</h3>
+	<p>Muestra el valor de una variable, cadena de texto u objeto/array con un formato legible.</p>
+	<p>
+		Es recomendable usarla con arrays u objetos dado su potencial para mostrar este tipo de contenidos.
+	</p>
+	<!-- codigo -->
+	<code>
+		$waifus = ["Elaina-san", "Asuna", "Rapthalia", "Hifumi-senpai", "Ninym", "Gab-chan"]; <br><br>
+
+		print_r($waifus); <strong>// Array ( [0] => Elaina-san [1] => Asuna [2] => Rapthalia [3] => Hifumi-senpai [4] => Ninym [5] => Gab-chan )</strong>
+	</code>
+
+
+	<!-- var_dump() -->
+	<h3>var_dump()</h3>
+	<p>
+		Esta función muestra información estructurada sobre una o más expresiones que incluye su tipo y valor. Los arreglos y objetos se exploran para mostrar su estructura.
+	</p>
+	<p>
+		Se recomienda usar para saber el tipo y valor de las variables.
+	</p>
+	<!-- codigo -->
+	<code>
+		$numero = 23; $texto = "abcd"; float: $decimal = 12.345; $booleano = 10 > 5; <br><br>
+
+		var_dump($numero); echo "&lt;br&gt;"; <strong>// int(23)</strong> <br>
+		var_dump($texto); echo "&lt;br&gt;"; <strong>// string(4) "abcd"</strong> <br>
+		var_dump($decimal); echo "&lt;br&gt;"; <strong>// float(12.345)</strong> <br>
+		var_dump($booleano); echo "&lt;br&gt;"; <strong>// bool(true)</strong> <br><br>
+
+		$array = [0, 1, 2, 3]; <br><br>
+        var_dump($array); <strong>// array(4) { [0]=> int(0) [1]=> int(1) [2]=> int(2) [3]=> int(3) }</strong>
+	</code>
+
+
+	<!-- Agregar/reescribir datos -->
+	<h3>Agregar nuevos datos</h3>
+	<p>Se hace indicando la posicion (ya existente o nueva) y escribiendo o reescribiendo el dato.</p>
+	<!-- codigo -->
+	<code>
+		$waifus = ["Elaina-san", "Asuna", "Loli mapache XD"]; <br><br>
+
+        print_r($waifus); echo "&lt;br&gt;&lt;br&gt;"; <strong>// Array ( [0] => Elaina-san [1] => Asuna [2] => Loli mapache XD )</strong> <br><br>
+
+        $waifus[2] = "Rapthalia"; <br>
+        $waifus[3] = "Hifumi-senpai"; <br>
+        $waifus[4] = "Ninym"; <br>
+        $waifus[5] = "Gab-chan"; <br>
+        $waifus[6] = "Yun-chan"; <br><br>
+
+        print_r($waifus); <strong>// Array ( [0] => Elaina-san [1] => Asuna [2] => Rapthalia [3] => Hifumi-senpai [4] => Ninym [5] => Gab-chan [6] => Yun-chan )</strong>
+	</code>
+
+	<p>
+		Tambien es posible agregar un nuevo dato despues de la ultima posicion sin escribir el nuevo indice. 
+	</p>
+	<!-- codigo -->
+	<code>
+		$waifus = ["Elaina-san"]; <br><br>
+
+		$waifus[] = "Asuna"; <br>
+		$waifus[] = "Rapthalia"; <br><br>
+
+		print_r($waifus); <strong>// Array ( [0] => Elaina-san [1] => Asuna [2] => Rapthalia )</strong>
+	</code>
+
+	<p>
+		Incluso se podria crear el array desde cero usando solo esta sintaxis.
+	</p>
+	<!-- codigo -->
+	<code>
+		$waifus[] = "Elaina-san"; <br>
+		$waifus[] = "Asuna"; <br>
+		$waifus[] = "Rapthalia"; <br><br>
+
+		print_r($waifus); <strong>// Array ( [0] => Elaina-san [1] => Asuna [2] => Rapthalia )</strong>
+	</code>
+
+
+	<!-- Indices literales -->
+	<h3>Indices literales</h3>
+	<p>Permite asignar un texto como indice a los datos del array. Util para etiquetar informacion.</p>
+	<!-- codigo -->
+	<code>
+		$waifus = [ <br>&nbsp;&nbsp;&nbsp;
+			"Favorita &lt;3" => "Elaina-san", <br>&nbsp;&nbsp;&nbsp;
+			"Segunda" => "Asuna", <br>&nbsp;&nbsp;&nbsp;&nbsp;
+			"Tercera" => "Rapthalia" <br>
+		]; <br><br>
+		
+		print_r($waifus); // Array ( [Favorita &lt;3] => Elaina-san [Segunda] => Asuna [Tercera] => Rapthalia ) <br><br>
+	</code>
+
+	<p>
+		Cuando se empiezan a agregar datos sin indice de texto desde hay empieza a asignar los indices numericos.
+	</p>
+	<!-- codigo -->
+	<code>
+		$waifus = [ <br>
+			"Favorita &lt;3" => "Elaina-san", <br>
+			<strong>"Hifumi-senpai"</strong>, <br>
+			"Segunda" => "Asuna", <br>
+			"Tercera" => "Rapthalia", <br>
+			<strong>"Yun-chan"</strong> <br>
+		]; <br><br>
+		
+		print_r($waifus); // Array ( [Favorita &lt;3] => Elaina-san <strong>[0] => Hifumi-senpai</strong> [Segunda] => Asuna [Tercera] => Rapthalia <strong>[1] => Yun-chan</strong> )
+	</code>
+
+
+	<!-- Arreglos multidimensionales -->
+	<h3>Arreglos multidimensionales</h3>
+	<p>Se refiere a arreglos que contienen otros arreglos, es decir a Matrices de datos.</p>
+	<!-- codigo -->
+	<code>
+		$personas = [ <br>&nbsp;&nbsp;&nbsp;
+            "programador" => ["nombre" => "Joel", "edad" => "18"], <br>&nbsp;&nbsp;&nbsp;
+            "diseniador" => ["nombre" => "Fernando", "edad" => "18"], <br>&nbsp;&nbsp;&nbsp;
+            "tester" => ["nombre" => "Kirito", "edad" => "16"] <br>
+        ]; <br><br>
+        
+        echo $personas["tester"]["nombre"] . "&lt;br&gt;"; <strong>// Kirito</strong> <br>
+        echo $personas["programador"]["nombre"]; <strong>// Joel</strong>
+	</code>
+
+</body>
+</html>

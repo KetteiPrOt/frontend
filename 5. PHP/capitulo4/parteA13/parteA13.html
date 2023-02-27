@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 13</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">POO - Herencia y encapsulamiento (2)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo4.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que es la Herencia -->
+	<h3>Que es la Herencia</h3>
+	<p>La herencia se produce cuando nesecitamos "clases hijas" que copien todas las caracteristicas de una clase, pero le agregen mas de modo que se vuelven mas especificas.</p>
+	<p>
+		Por ejemplo, la clase Animal puede ser heredada por las clases AnimalBipedo y AnimalCuadrupedo. Las dos clases hijas podrian diferir en atributos o metodos, como "numeroPatas".
+	</p>
+	<p>
+		En PHP la herencia es simple. Una clase solo puede extender a una y solo una clase padre.
+	</p>
+	<!-- codigo -->
+	<code></code>
+
+
+	<!-- Operador extends -->
+	<h3>Operador extends</h3>
+	<p>Se usa para aplicar la herencia. Al usar este operador la clase heredara todos los atributos y metodos, agregandole los nuevos.</p>
+	<!-- codigo -->
+	<code>
+		class Peruano <strong>extends</strong> Persona { <br>&nbsp;&nbsp;&nbsp;
+			private $nacionalidad = "Peruano"; <br><br>&nbsp;&nbsp;&nbsp;
+		
+			public function getNacionalidad(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return $nacionalidad; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+
+
+	<!-- Sobreescribir metodo -->
+	<h3>Sobreescribir metodo</h3>
+	<p>Cuando queremos modificar un metodo de la clase padre en una clase heredada, lo que debemos hacer es volver a escribirlo con las correcciones en la clase heredada.</p>
+	<!-- codigo -->
+	<code>
+		class Animal { <br>&nbsp;&nbsp;&nbsp;
+			public function moverse(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Me he movido"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+		
+		class AnimalAcuatico extends Animal { <br>&nbsp;&nbsp;&nbsp;
+			public function moverse(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "He nadado"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+
+		echo $pez->moverse(); <strong>// He nadado</strong>
+	</code>
+
+
+	<!-- Extender Metodo -->
+	<h3>Extender Metodo</h3>
+	<p>Para extender un metodo existente usamos el operador <em>parent::</em> seguido del nombre del metodo que deseamos extender. Escribir lo anterior equivale a copiar todo el codigo escrito en el el metodo de la clase padre.</p>
+	<!-- codigo -->
+	<code>
+		class Persona { <br>&nbsp;&nbsp;&nbsp;
+			public $nombre, $apellido, $edad; <br><br>&nbsp;&nbsp;&nbsp;
+		
+			private $waifu; <br><br>&nbsp;&nbsp;&nbsp;
+			
+			public function setWaifu(string $nombreWaifu = null) <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->waifu = $nombreWaifu; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br> &nbsp;&nbsp;&nbsp;
+		
+			public function getWaifu(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return $this->waifu ? $this->waifu : "No tenemos waifu"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+		
+		class Otaku extends Persona { <br>&nbsp;&nbsp;&nbsp;
+			public function setWaifu(string $nombreWaifu = null): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>parent::setWaifu($nombreWaifu);</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "$nombreWaifu best waifu :v"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+
+		$otaku1 = new Otaku; <br>
+    	$opinion = $otaku1->setWaifu("Elaina-san"); <br>
+		echo $opinion . "&lt;br&gt;"; <strong>// Elaina-san best waifu :v</strong> <br><br>
+		print_r($otaku1); <strong>// Otaku Object ( [nombre] => [apellido] => [edad] => [waifu:Persona:private] => Elaina-san )</strong>
+	</code>
+
+
+	<!-- Heredar constructor -->
+	<h3>Heredar constructor</h3>
+	<p>Los constructores padres no son llamados implícitamente si la clase hija define un constructor. Para ejecutar un constructor padre, se requiere invocar a <strong>parent::__construct()</strong> desde el constructor hijo.</p>
+	<!-- codigo -->
+	<code>
+		class Persona { <br>&nbsp;&nbsp;&nbsp;
+			public function __construct(string $nombre = null, string $apellido = null, int $edad = 0) <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->nombre = $nombre; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->apellido = $apellido; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->edad = $edad; <br> &nbsp;&nbsp;&nbsp;
+			} <br><br> &nbsp;&nbsp;&nbsp;
+		
+			private $waifu; <br><br>&nbsp;&nbsp;&nbsp;
+			
+			public function setWaifu(string $nombreWaifu = null) <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->waifu = $nombreWaifu; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br> &nbsp;&nbsp;&nbsp;
+		
+			public function getWaifu(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return $this->waifu ? $this->waifu : "No tenemos waifu"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+		
+		class Otaku extends Persona { <br>&nbsp;&nbsp;&nbsp;
+			public function __construct(string $nombre = null, string $apellido = null, int $edad = 0) <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp;
+				parent::__construct($nombre, $apellido, $edad); <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+
+		$otaku1 = new Otaku("Joel", "Mero", 18); <br>
+    	$otaku1->setWaifu("Elaina-san"); <br><br>
+		
+		print_r($otaku1); <strong>// Otaku Object ( [waifu:Persona:private] => Elaina-san [nombre] => Joel [apellido] => Mero [edad] => 18 )</strong>
+	</code>
+
+
+	<!-- Practica Herencia -->
+	<h3>Practica Herencia</h3>
+	<p>La siguiente practica ilustra todo lo escrito en esta seccion.</p>
+	<a href="practica/herencia.php" target="_blank">Ir a la praactica!</a>
+
+
+	<!-- Encapsulamiento -->
+	<h3>Encapsulamiento</h3>
+	<p>Hay tres tipos de propiedades: publica, privada, y protegida. La primera diferencia notable es que no es posible acceder directamente a una propiedad privada o protegida, mientras que si es posible acceder asi a una publica.</p>
+	<p>
+		La unica forma que hay para acceder a los valores de propiedades privadas o publicas es mediante un metodo definido en la propia clase. Encerrar asi la informacion se conoce como "Encapsulamiento".
+	</p>
+	<!-- codigo -->
+	<code>
+		class MiClase { <br>&nbsp;&nbsp;&nbsp;
+			<strong>public</strong> $publica = "publica"; <br>&nbsp;&nbsp;&nbsp;
+			<strong>protected</strong> $protegida = "protegida"; <br>&nbsp;&nbsp;&nbsp;
+			<strong>private</strong> $privada = "privada"; <br>
+		}
+	</code>
+
+	
+	<!-- Propiedad privada -->
+	<h3>Propiedad privada</h3>
+	<p>Una propiedad privada solo puede ser accedida con un metodo definido en la propia clase donde fue declarada, incluso las clases hijas no heredan las propiedades privadas.</p>
+	<!-- codigo -->
+	<code>
+		class MiClase { <br>&nbsp;&nbsp;&nbsp;
+			public $publica = "publica"; <br>&nbsp;&nbsp;&nbsp;
+			protected $protegida = "protegida"; <br>&nbsp;&nbsp;&nbsp; 
+			private $privada = "privada"; <br>		
+		} <br><br>
+		
+		class ClaseHija extends MiClase { <br>&nbsp;&nbsp;&nbsp;
+			public function mostrarPropiedad() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo $this-><strong>privada</strong>; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+
+		$objeto = new ClaseHija; <br><br>
+
+		echo $objeto->mostrarPropiedad(); <strong>// (!) Error: Undefined property</strong>
+	</code>
+	<p>
+		Mientras que si es posible acceder a una propiedad publica o protegida con un metodo de una clase hija, porque estas si las heredan.
+	</p>
+	<!-- codigo -->
+	<code>
+		class MiClase { <br>&nbsp;&nbsp;&nbsp;
+			public $publica = "publica"; <br>&nbsp;&nbsp;&nbsp;
+			protected $protegida = "protegida"; <br>&nbsp;&nbsp;&nbsp; 
+			private $privada = "privada"; <br>		
+		} <br><br>
+		
+		class ClaseHija extends MiClase { <br>&nbsp;&nbsp;&nbsp;
+			public function mostrarPropiedades() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo $this-><strong>publica</strong> . "&lt;br&gt;"; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo $this-><strong>protegida</strong>; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+
+		$objeto = new ClaseHija; <br><br>
+
+		echo $objeto->mostrarPropiedades(); <br>
+		<strong>
+			// publica <br>
+			// protegida
+		</strong>
+	</code>
+	<p>
+		Una propiedad privada no puede ser reescrita en las clases hijas (porque estas no la heredan), mientras que las propiedades publicas o protegidas si pueden ser modificadas (porque si son heredadas).
+	</p>
+	<!-- codigo -->
+	<code>
+		class MiClase { <br>&nbsp;&nbsp;&nbsp;
+			public $publica = "publica"; <br>&nbsp;&nbsp;&nbsp;
+			protected $protegida = "protegida"; <br>&nbsp;&nbsp;&nbsp;
+			private $privada = "privada"; <br><br>&nbsp;&nbsp;&nbsp;
+		
+			public function mostrarPropiedades() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo $this->publica . "&lt;br&gt;"; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo $this->protegida . "&lt;br&gt;"; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo $this->privada; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+		
+		class ClaseHija extends MiClase {  <br>&nbsp;&nbsp;&nbsp;
+			public $publica = "Nueva propiedad publica"; <br>&nbsp;&nbsp;&nbsp;
+			protected $protegida = "Nueva propiedad protegida"; <br>&nbsp;&nbsp;&nbsp;
+			private $privada = "Nueva propiedad privada"; <br>
+		} <br><br>
+		
+		$objeto = new ClaseHija; <br><br>
+		
+		echo $objeto->mostrarPropiedades(); <br>
+		<strong>
+			// Nueva proiedad publica <br>
+			// Nueva propiedad protegida <br>
+			// privada
+		</strong>
+	</code>
+
+
+	<!-- Practica Encapsulamiento -->
+	<h3>Practica Encapsulamiento</h3>
+	<p>La siguiente practica ilustra todo lo escrito en esta seccion.</p>
+	<a href="practica/encapsulamiento.php" target="_blank">Ir a la practica!</a>
+
+</body>
+</html>

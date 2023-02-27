@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 12</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">POO - Introduccion (1)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo4.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Paradigma POO -->
+	<h3>Paradigma POO</h3>
+	<p>El paradigma de POO nos indica que debemos abstraer nuestro codigo y escribirlo como si se tratase de manipular objetos de la vida real.</p>
+	<p>
+		Los Objetos se crean mediante "intanciar" una Clase. Una Clase es una plantilla que contiene los atributos y metodos comunes de un conjunto de Objetos.
+	</p>
+	<p>Instanciar: crear en memoria un ejemplar de un conjunto de datos y código definido por una Clase o estructura.</p>
+	<img src="media/objetos.png" alt="Objetos y Clases" width="600">
+
+
+	<!-- Clases y Propiedades -->
+	<h3>Clases y Propiedades</h3>
+	<p>
+		Para crear una clase usamos <em>class</em>. Para agregar propiedades usamos <em>public</em> o <em>private</em>.
+	</p>
+	<!-- codigo -->
+	<code>
+		class Persona { <br>&nbsp;&nbsp;&nbsp;
+			public $nombre, $edad, $rol; <br>
+			private $waifu; <br>
+		}
+	</code>
+	<a href="clases/personas.php"></a>
+
+
+	<!-- Importar Clase -->
+	<h3>Importar Clase</h3>
+	<p>Para incluir una Clase hay que importar el archivo con la funcion <em>require_once()</em>.</p>
+	<!-- codigo -->
+	<code>require_once("clases/Persona.php");</code>
+
+
+	<!-- Instanciar Clase -->
+	<h3>Instanciar Clase</h3>
+	<p>Para instanciar una Case usamos <em>new</em>.</p>
+	<!-- codigo -->
+	<code>
+		$usuario1 = new Persona; <br><br>
+
+		var_dump($usuario1); echo "&lt;br&gt;"; <strong>// object(Persona)#1 (3) { ["nombre"]=> NULL ["edad"]=> NULL ["rol"]=> NULL }</strong> <br><br>
+		
+		print_r($usuario1); <strong>// Persona Object ( [nombre] => [edad] => [rol] => )</strong>
+	</code>
+
+
+	<!-- Asignar y Acceder Valores -->
+	<h3>Asignar y Acceder Valores</h3>
+	<p>Para asignar valores a las propiedades de los objetos usamos el operador <em>-></em>.</p>
+	<p>
+		Al intentar acceder o asignar valores directamente a una propiedad <em>private</em> se va a producir un error.
+	</p>
+	<!-- codigo -->
+	<code>
+		$usuario1 = new Persona; <br>
+		$usuario1->nombre = "Joel"; <br>
+		$usuario1->edad = 18; <br>
+		$usuario1->rol = "Programador"; <br><br>
+
+		$usuario2 = new Persona; <br>
+		$usuario2->nombre = "Elaina-san"; <br>
+		$usuario2->edad = 14; <br>
+		$usuario2->rol = "Bruja Ceniza"; <br><br>
+
+		print_r($usuario1); <strong>// Persona Object ( [nombre] => Joel [edad] => 18 [rol] => Programador )</strong> <br>
+		echo "&lt;br&gt;&lt;br&gt;"; <br>
+		print_r($usuario2); <strong>// Persona Object ( [nombre] => Elaina-san [edad] => 14 [rol] => Bruja Ceniza )</strong>
+	</code>
+
+	<p>Para acceder al valor de un atributo tambien usamos el operador <em>-></em>.</p>
+	<!-- codigo -->
+	<code>
+		echo "Usuario 1: " . $usuario1->nombre . ". Edad: " . $usuario1->edad . ". Rol: " . $usuario1->rol . "."; <br>
+		<strong>// Usuario 1: Joel. Edad: 18. Rol: Programador.</strong> <br>
+		echo "&lt;br&gt;&lt;br&gt;"; <br>
+		echo "Usuario 1: " . $usuario2->nombre . ". Edad: " . $usuario2->edad . ". Rol: " . $usuario2->rol . "."; <br>
+		<strong>// Usuario 1: Elaina-san. Edad: 14. Rol: Bruja Ceniza.</strong>
+	</code>
+
+
+	<!-- Getters y Setters -->
+	<h3>Getters y Setters</h3>
+	<p>Son funciones que sirven para acceder a las propiedades privadas.</p>
+	<!--codigo  -->
+	<code>
+		public function setWaifu(string $nombreWaifu = null) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$this->waifu = $nombreWaifu; <br>
+		} <br><br>
+
+		public function getWaifu(): string <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return $this->waifu ? $this->waifu : "No tenemos waifu"; <br>
+		}
+	</code>
+
+
+	<!-- Constructor -->
+	<h3>Constructor</h3>
+	<p>Es una funcion que se ejecutara al instanciar el objeto para darle valores y a sus propiedades (asi "construirlo").</p>
+	<p>
+		Con un constructor no es nesesario declaran antes las variables <em>public</em>.
+	</p>
+	<!-- codigo -->
+	<code>
+		public function __construct(string $nombre = "", int $edad = 0, string $rol = "") <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$this->nombre = $nombre; <br>&nbsp;&nbsp;&nbsp;
+			$this->edad = $edad; <br>&nbsp;&nbsp;&nbsp;
+			$this->rol = $rol; <br>
+		} <br><br>
+
+		$usuario1 = new Persona("Joel", 18, "Programador"); <br><br>
+
+		$usuario2 = new Persona("Elaina-san", 14, "Bruja Ceniza");
+	</code>
+
+
+	<!-- Practica -->
+	<h3>Practica</h3>
+	<p>En estos archivos se encuentra ilustrado todo lo explicado en la seccion.</p>
+	<a href="practica/practica.php" target="_blank">Ir a la practica!</a>
+	
+
+</body>
+</html>

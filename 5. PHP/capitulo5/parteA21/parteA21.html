@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 21</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Practica y Metacaracteres (3)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo5.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Meta caracteres () - Subpatrones -->
+	<h3>Meta caracteres () - Subpatrones</h3>
+	<p>Sirven para formar sub patrones donde podemos indicar que hay varias opciones a esperar en la expresion regular. Aqui esperamos que se cumpla "vol" o "and" (con el operador OR, |), para que junto a "ando" formen las palabras "volando" o "andando".</p>
+	<!-- codigo -->
+	<code>
+		$cadenas = ["Voy <strong>vol</strong>ando", "Voy <strong>and</strong>ando", "Voy en burro :_: xd"]; <br><br>
+
+    	$expresion = "/Voy <strong>(vol|and)</strong>ando/i"; <br><br>
+
+		foreach ($cadenas as $cadena) { <br>&nbsp;&nbsp;&nbsp;
+			echo preg_match($expresion, $cadena) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <br>
+		} <br>
+		<strong>
+			// Verdadero <br>
+            // Verdadero <br>
+			// Falso
+		</strong>
+	</code>
+
+
+	<!-- Capturar Valores de subpatrones -->
+	<h3>Capturar Valores de subpatrones</h3>
+	<p>Es posible capturar en un array los valores que fueron utilizados en los subpatrones, le pasamos un tercer parametro a la funcion preg_macth(), los "cerillos" [macthes].</p>
+	<!-- codigo -->
+	<code>
+		$cadena1 = "Voy volando desde Ecuador. Parti ayer."; <br>
+		$cadena2 = "Voy andando desde Peru. Parti hoy."; <br><br>
+
+		$expresion = "/Voy <strong>(vol|and)</strong>ando desde <strong>(Ecuador|Peru)</strong>. Parti <strong>(hoy|ayer)</strong>./"; <br><br>
+
+		preg_match($expresion, $cadena1, $macthes1); <br>
+		preg_match($expresion, $cadena2, $macthes2); <br><br>
+
+		print_r($macthes1); echo "&lt;br&gt;"; <br>
+		// Array ( [0] => <strong>Voy volando desde Ecuador. Parti ayer.</strong> [1] => <strong>vol</strong> [2] => <strong>Ecuador</strong> [3] => <strong>ayer</strong> ) <br><br>
+
+		print_r($macthes2); <br>
+		// Array ( [0] => <strong>Voy andando desde Peru. Parti hoy.</strong> [1] => <strong>and</strong> [2] => <strong>Peru</strong> [3] => <strong>hoy</strong> )
+	</code>
+
+
+	<!-- Evitar capturar subpatrones -->
+	<h3>Evitar capturar subpatrones</h3>
+	<p>Para evitar que capture el valor de un subpatron en el array de los matches, usamos los caracteres "?:" al inicio del subpatron.</p>
+	<!-- codigo -->
+	<code>
+		$cadena1 = "Voy volando desde Ecuador. Parti ayer."; <br>
+		$cadena2 = "Voy andando desde Peru. Parti hoy."; <br><br>
+
+		$expresion = "/Voy <strong>(?:vol|and)</strong>ando desde <strong>(Ecuador|Peru)</strong>. Parti <strong>(?:hoy|ayer)</strong>./"; <br><br>
+
+		preg_match($expresion, $cadena1, $macthes1); <br>
+		preg_match($expresion, $cadena2, $macthes2); <br><br>
+
+		print_r($macthes1); echo "&lt;br&gt;"; <br>
+		// Array ( [0] => <strong>Voy volando desde Ecuador. Parti ayer.</strong> [1] => <strong>Ecuador</strong> ) <br><br>
+
+		print_r($macthes2); <br>
+		// Array ( [0] => <strong>Voy andando desde Peru. Parti hoy.</strong> [1] => <strong>Peru</strong> )
+	</code>
+
+
+	<!-- Practica - Verificar URL de Youtube -->
+	<h3>Practica - Verificar URL de Youtube</h3>
+	<p>En la siguiente practica se verifica que esten bien escritas dos URLs de youtube y captura el ID de los videos. <a href="practica/practica.php" target="_blank">Practica</a>.</p>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

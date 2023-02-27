@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 9</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Funciones para Arreglos (1)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- count() -->
+	<h3>count()</h3>
+	<p>Se usa para saber cuantos elementos tiene un array.</p>
+	<!-- codigo -->
+	<code>
+		$array = [1, 2, 3, 4, 5]; <br><br>
+
+        echo count($array); <strong>// 5</strong>
+	</code>
+
+
+	<!-- implode() -->
+	<h3>implode()</h3>
+	<p>Une los elementos de un array en un string.</p>
+	<!-- codigo -->
+	<code>
+		$array = [0, 1, 2, 3, 4]; <br><br>
+
+        $texto = implode("-", $array); <br><br>
+
+        echo $texto; <strong>// 0-1-2-3-4</strong>
+	</code>
+
+	
+	<!-- array_push() -->
+	<h3>array_push()</h3>
+	<p>Se usa para agregar varios nuevos elementos al final un arreglo.</p>
+	<!-- codigo -->
+	<code>
+		$array = [0, 1, 2]; <br><br>
+
+        array_push($array, 3, 4, 5, 6); <br><br>
+
+        print_r($array); <strong>// Array ( [0] => 0 [1] => 1 [2] => 2 [3] => 3 [4] => 4 [5] => 5 [6] => 6 )</strong>
+	</code>
+
+
+	<!-- array_unshift() -->
+	<h3>array_unshift()</h3>
+	<p>Agrega elementos al inicio del arreglo.</p>
+	<p>
+		Lo elementos seran agregados en el mismo orden. Moviendo todos los elementos un puesto mas arriba todas las claves numericas seran modificadas, mientras que las claves literales no se veran afectadas.
+	</p>
+	<p>Se puede agregar uno o varios elementos.</p>
+	<!-- codigo -->
+	<code>
+		$waifus = ["Rapthalia-chan", "mejorWaifu" => "Elaina-san", "Hifumi-senpai", "Yun-chan"]; <br><br>
+
+        print_r($waifus); echo "&lt;br&gt;"; <strong>// Array ( [0] => Rapthalia-chan [mejorWaifu] => Elaina-san [1] => Hifumi-senpai [2] => Yun-chan )</strong> <br><br>
+
+        array_unshift($waifus, "Asuna", "Ninym", "Avilia-chan"); <br><br>
+
+        print_r($waifus); <strong>// Array ( [0] => Asuna [1] => Ninym [2] => Avilia-chan [3] => Rapthalia-chan [mejorWaifu] => Elaina-san [4] => Hifumi-senpai [5] => Yun-chan )</strong>
+	</code>
+
+
+	<!-- array_pop() -->
+	<h3>array_pop()</h3>
+	<p>Elimina y retorna el ultimo elemento del arreglo especificado.</p>
+	<!-- codigo -->
+	<code>
+		$array = [0, 1, 2, 3]; <br><br>
+
+        $eliminado = array_pop($array); <br><br>
+
+        echo $eliminado . "&lt;br&gt;"; <strong>// 3</strong> <br><br>
+
+        print_r($array); <strong>// Array ( [0] => 0 [1] => 1 [2] => 2 )</strong>
+	</code>
+
+
+	<!-- array_shift() -->
+	<h3>array_shift()</h3>
+	<p>Elimina el primer elemento del arreglo y lo retorna. Moviendo todos los elementos un puesto mas abajo todas las claves numericas seran modificadas, mientras que las claves literales no se veran afectadas.</p>
+	<!-- codigo -->
+	<code>
+		$waifus = ["Asuna", "Rapthalia-chan", "mejorWaifu" => "Elaina-san", "Hifumi-senpai", "Yun-chan"]; <br><br>
+
+        print_r($waifus); echo "&lt;br&gt;"; <strong>// Array ( [0] => Asuna [1] => Rapthalia-chan [mejorWaifu] => Elaina-san [2] => Hifumi-senpai [3] => Yun-chan )</strong> <br><br>
+
+        $elemento = array_shift($waifus); <br><br>
+
+        echo $elemento . "&lt;br&gt;"; <strong>// Asuna</strong> <br><br>
+
+        print_r($waifus); <strong>// Array ( [0] => Rapthalia-chan [mejorWaifu] => Elaina-san [1] => Hifumi-senpai [2] => Yun-chan )</strong>
+	</code>
+
+
+	<!-- in_array() -->
+	<h3>in_array()</h3>
+	<p>Verifica si un dato se encuentra dentro de un arreglo. Devuelve true o false</p>
+	<!-- codigo -->
+	<code>
+		$lolis = ["Hana-chan", "Avilia-chan", "Saya", "Hotsuki", "Elaina-san", "Rachel"]; <br><br>
+
+        $info = in_array("Elaina-san", $lolis) ? "Tenemos a la brujita UwU" : "Elaina-san no esta"; <br><br>
+
+        echo $info; <strong>// Tenemos a la brujita UwU</strong>
+	</code>
+
+
+	<!-- array_search() -->
+	<h3>array_search()</h3>
+	<p>Busca en el arreglo un valor dado y devuelve la primera clave correspondiente si tiene éxito</p>
+	<!-- codigo -->
+	<code>
+		$waifus = ["Asuna", "Rapthalia-chan", <strong>"mejorWaifu" => "Elaina-san"</strong>, "Hifumi-senpai", "Yun-chan", "Elaina-san"]; <br><br>
+
+        $clave = array_search("Elaina-san", $waifus); <br><br>
+
+        echo $clave; <strong>// mejorWaifu</strong>
+	</code>
+
+
+	<!-- array_reverse() -->
+	<h3>array_reverse()</h3>
+	<p>Retorna el arreglo dado con los elementos en orden invertido.</p>
+	<!-- codigo -->
+	<code>
+		$array = ["cero", "uno", "dos", "tres", "cuatro", "cinco"]; <br><br>
+
+        $invertido = array_reverse($array); <br><br>
+        
+        print_r($invertido); <strong>// Array ( [0] => cinco [1] => cuatro [2] => tres [3] => dos [4] => uno [5] => cero )</strong>
+	</code>
+
+
+	<!-- array_slice() -->
+	<h3>array_slice()</h3>
+	<p>Devuelve una parte de un arreglo como un nuevo arreglo.</p>
+	<p>
+		Recibe cuatro parametros: primero el arreglo objetivo, segundo el indice donde se inicia la extraccion, tercero cuantos elementos se deesea extraer, por ultimo si se desea conservar la mismas claves (booleano).
+	</p>
+	<!-- codigo -->
+	<code>
+		$array = ["cero", "uno", "dos", "tres", "cuatro", "cinco"]; <br><br>
+
+        $extraccion1 = array_slice($array, 0, 3, false); <br><br>
+
+        print_r($extraccion1); echo "&lt;br&gt;"; <strong>// Array ( [0] => cero [1] => uno [2] => dos )</strong> <br><br>
+
+        $extraccion2 = array_slice($array, 3, 3, false); <br><br>
+
+        print_r($extraccion2); echo "&lt;br&gt;"; <strong>// Array ( [0] => tres [1] => cuatro [2] => cinco )</strong> <br><br>
+
+        $extraccion3 = array_slice($array, 3, 3, true); <br><br>
+
+        print_r($extraccion3); echo "&lt;br&gt;"; <strong>// Array ( [3] => tres [4] => cuatro [5] => cinco )</strong>
+	</code>
+
+
+	<!-- array_splice() -->
+	<h3>array_splice()</h3>
+	<p>Remueve una porcion del arreglo y la remplaza con algo mas. Retorna la parte que fue removida. Las claves numericas no son preservadas.</p>
+	<!-- codigo -->
+	<code>
+		$array = ["cero", "uno", "dos", "tres", "cuatro", "siete"]; <br><br>
+
+        $removido = array_splice($array, 3, 2, [3, 4, 5, 6]); <br><br>
+
+        print_r($removido); echo "&lt;br&gt;"; <strong>// Array ( [0] => tres [1] => cuatro )</strong> <br><br>
+
+        print_r($array); <strong>// Array ( [0] => cero [1] => uno [2] => dos [3] => 3 [4] => 4 [5] => 5 [6] => 6 [7] => siete )</strong>
+	</code>
+
+
+	<!-- array_replace() -->
+	<h3>array_replace()</h3>
+	<p>Retorna un nuevo arreglo C en el que ha reemplazado los elementos de un arreglo A en otro arreglo B, segun su clave.</p>
+	<!-- codigo -->
+	<code>
+		$array1 = ["clave0" => 0, "clave1" => 1, "clave2" => 2]; <br><br>
+
+        $array2 = ["clave0" => "Elaina-san", "clave2" => "Asuna"]; <br><br>
+
+        $reemplazo = array_replace($array1, $array2); <br><br>
+
+        print_r($reemplazo); <strong>// Array ( [clave0] => Elaina-san [clave1] => 1 [clave2] => Asuna )</strong>
+	</code>
+
+	<p>Si no encuentra una clave en el array objetivo, la va a crear.</p>
+	<!-- codigo -->
+	<code>
+		$array1 = ["clave0" => 0, "clave1" => 1, "clave2" => 2]; <br><br>
+
+        $array2 = ["clave0" => "Elaina-san", "clave2" => "Asuna", <strong>"clave3" => "Hifumi-senpai"</strong>]; <br><br>
+
+        $reemplazo = array_replace($array1, $array2); <br><br>
+
+        print_r($reemplazo); <strong>// Array ( [clave0] => Elaina-san [clave1] => 1 [clave2] => Asuna, "clave3" => "Hifumi-senpai" )</strong>
+	</code>
+
+
+	<!-- array_filter() -->
+	<h3>array_filter()</h3>
+	<p>Filtra elementos de un array usando una función de devolución de llamada</p>
+	<p>
+		Recorre cada valor de array, pasándolos a la función callback. Si la función callback devuelve <em>true</em> el valor actual desde array es devuelto al array resultante. Las claves del array se conservan.
+	</p>
+	<!-- codigo -->
+	<code>
+		$numeros = [34, 6, 21, 10, 56, 4, 98, 34, 1]; <br><br>
+        
+        function mayorDiez(int $n = null): bool <br>
+        { <br>&nbsp;&nbsp;&nbsp;
+            if ($n > 10) { <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                return true; <br> &nbsp;&nbsp;&nbsp;
+            } else { <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                return false; <br> &nbsp;&nbsp;&nbsp;
+            } <br>
+        } <br><br>
+
+        $mayoresDiez = array_filter($numeros, "mayorDiez"); <br><br>
+
+        print_r($mayoresDiez); <strong>// Array ( [0] => 34 [2] => 21 [4] => 56 [6] => 98 [7] => 34 )</strong>
+	</code>
+
+	<p>
+		Adicionalmente posee un parametro "flag" el cual indica:
+	</p>
+	<ul>
+		<li>ARRAY_FILTER_USE_KEY - pasar la clave como el único argumento a callback en lugar del valor.</li>
+		<li>ARRAY_FILTER_USE_BOTH - pasar el valor y la clave como argumentos a callback en lugar de solo el valor.</li>
+		<li>Por omisión es 0 que pasará el valor como el único argumento a callback en su lugar.</li>
+	</ul>
+	<!-- codigo -->
+	<code>
+		$numeros = [34, 6, 21, 10, 56, 4, 98, 34, 1]; <br><br>
+        
+        function mayorDiez(string | int $key = null): bool <br>
+        { <br>&nbsp;&nbsp;&nbsp;
+			global $numeros; <br><br> &nbsp;&nbsp;&nbsp;
+
+            if ($numeros[$key] > 10) { <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                return true; <br> &nbsp;&nbsp;&nbsp;
+            } else { <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                return false; <br> &nbsp;&nbsp;&nbsp;
+            } <br>
+        } <br><br>
+
+        $mayoresDiez = array_filter($numeros, "mayorDiez", ARRAY_FILTER_USE_KEY); <br><br>
+
+        print_r($mayoresDiez); <strong>// Array ( [0] => 34 [2] => 21 [4] => 56 [6] => 98 [7] => 34 )</strong>
+	</code>
+</body>
+</html>

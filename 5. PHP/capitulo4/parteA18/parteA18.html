@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 18</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">POO -  Fluent Interface, constructor, y atributos (7)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo4.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Fluent Interface -->
+	<h3>Fluent Interface</h3>
+	<p>
+		Cuando tenemos que usar varios metodos setters para llenar de valores las propiedades de un objeto se vuelve tedioso tener que estar llamando una vez al objeto por cada metodo. Para esto se usa la fluent interface, aqui cada metodo set retorna el mismo objeto con el que estamos trabajando y podemos settear las propiedades de una manera mas limpia y fluida.
+	</p>
+	<!-- codigo -->
+	<code>
+		class Humano { <br>&nbsp;&nbsp;&nbsp;
+			private $nombre = "Sin datos", $apellido_materno = "Sin datos", $apellido_paterno = "", $dni = "Sin datos"; <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public function setNombre(string $nombre): object <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->nombre = $nombre; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>return $this;</strong> <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public function setApellidos(string $apellido_materno, string $apellido_paterno): object <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->apellido_materno = $apellido_materno; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->apellido_paterno = $apellido_paterno; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>return $this;</strong> <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public function setDni(string $dni): object <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->dni = $dni; <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>return $this;</strong> <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public function getInformacion(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$info = "Nombre: " . $this->nombre .  <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						". Apellidos: " . $this->apellido_paterno . " " .  $this->apellido_materno . <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						". DNI: " . $this->dni . "."; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+	
+				return $info; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		$humano1 = new Humano; <br>
+		$humano1<strong>->setNombre</strong>("Fernando Joel")<strong>->setApellidos</strong>("Mero", "Travez")<strong>->setDni</strong>("23412345455"); <br><br>
+
+		echo $humano1->getInformacion(); <br>
+		<strong>// Nombre: Fernando Joel. Apellidos: Travez Mero. DNI: 23412345455.</strong>
+	</code>
+
+
+	<!-- Practica Fluent Interface -->
+	<h3>Practica Fluent Interface</h3>
+	<p>
+		Aqui esta escrito el codigo de esta seccion: <a href="practica/fInterface/fInterface.php" target="_blank">practica</a>.
+	</p>
+
+
+	<!-- Propiedades del contructor -->
+	<h3>Propiedades del contructor</h3>
+	<p>
+		En PHP 8 se agrego una promocion a las propiedades del constructor. Haora ya es posible definirlas en los argumentos de la funcion constructora y asi nos ahorramos lineas de codigo al no tener que declararlas por fuera.
+	</p>
+	<!-- codigo -->
+	<code>
+		class Humano { <br>&nbsp;&nbsp;&nbsp;
+			public function __construct(<strong>private</strong> string $nombre, <strong>private</strong> string $apellido_materno, <strong>private</strong> string $apellido_paterno, <strong>private</strong> string $dni) <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->nombre = $nombre; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->apellido_materno = $apellido_materno; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->apellido_paterno = $apellido_paterno; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->dni = $dni; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public function getInformacion(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$info = "Nombre: " . $this->nombre .  <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						". Apellidos: " . $this->apellido_paterno . " " .  $this->apellido_materno . <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						". DNI: " . $this->dni . "."; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+	
+				return $info; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		$humano1 = new Humano("Fernando Joel", "Mero", "Travez", "23412345455"); <br><br>
+
+		echo $humano1->getInformacion(); <br>
+		<strong>// Nombre: Fernando Joel. Apellidos: Travez Mero. DNI: 23412345455.</strong>
+	</code>
+
+
+	<!-- Practica Constructor -->
+	<h3>Practica Constructor</h3>
+	<p>
+		Aqui esta escrito el codigo de esta seccion: <a href="practica/constructor/constructor.php" target="_blank">practica</a>.
+	</p>
+
+
+	<!-- Atributos con Nombre -->
+	<h3>Atributos con Nombre</h3>
+	<p>Es posible pasarle informacion a una funcion en un orden diferente al establecido si le damos el nombre de cada argumento.</p>
+	<!-- codigo -->
+	<code>
+		class Humano { <br>&nbsp;&nbsp;&nbsp;
+			public function __construct(<strong>private</strong> string $nombre, <strong>private</strong> string $apellido_materno, <strong>private</strong> string $apellido_paterno, <strong>private</strong> string $dni) <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->nombre = $nombre; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->apellido_materno = $apellido_materno; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->apellido_paterno = $apellido_paterno; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->dni = $dni; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public function getInformacion(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$info = "Nombre: " . $this->nombre .  <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						". Apellidos: " . $this->apellido_paterno . " " .  $this->apellido_materno . <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						". DNI: " . $this->dni . "."; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+	
+				return $info; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		$humano1 = new Humano(<strong>dni:</strong>"23412345455", <strong>nombre:</strong>"Fernando Joel", <strong>apellido_materno:</strong>"Travez", <strong>apellido_paterno:</strong>"Mero"); <br><br>
+
+		echo $humano1->getInformacion(); <br>
+		<strong>// Nombre: Fernando Joel. Apellidos: Travez Mero. DNI: 23412345455.</strong>
+	</code>
+
+
+	<!-- Practica Atributos con Nombre -->
+	<h3>Practica Atributos con Nombre</h3>
+	<p>
+		Aqui esta escrito el codigo de esta seccion: <a href="practica/atributos/atributos.php" target="_blank">practica</a>.
+	</p>
+
+</body>
+</html>

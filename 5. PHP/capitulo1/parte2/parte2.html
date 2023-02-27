@@ -41,7 +41,7 @@
 	<!-- codigo -->
 	<code>
 		$escapeComillas = 'Mi nombre es "Joel".'; <br>
-		echo $escapeComillas; <strong>// Mi nombre es "Joel".</strong> <br><br>
+		echo $escapeComillas . "&lt;br&gt;"; <strong>// Mi nombre es "Joel".</strong> <br><br>
 
 		$barraInvertida = "Mi nombre es \"Joel\"."; <br>
 		echo $barraInvertida; <strong>// Mi nombre es "Joel".</strong>
@@ -80,18 +80,17 @@
 	</code>
 
 
-	<!-- var_dump() -->
-	<h3>var_dump()</h3>
-	<p>Sirve para conocer el tipo de dato primitivo de una variable y su valor.</p>
+	<!-- gettype() -->
+	<h3>gettype()</h3>
+	<p>Devuelve el tipo de una variable (como un string).</p>
 	<!-- codigo -->
 	<code>
-		$A = 23; $B = "Texto"; $C = 12.345; $D = 10 > 5; <br><br>
+		$numero = 23; $texto = "abcd"; $decimal = 12.345; $booleano = true; <br><br>
 
-		var_dump($A); <strong>// int(23)</strong> <br>
-		var_dump($B); <strong>// string(5) "Texto"</strong> <br>
-		var_dump($C); <strong>// float(12.345)</strong> <br>
-		var_dump($D); <strong>// bool(true)</strong>
+		echo gettype($numero) . "&lt;br&gt;"; <strong>// integer</strong> <br>
+		echo gettype($texto) . "&lt;br&gt;"; <strong>// string</strong> <br>
+		echo gettype($decimal) . "&lt;br&gt;"; <strong>// double</strong> <br>
+		echo gettype($booleano); <strong>// boolean</strong>
 	</code>
-
 </body>
 </html>

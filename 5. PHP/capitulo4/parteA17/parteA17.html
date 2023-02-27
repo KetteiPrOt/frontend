@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 17</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">POO - Sentencias static, self, y parent (6)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo4.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Propiedades y metodos estaticos -->
+	<h3>Propiedades y metodos estaticos</h3>
+	<p>
+		Dentro de las clases podemos declarar metodos y propiedades que no utilizen otras propiedades y otros metodos de la misma. Estos metodos podrian calcular valores numericos, hacer la conexion a alguna base de datos, o verificar que un correo electronico este bien definido. La cuestion es que estos metodos no requieren de propiedades ni de otros metodos de la clase para funcionar.
+	</p>
+	<p>
+		En consecuencia, es posible que deseemos utilizar estos metodos sin la nesecidad de instanciar un nuevo objeto. Nosotros vamos a poder utilizar estos metodos o propiedades si los declaramos como estaticos.
+	</p>
+
+
+	<!-- Sentencia static -->
+	<h3>Sentencia static</h3>
+	<p>Para declarar un metodo o propiedad como estatico usamos la palabra reservada <em>static</em>.</p>
+	<!-- codigo -->
+	<code>
+		class Persona { <br>&nbsp;&nbsp;&nbsp;
+			public <strong>static</strong> $especie = "Humano"; <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public <strong>static</strong> function saludar(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Hola Mundo!"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+
+		echo <strong>Persona::$especie</strong> . "&lt;br&gt;"; <strong>// Humano</strong> <br>  
+        echo <strong>Persona::saludar()</strong>; <strong>// Hola Mundo!</strong>
+	</code>
+
+
+	<!-- Acceder propiedades estaticas -->
+	<h3>Acceder propiedades estaticas</h3>
+	<p>
+		Cuando declaramos un metodo o propiedad como estatico, este le pertenece a la clase. No se pasa a los objetos instanciados. Cuando usamos la palabra reservada <em>$this</em> hacemos referencia al objeto instanciado no a la clase. Por eso cuando intentamos acceder a una propiedad o metodo estatico con <em>$this</em> recibimos el sigiente error.
+	</p>
+	<!-- codigo -->
+	<code>
+		class Perro { <br>&nbsp;&nbsp;&nbsp;
+			public static $especie = "Canino"; <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public function saludar(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Hola, soy un " . $this->especie; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		$perro1 = new Perro; <br><br>
+
+		echo $perro1->saludar(); <br>
+		<strong>
+			// Notice: Accessing static property Perro::$especie as non static <br>
+			// Warning: Undefined property: Perro::$especie
+		</strong>
+	</code>
+	
+
+	<!-- Practica Sentencia static -->
+	<h3>Practica Sentencia static</h3>
+	<p>
+		Aqui esta escrito el codigo de esta seccion: <a href="practica/static/static.php" target="_blank">practica</a>.
+	</p>
+
+
+	<!-- Palabra reservada self -->
+	<h3>Palabra reservada self</h3>
+	<p>Para usar propiedades y metodos estaticos de las clases en objetos instanciados (arreglar el problema de arriba) usamos la palabra reservada self. Esta palabra hace referencia a un metodo o propiedad estatica de la clase actual.</p>
+	<!-- codigo -->
+	<code>
+		class Gato { <br>&nbsp;&nbsp;&nbsp;
+			public static $especie = "Minino"; <br><br>&nbsp;&nbsp;&nbsp;
+	
+			public function saludar(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Hola, soy un " . <strong>self::$especie</strong>; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		$gato1 = new Gato; <br><br>
+
+		echo $gato1->saludar(); <strong>// Hola soy un Minino</strong>
+	</code>
+
+
+	<!-- Palabra reservada parent -->
+	<h3>Palabra reservada parent</h3>
+	<p>Se usa cuando deseeamos acceder a los metodos o propiedades estaticas de una clase padre.</p>
+	<!-- codigo -->
+	<code>
+		class Clase { <br>&nbsp;&nbsp;&nbsp;
+			public static $propiedad = "Valor de la propiedad estatica"; <br>
+		} <br><br>
+	
+		class ClaseHija extends Clase { <br>&nbsp;&nbsp;&nbsp;
+			public function metodo(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return parent::$propiedad; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		$objeto = new ClaseHija; <br><br>
+
+		echo $objeto->metodo(); <strong>// Valor de la propiedad estatica</strong>
+	</code>
+
+</body>
+</html>

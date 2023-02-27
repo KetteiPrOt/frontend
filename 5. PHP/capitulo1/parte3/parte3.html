@@ -26,11 +26,11 @@
 	<code>
 		$A = 23; $B = <strong>&</strong>$A; <strong>// $B es una referencia para $A</strong> <br><br>
 
-		echo "$A - $B \n"; <strong>// 23 - 23</strong> <br><br>
+		echo "$A&nbsp;&nbsp;&nbsp;&nbsp;$B"; <strong>// 23&nbsp;&nbsp;&nbsp;&nbsp;23</strong> <br><br>
 
 		$B = 12; <br><br>
 
-		echo "$A - $B"; <strong>// 12 - 12</strong>
+		echo "$A&nbsp;&nbsp;&nbsp;&nbsp;$B"; <strong>// 12&nbsp;&nbsp;&nbsp;&nbsp;12</strong>
 	</code>
 
 
@@ -119,7 +119,7 @@
 		$A = 10; <br>
 		$B = ++$A; <br><br>
 
-		echo "El valor de B es: $B >br<"; <strong>// 11</strong> <br>
+		echo "El valor de B es: $B" . "&lt;br&gt;"; <strong>// 11</strong> <br>
 		echo "El valor de A es: $A"; <strong>// 11</strong>
 	</code>
 
@@ -129,7 +129,7 @@
 		$A = 10; <br>
 		$B = $A++; <br><br>
 
-		echo "El valor de B es: $B >br<"; <strong>// 10</strong> <br>
+		echo "El valor de B es: $B" . "&lt;br&gt;"; <strong>// 10</strong> <br>
 		echo "El valor de A es: $A"; <strong>// 11</strong>
 	</code>
 
