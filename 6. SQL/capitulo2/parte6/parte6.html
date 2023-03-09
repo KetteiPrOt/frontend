@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 6</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Seleccionar registros (Intermedio)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ejecucion -->
+	<h3>Ejecucion</h3>
+	<p>Puedes ejecutar las sentencias de esta parte en MySQL Workbench usando la base de datos "practica_select_intermedio" (<a href="../../bbdd/practica_select_intermedio.sql">Este es el Link</a>) y ver sus resultados.</p>
+
+
+	<!-- Abreviar nombre de tabla -->
+	<h3>Abreviar nombre de tabla</h3>
+	<p>Cambia el nombre de la tabla "usuarios" a "u":</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> u.nombre <strong>FROM</strong> usuarios u;</code>
+
+
+	<!-- Subconsultas -->
+	<h3>Subconsultas</h3>
+	<p>Es una consulta que se hace para consegir informacion usable en la consulta principal.</p>
+
+	<p>Subconsulta: selecciona los id de los usuarios cuyo nombre empieza con L o B y los retorna. Consulta Principal: Selecciona todos los registros donde el id sea igual al alguno de la subconsulta y los retorna:</p>
+	<!-- codigo -->
+	<code>
+		<strong>SELECT</strong> * <strong>FROM</strong> usuarios <strong>WHERE</strong> id <strong>IN</strong> ( <br>&nbsp;&nbsp;&nbsp;
+			<strong>SELECT</strong> id <strong>FROM</strong> usuarios <strong>WHERE</strong> nombre <strong>LIKE</strong> "L%" <strong>OR</strong> nombre <strong>LIKE</strong> "B%" <br>
+		);
+	</code>
+
+
+	<!-- UNION -->
+	<h3>UNION</h3>
+	<p>Junta los registros seleccionados de dos sentencias distintas y los retorna en una sola consulta.</p>
+
+	<p>Selecciona todos los usuarios cuyos nombres empiezen con L o B y los retorna en la consulta:</p>
+	<!-- codigo -->
+	<code>
+		<strong>SELECT</strong> * <strong>FROM</strong> usuarios <strong>WHERE</strong> nombre <strong>LIKE</strong> "L%" <br>&nbsp;&nbsp;&nbsp;
+			<strong>UNION</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>SELECT</strong> * <strong>FROM</strong> usuarios <strong>WHERE</strong> nombre <strong>LIKE</strong> "B%";
+	</code>
+
+
+	<!-- ORDER BY -->
+	<h3>ORDER BY</h3>
+	<p>Ordena en forma ascendente los registros retornados en la consulta segun el contenido de una columna.</p>
+	<p>
+		Si la columna es de tipo cadena de texto los ordenara alfabeticamente, en el tipo fecha desde la mas antigua, en el tipo tiempo desde el mas corto, y en el tipo numero desde el menor.
+	</p>
+
+	<p>Ordena alfabeticamente segun el nombre los registros retornados de la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> * <strong>FROM</strong> usuarios <strong>ORDER BY</strong> nombre;</code>
+
+
+	<!-- DESC -->
+	<h3>DESC</h3>
+	<p>Invierte el orden de ORDER BY cambiandolo de ascendente a descendente:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> * <strong>FROM</strong> usuarios <strong>ORDER BY</strong> nombre <strong>DESC</strong>;</code>
+	
+
+	<!-- GROUP BY -->
+	<h3>GROUP BY</h3>
+	<p>Agrupa los registros iguales de una columna haciendo posible contar los repetidos.</p>
+
+	<p>Retorna el pais y la cuenta de usuarios que hay de cada pais agrupandolos segun ese campo en la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> pais, COUNT(*) <strong>AS</strong> cantidad_usuarios <strong>FROM</strong> usuarios <strong>GROUP BY</strong> pais;</code>
+
+
+	<!-- HAVING -->
+	<h3>HAVING</h3>
+	<p>Agrega un filtro ya que permite imponer una condicion a los registros retornados en la consulta. </p>
+
+	<p>Retorna en la consulta cuales son los paises de los que solo tenemos un usuario:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> pais, COUNT(*) <strong>AS</strong> cantidad_usuarios <strong>FROM</strong> usuarios <strong>GROUP BY</strong> pais <strong>HAVING</strong> COUNT(*) = 1;</code>
+	
+
+	<!-- Uso de Variables -->
+	<h3>Uso de Variables</h3>
+	<p>Almacenan un valor seleccionado en una sentencia para reutilizarlo en otra sentencia.</p>
+	<!-- codigo -->
+	<code>
+		<strong>--  Guarda el valor de la menor edad en la varibale @menor_edad</strong> <br>
+		<strong>SELECT</strong> @menor_edad:= MIN(edad) <strong>FROM</strong> usuarios; <br><br>
+		
+		<strong>-- Obtiene el nombre y la edad del usuario mas joven de la tabla</strong> <br>
+		<strong>SELECT</strong> nombre, edad <strong>FROM</strong> usuarios <strong>WHERE</strong> edad = @menor_edad;
+	</code>
+	
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 3</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Seleccionar registros (Basico)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+
+	<!-- SELECT -->
+	<h3>SELECT</h3>
+	<p>Selecciona todos los registros de la tabla y los retorna en la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> * <strong>FROM</strong> nombre_tabla;</code>
+
+	<p>Selecciona columnas de la tabla y las retorna en la consulta:</p>
+	<!-- codigo -->
+	<code>
+		<strong>SELECT</strong> columna_1, columna_2, columna_3... <strong>FROM</strong> nombre_tabla;
+	</code>
+
+
+	<!-- WHERE -->
+	<h3>WHERE</h3>
+	<p>Funciona como filtro ya que impone una condicion a los registros retornados en la consulta. Se pueden usar los operadores logicos y signos de agrupacion en la condicion.</p>
+
+	<p>Selecciona el primer registro de la tabla y lo retorna en laconsulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> * <strong>FROM</strong> nombre_tabla <strong>WHERE</strong> id = 1;</code>
+
+	<p>Selecciona los primeros 10 registros de la tabla y los retorna en la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> * <strong>FROM</strong> nombre_tabla <strong>WHERE</strong> id &lt;= 10;</code>
+
+	<p>Selecciona los primeros 5 registros y todos mas allas del numero 10:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> * <strong>FROM</strong> nombre_tabla <strong>WHERE</strong> id &lt;= 5 <strong>OR</strong> id &gt;= 10;</code>
+
+
+	<!-- IN -->
+	<h3>IN</h3>
+	<p>Funciona como un operador OR.</p>
+
+	<p>Selecciona los registros donde el nombre es diego o brian, y los retorna en la consulta:</p>
+	<!-- codigo -->
+	<code>
+		<strong>SELECT</strong> * <strong>FROM</strong> personas <strong>WHERE</strong> nombre <strong>IN</strong> ("diego", "brian");
+	</code>
+
+	
+	<!-- NOT IN -->
+	<h3>NOT IN</h3>
+	<p>Es la negacion de la sentencia IN.</p>
+
+	<p>Selecciona todos los registros menos donde el nombre es diego o brian, y los retorna en la consulta:</p>
+	<!-- codigo -->
+	<code>
+		<strong>SELECT</strong> * <strong>FROM</strong> personas <strong>WHERE</strong> nombre <strong>NOT IN</strong> ("diego", "brian");
+	</code>
+
+
+	<!-- LIKE -->
+	<h3>LIKE</h3>
+	<p>Funciona como filtro y a diferencia de los operadores logicos con este podemos incluir patrones de busqueda menos estrictos. El simbolo % significa que puede haber cualquier caracter como una expresion regular.</p>
+
+	<p>Selecciona todos los registros donde el nombre empieze con "Luc" y los retorna en la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> * <strong>FROM</strong> personas <strong>WHERE</strong> nombre <strong>LIKE</strong> "Luc%";</code>
+
+	<p>Selecciona todos los registros donde la columna apellidos contenga "Mero" y los retorna en la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> * <strong>FROM</strong> personas <strong>WHERE</strong> apellidos <strong>LIKE</strong> "%Mero%";</code>
+
+
+	<!-- DISTINCT -->
+	<h3>DISTINCT</h3>
+	<p>Cuando hay una columna con registros repetidos y solo queremos seleccionar los registros distintos (no iguales) usamos esta palabra clave.</p>
+
+	<p>Selecciona todos los nombres distintos (no iguales) y los retorna en la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT DISTINCT</strong> nombre <strong>FROM</strong> personas;</code>
+
+
+	<!-- LIMIT -->
+	<h3>LIMIT</h3>
+	<p>Limita el numero de resultados que retorna la consulta.</p>
+
+	<p>Selecciona todos los registros de la tabla y trae un maximo de 1000 resultados en la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> * <strong>FROM</strong> nombre_tabla <strong>LIMIT</strong> 0, 1000;</code>
+
+	<p>Selecciona todos los registros de la tabla y trae del 10 al 100 como resultado de la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> * <strong>FROM</strong> nombre_tabla <strong>LIMIT</strong> 10, 100;</code>
+
+
+	<!-- AS -->
+	<h3>AS</h3>
+	<p>Renombra la columna apellido como familia en el resultado de la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> apellidos <strong>AS</strong> familia <strong>FROM</strong> personas;</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

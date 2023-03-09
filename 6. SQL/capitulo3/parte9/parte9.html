@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte </title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Indices</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Acelerar las busquedas -->
+	<h3>Acelerar las busquedas</h3>
+	<p>Los indices son columnas que internamente han sido ordenadas por MySQL para acelerar la busqueda de informacion sobre ellas.</p>
+	<p>Solo deberiamos agregar indices en las columnas donde estemos seguros que vamos a hacer busquedas, porque agregarlos consume memoria.</p>
+
+
+	<!-- ADD INDEX -->
+	<h3>ADD INDEX</h3>
+	<p>Agrega un indice a una columna de la tabla:</p>
+	<!-- codigo -->
+	<code><strong>ALTER TABLE</strong> nombre_tabla <strong>ADD INDEX</strong> (nombre_columna);</code>
+
+
+	<!-- Indice de tipo FULLTEXT -->
+	<h3>Indice de tipo FULLTEXT</h3>
+	<p>Al agregar este tipo especial de indice en columnas varchar y text, MySQL internamente analiza el texto de manera similar a como lo hacen los motores de busqueda para despues poder usar el lenguaje nartural al hacer busquedas en estas columnas.</p>
+	<!-- codigo -->
+	<code><strong>ALTER TABLE</strong> nombre_tabla <strong>ADD FULLTEXT</strong>(nombre_columna);</code>
+
+
+	<!-- Consulta Match Against -->
+	<h3>Consulta Match Against</h3>
+	<p>Esta consulta ejecutar una busqueda en lenguaje natural sobre columnas con un indice FULLTEXT:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> * <strong>FROM</strong> nombre_tabla <strong>WHERE</strong> match(columna_1, columna_2...) against("expresion natural");</code>
+
+	<p>Match() Against() = Encender() Contra()</p>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

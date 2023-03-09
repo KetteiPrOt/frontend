@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 8</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Seleccionar registros (Avanzado)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Cruzar tablas -->
+	<h3>Cruzar tablas</h3>
+	<p>
+		Cuando tenemos tablas relacionadas y deseamos recuperar informacion no queremos que la consulta nos retorne las Claves Externas. Podemos obtener la informacion de ambas tablas usando logica y el id:
+	</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> p.nombre <strong>AS</strong> persona, a.asunto, a.fecha_hora, a.lugar <strong>FROM</strong> personas p, actividades a <strong>WHERE</strong> a.persona_id = p.id;</code>
+
+	<p>Pero esto aunque si funciona, no es lo correcto porque no esta utilizando las relaciones que creamos entre las tablas con las Claves, solo los esta uniendo de manera logica, para usalas en MySQL se usan las sentencias JOIN.</p>
+
+
+	<!-- INNER JOIN -->
+	<h3>INNER JOIN</h3>
+	<img src="inner.png" width="250"><br><br>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> &lt;select list&gt; <strong>FROM</strong> table_a A <strong>INNER JOIN</strong> table_b B <strong>ON</strong> A.key = B.key;</code>
+
+	<p>Retorna los registros de ambas tablas donde hay coincidencia en la Clave Externa y el id.</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> p.nombre <strong>AS</strong> acompañante, a.asunto, a.fecha_hora, a.lugar <strong>FROM</strong> personas p <strong>INNER JOIN</strong> actividades a <strong>ON</strong> a.persona_id = p.id;</code>
+
+	<p>Retorno todas las actividades con las que tengo una persona de acompañante.</p>
+
+
+	<!-- LEFT JOIN -->
+	<h3>LEFT JOIN</h3>
+	<img src="left.png" width="250"><br><br>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> &lt;select list&gt; <strong>FROM</strong> table_a A <strong>LEFT JOIN</strong> table_b B <strong>ON</strong> A.key = B.key;</code>
+
+	<p>Retorna todos los registros de la primera tabla y adicionalmente los registros de ambas tablas donde hay coincidencia en la Clave Externa y el id.</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> p.nombre <strong>AS</strong> acompañante, a.asunto, a.fecha_hora, a.lugar <strong>FROM</strong> personas p <strong>LEFT JOIN</strong> actividades a <strong>ON</strong> a.persona_id = p.id;</code>
+
+	<p>Retorno todas las personas, pero no todas las actividades.</p>
+
+
+	<!-- RIGHT JOIN -->
+	<h3>RIGHT JOIN</h3>
+	<img src="right.png" width="250"><br><br>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> &lt;select list&gt; <strong>FROM</strong> table_a A <strong>RIGHT JOIN</strong> table_b B <strong>ON</strong> A.key = B.key;</code>
+
+	<p>Retorna todos los registros de la segunda tabla y adicionalmente los registros de ambas tablas donde hay coincidencia en la Clave Externa y el id.</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> p.nombre <strong>AS</strong> acompañante, a.asunto, a.fecha_hora, a.lugar <strong>FROM</strong> personas p <strong>RIGHT JOIN</strong> actividades a <strong>ON</strong> a.persona_id = p.id;</code>
+
+	<p>Retorno todas las actividades, pero no todas las personas.</p>
+
+
+	<!-- LEFT WHERE B.key IS NULL -->
+	<h3>LEFT WHERE B.key IS NULL</h3>
+	<img src="bKeyNull.png" width="250"><br><br>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> &lt;select list&gt; <strong>FROM</strong> table_a A <strong>LEFT JOIN</strong> table_b B <strong>ON</strong> A.key = B.key <strong>WHERE</strong> B.key <strong>IS NULL</strong>;</code>
+
+	<p>Retorna solo los registros de la primera tabla donde no hay coincidencia en la Clave Externa y el id.</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> p.nombre <strong>AS</strong> acompañante, a.asunto, a.fecha_hora, a.lugar <strong>FROM</strong> personas p <strong>LEFT JOIN</strong> actividades a <strong>ON</strong> a.persona_id = p.id <strong>WHERE</strong> a.persona_id <strong>IS NULL</strong>;</code>
+
+	<p>Retorno las personas que no son acompañantes de actividades.</p>
+
+
+	<!-- RIGHT WHERE A.key IS NULL -->
+	<h3>RIGHT WHERE A.key IS NULL</h3>
+	<img src="aKeyNull.png" width="250"><br><br>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> &lt;select list&gt; <strong>FROM</strong> table_a A <strong>RIGHT JOIN</strong> table_b B <strong>ON</strong> A.key = B.key <strong>WHERE</strong> A.key <strong>IS NULL</strong>;</code>
+
+	<p>Retorna solo los registros de la segunda tabla donde no hay coincidencia en la Clave Externa y el id.</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> p.nombre <strong>AS</strong> acompañante, a.asunto, a.fecha_hora, a.lugar <strong>FROM</strong> personas p <strong>RIGHT JOIN</strong> actividades a <strong>ON</strong> a.persona_id = p.id <strong>WHERE</strong> p.actividad_id <strong>IS NULL</strong>;</code>
+
+	<p>Retorno las actividades que no tienen una persona de acompañante.</p>
+
+</body>
+</html>

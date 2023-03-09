@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 7</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Relacionar Tablas</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Agregar Clave Externa -->
+	<h3>Agregar Clave Externa</h3>
+	<p>Al hacer referencia a los registros de otra tabla, la Clave Externa tambien es una Restriccion a la hora de eliminar algun registro incluido en otra tabla.</p>
+	<!-- codigo -->
+	<code>
+		CREATE TABLE nombre_tabla ( <br>&nbsp;&nbsp;&nbsp;
+			<strong>id</strong> <em>int(11)</em> NOT NULL <strong>AUTO_INCREMENT</strong>, <br>&nbsp;&nbsp;&nbsp;
+			<strong>clave_externa</strong> <em>int(11)</em> NOT NULL, <br>
+		); <br><br>
+
+		<strong>ALTER TABLE</strong> nombre_tabla <br>&nbsp;&nbsp;&nbsp;
+			<strong>ADD</strong> PRIMARY KEY (<strong>id</strong>), <br>&nbsp;&nbsp;&nbsp;
+			<strong>ADD KEY</strong> nombre_relacion_fk (<strong>clave_externa</strong>); <br><br>
+
+		<strong>ALTER TABLE</strong> nombre_tabla <br>&nbsp;&nbsp;&nbsp;
+			<strong>ADD CONSTRAINT</strong> nombre_relacion_fk <strong>FOREIGN KEY</strong> (clave_externa) <strong>REFERENCES</strong> tabla_externa (id) <strong>ON DELETE</strong> reference_option <strong>ON UPDATE</strong> reference_option; <br>
+	</code> <br><br>
+	<code>
+		reference_option: <br>&nbsp;&nbsp;&nbsp;
+			<strong>RESTRICT</strong> | <strong>CASCADE</strong> | <strong>SET NULL</strong> | <strong>NO ACTION</strong> | <strong>SET DEFAULT</strong>
+	</code>
+
+
+	<!-- Al crear la tabla -->
+	<h3>Al crear la tabla</h3>
+	<!-- codigo -->
+	<code>
+		CREATE TABLE nombre_tabla ( <br>&nbsp;&nbsp;&nbsp;
+			<strong>id</strong> <em>int(11)</em> NOT NULL <strong>AUTO_INCREMENT</strong>, <br>&nbsp;&nbsp;&nbsp;
+			<strong>clave_externa</strong> <em>int(11)</em> NOT NULL, <br>&nbsp;&nbsp;&nbsp;
+			<strong>PRIMARY KEY</strong>  (id) <br>&nbsp;&nbsp;&nbsp;
+			<strong>CONSTRAINT FOREIGN KEY</strong> (clave_externa) <strong>REFERENCES</strong> tabla_externa (id) <br>&nbsp;&nbsp;&nbsp;
+			<strong>ON DELETE</strong> reference_option <strong>ON UPDATE</strong> reference_option <br>
+		);
+	</code> <br><br>
+	<code>
+		reference_option: <br>&nbsp;&nbsp;&nbsp;
+			<strong>RESTRICT</strong> | <strong>CASCADE</strong> | <strong>SET NULL</strong> | <strong>NO ACTION</strong> | <strong>SET DEFAULT</strong>
+	</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

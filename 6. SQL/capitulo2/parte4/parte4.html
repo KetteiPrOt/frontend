@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 4</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Funciones (1)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ejecucion -->
+	<h3>Ejecucion</h3>
+	<p>Puedes ejecutar las sentencias de esta parte y de la parte 5 en MySQL Workbench usando la base de datos "practica_funciones" (<a href="../../bbdd/practica_funciones.sql">Este es el Link</a>) y ver sus resultados.</p>
+	
+
+	<!-- COUNT() -->
+	<h3>COUNT()</h3>
+	<p>Cuenta el numero de registros retornados en la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> COUNT(*) <strong>AS</strong> cantidad_personas <strong>FROM</strong> personas;</code>
+
+
+	<!-- CAST() -->
+	<h3>CAST()</h3>
+	<p>Convierte de ser posible un dato a otro tipo.</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> precio, CAST(precio AS INT) <strong>AS</strong> precio_redondeado <strong>FROM</strong> productos;</code>
+
+
+	<!-- Para datos cadena de texto -->
+	<h2>Para datos cadena de texto</h2>
+
+
+	<!-- CONCAT() -->
+	<h3>CONCAT()</h3>
+	<p>Concatena varios datos y/o registros retornandolos en la consulta como una sola columna:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> CONCAT(nombre, " ", apellidos) <strong>AS</strong> persona <strong>FROM</strong> personas;</code>
+
+
+	<!-- CONCAT_WS() -->
+	<h3>CONCAT_WS()</h3>
+	<p>Usa el primer argumento automaticamente como separador de cada dato y/o registro concatenado:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> CONCAT_WS(" ", nombre, apellidos, telefono) <strong>AS</strong> contacto <strong>FROM</strong> personas;</code>
+
+
+	<!-- LENGTH() -->
+	<h3>LENGTH()</h3>
+	<p>Retorna la longitud de un dato y/o registro de tipo cadena de texto:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> nombre, LENGTH(nombre) <strong>AS</strong> longitud <strong>FROM</strong> personas;</code>
+
+
+	<!-- LOWER() -->
+	<h3>LOWER()</h3>
+	<p>Cambia a minusculas todos los caracteres de un dato y/o registro de tipo cadena de texto:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> LOWER(nombre) <strong>AS</strong> nombre_min <strong>FROM</strong> personas;</code>
+
+
+	<!-- UPPER() -->
+	<h3>UPPER()</h3>
+	<p>Cambia a mayusculas todos los caracteres de un dato y/o registro de tipo cadena de texto:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> UPPER(nombre) <strong>AS</strong> nombre_may <strong>FROM</strong> personas;</code>
+
+
+	<!-- REPLACE() -->
+	<h3>REPLACE()</h3>
+	<p>Reemplaza los caracteres de un dato y/o registro de tipo cadena de texto por otros.</p>
+
+	<p>Reemplaza @gmail.com por @outlook.com de los registros en la columna correos y los retorna en la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> REPLACE(correo, "@gmail.com", "@outlook.com") <strong>AS</strong> correo_nuevo <strong>FROM</strong> personas;</code>
+
+
+	<!-- TRIM() -->
+	<h3>TRIM()</h3>
+	<p>Los espacios en blanco al inicio y al final de un dato y/o registro de tipo cadena de texto:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> TRIM(descripcion) <strong>AS</strong> descripcion_sinespacios <strong>FROM</strong> personas;</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

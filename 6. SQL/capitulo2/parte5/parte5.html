@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 5</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Funciones (2)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ejecucion -->
+	<h3>Ejecucion</h3>
+	<p>Puedes ejecutar las sentencias de esta parte y de la parte 4 en MySQL Workbench usando la base de datos "practica_funciones" (<a href="../../bbdd/practica_funciones.sql">Este es el Link</a>) y ver sus resultados.</p>
+
+
+	<!-- Para datos numericos -->
+	<h2>Para datos numericos</h2>
+
+
+	<!-- SUM() -->
+	<h3>SUM()</h3>
+	<p>Suma todos los registros de una columna y los retorna en la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> CAST(SUM(precio) AS FLOAT) <strong>AS</strong> suma_precios <strong>FROM</strong> productos;</code>
+
+
+	<!-- MAX() -->
+	<h3>MAX()</h3>
+	<p>Retorna el mayor registro de tipo numerico de una columna en la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> MAX(precio) <strong>AS</strong> mayor_precio <strong>FROM</strong> productos;</code>
+
+	<!-- MIN() -->
+	<h3>MIN()</h3>
+	<p>Retorna el menor registro de tipo numerico de una columna en la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> MIN(precio) <strong>AS</strong> menor_precio <strong>FROM</strong> productos;</code>
+
+
+	<!-- AVG() -->
+	<h3>AVG()</h3>
+	<p>Retorna el promedio de todos los registros de tipo numerico de una columna en la consulta:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> CAST(AVG(precio) AS FLOAT) <strong>AS</strong> promedio_precios <strong>FROM</strong> productos;</code>
+
+
+	<!-- Para datos fecha -->
+	<h2>Para datos fecha</h2>
+
+	<!-- DATE_FORMAT() -->
+	<h3>DATE_FORMAT()</h3>
+	<p>Cambia el formato de un dato y/o registro de tipo fecha y lo retorna en la consulta.</p>
+	<p>
+		Para que MySQL entienda que deseamos cambiar de formato debemos especificar el simbolo "%" donde: "d" es dia, "m" es mes, y "Y" es año.
+	</p>
+
+	<!-- codigo -->
+	<code><strong>SELECT</strong> DATE_FORMAT(fecha_nacimiento, "%d/%m/%Y") <strong>AS</strong> fn_nuevo_formato <strong>FROM</strong> personas;</code>
+
+
+	<!-- DAY() -->
+	<h3>DAY()</h3>
+	<p>Retorna el dia de un dato y/o registro de tipo fecha:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> DAY(fecha_nacimiento) <strong>AS</strong> dia <strong>FROM</strong> personas;</code>
+
+
+	<!-- MONTH() -->
+	<h3>MONTH()</h3>
+	<p>Retorna el mes de un dato y/o registro de tipo fecha:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> MONTH(fecha_nacimiento) <strong>AS</strong> mes <strong>FROM</strong> personas;</code>
+
+
+	<!-- YEAR() -->
+	<h3>YEAR()</h3>
+	<p>Retorna el año de un dato y/o registro de tipo fecha:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> YEAR(fecha_nacimiento) <strong>AS</strong> año <strong>FROM</strong> personas;</code>
+
+
+	<!-- SECOND() -->
+	<h3>SECOND()</h3>
+	<p>Retorna los segundos de un dato y/o registro de tipo fecha-tiempo o tiempo:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> SECOND(estudio_diario) <strong>AS</strong> segundos <strong>FROM</strong> personas;</code>
+
+
+	<!-- MINUTE() -->
+	<h3>MINUTE()</h3>
+	<p>Retorna los minutos de un dato y/o registro de tipo fecha-tiempo o tiempo:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> MINUTE(estudio_diario) <strong>AS</strong> minutos <strong>FROM</strong> personas;</code>
+
+
+	<!-- HOUR() -->
+	<h3>HOUR()</h3>
+	<p>Retorna las horas de un dato y/o registro de tipo fecha-tiempo o tiempo:</p>
+	<!-- codigo -->
+	<code><strong>SELECT</strong> HOUR(estudio_diario) <strong>AS</strong> horas <strong>FROM</strong> personas;</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

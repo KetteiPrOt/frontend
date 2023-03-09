@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 1</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Introduccion</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+	
+	<!-- Que es SQL? -->
+	<h3>Que es SQL?</h3>
+	<p>Un Lenguaje de Consulta Estructurado (Structured Query Language) que permite manipular y obtener datos de una base de datos. Tiene capacidad de hacer cálculos avanzados y álgebra. Es utilizado en la mayoría de empresas que almacenan datos en una base de datos. Ha sido y sigue siendo el lenguaje de programación más usado para bases de datos relacionales.</p>
+
+
+	<!-- MySQL -->
+	<h3>MySQL</h3>
+	<p>Un sistema de gestión de bases de datos relacionales, es decir, utiliza tablas múltiples tablas que se interconectan entre sí para almacenar la información y organizarla correctamente.</p>
+	<p>
+		MySQL es una opción razonable para ser usado en ámbito empresarial. Al estar basado en código abierto permite a pequeñas empresas y desarrolladores disponer de una solución fiable y estandarizada para sus aplicaciones. Por ejemplo, si se cuenta con un listado de clientes, una tienda online con un catálogo de productos o incluso una gran selección de contenidos multimedia disponible, MySQL ayuda a gestionarlo todo debida y ordenadamente.
+	</p>
+
+
+	<!-- Tipos de Datos -->
+	<h3>Tipos de Datos</h3>
+	<p>En MySQL hay tres principales tipos de datos: cadenas de caracteres, numericos, y fehcas.</p>
+
+
+	<!-- Datos numericos -->
+	<h3>Datos numericos</h3>
+	<table class="tabla" style="width: 50%;">
+		<thead>
+			<tr>
+				<th>Tamaño de Almacenamiento</th>
+				<th>Tipo de Dato</th>
+				<th>Valores con signo</th>
+				<th>Valores sin signo</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1 byte</td>
+				<td>TINYINT</td>
+				<td>-128 hasta 127</td>
+				<td>0 hasta 255</td>
+			</tr>
+			<tr>
+				<td>2 bytes</td>
+				<td>SMALLINT</td>
+				<td>-32768 hasta 32767</td>
+				<td>0 hasta 65535</td>
+			</tr>
+			</tr>
+				<td>3 bytes</td>
+				<td>MEDIUMINT</td>
+				<td>-8388608 hasta 8388607</td>
+				<td>0 hasta 16777215</td>
+			</tr>
+			<tr>
+				<td>4 bytes</td>
+				<td>INT</td>
+				<td>-2147483648 hasta 2147483647</td>
+				<td>0 hasta 4294967295</td>
+			<tr>
+				<td>8 bytes</td>
+				<td>BIGINT</td>
+				<td>-9.223.372.036.854.775.808 hasta 9.223.372.036.854.775.807</td>
+				<td>0 hasta 18.446.744.073.709.551.615</td>
+			</tr>
+			<tr>
+				<td>4 bytes</td>
+				<td>FLOAT</td>
+				<td>-3.402823466E+38 hasta 1.175494351E-38</td>
+				<td>1.175494351E-38 hasta 3.402823466E+38</td>
+			</tr>
+			<tr>
+				<td>8 bytes</td>
+				<td>DOUBLE o REAL</td>
+				<td>1.7976931348623157E+308 hasta 2.2250738585072014E-308</td>
+				<td>2.2250738585072014E-308 hasta 1.7976931348623157E+308</td>
+			</tr>
+			<tr>
+				<td>1 byte</td>
+				<td>BIT, BOOL, o BOOLEAN</td>
+				<td>0 (falso) o 1 (verdadero)</td>
+				<td>-</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<!-- Datos cadena de texto  -->'
+	<h3>Datos cadena de texto</h3>
+	<table class="tabla" style="width: 50%;">
+		<thead>
+			<tr>
+				<th>Tipo de dato</th>
+				<th>longitud</th>
+				<th>Descripcion</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			<tr>
+				<td>VARCHAR</td>
+				<td>Varia de 1 hasta 65535 caracteres</td>
+				<td>Para guardar textos breves a largos</td>
+			</tr>
+			<tr>
+				<td>TEXT</td>
+				<td>65535 caracteres</td>
+				<td>Para guardar textos largos</td>
+			</tr>
+			<tr>
+				<td>MEDIUMTEXT</td>
+				<td>16777215 caracteres</td>
+				<td>Para guardar textos muy largos</td>
+			</tr>
+			<tr>
+				<td>LONGTEXT</td>
+				<td>4294967298 caracteres</td>
+				<td>Para guardar textos extremadamente largos</td>
+			</tr>
+			<tr>
+				<td>TINYBLOB</td>
+				<td>255 caracteres</td>
+				<td>Igual que BLOB</td>
+			</tr>
+			<tr>
+				<td>BLOB</td> 
+				<td>65535 caracteres</td>
+				<td>Guarda objetos binarios (ficheros de texto, video, audio... ect) y no distingue entre minúculas y mayúsculas</td>
+			</tr>
+			<tr>
+				<td>MEDIUMBLOB</td>
+				<td>16777215 caracteres</td>
+				<td>Igual que BLOB</td>
+			</tr>
+			<tr>
+				<td>LONGBLOB</td>
+				<td>4294967298 caracteres</td>
+				<td>Igual que BLOB</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<!-- Datos fecha -->
+	<h3>Datos fecha</h3>
+	<table class="tabla" style="width: 50%;">
+		<thead>
+			<tr>
+				<th>Tipo de dato</th>
+				<th>Tamaño de Almacenamiento</th>
+				<th>Intervalos permitidos</th>
+				<th>Formato de almacenamiento</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>DATE</td>
+				<td>3 bytes</td>
+				<td>1/01/1001 hasta 31/12/9999</td>
+				<td>aaaa-mm-dd</td>
+			</tr>
+			<tr>
+				<td>DATETIME</td>
+				<td>8 bytes</td>
+				<td>1/01/1001 00h00min00seg hasta 31/12/9999 23h59min59seg</td>
+				<td>aaaa-mm-dd hh:mm:ss</td>
+			</tr>
+			<tr>
+				<td>TIME</td>
+				<td>3 bytes</td>
+				<td>-838h59min59seg hasta 838h59min59seg</td>
+				<td>hh:mm:ss</td>
+			</tr>
+			<tr>
+				<td>1 byte</td>
+				<td>YEAR</td>
+				<td>1901 hasta 2155</td>
+				<td>aaaa</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

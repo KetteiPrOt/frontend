@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 2</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Consultas Fundamentales</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<h2>Bases de Datos</h2>
+
+	<!-- Usar Base de Datos -->
+	<h3>Usar Base de Datos</h3>
+	<p>Usar una BBDD por defecto:</p>
+	<!-- codigo -->
+	<code><strong>USE</strong> nombre_base_datos;</code>
+
+
+	<!-- Crear Base de Datos -->
+	<h3>Crear Base de Datos</h3>
+	<p>Para crear una nueva base de datos puedo usar indistintamente cualquiera de estas dos sentencias:</p>
+	<!-- codigo -->
+	<code>
+		<strong>CREATE DATABASE</strong> nombre_base_datos; <br><br>
+
+		<strong>CREATE SCHEMA</strong> nombre_base_datos;
+	</code>
+
+
+	<!-- Eliminar Base de Datos -->
+	<h3>Eliminar Base de Datos</h3>
+	<p>Para eliminar una base de datos puedo usar indistintamente cualquiera de estas dos sentencias:</p>
+	<!-- codigo -->
+	<code>
+		<strong>DROP DATABASE IF EXISTS</strong> nombre_base_datos; <br><br>
+
+		<strong>DROP SCHEMA IF EXISTS</strong> nombre_base_datos;
+	</code>
+
+
+	<!-- Tablas -->
+	<h2>Tablas</h2>
+
+
+	<!-- Crear Tabla -->
+	<h3>Crear Tabla</h3>
+	<p>Despues del tipo de dato se puede referir NOT NULL para no nulos, o DEFAULT NULL para registros que pueden ser nulos.</p>
+	<!-- codigo -->
+	<code>
+		CREATE TABLE nombre_tabla ( <br>&nbsp;&nbsp;&nbsp;
+			<strong>id</strong> <em>INT</em> NOT NULL <strong>AUTO_INCREMENT</strong>, <br>&nbsp;&nbsp;&nbsp;
+			<strong>columna_1</strong> <em>tipo_dato</em> NOT NULL, <br>&nbsp;&nbsp;&nbsp;
+			<strong>columna_2</strong> <em>tipo_dato</em> NOT NULL, <br>&nbsp;&nbsp;&nbsp;
+			<strong>columna_3</strong> <em>tipo_dato</em> DEFAULT NULL, <br>&nbsp;&nbsp;&nbsp;
+			<strong>columna_4</strong> <em>tipo_dato</em> DEFAULT NULL, <br>&nbsp;&nbsp;&nbsp;
+			... <br>&nbsp;&nbsp;&nbsp;
+			<strong>PRIMARY KEY (id)</strong> <br>
+		);
+	 </code>
+
+
+	 <!-- Eliminar Tabla -->
+	<h3>Eliminar Tabla</h3>
+	<!-- codigo -->
+	<code><strong>DROP TABLE IF EXISTS</strong> nombre_tabla;</code>
+
+
+	<!-- Alterar Tabla -->
+	<h3>Alterar Tabla</h3>
+
+	<p>Agregar columna:</p>
+	<!-- codigo -->
+	<code><strong>ALTER TABLE</strong> nombre_tabla <strong>ADD COLUMN</strong> columna_x <em>tipo_dato</em> NOT NULL;</code>
+
+	<p>Eliminar columna:</p>
+	<!-- codigo -->
+	<code><strong>ALTER TABLE</strong> nombre_tabla <strong>DROP IF EXISTS</strong> columna_x;</code>
+
+	<p>Modificar columna:</p>
+	<p>Si se cambias una columna a un tipo de dato mas pequeño y tienes datos muy grandes, acabaras perdiendo la informacion que no entre en los limites de nuevo tipo de dato.</p>
+	<!-- codigo -->
+	<code><strong>ALTER TABLE</strong> nombre_tabla <strong>MODIFY COLUMN</strong> columna_x tipo_dato NOT NULL;</code>
+
+
+	<!-- Registros -->
+	<h2>Registros</h2>
+
+
+	<!-- Insertar registro -->
+	<h3>Insertar registro</h3>
+	<!-- codigo -->
+	<code>
+		<strong>INSERT INTO</strong> nombre_tabla ( <br>&nbsp;&nbsp;&nbsp;
+			columna_1, columna_2, columna_3...) <br>
+		<strong>VALUES</strong> (dato_1, dato_2, dato_3...);
+	</code>
+
+
+	<!-- Eliminar registro -->
+	<h3>Eliminar registro</h3>
+	<p>Se usa el id del registro que se deseea eliminar:</p>
+	<!-- codigo -->
+	<code><strong>DELETE FROM</strong> nombre_tabla <strong>WHERE</strong> id = 1;</code>
+
+
+	<!-- Actualizar registro -->
+	<h3>Actualizar registro</h3>
+	<p>Se usa el id del registro que se deseea actualizar:</p>
+	<!-- codigo -->
+	<code>
+		<strong>UPDATE</strong> nombre_tabla <strong>SET</strong> <br>&nbsp;&nbsp;&nbsp;
+			columna_1 = nuevo_dato_1, <br>&nbsp;&nbsp;&nbsp;
+			columna_2 = nuevo_dato_2, <br>&nbsp;&nbsp;&nbsp;
+			columna_3 = nuevo_dato_3 <br>&nbsp;&nbsp;&nbsp;
+			... <br>
+		<strong>WHERE</strong> id = 1;
+	</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

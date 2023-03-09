@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 10</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+	<style>
+		.p-abajo {
+			padding-bottom: 20px;
+		}
+
+		.rotar {
+			transform: rotate(90deg);
+		}
+	</style>
+</head>
+<body>
+	<h1 class="titulo-principal">Normalizacion (Basico)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo4.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Herramienta de diseño -->
+	<h3>Herramienta de diseño</h3>
+	<p><a href="https://app.sqldbm.com/">app.sqldbm</a> es una herramienta online que permite diseñar BBDD.</p>
+
+	
+	<!-- Introduccion -->
+	<h3>Introduccion</h3>
+	<p>La normalizacion es un proceso donde se aplican reglas, conocidas como formas, a una base de datos relacional con el objetivo de evitar la redundancia de datos. Hay 5 formas, sin embargo es raro llegar a la 4ta y 5ta forma.</p>
+
+
+	<!-- Primera forma -->
+	<h3>Primera forma</h3>
+	<p>La primera forma cuenta con 3 reglas.</p>
+
+
+	<!-- Atomicidad de la informacion -->
+	<h3>Atomicidad de la informacion</h3>
+	<p>La informacion debe alamacenarse de forma que sea indivisible:</p>
+	<img src="media/primera1.png" width="600">
+	<img src="media/flecha.png" width="100" class="p-abajo">
+	<img src="media/primera2.png" width="600">
+
+
+	<!-- Agregar Clave Primaria -->
+	<h3>Agregar Clave Primaria</h3>
+	<p>Las tablas deben tener un campo unico e irrepetible que identifique cada registro y sirva para hacer busquedas.</p>
+
+
+	<!-- Sin columnas variantes -->
+	<h3>Sin columnas variantes</h3>
+	<p>Las columnas distintas que contienen variaciones del mismo tipo de informacion deben ser movidas a otra tabla:</p>
+	<img src="media/primera1.png" width="600"> <br>
+	<img src="media/flecha.png" width="100" class="rotar"> <br>
+	<img src="media/primera3.png" width="600">
+	<!-- codigo -->
+	<code></code>
+
+
+	<!-- Segunda forma -->
+	<h3>Segunda forma</h3>
+	<p>Cuanta con una regla.</p>
+
+
+	<!-- Sin registros repetidos -->
+	<h3>Sin registros repetidos</h3>
+	<p>Todos los registros repetidos en las tablas deben pasar a depender de una Clave Primaria:</p>
+	<img src="media/primera3.png" width="600"> <br>
+	<img src="media/flecha.png" width="100" class="rotar"> <br>
+	<img src="media/segunda1.png" width="600">
+
+
+	<!-- Tercera forma -->
+	<h3>Tercera forma</h3>
+	<p>Cuenta con X reglas.</p>
+
+
+	<!-- Sin registros independientes -->
+	<h3>Sin registros independientes</h3>
+	<p>Todos los registros independidentes deben pasar a depender de una Clave Primaria en las tablas:</p>
+	<img src="media/tercera1.png" width="600"> <br>
+	<img src="media/flecha.png" width="100" class="rotar"> <br>
+	<img src="media/tercera2.png" width="600">
+	<!-- codigo -->
+	<code></code>
+
+
+	<!-- Continuar Investigacion -->
+	<h3>Continuar Investigacion</h3>
+	<p>Para continuar la investigacion usa los videos: <a href="https://youtube.com/playlist?list=PLE19WVM4rff1ion43QTNdbbejTKNhYs8x">enlace</a>. Y actualiza el temario:</p>
+	<p>
+		/* ---- Normalizacion (Basico) <br>
+		Herramienta de disenio <br>
+		Introduccion <br>
+		Primera forma normal <br><br>
+
+		/* ---- Dependencias <br>
+		Dependencias funcionales <br>
+		Dependencias funcionales triviales <br>
+		Dependencias transitivas <br>
+		Dependencias parciales <br>
+		Cardinalidad <br><br>
+
+		/* ---- Normalizacion (Intermedio) <br>
+		Segunda forma normal <br>
+		Tercera forma normal <br>
+		Forma normal Boyce Codd <br><br>
+
+		/* ---- Normalizacion (Avanzado) <br>
+		Cuarta forma normal <br>
+		Quinta forma normal
+	</p>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

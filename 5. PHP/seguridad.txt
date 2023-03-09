@@ -1,0 +1,4 @@
+Con esto ya cubres la mayor parte de la seguridad que deberias tener en tu aplicacion:
+- Escapar todos los datos que llegan del cliente: evitar los caracteres especiales: guiones, asteriscos, slash... etc.
+
+- Validar que los datos que llegan sean del mismo tipo que los que se deseean guardar o procesar.
