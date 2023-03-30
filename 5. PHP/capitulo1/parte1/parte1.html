@@ -45,6 +45,40 @@
 	</p>
 
 
+	<!-- echo -->
+	<h3>echo</h3>
+	<p>Muestra el resultado de una expresion en el documento HTML.</p>
+	<!-- codigo -->
+	<code>
+		$variable = "Hola Mundo!"; <br><br>
+
+		echo $variable; <strong>// Hola Mundo!</strong>
+	</code>
+
+	<p>Tambien se puede usar esta funcionalidad en una etiqueta php con esta sintaxis abreviada:</p>
+	<!-- codigo -->
+	<code>
+		&lt;?php <br>&nbsp;&nbsp;&nbsp;
+			<strong>$saludo = "Hola Mundo!";</strong>
+		?&gt; <br><br>
+
+		&lt;!DOCTYPE html&gt; <br>
+		&lt;html lang="en"&gt; <br>
+		&lt;head&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta charset="UTF-8"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;title&gt;Documento&lt;/title&gt; <br>
+		&lt;/head&gt; <br>
+		&lt;body&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			&lt;p&gt; <strong>&lt;?= $saludo // Hola Mundo! ?&gt;</strong> &lt;/p&gt;<br><br>
+
+		&lt;/body&gt; <br>
+		&lt;/html&gt;
+	</code>
+
+
 	<!-- Concatenacion -->
 	<h3>Concatenacion</h3>
 	<p>Para concatenar textos se usa el operador "." (punto), cuando escribimos una cadena con comillas dobles podemos utilizarla como un <em>template string</em>.</p>
@@ -86,6 +120,19 @@
 		$respuesta = defined('NUMBER_PI'); <br><br>
 
 		echo $respuesta; <strong>// 1</strong>
+	</code>
+
+
+	<!-- isset() -->
+	<h3>isset()</h3>
+	<p>Solo trabaja con variables. Devuelve true si el valor de una variable no es null.</p>
+	<!-- codigo -->
+	<code>
+		$variable = "Hola"; <br><br>
+
+		$definida = isset($variable) ? "verdadero" : "falso"; <br><br>
+
+		echo $definida; <strong>// verdadero</strong>
 	</code>
 
 
@@ -136,5 +183,42 @@
 	<p>Contiene la ruta del archivo actual.</p>
 	<!-- codigo -->
 	<code>echo __FILE__; <strong>// C:\xampp\htdocs\frontend\5. PHP\programa.php</strong></code>
+
+
+	<!-- $_SERVER["DOCUMENT_ROOT"] -->
+	<h3>$_SERVER["DOCUMENT_ROOT"]</h3>
+	<p>Contiene la raiz del servidor.</p>
+	<!-- codigo -->
+	<code>
+		$patch = $_SERVER["DOCUMENT_ROOT"]; <br><br>
+
+		echo $patch; <strong>// C:/xampp/htdocs</strong>
+	</code>
+
+
+	<!-- $_SERVER["REQUEST_URI"] -->
+	<h3>$_SERVER["REQUEST_URI"]</h3>
+	<p>Contiene la URI del sitio.</p>
+	<!-- codigo -->
+	<code>
+		$patch = $_SERVER["DOCUMENT_ROOT"]; <br><br>
+
+		echo $patch; <strong>// /5.%20PHP/capitulo1/parte1/parte1.html</strong>
+	</code>
+
+	
+	<!-- $_SERVER["REQUEST_METHOD"] -->
+	<h3>$_SERVER["REQUEST_METHOD"]</h3>
+	<p>Contiene el metodo usado para hacer la solicitud al servidor.</p>
+	<!-- codigo -->
+	<code>
+		$method = $_SERVER["REQUEST_METHOD"]; <br><br>
+
+		echo $method; <strong>// GET</strong>
+	</code>
+
+
+
+
 </body>
 </html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 23</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Configurando el servidor</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Establecer un unico punto de acceso -->
+	<h3>Establecer un unico punto de acceso</h3>
+	<p>Es mas optimo para los buscadores que los usuarios accedan a diversos recursos web escribiendo URLs sin extensiones:</p>
+	<!-- codigo -->
+	<code>https://drive.google.com/drive/my-drive</code> <br>
+	<code>https://www.youtube.com/</code>
+
+	<p>Ademas por cuestiones de seguridad es preferible que todas las solicitudes sean recibidas por un unico lugar, evitando asi accesos a archivos no autorizados.</p>
+
+
+	<!-- Archivo .htaccess -->
+	<h3>Archivo .htaccess</h3>
+	<p>Este tipo de archivo permite establecer configuraciones en el servidor, en este caso Apache.</p>
+
+	<p>Con estas sentencias configuramos APACHE para que las solicitudes de archivos que no existan sean redirigidas al archivo principal index.php, estableciendolo como unico punto de acceso.</p>
+	<!-- codigo -->
+	<code>
+		Options -MultiViews  <br>
+		RewriteEngine On <br>
+		RewriteCond %{REQUEST_FILENAME} !-f <br>
+		RewriteRule ^ public/index.php [QSA,L]
+	</code>
+
+
+	<!-- Crear un dominio local -->
+	<h3>Crear un dominio local</h3>
+	<p>
+		Ahora a crear un dominio local y hacer que al acceder apunte a la carpeta donde esta ubicado nuestro proyecto accediendo al archivo index.php (el unico punto de acceso).
+	</p>
+
+
+	<!-- Archivo host (Windows) -->
+	<h3>Archivo host (Windows)</h3>
+	<p>Este archivo del sistema operativo Windows sirve para crear un dominio local, esta ubicado en la carpeta:</p>
+	<code>C:\Windows\System32\drivers\etc\hosts</code>
+
+	<p>Aqui escribimos el puerto (127.0.0.1) y el dominio que deseamos crear con la terminacion ".test"</p>
+	<!-- codigo -->
+	<code>
+		# For example: <br>
+		# <br>
+		#      102.54.94.97     rhino.acme.com          # source server <br>
+		#       38.25.63.10     x.acme.com              # x client host <br><br>
+
+		# localhost name resolution is handled within DNS itself. <br>
+		#	127.0.0.1       localhost <br>
+		#	::1             localhost <br><br>
+
+		<strong>127.0.0.1     midominio.test</strong>
+	</code>
+
+
+	<!-- Archivo httpd-vhost.conf (Apache) -->
+	<h3>Archivo httpd-vhost.conf (Apache)</h3>
+	<p>Este archivo de Apache permite conectar un dominio local con una ruta de archivos en el sistema, esta ubicado en la carpeta:</p>
+	<code>C:\xampp\apache\conf\extra\httpd-vhost.conf</code>
+
+	<p>Aqui escribimos la ruta que deseamos asociar, y a continuacion el domnio local con el que deseamos que quede enlazada</p>
+	<!-- codigo -->
+	<code>
+		&lt;VirtualHost *:80&gt; <br>&nbsp;&nbsp;&nbsp;
+			DocumentRoot <strong>"C:/xampp/htdocs"</strong> <br>&nbsp;&nbsp;&nbsp;
+			ServerName <strong>localhost</strong> <br>
+		&lt;/VirtualHost&gt; <br><br>
+		
+		&lt;VirtualHost *:80&gt; <br>&nbsp;&nbsp;&nbsp;
+			DocumentRoot <strong>"C:/xampp/htdocs/miproyecto/public/index.php"</strong> <br>&nbsp;&nbsp;&nbsp;
+			ServerName <strong>midominio.test</strong> <br>
+		&lt;/VirtualHost&gt;
+	</code>
+
+	<p>Es importante que si alteramos este archivo por primera vez, el primer dominio y ruta especificados sea "C:/xampp/htdocs" y "localhost", porque de lo contrario no vamos a poder acceder a /htdocs usando "localhost".</p>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+
+</body>
+</html>

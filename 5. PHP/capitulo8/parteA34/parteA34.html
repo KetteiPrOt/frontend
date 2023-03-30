@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 34</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Paginacion</h1>
+	<h4 class="enlace-volver"><a href="../capitulo8.html">Volver al capitulo</a></h4>
+	<hr>
+	
+	<!-- Descartar variables -->
+	<h3>Descartar variables</h3>
+	<p>
+		Para la paginacion vamos a usar variables GET de la URL. Primero nesecito descartarlas para que el enrutador no se rompa.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Metodo dispatch() del enrutador</strong> <br><br>
+
+		$requestUri = $_SERVER["REQUEST_URI"]; <strong>// URL: /mvc.test URI: /contactos/</strong> <br><br>
+
+        <strong>// Si hay paginacion en la URL la detecta y la aparta</strong> <br>
+        if (str_contains($requestUri, "?")) { <br>&nbsp;&nbsp;&nbsp;
+            <strong>// URL: /mvc.test URI: /contactos/?page=1</strong> <br>&nbsp;&nbsp;&nbsp;
+            $uriLen = strpos($requestUri, "?") - 1; <br>&nbsp;&nbsp;&nbsp;
+            <strong>// URI: /contactos/</strong> <br>&nbsp;&nbsp;&nbsp;
+            $requestUri = substr($requestUri, 0, $uriLen); <br>
+        } <br><br>
+
+        $requestUri = trim($requestUri, "/"); <strong>// URL: /mvc.test URI: contactos</strong> <br><br>
+
+        $method = $_SERVER["REQUEST_METHOD"]; <strong>// get o post</strong>
+	</code>
+
+
+	<!-- Metodo paginate() -->
+	<h3>Metodo paginate()</h3>
+	<p>
+		Voy a crear el metodo paginate() en el Modelo General, es quien se va a encargar de recuperar la variable de la URL y hacer la consulta.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Modelo General</strong> <br><br>
+
+		public function paginate(int $cant = 10) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$page = isset($_GET["page"]) ? $_GET["page"] : 1; <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Cuando $page aumenta en 1, $point aumenta en el valor de $cant</strong> <br>&nbsp;&nbsp;&nbsp;
+			$point = $cant * ($page - 1); <br><br>&nbsp;&nbsp;&nbsp;
+
+			$sql = "SELECT * FROM {$this->table} LIMIT ?, {$cant};"; <br><br>&nbsp;&nbsp;&nbsp;
+
+			$contactos = $this->query($sql, [$point], "i")->get(); <strong>// [ [], [], [], ... ]</strong> <br><br>&nbsp;&nbsp;&nbsp;
+
+			return $contactos; <br>
+		}
+	</code>
+	
+
+	<!-- Controlador -->
+	<h3>Controlador</h3>
+	<p>
+		Voy a usar el nuevo metodo para hacer la consulta en el ContactController y pasarsela a la vista index.php
+	</p>
+	<!-- codigo -->
+	<code>
+		public function index(): string <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$contactsModel = new Contacts; <br><br>&nbsp;&nbsp;&nbsp;
+
+			$contactos = $contactsModel->paginate(); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return $this->view("contactos.index", compact("contactos")); <br><br>&nbsp;&nbsp;&nbsp;
+
+			// Hacer la consulta a la base de datos y obtener los datos <br>&nbsp;&nbsp;&nbsp;
+			# $contactos = $contactsModel->all(); <br><br>&nbsp;&nbsp;&nbsp;
+
+			// return $contactos; <br>&nbsp;&nbsp;&nbsp;
+			# return $this->view("contactos.index", compact("contactos")); <br>&nbsp;&nbsp;&nbsp;
+			// return "Mostrara la lista de contactos"; br
+		}
+	</code>
+
+	<p>
+		Con esto cada vez que pasamos la variable $page por la URL (?page= ) se ejecutara la paginacion correspondiente.
+	</p>
+
+
+	<!-- Botones de paginacion -->
+	<h3>Botones de paginacion</h3>
+	<p>
+		Para crear los botones y poner la paginacion a dispocision del usuario debemos cambiar la informacion que retora el metodo paginate(), como le pasa esa informacion el ContactController a la vista index, como la vista index muestra esa informacion... y finalmente separar la paginacion como un "asset" independiente que pueda ser reutilizado y ahorrarnos mucho trabajo.
+	</p>
+
+
+	<!-- Reescribir paginate() -->
+	<h3>Reescribir paginate()</h3>
+	<p>De esta forma devuelvo toda la informacion que nesecito para crear los botones del usuario:</p>
+	<!-- codigo -->
+	<code>
+		public function paginate(int $cant = 10): array <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Recupera la pagina por la URL, si no hay le da el valor de 1</strong> <br>&nbsp;&nbsp;&nbsp;
+			$pagina = isset($_GET["page"]) ? $_GET["page"] : 1;<br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Cuando $pagina aumenta en 1, $actual aumenta en el valor de $cant</strong> <br>&nbsp;&nbsp;&nbsp;
+			$actual = $cant * ($pagina - 1); <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Consulta a la base de datos y guarda la cantidad total de registros</strong> <br>&nbsp;&nbsp;&nbsp;
+			$sql = "SELECT SQL_CALC_FOUND_ROWS * FROM {$this->table} LIMIT ?, {$cant};"; <br><br>&nbsp;&nbsp;&nbsp;
+
+			$registros = $this->query($sql, [$actual], "i")->get(); <strong>// [ [], [], [], ... ]</strong> <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Reupera la cantidad total de registros</strong> <br>&nbsp;&nbsp;&nbsp;
+			$cantidad = $this->query("SELECT FOUND_ROWS() AS total")->first(); <br><br>&nbsp;&nbsp;&nbsp;
+			
+			<strong>// Obtiene la ultima pagina</strong> <br>&nbsp;&nbsp;&nbsp;
+			$ultimaPagina = ceil($cantidad["total"] / $cant); <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Obtener URI sin variables GET</strong> <br>&nbsp;&nbsp;&nbsp;
+			$requestUri = $_SERVER["REQUEST_URI"]; <br><br>&nbsp;&nbsp;&nbsp;
+
+			if (str_contains($requestUri, "?")) { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$uriLen = strpos($requestUri, "?"); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$requestUri = substr($requestUri, 0, $uriLen); <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			$requestUri = trim($requestUri, "/"); <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Definir las URIs de prev y next con la URI obtenida</strong> <br>&nbsp;&nbsp;&nbsp;
+			$next_page_url = "/" . $requestUri . "?page=" . $pagina + 1; <br>&nbsp;&nbsp;&nbsp;
+			$prev_page_url = "/" . $requestUri . "?page=" . $pagina - 1; <br><br>&nbsp;&nbsp;&nbsp;
+
+			return [ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"registros" => $registros, <strong>// [ [], [], [], ... ]</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"actual" => ($cant * ($pagina - 1)) + 1, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"tope" => ($cant * ($pagina - 1)) + count($registros), <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"prev_page_url" => $pagina &gt; 1 ? $prev_page_url : null, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"next_page_url" => $pagina &lt; $ultimaPagina ? $next_page_url : null, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"ultimaPagina" => $ultimaPagina, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"total" => $cantidad["total"] <br>&nbsp;&nbsp;&nbsp;
+			]; <br>
+		}
+	</code>
+
+
+	<!-- Reescribir Controlador -->
+	<h3>Reescribir Controlador</h3>
+	<p>En base a lo realizado en el modelo, ahora vamos a pasar los datos de forma diferente en el controlador. Reescribi el metodo index()</p>
+	<!-- codigo -->
+	<code>
+		public function index(): string <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$contactsModel = new Contacts; <br><br>&nbsp;&nbsp;&nbsp;
+
+			$informacion = $contactsModel->paginate(10); <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>
+				// $informacion =  [ <br>&nbsp;&nbsp;&nbsp;
+				//     "contactos" => $contactos, // [ [], [], [], ... ] <br>&nbsp;&nbsp;&nbsp;
+				//     "actual" => ($cant * ($pagina - 1)) + 1, <br>&nbsp;&nbsp;&nbsp;
+				//     "tope" => ($cant * ($pagina - 1)) + count($contactos), <br>&nbsp;&nbsp;&nbsp;
+				//     "prev_page_url" => $pagina &gt; 1 ? $prev_page_url : null, <br>&nbsp;&nbsp;&nbsp;
+				//     "next_page_url" => $pagina &lt; $ultimaPagina ? $next_page_url : null, <br>&nbsp;&nbsp;&nbsp;
+				//     "ultimaPagina" => $ultimaPagina, <br>&nbsp;&nbsp;&nbsp;
+				//     "total" => $cantidad["total"] <br>&nbsp;&nbsp;&nbsp;
+				// ]; <br><br>&nbsp;&nbsp;&nbsp;
+			</strong>
+			
+			return $this->view("contactos.index", $informacion); <br>&nbsp;&nbsp;&nbsp;
+			<strong>// return $informacion;</strong> <br>
+		}
+	</code>
+
+
+	<!-- Reescribir Vista index -->
+	<h3>Reescribir Vista index</h3>
+	<p>Ahora voy a reescribir la vista para incluir la nueva informacion y separar la paginacion como un asset.</p>
+	<!-- codigo -->
+	<code>
+		&lt;!DOCTYPE html&gt; <br>
+		&lt;html lang="en"&gt; <br>
+		&lt;head&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta charset="UTF-8"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;title&gt;Listado de Contactos&lt;/title&gt; <br>
+		&lt;/head&gt; <br>
+		&lt;body&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;h1&gt;Indice&lt;/h1&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			&lt;?php <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$contactos = "registros"; <br>&nbsp;&nbsp;&nbsp;
+			?&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			&lt;p&gt;&lt;a href="contactos/crear"&gt;Nuevo Contacto&lt;/a&gt;&lt;/p&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			&lt;?php foreach ($$contactos as $contacto): ?&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;?php <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					$id = $contacto["id"]; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					$nombre = $contacto["nombre"]; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					$telefono = $contacto["telefono"]; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					<strong>// extract($contacto);</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				?&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				&lt;ul&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;a href="/contactos/&lt;?= $id ?&gt;"&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						&lt;li&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+							&lt;strong&gt;Nombre:&lt;/strong&gt; &lt;?= $nombre ?&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						&lt;/li&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						&lt;li&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+							&lt;strong&gt;Telefono:&lt;/strong&gt; &lt;?= $telefono ?&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						&lt;/li&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;/a&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;/ul&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;?php endforeach ?&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			&lt;?php require_once("../resourses/views/assets/pagination.php"); ?&gt; <br>
+		&lt;/body&gt; <br>
+		&lt;/html&gt;
+	</code>
+
+
+	<!-- Crear asset -->
+	<h3>Crear asset</h3>
+	<p>Creo la carpeta "assets" dentro de la carpeta "resourses", aqui voy a guardar todos los assets.</p>
+	<p>
+		Creo el asset "pagination.php" dentro de la carpeta "assets" y en el guardo el codigo de la paginacion:
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Asset pagination.php</strong> <br><br>
+
+		&lt;p&gt;Mostrando &lt;?= $actual ?&gt; hasta &lt;?= $tope ?&gt; de &lt;?= $total ?&gt; resultados.&lt;/p&gt; <br><br>
+
+		&lt;?php <br>&nbsp;&nbsp;&nbsp;
+			if ($prev_page_url) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo "&lt;a href=\"$prev_page_url\"&gt;Anterior&lt;/a&gt; &lt;br&gt;"; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			for ($i = 1; $i &lt;= $ultimaPagina; $i++) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo "&lt;a href=\"/contactos?page=$i\"&gt;Pagina $i&lt;/a&gt; &lt;br&gt;"; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			if ($next_page_url) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo "&lt;a href=\"$next_page_url\"&gt;Siguiente&lt;/a&gt; &lt;br&gt;"; <br>
+			}
+		?&gt;
+	</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

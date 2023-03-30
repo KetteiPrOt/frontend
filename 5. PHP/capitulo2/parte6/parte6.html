@@ -42,6 +42,27 @@
 	<!-- codigo -->
 	<code>echo pi(); <strong>// 3.1415926535898</strong></code>
 
+	<!-- round() -->
+	<h4>round()</h4>
+	<p>Redondea un numero decimal.</p>
+	<!-- codigo -->
+	<code>
+		echo round(2.5) . "&lt;br&gt;"; <strong>// 3</strong> <br><br>
+
+        echo round(5.1); <strong>// 5</strong>
+	</code>
+
+
+	<!-- ceil() -->
+	<h4>ceil()</h4>
+	<p>Redondea un numero decimal siempre hacia arriba.</p>
+	<!-- codigo -->
+	<code>
+		echo round(2.5) . "&lt;br&gt;"; <strong>// 3</strong> <br><br>
+
+        echo round(5.1); <strong>// 6</strong>
+	</code>
+
 
 	<!-- Definir funciones -->
 	<h3>Definir funciones</h3>
@@ -145,6 +166,30 @@
 		echo $mensaje; <strong>// Hola Mundo! Soy Joel Mero</strong>
 	</code>
 
+	<p>Tambien se puede usar para pasar los elementos de un Arreglo en multiples variables (desgranarlo en variables xds):</p>
+	<!-- codigo -->
+	<code>
+		$array = ["Joel", "Elaina-san", "Hotsuki", "Arc-en-Ciel"]; <br><br>
+    
+		function informacion(string $otaku, string $waifu, string $armaWaifu, string $armaOtaku): string <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$informacion = "Otaku: <strong>$otaku</strong> &lt;br&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+							Waifu: <strong>$waifu</strong> &lt;br&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+							Arma de la Waifu: <strong>$armaWaifu</strong> &lt;br&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+							Arma del Otaku: <strong>$armaOtaku</strong>"; <br><br>&nbsp;&nbsp;&nbsp;
+			
+			return $informacion; <br>
+		} <br><br>
+
+		echo informacion(...$array); <br>
+		<strong>
+			// Otaku: Joel <br>
+			// Waifu: Elaina-san <br>
+			// Arma de la Waifu: Hotsuki <br>
+			// Arma del Otaku: Arc-en-Ciel
+		</strong>
+	</code>
+
 
 	<!-- Argumentos con tipado definido -->
 	<h3>Argumentos con tipado definido</h3>
@@ -245,5 +290,67 @@
 	<code>
 		fn() => /* codigo */;
 	</code>
+
+
+	<!-- is_callable() -->
+	<h3>is_callable()</h3>
+	<p>Retorna verdadero si el contenido de una variable es una funcion o metodo ejecutable.</p>
+	<!-- codigo -->
+	<code>
+		$array["cero"] = function () { <br>&nbsp;&nbsp;&nbsp;
+			return "Hola Mundo!"; <br>
+		}; <br><br>
+
+		if (is_callable($array["cero"])) { <br><br>&nbsp;&nbsp;&nbsp;
+
+			$funcion = $array["cero"]; <br>&nbsp;&nbsp;&nbsp;
+			echo $funcion(); // Hola Mundo! <br><br>
+
+		} else { <br>&nbsp;&nbsp;&nbsp;
+			echo "No es una funcion"; <br>
+		}
+	</code>
+
+
+	<!-- Funciones para archivos -->
+	<h3>Funciones para archivos</h3>
+	<p>Estas funciones son para trabajar con archivos.</p>
+
+	<!-- requiere_once() -->
+	<h4>requiere_once()</h4>
+	<p>Importa un archivo requerido a la ejecucion del programa actual, si el archivo no existe o falla se produce un fatal error que acaba con la ejecucion del programa.</p>
+	<!-- codigo -->
+	<code>requiere_once("ruta_archivo");</code>
+
+	<!-- include() -->
+	<h4>include()</h4>
+	<p>Icluira un archivo opcional a la ejecucion del programa actual (lo "incluye") desde la linea donde se ha realizado la inclusion, si el archivo no exite o no lo encuentra recibiremos una advertencia antes de fallar pero no impide la ejecucion del resto del programa.</p>
+	<!-- codigo -->
+	<code>include("ruta_archivo");</code>
+
+	<!-- ob_start() -->
+	<h4>ob_start()</h4>
+	<p>Esta función activará el almacenamiento en búfer de la salida. Mientras dicho almacenamiento esté activo, no se enviará ninguna salida desde el script (aparte de cabeceras); en su lugar la salida se almacenará en un búfer interno.</p>
+	<p>
+		Se puede usar para capturar un documento HTML [funcion include("documento.html")] y obtener los datos del documento en una variable con la funcion de abajo.
+	</p>
+
+	<!-- ob_get_clean() -->
+	<h4>ob_get_clean()</h4>
+	<p>Obtiene el contenido del búfer actual y elimina el búfer de salida actual. Es un resumen de ejecutar las funciones ob_get_contents() y ob_end_clean().</p>
+
+	<!--  -->
+	<h4></h4>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
 </body>
 </html>

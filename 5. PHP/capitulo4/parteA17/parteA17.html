@@ -115,5 +115,45 @@
 		echo $objeto->metodo(); <strong>// Valor de la propiedad estatica</strong>
 	</code>
 
+
+	<!-- NombreClase::class -->
+	<h3>NombreClase::class</h3>
+	<p>Esta propiedad estatica contiene el namespace junto al nombre de la clase. Todas las clases tienen esta propiedad.</p>
+	<p>
+		Si el namespace de la clase coincide con el directorio donde se encuentra, esta propiedad nos daria la ruta para acceder al archivo en el que esta escrita la clase.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Estructura de carpetas</strong> <br>
+		<strong>app</strong>/ <br>&nbsp;&nbsp;&nbsp;
+			<strong>Controllers</strong>/ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				HomeController.php <br>
+		<strong>routes</strong>/ <br>&nbsp;&nbsp;&nbsp;
+			web.php <br>
+		autoload.php <br><br><br>
+
+
+		<strong>// HomeController.php</strong> <br><br>
+
+		<strong>namespace</strong> app\Controllers; <br><br>
+
+		class HomeController { <br>&nbsp;&nbsp;&nbsp;
+			public function metodo() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Controlador de la pagina Home"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br><br>
+
+
+		<strong>// web.php</strong> <br><br>
+
+		require_once("../autoload.php"); <br><br>
+
+		<strong>use</strong> app\Controllers\HomeController; <strong>// Carga el archivo HomeController.php automaticamente gracias al autoload</strong> <br><br>
+		
+		echo HomeController::class; <strong>// app\Controllers\HomeController</strong>
+
+	</code>
+
 </body>
 </html>

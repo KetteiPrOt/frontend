@@ -57,6 +57,40 @@
 	</code>
 
 
+	<!-- stdClass() -->
+	<h3>stdClass()</h3>
+	<p>Una clase vacia de PHP para crear Objetos genericos vacios:</p>
+	<!-- codigo -->
+	<code>
+		$objeto = new stdClass(); <br><br>
+
+		print_r($objeto); <strong>// stdClass Object ( )</strong>
+	</code>
+
+	<p>Tambien se pueden crear instanciando una clase anonima:</p>
+	<!-- codigo -->
+	<code>
+		$objeto = new class{}; <br><br>
+
+		print_r($objeto); <strong>// class@anonymous Object ( )</strong>
+	</code>
+
+
+	<!-- is_object() -->
+	<h3>is_object()</h3>
+	<p>Esta funcion verifica si el contenido de una variable es un objeto:</p>
+	<!-- codigo -->
+	<code>
+		$objeto = new Class{}; <br><br>
+		
+		$array = [1, 2, 3, 4, 5]; <br><br>
+
+		echo is_object($objeto) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <strong>// Verdadero</strong> <br><br>
+		
+		echo is_object($array) ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;";  <strong>// Falso</strong>
+	</code>
+
+
 	<!-- Asignar y Acceder Valores -->
 	<h3>Asignar y Acceder Valores</h3>
 	<p>Para asignar valores a las propiedades de los objetos usamos el operador <em>-></em>.</p>
@@ -105,6 +139,24 @@
 		{ <br>&nbsp;&nbsp;&nbsp;
 			return $this->waifu ? $this->waifu : "No tenemos waifu"; <br>
 		}
+	</code>
+
+
+	<!-- {"metodo"}() -->
+	<h3>{"metodo"}()</h3>
+	<p>Esta es una sintexis especial que sirve para ejecutar metodos de un objeto usando una cadena de texto como su nombre:</p>
+	<!-- codigo -->
+	<code>
+		class Gato { <br>&nbsp;&nbsp;&nbsp;
+			public function saludar(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Soy un gato! NYAAA~"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+	
+		$michi = new Gato; <br><br>
+
+		echo $michi->{"saludar"}(); <strong>// Soy un gato! NYAAA~</strong>
 	</code>
 
 

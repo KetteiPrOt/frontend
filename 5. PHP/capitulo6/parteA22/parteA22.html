@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 22</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Introduccion</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que es MVC -->
+	<h3>Que es MVC</h3>
+	<p>Es un patron de diseño que sirve para estructurar un proyecto dividiendo el codigo en tres grandes grupos segun la responsabilidad que tenga:</p>
+	<img src="mvc.png" width="400">
+
+
+	<!-- Modelo -->
+	<h3>Modelo</h3>
+	<p>Contiene la funcionalidad central y los datos.</p>
+
+	<p>En este grupo deberiamos colocar todo el codigo que se encarge de conectarse a la base de datos.</p>
+
+	<p>Por ejemplo: el codigo para crear un nuevo registro, o para editarlo, o para todas las demas tareas cuya responsabilidad giren en torno a la base de datos. </p>
+
+
+	<!-- Vista -->
+	<h3>Vista</h3>
+	<p>Muestra la información al usuario, siempre es posible definir una o más vistas para una misma aplicación.</p>
+
+	<p>Aqui va el codigo HTML, CSS, y JS que creara la UI de la aplicacion... aqui va el frontend.</p>
+
+
+	<!-- Controlador -->
+	<h3>Controlador</h3>
+	<p>Maneja la entrada del usuario. Esto se hace para separar las representaciones internas de la información de las formas en que se presenta y se acepta la información del usuario. De esta manera se desacopla los componentes y permite una reutilización eficiente del código.</p>
+
+	<p>Los controladores funcionan como el cerebro de la aplicacion: en ellos vamos a colocar la logica del negocio.</p>
+
+	<p>Por ejemplo: si el usuario ingresa una url vamos a asignarle esa direccion a cierto controlador para que decida que contenido mostrar. En el caso de que la vista se comunique con el controlador para mostrar el contenido de una url, el controlador va a llamar al modelo para obtener los datos nesesarios, y luego se la va a pasar a la vista correspondiente para que ella finalmente le muestre el resultado al usuario.</p>
+
+	<p>La funcion del controlador no es hacer consultas a la base de datos, ni escribir codigo HTML. Su funcion es dirigir el flujo de la informacion haciendo de intermediario entre la vista y el modelo.</p>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

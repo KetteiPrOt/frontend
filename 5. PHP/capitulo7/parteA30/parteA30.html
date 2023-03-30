@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 30</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Contactos - Inicio (1)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo7.html">Volver al capitulo</a></h4>
+	<hr>
+
+
+	<!-- Aplicacion Basica -->
+	<h3>Aplicacion Basica</h3>
+	<p>
+		Ahora que ya tenemos todas las herramientas necesarias vamos a crear una aplicacion sencilla de administracion de contactos.
+	</p>
+	<p>
+		La aplicacion contituira una simple lista donde podremos ver, crear, editar, y borrar contactos de telefono.
+	</p>
+
+
+	<!-- Rutas de operacion -->
+	<h3>Rutas de operacion</h3>
+	<p>
+		Para que la aplicacion pueda realizar cada una de las acciones que debe realizar vamos a definir una serie de rutas en nuestro enrutador. El usuario usara estas rutas para realizar las solicitudes a nuestra aplicacion.
+	</p>
+	<p>
+		Reescribi el archivo web.php con todas las rutas y el controlador que vamos a nesecitar:
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Archivo web.php</strong> <br><br>
+
+		use Lib\Route; <strong>// Carga el archivo Route.php automaticamente gracias al autoload</strong> <br><br>
+
+		use app\Controllers\HomeController; <strong>// Carga el archivo HomeController.php automaticamente gracias al autoload</strong> <br><br>
+
+		use app\Controllers\ContactController; <strong>// Carga el archivo ContactController.php automaticamente gracias al autoload</strong> <br><br>
+
+		Route::get("/", [HomeController::class, "index"]); <br><br>
+
+		Route::get("/contactos", [ContactController::class, "index"]); <br><br>
+
+		Route::get("/contactos/crear", [ContactController::class, "create"]); <br><br>
+
+		Route::post("/contactos", [ContactController::class, "store"]); <br><br>
+
+		Route::get("/contactos/:id", [ContactController::class, "show"]); <br><br>
+
+		Route::get("/contactos/:id/editar", [ContactController::class, "edit"]); <br><br>
+
+		Route::post("/contactos/:id", [ContactController::class, "update"]); <br><br>
+
+		Route::post("/contactos/:id/eliminar", [ContactController::class, "destroy"]); <br><br>
+
+		<strong>
+			// Route::get("/cursos/:slug", function (string $slug) { <br>
+			//     return "Valor de slug: $slug &lt;br&gt;"; <br>
+			// }); <br><br>
+		</strong>
+
+		Route::dispatch();
+	</code>
+
+
+	<!-- Controlador de rutas -->
+	<h3>Controlador de rutas</h3>
+	<p>
+		Como todas las rutas estan en el mismo contexto (administrar los contactos) en este caso es mas practico usar un solo controlador para encargarse de todas las rutas.
+	</p>
+	<p>
+		Cree un nuevo controlador (ContactController.php) para administrar todas las rutas:
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Archivo ContactController.php</strong> <br><br>
+
+		namespace app\Controllers; <br><br>
+
+		class ContactController extends Controller { <br><br>&nbsp;&nbsp;&nbsp;
+
+			public function index() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Mostrara la lista de contactos"; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			public function create()<br>&nbsp;&nbsp;&nbsp;
+			{<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Mostrara un formulario para crear un contacto";<br>&nbsp;&nbsp;&nbsp;
+			}<br><br>&nbsp;&nbsp;&nbsp;
+
+			public function store()<br>&nbsp;&nbsp;&nbsp;
+			{<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Procesara la informacion recibida para crear un contacto";<br>&nbsp;&nbsp;&nbsp;
+			}<br><br>&nbsp;&nbsp;&nbsp;
+
+			public function show($id)<br>&nbsp;&nbsp;&nbsp;
+			{<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Mostrara un contacto con id: $id";<br>&nbsp;&nbsp;&nbsp;
+			}<br><br>&nbsp;&nbsp;&nbsp;
+
+			public function edit($id)<br>&nbsp;&nbsp;&nbsp;
+			{<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Mostrara un formulario para editar un contacto con id: $<br>&nbsp;&nbsp;&nbsp;id";
+			}<br><br>&nbsp;&nbsp;&nbsp;
+
+			public function update($id)<br>&nbsp;&nbsp;&nbsp;
+			{<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Procesara la informacion recibida para editar un contacto con id: $id";<br>&nbsp;&nbsp;&nbsp;
+			}<br><br>&nbsp;&nbsp;&nbsp;
+
+			public function destroy($id)<br>&nbsp;&nbsp;&nbsp;
+			{<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Eliminara un contacto con id: $id";<br>&nbsp;&nbsp;&nbsp;
+			}<br><br>
+
+		}
+	</code>
+
+
+	<!-- Crear Vistas -->
+	<h3>Crear Vistas</h3>
+	<p>
+		Creo las 4 vistas que voy a nesecitar agrupandolas en una carpeta (contactos) y, para seguir un orden, nombrandolas con los mismos nombres de los metodos del ContactController que las administran.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>resourses/</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>js/</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>css/</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>views/</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>contactos/</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					create.php <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					edit.php <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					index.php <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					show.php <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>prueba/</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					homeTest.php <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				home.php
+	</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

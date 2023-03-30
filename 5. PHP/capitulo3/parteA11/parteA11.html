@@ -52,8 +52,8 @@
 	<code></code>
 
 
-	<!-- Usar GET -->
-	<h3>Usar GET</h3>
+	<!-- $_GET -->
+	<h3>$_GET</h3>
 	<p>Al enviar la informacion por el metodo GET esta queda almacenada en un array llamado $_GET. La informacion se muestra en la url.</p>
 	<p>
 		La clave que hace referencia al dato de cada input en el formulario es el texto de sus propiedades name="...".
@@ -67,8 +67,8 @@
 		$_GET["clave"] = "value del input";
 	</code>
 
-	<!-- Usar POST -->
-	<h3>Usar POST</h3>
+	<!-- $_POST -->
+	<h3>$_POST</h3>
 	<p>Al enviar la informacion por el metodo POST esta queda almacenada en un array llamado $_POST. La informacion no se muestra en la url.</p>
 	<p>
 		La clave que hace referencia al dato de cada input en el formulario es el texto de sus propiedades name="...".
@@ -162,6 +162,36 @@
 		$ruta = $carpeta . $imagen["name"];
 		move_uploaded_file($imagen["tmp_name"], $ruta); <strong>// La imagen fue movida y guardada a la carpeta media</strong>
 	</code>
+
+
+	<!-- Sentencia : end -->
+	<h3>Sentencia : end</h3>
+	<p>Esta sentencia sirve para usar estructuras de control PHP sobre codigo HTML.</p>
+	<!-- codigo -->
+	<code>
+		&lt;?php for ($i = 0; $i &lt; 5; $i++): ?&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+            &lt;p&gt;Hola Mundo!&lt;/p&gt; <br><br>
+ 
+	    &lt;?php endfor ?&gt; <br><br>
+
+        &lt;!--  <br>&nbsp;&nbsp;&nbsp;
+            Hola Mundo! <br>&nbsp;&nbsp;&nbsp;
+            Hola Mundo! <br>&nbsp;&nbsp;&nbsp;
+            Hola Mundo! <br>&nbsp;&nbsp;&nbsp;
+            Hola Mundo! <br>&nbsp;&nbsp;&nbsp;
+            Hola Mundo! <br>
+         --&gt;
+	</code>
+
+	<p>Funciona con for () {}, foreach () {}, while () {}, if () {}, switch () {}, y declare.</p>
+
+
+	<!-- header() -->
+	<h3>header()</h3>
+	<p>Envia encabezados http sin formato</p>
+	<!-- codigo -->
+	<code>header("Location /url");</code>
 
 
 	<!-- Practica -->

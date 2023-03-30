@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 31</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Contactos - Mostrar (1)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo7.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Mostrar los contactos -->
+	<h3>Mostrar los contactos</h3>
+	<p>
+		El primer paso para construir esta aplicacion es mostrar el indice que contiene todos los contactos.
+	</p>
+	<p>
+		Para lograr esto vamos a nesecitar recuperar todos los contactos de la base de datos usando un modelo, y despues mostrarlos al usuario usando una vista (en este caso la vista index para el indice de todos y la vista show para uno solo).
+	</p>
+
+
+	<!-- Modelo Contacts -->
+	<h3>Modelo Contacts</h3>
+	<p>
+		Este modelo se encargara de conectarse a la tabla que contendra todos nuestros contactos. He creado el nuevo Modelo Contacts:
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Modelo Contacts.php</strong> <br><br>
+
+		namespace app\Models; <br><br>
+
+		<strong>// El autoload esta cargando el archivo "/app/Models/Model.php" al extender la clase</strong> <br>
+		class Contacts extends Model <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			protected $table = "contacts"; <br>
+		}
+	</code>
+
+
+	<!-- Controlador -->
+	<h3>Controlador</h3>
+	<p>
+		En el ContactController vamos a llamar a Modelo Contacts, hacer la consulta, y pasarle los datos a la vista (esta vez mediante la funcion compact, porque son muchos registros) para mostrarselos al usuario.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Controlador ContactController.php</strong> <br><br>
+
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$contactsModel = new Contacts; <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Hace la consulta a la base de datos y obtener los datos</strong> <br>&nbsp;&nbsp;&nbsp;
+			$contactos = $contactsModel->all(); <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// return $contactos;</strong> <br>&nbsp;&nbsp;&nbsp;
+			return $this->view("contactos.index", compact("contactos")); <br>&nbsp;&nbsp;&nbsp;
+			<strong>// return "Mostrara la lista de contactos";</strong> <br>
+		}
+	</code>
+
+
+	<!-- Vista -->
+	<h3>Vista</h3>
+	<p>Por ahora vamos a imprimir los datos por pantalla en listas HTML en la vista index.php.</p>
+	<!-- codigo -->
+	<code>
+		&lt;!DOCTYPE html&gt; <br>
+		&lt;html lang="en"&gt; <br>
+		&lt;head&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta charset="UTF-8"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;title&gt;Listado de Contactos&lt;/title&gt; <br>
+		&lt;/head&gt; <br>
+		&lt;body&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;h1&gt;Indice&lt;/h1&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			&lt;?php foreach ($contactos as $contacto): ?&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;ul&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;a href="contactos/&lt;?= $contacto["id"] ?&gt;"&gt; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+					&lt;?php foreach ($contacto as $columna =&gt; $valor): ?&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						&lt;li&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+							&lt;?= "&lt;strong&gt;$columna:&lt;/strong&gt; $valor"; ?&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						&lt;/li&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;?php endforeach ?&gt; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+					&lt;/a&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;/ul&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;?php endforeach ?&gt; <br>
+		&lt;/body&gt; <br>
+		&lt;/html&gt;
+	</code>
+	
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

@@ -16,7 +16,7 @@
 	<h3>Asignacion Simple</h3>
 	<p>Asigna el valor de la derecha al elemento de la izquierda.</p>
 	<!-- codigo -->
-	<code>&variable = "Valor";</code>
+	<code>$variable = "Valor";</code>
 
 
 	<!-- Asignacion por Referencia -->
@@ -31,6 +31,19 @@
 		$B = 12; <br><br>
 
 		echo "$A&nbsp;&nbsp;&nbsp;&nbsp;$B"; <strong>// 12&nbsp;&nbsp;&nbsp;&nbsp;12</strong>
+	</code>
+
+
+	<!-- Variables de Variables -->
+	<h3>Variables de Variables</h3>
+	<p>Se usa cuando queremos asignar el valor de una variable a otra usando el nombre de la primera como string.</p>
+	<!-- codigo -->
+	<code>
+		$saludo = "Hola Mundo!"; <br><br>
+
+    	$texto = "saludo"; <br><br>
+
+		echo $$texto; <strong>// Hola Mundo!</strong>
 	</code>
 
 

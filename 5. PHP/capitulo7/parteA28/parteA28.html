@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 28</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">CRUD</h1>
+	<h4 class="enlace-volver"><a href="../capitulo8.html">Volver al capitulo</a></h4>
+	<hr>
+	
+	<!-- Crear consulta -->
+	<h3>Crear consulta</h3>
+	<p>Las consultas se hacen mediante el metodo query() del objeto que representa la conexion con MySQL.</p>
+
+	<!-- query() -->
+	<h4>query()</h4>
+	<p>Hace una consulta a la base de datos con codigo SQL. Almacenaremos la consulta en una nueva variable protegida homonima.</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Modelo Persons.php</strong> <br><br>
+
+		<strong>// Crear nueva variable protegida $query</strong> <br>
+		protected $connection, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+				  $query; <br><br>
+
+		<strong>// Crear metodo que ejecutara y guardara la consulta</strong> <br>
+		public function query(string $sql) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$this->query = $this->connection->query($sql); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return $this; <br>
+		}
+	</code>
+
+
+	<!-- Retornar resultado -->
+	<h3>Retornar resultado</h3>
+	<p>Los registros que coincidan con la consulta se obtienen como Arreglos mediante los metodos fetch_assoc() o fetch_all(MYSQLI_ASSOC).</p>
+
+	<!-- fetch_assoc() -->
+	<h4>fetch_assoc()</h4>
+	<p>
+		Retorna el primer registro de una consulta en la forma de un Arreglo asocitivo. Lo implementaremos en el modelo Persons con un metodo llamado first().
+	</p>
+	<!-- codigo -->
+	<code>
+		public function first() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$resultado = $this->query->fetch_assoc(); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return $resultado; <strong>// ["id" => 0, "nombre" => Joel, "correo" => "joel.mt@gmail.com" ... ]</strong> <br>
+		}
+	</code>
+
+	<!-- fetch_all(MYSQLI_ASSOC) -->
+	<h4>fetch_all(MYSQLI_ASSOC)</h4>
+	<p>
+		El metodo retorna todos los registros de la consulta en un Arreglo que contiene Arreglos asociativos, cada uno representando a un registro. Lo implementaremos en el modelo Persons con un metodo llamado get().
+	</p>
+	<!-- codigo -->
+	<code>
+		public function get() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$resultado = $this->query->fetch_all(MYSQLI_ASSOC); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return $resultado; <strong>// [ ["id" => 1 ... ], ["id" => 2 ... ], ["id" => 3 ... ] ... ]</strong> <br>
+		}
+	</code>
+
+
+	<!-- Mostrar resultado -->
+	<h3>Mostrar resultado</h3>
+	<p>Ahora que hemos creado las funciones en el Modelo Persons.php para obtener los datos de la BBDD, se los podemos pasar a la vista mediante el controlador (en este caso HomeController.php).</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Controlador HomeController</strong> <br><br>
+
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$personsModel = new Persons; <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Hace la consulta a la base de datos y obtener los datos</strong> <br>&nbsp;&nbsp;&nbsp;
+			$regitros = $personsModel->query("SELECT * FROM persons;")->get(); <strong>// [ ... ]</strong> <br><br>&nbsp;&nbsp;&nbsp;
+
+			return $this->view("prueba.homeTest", $regitros[0]); <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>
+				// return $this->view("prueba.homeTest", [ <br>&nbsp;&nbsp;&nbsp;
+				//     "nombre" => "Joel", <br>&nbsp;&nbsp;&nbsp;
+				//     "correo" => "joel.mt@gamil.com", <br>&nbsp;&nbsp;&nbsp;
+				//     ... <br>&nbsp;&nbsp;&nbsp;
+				// ]); <br>
+			</strong>
+		}
+	</code>
+
+	<p>No olvidemos incrustrar los datos en la vista usando simplemente las Claves del Arreglo como las variables (gracias al metodo extract).</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Vista homeTest.php</strong> <br><br>
+
+		&lt;!DOCTYPE html&gt; <br>
+		&lt;html lang="en"&gt; <br>
+		&lt;head&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta charset="UTF-8"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;title&gt;Pagina Principal (Test)&lt;/title&gt; <br>
+		&lt;/head&gt; <br>
+		&lt;body&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;p&gt;Hola desde la pagina homeTest&lt;/p&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			&lt;h3&gt;Registro&lt;/h3&gt;<br>&nbsp;&nbsp;&nbsp;
+			&lt;p&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>&lt;?=</strong> "&lt;strong&gt;Usuario:&lt;/strong&gt; <strong>$nombre</strong>&lt;br&gt; &lt;strong&gt;Correo:&lt;/strong&gt; <strong>$email</strong>&lt;br&gt; &lt;strong&gt;Telefono:&lt;/strong&gt; <strong>$telefono</strong>&lt;br&gt;" <strong>?&gt;</strong> <br>&nbsp;&nbsp;&nbsp;
+			&lt;/p&gt; <br>
+		&lt;/body&gt; <br>
+		&lt;/html&gt;
+	</code>
+
+
+	<!-- Modelo General -->
+	<h3>Modelo General</h3>
+	<p>
+		Al igual que con los controladores vamos a crear una Modelo general: "Model.php" que tenga la logica de las consultas a cualquier tablas, de modo que cada modelo especifico que creemos solo definira la tabla con la que vamos a trabajar.
+	</p>
+	<p>
+		Creamos el modelo Model.php y en el movemos toda la logica que tenia el modelo Persons.php. Extendemos Persons.php de Model.php y le agregamos una propiedad protegida que especifique la tabla a la que hace referencia:
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Modelo Persons.php</strong> <br><br>
+
+		namespace app\Models; <br><br>
+
+		<strong>// El autoload esta cargando el archivo "/app/Models/Model.php" al extender la clase</strong> <br>
+		class Persons extends Model <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			protected $table = "Persons"; <br>
+		}
+	</code>
+
+	<p>
+		En el Modelo general podemos crear mas metodos que realizaen consultas predefinidas por defecto a cualquier tablas de la base de datos.
+	</p>
+	<p>
+		Para lograrlo usaremos la propiedad protegida "table" de cada modelo especifico, y los metodos que hemos creado para hacer consultas: query(), fetch_assoc(), y fetch_all(MYSQLI_ASSOC).
+	</p>
+	<p>Todos los ejemplos de uso a continuacion deberian mostrar el mismo registro en la vista homeTest.php:</p>
+
+
+	<!-- Consultar registros -->
+	<h3>Consultar registros</h3>
+	<p>Los siguientes son varios metodos de consultas comunes para recuperar registros de la base de datos.</p>
+	<p>
+		Los ejemplos de uso se ejecutan en el controlador HomeControler.php y muestran la informacion recuperada en la vista homeTest.php
+	</p>
+
+	<!-- all() -->
+	<h4>all()</h4>
+	<p>Este metodo trae todos los registros de la tabla:</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Modelo General Model.php</strong> <br><br>
+
+		public function all(): array <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$sql = "SELECT * FROM {$this->table}"; <br><br>&nbsp;&nbsp;&nbsp;
+
+			return $this->query($sql)->get(); <br>
+		}
+	</code>
+
+	<p>Ejemplo de uso:</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Hace la consulta a la base de datos y obtener los datos</strong> <br>
+        $registros = $personsModel->all(); <strong>// [ ... ]</strong> <br><br>
+
+        return $this->view("prueba.homeTest", $registros[0]);
+	</code>
+
+	<!-- find() -->
+	<h4>find()</h4>
+	<p>Este metodo trae un registro de la tabla segun su id:</p>
+	<!-- codigo -->
+	<code>		
+		<strong>// Modelo General Model.php</strong> <br><br>
+
+		public function find(int $id): array <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$sql = "SELECT * FROM {$this->table} WHERE id = $id"; <br><br>&nbsp;&nbsp;&nbsp;
+
+			return $this->query($sql)->first(); <br>
+		}
+	</code>
+
+	<p>Ejemplo de uso:</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Hace la consulta a la base de datos y obtener los datos</strong> <br>
+        $registro = $personsModel->find(1); <strong>// [ ... ]</strong> <br><br>
+
+        return $this->view("prueba.homeTest", $registro);
+	</code>
+
+	<!-- where() -->
+	<h4>where()</h4>
+	<p>Este metodo filtra los registros segun el valor de los campos de una columna y un operador, ademas si no se especifica el operador asume que es "=".</p>
+	<!-- codigo -->
+	<code>
+		public function where(string $column, string | int $operator, string | int $value = null): object <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Si solo hay dos parametros el segundo corresponde al value, y por defecto es igualdad</strong> <br>&nbsp;&nbsp;&nbsp;
+			if ($value == null) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$value = $operator; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$operator = "="; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			$sql = "SELECT * FROM {$this->table} WHERE $column $operator '$value'"; <br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Es nesesario especificar cuantos registros retornar encadenando con first() [si deseea uno] o con get() [si deseea todos]</strong> <br>&nbsp;&nbsp;&nbsp;
+			return $this->query($sql); <br>
+		}
+	</code>
+
+	<p>Ejemplo de uso 1:</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Hace la consulta a la base de datos y obtener los datos</strong> <br>
+        $registro = $personsModel->where("id", 1)->first(); <strong>// [ ... ]</strong> <br><br>
+
+        return $this->view("prueba.homeTest", $registro);
+	</code>
+
+	<p>Ejemplo de uso 2:</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Hace la consulta a la base de datos y obtener los datos</strong> <br>
+        $registros = $personsModel->where("id", "&lt;", 4)->get(); <strong>// [ ... ]</strong> <br><br>
+
+        return $this->view("prueba.homeTest", $registros[0]);
+	</code>
+
+
+	<!-- create() -->
+	<h3>create()</h3>
+	<p>El siguiente metodo recibe un registro como un Arreglo e inserta los datos en la tabla, ademas retorna el registro insertado por si deseeamos mostrarlo por pantalla.</p>
+
+	<p>
+		La propiedad "insert_id" del objeto que representa la conexion con la BBDD contiene el id del ultimo registro insertado en la tabla.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Insertar</strong> <br>
+		public function create(array $data): array <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$columns = implode(", ", array_keys($data)); <strong>// key_1, key_2, key_3</strong> <br><br>&nbsp;&nbsp;&nbsp;
+
+			$values = "'" . implode("', '", array_values($data)) . "'"; <strong>// 'value_1', 'value_2', 'value_3'</strong> <br><br>&nbsp;&nbsp;&nbsp;
+			
+			$sql = "INSERT INTO {$this->table} ($columns) VALUES ($values);"; <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>
+				// INSERT INTO persons ( <br>&nbsp;&nbsp;&nbsp;
+				// &nbsp;&nbsp;&nbsp;&nbsp;nombre, email, telefono) <br>&nbsp;&nbsp;&nbsp;
+				// VALUES ('Joel', 'joel.mt@gmail.com', '0123456789'); <br><br>&nbsp;&nbsp;&nbsp;
+			</strong>
+
+			$this->query($sql); <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// La propiedad insert_id contiene el ultimo id insertado en la tabla</strong> <br>&nbsp;&nbsp;&nbsp;
+			$insert_id = $this->connection->insert_id; <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Retorna el ultimo registro creado por si deseeamos mostrarlo en la pantalla</strong> <br><br>&nbsp;&nbsp;&nbsp;
+			return $this->find($insert_id); <br>
+		}
+	</code>
+
+	<p>Ejemplo de uso:</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Hace la consulta a la base de datos y obtener los datos</strong> <br>
+        $registro = $personsModel->create([ <br>&nbsp;&nbsp;&nbsp;
+            "nombre" => "Juan", <br>&nbsp;&nbsp;&nbsp;
+            "email" => "juan.anju@gmail.com", <br>&nbsp;&nbsp;&nbsp;
+            "telefono" => "0123456789" <br>
+        ]); <br><br>
+
+        return $registro;
+	</code>
+
+
+	<!-- update() -->
+	<h3>update()</h3>
+	<p>El siguiente metodo recibe un registro como un Arreglo y lo usa para actualizar un registro existente usando su id ademas retorna el registro actualizado por si deseeamos mostrarlo por pantalla.</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Actualizar</strong> <br>
+		public function update(int | string $id, array $data): array <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$fields = []; <br><br>&nbsp;&nbsp;&nbsp;
+
+			foreach ($data as $key => $value) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$fields[] = "$key = '$value'"; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+			
+			$fields = implode(", ", $fields); <br><br>&nbsp;&nbsp;&nbsp;
+
+			$sql = "UPDATE {$this->table} SET $fields WHERE id = $id;"; <br>&nbsp;&nbsp;&nbsp;
+			<strong>
+				// UPDATE nombre_tabla SET <br>&nbsp;&nbsp;&nbsp;
+				//     columna_1 = nuevo_dato_1, <br>&nbsp;&nbsp;&nbsp;
+				//     columna_2 = nuevo_dato_2, <br>&nbsp;&nbsp;&nbsp;
+				//     columna_3 = nuevo_dato_3 <br>&nbsp;&nbsp;&nbsp;
+				//     ... <br>&nbsp;&nbsp;&nbsp;
+				// WHERE id = 1; <br><br>&nbsp;&nbsp;&nbsp;
+			</strong>
+
+			$this->query($sql); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return $this->find($id); <br>
+		}
+	</code>
+
+
+	<!-- delete() -->
+	<h3>delete()</h3>
+	<p>El siguiente metodo recibe el id del registro que se deseea eliminar y lo elimina, ademas retorna el registro eliminado por si deseeamos mostrarlo por pantalla.</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Eliminar</strong> <br>
+		public function delete(int | string $id): array <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$eliminar = $this->find($id); <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// DELETE FROM nombre_tabla WHERE id = 1;</strong> <br>&nbsp;&nbsp;&nbsp;
+			$sql = "DELETE FROM {$this->table} WHERE id = $id;"; <br><br>&nbsp;&nbsp;&nbsp;
+
+			$this->query($sql); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return $eliminar; <br>
+		}
+	</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

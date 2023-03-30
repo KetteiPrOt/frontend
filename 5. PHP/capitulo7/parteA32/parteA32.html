@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 32</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Contactos - Crear (2)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo7.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Crear Contactos -->
+	<h3>Crear Contactos</h3>
+	<p>
+		Para crear contactos vamos a usar la Vista create.php, los metodos create() y store() del ContactController, y el Modelo Contacts.
+	</p>
+	<p>
+		Ademas en la Vista index.php vamos a agregar un link a la ruta "contactos/crear" para que el usuario tenga acceso a la funcionalidad.
+	</p>
+
+
+	<!-- Vista create -->
+	<h3>Vista create</h3>
+	<p>La vista contiene un formulario el cual se va a enviar por el metodo POST a la ruta "/contactos".</p>
+	<!-- codigo -->
+	<code>
+		&lt;!DOCTYPE html&gt; <br>
+		&lt;html lang="en"&gt; <br>
+		&lt;head&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta charset="UTF-8"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;title&gt;Crear&lt;/title&gt; <br>
+		&lt;/head&gt; <br>
+		&lt;body&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;h1&gt;Crear Contacto&lt;/h1&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			&lt;a href="/contactos">Volver&lt;/a&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			&lt;form action="/contactos" method="post"&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;fieldset&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;legend&gt;Datos&lt;/legend&gt; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+		
+					&lt;label for="nombre"&gt;Nombre: &lt;/label&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;input type="text" name="nombre" id="nombre"&gt; &lt;br&gt;&lt;br&gt; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+		
+					&lt;label for="apellido"&gt;Apellido: &lt;/label&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;input type="text" name="apellido" id="apellido"&gt; &lt;br&gt;&lt;br&gt; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+		
+					&lt;label for="telefono"&gt;Telefono: &lt;/label&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;input type="text" name="telefono" id="telefono"&gt; &lt;br&gt;&lt;br&gt; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+		
+					&lt;label for="comentario"&gt;Comentario: &lt;/label&gt;&lt;br&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;textarea name="comentario" id="comentario" cols="30" rows="10"&gt;&lt;/textarea&gt; &lt;br&gt;&lt;br&gt; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+		
+					&lt;button type="submit"&gt;Enviar&lt;/button&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;/fieldset&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;/form&gt; <br>
+		&lt;/body&gt; <br>
+		&lt;/html&gt;
+	</code>
+
+	
+	<!-- Controlador -->
+	<h3>Controlador</h3>
+	<p>Usaremos los metodos create() y store() para recibir y almacenar los datos en la base de datos.</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Controlador ContactController.php</strong> <br><br>
+
+		public function create(): string <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return $this->view("contactos.create"); <br>&nbsp;&nbsp;&nbsp;
+			<strong>// return "Mostrara un formulario para crear un contacto";</strong> <br>
+		} <br><br>
+
+		public function store() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Retornar parametros del formulario</strong> <br>&nbsp;&nbsp;&nbsp;
+			$data = $_POST; <br><br>&nbsp;&nbsp;&nbsp;
+
+			$contactsModel = new Contacts; <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Hace la consulta a la base de datos y redirigir a inicio</strong> <br>&nbsp;&nbsp;&nbsp;
+			$contactsModel->create($data); <br><br>&nbsp;&nbsp;&nbsp;
+
+			$this->redirect("Location: /contactos"); <br>&nbsp;&nbsp;&nbsp;
+			<strong>
+				// Registro Creado: <br>&nbsp;&nbsp;&nbsp;
+				// return $contactsModel->create($data); <br>&nbsp;&nbsp;&nbsp;
+				// return "Procesara la informacion recibida para crear un contacto"; <br>
+			</strong>
+		}
+
+		<strong>// Controlador ContactController.php</strong> <br><br>
+	</code>
+
+	<p>
+		Adicionalmente agregaremos el metodo redirect() al Controlador General para poder redirigir a cualquier ruta de nuestra aplicacion.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Controlador General Controller.php</strong> <br><br>
+
+		public function redirect(string $route) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			header($route); <br>
+		}
+	</code>
+	
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

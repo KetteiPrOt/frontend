@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 33</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Contactos - Editar y Eliminar (3)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo7.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Editar -->
+	<h3>Editar</h3>
+	<p>Para editar los contactos usaremos la vista edit y el controlador ContactController.</p>
+
+
+	<!-- Controlador -->
+	<h3>Controlador</h3>
+	<p>
+		Vamos a usar los metodos edit() y update() del ContactController para recibir y editar la informacion del contacto.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// ContactController.php</strong> <br><br>
+
+		public function edit($id): string <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$contactsModel = new Contacts; <br><br>&nbsp;&nbsp;&nbsp;
+
+			$contacto = $contactsModel->find($id); <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// return $contacto;</strong> <br>&nbsp;&nbsp;&nbsp;
+			return $this->view("contactos.edit", $contacto); <br>&nbsp;&nbsp;&nbsp;
+			<strong>// return "Mostrara un formulario para editar un contacto con id: $id";</strong> <br>
+		} <br><br>
+
+		public function update($id) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Retornar parametros del formulario</strong> <br>&nbsp;&nbsp;&nbsp;
+			$data = $_POST; <br><br>&nbsp;&nbsp;&nbsp;
+
+			$contactsModel = new Contacts; <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Hace la consulta a la base de datos y redirigir a inicio</strong> <br>&nbsp;&nbsp;&nbsp;
+			$contactsModel->update($id, $data); <br><br>&nbsp;&nbsp;&nbsp;
+
+			$this->redirect("Location: /contactos/$id"); <br>&nbsp;&nbsp;&nbsp;
+			<strong>// return "Procesara la informacion recibida para editar un contacto con id: $id";</strong> <br>
+		}
+	</code>
+
+
+	<!-- Vista show -->
+	<h3>Vista show</h3>
+	<!-- codigo -->
+	<code>
+		&lt;!DOCTYPE html&gt; <br>
+		&lt;html lang="en"&gt; <br>
+		&lt;head&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta charset="UTF-8"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;title&gt;Contacto&lt;/title&gt; <br>
+		&lt;/head&gt; <br>
+		&lt;body&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;h1&gt;Detalles&lt;/h1&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			&lt;a href="/contactos">Volver&lt;/a&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			&lt;ul&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;?php foreach ($contacto as $columna =&gt; $dato): ?&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;li&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						&lt;?= "$columna: $dato" ?&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;/li&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;?php endforeach ?&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;/ul&gt; <br><br>&nbsp;&nbsp;&nbsp;
+		
+			&lt;a href="/contactos/&lt;?= $contacto["id"] ?&gt;/editar"&gt;Editar&lt;/a&gt;			
+		&lt;/body&gt; <br>
+		&lt;/html&gt;
+	</code>
+
+	
+	<!-- Vista edit -->
+	<h3>Vista edit</h3>
+	<!-- codigo -->
+	<code>
+		&lt;!DOCTYPE html&gt; <br>
+		&lt;html lang="en"&gt; <br>
+		&lt;head&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta charset="UTF-8"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;title&gt;Editar&lt;/title&gt; <br>
+		&lt;/head&gt; <br>
+		&lt;body&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;h1&gt;Editar Contacto&lt;/h1&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			&lt;a href="/contactos/&lt;?= $id ?&gt;">Volver&lt;/a&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			&lt;form action="/contactos/&lt;?= $id ?&gt;" method="post"&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;fieldset&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;legend&gt;Datos&lt;/legend&gt; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+		
+					&lt;label for="nombre"&gt;Nombre: &lt;/label&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;input type="text" name="nombre" id="nombre" value="&lt;?= $nombre ?&gt;"&gt; &lt;br&gt;&lt;br&gt; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+		
+					&lt;label for="apellido"&gt;Apellido: &lt;/label&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;input type="text" name="apellido" id="apellido" value="&lt;?= $apellido ?&gt;"&gt; &lt;br&gt;&lt;br&gt; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+		
+					&lt;label for="telefono"&gt;Telefono: &lt;/label&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;input type="text" name="telefono" id="telefono" value="&lt;?= $telefono ?&gt;"&gt; &lt;br&gt;&lt;br&gt; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+		
+					&lt;label for="comentario"&gt;Comentario: &lt;/label&gt;&lt;br&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					&lt;textarea name="comentario" id="comentario" cols="30" rows="10"&gt;&lt;?= $comentario ?&gt;&lt;/textarea&gt; &lt;br&gt;&lt;br&gt; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+		
+					&lt;button type="submit"&gt;Editar&lt;/button&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;/fieldset&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;/form&gt; <br>
+		&lt;/body&gt; <br>
+		&lt;/html&gt;
+	</code>
+
+
+	<!-- Eliminar -->
+	<h3>Eliminar</h3>
+	<p>
+		Usaremos un formulario en la vista show para darle al usuario la opcion de eliminar el contacto.
+	</p>
+	<!-- codigo -->
+	<code>
+		&lt;!-- Vista show --&gt;<br><br>
+
+		&lt;br&gt;&lt;br&gt; <br><br>
+
+		&lt;form action="/contactos/&lt;?= $id ?&gt;/eliminar" method="post"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;button type="submit"&gt;Eliminar Contacto&lt;/button&gt; <br>
+		&lt;/form&gt;
+	</code>
+	
+	<p>El controlador, con el metodo destroy(), se encargara de eliminar el contacto y redirigir a la pagina principal:</p>
+	<!-- codigo -->
+	<code>
+		<strong>// ContactController.php</strong> <br><br>
+
+		public function destroy($id) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$contactsModel = new Contacts; <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Hacer la consulta a la base de datos y redirigir a inicio</strong> <br>&nbsp;&nbsp;&nbsp;
+			$contactsModel->delete($id); <br><br>&nbsp;&nbsp;&nbsp;
+
+			$this->redirect("Location: /contactos"); <br>&nbsp;&nbsp;&nbsp;
+			<strong>// return "Eliminara un contacto con id: $id";</strong> <br>
+		}
+	</code>
+
+</body>
+</html>

@@ -74,6 +74,38 @@
 	</code>
 
 
+	<!-- preg_replace() -->
+	<h3>preg_replace()</h3>
+	<p>Usa una expresion regular para seleccionar una seccion de una cadena y la reemplaza con otra serie de caracteres:</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "misitioweb/cursos/<strong>:slug</strong>/precios"; <br><br>
+
+		$expresion = "%:(\w)+%"; <br><br>
+
+		$reemplazo = preg_replace($expresion, "curso-de-javascript", $cadena); <br><br>
+
+		echo $reemplazo; <strong>// misitioweb/cursos/curso-de-javascript/precios</strong>
+	</code>
+
+
+	<!-- preg_match(... $matches) -->
+	<h3>preg_match(... $matches)</h3>
+	<p>El tercer parametro de esta funcion recupera las coincidencias de los subpatrones:</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "misitioweb/cursos/<strong>curso-de-javascript</strong>"; <br><br>
+
+		$expresion = "%misitioweb/cursos/([\w|-]+)%"; <br><br>
+
+		$confirmacion = preg_match($expresion, $cadena, $matches); <br><br>
+
+		echo $confirmacion ? "Verdadero" . "&lt;br&gt;" : "Falso" . "&lt;br&gt;"; <strong>// Verdadero</strong> <br><br>
+
+        print_r($matches); <strong>Array ( [0] => misitioweb/cursos/curso-de-javascript [1] => curso-de-javascript )</strong>
+	</code>
+
+
 	<!-- Practica - Verificar URL de Youtube -->
 	<h3>Practica - Verificar URL de Youtube</h3>
 	<p>En la siguiente practica se verifica que esten bien escritas dos URLs de youtube y captura el ID de los videos. <a href="practica/practica.php" target="_blank">Practica</a>.</p>

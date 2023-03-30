@@ -45,12 +45,12 @@
 	<p>Es un bucle que ya tiene una estructura definida.</p>
 	<ul>
 		<li><strong><code>$i = 0;</code></strong> variable incial que se usara como contador.</li>
-		<li><strong><code>$i < 10;</code></strong> el bucle se iterara mientras esta condicion se cumpla.</li>
+		<li><strong><code>$i &lt; 10;</code></strong> el bucle se iterara mientras esta condicion se cumpla.</li>
 		<li><strong><code>$i++</code></strong> esta sentencia se ejecutara en cada iteracion para acercar al incumplimiento de la condicion y para el bucle.</li>
 	</ul>
 	<!-- codigo -->
 	<code>
-		for ($i = 0; $i < 10; $i++) { <br>&nbsp&nbsp&nbsp
+		for ($i = 0; $i &lt; 10; $i++) { <br>&nbsp&nbsp&nbsp
 			echo $i; <strong>// 0123456789</strong> <br>
 		}
 	</code>
@@ -64,7 +64,7 @@
 		$array = ["Joel", "Shimakaze", "Fubuki", "Yuudachi"]; <br><br>
 
 		foreach ($array as $elemento) { <br>&nbsp&nbsp&nbsp
-			print("$elemento >br<"); <br>
+			print("$elemento &lt;br&gt;"); <br>
 		} <br><br>
 
 		<strong>
@@ -72,6 +72,27 @@
 			// Shimakaze <br>
 			// Fubuki <br>
 			// Yuudachi
+		</strong>
+	</code>
+
+	<p>Tambien en Arreglos [Clave => Valor] podemos acceder a la Clave en cada iteracion de la siguiente forma:</p>
+	<!-- codigo -->
+	<code>
+		$array = [ <br>&nbsp;&nbsp;&nbsp;
+			"otakuLider" => "Joel", <br>&nbsp;&nbsp;&nbsp;
+			"waifu1" => "Shimakaze", <br>&nbsp;&nbsp;&nbsp;
+			"waifu2" => "Fubuki", <br>&nbsp;&nbsp;&nbsp;
+			"waifu3" => "Yuudachi" <br>
+		]; <br><br>
+
+		foreach ($array as $clave => $valor) { <br>&nbsp;&nbsp;&nbsp;
+			print("$clave: $valor &lt;br&gt;"); <br>
+		} <br>
+		<strong>
+			// "otakuLider": Joel <br>
+			// "waifu1": Shimakaze <br>
+			// "waifu2": Fubuki <br>
+			// "waifu3": Yuudachi
 		</strong>
 	</code>
 

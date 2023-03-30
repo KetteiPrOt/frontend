@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 24</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Enrutador</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Funcionamiento -->
+	<h3>Funcionamiento</h3>
+	<p>
+		Un enrutador es un componente de nuestra aplicacion que va a dirigir al usuario a cierto recurso de nuestro sitio dependiendo de la URI que haya escrito en el navegador.
+	</p>
+	<p>Este es un enrutador sencillo creado por Coders Free, basado en el framework Laravel.</p>
+	<p>
+		Esta compuesto de dos archivos (Route y web) donde Route contiene la clase homonima que manejara la logica principal con tres metodos estaticos y una propiedad estatica. El archivo web ejecutara los metodos estaticos de Route para definir rutas y ejecutar el redireccionamiento.
+	</p>
+	<p>Como extra tambien implemento un componente de carga automatica de archivos, el archivo autolad.</p>
+
+
+	<!-- Route -->
+	<h3>Route</h3>
+	<p>Este archivo contiene la Clase Route que manejara la logica principal del enrutador:</p>
+	<!-- codigo -->
+	<code>
+		namespace Lib; <br><br>
+
+		class Route { <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Almacena las rutas de los metodos GET y POST en dos Arreglos</strong> <br>&nbsp;&nbsp;&nbsp;
+			private static $routes = [ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"get" => [], "post" => [] <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>
+					// "GET" => [ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					//     "uri" => "Funcion callback redirectora" <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					// ], <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					// "POST" => [ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					//     "uri" => "Funcion callback redirectora" <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					// ] <br>&nbsp;&nbsp;&nbsp;
+				</strong>
+			]; <br><br>&nbsp;&nbsp;&nbsp;
+
+			public static function get(string $uri, $callback) <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>// Agrega una nueva ruta uri como llave literal al Arreglo GET y le asigna una funcion callback como valor</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$uri = trim($uri, "/"); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$arrayGET = &self::$routes["GET"]; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$arrayGET[$uri] = $callback; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			public static function post(string $uri, $callback) <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>// Agrega una nueva ruta uri como llave literal al Arreglo POST y le asigna una funcion callback como valor</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$uri = trim($uri, "/"); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$arrayPOST = &self::$routes["POST"]; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$arrayPOST[$uri] = $callback; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br> &nbsp;&nbsp;&nbsp;
+
+			public static function dispatch() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$requestUri = $_SERVER["REQUEST_URI"]; <strong>// /mvc/contact/</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$requestUri = trim($requestUri, "/"); <strong>// mvc/contact</strong> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$method = $_SERVER["REQUEST_METHOD"]; <strong>// GET o POST</strong> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				<strong>// Evaluar si la ruta solicitada existe dentro del sitio web, en los Arreglos GET o POST</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$array = &self::$routes[$method]; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				<strong>// print_r($array); echo "&lt;br&gt;"; // Mostrar Arreglos GET o POST</strong> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				
+				foreach ($array as $uri => $callback) { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+					if ($uri == $requestUri) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						$callback(); <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						return; <strong>// Redirigido a la pagina solicitada, ejecucion de la funcion finalizada</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					} <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				} <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				<strong>// La pagina solicitada no fue encontrada</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo "Error 404: no hemos encontrado la pagina solicitada en nuestro sitio."; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+
+
+	<!-- web -->
+	<h3>web</h3>
+	<p>Este archivo contiene la ejecucion de los metodos estaticos de la Clase route, aqui es donde agregamos URI al sitio y ejecutamos las redirecciones:</p>
+	<!-- codigo -->
+	<code>
+		use Lib\Route; <strong>// Carga el archivo Route.php automaticamente gracias al autoload</strong> <br><br>
+
+		Route::get("/", function () { <br>&nbsp;&nbsp;&nbsp;
+			echo "Hola desde la pagina principal"; <br>
+		}); <br><br>
+
+		Route::get("/contacto", function () { <br>&nbsp;&nbsp;&nbsp;
+			echo "Hola desde la pagina de contacto"; <br>
+		}); <br><br>
+
+		Route::get("/acercade", function () { <br>&nbsp;&nbsp;&nbsp;
+			echo "Hola desde la pagina acerca de"; <br>
+		}); <br><br>
+
+		Route::dispatch();
+	</code>
+
+
+	<!-- autoload -->
+	<h3>autoload</h3>
+	<p>Carga automaticamente los archivos que contienen las Clases al instanciarlas o al usar sus metodos estaticos:</p>
+	<!-- codigo -->
+	<code>
+		spl_autoload_register(function($namespace) { <br>&nbsp;&nbsp;&nbsp;
+			<strong>
+				// use namepace\Clase <br>&nbsp;&nbsp;&nbsp;
+				// $objeto = new Clase; <br>&nbsp;&nbsp;&nbsp;
+				// echo $namesapce; // namepace\Clase <br>&nbsp;&nbsp;&nbsp;
+			</strong>
+			$ruta = "../" .  str_replace("\\", "/", $namespace) . ".php"; <br><br>&nbsp;&nbsp;&nbsp;
+		
+			if (file_exists($ruta)) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;     
+				require_once($ruta); <br>&nbsp;&nbsp;&nbsp;
+			}  <br>&nbsp;&nbsp;&nbsp;
+			else { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;     
+				echo "No se pudo cargar el archivo: " . $ruta; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		});
+	</code>
+
+
+	<!-- index.php -->
+	<h3>index.php</h3>
+	<p>Despues de haber configurado el servidor y creado los archivos del enrutador, podemos incluirlos en el unico punto de acceso: el archivo index.php. De esta forma cada vez que el usuario acceda al sitio se ejecutara el enrutamiento dependiendo del recurso que solicite en la URI:</p>
+	<!-- codigo -->
+	<code>
+		&lt;?php <br>&nbsp;&nbsp;&nbsp;
+			declare(strict_types = 1); <br><br>&nbsp;&nbsp;&nbsp;
+
+			require_once("../autoload.php"); <br><br>&nbsp;&nbsp;&nbsp;
+
+			require_once("../routes/web.php"); <br>
+		?&gt; <br><br>
+
+		&lt;code&gt;Unico punto de acceso&lt;/code&gt;
+	</code>
+
+
+	<!-- Estructura de carpetas -->
+	<h3>Estructura de carpetas</h3>
+	<p>Despues de configurar el servidor y crear el enrutador, nos convendria organizar nuestro codigo (archivos) de la siguiente forma:</p>
+	<!-- codigo -->
+	<code>
+		<strong>app/</strong> <br>
+		<strong>Lib/</strong> <br>&nbsp;&nbsp;&nbsp;
+			Route.php <br>
+		<strong>public/</strong> <br>&nbsp;&nbsp;&nbsp;
+			index.php <br>
+		<strong>routes/</strong> <br>&nbsp;&nbsp;&nbsp;
+			web.php <br>
+		.htaccess <br>
+		autoload.php
+	</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

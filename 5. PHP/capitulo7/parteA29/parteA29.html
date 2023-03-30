@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 29</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Inyeccion SQL</h1>
+	<h4 class="enlace-volver"><a href="../capitulo8.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ataque SQL -->
+	<h3>Ataque SQL</h3>
+	<p>
+		Una inyeccion SQL se puede dar cuando un usuario mal intencionado que tiene conocimientos de sentencias SQL, y de como esta programado el servidor, inyecta codigo SQL a traves de entradas como formularios para acceder a informacion restringida.
+	</p>
+	<p>Por ejemplo aqui esta rompiendo en el Modelo General el filtro del metodo where() inyectando una condicion que siempre se cumplira ('a' = 'a'):</p>
+	<!-- codigo -->
+	<code>
+		$columna = "nombre"; <br><br>
+
+		$entrada = "Iris Godoy' OR 'a' = 'a"; <br><br>
+
+		$sql = SELECT * FROM persons WHERE nombre = 'Iris Godoy' OR 'a' = 'a';
+	</code>
+
+	<p>Esta sentencia extrae todos los datos.</p>
+
+
+	<!-- real_escape_string() -->
+	<h3>real_escape_string()</h3>
+	<p>Metodo de los objetos de Clase mysqli. Escapa todas las comillas simples de una cadena de texto, evitando inyecciones SQL por caracteres extranios:</p>
+	<!-- codigo -->
+	<code>
+		$entrada = "Iris Godoy' OR 'a' = 'a"; <br><br>
+
+		$entrada = $this->connection->real_escape_string($entrada); <br>
+        <strong>// "Iris Godoy' OR 'a' = 'a" &lt;&lt;&lt;----conversion----&gt;&gt;&gt; "Iris Godoy\' OR \'a\' = \'a ";</strong>
+	</code>
+
+	<p>Implementado en el metodo where() del Modelo General:</p>
+	<!-- codigo -->
+	<code>
+		public function where(string $column, string | int $operator, string | int $value = null): object <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Si solo hay dos parametros el segundo corresponde al value, y por defecto es igualdad</strong> <br>&nbsp;&nbsp;&nbsp;
+			if ($value == null) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$value = $operator; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$operator = "="; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>/* Evitar inyeccion SQL escapando comillas simples */</strong> <br>&nbsp;&nbsp;&nbsp;
+			$value = $this->connection->real_escape_string($value); <br>&nbsp;&nbsp;&nbsp;
+			<strong>// "Iris Godoy' OR 'a' = 'a" &lt;&lt;&lt;----conversion----&gt;&gt;&gt; "Iris Godoy\' OR \'a\' = \'a ";</strong> <br><br>&nbsp;&nbsp;&nbsp;
+
+			$sql = "SELECT * FROM {$this->table} WHERE $column $operator '$value'"; <br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Es nesesario especificar cuantos registros retornar encadenando con first() [si deseea uno] o con get() [si deseea todos]</strong> <br>&nbsp;&nbsp;&nbsp;
+			return $this->query($sql); <br>
+		}
+	</code>
+
+
+	<!-- Consultas preparadas -->
+	<h3>Consultas preparadas</h3>
+	<p>Son una mejor forma de escapar los caracteres extranios de datos ingresados por el usuario o inputs.</p>
+	<p>
+		Para hacer uso de este tipo de consultas hacemos lo sigiente:
+	</p>
+
+	
+	<!-- Indicador '?' -->
+	<h3>Indicador '?'</h3>
+	<p>
+		Debemos reemplazar cada variable que contiene un input (dato ingresado por el usuario) por el simbolo de interrogacion '?' en la consulta que vamos a hacer a la base de datos. Esto es para indicar que hay datos para escapar.
+	</p>
+	<p>
+		Esta es la sentencia sql del metodo where() del Modelo General eliminamos el metodo real_escape_string() y aplicamos el reemplazo del valor por el indicador:
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Antes</strong> <br>
+		$sql = "SELECT * FROM {$this->table} WHERE $column $operator $value"; <br><br>
+
+		<strong>// Despues</strong> <br>
+		$sql = "SELECT * FROM {$this->table} WHERE $column $operator ?";
+	</code>
+
+	
+	<!-- prepare() -->
+	<h3>prepare()</h3>
+	<p>
+		Metodo de Objetos Clase mysqli, prepara la consulta a la base de datos, recibe la sentencia sql y retorna un objeto al que llamaresmos $stmt por convencion:
+	</p>
+	<p>
+		En el metodo where() del Modelo General estamos pasandole la sentencia sql que modificamos arriba con el indicador '?':
+	</p>
+	<!-- codigo -->
+	<code>
+		$sql = "SELECT * FROM {$this->table} WHERE $column $operator ?"; <br><br>
+
+        <strong>// Consulta preparada</strong> <br>
+        $stmt = $this->connection->prepare($sql);
+	</code>
+
+	
+	<!-- bind_param() -->
+	<h3>bind_param()</h3>
+	<cite>
+		<em><a href="https://www.php.net/manual/en/mysqli-stmt.bind-param.php">Manual php</a>: "Vincula variables a una declaración preparada como parámetros"</em>
+	</cite>
+	<p>
+		Del objeto $stmt, este es el metodo que se encarga de escapar los inputs.
+	</p>
+	<p>
+		Primero recibe una cadena de caracteres donde cada caracter representa el tipo de dato de cada input recibido. Despues recibe cada input en orden.
+	</p>
+	<table class="tabla">
+		<tr>
+			<th>Caracter</th> <th>Tipo de dato</th>
+		</tr>
+		<tr>
+			<td>s</td> <td>string</td>
+		</tr>
+		<tr>
+			<td>i</td> <td>integer</td>
+		</tr>
+		<tr>
+			<td>d</td> <td>float</td>
+		</tr>
+		<tr>
+			<td>b</td> <td>blob y se enviara en paquetes</td>
+		</tr>
+	</table>
+
+	<p>
+		En el metodo where() del Modelo General estamos usando el metodo bind_param() para escapar el input de la consulta (en este caso solo tenemos uno):
+	</p>
+	<!-- codigo -->
+	<code>
+		$sql = "SELECT * FROM {$this->table} WHERE $column $operator ?"; <br><br>
+
+        <strong>// Consulta preparada</strong> <br>
+        $stmt = $this->connection->prepare($sql); <br><br>
+
+        $stmt->bind_param('s', $value);
+	</code>
+
+	
+	<!-- execute() -->
+	<h3>execute()</h3>
+	<p>Ejecuta la consulta a la base de datos del objeto $stmt.</p>
+	<!-- codigo -->
+	<code>
+		$stmt->execute();
+	</code>
+
+	
+	<!-- get_result() -->
+	<h3>get_result()</h3>
+	<p>Retorna el resultado de la consulta realizada por el objeto $stmt.</p>
+	<p>
+		Con esto ya terminamos de implementar una consulta preparada en el metodo where() del Modelo General:
+	</p>
+	<!-- codigo -->
+	<code>
+		public function where(string $column, string | int $operator, string | int $value = null): object <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Si solo hay dos parametros el segundo corresponde al value, y por defecto es igualdad</strong><br>&nbsp;&nbsp;&nbsp;
+			if ($value == null) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$value = $operator; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$operator = "="; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			$sql = "SELECT * FROM {$this->table} WHERE $column $operator ?"; <br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Consulta preparada</strong> <br>&nbsp;&nbsp;&nbsp;
+			$stmt = $this->connection->prepare($sql); <br><br>&nbsp;&nbsp;&nbsp;
+
+			$stmt->bind_param('s', $value); <br><br>&nbsp;&nbsp;&nbsp;
+
+			$stmt->execute(); <br><br>&nbsp;&nbsp;&nbsp;
+
+			$resultado_consulta = $stmt->get_result(); <br><br>&nbsp;&nbsp;&nbsp;
+
+			$this->query = $resultado_consulta; <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Es nesesario especificar cuantos registros retornar encadenando con first() [si deseea uno] o con get() [si deseea todos]</strong> <br>&nbsp;&nbsp;&nbsp;
+			return $this; <br>
+		}
+	</code>
+
+
+	<!-- Proteger Consultas -->
+	<h3>Proteger Consultas</h3>
+	<p>Ahora vamos a implementar las Consultas Preparadas contra Ataques SQL en todos los metodos del Modelo General que tengan entradas de usuario.</p>
+
+	<!-- Mejorar query() -->
+	<h4>query()</h4>
+	<p>
+		Colocar la logica de la consulta preparada en el metodo query() permitira que este disponible en todos los demas metodos. Tambien dejo disponible que siga funcinando con consultas normales como antes para los metodos que no neseciten consultas preparadas.
+	</p>
+	<!-- codigo -->
+	<code>
+		protected function query(string $sql, array $data = [], string $params = null): object <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			if ($data) { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				<strong>// Consulta Preparada</strong> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				<strong>// Si no hay tipos, por defecto los toma como strings</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				if (!$params) { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					
+					$params = str_repeat('s', count($data)); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				} <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$stmt = $this->connection->prepare($sql); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$stmt->bind_param($params, ...$data); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$stmt->execute(); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$resultado_consulta = $stmt->get_result(); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$this->query = $resultado_consulta; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				return $this; <br><br>&nbsp;&nbsp;&nbsp;
+
+			} else { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				<strong>// Consulta Nomal</strong> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$this->query = $this->connection->query($sql); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				return $this; <br><br>&nbsp;&nbsp;&nbsp;
+
+			} <br>
+		}
+	</code>
+
+	<!-- Mejorar where() -->
+	<h4>where()</h4>
+	<!-- codigo -->
+	<code>
+		public function where(string $column, string | int $operator, string | int $value = null): object <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Si solo hay dos parametros el segundo corresponde al value, y por defecto es igualdad</strong> <br>&nbsp;&nbsp;&nbsp;
+			if ($value == null) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$value = $operator; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$operator = "="; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			$sql = "SELECT * FROM {$this->table} WHERE $column $operator ?"; <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Es nesesario especificar cuantos registros retornar encadenando con first() [si deseea uno] o con get() [si deseea todos]</strong> <br>&nbsp;&nbsp;&nbsp;
+			return $this->query($sql, [$value]); <br>
+		}
+	</code>
+
+	<!-- Mejorar find() -->
+	<h4>find()</h4>
+	<p>
+		He reescrito el metodo find() para usar una Consulta Preparada.
+	</p>
+	<!-- codigo -->
+	<code>
+		public function find(int $id): array <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$sql = "SELECT * FROM {$this->table} WHERE id = ?"; <br><br>&nbsp;&nbsp;&nbsp; 
+
+			return $this->query($sql, [$id], 'i')->first(); <br>
+		}
+	</code>
+
+	<!-- Mejorar create() -->
+	<h4>create()</h4>
+	<!-- codigo -->
+	<code>
+		public function create(array $data, string $params = null): array <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$columns = implode(", ", array_keys($data)); // key_1, key_2, key_3 <br><br>&nbsp;&nbsp;&nbsp;
+
+			$values = array_values($data); <br><br>&nbsp;&nbsp;&nbsp;
+
+			$sql = "INSERT INTO {$this->table} ($columns) VALUES (" . str_repeat("?, ", count($data) - 1) . " ?);"; <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// INSERT INTO persons (</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>//     nombre, email, telefono)</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>// VALUES (?, ?, ?,...);</strong> <br><br>&nbsp;&nbsp;&nbsp;
+
+			$this->query($sql, $values, $params); <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// La propiedad insert_id contiene el ultimo id insertado en la tabla</strong> <br>&nbsp;&nbsp;&nbsp;
+			$insert_id = $this->connection->insert_id; <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Retorna el ultimo registro creado por si deseeamos mostrarlo en la pantalla</strong> <br>&nbsp;&nbsp;&nbsp;
+			return $this->find($insert_id); <br>
+		}
+	</code>
+
+	<!-- Mejorar update() -->
+	<h4>update()</h4>
+	<!-- codigo -->
+	<code>
+		public function update(int | string $id, array $data, string $params = null): array <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$fields = []; <br><br>&nbsp;&nbsp;&nbsp;
+
+			foreach ($data as $key => $value) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$fields[] = "$key = ?"; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			$values = array_values($data); <br>&nbsp;&nbsp;&nbsp;
+			$values[] = $id; <br><br>&nbsp;&nbsp;&nbsp;
+			
+			$fields = implode(", ", $fields); <br><br>&nbsp;&nbsp;&nbsp;
+
+			$sql = "UPDATE {$this->table} SET $fields WHERE id = ?;"; <br>&nbsp;&nbsp;&nbsp;
+			<strong>
+				// UPDATE nombre_tabla SET <br>&nbsp;&nbsp;&nbsp;
+				//     columna_1 = ?, <br>&nbsp;&nbsp;&nbsp;
+				//     columna_2 = ?, <br>&nbsp;&nbsp;&nbsp;
+				//     columna_3 = ? <br>&nbsp;&nbsp;&nbsp;
+				//     ... <br>&nbsp;&nbsp;&nbsp;
+				// WHERE id = ?; <br><br>&nbsp;&nbsp;&nbsp;
+			</strong>
+
+			$this->query($sql, $values, $params); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return $this->find($id); <br>
+		}
+	</code>
+
+	<!-- Mejorar delete() -->
+	<h4>delete()</h4>
+	<!-- codigo -->
+	<code>
+		public function delete(int | string $id): string <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>// DELETE FROM nombre_tabla WHERE id = 1;</strong> <br>&nbsp;&nbsp;&nbsp;
+			$sql = "DELETE FROM {$this->table} WHERE id = ?;"; <br><br>&nbsp;&nbsp;&nbsp;
+
+			$this->query($sql, [$id], 'i'); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return "Registro $id Eliminado"; <br>
+		}
+	</code>
+
+</body>
+</html>

@@ -1,13 +1,9 @@
 <?php
     declare(strict_types = 1);
 
-    $cadena1 = "Voy volando desde Ecuador. Parti ayer.";
-    $cadena2 = "Voy andando desde Peru. Parti hoy.";
+    $saludo = "Hola Mundo!";
 
-    $expresion = "/Voy (?:vol|and)ando desde (Ecuador|Peru). Parti (?:hoy|ayer)./";
-
-    preg_match($expresion, $cadena1, $macthes1);
-    preg_match($expresion, $cadena2, $macthes2);
+    $texto = "saludo";
 ?>
 
 <!DOCTYPE html>
@@ -21,11 +17,7 @@
 <body>
     <p>
         <?php
-            print_r($macthes1); echo "<br>";
-            // Array ( [0] => Voy volando desde Ecuador. Parti ayer. [1] => vol [2] => Ecuador [3] => ayer )
-            
-            print_r($macthes2);
-            // Array ( [0] => Voy andando desde Peru. Parti hoy. [1] => and [2] => Peru [3] => hoy )
+            echo $$texto;
         ?>
     </p>
 </body>

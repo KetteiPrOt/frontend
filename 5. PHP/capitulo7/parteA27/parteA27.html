@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 27</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Conexion a una BBDD</h1>
+	<h4 class="enlace-volver"><a href="../capitulo8.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Crear un Modelo -->
+	<h3>Crear un Modelo</h3>
+	<p>Como ya especificamos en el Patron de disenio MVC toda conexion a una base de datos debe realizarse desde un Modelo.</p>
+	<p>
+		Asi que para conectarnos a la tabla "persons" de la base de datos "mvc" (el archivo de la BBDD esta en este <a href="../mvc.sql">link</a>) creamos el Modelo "Persons.php":
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>app/</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>Models/</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				Persons.php <br>&nbsp;&nbsp;&nbsp;
+			<strong>Controllers/</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				Controller.php <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				HomeController.php <br><br>
+	</code>
+
+
+	<!-- Crear la conexion a la DDBB -->
+	<h3>Crear la conexion a la DDBB</h3>
+	<p>En el modelo "Persons.php" vamos a realizar la conexion a la base de datos usando la clase de php "mysqli" (MySQL improved).</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Archivo app/Models/Persons.php</strong> <br><br>
+
+		namespace app\Models; <br><br>
+
+		use mysqli; <br><br>
+
+		class Persons { <br>&nbsp;&nbsp;&nbsp;
+			protected $db_host = DB_HOST, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+					  $db_user = DB_USER, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+					  $db_pass = DB_PASS, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+					  $db_name = DB_NAME; <br><br>&nbsp;&nbsp;&nbsp;
+
+			protected $connection; <br><br>&nbsp;&nbsp;&nbsp;
+
+			public function __construct() { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->connect();
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			public function connect() { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$this->connection = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				<strong>// Si tenemos un error de conexion detiene la ejecucion del programa</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$error = $this->connection->connect_error; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				if ($error) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					die("Error de conexion: " . $error); <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				} <br><br>&nbsp;&nbsp;&nbsp;
+				
+			} <br>
+		}
+	</code>
+
+
+	<!-- Credenciales de la BBDD -->
+	<h3>Credenciales de la BBDD</h3>
+	<p>Las credenciales las guardamos en un nuevo archivo "database.php" en una nueva carpeta "config".</p>
+	<!-- codigo -->
+	<code>
+		<strong>config/</strong> <br>&nbsp;&nbsp;&nbsp;
+			database.php
+	</code>
+
+	<p>En el archivo database.php definimos las constantes que serviran de credenciales a la BBDD:</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Archivo config/database.php</strong> <br><br>
+
+		define("DB_HOST", "localhost"); <br>
+		define("DB_USER", "root"); <br>
+		define("DB_PASS", "ddd"); <br>
+		define("DB_NAME", "mvc");
+	</code>
+
+
+	<!-- Importar credenciales -->
+	<h3>Importar credenciales</h3>
+	<p>Como estamos trabajando con un unico punto de acceso, el archivo index.php se vuelve un buen lugar para hacer importaciones globales:</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Archivo public/index.php</strong> <br><br>
+
+		&lt;?php <br>&nbsp;&nbsp;&nbsp;
+			declare(strict_types = 1); <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>require_once("../config/database.php");</strong> <br><br>&nbsp;&nbsp;&nbsp;
+
+			require_once("../autoload.php"); <br><br>&nbsp;&nbsp;&nbsp;
+
+			require_once("../routes/web.php"); <br>
+		?&gt; <br><br>
+
+		&lt;code&gt;Unico punto de acceso&lt;/code&gt;
+	</code>
+
+</body>
+</html>

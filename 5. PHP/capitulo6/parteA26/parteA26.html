@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 26</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Vistas</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Carpeta resourses -->
+	<h3>Carpeta resourses</h3>
+	<p>
+		Normalmente las vistas se pueden agregar en una carpeta "views" dentro de la carpeta "app", esta vez inspirados en el framework Laravel vamos a guardarlas por fuera en una carpeta "resourses" donde vamos a guardar todas las vistas.
+	</p>
+	<p>
+		La diferencia entre los archivos de CSS y JavaScript de la carpeta resourses y la carpeta public, es que los de la primera son archivos de preprocesadores como SASS, LESS, o TypeScript, los cuales luego de ser procesados pueden ir a la carpeta public.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>app/</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>Models/</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>Controllers/</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				HomeController.php <br><br>
+
+		<strong>resourses/</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>js/</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>css/</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>views/</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>prueba/</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					homeTest.php <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				home.php <br><br>
+
+		<strong>Lib/</strong> <br>&nbsp;&nbsp;&nbsp;
+			Route.php <br><br>
+
+		<strong>public/</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>js/</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>css/</strong> <br>&nbsp;&nbsp;&nbsp;		
+			index.php <br><br>
+
+		<strong>routes/</strong> <br>&nbsp;&nbsp;&nbsp;
+			web.php <br><br>
+
+		.htaccess <br>
+		autoload.php
+	</code>
+
+
+	<!-- Controlador General -->
+	<h3>Controlador General</h3>
+	<p>Vamos a crear un archivo Controller.php dentro de la carpeta Controllers. Este archivo contendra el controlador del cual extenderan todos los demas controladores.</p>
+	<!-- codigo -->
+	<code>
+		<strong>app/</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>Models/</strong> <br>&nbsp;&nbsp;&nbsp;
+			<strong>Controllers/</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				Controller.php <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				HomeController.php
+	</code>
+
+
+	<!-- Metodo index() -->
+	<h3>Metodo index()</h3>
+	<p>
+		El objetivo de este metodo es pasar la ruta de la vista que requerimos y, de ser nesesaria, la informacion que esta vista requiera para mostrarse correctamente.
+	</p>
+	<p>
+		La clase HomeController va a extender al Controlador General, y va a ejecutar un metodo view() al que le va a pasar el camino para llegar a la vista ademas de ser nesesario un arreglo con datos que seran incluidos en la vista para que se muestre correctamente.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// app/Controllers/HomeController.php</strong><br><br>
+
+		namespace app\Controllers; <br><br>
+
+		<strong>// El autoload esta cargando el archivo "/app/Controllers/Controller.php" al extender la clase</strong> <br>
+		class HomeController extends Controller { <br><br>&nbsp;&nbsp;&nbsp;
+
+			public function index(): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return $this->view("prueba.homeTest", [ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					"title" => "Home", <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					"description" => "Esta es la pagina homeTest" <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				]); <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>
+
+		}
+	</code>
+
+
+	<!-- Metodo view() -->
+	<h3>Metodo view()</h3>
+	<p>
+		El objetivo de este metodo es obtener la vista requerida y, de ser nesesario, incrustarle los datos que la vista nesecite para mostrarse correctamente.
+	</p>
+	<p>
+		Recibe el camino de la vista requerida y lo usa para obtener la vista. Ademas destructura el arreglo que contiene los datos de la vista y de ser nesesario se los incrusta el momento de incluirla con la funcion include(). Al final retorna la vista requerida o un error 404 si no se encontro.
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// app/Controllers/Controller.php</strong><br><br>
+
+		namespace app\Controllers; <br><br>
+
+		class Controller { <br><br>&nbsp;&nbsp;&nbsp;
+
+			public function view(string $path, array $data = []): string <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>// Destructurar el Arreglo $data</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				extract($data); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$path = str_replace(".", "/", $path); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					
+				$route = "../resourses/views/$path.php"; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				<strong>// Esta sentencia se esta ejecutando en el archivo /public/index.php</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				if (file_exists($route)) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					
+					ob_start(); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+					include($route); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+					$content = ob_get_clean(); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+					return $content; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				} else { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					echo "El archivo no existe"; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				} <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>
+
+		}
+	</code>
+
+
+	<!-- Vista homeTest -->
+	<h3>Vista homeTest</h3>
+	<p>
+		Ahora como ya hemos cargado la vista "/resourses/views/prueba/homeTest.php" en el unico punto de acceso "/public/index.php" y le hemos pasado los datos <strong>$title</strong> y <strong>$description</strong> a traves del arreglo, podemos incluir estos datos en la vista:
+	</p>
+	<!-- codigo -->
+	<code>
+		&lt;!DOCTYPE html&gt; <br>
+		&lt;html lang="en"&gt; <br>
+		&lt;head&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta charset="UTF-8"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;title&gt;Pagina Principal (Test)&lt;/title&gt; <br>
+		&lt;/head&gt; <br>
+		&lt;body&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;p&gt;Hola desde la pagina homeTest&lt;/p&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			&lt;h3&gt;Titulo&lt;/h3&gt;<br>&nbsp;&nbsp;&nbsp;
+			&lt;p&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;?= <strong>$title // Home</strong> ?&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;/p&gt; <br><br>
+
+			&lt;h3&gt;Descripcion&lt;/h3&gt;<br>&nbsp;&nbsp;&nbsp;
+			&lt;p&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;?= <strong>$description // Esta es la pagina homeTest</strong> ?&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;/p&gt; <br>
+		&lt;/body&gt; <br>
+		&lt;/html&gt;
+	</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

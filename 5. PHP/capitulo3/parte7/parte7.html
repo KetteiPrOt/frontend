@@ -210,6 +210,25 @@
 	</code>
 
 
+	<!-- str_repeat() -->
+	<h3>str_repeat()</h3>
+	<p>Retorna una cadena repetida cierto numero de veces.</p>
+	<!-- codigo -->
+	<code>
+		$cadena1 = str_repeat('a', 1); <br><br>
+
+		echo $cadena1; <strong>// a</strong> <br><br>
+
+		$cadena2 = str_repeat('a', 3); <br><br>
+
+		echo $cadena2; <strong>// aaa</strong> <br><br>
+
+		$cadena3 = str_repeat('Mundo', 5); <br><br>
+
+		echo $cadena3; <strong>// MundoMundoMundoMundoMundo</strong>
+	</code>
+
+
 	<!-- str_replace() -->
 	<h3>str_replace()</h3>
 	<p>Reemplaza caracteres de una cadena por otros.</p>
@@ -320,5 +339,28 @@
 
         echo $paddingB; <strong>// ----Hola----</strong>
 	</code>
+
+
+	<!-- trim() -->
+	<h3>trim()</h3>
+	<p>Recorta caracter sin importar cuantas veces se repita al incio y al final de una cadena.</p>
+	<!-- codigo -->
+	<code>
+		$cadena = "__contacto__"; <br><br>
+
+    	$recortar = trim($cadena, "_"); <br><br>
+
+		echo $recortar; <strong>// contacto</strong>
+	</code>
+
+	<p>Si no recibe el segundo parametro, por defecto recorta los espacios en blanco.</p>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
 </body>
 </html>

@@ -35,6 +35,45 @@
         echo $texto; <strong>// 0-1-2-3-4</strong>
 	</code>
 
+
+	<!-- extract() -->
+	<h3>extract()</h3>
+	<p>Esta funcion sirve para destructurar un Arreglo de tipo Clave => Valor en un conjunto de variables que seran las claves:</p>
+	<!-- codigo -->
+	<code>
+		$array = [ <br>&nbsp;&nbsp;&nbsp;
+			"otakuLider" => "Joel", <br>&nbsp;&nbsp;&nbsp;
+			"waifu1" => "Shimakaze", <br>&nbsp;&nbsp;&nbsp;
+			"waifu2" => "Fubuki", <br>&nbsp;&nbsp;&nbsp;
+			"waifu3" => "Yuudachi" <br>
+		]; <br><br>
+
+		extract($array); <br><br>
+
+		echo "$otakuLider, $waifu1, $waifu2, $waifu3"; <strong>// Joel, Shimakaze, Fubuki, Yuudachi</strong>
+	</code>
+
+
+	<!-- compact() -->
+	<h3>compact()</h3>
+	<p>
+		Compacta varios arreglos en uno solo. Recibe como parametros los nombres de las variables (como cadenas de texto) que contienen los Arreglos a compactar.
+	</p>
+	<!-- codigo -->
+	<code>
+		$waifus = ["Elaina-san", "Saya", "Hotsuki", "Amnesia", "Avilia-chan"]; <br><br>
+
+		$digitos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; <br><br>
+
+		$frutas = ["manzana", "Pera", "Banana", "Melon", "Pera", "Uva"]; <br><br>
+
+		$compact1 = compact("waifus"); <strong>// [ "waifus" => $waifus ]</strong> <br><br>
+
+		$compact2 = compact("waifus", "digitos"); <strong>// [ "waifus" => $waifus, "digitos" => $digitos ]</strong> <br><br>
+
+		$compact3 = compact("waifus", "digitos", "frutas"); <strong>// [ "waifus" => $waifus, "digitos" => $digitos, "frutas" => $frutas ]</strong>
+	</code>
+
 	
 	<!-- array_push() -->
 	<h3>array_push()</h3>

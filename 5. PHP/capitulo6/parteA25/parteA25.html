@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 25</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Parametros y Controladores</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Parametros por ruta -->
+	<h3>Parametros por ruta</h3>
+	<p>
+		Para poder recibir parametros por la URL usaremos "babosas" en las URIs del que tengamos guardadas y que requieran recibir parametros variantes.
+	</p>
+
+
+	<!-- Agregar "babosa" -->
+	<h3>Agregar "babosa"</h3>
+	<p>En el archivo web.php agrego esta nueva URI con una "babosa" o parametro el cual vamos a reconocer y capturar:</p>
+	<!-- codigo -->
+	<code>
+		Route::get("/cursos/<strong>:slug</strong>/", function (string $slug) { <br>&nbsp;&nbsp;&nbsp;
+			return "Valor de la babosa: $slug"; <br>
+		});
+	</code>
+
+
+	<!-- Reconocer y capturar "babosas" -->
+	<h3>Reconocer y capturar "babosas"</h3>
+	<p>En el archivo Route.php reemplazo el condicional que validaba las URIs con un simple "=", por estas sentencias que reconocen las URIs con "babosas" usando expresiones regulares y capturan su valor como parametros pasados por ruta:</p>
+	<!-- codigo -->
+	<code>
+		public static function dispatch() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$requestUri = $_SERVER["REQUEST_URI"]; <strong>// /mvc/contact/</strong> <br>&nbsp;&nbsp;&nbsp;
+			$requestUri = trim($requestUri, "/"); <strong>// mvc/contact</strong> <br><br>&nbsp;&nbsp;&nbsp;
+
+			$method = $_SERVER["REQUEST_METHOD"]; <strong>// GET o POST</strong> <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>
+				/* <br>&nbsp;&nbsp;&nbsp;
+				Evaluar si la ruta solicitada existe dentro del sitio web, en los Arreglos GET o POST <br>&nbsp;&nbsp;&nbsp;
+				*/ <br>&nbsp;&nbsp;&nbsp;
+			</strong>
+			$array = &self::$routes[$method]; <br><br>&nbsp;&nbsp;&nbsp;
+			
+			foreach ($array as $uri => $callback) { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				<strong>// Si hay un :slug en la URI guardada lo convierte en una expresion regular ([\w|-]+)</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				if (str_contains($uri, ":")) { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+					$uri = preg_replace("%:([\w|-])+%", "([\w|-]+)", $uri); <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					<strong>// echo $uri . "&lt;br&gt;"; // Mostrar nueva URI</strong> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				} <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				
+				<strong>// Evaluar la URI solicitada con la expresion regular</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$expresion = "%^$uri$%"; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$tenemosLaUri = preg_match($expresion, $requestUri, $matches); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				if ($tenemosLaUri) { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+					// Captura los parametros pasados por la URI y muestra la respuesta <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					$params = array_slice($matches, 1); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					
+					// Si no hay parametros :slug en la URI es como si no le pasaramos ningun argumento a la funcion <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					$response = $callback(...$params); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+					if (is_array($response) || is_object($response)) { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+						print_r($response); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+					} else { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+						echo $response; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					} <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+					return; <strong>// Redirigido a la pagina solicitada, ejecucion de la funcion finalizada</strong> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				} <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				/* if ($uri == $requestUri) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					$callback(); <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					return; // Redirigido a la pagina solicitada, ejecucion de la funcion finalizada <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				} */ <br><br>&nbsp;&nbsp;&nbsp;
+
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// La pagina solicitada no fue encontrada</strong> <br>&nbsp;&nbsp;&nbsp;
+			echo "Error 404: no hemos encontrado la pagina solicitada en nuestro sitio."; <br>
+		}
+	</code>
+
+
+	<!-- Crear Controlador -->
+	<h3>Crear Controlador</h3>
+	<p>
+		El enrutador tiene la funcion de dirigir segun la URL... pero a hacia donde dirige? dirige hacia el controlador adecuado que se debe encargar de evaluar que hacer en respuesta a la URI solicitada.
+	</p>
+	<p>
+		Aqui hemos estado respondiendo usando funciones callback definidas en el enrutador, eso no es buena idea porque la logica de respuesta deberia esta definida en un controlador.
+	</p>
+	<p>
+		Para mover la logica de respuesta, por ejemplo, de la pagina principal un controlador de la carpeta Controllers primero lo creamos:
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>// app/Controllers/HomeController.php</strong> <br>
+		namespace app\Controllers; <br><br>
+
+		class HomeController { <br>&nbsp;&nbsp;&nbsp;
+			public function index() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return "Hola desde la pagina principal"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+
+
+	<!-- Asociar Controlador a URI -->
+	<h3>Asociar Controlador a URI</h3>
+	<p>Ahora en el archivo web.php lo importamos con use y el autoload. Despues en lugar de asociarle a la URI la logica de respuesta como una funcion callback, lo que hacemos es asociarle la informacion nesesaria para que pueda dirigirse al controlador (la enrutamos al controlador):</p>
+	<!-- codigo -->
+	<code>
+		use app\Controllers\HomeController; <strong>// Carga el archivo HomeController.php automaticamente gracias al autoload</strong> <br><br>
+
+		Route::get("/", [HomeController::class, "index"]);
+	</code>
+
+
+	<!-- Actualizar Route -->
+	<h3>Actualizar Route</h3>
+	<p>Ahora que hemos pasado al metodo get un Arreglo en lugar de una funcion callback, debemos adaptar la clase Route para que pueda responder a ambos casos en consecuencia:</p>
+	<!-- codigo -->
+	<code>
+		if ($tenemosLaUri) { <br><br>&nbsp;&nbsp;&nbsp;
+                
+			// Borra el primer elemento del array matches (porque contiene toda la URI y solo queremos los datos capturados) <br>&nbsp;&nbsp;&nbsp;
+			$params = array_slice($matches, 1); <br><br>&nbsp;&nbsp;&nbsp;
+			
+			if (is_callable($callback)) { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+
+				$response = $callback(...$params); <br><br>&nbsp;&nbsp;&nbsp;
+
+			} elseif (is_array($callback)) { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+
+				$claseNamespace = $callback[0]; $nombreMetodo = $callback[1]; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+
+				$controller = new $claseNamespace; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+
+				$response = $controller->{$nombreMetodo}(...$params); <br><br>&nbsp;&nbsp;&nbsp;
+
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			if (is_array($response) || is_object($response)) { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+
+				print_r($response); <br><br>&nbsp;&nbsp;&nbsp;
+
+			} else { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+				echo $response; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			return; <strong>// Redirigido a la pagina solicitada, ejecucion de la funcion finalizada</strong> <br><br>
+
+		}
+	</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>
