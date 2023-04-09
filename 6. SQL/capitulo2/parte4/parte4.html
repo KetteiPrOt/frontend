@@ -31,6 +31,24 @@
 	<code><strong>SELECT</strong> precio, CAST(precio AS INT) <strong>AS</strong> precio_redondeado <strong>FROM</strong> productos;</code>
 
 
+	<!-- SQL_CALC_FOUND_ROWS -->
+	<h3>SQL_CALC_FOUND_ROWS</h3>
+	<p>Almacena de forma oculta el numero de registros totales encontrados en la consulta. La sentencia LIMIT no tiene efecto sobre esta orden.</p>
+	<!-- codigo -->
+	<code>
+		<strong>SELECT</strong> SQL_CALC_FOUND_ROWS * <strong>FROM</strong> personas <strong>LIMIT</strong> 0, 3;
+	</code>
+
+
+	<!-- FOUND_ROWS() -->
+	<h3>FOUND_ROWS()</h3>
+	<p>Recupera el resultado de la la orden <em>SQL_CALC_FOUND_ROWS</em>. Ambas tienen que ser ejecutadas en la misma consulta para que funcione.</p>
+	<!-- codigo -->
+	<code>
+		SELECT FOUND_ROWS() AS total;
+	</code>
+
+
 	<!-- Para datos cadena de texto -->
 	<h2>Para datos cadena de texto</h2>
 

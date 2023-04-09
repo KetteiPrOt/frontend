@@ -136,6 +136,31 @@
 	</code>
 
 
+	<!-- empty() -->
+	<h3>empty()</h3>
+	<p>Devuelve true si el valor de una variable es null.</p>
+	<!-- codigo -->
+	<code>
+		$variable = "Hola"; <br><br>
+
+		$vacia = empty($variable) ? "verdadero" : "falso"; <br><br>
+
+		echo $vacia; <strong>// falso</strong>
+	</code>
+
+	<!-- unset() -->
+	<h3>unset()</h3>
+	<p>Destruye una variable</p>
+	<!-- codigo -->
+	<code>
+		$variable = "Hola Mundo"; <br><br>
+
+		unset($variable); <br><br>
+		
+		echo isset($variable) ? "Si Esta" : "No Esta"; <strong>// No Esta</strong>
+	</code>
+
+
 	<!-- Algunas Contantes Utiles -->
 	<h3>Algunas Contantes Utiles</h3>
 	<p>Las siguientes constantes ya vienen predefinidas por PHP:</p>
@@ -216,6 +241,13 @@
 
 		echo $method; <strong>// GET</strong>
 	</code>
+
+
+	<!-- $_SERVER["HTTP_CLIENT_IP"] -->
+	<h3>$_SERVER["HTTP_CLIENT_IP"]</h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
 
 
 

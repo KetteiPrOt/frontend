@@ -11,8 +11,11 @@
 
     // Mover imagen
     $imagen = $_FILES["imagen"]; $archivo = __FILE__;
+
     $carpeta = str_replace("procesar.php", "media/", $archivo);
+
     $ruta = $carpeta . $imagen["name"];
+    
     move_uploaded_file($imagen["tmp_name"], $ruta);
 ?>
 

@@ -32,7 +32,7 @@
 		Options -MultiViews  <br>
 		RewriteEngine On <br>
 		RewriteCond %{REQUEST_FILENAME} !-f <br>
-		RewriteRule ^ public/index.php [QSA,L]
+		RewriteRule ^ public/ [QSA,L]
 	</code>
 
 
@@ -67,7 +67,7 @@
 	<!-- Archivo httpd-vhost.conf (Apache) -->
 	<h3>Archivo httpd-vhost.conf (Apache)</h3>
 	<p>Este archivo de Apache permite conectar un dominio local con una ruta de archivos en el sistema, esta ubicado en la carpeta:</p>
-	<code>C:\xampp\apache\conf\extra\httpd-vhost.conf</code>
+	<code>C:\xampp\apache\conf\extra\httpd-vhosts.conf</code>
 
 	<p>Aqui escribimos la ruta que deseamos asociar, y a continuacion el domnio local con el que deseamos que quede enlazada</p>
 	<!-- codigo -->
@@ -78,7 +78,7 @@
 		&lt;/VirtualHost&gt; <br><br>
 		
 		&lt;VirtualHost *:80&gt; <br>&nbsp;&nbsp;&nbsp;
-			DocumentRoot <strong>"C:/xampp/htdocs/miproyecto/public/index.php"</strong> <br>&nbsp;&nbsp;&nbsp;
+			DocumentRoot <strong>"C:/xampp/htdocs/miproyecto/public/"</strong> <br>&nbsp;&nbsp;&nbsp;
 			ServerName <strong>midominio.test</strong> <br>
 		&lt;/VirtualHost&gt;
 	</code>

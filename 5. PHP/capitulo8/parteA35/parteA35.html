@@ -25,5 +25,143 @@
 		&lt;/form&gt;
 	</code>
 
+
+	<!-- Manejar estado -->
+	<h3>Manejar estado</h3>
+	<p>Tambien he modificado el asset "pagination.php" para que maneje el estado de las busquedas.</p>
+	<!-- codigo -->
+	<code>
+		<strong>// Asset pagination.php</strong> <br><br>
+
+		&lt;p&gt;Mostrando &lt;?= $actual ?&gt; hasta &lt;?= $tope ?&gt; de &lt;?= $total ?&gt; resultados.&lt;/p&gt; <br><br>
+
+		&lt;?php <br>&nbsp;&nbsp;&nbsp;
+			if (isset($valor)) { $buscar = "&buscar=$valor"; } else { $buscar = ""; } <br><br>&nbsp;&nbsp;&nbsp;
+
+			if ($prev_page_url) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo "&lt;a href=\"$prev_page_url" . "$buscar\"&gt;Anterior&lt;/a&gt; &lt;br&gt;"; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			for ($i = 1; $i &lt;= $ultimaPagina; $i++) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo "&lt;a href=\"/contactos?page=$i" . "$buscar\"&gt;Pagina $i&lt;/a&gt; &lt;br&gt;"; <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			if ($next_page_url) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo "&lt;a href=\"$next_page_url" . "$buscar\"&gt;Siguiente&lt;/a&gt; &lt;br&gt;"; <br>
+			}
+		?&gt;
+	</code>
+
+
+	<!-- Modelo -->
+	<h3>Modelo</h3>
+	<p>El que se va a encargar de traer la informacion de las busquedas es el modelo. Asi que reescribo el metodo paginate()</p>
+	<!-- codigo -->
+	<code>
+		public function paginate(int $cant = 10): array <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Recupera la pagina por la URL, si no hay le da el valor de 1</strong> <br>&nbsp;&nbsp;&nbsp;
+			$pagina = isset($_GET["page"]) ? $_GET["page"] : 1;<br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Cuando $pagina aumenta en 1, $actual aumenta en el valor de $cant</strong> <br>&nbsp;&nbsp;&nbsp;
+			$actual = $cant * ($pagina - 1); <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Consulta a la base de datos y guarda la cantidad total de registros</strong> <br>&nbsp;&nbsp;&nbsp;
+			if ($buscar) { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				extract($buscar); <strong>// $column = $buscar["column"], $operator = $buscar["operator"] ...;</strong> <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$sql = "SELECT SQL_CALC_FOUND_ROWS * FROM {$this->table} WHERE $columna $operador ? LIMIT ?, {$cant};"; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$registros = $this->query($sql, ["$valor%", $actual], "si")->get(); <strong>// [ [], [], [], ... ]</strong> <br><br>&nbsp;&nbsp;&nbsp;
+
+			} else { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$sql = "SELECT SQL_CALC_FOUND_ROWS * FROM {$this->table} LIMIT ?, {$cant};"; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$registros = $this->query($sql, [$actual], "i")->get(); // [ [], [], [], ... ] <br><br>&nbsp;&nbsp;&nbsp;
+
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Reupera la cantidad total de registros</strong> <br>&nbsp;&nbsp;&nbsp;
+			$cantidad = $this->query("SELECT FOUND_ROWS() AS total")->first(); <br><br>&nbsp;&nbsp;&nbsp;
+			
+			<strong>// Obtiene la ultima pagina</strong> <br>&nbsp;&nbsp;&nbsp;
+			$ultimaPagina = ceil($cantidad["total"] / $cant); <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Obtener URI sin variables GET</strong> <br>&nbsp;&nbsp;&nbsp;
+			$requestUri = $_SERVER["REQUEST_URI"]; <br><br>&nbsp;&nbsp;&nbsp;
+
+			if (str_contains($requestUri, "?")) { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$uriLen = strpos($requestUri, "?"); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$requestUri = substr($requestUri, 0, $uriLen); <br>&nbsp;&nbsp;&nbsp;
+			} <br><br>&nbsp;&nbsp;&nbsp;
+
+			$requestUri = trim($requestUri, "/"); <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>// Definir las URIs de prev y next con la URI obtenida</strong> <br>&nbsp;&nbsp;&nbsp;
+			$next_page_url = "/" . $requestUri . "?page=" . $pagina + 1; <br>&nbsp;&nbsp;&nbsp;
+			$prev_page_url = "/" . $requestUri . "?page=" . $pagina - 1; <br><br>&nbsp;&nbsp;&nbsp;
+
+			return [ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"registros" => $registros, <strong>// [ [], [], [], ... ]</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"actual" => ($cant * ($pagina - 1)) + 1, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"tope" => ($cant * ($pagina - 1)) + count($registros), <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"prev_page_url" => $pagina &gt; 1 ? $prev_page_url : null, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"next_page_url" => $pagina &lt; $ultimaPagina ? $next_page_url : null, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"ultimaPagina" => $ultimaPagina, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"total" => $cantidad["total"], <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				"valor" => isset($valor) ? $valor : null <br>&nbsp;&nbsp;&nbsp;
+			]; <br>
+		}
+	</code>
+
+
+	<!-- Controlador -->
+	<h3>Controlador</h3>
+	<p>Modifico el ContactController para que le pase los neuvos datos a la vista.</p>
+	<!-- codigo -->
+	<code>
+		public function index(): string <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$contactsModel = new Contacts; <br><br>&nbsp;&nbsp;&nbsp;
+
+			if (isset($_GET["buscar"])) { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$buscar = [ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					"columna" => "nombre", <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					"operador" => "LIKE", <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					"valor" => $_GET["buscar"], <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				]; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$informacion = $contactsModel->paginate(10, $buscar); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				return $this->view("contactos.index", $informacion); <br><br>&nbsp;&nbsp;&nbsp;
+
+			} else { <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$informacion = $contactsModel->paginate(); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				<strong>
+					// $informacion =  [ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					//     "contactos" => $contactos, // [ [], [], [], ... ] <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					//     "actual" => ($cant * ($pagina - 1)) + 1, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					//     "tope" => ($cant * ($pagina - 1)) + count($contactos), <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					//     "prev_page_url" => $pagina &gt; 1 ? $prev_page_url : null, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					//     "next_page_url" => $pagina &lt; $ultimaPagina ? $next_page_url : null, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					//     "ultimaPagina" => $ultimaPagina, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					//     "total" => $cantidad["total"] <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					// ]; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				</strong>
+				
+				return $this->view("contactos.index", $informacion); <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>// return $informacion;</strong> <br><br>&nbsp;&nbsp;&nbsp;
+
+			} <br>
+		}
+	</code>
+
 </body>
 </html>

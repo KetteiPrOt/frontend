@@ -1,9 +1,5 @@
 <?php
     declare(strict_types = 1);
-
-    $saludo = "Hola Mundo!";
-
-    $texto = "saludo";
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +13,7 @@
 <body>
     <p>
         <?php
-            echo $$texto;
+            //
         ?>
     </p>
 </body>

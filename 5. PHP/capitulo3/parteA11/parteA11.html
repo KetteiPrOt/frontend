@@ -156,10 +156,16 @@
 	<p>Podemos usar esta funcion para mover archivos recibidos en almacenamiento temporal.</p>
 	<!-- codigo -->
 	<code>
-		// Mover Imagen <br>
-		$imagen = $_FILES["imagen"]; $archivo = __FILE__;
-		$carpeta = str_replace("procesar.php", "media/", $archivo);
-		$ruta = $carpeta . $imagen["name"];
+		<strong>// Mover Imagen</strong> <br>
+
+		$imagen = $_FILES["imagen"]; <br><br>
+		
+		$archivo = __FILE__; <br><br>
+
+		$carpeta = str_replace("procesar.php", "media/", $archivo); <br><br>
+
+		$ruta = $carpeta . $imagen["name"]; <br><br>
+
 		move_uploaded_file($imagen["tmp_name"], $ruta); <strong>// La imagen fue movida y guardada a la carpeta media</strong>
 	</code>
 
