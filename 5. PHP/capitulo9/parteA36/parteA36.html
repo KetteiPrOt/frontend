@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 36</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Manejo de Errores</h1>
+	<h4 class="enlace-volver"><a href="../capitulo9.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- php_error_log -->
+	<h3>php_error_log</h3>
+	<p>
+		La funcion <em>ini_set()</em> cambia el valor de una configuracion en el interprete PHP durante la ejecucion del script. El valor se restaura al finalzar la ejecucion.
+	</p>
+	<p>
+		En esta ocasion la vamos a usar para lograr que cuando haya un errore se escriba automaticamente en el archivo "php_error_log".
+	</p>
+	<!-- codigo -->
+	<code>
+		ini_set("display_errors", 1); <br><br>
+
+		ini_set("log_errors", 1); <br><br>
+
+		ini_set("error_log", "C:\\xampp\\htdocs\\webDev\\5. PHP\\php_error_log"); <br><br>
+
+		echo $variable; <strong>// Produce un error de variable indefinida</strong>
+	</code>
+
+	<!-- try y catch -->
+	<h3>try y catch</h3>
+	<p>
+		Esta es una estructura de control que ayuda a manejar errores o excepciones:
+	</p>
+	<!-- codigo -->
+	<code>
+		try { <br><br>&nbsp;&nbsp;&nbsp;
+
+			echo $variable; <br><br>
+
+		} catch (Exception $e) { <br><br>&nbsp;&nbsp;&nbsp;
+
+			echo $e; <strong>// Undefined variable</strong> <br><br>
+
+		}
+	</code>
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

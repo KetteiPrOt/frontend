@@ -12,8 +12,16 @@
 </head>
 <body>
     <p>
-        <?php
-            //
+        <?php    
+            try {
+
+                echo $variable;
+
+            } catch (Exception $e) {
+
+                echo $e; // Undefined variable
+
+            }
         ?>
     </p>
 </body>
