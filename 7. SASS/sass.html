@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SASS</title>
+	<link rel="icon" href="../media/book.ico">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">SASS</h1>
+	<h4 class="enlace-volver"><a href="../index.html">Volver a los niveles</a></h4>
+
+	<!-- <ul class="lista-indice">
+		<li>
+			<strong>
+				<a class="enlace-indice" href="capitulo1/capitulo1.html">
+					Capitulo 1: ???
+				</a>
+			</strong>
+			<ul>
+				<li>???</li>
+			</ul>
+		</li>
+	</ul> -->
+
+	<!-- Compilar SCSS a CSS -->
+	<h3>Compilar SCSS a CSS</h3>
+	<p>
+		Se usa el comando sass, la ruta del archivo .scss, y la ruta del archivo .css
+	</p>
+	<!-- codigo -->
+	<code><strong>sass</strong> ruta/archivo.scss ruta/archivo.css</code>
+
+
+	<!-- Vigilar cambios -->
+	<h3>Vigilar cambios</h3>
+	<p>Se usa la opcion -w o --watch, el nombre del archivo .scss, y el nombre del archivo .css</p>
+	<!-- codigo -->
+	<code><strong>sass</strong> <em>-w</em> ruta/archivo.scss ruta/archivo.css</code>
+
+
+	<!-- Anidar selectores -->
+	<h3>Anidar selectores</h3>
+	<p>SASS permite anidar selectores para no tener que repetirlos.</p>
+	<!-- codigo -->
+	<code>
+		<strong>/* SCSS */</strong> <br>
+		.padre { <br>&nbsp;&nbsp;&nbsp;
+			.hijo { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				estilo: valor; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		} <br><br>
+
+		<strong>/* CSS */</strong> <br>
+		.padre .hijo { <br>&nbsp;&nbsp;&nbsp;
+			estilo: valor; <br>
+		}
+	</code>
+	
+</body>
+</html>
