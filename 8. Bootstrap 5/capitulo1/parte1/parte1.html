@@ -6,12 +6,122 @@
 	<title>Parte 1</title>
 	<link rel="icon" href="../../../media/book.ico">
 	<link rel="stylesheet" href="../../styles.css">
-	<script src="../../bootstrap.bundle.min.js" defer></script>
 </head>
 <body>
 	<h1 class="titulo-principal">Que es la Grid de Bootstrap?</h1>
 	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
 	<hr>
+
+	<!-- Columnas -->
+	<h3>Columnas</h3>
+	<p>Bootstrap 5 funciona con una Grid (rejilla) de 12 columnas.</p>
+	<p>
+		Cada columna puede ser asignada al elemento HTML que corresponda, y reasignada segun el tamanio de pantalla para crear disenios responsivos.
+	</p>
+
+
+	<!-- Breakpoints -->
+	<h3>Breakpoints</h3>
+	<p>Son dimensiones de pantalla en las que Bootstrap pasa a considerar otro dispositivo.</p>
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Breakpoint</th> <th>Class infix</th> <th>Dimensions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>X-Small</td> <td><em>xs</em></td> <td><576px</td>
+			</tr>
+			<tr>
+				<td>Small</td> <td>sm</td> <td>>=576px</td>
+			</tr>
+			<tr>
+				<td>Medium</td> <td>md</td> <td>>=768px</td>
+			</tr>
+			<tr>
+				<td>large</td> <td>lg</td> <td>>=992px</td>
+			</tr>
+			<tr>
+				<td>Extra Large</td> <td>xl</td> <td>>=1200px</td>
+			</tr>
+			<tr>
+				<td>Extra Extra Large</td> <td>xxl</td> <td>>=1400px</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<!-- Grid Sencilla -->
+	<h3>Grid Sencilla</h3>
+	<p>Un ejemplo de una Grid sencilla:</p>
+	<button><a class="btn-link" target="_blank" href="gridSencilla.html">Ver Ejemplo</a></button>
+
+
+	<!-- Filas y columnas -->
+	<h3>Filas y columnas</h3>
+	<p>
+		La grid de Bootstrap se construye con filas y columnas dentro de un contenedor principal.
+	</p>
+	<ul>
+		<li>
+			Clase <strong>container</strong>: es el contendor principal que contiene toda la estructura del sitio. <em>Puede ser "container-fluid" para eliminar los espaciados a los lados.</em>
+		</li>
+		<li>
+			Case <strong>row</strong>: son las filas que contienen las columnas del sitio. Puede haber cuantas quieras.
+		</li>
+		<li>
+			Clase <strong>col</strong>: representa las columnas asignadas a los elementos HTML. Hay un maximo de 12.
+		</li>
+	</ul>
+
+
+	<!-- Asignar columnas -->
+	<h3>Asignar columnas</h3>
+	<p>
+		Las columnas se asignan con la clase <em>col</em> seguida de el numero (n).
+	</p>
+	<!-- codigo -->
+	<code>class="col-<em>n</em>"</code>
+
+	<p>
+		En el caso de que no se asigne numero (n) el numero de columnas sera dividido automaticamente entre los elementos.
+	</p>
+
+
+	<!-- Tamanios de columnas -->
+	<h3>Tamanios de columnas</h3>
+	<p>
+		Se asignan Breakpoints a las columnas para que los elementos se reestructuren segun el tamanio de pantalla:
+	</p>
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Class column</th> <th>Breakpoint</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>.col-n</td> <td><576px</td>
+			</tr>
+			<tr>
+				<td>.col-n-sm</td> <td>>=576px</td>
+			</tr>
+			<tr>
+				<td>.col-n-md</td> <td>>=768px</td>
+			</tr>
+			<tr>
+				<td>.col-n-lg</td> <td>>=992px</td>
+			</tr>
+			<tr>
+				<td>.col-n-xl</td> <td>>=1200px</td>
+			</tr>
+			<tr>
+				<td>.col-n-xxl</td> <td>>=1400px</td>
+			</tr>
+		</tbody>
+	</table>
+
 
 	<!--  -->
 	<h3></h3>

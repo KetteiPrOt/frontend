@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 7</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Carousel</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ejemplos Practicos -->
+	<h3>Ejemplos Practicos</h3>
+	<p>
+		Revisa la guia junto a los ejemplos:
+	</p>
+	<button>
+		<a class="btn-link" target="_blank" href="slideshow.html">
+			Ver Ejemplos
+		</a>
+	</button>
+
+
+	<!-- Contenedor del Carousel -->
+	<h3>Contenedor del Carousel</h3>
+	<p>
+		El contenedor del carousel debe construirse con las siguientes clases y atributos:
+	</p>
+	<ul>
+		<li>
+			<strong>.carousel .slide</strong> Estas clases indican que se trata del componente en cuestion.
+		</li>
+		<li>
+			<strong>data-bs-ride="carousel"</strong> Este atributo habilita la funcionalidad del carousel.
+		</li>
+		<li>
+			<strong>data-bs-theme="dark"</strong> Opcional. Cambia el tema del Carousel a oscuro
+		</li>
+		<li>
+			<strong>id="carouselOne"</strong> Un id personalizado que servira para identificar al carousel.
+		</li>
+	</ul>
+
+
+	<!-- Interior del Carousel -->
+	<h3>Interior del Carousel</h3>
+	<p>
+		Dentro del contenedor va el elemento interior que contendra todos los items del Carousel. Debe construirse con las siguientes clases:
+	</p>
+	<ul>
+		<li>
+			<strong>.carousel-inner</strong> Esta clase estiliza el interior del carousel.
+		</li>
+	</ul>
+
+
+	<!-- Elemento del Carousel -->
+	<h3>Elemento del Carousel</h3>
+	<p>
+		Dentro del interior van los elementos que mostrara el Carousel. Debe construirse con las siguientes clases:
+	</p>
+	<ul>
+		<li>
+			<strong>.active</strong> Solo el primer elemento debe llevar la clase active para que se muestre.
+		</li>
+		<li>
+			<strong>.carousel-item</strong> Esta clase estiliza el item del carousel.
+		</li>
+		<li>
+			<strong>data-bs-interval="1000"</strong> Opcional. Establece el intervalo de tiempo en milisegundos para que se realize el cambio de slide.
+		</li>
+	</ul>
+
+
+	<!-- .carousel-caption -->
+	<h3>.carousel-caption</h3>
+	<p>
+		Dentro de cada elemento se pueden agregar subtitulos usando un elemento div.carousel-caption
+	</p>
+
+
+	<!-- Botones -->
+	<h3>Botones</h3>
+	<p>
+		Los botones se crean debajo del interior del carousel para cambiar de elemento, y deben tener las sigientes clases y atributos:
+	</p>
+	<ul>
+		<li>
+			<strong>.carousel-control-(prev || next)</strong> Esta clase estiliza el boton
+		</li>
+		<li>
+			<strong>data-bs-slide="(prev || next)"</strong> Este atributo habilita la funcionalidad del boton
+		</li>
+		<li>
+			<strong>data-bs-target="#carouselOne"</strong> Este atributo contiene el id del carousel al que pertenece el boton
+		</li>						
+	</ul>
+
+	<p>
+		Dentro de los botones debe ir un elemento &lt;span&gt; que mostrara el icono del boton
+	</p>
+	<ul>
+		<li>
+			<strong>.carousel-control-prev-icon</strong> Esta clase estiliza el icono
+		</li>
+		<li>
+			<strong>aria-hidden="true"</strong> Este atributo
+		</li>
+	</ul>
+
+
+	<!-- Indicadores -->
+	<h3>Indicadores</h3>
+	<p>
+		Los indicadores se crean debajo del contenedor interior del carousel en un elemento div.carousel-indicators
+	</p>
+	<p>
+		Este elemento debe contener un &lt;button&gt; por cada elemento del carousel. Cada &lt;button&gt; debe contener los siguientes atributos:
+	</p>
+	<ul>
+		<li>
+			<strong>.active</strong> Solo el primer boton debe llevar la clase active para que se muestre activo
+		</li>
+		<li>
+			<strong>data-bs-target="#carouselOne"</strong> Este atributo conecta el boton con el carousel a travez de su id
+		</li>
+		<li>
+			<strong>data-bs-slide-to="0"</strong> Este atributon conecta el boton con el elemento del carousel (desde el 0, 1, 2, 3... hasta cuantos elementos haya)
+		</li>
+	</ul>
+
+
+	<!-- .carousel-fade -->
+	<h3>.carousel-fade</h3>
+	<p>
+		Esta clase se coloca en el contenedor principal del Carousel, y cambia la animacion de transicion.
+	</p>
+	<p>
+		Al usar esta animacion no se admiten los captions
+	</p>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

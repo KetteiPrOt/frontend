@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 9</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Cards</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ejemplos Practicos -->
+	<h3>Ejemplos Practicos</h3>
+	<p>
+		Revisa la guia junto a los ejemplos:
+	</p>
+	<button>
+		<a class="btn-link" target="_blank" href="cards.html">
+			Ver Ejemplos
+		</a>
+	</button>
+
+
+	<!-- Contenedor Principal -->
+	<h3>Contenedor Principal</h3>
+	<p>La targeta es un componente que se usa para mostrar informacion. Su contenedor principal se crea con:</p>
+	<!-- code -->
+	<code>
+		div.card
+	</code>
+
+
+	<!-- Cuerpo de la targeta -->
+	<h3>Cuerpo de la targeta</h3>
+	<p>Dentro del contenedor principal de la targeta va el cuerpo. Secrea con con un elemento div:</p>
+	<!-- code -->
+	<code>
+		div.card-body
+	</code>
+
+
+	<!-- Titulo -->
+	<h3>Titulo</h3>
+	<p>El titulo se agrega dentro del cuerpo en un elemento de tipo encabezado (h1, h2, h3...):</p>
+	<!-- code-->
+	<code>h*.card-title</code>
+
+	<!-- Subtitulo -->
+	<h3>Subtitulo</h3>
+	<p>El subtitulo (opcional) se agrega dentro del cuerpo en un elemento de tipo encabezado (h1, h2, h3...):</p>
+	<!-- code-->
+	<code>h*.card-subtitle</code>
+
+
+	<!-- Texto -->
+	<h3>Texto</h3>
+	<p>El texto se agrega dentro del cuerpo en un elemento parrafo:</p>
+	<!-- code-->
+	<code>
+		p.card-text
+	</code>
+
+	<!-- Link -->
+	<h3>Link</h3>
+	<p>Los links se agregan dentro del cuerpo en un elemento enlace:</p>
+	<!-- code-->
+	<code>
+		a.card-link
+	</code>
+
+
+	<!-- Imagen -->
+	<h3>Imagen</h3>
+	<p>Se agrega fuera del cuerpo de la targeta.</p>
+	<p>
+		Para agregar una imagen al inicio de la targeta se agrega al incio del contenedor principal con su clase:
+	</p>
+	<!-- code-->
+	<code>
+		img.card-img-top
+	</code>
+
+	<p>
+		Para agregar una imagen al final de la targeta se agrega al final del contenedor principal con su clase:
+	</p>
+	<!-- code-->
+	<code>
+		img.card-img-bottom
+	</code>
+
+
+	<!-- Listas -->
+	<h3>Listas</h3>
+	<p>Las listas se crean de forma independiente directamente dentro del contenedor principal de la targeta</p>
+	<!-- code-->
+	<code>
+		ul.list-group.list-group-flush <br>&nbsp;&nbsp;&nbsp;
+			li.list-group-item
+	</code>
+
+	<p>Se puede agregar un titulo a la lista con:</p>
+	<!-- code-->
+	<code>
+		div.card-header <br>
+		ul.list-group.list-group-flush <br>&nbsp;&nbsp;&nbsp;
+			li.list-group-item
+	</code>
+
+	<p>Se puede agregar un pie a la lista con:</p>
+	<!-- code-->
+	<code>
+		ul.list-group.list-group-flush <br>&nbsp;&nbsp;&nbsp;
+			li.list-group-item <br>
+		div.card-footer
+	</code>
+
+
+	<!-- Imagen de Fondo -->
+	<h3>Imagen de Fondo</h3>
+	<p>
+		Se puede usar una imagen como fondo de la targeta agregando la al incio del contenedor principal y sustituyendo el cuerpo de la targeta por div.card-img-overlay
+	</p>
+	<p>
+		La desventaja esque si el contenido se desbordara si supera la altura de la imagen. Esto se puede arreglar con la clase .overflow-scroll
+	</p>
+	<!-- code -->
+	<code>
+		img.card-img <br>
+		div.card-img-overlay.overflow-scroll
+	</code>
+
+
+	<!-- Colores -->
+	<h3>Colores</h3>
+	<p>Se pueden cambiar agregando en el contenedor principal la clase:</p>
+	<!-- code-->
+	<code>.text-bg-*color*</code>
+	<ul>
+		<li>primary</li>
+		<li>secondary</li>
+		<li>success</li>
+		<li>danger</li>
+		<li>warning</li>
+		<li>info</li>
+		<li>light</li>
+		<li>dark</li>
+	</ul>
+
+
+	<!-- Bordes -->
+	<h3>Bordes</h3>
+	<p>Se pueden cambiar agregando en el contenedor principal la clase:</p>
+	<!-- code-->
+	<code>
+		.border-*color*
+	</code>
+
+	<p>Hay que combinarlo cambiando el color del texto para que quede bien:</p>
+	<!-- code -->
+	<code>.text-*color*</code>
+
+	<ul>
+		<li>primary</li>
+		<li>secondary</li>
+		<li>success</li>
+		<li>danger</li>
+		<li>warning</li>
+		<li>info</li>
+		<li>light</li>
+		<li>dark</li>
+	</ul>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code-->
+	<code></code>
+
+</body>
+</html>

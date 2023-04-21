@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 12</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Ventana Modal</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ejemplos Practicos -->
+	<h3>Ejemplos Practicos</h3>
+	<p>
+		Revisa la guia junto a los ejemplos:
+	</p>
+	<button>
+		<a class="btn-link" target="_blank" href="modal.html">
+			Ver Ejemplos
+		</a>
+	</button>
+
+
+	<!-- Que es una ventana modal? -->
+	<h3>Que es una ventana modal?</h3>
+	<p>
+		Es una ventana que se abre temporalmente encima del contenido principal para mostrar algun tipo de informacion.
+	</p>
+
+
+	<!-- Boton de apertura -->
+	<h3>Boton de apertura</h3>
+	<p>
+		Este boton sirve para abrir la ventana
+	</p>
+	<ul>
+		<li>
+			<strong>.btn.btn-primary</strong> Estas clases son para estilizarlo
+		</li>
+		<li>
+			<strong>data-bs-toggle="modal"</strong> Este atributo le da la funcionalidad
+		</li>
+		<li>
+			<strong>data-bs-target="#modalOne"</strong> Este id enlaza el boton con una sola ventana
+		</li>
+	</ul>
+
+
+	<!-- Contenedor principal -->
+	<h3>Contenedor principal</h3>
+	<p>Este es el contenedor principal que contiene a toda la ventana modal</p>
+	<ul>
+		<li>
+			<strong>.modal.fade</strong> Estas clases estilizan la ventana y le dan su respectiva animacion
+		</li>
+		<li>
+			<strong>id="modalOne"</strong> Este es el id que identifica a la ventana
+		</li>
+	    <li>
+	    	<strong>tabindex="-1"</strong> Propiedad requerida para que funcione correctamente
+	    </li>
+		<li>
+			<strong>data-bs-backdrop="static"</strong> Opcional. Este atributo hace que la ventana no se cierre al hacer click afuera de ella.
+		</li>
+	</ul>
+
+
+	<!-- Dialogo -->
+	<h3>Dialogo</h3>
+	<p>El dialogo es el contenido que se mostrara al abrir la ventana modal</p>
+	<ul>
+		<li>
+			<strong>.modal-dialog</strong> Estiliza la caja de dialogos para incluir cualquier contenido en su interior
+		</li>
+		<li>
+			<strong>.modal-dialog-centered</strong> Opcional. Centra el modal
+		</li>
+	</ul>
+
+
+	<!-- Contenido -->
+	<h3>Contenido</h3>
+	<p>Es una caja por defecto que sirve para mostrar contenido dentro del dialogo.</p>
+	<ul>
+		<li>
+			<strong>.modal-content</strong> Estiliza el contenido de la ventana modal
+		</li>
+	</ul>
+
+
+	<!-- Encabezado -->
+	<h3>Encabezado</h3>
+	<p>Se posiciona dentro del contenido y funciona como encabezado del mismo</p>
+	<!-- code -->
+	<code>
+		div.modal-header <br>&nbsp;&nbsp;&nbsp;
+			h*.modal-title
+	</code>
+
+	<h4>Boton Cerrar</h4>
+	<p>Este boton se crea al final del encabezado usando un elemento button:</p>
+	<ul>
+		<li>
+			<strong>.btn-close</strong> Estiliza el boton
+		</li>
+		<li>
+			<strong>data-bs-dismiss="modal"</strong> Le da la funcionalidad al boton
+		</li>
+	</ul>
+
+
+	<!-- Cuerpo -->
+	<h3>Cuerpo</h3>
+	<p>Se posiciona dentro del contenido (debajo del encabezado) para mostrar el mensaje de la ventana modal</p>
+	<!-- code -->
+	<code>
+		div.modal-body
+	</code>
+
+
+	<!-- Footer -->
+	<h3>Footer</h3>
+	<p>Opcional. El footer va debajo del cuerpo y podria contener por ejemplo botones para cancelar o aceptar el mensaje del modal</p>
+	<!-- code -->
+	<code>
+		div.modal-footer
+	</code>
+
+
+	<!-- .modal-dialog-scrollable -->
+	<h3>.modal-dialog-scrollable</h3>
+	<p>Se agrega al dialogo para darle un scroll cuando su contenido se desborde.</p>
+	<!-- code -->
+	<code>
+		div.modal-dialog.modal-dialog-scrollable
+	</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

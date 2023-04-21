@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Forms</title>	
+	<link rel="stylesheet" href="../../bootstrap.min.css">
+	<script src="../../bootstrap.bundle.min.js" defer></script>
+</head>
+<body>
+	
+	<div class="container">
+		
+		<div class="row mt-5">
+			
+			<div class="col-6">
+				
+				<!-- Data Form -->
+				<form>
+					<fieldset class="">
+						<legend>Data Form</legend>
+
+						<!-- Email Input -->
+						<label for="mail" class="form-label">
+							Email:
+						</label>
+						<input
+						    type="email"
+						    class="form-control"
+						    id="mail"
+						    placeholder="example@ex.com"
+						>
+						<div class="form-text mb-3">
+							We'll send a confirmation message
+						</div>
+
+						<!-- Invalid Email Input -->
+						<label for="invalidInput" class="form-label">
+							Invalid Input:
+						</label>
+						<input
+						    type="email"
+						    class="form-control is-invalid"
+						    id="invalidInput"
+						    placeholder=".is-invalid"
+						>
+						<div class="invalid-feedback mb-3">
+							There's a problem with you information
+						</div>
+
+						<!-- Valid Email Input -->
+						<label for="validInput" class="form-label">
+							Valid Input:
+						</label>
+						<input
+						    type="email"
+						    class="form-control is-valid"
+						    id="invalidInput"
+						    placeholder=".is-valid"
+						>
+						<div class="valid-feedback mb-3">
+							Looks Good!
+						</div>
+
+						<!-- Text Area -->
+						<label for="message" class="form-label">
+							Message:
+						</label>
+						<textarea
+						    class="form-control"
+						    id="message"
+						></textarea>
+						<div class="form-text mb-3">
+							Send that you want
+						</div>
+
+						<!-- Submit Button -->
+						<button
+						    class="btn btn-primary"
+						    type="submit"
+						>
+							Send
+						</button>
+
+					</fieldset>					
+				</form>
+
+			</div>
+
+			<div class="col-6">
+				
+				<!-- Sizing -->
+				<form>
+					<fieldset class="">
+						<legend>Sizing</legend>
+
+						<!-- Large Input -->
+						<input
+						    type="text"
+						    class="form-control form-control-lg mb-3"
+						    placeholder=".form-control .form-control-lg"
+						>
+
+						<!-- Default Input -->
+						<input
+						    type="text"
+						    class="form-control mb-3"
+						    placeholder=".form-control"
+						>
+
+						<!-- Small Input -->
+						<input
+						    type="text"
+						    class="form-control form-control-sm"
+						    placeholder=".form-control .form-control-sm"
+						>
+
+					</fieldset>					
+				</form>
+
+			</div>
+
+		</div>
+
+		<div class="row mt-5">
+			
+			<div class="col-12">
+				<h2>Floating Input</h2>
+			</div>
+
+			<div class="col-6">
+				<form>
+					<fieldset>
+
+						<!-- Username Input -->
+						<div class="form-floating">
+							<input
+							    type="text"
+							    class="form-control"
+							    id="floatingInput"
+							    placeholder="..."
+							>
+							<label for="floatingInput">Username</label>
+						</div>
+
+					</fieldset>
+				</form>
+			</div>
+
+		</div>
+
+	</div>
+</body>
+</html>

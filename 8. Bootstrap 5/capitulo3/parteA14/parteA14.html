@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 14</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Navegaciones (2)</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ejemplos Practicos -->
+	<h3>Ejemplos Practicos</h3>
+	<p>
+		Revisa la guia junto a los ejemplos:
+	</p>
+	<button>
+		<a class="btn-link" target="_blank" href="navbars.html">
+			Ver Ejemplos
+		</a>
+	</button>
+
+
+	<!-- .navbar -->
+	<h3>.navbar</h3>
+	<p>Estiliza un navbar. En su interior debe contener un contenedor para centrar el contenido</p>
+	<!-- code -->
+	<code>
+		nav.navbar <br>&nbsp;&nbsp;&nbsp;
+			div.(container|container-fluid)
+	</code>
+
+
+	<!-- .navbar-expand-? -->
+	<h3>.navbar-expand-?</h3>
+	<p>Esta clase determina la dimension en la que el menu se va a expandir.</p>
+	<!-- code -->
+	<code>
+		.navbar-expand-(sm|md|lg|xl|xxl)
+	</code>
+
+
+	<!-- .sticky-top -->
+	<h3>.sticky-top</h3>
+	<p>Fija el menu en la parte de arriba con posicion pegajosa</p>
+	<!-- code -->
+	<code>
+		nav.sticky-top
+	</code>
+
+
+	<!-- .navbar-brand -->
+	<h3>.navbar-brand</h3>
+	<p>Establece un enlace de navegacion como la bandera del navbar</p>
+	<!-- code -->
+	<code>
+		a.navbar-brand
+	</code>
+
+
+	<!-- Boton de expancion -->
+	<h3>Boton de expancion</h3>
+	<p>Este boton permite la expansion del menu de navegacion</p>
+	<ul>
+		<li>
+			<strong>.navbar-toggler</strong> Establece la posicion del boton
+		</li>
+		<li>
+			<strong>data-bs-toggle="collapse"</strong> Establece la funcionalidad del boton
+		</li>
+		<li>
+			<strong>data-bs-target="#menuOne"</strong> Enlaze el menu con el boton
+		</li>
+	</ul>
+
+	<p>Dentro del boton va una elemento span que renderize el icono</p>
+	<!-- code -->
+	<code>
+		span.navbar-toggler-icon
+	</code>
+
+
+	<!-- Contenido -->
+	<h3>Contenido</h3>
+	<p>Va despues de a.navbar-brand, y todo el contenido del navbar debe ir dentro de este elemento para que colapse cuando sea responsive</p>
+	<ul>
+		<li>
+			<strong>.collapse</strong> Esta clase permite colapsar el elemento
+		</li>
+		<li>
+			<strong>.navbar-collapse</strong> Esta clase establece el colapso para el navbar
+		</li>
+		<li>
+			<strong>id="menuOne"</strong> Este id identifica el menu de navegacion
+		</li>
+	</ul>
+
+
+	<!-- Navegacion -->
+	<h3>Navegacion</h3>
+	<p>Se crea con un elemento ul</p>
+	<ul>
+		<li>
+			<strong>.navbar-nav</strong> Esta clase estiliza el elemento como la navegacion
+		</li>
+	</ul>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>
