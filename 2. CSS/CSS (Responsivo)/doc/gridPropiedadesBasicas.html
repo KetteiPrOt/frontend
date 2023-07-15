@@ -239,11 +239,11 @@
 			<div class="elHijo">6</div>
 		</div>
 
-		<!-- grid-gap -->
-		<h3>grid-gap</h3>
+		<!-- grid/column/row-gap -->
+		<h3>grid/column/row-gap</h3>
 		<p>Define una brecha (gap) entre los elementos.</p>
 
-		<p>Espaciado de 20px [20px].</p>
+		<p>Espaciado de 20px [grid-gap: 20px;].</p>
 		<style>
 			.dosColAutomatico {
 				grid-template-columns: auto auto auto;
@@ -252,6 +252,10 @@
 			.brecha10px {
 				grid-gap: 20px;
 			}
+
+			.gap-x-20px { column-gap: 20px; }
+
+			.gap-y-20px { row-gap: 20px; }
 		</style>
 		<em class="upNote">grid-template-columns: auto auto auto;</em>
 		<div class="cntPadre grid dosColAutomatico brecha10px">
@@ -262,6 +266,29 @@
 			<div class="elHijo">5</div>
 			<div class="elHijo">6</div>
 		</div>
+
+		<p>Espaciado de 20px en el eje X [column-gap: 20px;].</p>
+		<em class="upNote">grid-template-columns: auto auto auto;</em>
+		<div class="cntPadre grid dosColAutomatico gap-x-20px">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
+		<p>Espaciado de 20px en el eje Y [row-gap: 20px;].</p>
+		<em class="upNote">grid-template-columns: auto auto auto;</em>
+		<div class="cntPadre grid dosColAutomatico gap-y-20px">
+			<div class="elHijo">1</div>
+			<div class="elHijo">2</div>
+			<div class="elHijo">3</div>
+			<div class="elHijo">4</div>
+			<div class="elHijo">5</div>
+			<div class="elHijo">6</div>
+		</div>
+
 
 		<!-- Unidad de medida fr -->
 		<h3>Unidad de medida fr</h3>

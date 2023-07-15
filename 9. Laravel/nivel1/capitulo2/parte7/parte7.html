@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 7</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Columnas</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Crear Columnas -->
+	<h3>Crear Columnas</h3>
+	<p>Las columnas se pueden crear o modificar usando metodos del objeto <code>$table</code>.</p>
+	<!-- code -->
+	<code></code>
+
+
+	<!-- Metodos de Columnas -->
+	<h3>Metodos de Columnas</h3>
+	<p>
+		Para ver todos los <strong>Metodos de Columnas</strong> disponibles echa un vistazo a la <a href="https://laravel.com/docs/10.x/migrations#available-column-types">documentacion</a>.
+	</p>
+
+	<p>Estos son los principales y mas ultiles clasificados por su <strong>tipo</strong>:</p>
+
+	<hr>
+	<style>
+		.container { display: flex;	}
+
+		.container > ul { list-style: none; }
+
+		.container > ul > li { font-style: italic; }
+
+		.center { justify-content: space-around; }
+	</style>
+	<div class="container center">
+		<div>
+			<h4>Texto</h4>
+			<ul>
+				<li>string()</li>
+				<li>char()</li>	
+				<li>tinyText()</li>	
+				<li>text()</li>	
+				<li>mediumText()</li>
+				<li>longText()</li>
+			</ul>
+		</div>
+		<div>
+			<h4>Numero</h4>
+			<ul>
+				<li>bigInteger()</li>
+				<li>mediumInteger()</li>
+				<li>integer()</li>
+				<li>smallInteger()</li>
+				<li>tinyInteger()</li>
+				<li>decimal()</li>
+				<li>double()</li>
+				<li>float()</li>
+			</ul>
+		</div>
+		<div>
+			<h4>Auto Incremento</h4>
+			<ul>			
+				<li>increments()</li>	
+				<li>bigIncrements()</li>
+				<li>mediumIncrements()</li>
+				<li>smallIncrements()</li>
+				<li>tinyIncrements()</li>
+			</ul>
+		</div>
+		<div>
+			<h4>Sin signo</h4>
+			<ul>
+				<li>unsignedBigInteger()</li>
+				<li>unsignedMediumInteger()</li>
+				<li>unsignedInteger()</li>
+				<li>unsignedSmallInteger()</li>
+				<li>unsignedTinyInteger()</li>
+				<li>unsignedDecimal()</li>
+			</ul>
+		</div>
+		<div>
+			<h4>Fecha</h4>
+			<ul>
+				<li>datetime()</li>
+				<li>date()</li>
+				<li>time()</li>
+				<li>year()</li>
+				<li>timestamp()</li>
+				<li>timestamps()</li>
+				<li>nullableTimestamps()</li>
+			</ul>
+		</div>
+		<div>
+			<h4>Otros tipos</h4>
+			<ul>
+				<li>binary()</li>
+				<li>boolean()</li>
+				<li>json()</li>
+				<li>set()</li>
+			</ul>
+		</div>
+		<div>
+			<h4>Utilidades</h4>
+			<ul>
+				<li>id()</li>
+				<li>foreignId()</li>
+				<li>foreignIdFor()</li>
+				<li>ipAddress()</li>
+				<li>macAddress()</li>
+				<li>rememberToken()</li>
+				<li>softDeletes()</li>
+			</ul>
+		</div>
+	</div>
+
+
+	<!-- Tipo texto -->
+	<h3>Tipo texto</h3>
+	<p>
+		<strong>
+			<em>string()</em>
+		</strong>:
+		Crea una columna con tipo <code>VARCHAR</code>, opcionalemente recibe el numero maximo de caracteres.
+	</p>
+	<!-- code -->
+	<code>$table->string('name', 100);</code>
+
+	<p>
+		<strong>
+			<em>char()</em>
+		</strong>:
+		Crea una columna con tipo <code>CHAR</code>, opcionalemente recibe el numero maximo de caracteres.
+	</p>
+	<!-- code -->
+	<code>$table->char('name', 100);</code>
+
+	<ul>
+		<li>tinyText()</li>
+		<li>text()</li>
+		<li>mediumText()</li>
+		<li>longText()</li>
+	</ul>
+	<p>
+		Crean una columna con los tipos <code>TINYTEXT</code>, <code>TEXT</code>, <code>MEDIUMTEXT</code>, <code>LONGTEXT</code> correspondientes.
+	</p>
+	<!-- code -->
+	<code>$table->text('description');</code>
+	
+	<!-- Tipo numero -->
+	<h3>Tipo numero</h3>
+	<ul>
+		<li>tinyInteger()</li>
+		<li>smallInteger()</li>
+		<li>integer()</li>
+		<li>mediumInteger()</li>
+		<li>longInteger()</li>
+	</ul>
+	<p>
+		Crean una columna con los tipos <code>TINYINTEGER</code>, <code>SMALLINTEGER</code>, <code>INTEGER</code>, <code>MEDIUMINTEGER</code>, <code>LONGINTEGER</code> correspondientes.
+	</p>
+	<!-- code -->
+	<code>$table->integer('column_name');</code>
+
+	<ul>
+		<li>decimal()</li>
+		<li>double()</li>
+		<li>float()</li>
+	</ul>
+	<p>
+		Crea una columna de tipo <code>DECIMAL</code>, <code>DOUBLE</code>, y <code>FLOAT</code> correspondiente. Opcionalmente reciben la precision (numero total de digitos), y la escala (cantidad de digitos decimales).
+	</p>
+	<!-- code -->
+	<code>$table->decimal('amount', $precision = 8, $scale = 2);</code>
+
+
+	<!-- Auto Incremento -->
+	<h3>Auto Incremento</h3>
+	<ul>
+		<li>tinyIncrements()</li>
+		<li>smallIncrements()</li>
+		<li>increments()</li>
+		<li>mediumIncrements()</li>
+		<li>bigIncrements()</li>
+	</ul>
+	<p>
+		Crea una columna de tipo <code>TINYINT</code>, <code>SMALLINT</code>, <code>INT</code>, <code>MEDIUMINT</code>, o <code>BIGINT</code> sin signo (<code>UNSIGNED</code>). Y la asigna como la <strong>Clave Primaria</strong> de la tabla.
+	</p>
+	<!-- code -->
+	<code>$table->increments('id');</code>
+
+
+	<!-- Sin signo -->
+	<h3>Sin signo</h3>
+	<ul>
+		<li>unsignedBigInteger()</li>
+		<li>unsignedMediumInteger()</li>
+		<li>unsignedInteger()</li>
+		<li>unsignedSmallInteger()</li>
+		<li>unsignedTinyInteger()</li>
+	</ul>
+	<p>
+		Crea una columna de tipo <code>TINYINT</code>, <code>SMALLINT</code>, <code>INT</code>, <code>MEDIUMINT</code>, o <code>BIGINT</code> sin signo (<code>UNSIGNED</code>). Y la asigna como la <strong>Clave Primaria</strong> de la tabla.
+	</p>
+	<!-- code -->
+	<code>$table->unsignedInteger('id');</code>
+
+	<p>
+		<strong>
+			<em>unsignedDecimal()</em>
+		</strong>:
+		Crea una columna con tipo <code>DECIMAL</code> sin signo (<code>UNSIGNED</code>), opcionalemente recibe la precision (numero total de digitos), y la escala (cantidad de digitos decimales).
+	</p>
+	<!-- code -->
+	<code>$table->unsignedDecimal('amount', $precision = 8, $scale = 2)</code>
+
+
+	<!-- Tipo fecha -->
+	<h3>Tipo fecha</h3>
+	<ul>
+		<li>datetime()</li>
+		<li>date()</li>
+		<li>time()</li>
+		<li>year()</li>
+		<li>timestamp()</li>
+	</ul>
+	<p>
+		Crea una columna de tipo <code>DATETIME</code>, <code>DATE</code>, <code>TIME</code>, <code>YEAR</code>, o <code>TIMESTAMP</code> correspondiente.
+	</p>
+	<!-- code -->
+	<code>$table->date('created_at');</code>
+
+	<p>
+		<strong>
+			<em>timestamps()</em>
+		</strong>:
+		Crea dos columnas de tipo <code>TIMESTAMP</code> llamadas <em>created_at</em> y <em>updated_at</em>.
+	</p>
+	<!-- code -->
+	<code>$table->timestamps();</code>
+
+	<p>
+		<strong>
+			<em>nullableTimestamps()</em>
+		</strong>:
+		Es un alias del metodo <em>timestamps()</em>.
+	</p>
+
+
+	<!-- Otros tipos -->
+	<h3>Otros tipos</h3>
+	<p>
+		<strong>
+			<em>binary()</em>
+		</strong>:
+		Crea una columna de tipo <code>BLOB</code> para almacenar datos binarios, como imagenes.
+	</p>
+	<!-- code -->
+	<code>$table->binary('photo');</code>
+
+	<p>
+		<strong>
+			<em>boolean()</em>
+		</strong>:
+		Crea una columna de tipo <code>BOOLEAN</code> (Equivalente a <code>TINYINT</code>) para almacenar 1 o 0.
+	</p>
+	<!-- code -->
+	<code>$table->boolean('user_premium');</code>
+
+	<p>
+		<strong>
+			<em>json()</em>
+		</strong>:
+		Crea una columna para almacenar datos en formato JSON, mas optimizada que columnas de tipo texto.
+	</p>
+	<!-- code -->
+	<code>$table->json('options');</code>
+
+	<p>
+		<strong>
+			<em>set()</em>
+		</strong>:
+		Crea una columna de tipo <code>SET</code>, recive una lista de valores validos.
+	</p>
+	<!-- code -->
+	<code>$table->set('flavors', ['strawberry', 'vanilla', 'chocolate']);</code>
+
+
+	<!-- Utilidades -->
+	<h3>Utilidades</h3>
+	<p>
+		<strong>
+			<em>id()</em>:
+		</strong>
+		Crea una columna de tipo <code>BIGINT</code> sin signo (<code>UNSIGNED</code>) y con auto incremento (<code>AUTOINCREMENT</code>), la asigna como <strong>Clave Primaria</strong> de la tabla. Por defecto le da el nombre 'íd' a la columna.
+	</p>
+	<!-- code -->
+	<code>$table->id();</code>
+
+	<p>
+		<strong>
+			<em>foreignId()</em>:
+		</strong>
+		Crea una columna de tipo <code>BIGINT</code> sin signo (<code>UNSIGNED</code>).
+	</p>
+	<!-- code -->
+	<code>$table->foreignId('user_id');</code>
+
+	<p>
+		<strong>
+			<em>foreignIdFor()</em>:
+		</strong>
+		Crea una columna de tipo <code>BIGINT</code> sin signo (<code>UNSIGNED</code>). Le asigna el nombre recibido concatenado con <code>'_id'</code>.
+	</p>
+	<!-- code -->
+	<code>$table->foreignIdFor('user');</code>
+
+	<p>
+		<strong>
+			<em>ipAddress()</em>:
+		</strong>
+		Crea una columna de tipo <code>VARCHAR</code>.
+	</p>
+	<!-- code -->
+	<code>$table->ipAddress('visitor');</code>
+
+	<p>
+		<strong>
+			<em>macAddress()</em>:
+		</strong>
+		Crea una columna de tipo texto para almacenar una direccion MAC.
+	</p>
+	<!-- code -->
+	<code>$table->macAddress('device');</code>
+
+	<p>
+		<strong>
+			<em>rememberToken()</em>:
+		</strong>
+		Crea una columna de tipo <code>VARCHAR(100)</code> por defecto nula (<code>DEFAULT NULL</code>) llamada <em>remenber_token</em>, destinada a almacenar el token de autenticacion actual.
+	</p>
+	<!-- code -->
+	<code>$table->rememberToken();</code>
+
+	<p>
+		<strong>
+			<em>softDeletes()</em>:
+		</strong>
+		Crea una columna de tipo <code>TIMESTAMP</code> llamada <em>deleted_at</em> destinada a almacenar el dato <em>deleted_at timestamp</em> nesesario para la funcionalidad <em>soft delete</em> de Eloquent.
+	</p>
+	<!-- code -->
+	<code>$table->softDeletes();</code>
+
+	<hr>
+
+	<!-- Modificadores de Columnas -->
+	<h3>Modificadores de Columnas</h3>
+	<p>
+		Ademas de los metodos que definen el tipo de columna tambien hay varios <strong>metodos modificadores</strong> que puedes usar cuando agregas una columna.
+	</p>
+	<!-- code -->
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Modificador</th> <th>Descripcion</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>->after('column')</td>
+				<td>Pone la nueva columna despues de la columna especificada</td>
+			</tr>
+			<tr>
+				<td>->autoIncrement()</td>
+				<td>
+					Define las columnas de creadas por los metodos <em>integer()</em> como autoincrementables y como <strong>Claves Primarias</strong>
+				</td>
+			</tr>
+			<tr>
+				<td>->charset('utf8mb4')</td>
+				<td>Define el conjunto de caracteres usuado por la columna</td>
+			</tr>
+			<tr>
+				<td>->collation('utf8mb4_unicode_ci')</td>
+				<td>Especifica la colacion de caracteres usada por la columna</td>
+			</tr>
+			<tr>
+				<td>->comment('my comment')</td>
+				<td>Agrega un comentario a la columna</td>
+			</tr>
+			<tr>
+				<td>->default($value)</td>
+				<td>Especifica un valor por defecto para la columna</td>
+			</tr>
+			<tr>
+				<td>->first()</td>
+				<td>Pone la columna al inicio de la tabla</td>
+			</tr>
+			<tr>
+				<td>->from($integer)</td>
+				<td>Especifica una valor incial para una columna con autoincremento</td>
+			</tr>
+			<tr>
+				<td>->invisible()</td>
+				<td>Hace la columna invisible a las consultas <code>SELECT *</code></td>
+			</tr>
+			<tr>
+				<td>->nullable($value = true)</td>
+				<td>Permite que el valor <code>NULL</code> sea insertado en la columna.</td>
+			</tr>
+			<tr>
+				<td>->unsigned()</td>
+				<td>Define columnas de tipo numero como sin signo</td>
+			</tr>
+			<tr>
+				<td>->useCurrent()</td>
+				<td>
+					Establece columnas de tipo <code>TIMESTAMP</code> para usar <code>CURRENT_TIMESTAMP</code> como valor por defecto
+				</td>
+			</tr>
+			<tr>
+				<td>->useCurrentOnUpdate()</td>
+				<td>
+					Establece columnas de tipo <code>TIMESTAMP</code> para usar <code>CURRENT_TIMESTAMP</code> cuando un registro es actualizado
+				</td>
+			</tr>
+			<tr>
+				<td>->virtualAs($expression)</td>
+				<td>Crea una columna generada virtualmente</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<!-- Metodo after() -->
+	<h3>Metodo <em>after()</em></h3>
+	<p>
+		Este metodo tambien puede ser usado para agregar columnas despues de una ya existente:
+	</p>
+	<!-- code -->
+	<code>
+		$table->after('password', function (Blueprint $table) { <br>&nbsp;&nbsp;&nbsp;
+			$table->string('address_line1'); <br>&nbsp;&nbsp;&nbsp;
+			$table->string('address_line2'); <br>&nbsp;&nbsp;&nbsp;
+			$table->string('city'); <br>
+		});
+	</code>
+
+
+	<!-- Metodo change() -->
+	<h3>Metodo <em>change()</em></h3>
+	<p>Este metodo sirve para modificar columnas ya existentes.</p>
+	<p>
+		En su uso mas basico puedo por ejemplo cambiar la longitud maxima de caracteres de una columnas ya existente.
+	</p>
+	<!-- code -->
+	<code>$table->string('name', 50)->change();</code>
+
+	<p>
+		Todos los Modificadores de Columnas que se deseen mantener <strong>deben explicitarse</strong>, de lo contrario seran eliminados y la columna sobreescrita.
+	</p>
+	<p>
+		Por ejemplo si deseas <strong>mantener las propiedades</strong> los modificadores <em>unsigned()</em>, <em>default()</em>, y <em>comment()</em>, deberas volver a explicitarlos al usar el metodo <em>change()</em>:
+	</p>
+	<!-- code -->
+	<code>
+		$table->integer('votes')->unsigned()->default(1)->comment('my comment')->change();
+	</code>
+	
+
+	<!-- Renombrar columna -->
+	<h3>Renombrar columna</h3>
+	<p>Usa el metodo <em>renameColumn()</em> para renombrar una columna de la tabla.</p>
+	<!-- code -->
+	<code>$table->renameColumn('from', 'to');</code>
+
+
+	<!-- Eliminar columnas -->
+	<h3>Eliminar columnas</h3>
+	<p>Usa el metodo <em>dropColumn()</em> para eliminar una columna de la tabla.</p>
+	<!-- code -->
+	<code>$table->dropColumn('column_name');</code>
+
+	<p>Puedes eliminar muchas columnas pasando un arreglo con sus nombres:</p>
+	<!-- code -->
+	<code>$table->dropColumn(['column_name1', 'column_name2', 'column_name3']);</code>
+
+	<p>Existen varios metodos convenientes para eliminar columnas genericas:</p>
+	<!-- code -->
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Metodo</th> <th>Descripcion</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>$table->dropRememberToken();</td>
+				<td>
+					Elimina la columna <code>remember_token</code>
+				</td>
+			</tr>
+			<tr>
+				<td>$table->dropSoftDeletes();</td>
+				<td>
+					Elimina la columna <code>deleted_at</code>
+				</td>
+			</tr>
+			<tr>
+				<td>$table->dropTimestamps();</td>
+				<td>
+					Elimina las columnas <code>created_at</code> y <code>updated_at</code>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 10</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Transiciones y Animaciones</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ejemplos -->
+	<h3>Ejemplos</h3>
+	<p>
+		En el siguiente enlace estan los ejemplos:
+	</p>
+	<a href="ejemplo.html" target="_blank">Ejemplos</a>
+	<!-- code -->
+	<code></code>
+	
+
+	<!-- Transition -->
+	<h3>Transition</h3>
+	<p>
+		Controla las propiedades <em>transition-property</em>, <em>transition-timing-function</em>, y <em>transition-duration</em> de CSS.
+	</p>
+	<p>
+		La mayoria del tiempo problamente uses <em>.transition-all</em>
+	</p>
+	<!-- code -->
+	<code>
+		.transition-none (transition-property: none;) <br><br>
+
+		.transition-all ( <br>&nbsp;&nbsp;&nbsp;
+			transition-property: all; <br>&nbsp;&nbsp;&nbsp;
+			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* like function <em>ease</em> */ <br>&nbsp;&nbsp;&nbsp;
+			transition-duration: 150ms; <br>
+		) <br><br>
+
+		.transition ( <br>&nbsp;&nbsp;&nbsp;
+			transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter; <br>&nbsp;&nbsp;&nbsp;
+			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); <br>&nbsp;&nbsp;&nbsp;
+			transition-duration: 150ms; <br>
+		) <br><br>
+
+		.transition-colors ( <br>&nbsp;&nbsp;&nbsp;
+			transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; <br>&nbsp;&nbsp;&nbsp;
+			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); <br>&nbsp;&nbsp;&nbsp;
+			transition-duration: 150ms; <br>
+		) <br><br>
+
+		.transition-opacity ( <br>&nbsp;&nbsp;&nbsp;
+			transition-property: opacity; <br>&nbsp;&nbsp;&nbsp;
+			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); <br>&nbsp;&nbsp;&nbsp;
+			transition-duration: 150ms; <br>
+		) <br><br>
+
+		.transition-shadow ( <br>&nbsp;&nbsp;&nbsp;
+			transition-property: box-shadow; <br>&nbsp;&nbsp;&nbsp;
+			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); <br>&nbsp;&nbsp;&nbsp;
+			transition-duration: 150ms; <br>
+		) <br><br>
+
+		.transition-transform ( <br>&nbsp;&nbsp;&nbsp;
+			transition-property: transform; <br>&nbsp;&nbsp;&nbsp;
+			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); <br>&nbsp;&nbsp;&nbsp;
+			transition-duration: 150ms; <br>
+		) <br><br>
+	</code>
+	
+
+	<!-- Transition Duration -->
+	<h3>Transition Duration</h3>
+	<p>
+		Controla la propiedad <em>transition-duration</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.duration-<em>n</em> (: 0s/75ms/100ms/150ms/200ms/300ms/500ms/700ms/1000ms;) <br><br>
+
+		Donde <em>n</em> puede ser: 0/75/100/150/200/300/500/700/1000
+	</code>
+	
+
+	<!-- Transition Timing Function -->
+	<h3>Transition Timing Function</h3>
+	<p>
+		Controla la propiedad <em>transition-timing-function</em> de CSS.
+	</p>
+	<!-- table -->
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Class</th> <th>CSS values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>.ease-linear</code></td> <td><code>[: linear;]</code></td>
+			</tr>
+			<tr>
+				<td><code>.ease-in</code></td> <td><code>[: cubic-bezier(0.4, 0, 1, 1);]</code></td>
+			</tr>
+			<tr>
+				<td><code>.ease-out</code></td> <td><code>[: cubic-bezier(0, 0, 0.2, 1);]</code></td>
+			</tr>
+			<tr>
+				<td><code>.ease-in-out</code></td> <td><code>[: cubic-bezier(0.4, 0, 0.2, 1);]</code></td>
+			</tr>
+		</tbody>
+	</table>		
+	
+
+	<!-- Transition Delay -->
+	<h3>Transition Delay</h3>
+	<p>
+		Controla la propiedad <em>transition-delay</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.delay-<em>n</em> (: 0s/75ms/100ms/150ms/200ms/300ms/500ms/700ms/1000ms;) <br><br>
+
+		Donde <em>n</em> puede ser: 0/75/100/150/200/300/500/700/1000
+	</code>
+	
+
+	<!-- Animation -->
+	<h3>Animation</h3>
+	<p>
+		Utilidades para aplicar sencillas animaciones de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.animation-none (animation: none;) <br><br>
+	</code>
+
+	<p>
+		Animacion de Spin
+	</p>
+	<!-- code -->
+	<code>
+		<strong>.animation-spin</strong> <br><br>
+
+		[ <br>&nbsp;&nbsp;&nbsp;
+			animation: spin 1s linear infinite; <br><br>&nbsp;&nbsp;&nbsp;
+
+			@keyframes spin { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				from { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					transform: rotate(0deg); <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				} <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				to { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					transform: rotate(360deg); <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				} <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		]
+	</code>
+
+	<p>
+		Animacion de Ping
+	</p>
+	<!-- code -->
+	<code>
+		<strong>.animate-ping</strong> <br><br>
+
+		[ <br>&nbsp;&nbsp;&nbsp;
+			animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite; <br><br>&nbsp;&nbsp;&nbsp;
+
+			@keyframes ping { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				75%, 100% { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					transform: scale(2);<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					opacity: 0; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				} <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		]
+	</code>
+
+	<p>
+		Animacion de Pulse
+	</p>
+	<!-- code -->
+	<code>
+		<strong>.animation-pulse</strong> <br><br>
+
+		[ <br>&nbsp;&nbsp;&nbsp;
+			animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; <br><br>&nbsp;&nbsp;&nbsp;
+
+			@keyframes pulse { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				0%, 100% { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					opacity: 1; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				} <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				50% { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					opacity: .5; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				} <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		]
+	</code>
+
+	<p>
+		Animacion de Bounce
+	</p>
+	<!-- code -->
+	<code>
+		<strong>.animation-bounce</strong> <br><br>
+
+		[ <br>&nbsp;&nbsp;&nbsp;
+			animation: bounce 1s infinite; <br><br>&nbsp;&nbsp;&nbsp;
+
+			@keyframes bounce { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				0%, 100% { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					transform: translateY(-25%); <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					animation-timing-function: cubic-bezier(0.8, 0, 1, 1); <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				} <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				50% { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					transform: translateY(0); <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					animation-timing-function: cubic-bezier(0, 0, 0.2, 1); <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				} <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		]
+	</code>
+	
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

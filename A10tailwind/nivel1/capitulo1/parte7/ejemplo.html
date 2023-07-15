@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="px-3">
+
+    <!-- Resize -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Resize
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.resize</p>
+            <textarea class="resize border rounded border-black text-center" cols="30" rows="10"
+            >Text Area</textarea>
+        </div>
+        <div class="mr-3">
+            <p>.resize-x</p>
+            <textarea class="resize-x border rounded border-black text-center" cols="30" rows="10"
+            >Text Area</textarea>
+        </div>
+        <div class="mr-3">
+            <p>.resize-y (by default)</p>
+            <textarea class="resize-y border rounded border-black text-center" cols="30" rows="10"
+            >Text Area</textarea>
+        </div>
+        <div class="mr-3">
+            <p>.resize-none</p>
+            <textarea class="resize-none border rounded border-black text-center" cols="30" rows="10"
+            >Text Area</textarea>
+        </div>
+    </div>
+    
+    
+    <!-- Object Fit -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Object Fit
+    </h3>
+    <!-- Example -->
+    <div class="flex my-3">
+        <div class="w-1/2">
+            <p>.object-fill (by default)</p>
+            <img class="object-fill w-2/3 h-96 border-2 rounded border-black" src="media/img1.jpg">
+        </div>
+        <div class="w-1/2">
+            <p>.object-contain</p>
+            <img class="object-contain w-2/3 h-96 border-2 rounded border-black" src="media/img1.jpg">
+        </div>
+    </div>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="w-1/2">
+            <p>.object-none</p>
+            <img class="object-none w-2/3 h-96 border-2 rounded border-black" src="media/img1.jpg">
+        </div>
+        <div class="w-1/2">
+            <p>.object-cover</p>
+            <img class="object-cover w-2/3 h-96 border-2 rounded border-black" src="media/img1.jpg">
+        </div>
+    </div>
+    
+    
+    <!-- Object Position -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Object Position
+    </h3>
+    <p>
+        Todos estos ejemplos comparten la clase <code>.object-none</code>.
+    </p>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="w-1/3">
+            <p>.object-left-top</p>
+            <img class="object-left-top object-none w-48 h-48 border-2 rounded border-black" src="media/img1.jpg">
+        </div>
+        <div class="w-1/3">
+            <p>.object-top</p>
+            <img class="object-top object-none w-48 h-48 border-2 rounded border-black" src="media/img1.jpg">
+        </div>
+        <div class="w-1/3">
+            <p>.object-top</p>
+            <img class="object-right-top object-none w-48 h-48 border-2 rounded border-black" src="media/img1.jpg">
+        </div>
+    </div>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="w-1/3">
+            <p>.object-left</p>
+            <img class="object-left object-none w-48 h-48 border-2 rounded border-black" src="media/img1.jpg">
+        </div>
+        <div class="w-1/3">
+            <p>.object-center</p>
+            <img class="object-center object-none w-48 h-48 border-2 rounded border-black" src="media/img1.jpg">
+        </div>
+        <div class="w-1/3">
+            <p>.object-right</p>
+            <img class="object-right object-none w-48 h-48 border-2 rounded border-black" src="media/img1.jpg">
+        </div>
+    </div>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="w-1/3">
+            <p>.object-left-bottom</p>
+            <img class="object-left-bottom object-none w-48 h-48 border-2 rounded border-black" src="media/img1.jpg">
+        </div>
+        <div class="w-1/3">
+            <p>.object-bottom</p>
+            <img class="object-bottom object-none w-48 h-48 border-2 rounded border-black" src="media/img1.jpg">
+        </div>
+        <div class="w-1/3">
+            <p>.object-right-bottom</p>
+            <img class="object-right-bottom object-none w-48 h-48 border-2 rounded border-black" src="media/img1.jpg">
+        </div>
+    </div>
+    
+    
+    <!-- Cursor -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Cursor
+    </h3>
+    <!-- Example -->
+    <p>
+        .cursor-auto (by default)
+    </p>
+    <div class="cursor-auto w-32 h-32 border-2 rounded border-black bg-blue-300"></div>
+
+    <div class="flex mt-3">
+        <div class="mr-3 ">
+            <p>.cursor-default</p>
+            <div class="cursor-default w-32 h-32 border-2 rounded border-black bg-blue-300"></div>
+        </div>
+        <div class="mr-3 ">
+            <p>.cursor-text</p>
+            <div class="cursor-text w-32 h-32 border-2 rounded border-black bg-blue-300"></div>
+        </div>
+        <div class="mr-3 ">
+            <p>.cursor-wait</p>
+            <div class="cursor-wait w-32 h-32 border-2 rounded border-black bg-blue-300"></div>
+        </div>
+        <div class="mr-3 ">
+            <p>.cursor-move</p>
+            <div class="cursor-move w-32 h-32 border-2 rounded border-black bg-blue-300"></div>
+        </div>
+        <div class="mr-3 ">
+            <p>.cursor-help</p>
+            <div class="cursor-help w-32 h-32 border-2 rounded border-black bg-blue-300"></div>
+        </div>
+        <div class="mr-3 ">
+            <p>.cursor-not-allowed</p>
+            <div class="cursor-not-allowed w-32 h-32 border-2 rounded border-black bg-blue-300"></div>
+        </div>
+    </div>
+    
+    
+    <!-- User Select -->
+    <h3 class="text-3xl mt-5 mb-2">
+        User Select
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.select-auto (by default)</p>
+            <div class="select-auto p-1 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet.
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.select-text</p>
+            <div class="select-text p-1 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet.
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.select-none</p>
+            <div class="select-none p-1 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet.
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.select-all</p>
+            <div class="select-all p-1 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet.
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- // -->
+    <h3 class="text-3xl mt-5 mb-2">
+        //
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3"></div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 35</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Relacion One To Many</h1>
+	<h4 class="enlace-volver"><a href="../capitulo9.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Crear Tabla categories -->
+	<h3>Crear Tabla <em>categories</em></h3>
+	<p>
+		Si nos fijamos en la tabla <em>users</em> esta tiene tres relaciones uno a muchos: con <em>videos</em>, <em>comments</em>, y <em>posts</em>.
+	</p>
+	<p>
+		Pero la tabla <em>posts</em> es un tanto especial, ya que es como entidad debil no depende solamente de <em>users</em> sino tambien de la tabla <em>categories</em>... asi que vamos a crearla para poder crear la tabla <em>posts</em>.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Modelo Category -->
+	<h3>Modelo Category</h3>
+	<p>
+		Al usar el comando para crear un modelo:
+	</p>
+	<!-- code -->
+	<code>php artisan make:model Category</code>
+
+	<p>
+		Puedes agregar los parametros <em>-m</em>, <em>-c</em>, <em>-f</em>, <em>-s</em>, <em>-a</em> para tambien crear una migracion, controlador, factory, seeder, o todos los anteriores.
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Tambien crea la migracion create_categories_table</strong> <br><br>
+
+		php artisan make:model Category -m
+	</code>
+
+	<p>Despues solo agrego la columna <em>name</em> a <em>categories</em>.</p>
+	
+	
+	<!-- Tabla posts -->
+	<h3>Tabla <em>posts</em></h3>
+	<!-- code -->
+	<code>php artisan make:model Post -m</code>
+
+	<p>
+		Las columnas serian las siguientes:
+	</p>
+	<!-- code -->
+	<code>
+		$table->id(); <br>
+		$table->string('title', 45); <br>
+		$table->text('body'); <br><br>
+
+		$table->foreignId('user_id') <br>
+		->nullable() <br>
+		->constrained() <br>
+		->onDelete('set null') <br>
+		->onUpdate('cascade'); <br><br>
+
+		$table->foreignId('category_id') <br>
+		->nullable() <br>
+		->constrained() <br>
+		->onDelete('set null') <br>
+		->onUpdate('cascade'); <br>
+		$table->timestamps();
+	</code>
+
+	
+	<!-- hasMany() -->
+	<h3>hasMany()</h3>
+	<p>
+		Establece que cada uno de los elementos de la tabla estan relacionados con muchos elementos de la tabla recibida como parametro:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// One To Many</strong> <br>
+		public function posts() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return $this->hasMany(Posts::class); <br>
+		}
+	</code>
+
+	<p>
+		Del mismo modo que con los metodos anteriores, los posts asociados se cargan como una propieda.
+	</p>
+	<!-- code -->
+	<code>
+		use App\Models\User; $user = User::find(1); <br><br>
+
+		<strong>// Muestra todos los Posts asociados</strong> <br>
+		$user->posts;
+	</code>
+	
+	
+	<!-- Relacion Inversa -->
+	<h3>Relacion Inversa</h3>
+	<p>
+		La relacion One To Many inversa es la misma que la relacion One To One inversa.
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Inverse One To Many</strong> <br>
+		public function user() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return $this->belongsTo(User::class); <br>
+		} <br><br>
+
+		<strong>// Extraer usuario del post</strong> <br>
+		$post = Post::find(1); $post->user;
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

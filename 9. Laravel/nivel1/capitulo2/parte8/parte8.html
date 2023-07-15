@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 8</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Indices</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que son los Indices -->
+	<h3>Que son los Indices</h3>
+	<p>
+		Los indices basicos son columnas que internamente han sido ordenadas por MySQL para acelerar la busqueda de informacion sobre ellas.
+	</p>
+	<p>
+		Solo deberiamos agregar indices en las columnas donde estemos seguros que vamos a hacer busquedas, porque agregarlos consume memoria.
+	</p>
+	<p>
+		Tambien existen mas tipos de indices como las Claves Primarias, Claves Externas, Indices <em>fulltext</em>, etc...
+	</p>
+
+	<!-- Agregar Indices -->
+	<h3>Agregar Indices</h3>
+	<p>Puedes agregar indices usando los siguientes metodos:</p>
+	<!-- code -->
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Metodo</th> <th>Descripcion</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>$table->primary('id');</td>
+				<td>Asigna la columna <code>id</code> como Clave Primaria</td>
+			</tr>
+			<tr>
+				<td>$table->primary(['id', 'parent_id']);</td>
+				<td>
+					Asigna las columnas <code>id</code> y <code>parent_id</code> como Claves Compuestas
+				</td>
+			</tr>
+			<tr>
+				<td>$table->unique('email');</td>
+				<td>
+					Asigna la columna <code>email</code> como indice unico (sus registros no se pueden repetir)
+				</td>
+			</tr>
+			<tr>
+				<td>$table->index('state');</td>
+				<td>
+					Agrega un indice a la columna <code>state</code>
+				</td>
+			</tr>
+			<tr>
+				<td>$table->fullText('body');</td>
+				<td>
+					Agrega un indice de tipo <code>FULLTEXT</code> a la columna <code>state</code>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<p>
+		Opcionalmente podemos pasarle el nombre del indice como segundo argumento a parte de la columna. Si no lo hacemos igual se genera automaticamente.
+	</p>
+	<!-- code -->
+	<code>$table->unique('email', 'unique_email');</code>
+
+
+	<!-- Eliminar Indices -->
+	<h3>Eliminar Indices</h3>
+	<p>
+		Para eliminar un indice debes especificar <strong>su nombre</strong>.
+	</p>
+	<p>
+		Por defecto Laravel asigna nombres a los indices basodos en sus tipos, el nombre de la tabla, y el nombre de la columna.
+	</p>
+	<!-- code -->
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Metodo</th> <th>Descripcion</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>$table->dropPrimary('users_id_primary');</td>
+				<td>Elimina la Clave Primaria de la tabla <em>users</em></td>
+			</tr>
+			<tr>
+				<td>$table->dropUnique('users_email_unique');</td>
+				<td>Elimina un indice unico para la tabla <em>users</em></td>
+			</tr>
+			<tr>
+				<td>$table->dropIndex('geo_state_index');</td>
+				<td>Elimina un indice basico para la tabla <em>geo</em></td>
+			</tr>
+			<tr>
+				<td>$table->dropFullText('posts_body_fulltext');</td>
+				<td>Elimina un indice <em>fulltext</em> para la tabla <em>post</em></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<p>
+		Si pasas un arreglo de columnas a uno de estos metodos, entonces los nombres de los indices se intuiran automaticamente segun la tabla, la columna, y el tipo de indice.
+	</p>
+	<!-- code -->
+	<code>
+		Schema::table('geo', function (Blueprint $table) { <br>&nbsp;&nbsp;&nbsp;
+			$table->dropIndex(['state']); // Drops index 'geo_state_index' <br>
+		});
+	</code>
+
+
+	<!-- Agregar Claves Externas -->
+	<h3>Agregar Claves Externas</h3>
+	<p>Puedes agregarlas de la siguiente forma similar al lenguaje SQL.</p>
+	<p>
+		Aqui agrego la columna <em>users_id</em> (que es una Clave Externa) a la tabla <em>post</em>. <em>users_id</em> referencia al <em>id</em> de la tabla <em>users</em>.
+	</p>
+	<!-- code -->
+	<code>
+		Schema::table('posts', function (Blueprint $table) { <br>&nbsp;&nbsp;&nbsp;
+			$table->unsignedBigInteger('user_id'); <br><br>&nbsp;&nbsp;&nbsp;
+		 
+			$table->foreign('user_id')->references('id')->on('users'); <br>
+		});
+	</code>
+
+	<p>
+		Pero la verdad es que esta sintaxis es un poco engorrosa, por eso existe esta otra forma de definir una Clave Externa que referencie un <em>id</em>:
+	</p>
+	<!-- code -->
+	<code>
+		Schema::table('posts', function (Blueprint $table) { <br>&nbsp;&nbsp;&nbsp;
+			$table->foreignId('user_id')->constrained(); <br>
+		});
+	</code>
+
+	<p>
+		Ambas sintaxis vendrian a tener al mismo efecto, ya que el metodo <em>constrained()</em> <strong>usara las convenciones</strong> para determinar que columna sera referenciada.
+	</p>
+
+	<p>
+		Adicionalmente la tabla referenciada y el nombre de la Clave Externa <strong>pueden ser especificados</strong> en el metodo <em>constrained()</em>.
+	</p>
+	<!-- code -->
+	<code>
+		Schema::table('posts', function (Blueprint $table) { <br>&nbsp;&nbsp;&nbsp;
+			$table->foreignId('user_id')->constrained( <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				table: 'users', indexName: 'posts_user_id' <br>&nbsp;&nbsp;&nbsp;
+			); <br>
+		});
+	</code>
+
+	<p>
+		<em>
+			<strong>onUpdate() / onDelete()</strong>
+		</em>
+		pueden ser definidos despues del metodo <em>constrained()</em>.
+	</p>
+	<!-- code -->
+	<code>
+		table->foreignId('user_id') <br>&nbsp;&nbsp;&nbsp;&nbsp;
+			 ->constrained() <br>&nbsp;&nbsp;&nbsp;&nbsp;
+			 ->onUpdate('cascade') <br>&nbsp;&nbsp;&nbsp;&nbsp;
+			 ->onDelete('cascade'); 
+	</code>
+
+	<p>
+		Para conseguir el mismo efecto de foma <strong>mas expresiva</strong> existen los metodos:
+	</p>
+	<!-- code -->
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Metodo</th> <th>Equivalente</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>$table->cascadeOnUpdate();</td> <td>->onUpdate('cascade')</td>
+			</tr>
+			<tr>
+				<td>$table->restrictOnUpdate();</td> <td>->onUpdate('restrict')</td>
+			</tr>
+			<tr>
+				<td>$table->cascadeOnDelete();</td> <td>->onDelete('cascade');</td>
+			</tr>
+			<tr>
+				<td>$table->restrictOnDelete();</td> <td>->onDelete('restrict');</td>
+			</tr>
+			<tr>
+				<td>$table->nullOnDelete();</td> <td>->onDelete('null');</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<p>
+		<strong>Importante</strong>: Cualquier Modificador de Columna debera ser definido antes del metodo <em>constrained()</em>.
+	</p>
+	<!-- code -->
+	<code>
+		$table->foreignId('user_id') <br>&nbsp;&nbsp;&nbsp;&nbsp;
+			  ->nullable() <br>&nbsp;&nbsp;&nbsp;&nbsp;
+			  ->constrained();
+	</code>
+
+
+	<!-- Eliminar Claves Externas -->
+	<h3>Eliminar Claves Externas</h3>
+	<p>
+		Usa el metodo <em>dropForeign()</em> pasandole el nombre de la Clave Externa que deseas eliminar como argumento.
+	</p>
+	<p>
+		Las Clave Externa se nombran automaticamente de la misma forma que los indices: se basa en el nombre de la tabla, las columnas, el tipo de indice, seguido del sufijo <em>_foreign</em>.
+	</p>
+	<!-- code -->
+	<code>$table->dropForeign('posts_user_id_foreign');</code>
+
+	<p>
+		Puedes pasar un arreglo de columnas que contenga las columnas con Claves Externas, y sus nombres seran intuidos automaticamente segun las convenciones.
+	</p>
+	<p>Esta linea vendria a ser lo mismo que la de arriba: (en la misma tabla y sigiendo las convenciones).</p>
+	<!-- code -->
+	<code>$table->dropForeign(['user_id']);</code>
+
+
+	<!-- Alternar Claves Externas -->
+	<h3>Alternar Claves Externas</h3>
+	<p>
+		Puedes habilitar o desabilitar las Claves Externas en tus migraciones usando los siguientes metodos:
+	</p>
+	<!-- code -->
+	<code>
+		Schema::enableForeignKeyConstraints(); <br><br>
+ 
+		Schema::disableForeignKeyConstraints(); <br><br>
+		
+		Schema::withoutForeignKeyConstraints(function () { <br>&nbsp;&nbsp;&nbsp;
+			// Constraints disabled within this closure... <br>
+		});
+	</code>
+
+
+	<!-- Continue...? -->
+	<h3>Continue...?</h3>
+	<p>
+		Estructurare esta seccion de forma similara a la <a href="https://laravel.com/docs/10.x/migrations#creating-columns">documentacion</a>, con la diferencia de que solo tomare lo mas importante que me sirva, y creo que pondre los comandos para correr las migraciones y sus nombres al final.
+	</p>
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

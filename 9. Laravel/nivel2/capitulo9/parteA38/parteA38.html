@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 38</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">One To Many [Polimorfica]</h1>
+	<h4 class="enlace-volver"><a href="../capitulo9.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que es? -->
+	<h3>Que es?</h3>
+	<p>
+		Es muy similar a la relacion anterior, solo que ahora muchos registros de la tabla principal pueden asociarse a un solo registro de las tablas relacionadas:
+	</p>
+	<!-- image -->
+	<img src="media/polimorficOtm1.png" width="750"> <br>
+	<img src="media/polimorficOtm2.png" width="750">
+
+	<p>
+		Entonces a la tabla con relacion Polimorfica quedaria asi:
+	</p>
+	<!-- image -->
+	<img src="media/polimorficOtm3.png" width="1000">
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Tabla comments -->
+	<h3>Tabla <em>comments</em></h3>
+	<!-- code -->
+	<code>
+		$table->id(); <br>
+		$table->string('message'); <br><br>
+
+		$table->unsignedBigInteger('commentable_id'); <br>
+		$table->string('commentable_type'); <br><br>
+
+		$table->unsignedBigInteger('user_id'); <br><br>
+		
+		$table->foreign('user_id')->references('id')->on('users') <br>&nbsp;&nbsp;&nbsp;
+				->constrained() <br>&nbsp;&nbsp;&nbsp;
+				->onDelete('cascade') <br>&nbsp;&nbsp;&nbsp;
+				->onUpdate('cascade'); <br><br>
+		
+		$table->timestamps();
+	</code>
+	
+	
+	<!-- morhpTo() -->
+	<h3>morhpTo()</h3>
+	<p>
+		De nuevo usamos este metodo para indicar que es una tabla polimorfica:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Inverse Polimorfic One To Many</strong> <br>
+		public function commentable() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return $this->morphTo(); <br>
+		}
+	</code>
+	
+	
+	<!-- morphMany() -->
+	<h3>morphMany()</h3>
+	<p>
+		Con este metodo establecemos en los otros dos modelos (<em>Post</em> y <em>Video</em>) la relacion One To Many entre las tres tablas:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Polimorfic One To Many</strong> <br>
+		public function comments() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return $this->morhpMany('App\Models\Comment', 'commentable'); <br>
+		}
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 39</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Many To Many [Polimorfica]</h1>
+	<h4 class="enlace-volver"><a href="../capitulo9.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que es? -->
+	<h3>Que es?</h3>
+	<p>
+		Esta relacion se da como la anterior, solo que las dos tablas estan en relacion muchos a muchos con la tabla principal.
+	</p>
+	<p>
+		Aqui tenemos las tablas <em>posts</em> y <em>videos</em> que estan en relacion muchos a muchos con la tabla <em>tags</em>.
+	</p>
+	<!-- image -->
+	<img src="media/polymorphicMtm1.png" width="750"> <br>
+	<img src="media/polymorphicMtm2.png" width="750">
+
+	<p>
+		Entonces le aplicamos la del "...able_id" y  "...able_type":
+	</p>
+	<!-- image -->
+	<img src="media/polymorphicMtm3.png" width="950">
+	
+	
+	<!-- Crear tabla taggables -->
+	<h3>Tabla <em>taggables</em></h3>
+	<!-- code -->
+	<code>
+		$table->id('taggable_id'); <br><br>
+
+		$table->unsignedBigInteger('tag_id'); <br>
+		$table->string('taggable_type'); <br><br>
+
+		$table->foreign('tag_id') <br>&nbsp;&nbsp;&nbsp;
+				->references('id') <br>&nbsp;&nbsp;&nbsp;
+				->on('tags') <br>&nbsp;&nbsp;&nbsp;
+				->constrained() <br>&nbsp;&nbsp;&nbsp;
+				->onDelete('cascade'); <br><br>
+
+		$table->timestamps();
+	</code>
+	
+	
+	<!-- morphToMany() -->
+	<h3>morphToMany()</h3>
+	<p>
+		Establece la relacion Polimorfica Many To Many en los modelos <em>Pots</em> y <em>Video</em>:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Polymorphic Many To Many</strong> <br>
+		public function tags() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return $this->morhpToMany('App\Models\Tag', 'taggables'); <br>
+		}
+	</code>
+	
+	
+	<!-- morphByMany() -->
+	<h3>morphByMany()</h3>
+	<p>
+		Establece las relaciones inversas polimorficas en el modelo <em>Tag</em>:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Inverse Polymorphic Many To Many</strong> <br>
+		public function posts() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return $this->morhpedByMany('App\Models\Post', 'taggable'); <br>
+		} <br><br>
+
+		public function videos() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return $this->morhpedByMany('App\Models\Video', 'taggable'); <br>
+		}
+	</code>
+	
+	
+	<!-- morph() -->
+	<h3>morph()</h3>
+	<p>
+		En las migraciones este metodo es el equivalente a los dos "...able_id" y "...able_type":
+	</p>
+	<!-- code -->
+	<code>
+		$table->morph('taggable'); <br><br>
+
+		<strong>// Equivalente a:</strong> <br>
+		$table->string('taggable_id'); <br>
+		$table->string('taggable_type');
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

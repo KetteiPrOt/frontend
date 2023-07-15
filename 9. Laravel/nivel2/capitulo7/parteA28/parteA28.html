@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 28</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Componentes de Blade</h1>
+	<h4 class="enlace-volver"><a href="../capitulo7.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que son? -->
+	<h3>Que son?</h3>
+	<p>
+		En muchas partes de los sitios web hay que reutilizar codigo. Por ejemplo, en las alertas que se repiten a lo largo y ancho de muchas paginas.
+	</p>
+	<p>
+		Si tuvieramos muchas alertas iguales creadas manualmente luego seria un problema actualizar su disenio, porque deberiamos ir una por una haciendo el cambio.
+	</p>
+	<p>
+		Por eso Blade nos permite separar estos elementos de la aplicacion en un documento a parte denominado Componente.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Crear componente -->
+	<h3>Crear componente</h3>
+	<p>
+		La forma mas sencilla de crear componentes es creando una carpeta llamada "components" en el directorio views y guardar alli nuestros componentes Blade:
+	</p>
+	<!-- code -->
+	<code>
+		/views/components/component.blade.php
+	</code>
+	
+	
+	<!-- Usar componente -->
+	<h3>Usar componente</h3>
+	<p>
+		Para usar el nuevo componente que hemos creado debemos ubicarnos en la vista donde vamos a incluirlo y usar la etiqueta &lt;x-<em>name</em> /&gt; donde <em>name</em> es el nombre que le hemos dado al componente:
+	</p>
+	<!-- code -->
+	<code>
+		&lt;x-component /&gt;
+	</code>
+	
+	
+	<!-- Pasar parametro -->
+	<h3>Pasar parametro</h3>
+	<p>
+		Para darle personalidad a cada componente podemos pasarle un parametro. Para crearlo en el interior de un componente simplemente debemos definir una variable php con el nombre slot:
+	</p>
+	<!-- code -->
+	<code>
+		&lt;h1&gt; <br>&nbsp;&nbsp;&nbsp;
+			Saludos!, como estas <strong>{{$slot}}</strong>? <br>
+		&lt;/h1&gt;
+	</code>
+
+	<p>
+		Entonces para darle valor al parametro en la vista, simplemente usamos el componente como una etiqueta que  contendra ese valor:
+	</p>
+	<!-- code -->
+	<code>
+		&lt;x-greeting&gt; <br>&nbsp;&nbsp;&nbsp;
+			Joel <br>
+		&lt;/x-greeting&gt;
+	</code>
+	
+	
+	<!-- Parametros por atributo -->
+	<h3>Parametros por atributo</h3>
+	<p>
+		Para pasarle mas parametros al componente lo podemos hacer dandoselos como atributos HTML:
+	</p>
+	<!-- code -->
+	<code>
+		&lt;x-greeting <strong>title="Saludos"</strong>&gt; <br>&nbsp;&nbsp;&nbsp;
+			Joel <br>
+		&lt;/x-greeting&gt;
+	</code>
+
+	<p>
+		Entonces para recibirlos debemos usar la directiva @props, que recibe un arreglo con los nombres de los atributos que le pasamos como parametros al componente. Hecho esto podemos hacer uso de los atributos como variables:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>@props(['title'])</strong> <br><br>
+
+		&lt;h1&gt; <br>&nbsp;&nbsp;&nbsp;
+			<strong>{{$title}}</strong> <br>
+		&lt;/h1&gt; <br>
+		&lt;p&gt; <br>&nbsp;&nbsp;&nbsp;
+			Saludos!, como estas {{$slot}}? <br>
+		&lt;/p&gt;
+	</code>
+
+	<p>
+		En el caso de que desearamos especificar un <strong>valor por defecto</strong> para algun atributo debemos usar el parametro como llave del array, y el valor por defecto como valor de esa llave en el array:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>@props(['title' => 'Titulo por defecto'])</strong>
+	</code>
+
+
+	<!-- Pasar variables -->
+	<h3>Pasar variables</h3>
+	<p>
+		Podemos pasarle el valor de una variable php como parametro a un componente de la siguiente forma:
+	</p>
+	<!-- code -->
+	<code>
+		@php <br>&nbsp;&nbsp;&nbsp;
+			<strong>$title = "Titulo del articulo";</strong> <br>
+		@endphp <br><br>
+
+		&lt;x-greeting <strong>:title="$title"</strong>&gt;<br>&nbsp;&nbsp;&nbsp;
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis earum assumenda a corporis distinctio  <br>&nbsp;&nbsp;&nbsp;
+			sed dolores numquam laudantium tempore ad? <br>
+		&lt;/x-greeting&gt;
+	</code>
+
+	<p>
+		En el componente veremos como se recibio el valor de la variable php:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>@props(['title'])</strong> <br><br>
+
+		&lt;h1&gt; <br>&nbsp;&nbsp;&nbsp;
+			<strong>{{$title}}</strong> <br>
+		&lt;/h1&gt; <br><br>
+
+		&lt;p&gt; <br>&nbsp;&nbsp;&nbsp;
+			{{$slot}} <br>
+		&lt;/p&gt;
+	</code>
+	
+	
+	<!-- Slots con nombre -->
+	<h3>Slots con nombre</h3>
+	<p>
+		Los anteriores metodos funcionan bien cuando deseamos pasar datos pequenios como cadenas de texto... pero cuando deseamos pasar datos mas grandes como estructuras HTML nesecitamos hacer uso de slos con nombre.
+	</p>
+	<p>
+		Los slots con nombre son slots secundarios como el slot principal, con sus propios nombres. Para indicar el nombre se lo pasamos en el atributo HTML "name":
+	</p>
+	<!-- code -->
+	<code>
+		&lt;x-greeting title="Saludos!"&gt; <br>&nbsp;&nbsp;&nbsp;
+			{{-- Named Slot --}} <br>&nbsp;&nbsp;&nbsp;
+			<strong>&lt;x-slot name="content"&gt;</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;p&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					Este es un componente con un slot nombrado como "content" <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;/p&gt; <br>&nbsp;&nbsp;&nbsp;
+			<strong>&lt;/x-slot&gt;</strong> <br>
+		&lt;/x-greeting&gt;
+	</code>
+
+	<p>
+		Para recibir lso datos en el componente solo usamos el nombre del slot como una variable para hacerle referencia:
+	</p>
+	<!-- code -->
+	<code>
+		@props(['title']) <br><br>
+
+		&lt;h1&gt; <br>&nbsp;&nbsp;&nbsp;
+			{{$title}} <br>
+		&lt;/h1&gt; <br><br>
+
+		<strong>{{$content}}</strong>
+	</code>
+	
+	
+	<!-- Variable $attributes -->
+	<h3>Variable $attributes</h3>
+	<p>
+		Cuando le pasamos un atributo al componente que no esta indicado en la dorectiva @props(), entonces se guardara en el array attributes.
+	</p>
+	<p>
+		Este array contiene todos los atributos HTML que nesesitemos pasarle al componente, por ejemplo una clase:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Vista</strong><br>
+		&lt;x-greeting title="Titulo del articulo" <strong>class="info" id="article"</strong>&gt; <br>&nbsp;&nbsp;&nbsp;
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis earum assumenda a corporis distinctio <br>&nbsp;&nbsp;&nbsp;
+			sed dolores numquam laudantium tempore ad? <br>
+		&lt;/x-greeting&gt; <br><br>
+
+		<strong>// Componente</strong><br>
+		@props(['title']) <br><br>
+
+		&lt;style&gt; <br>&nbsp;&nbsp;&nbsp;
+			.info { background: green; color: white; padding: 15px; } <br>
+		&lt;/style&gt; <br><br>
+
+		&lt;div <strong>{{$attributes}}</strong>&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;h1&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				{{$title}} <br>&nbsp;&nbsp;&nbsp;
+			&lt;/h1&gt; <br><br>&nbsp;&nbsp;&nbsp;
+			
+			&lt;p&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				{{$slot}} <br>&nbsp;&nbsp;&nbsp;
+			&lt;/p&gt; <br>
+		&lt;/div&gt;
+	</code>
+	
+	
+	<!-- merge() -->
+	<h3>merge()</h3>
+	<p>
+		Este metodo sirve para mesclar dos atributos: uno que ya este definido en el componente, y otro que le hemos pasado por la vista.
+	</p>
+	<p>
+		Aqui le he pasado una clase mediante la variable attributes, entonces quiero que en el componente junte las clases que le paso desde fuera con las que defino en el metodo merge():
+	</p>
+	<!-- code -->
+	<code>
+		&lt;div <strong>{{$attributes->merge(['class' => "mb-3"])}}</strong>&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;h1&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				{{$title}} <br>&nbsp;&nbsp;&nbsp;
+			&lt;/h1&gt; <br><br>&nbsp;&nbsp;&nbsp;
+			
+			&lt;p&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				{{$slot}} <br>&nbsp;&nbsp;&nbsp;
+			&lt;/p&gt; <br>
+		&lt;/div&gt;
+	</code>
+
+	<p>Esto solo ocurre con las clases. La mayoria de los otros atributos los va a sustiruir.</p>
+	
+	
+	<!-- Componentes de Clase -->
+	<h3>Componentes de Clase</h3>
+	<p>
+		Aveces vamos a nesecitar agregar logica muy compleja en nuestros componentes, entonces para no ensuciar mucho las vistas podemos crear este tipo de componentes con el comando:
+	</p>
+	<!-- code -->
+	<code>php artisan make:component <em>component_name</em></code>
+
+	<p>
+		Los nombres van en minusculas y separados por guiones, por ejemplo, yo le voy a dar el nombre de <em>AlertInfo</em>.
+	</p>
+
+	<p>
+		Este comando va a crear dos nuevos archivos:
+	</p>
+	<!-- code -->
+	<code>
+		/app/View/Components/AlertInfo.php <br><br>
+
+		/resources/views/components/alert-info.blade.php
+	</code>
+
+	<p>
+		El primero es una Clase donde va a ir toda la logica del componente, el segundo es solamente la vista con la que ya hemos trabajado.
+	</p>
+	
+	
+	<!-- Recibir Props -->
+	<h3>Recibir Props</h3>
+	<p>
+		Para recibir los Props en el componente de Clase vamos a usar su metodo constructor, ademas para poder acceder a los Props desde las vistas debemos guardarlos en una propiedad publica:
+	</p>
+	<!-- code -->
+	<code>
+		public $title; <br><br>
+
+		public function __construct($title = "Titulo por defecto") <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$this->title = $title; <br>
+		}
+	</code>
+
+	<p>
+		Hecho esto automaticamente podremos usar el Prop en la vista sin la directiva @props(). Los demas atributos como las clases y ids funcionan igual, solo debemos acceder a ellos en la vista con la variable $attributes.
+	</p>
+	
+	
+	<!-- Layouts de Jetstream -->
+	<h3>Layouts de Jetstream</h3>
+	<p>
+		Jetstream llama a sus Layouts de una forma diferente. En lugar de llamar directamente a un componente nomral, lo que hace es llamar a un componente de Clase en la carpeta:
+	</p>
+	<!-- code -->
+	<code>/app/Views/Components/</code>
+
+	<p>
+		Y es esta clase la que llama a la vista del componente en el metodo render().
+	</p>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

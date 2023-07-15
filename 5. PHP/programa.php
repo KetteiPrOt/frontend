@@ -1,5 +1,7 @@
 <?php
     declare(strict_types = 1);
+
+    $variable = "Information of variable";
 ?>
 
 <!DOCTYPE html>
@@ -12,16 +14,8 @@
 </head>
 <body>
     <p>
-        <?php    
-            try {
-
-                echo $variable;
-
-            } catch (Exception $e) {
-
-                echo $e; // Undefined variable
-
-            }
+        <?php
+            echo $variable;
         ?>
     </p>
 </body>

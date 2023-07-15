@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 8</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Pseudo elementos y clases</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ejemplos -->
+	<h3>Ejemplos</h3>
+	<p>
+		En el siguiente enlace estan los ejemplos:
+	</p>
+	<a href="ejemplo.html" target="_blank">Ejemplos</a>
+	<!-- code -->
+	<code></code>
+
+
+	<!-- Pseudo Class -->
+	<h2>Pseudo Class</h2>
+	<hr>
+	
+	
+	<!-- hover: -->
+	<h3>hover:</h3>
+	<p>
+		Controla la pseudo clase <em>:hover</em> de CSS.
+	</p>
+
+	<!-- code -->
+	<code>
+		.hover:<em>utility</em>
+	</code>
+
+	
+	<!-- focus: -->
+	<h3>focus:</h3>
+	<p>
+		Controla la pseudo clase <em>:focus</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.focus:<em>utility</em>
+	</code>
+	
+	
+	<!-- active: -->
+	<h3>active:</h3>
+	<p>
+		Controla la pseudo clase <em>active</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.active:<em>utility</em>
+	</code>
+	
+	
+	<!-- visited: -->
+	<h3>visited:</h3>
+	<p>
+		Controla la pseudo clase <em>:visited</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.visited:<em>utility</em>
+	</code>
+	
+	
+	<!-- selection: -->
+	<h3>selection:</h3>
+	<p>
+		Controla la pseudo clase <em>:selection</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.selection:<em>utility</em>
+	</code>
+
+
+	<!-- Pseudo Element -->
+	<h2>Pseudo Element</h2>
+	<hr>
+	
+	
+	<!-- before: -->
+	<h3>before:</h3>
+	<p>
+		Controla el pseudo elemento <em>:before</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.before:<em>utility</em>
+	</code>
+	
+	
+	<!-- after: -->
+	<h3>after:</h3>
+	<p>
+		Controla el pseudo elemento <em>:after</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.after:<em>utility</em>
+	</code>
+	
+	
+	<!-- placeholder: -->
+	<h3>placeholder:</h3>
+	<p>
+		Controla el pseudo elemento <em>:placeholder</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.placeholder:<em>utility</em>
+	</code>
+	
+	
+	<!-- marker: -->
+	<h3>marker:</h3>
+	<p>
+		Controla el pseudo elemento <em>::marker</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.marker:<em>ultility</em>
+	</code>
+
+
+	<!-- Parent State -->
+	<h2>Parent State</h2>
+	<hr>
+	
+	
+	<!-- first: -->
+	<h3>first:</h3>
+	<p>
+		Controla la pseudo clase <em>:first-child</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.first:<em>utility</em>
+	</code>
+	
+	
+	<!-- last: -->
+	<h3>last:</h3>
+	<p>
+		Controla la pseudo clase <em>:last-child</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.last:<em>utility</em>
+	</code>
+	
+	
+	<!-- odd: -->
+	<h3>odd:</h3>
+	<p>
+		Controla la pseudo clase <em>:nth-child(odd)</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.odd:<em>utility</em>
+	</code>
+	
+	
+	<!-- even: -->
+	<h3>even:</h3>
+	<p>
+		Controla la pseudo clase <em>:nth-child(even)</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.even:<em>utility</em>
+	</code>
+	
+	
+	<!-- empty: -->
+	<h3>empty:</h3>
+	<p>
+		Controla la pseudo clase <em>:empty</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.empty:<em>utility</em>
+	</code>
+	
+	
+	<!-- only: -->
+	<h3>only:</h3>
+	<p>
+		Controla la pseudo clase <em>:only</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.only:<em>utility</em>
+	</code>
+	
+	
+	<!-- group -->
+	<h3>group</h3>
+	<p>
+		Cuando nesecitas estilizar elementos hijos basandose en el estado de un elemento padre, marca este ultimo con la clase <em>.group</em>, y aplica los elementos a los hijos con <em>group-{modifier}</em>.
+	</p>
+	<!-- code -->
+	<code>
+		<em>parent</em>.group <br>&nbsp;&nbsp;&nbsp;
+			<em>child</em>.group-{modifier}
+	</code>
+	
+	
+	<!-- group-{modifier} -->
+	<h3>group-{modifier}</h3>
+	<p>
+		Donde <em>modifier</em> refiere a cualquier pseudo clase de estado aplicable al elemento padre.
+	</p>
+	<!-- code -->
+	<code>
+		.group-hover:<em>utility</em>/focus:<em>utility</em>/active:<em>utility</em>/...
+	</code>
+	
+	
+	<!-- group/[name] -->
+	<h3>group/[name]</h3>
+	<p>
+		Dandole un nombre identificativo a cada grupo podras anidar grupos dentro de grupos para crear reacciones mas complejas.
+	</p>
+	<!-- code -->
+	<code>
+		<em>parent</em>.group/[name] <br>&nbsp;&nbsp;&nbsp;
+			<em>child</em>.group-{modifier}/[name]
+	</code>
+	
+	
+	<!-- group-{modifier}/[name] -->
+	<h3>group-{modifier}/[name]</h3>
+	<p>
+		Donde <em>[name]</em> refiere al nombre identificativo del grupo.
+	</p>
+	<!-- code -->
+	<code>
+		.group-{modifier}/[name]
+	</code>
+
+
+	<!-- Sibling State -->
+	<h2>Sibling State</h2>
+	<hr>
+	
+	
+	<!-- peer -->
+	<h3>peer</h3>
+	<p>
+		Cuando nesecitas estilizar un elemento basandode en el estado de algun elemento hermano, marca este ultimo con la clase <em>.peer</em>, y aplica los elementos hermanos con <em>peer-{modifier}</em>.
+	</p>
+	<!-- code -->
+	<code>
+		.peer <br>
+		.peer-{modifier}
+	</code>
+	
+	
+	<!-- peer-{modifier} -->
+	<h3>peer-{modifier}</h3>
+	<p>
+		Donde <em>modifier</em> refiere a cualquier pseudo clase de estado aplicable al elemento hermano.
+	</p>
+	<!-- code -->
+	<code>
+		.peer-hover:utility/focus:utility/active:utility/...
+	</code>
+	
+	
+	<!-- peer/[name] -->
+	<h3>peer/[name]</h3>
+	<p>
+		Dandole un nombre identificativo a cada par de hermanos relacionados podras crear reacciones mas complejas.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- peer-{modifier}/[name] -->
+	<h3>peer-{modifier}/[name]</h3>
+	<p>
+		Donde <em>name</em> se refiere al nombre identificativo de los hermanos relacionado.
+	</p>
+	<!-- code -->
+	<code>
+		.perr-{modifier}/[name]
+	</code>
+
+
+	<!-- Form States -->
+	<h2>Form States</h2>
+	<hr>
+	
+	
+	<!-- invalid: -->
+	<h3>invalid:</h3>
+	<p>
+		Controla la pseudo clase <em>:invalid</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.invalid:<em>utility</em>
+	</code>
+	
+	
+	<!-- required: -->
+	<h3>required:</h3>
+	<p>
+		Controla la pseudo clase <em>:required</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.required:<em>utility</em>
+	</code>
+	
+	
+	<!-- read-only: -->
+	<h3>read-only:</h3>
+	<p>
+		Controla la pseudo clase <em>:read-only</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.read-only:<em>utility</em>
+	</code>
+	
+	
+	<!-- disabled: -->
+	<h3>disabled:</h3>
+	<p>
+		Controla la pseudo clase <em>:disabled</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.disabled:<em>utility</em>
+	</code>
+	
+	
+	<!-- enabled: -->
+	<h3>enabled:</h3>
+	<p>
+		Controla la pseudo clase <em>:enabled</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.enabled:<em>utility</em>
+	</code>
+	
+	
+	<!-- indeterminate: -->
+	<h3>indeterminate:</h3>
+	<p>
+		Controla la pseudo clase <em>:indeterminate</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.indeterminate:<em>utility</em>
+	</code>
+	
+	
+	<!-- checked: -->
+	<h3>checked:</h3>
+	<p>
+		Controla la pseudo clase <em>:checked</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.checked:<em>utility</em>
+	</code>
+	
+	
+	<!-- default: -->
+	<h3>default:</h3>
+	<p>
+		Controla la pseudo clase <em>:default</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.default:<em>utility</em>
+	</code>
+	
+	
+	<!-- file: -->
+	<h3>file:</h3>
+	<p>
+		Estiliza el boton de los inputs tipo <em>file</em> utilizando esta utilidad.
+	</p>
+	<!-- code -->
+	<code>
+		.file:<em>utility</em>
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+
+	<!-- Apilar utilidades 
+	<h3>Apilar utilidades</h3>
+	<p>
+		Estas utilidades incluso pueden ser apiladas para controlar situaciones muy especificas. Por ejemplo: para cambiar al modo oscuro, en el breakpoint <em>md (medium)</em>, al entrar en <em>hover</em>.
+	</p>-->
+	<!-- code 
+	<code>&lt;div class="... dark:md:hover:bg-blue-500"&gt; ... &lt;/div&gt;</code>-->
+
+</body>
+</html>

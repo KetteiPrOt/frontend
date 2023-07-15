@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 33</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Normalizacion del Modelo Logico</h1>
+	<h4 class="enlace-volver"><a href="../capitulo8.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Normalizacion -->
+	<h3>Normalizacion</h3>
+	<p>
+		Es un proceso principalmente de 3 etapas (hay mas pero es raro usarlas) al que se someten las bases de datos para evitar la redundancia de informacion. Este proceso ya lo he estudiado cuando aprendi SQL... asi que esta vez voy a aplicar lo que aprendi en el ejemplo de la parte anterior.
+	</p>
+	<p>
+		Asi que aqui solo voy a comentar los cambios que realize de acuerdo a las formas normales.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Primera Forma Normal -->
+	<h3>Primera Forma Normal</h3>
+	<p>
+		Para cumplir con la atomicidad de la informacion he movido el campo <em>address</em> a otra tabla donde lo "desdoble" en los datos nesesarios.
+	</p>
+	
+
+	<!-- Segunda Forma Normal -->
+	<h3>Segunda Forma Normal</h3>
+	<p>
+		He sustituido el campo <em>name</em> de la tabla <em>comments</em> por el id del usuario que hizo el comentario, para cumplir con que los datos dependan totalmente de la clave primaria.
+	</p>
+	
+	
+	<!-- Tercera Forma Normal -->
+	<h3>Tercera Forma Normal</h3>
+	<p>
+		He movido la propiedad <em>category</em> de la tabla <em>posts</em> para evitar redundancia de datos.
+	</p>
+	
+	
+	<!-- Diagrama normalizado -->
+	<h3>Diagrama normalizado</h3>
+	<p>
+		Finalmente despues de aplicar las 3 formas normales el Modelo Logico quedaria asi medio normalizado:
+	</p>
+	<!-- image -->
+	<img src="media/normalizedDiagram1.png" width="750"> <br>
+	<img src="media/normalizedDiagram2.png" width="750">
+
+	<p>
+		Aun se pueden aplicar las reglas de normalizacion en mas tablas, pero para fines demostrativos este ejemplo es suficiente.
+	</p>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 9</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Obtener Registros</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Clase DB -->
+	<h3>Clase <em>DB</em></h3>
+	<p>
+		Esta clase sirve como interfaz de la <em>Base de Datos</em>, permitiendo crear y ejecutar consultas SQL con sus metodos.
+	</p>
+	<p>
+		Para poder usarla en un controlador debemos incluir su <em>Namespace</em>.
+	</p>
+	<p>
+		<strong>
+			<em>table()</em>
+		</strong>:
+		Con este metodo especifico <strong>la tabla</strong> de la que voy a extraer los datos. Es un metodo estatico de la Clase <em>DB</em>.
+	</p>
+	<!-- code -->
+	<code></code>
+
+
+	<!-- Metodo get() -->
+	<h3>Metodo <em>get()</em></h3>
+	<p>
+		<strong>
+			<em>get()</em>
+		</strong>:
+		Encadendo este metodo al anterior puedo obtener todos los registros de la tabla como un Objeto de tipo <em><a href="https://laravel.com/docs/10.x/collections">Collection</a></em>.
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Controlador CourseController.php</strong> <br><br>
+
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$courses = DB::table('courses')->get(); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('courses')); <br>
+		}
+	</code>
+
+	<p>Asi puedo mostrar todos los registros en la vista:</p>
+	<!-- code -->
+	<code>
+		<strong>// Vista index.blade.php</strong> <br><br>
+
+		&lt;h2&gt;Cursos&lt;/h2&gt; <br>
+		&lt;?php <br>&nbsp;&nbsp;&nbsp;
+			foreach ($courses as $course) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo $course-&gt;name; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		?&gt;
+	</code>
+
+
+	<!-- Metodo first() -->
+	<h3>Metodo <em>first()</em></h3>
+	<p>
+		Con este metodo puedo obtener el primer registro de una consulta como un Objeto generico de Clase Std
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Controlador CourseController.php</strong> <br><br>
+
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$course = DB::table('courses')->first(); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('course')); <br>
+		}
+	</code>
+
+	<p>Asi puedo mostralo en la vista:</p>
+	<!-- code -->
+	<code>
+		<strong>// Vista index.blade.php</strong> <br><br>
+
+		&lt;h2&gt;Cursos&lt;/h2&gt; <br>
+		&lt;?= $course->name ?&gt;
+	</code>
+
+	
+	<!-- Metodo where() -->
+	<h3>Metodo <em>where()</em></h3>
+	<p>Filtra registros segun una condicion.</p>
+	<!-- code -->
+	<code>
+		<strong>// Controlador CourseController.php</strong> <br><br>
+
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$course = DB::table('courses')->where('id', '1')->first(); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('course')); <br>
+		} <br><br>
+
+		<strong>// Vista index.blade.php</strong> <br><br>
+
+		&lt;h2&gt;Cursos&lt;/h2&gt; <br>
+		&lt;?= $course->name ?&gt;
+	</code>
+
+
+	<!-- Metodo find() -->
+	<h3>Metodo <em>find()</em></h3>
+	<p>Encuentra un registro segun su <em>id</em></p>
+	<!-- code -->
+	<code>
+		<strong>// Controlador CourseController.php</strong> <br><br>
+
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$course = DB::table('courses')->find(1); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('course')); <br>
+		} <br><br>
+		
+		<strong>// Vista index.blade.php</strong> <br><br>
+
+		&lt;h2&gt;Cursos&lt;/h2&gt; <br>
+		&lt;?= $course->name ?&gt;
+	</code>
+
+
+	<!-- Metodo value() -->
+	<h3>Metodo <em>value()</em></h3>
+	<p>
+		Este metodo retorna directamente el valor de la columna de un registro.
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Controlador CourseController.php</strong> <br><br>
+
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$name = DB::table('courses')->find(1)->value('name'); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('name')); <br>
+		} <br><br>
+		
+		<strong>// Vista index.blade.php</strong> <br><br>
+
+		&lt;h2&gt;Cursos&lt;/h2&gt; <br>
+		&lt;?= $name ?&gt;
+	</code>
+
+
+	<!-- Metodo pluck() -->
+	<h3>Metodo <em>pluck()</em></h3>
+	<p>
+		Recupera una instancia de Clase <em>Collection</em> que contiene los valores de una sola columna. Aqui recupero una coleccion de nombres:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Controlador CourseController.php</strong> <br><br>
+
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$names = DB::table('courses')->pluck('name'); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('names')); <br>
+		} <br><br>
+
+		<strong>// Vista index.blade.php</strong> <br><br>
+
+		&lt;h2&gt;Cursos&lt;/h2&gt; <br>
+		&lt;?php <br>&nbsp;&nbsp;&nbsp;
+			foreach ($names as $name) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo $name . '&lt;br&gt;'; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		?&gt;
+	</code>
+
+	<p>
+		Al ser la collecion un arreglo, puedes especificar una <strong>segunda columna</strong> cuyos valores sean las <strong>llaves literales</strong> de la primera columna en el arreglo:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Controlador CourseController.php</strong> <br><br>
+
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$courses = DB::table('courses')->pluck('description', 'name'); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('courses')); <br>
+		} <br><br>
+
+		<strong>// Vista index.blade.php</strong> <br><br>
+
+		&lt;h2&gt;Cursos&lt;/h2&gt; <br>
+		&lt;?php <br>&nbsp;&nbsp;&nbsp;
+			foreach ($courses as $name => $description) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo "$name: $description " . '&lt;br&gt;'; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		?&gt;
+	</code>
+
+
+	<!-- Consultas fragmentadas -->
+	<h3>Consultas fragmentadas</h3>
+	<p>
+		Los metodos <em>chunk()</em> y <em>lazy()</em> permiten hacer consultas que se dividen en fragmentos cuando nesecitamos recuperar miles de registros. Revisa la <a href="https://laravel.com/docs/10.x/queries#chunking-results">documentacion</a> para mas detalles.
+	</p>
+	<!-- code -->
+	<code>
+		DB::table('users')->orderBy('id')->chunk(100, function (Collection $users) { <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Process the records...</strong> <br><br>&nbsp;&nbsp;&nbsp;
+		 
+			return false; <br>
+		});
+	</code>
+	
+	
+	<!-- Metodos estadisticos -->
+	<h3>Metodos estadisticos</h3>
+	<p>Existen varios metodos para agregar valores a los resultados recuperados.</p>
+	<p>
+		<strong>
+			<em>count()</em>:
+		</strong>
+		Cuenta cuantos registros hay en la consulta.
+	</p>
+	<!-- code -->
+	<code>
+		$count = DB::table('courses')->count('name'); <br><br>
+
+		echo $count; <strong>// 4</strong>
+	</code>
+
+	<p>
+		<strong>
+			<em>min()</em>:
+		</strong>
+		Recupera el numero mas bajo.
+	</p>
+	<!-- code -->
+	<code>
+		$min = DB::table('courses')->min('id'); <br><br>
+
+		echo $min; <strong>// 1</strong>
+	</code>
+
+	<p>
+		<strong>
+			<em>max()</em>:
+		</strong>
+		Recupera el numero mas alto.
+	</p>
+	<!-- code -->
+	<code>
+		$max = DB::table('courses')->max('id'); <br><br>
+
+		echo $max; <strong>// 4</strong>
+	</code>
+
+	<p>
+		<strong>
+			<em>sum()</em>:
+		</strong>
+		Suma todos los numeros.
+	</p>
+	<!-- code -->
+	<code>
+		$sum = DB::table('courses')->sum('id'); <br><br>
+
+		echo $sum; <strong>// 10</strong>
+	</code>
+
+	<p>
+		<strong>
+			<em>avg()</em>:
+		</strong>
+		Calcula el promedio de todos los numeros.
+	</p>
+	<!-- code -->
+	<code>
+		$avg = DB::table('courses')->avg('id'); <br><br>
+
+		echo $avg; <strong>// 2.5000</strong>
+	</code>
+	
+	
+	<!-- Determinar si un registro existe -->
+	<h3>Determinar si un registro existe</h3>
+	<p>En ves de usar el metodo <em>count()</em> puedes usar los metodos:</p>
+	<p>
+		<strong>
+			<em>exists()</em>:
+		</strong>
+		Determina si un registro existe.
+	</p>
+	<!-- code -->
+	<code>
+		if (DB::table('orders')->where('finalized', 1)->exists()) { <br>&nbsp;&nbsp;&nbsp;
+			// ... <br>
+		}
+	</code>
+
+	<p>
+		<strong>
+			<em>doesntExist()</em>:
+		</strong>
+		Determina si un registro no existe.
+	</p>
+	<!-- code -->
+	<code>
+		if (DB::table('orders')->where('finalized', 1)->doesntExist()) { <br>&nbsp;&nbsp;&nbsp;
+			// ... <br>
+		}
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

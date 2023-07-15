@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 2</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+	<style>
+		.list-container {
+			display: flex;
+		}
+
+		.color-square {
+			display: inline-block;
+			width: 15px; height: 15px;
+			border: 1px solid black;
+			border-radius: 2px;
+		}
+	</style>
+</head>
+<body>
+	<h1 class="titulo-principal">Clases Basicas</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ejemplos -->
+	<h3>Ejemplos</h3>
+	<p>
+		En el siguiente enlace estan los ejemplos:
+	</p>
+	<a href="ejemplo.html" target="_blank">Ejemplos</a>
+	<!-- code -->
+	<code></code>
+
+
+	<!-- Colores de Tailwind -->
+	<h3>Colores de Tailwind</h3>
+	<p>
+		Tailwind tiene los siguientes colores predefinidos en distintas tonalidades para las Clases que trabajan con colores como <em>text-color-brightness</em>, <em>bg-color-brightness</em>, <em>border-color-brightness</em>... etc:
+	</p>
+	<!-- List -->
+	<span>
+		<small><em>(la tonalidad de estos ejemplos esta en 400)</em></small>
+	</span>
+	<div class="list-container">
+		<!-- Colum 1 -->
+		<ul>
+			<li>
+				slate <div class="color-square" style="background-color: rgb(148 163 184);"></div>
+			</li>
+			<li>
+				gray <div class="color-square" style="background-color: rgb(156 163 175);"></div>
+			</li>
+			<li>
+				zinc <div class="color-square" style="background-color: rgb(161 161 170);"></div>
+			</li>
+			<li>
+				neutral <div class="color-square" style="background-color: rgb(163 163 163);"></div>
+			</li>
+			<li>
+				stone <div class="color-square" style="background-color: rgb(168 162 158);"></div>
+			</li>
+			<li>
+				red <div class="color-square" style="background-color: rgb(248 113 113);"></div>
+			</li>
+			<li>
+				orange <div class="color-square" style="background-color: rgb(251 146 60);"></div>
+			</li>
+			<li>
+				amber <div class="color-square" style="background-color: rgb(251 191 36);"></div>
+			</li>
+			<li>
+				yellow <div class="color-square" style="background-color: rgb(250 204 21);"></div>
+			</li>
+			<li>
+				lime <div class="color-square" style="background-color: rgb(163 230 53);"></div>
+			</li>
+			<li>
+				green <div class="color-square" style="background-color: rgb(74 222 128);"></div>
+			</li>
+		</ul>
+		<!-- Colum 2 -->
+		<ul>
+			<li>
+				emerald <div class="color-square" style="background-color: rgb(52 211 153);"></div>
+			</li>
+			<li>
+				teal <div class="color-square" style="background-color: rgb(45 212 191);"></div>
+			</li>
+			<li>
+				cyan <div class="color-square" style="background-color: rgb(34 211 238);"></div>
+			</li>
+			<li>
+				sky <div class="color-square" style="background-color: rgb(56 189 248);"></div>
+			</li>
+			<li>
+				blue <div class="color-square" style="background-color: rgb(96 165 250);"></div>
+			</li>
+			<li>
+				indigo <div class="color-square" style="background-color: rgb(129 140 248);"></div>
+			</li>
+			<li>
+				violet <div class="color-square" style="background-color: rgb(167 139 250);"></div>
+			</li>
+			<li>
+				purple <div class="color-square" style="background-color: rgb(192 132 252);"></div>
+			</li>
+			<li>
+				fuchsia <div class="color-square" style="background-color: rgb(232 121 249);"></div>
+			</li>
+			<li>
+				pink <div class="color-square" style="background-color: rgb(244 114 182);"></div>
+			</li>
+			<li>
+				rose <div class="color-square" style="background-color: rgb(251 113 133);"></div>
+			</li>
+		</ul>
+	</div>
+
+	<p>
+		La <a href="https://tailwindcss.com/docs/background-color">tonalidad</a> (<em>brightness</em>) se especifica en la misma Clase despues del color:
+	</p>
+	<!-- code -->
+	<code>
+		.class-<em>color</em>-<em>brightness</em> <br><br>
+
+		Donde <em>brightness</em>: <br>
+		50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950
+	</code>
+
+	<p>
+		Los siguientes colores no tienen tonalidad:
+	</p>
+	<!-- code -->
+	<code>
+		.class-transparent/black/white
+	</code>
+
+
+	<!-- Text Color -->
+	<h3>Text Color</h3>
+	<p>
+		Cambia el color del texto.
+	</p>
+	<!-- code -->
+	<code>.text-<em>color</em>-<em>brightness</em></code>
+	
+	
+	<!-- Background Color -->
+	<h3> Background Color</h3>
+	<p>
+		Controla la propiedad <em>background-color</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>.bg-<em>color</em>-<em>brightness</em></code>
+	
+	
+	<!-- Width -->
+	<h3>Width</h3>
+	<p>
+		Controla la propiedad <em>width</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Definido por REM:</strong> <br>
+		.w-0.5/1.5/2.5/3.5 <br>
+		.w-[0-12] <br>
+		.w-12/14/16/20/24/28/32/36/40/44/48/52/56/60/64 <br>
+		.w-72/80/96 <br>
+		.w-auto <br><br>
+
+		<strong>// Proporcional al Elemento Padre:</strong> <br>
+		.w-[1/2, 1/3, 2/3, 1/4, 2/4, 3/4] <br>
+		.w-[1/5, 2/5, 3/5, 4/5] <br>
+		.w-[1/6, 2/6, 3/6, 4/6, 5/6] <br>
+		.w-[1,2,3,4,5,6,7,8,9,10,11/12] <br>
+		.w-full <br><br>
+
+		<strong>// Todo el viewport:</strong> <br>
+		.w-screen (width: 100vw;)
+	</code>
+	
+	
+	<!-- Height -->
+	<h3>Height</h3>
+	<p>
+		Controla la propiedad <em>height</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Definido por REM:</strong> <br>
+		.h-[0-12] <br>
+		.h-12/14/16/20/24/28/32/36/40/44/48/52/56/60/64 <br>
+		.h-72/80/96 <br>
+		.h-auto <br><br>
+
+		<strong>// Proporcional al Elemento Padre:</strong> <br>
+		.h-[1/2, 1/3, 2/3, 1/4, 2/4, 3/4] <br>
+		.h-[1/5, 2/5, 3/5, 4/5] <br>
+		.h-[1/6, 2/6, 3/6, 4/6, 5/6] <br>
+		.h-[1,2,3,4,5,6,7,8,9,10,11/12] <br>
+		.h-full <br><br>
+
+		<strong>// Todo el viewport:</strong> <br>
+		.h-screen (height: 100vh;)
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

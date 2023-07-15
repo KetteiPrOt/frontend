@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 37</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">One To One [Polimorfica]</h1>
+	<h4 class="enlace-volver"><a href="../capitulo9.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que es? -->
+	<h3>Que es?</h3>
+	<p>
+		La relacion Polimorfica se da cuando un campo de la tabla es opcional y no deseeamos malgastar memoria reservando espacios en cada registro que podrian no ser usados:
+	</p>
+	<!-- image -->
+	<img src="media/polimorficOto1.png" width="500">
+
+	<p>Entonces la movemos a otra tabla relacionada:</p>
+	<!-- image -->
+	<img src="media/polimorficOto2.png" width="750">
+
+	<p>
+		Pero hay un problema... la tabla <em>posts</em> tambien presenta esta misma relacion con <em>images</em>:
+	</p>
+	<!-- image -->
+	<img src="media/polimorficOto3.png" width="750">
+
+	<p>
+		Entonces, como le hacemos para relacionar las tres tablas a la vez? En lugar de generar una tabla diferente para cada elemento que requiera una imagen opcionalmente, podemos poner todas las imagenes del proyecto en una sola tabla.
+	</p>
+	<p>
+		Esta tabla por convencion debe tener dos campos especiales, y en nuestra tabla <em>images</em> se llamarian: <em>imageable_type</em> y <em>imageable_id</em> (singualar + 'able_id/type').
+	</p>
+	<!-- image -->
+	<img src="media/polimorficOto4.png" width="400">
+
+	<p>
+		En <em>imageable_id</em> ponemos el id del registro que deseamos relacionar (un usuario, o un post), y en <em>imageable_type</em> ubicamos el Namespace del modelo que administra esos registros (por ejemplo 'App/Models/User' para los usuarios).
+	</p>
+	<p>
+		Y a estos dos campos hay que crearlos como una clave primaria compuesta.
+	</p>
+	<!-- image -->
+	<img src="media/polimorficOto5.png" width="750">
+
+	<p>Esto es una relacion Polimorfica de One To One.</p>
+	
+	
+	<!-- Tabla images -->
+	<h3>Tabla <em>images</em></h3>
+	<p>
+		Para crear la Clave primaria Compuesta eliminamos el campo id y le pasamos un array el metodo primary():
+	</p>
+	<!-- code -->
+	<code>
+		$table->string('url'); <br><br>
+
+		$table->unsignedBigInteger('imageable_id'); <br>
+		$table->string('imageable_type'); <br><br>
+
+		$table->primary(['imageable_id', 'imageable_type']);
+	</code>
+
+
+	<!-- morphTo() -->
+	<h3>morphTo()</h3>
+	<p>
+		Corremos la migracion, y ahora en su modelo usamos el metodo <em>morphTo()</em> para indicarle a laravel que esta tabla va a tener una relacion Polimorfica:
+	</p>
+	<!-- code -->
+	<code>
+		// Inverse Polimorfic One To One <br>
+		public function imageable() <br>
+		{  <br>&nbsp;&nbsp;&nbsp;
+			return $this->morphTo(); <br>
+		}
+	</code>
+
+
+	<!--morphOne()  -->
+	<h3>morphOne()</h3>
+	<p>
+		Vamos a los modelos de las tablas que estan relacionadas (Modelo <em>User</em> y <em>Post</em>) y en ellas usamos este nuevo metodo, tambien le pasamos como segundo parametro el nombre del metodo que el modelo va a usar para recuperar la imagen:
+	</p>
+	<!-- code -->
+	<code>
+		// Polimorfic One To One <br>
+		public function image() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return $this->morphOne('App\Models\Image', 'imageable'); <br>
+		}
+	</code>
+
+	<p>
+		Para acceder a las imagenes de los registros en estos modelos lo hacemos como si fueran una propiedad:
+	</p>
+	<!-- code -->
+	<code>
+		$user->image; $post->image;
+	</code>
+	
+	
+	<!-- Acceder como metodo -->
+	<h3>Acceder como metodo</h3>
+	<p>
+		Pero si accedemos a estos elementos como metodos nos van a retornar el tipo de relacion que existe entre las dos entidades:
+	</p>
+	<!-- code -->
+	<code>
+		$user->image(); <br><br>
+
+		<strong>// Illuminate\Database\Eloquent\Relations\MorphOne {#6210}</strong>
+	</code>
+	
+	
+	<!-- create() -->
+	<h3>create()</h3>
+	<p>
+		Ademas si un usuario no tiene una imagen asignada, se la podemos asignar desde el metodo <em>image()</em> encadenando el metodo <em>create()</em>:
+	</p>
+	<!-- code -->
+	<code>
+		$user->image()->create([ <br>&nbsp;&nbsp;&nbsp;
+			'url' => 'url1' <br>
+		]);
+	</code>
+
+	<p>
+		Y por logica, en este metodo solo debemos pasarle la url, porque los demas datos se sobreentienden (GRACIAS A LARAVEL).
+	</p>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

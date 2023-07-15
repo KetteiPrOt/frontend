@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 10</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Select y Raw</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Metodo select() -->
+	<h3>Metodo <em>select()</em></h3>
+	<p>
+		No siempre vas a querer recuperar <strong>todas las columnas</strong> en la consulta, para seleccionar las que quieres puedes usar este metodo.
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Controlador CourseController.php</strong> <br><br>
+
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$names = DB::table('courses')->select('name')->get(); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('names')); <br>
+		} <br><br>
+
+		<strong>// Vista index.blade.php</strong> <br><br>
+
+		&lt;h2&gt;Cursos&lt;/h2&gt; <br>
+		&lt;?php <br>&nbsp;&nbsp;&nbsp;
+			foreach ($names as $record) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo $record-&gt;name; <br>&nbsp;&nbsp;&nbsp;
+			} <br>&nbsp;&nbsp;&nbsp;
+			<strong>
+				// PHP <br>&nbsp;&nbsp;&nbsp;
+				// HTML <br>&nbsp;&nbsp;&nbsp;
+				// CSS <br>&nbsp;&nbsp;&nbsp;
+				// JS <br>
+			</strong>
+		?&gt;
+	</code>
+
+	<p>
+		Cuando indicamos las columnas al metodo select() tambien podemos pasarle una clausula <em>AS</em> de la siguiente forma:
+	</p>
+	<!-- code -->
+	<code>
+		$names = DB::table('courses')->select(<strong>'name as title'</strong>)->get();
+	</code>
+
+
+	<!-- Metodo addSelect() -->
+	<h3>Metodo <em>addSelect()</em></h3>
+	<p>
+		Si tienes una instancia del Constructor de Consultas y quieres <strong>agregar mas columnas</strong>, puedes usar este metodo.
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Controlador CourseController.php</strong> <br><br>
+
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$courses = DB::table('courses')->select('name'); <br><br>&nbsp;&nbsp;&nbsp;
+        
+			$courses->addSelect('description')->get(); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('courses')); <br>
+		} <br><br>
+
+		<strong>// Vista index.blade.php</strong> <br><br>
+
+		&lt;h2&gt;Cursos&lt;/h2&gt; <br>
+		&lt;?php <br>&nbsp;&nbsp;&nbsp;
+			foreach ($courses as $course) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo "$course->name: $course->description &lt;br&gt;"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		?&gt;
+	</code>
+
+
+	<!-- Metodo distinct() -->
+	<h3>Metodo <em>distinct()</em></h3>
+	<p>Permite obligar a que la consulta retorne distintos resultados.</p>
+	<!-- code -->
+	<code>
+		$courses = DB::table('courses')->distinct()->get();
+	</code>
+
+
+	<!-- Metodo raw() -->
+	<h3>Metodo <em>raw()</em></h3>
+	<p>
+		Aveces nesecitaras <strong>insertar una cadena de texto</strong> albitraria en la consulta, para hacerlo puedes usar este metodo.
+	</p>
+	<p>
+		Debes tener mucho cuidado de no crear vulnerabilidades a <strong>inyecciones SQL</strong> en la consulta.
+	</p>
+	<!-- code -->
+	<code>
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$courses = DB::table('courses') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ->select( <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                        	DB::raw('name, description') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ) <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ->get();<br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('courses')); <br>
+		} <br><br>
+
+		<strong>// Vista index.blade.php</strong> <br><br>
+
+		&lt;h2&gt;Cursos&lt;/h2&gt; <br>
+		&lt;?php <br>&nbsp;&nbsp;&nbsp;
+			foreach ($courses as $course) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				echo "$course->name: $course->description &lt;br&gt;"; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		?&gt;
+	</code>
+	
+	
+	<!-- Metodos Raw -->
+	<h3>Metodos Raw</h3>
+	<p>En lugar de usar el metodo <em>raw()</em> puedes usar alguno de los siguientes metodos:</p>
+
+	<p>
+		<strong>
+			<em>selectRaw()</em>
+		</strong>
+		: Especifica las columnas que se recuperaran en la consulta
+	</p>
+	<!-- code -->
+	<code>
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$courses = DB::table('courses') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       <strong>->selectRaw('name, description')</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ->get();<br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('courses')); <br>
+		}
+	</code>
+
+	<p>
+		<strong>
+			<em>whereRaw()</em>
+		</strong>
+		: Agrega una clausula <em>where</em> a tu consulta, si se llama mas de una ocasion las clausulas se <strong>juntan con el operador</strong> <em>AND</em>.
+	</p>
+	<!-- code -->
+	<code>
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$courses = DB::table('courses') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ->selectRaw('name, description') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+					   <strong>->whereRaw('id &lt; 3')</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ->get();<br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('courses')); <br>
+		}
+	</code>
+
+	<p>
+		<strong>
+			<em>orWhereRaw()</em>
+		</strong>
+		: Junta una clausula <em>where</em> <strong>con el operador <em>OR</em></strong>.
+	</p>
+	<!-- code -->
+	<code>
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$courses = DB::table('courses') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ->selectRaw('name, description') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+					   ->whereRaw('id &lt; 3') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+					   <strong>->orWhereRaw('id &gt; 4')</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ->get();<br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('courses')); <br>
+		}
+	</code>
+
+	<p>
+		<strong>
+			<em>orderByRaw()</em>
+		</strong>
+		: Agrega una clausula <em>order by</em> a la consulta.
+	</p>
+	<!-- code -->
+	<code>
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$courses = DB::table('courses') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ->selectRaw('name, description') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+					   <strong>->orderByRaw('id ASC')</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ->get();<br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('courses')); <br>
+		}
+	</code>
+	
+	<p>
+		<strong>
+			<em>groupByRaw()</em>
+		</strong>
+		: Agrega una clausula <em>group by</em> a la consulta
+	</p>
+	<!-- code -->
+	<code>
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$courses = DB::table('courses') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ->selectRaw('name, description') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+					   <strong>->groupByRaw('name')</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ->get();<br><br>&nbsp;&nbsp;&nbsp;
+
+			return view('courses.index', compact('courses')); <br>
+		}
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

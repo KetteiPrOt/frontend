@@ -222,6 +222,31 @@
 	</code>
 
 
+	<!-- Argumentos de Clase definida -->
+	<h3>Argumentos de Clase definida</h3>
+	<p>
+		Es posible definir que una funcion debe recibir obligatoriamente un objeto de una Clase especifica.
+	</p>
+	<p>
+		Aqui le estoy diciendo que debe recibir un objeto de Clase <em>Bird</em>.
+	</p>
+	<!-- code -->
+	<code>
+		class Bird { <br>&nbsp;&nbsp;&nbsp;
+			public $color = "amarillo", <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				   $status = "pasivo", <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				   $size = "pequenio"; <br>
+		} <br><br>
+
+		function seeInfo (Bird $bird1) { <br>&nbsp;&nbsp;&nbsp;
+			echo $bird1->color; <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Amarillo </strong> <br>
+		} <br><br>
+
+		seeInfo(new Bird);
+	</code>
+
+
 	<!-- Tipado estricto -->
 	<h3>Tipado estricto</h3>
 	<p>Se usa cuando queremos que las funciones solo acepten argumentos del tipo de dato especificado.</p>

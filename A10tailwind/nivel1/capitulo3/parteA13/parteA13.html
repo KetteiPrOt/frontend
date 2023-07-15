@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 13</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Grid - Layout</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ejemplos -->
+	<h3>Ejemplos</h3>
+	<p>
+		En el siguiente enlace estan los ejemplos:
+	</p>
+	<a href="ejemplo.html" target="_blank">Ejemplos</a>
+	<!-- code -->
+	<code></code>
+	
+
+	<!-- Display Grid -->
+	<h3>Display Grid</h3>
+	<p>
+		Establece <em>display: grid;</em> en el elemento.
+	</p>
+	<!-- code -->
+	<code>
+		.grid
+	</code>
+	
+
+	<!-- Grid Template Colums -->
+	<h3>Grid Template Colums</h3>
+	<p>
+		Controla la propiedad <em>grid-template-colums</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.grid-cols-<em>n</em> [: repeat(<em>n</em>, minmax(0, 1fr));] <br>
+		Donde <em>n</em> puede ser de 1 hasta 12 <br><br>
+
+		.grid-cols-none (: none;)
+	</code>
+	
+
+	<!-- Grid Template Rows -->
+	<h3>Grid Template Rows</h3>
+	<p>
+		Controla la propiedad <em>grid-template-rows</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.grid-rows-<em>n</em> [: repeat(<em>n</em>, minmax(0, 1fr));] <br>
+		Donde <em>n</em> puede ser de 1 hasta 6 <br><br>
+
+		.grid-rows-none (: none;)
+	</code>
+	
+
+	<!-- Grid Gap -->
+	<h3>Grid Gap</h3>
+	<p>
+		Controla las propiedades <em>grid-gap</em>, <em>column-gap</em>, y <em>row-gap</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.gap-<em>n</em> (grid-gap: <em>n</em>;) <br>
+		.gap-x-<em>n</em> (column-gap: <em>n</em>;) <br>
+		.gap-y-<em>n</em> (row-gap: <em>n</em>;) <br><br>
+
+		Donde <em>n</em> puede ser: <br><br>
+
+		<strong>// En pixeles</strong><br>
+		0/px (: 0px/1px;) <br><br>
+
+		<strong>// Dado por REM</strong> <br>
+		0.5/1.5/2.5/3.5 <br>
+		[0-12] <br>
+		12/14/16/20/24/28/32/36/40/44/48/52/56/60/64 <br>
+		72/80/96
+	</code>
+	
+
+	<!-- Grid Column Start / End -->
+	<h3>Grid Column Start / End</h3>
+	<p>
+		Controla la propiedad <em>grid-column</em>, <em>grid-column-start</em>, y <em>grid-column-end</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.col-span-<em>n</em> (grid-column: span <em>n</em> / span <em>n</em>;) <br>
+		.col-start-<em>n</em> (grid-column-start: <em>n</em>;) <br>
+		.col-end-<em>n</em> (grid-column-end: <em>n</em>;) <br><br>
+
+		Donde <em>n</em> puede ser del 1 hasta el 12 <br><br>
+
+		<strong>// Valor Automatico:</strong> <br>
+		.col-auto (grid-column: auto;) <br>
+		.col-start-auto	(grid-column-start: auto;) <br>
+		.col-end-auto	(grid-column-end: auto;) <br><br>
+
+		<strong>// Todo el espacio:</strong> <br>
+		.col-span-full	<strong>grid-column: 1 / -1;</strong>
+	</code>
+	
+
+	<!-- Grid Row Start / End -->
+	<h3>Grid Row Start / End</h3>
+	<p>
+		Controla la propiedad <em>grid-row</em>, <em>grid-row-start</em>, y <em>grid-row-end</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.row-span-<em>n</em> (grid-row: span <em>n</em> / span <em>n</em>;) <br>
+		.row-start-<em>n</em> (grid-row-start: <em>n</em>;) <br>
+		.row-end-<em>n</em> (grid-row-end: <em>n</em>;) <br><br>
+
+		Donde <em>n</em> puede ser del 1 hasta el 12 <br><br>
+
+		<strong>// Valor Automatico:</strong> <br>
+		.row-auto (grid-row: auto;) <br>
+		.row-start-auto	(grid-row-start: auto;) <br>
+		.row-end-auto	(grid-row-end: auto;) <br><br>
+
+		<strong>// Todo el espacio:</strong> <br>
+		.row-span-full	<strong>grid-row: 1 / -1;</strong>
+	</code>
+	
+
+	<!-- Grid Auto Flow -->
+	<h3>Grid Auto Flow</h3>
+	<p>
+		Controla la propiedad <em>grid-auto-flow</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.grid-flow-row/col (: row/column;)
+	</code>
+	
+
+	<!-- Dense (value) -->
+	<h3>Dense (value)</h3>
+	<p>
+		Establece el valor <em>dense</em> en la propiedad anterior de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.grid-flow-row-dense (: row dense;) <br><br>
+
+		.grid-flow-col-dense	(: column dense;)
+	</code>
+
+	<p>
+		Establece una propiedad equivalente a las dos anteriores juntas
+	</p>
+	<!-- code -->
+	<code>
+		.grid-flow-dense	(: dense;)
+	</code>
+
+
+	<!-- Grid Auto Columns / Rows -->
+	<h3>Grid Auto Columns / Rows</h3>
+	<p>
+		Controla las propiedades <em>grid-auto-columns</em> y <em>grid-auto-rows</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		auto-cols-auto/min/max/fr (grid-auto-columns: auto/min-content/max-content/minmax(0, 1fr);) <br><br>
+
+		auto-rows-auto/min/max/fr (grid-auto-rows: auto/min-content/max-content/minmax(0, 1fr);)
+	</code>
+
+</body>
+</html>

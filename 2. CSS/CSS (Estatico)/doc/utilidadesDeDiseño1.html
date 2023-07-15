@@ -245,34 +245,67 @@
 			}
 		</style>
 		<div class="marco imgGrande contenerImagen eliminarRepeticion"></div>
-		
+
+
+		<!-- background-attachment -->
 		<h3>background-attachment</h3>
-		<p>Controla como se muestra el fondo en relacion al elemento (como esta incrustado)</p>
-		<p>Fondo scroll [scroll] (por defecto). El fondo esta fijado al elemento y se mueve naturalmente junto al elemento cuando hacemos scroll.</p>
+		<p>
+			Establece donde se incrustara la imagen de fondo en un elemento.
+		</p>
+		<!-- code -->
 		<style>
-			.scroll {
-				background-attachment: scroll;
-			}
-		</style>
-		<div class="marco fondo scroll"></div>
-
-		<p>Fondo fijo [fixed]. El fondo queda fijo en el viewport (la ventana del navegador) pero solo se muestra dentro del elemento que lo contiene.</p>
-		<em>Nota: cuando se activa este incrustamiento el tamaño de la imagen (background-size) tomara como referencia las dimensiones del viewport (la ventana del navegador).</em>
-		<style>
-			.fijar {
-				background-attachment: fixed;
-				width: 100%;
-				height: 500px;
-				color: white;
+			.resized-bg {
+				background: url('../media/ganyuGrande.jpg');
+				background-size: 49.47vw auto; 
 			}
 
-			.cubrirViewport {
-				background-size: cover; 
-				/*No cubrira al elemento que lo muestra,
-				sino al viewport (la ventana del navegador)*/			
-			}
+			.overflow-y-scroll { overflow-y: scroll; }
+
+			.rounded { border-radius: 5px; }
+
+			.bg-big { background: url('../media/ganyuGrande.jpg'); }
+
+			.w-half { width: 50%; }
+
+			.h-96 { height: 500px; }
+
+			.text-white { color: white;}
+
+			.bg-cover { background-size: cover; }
+
+			.bg-local { background-attachment: local; }
+
+			.bg-scroll { background-attachment: scroll; }
+
+			.bg-fixed { background-attachment: fixed; }
 		</style>
-		<div class="marco imgGrande fijar cubrirViewport">Si se incrusta asi en el body puede servir como imagen de fondo fijada al sitio web.</div>
+		<p>
+			[local] (por defecto) El fondo esta fijado al elemento y podemos recorrerlo naturalmente con el scroll.
+		</p>
+		<!-- Example -->
+		<div class="bg-local w-half h-96 bg-big bg-cover rounded overflow-y-scroll">
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		</div>
+
+		<p>
+			[scroll] El fondo queda incrustado en el scroll y no en el elemento.
+		</p>
+		<!-- Example -->
+		<div class="bg-scroll w-half h-96 bg-big bg-cover rounded overflow-y-scroll">
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		</div>
+
+		<p>
+			[fixed] El fondo queda fijo en el viewport (la ventana del navegador) pero solo se muestra dentro del elemento que lo contiene.
+		</p>
+		<p>
+			Cuando se activa este incrustamiento la propiedad <em>background-size</em> tomara como referencia de contenedor padre al <em>viewport</em>.
+		</p>
+		<!-- Example -->
+		<div class="bg-fixed w-half h-96 resized-bg rounded  text-white">
+			Si se incrusta asi en el body puede servir como imagen de fondo fijada al sitio web.
+		</div>
+		
 			
 		<h3>background-position</h3>
 		<p>Controla la posicion de la imagen de fondo en los elementos.</p>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 36</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Relacion Many To Many</h1>
+	<h4 class="enlace-volver"><a href="../capitulo9.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Crear Tabla role_user -->
+	<h3>Crear Tabla <em>role_user</em></h3>
+	<p>
+		Si nos fijamos en nuestro modelo logico veremos que la table <em>users</em> tiene una ralacion Manay To Many con la tabla <em>roles</em>, y a su vez esta tiene otra relacion Many To Many con la tabla <em>permissions</em>.
+	</p>
+	<p>
+		Entonces primero voy a crear la tabla <em>roles</em>.
+	</p>
+	<!-- code -->
+	<code>
+		$table->id(); <br>
+		$table->string('name', 45); <br>
+		$table->timestamps();
+	</code>
+
+	<p>
+		Ahora creo la tabla <em>role_user</em>:
+	</p>
+	<!-- code -->
+	<code>
+		$table->id(); <br><br>
+
+		$table->foreignId('user_id') <br>&nbsp;&nbsp;&nbsp;
+			->constrained() <br>&nbsp;&nbsp;&nbsp;
+			->onDelete('cascade') <br>&nbsp;&nbsp;&nbsp;
+			->onUpdate('cascade'); <br><br>
+		
+		$table->foreignId('role_id') <br>&nbsp;&nbsp;&nbsp;
+			->constrained() <br>&nbsp;&nbsp;&nbsp;
+			->onDelete('cascade') <br>&nbsp;&nbsp;&nbsp;
+			->onUpdate('cascade'); <br><br>
+
+		$table->timestamps();
+	</code>
+	
+	
+	<!-- belongsToMany() -->
+	<h3>belongsToMany()</h3>
+	<p>
+		Este metodo indica que un elemento de la tabla pertenece a muchos elementos de la otra:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Modelo User</strong> <br><br>
+
+		<strong>// Many To Many</strong> <br>
+		public function roles() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return $this->belongsToMany('App\Models\Role'); <br>
+		} <br><br>
+
+		<strong>// Modelo Role</strong> <br><br>
+
+		<strong>// Many To Many</strong> <br>
+		public function users() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return $this->belongsToMany('App\Models\User'); <br>
+		}
+	</code>
+
+
+	<!-- attach() -->
+	<h3>attach()</h3>
+	<p>
+		Podemos usar este metodo para asignar un rol a un usuario. Aqui los roles ya no se acceden como metodos, sino como propiedades:
+	</p>
+	<!-- code -->
+	<code>
+		use App\Models\User; $user = User::find(1); <br><br>
+
+		<strong>// Agrega el rol con id 1 al usuario con id 1 en la tabla role_user</strong> <br>
+		$user->roles()->attach(1);
+	</code>
+
+	<p>
+		Tambien recibe un array para asignar muchos roles a la vez:
+	</p>
+	<!-- code -->
+	<code>
+		use App\Models\User; $user = User::find(1); <br><br>
+
+		$user->roles()->attach([1, 3, 2]);
+	</code>
+	
+	
+	<!-- detach() -->
+	<h3>detach()</h3>
+	<p>
+		Este hace lo contrario, le quita un rol al usuario:
+	</p>
+	<!-- code -->
+	<code>
+		use App\Models\User; $user = User::find(1); <br><br>
+
+		<strong>// Quita el rol con id 1 al usuario con id 1 en la tabla role_user</strong> <br>
+		$user->roles()->detach(1);
+	</code>
+
+	<p>
+		Tambien recibe un array para quitar muchos roles a la vez:
+	</p>
+	<!-- code -->
+	<code>
+		use App\Models\User; $user = User::find(1); <br><br>
+
+		$user->roles()->detach([1, 3, 2]);
+	</code>
+
+
+	<!-- sync() -->
+	<h3>sync()</h3>
+	<p>
+		Este metodo lo que hace es sincronizar los registros. Primero elimina todos los roles del usuario y despues agrega los que le pasemos:
+	</p>
+	<code>
+		use App\Models\User; $user = User::find(1); <br><br>
+
+		$user->roles()->sync([1, 3, 2]);
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 9</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Transformaciones</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ejemplos -->
+	<h3>Ejemplos</h3>
+	<p>
+		En el siguiente enlace estan los ejemplos:
+	</p>
+	<a href="ejemplo.html" target="_blank">Ejemplos</a>
+	<!-- code -->
+	<code></code>
+	
+
+	<!-- Scale -->
+	<h3>Scale</h3>
+	<p>
+		Establece el valor <em>scale(...)</em> a la propiedad <em>transform</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.scale-<em>n</em> [: scale(0/.5/.75/.9/.95/1/1.05/1.1/1.25/1.5);] <br><br>
+
+		Donde <em>n</em> puede ser: 0/50/75/90/95/100/105/110/125/150 <br><br>
+
+		.scale-x-<em>n</em> [: scaleX( ... )] <br>
+		.scale-y-<em>n</em> [: scaleY( ... )]
+	</code>
+	
+
+	<!-- Rotate -->
+	<h3>Rotate</h3>
+	<p>
+		Establece el valor <em>rotate(...)</em> a la propiedad <em>transform</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.rotate-<em>n</em> [: scale(0deg/1deg/2deg/3deg/6deg/12deg/45deg/90deg/180);] <br><br>
+
+		Donde <em>n</em> puede ser: 0/1/2/3/6/12/45/90/180 <br><br>
+
+		Para valores negativos de <em>n</em> usa: <br>
+		.-rotate-<em>n</em>
+	</code>
+	
+
+	<!-- Translate -->
+	<h3>Translate</h3>
+	<p>
+		Establece el valor <em>translateX(...)/translateY(...)</em> a la propiedad <em>transform</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.translate-x-0/px [: translateX(0px/1px);] <br>
+		.translate-y-0/px [: translateY(0px/1px);] <br><br>
+
+		<strong>// Dado por REM</strong> <br>
+		.translate-x-<em>n</em> <br>
+		.translate-y-<em>n</em> <br><br>
+
+		Donde <em>n</em> puede ser: <br>
+		[1-12] <br>
+		0.5/1.5/2.5/3.5 <br>
+		14/16/20/24/28/32/36/40/44/48/52/56/60/64 <br>
+		72/80/96 <br><br>
+
+		<strong>// Segun el Padre</strong> <br>
+		.translate-x-<em>n</em> <br>
+		.translate-y-<em>n</em> <br><br>
+
+		Donde <em>n</em> puede ser: <br>
+		1/2,1/3,2/3,1/4,2/4,3/4,full <br><br>
+
+		<strong>// Valores Negativos</strong> <br>
+		Para valores negativos de <em>n</em> usa:
+		.-translate-x-<em>n</em> <br>
+		.-translate-y-<em>n</em>
+	</code>
+	
+
+	<!-- Skew -->
+	<h3>Skew</h3>
+	<p>
+		Establece el valor <em>skewX(...)/skewY(...)</em> a la propiedad <em>transform</em> de CSS.
+	</p>
+	<!-- code -->
+	<code>
+		.skew-x-<em>n</em> [: skewX(0deg/1deg/2deg/3deg/6deg/12deg);] <br>
+		.skew-y-<em>n</em> [: skewY(...);]<br><br>
+
+		Donde <em>n</em> puede ser: 0/1/2/3/6/12 <br><br>
+
+		Para valores negativos de <em>n</em> usa: <br>
+		.-skew-x-<em>n</em> <br>
+		.-skew-y-<em>n</em>
+
+	</code>
+	
+
+	<!-- Transform Origin -->
+	<h3>Transform Origin</h3>
+	<p>
+		Controla la propiedad <em>tranform-origin</em> de CSS.
+	</p>
+	<!-- code -->
+	<table class="tabla">
+		<tr>
+			<td>.origin-top-left</td>
+			<td>.origin-top</td>
+			<td>.origin-top-right</td>
+		</tr>
+		<tr>
+			<td>.origin-left</td>
+			<td>.origin-center</td>
+			<td>.origin-right</td>
+		</tr>
+		<tr>
+			<td>.origin-bottom-left</td>
+			<td>.origin-bottom</td>
+			<td>.origin-bottom-right</td>
+		</tr>
+	</table>
+	
+
+	<!-- transform-none -->
+	<h3>transform-none</h3>
+	<p>
+		Usa esta utilidad para restablecer la propiedad <em>transform</em> a <em>none</em>.
+	</p>
+	<!-- code -->
+	<code>
+		.transform-none <br><br>
+
+		.<em>responsive</em>:transform-none
+	</code>
+	
+
+	<!-- transform-gpu/cpu -->
+	<h3>transform-gpu/cpu</h3>
+	<p>
+		Si tu transicion se renderiza mejor usando el GPU que el CPU, puedes forzar la aceleracion de hardware con esta la utilidad.
+	</p>
+	<!-- code -->
+	<code>
+		.transform-gpu
+	</code>
+
+	<p>
+		Para desacer este condicional y forzar a volver a la CPU:
+	</p>
+	<code>
+		.transform-cpu
+	</code>
+	
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

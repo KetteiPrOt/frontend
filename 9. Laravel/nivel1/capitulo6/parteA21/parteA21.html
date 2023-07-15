@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 21</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Agrupar rutas con resource</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ver rutas en terminal -->
+	<h3>Ver rutas en terminal</h3>
+	<p>El siguiente comando nos muestra todas las rutas que estan definidas en la aplicacion (r:l = route list):</p>
+	<!-- code -->
+	<code>php artisan r:l</code>
+	
+	
+	<!-- resource() -->
+	<h3>resource()</h3>
+	<p>
+		Este metodo de la Clase Route permite definir automaticamente todas las rutas del CRUD siguiendo la convencion con la que lo hemos estado creando.
+	</p>
+	<!-- code -->
+	<code>
+		Route::resource('courses', CourseController::class);
+	</code> <br><br>
+
+	<img src="resource.png" height="250">
+
+	<p>La desventaja es que deja los nombres de la urls en ingles. Pero son rutas equivalentes:</p>
+	<!-- code -->
+	<code>
+		Route::controller(CourseController::class)->group(function() { <br>&nbsp;&nbsp;&nbsp;
+			Route::get('/cursos', 'index')->name('courses.index'); <br>&nbsp;&nbsp;&nbsp;
+			Route::get('/cursos/crear', 'create')->name('courses.create'); <br>&nbsp;&nbsp;&nbsp;
+			Route::post('/cursos', 'store')->name('courses.store'); <br>&nbsp;&nbsp;&nbsp;
+			Route::get('/cursos/{course}', 'show')->name('courses.show'); <br>&nbsp;&nbsp;&nbsp;
+			Route::get('/cursos/{course}/editar', 'edit')->name('courses.edit'); <br>&nbsp;&nbsp;&nbsp;
+			Route::put('/cursos/{course}', 'update')->name('courses.update'); <br>&nbsp;&nbsp;&nbsp;
+			Route::delete('/cursos/{course}', 'destroy')->name('courses.destroy'); <br>
+		});
+	</code> <br><br>
+
+	<img src="normalRoute.png" height="250">
+
+
+	<!-- Traducir verbos -->
+	<h3>Traducir verbos</h3>
+	<p>
+		Seria bueno poder traducir los verbos de la urls (create, edit) para poder implementarlas en espaniol y ahorrarnos mucho codigo.
+	</p>
+	<p>
+		Para hacer esto debemos configurarlos en el archivo:
+	</p>
+	<!-- code -->
+	<code>/app/Providers/AppServicesProvider.php</code>
+
+	<p>
+		Aqui debemos <em>usar</em> la clase Route y su metodo resourceVerbs() para cambiarlos:
+	</p>
+	<!-- code -->
+	<code>
+		use Illuminate\Support\Facades\Route; <br><br>
+
+		class AppServiceProvider extends ServiceProvider <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			... <br><br>&nbsp;&nbsp;&nbsp;
+
+			public function boot(): void <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				Paginator::useBootstrap(); <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				Route::resourceVerbs([ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					<strong>'edit' => 'editar'</strong>, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					<strong>'create' => 'crear'</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				]); <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+
+	<p>
+		De esta forma podriamos usarlo en espaniol, pero tendriamos que cambiar todos los nombres de las rutas en las vistas.
+	</p>
+	
+	
+	<!-- Mantener nombres -->
+	<h3>Mantener nombres</h3>
+	<p>
+		Para solucionar este problema existe el metodo names() que recibe como parametro el nombre que larvel va a utilizar internamente para nuestras rutas.
+	</p>
+	<!-- code -->
+	<code>
+		Route::resource('cursos', CourseController::class)->names('courses');
+	</code> <br><br>
+
+	<img src="routeNames.png" height="250">
+
+	<p>
+		Aqui los nombres de rutas ya son iguales a los de las vista porque no los hemos tomado de las urls, sino que los hemos especificado nosotros mismos.
+	</p>
+	<p>
+		Sin embargo los parametros que son pasados por las urls no son los mismos que los que definimos en los metodos del controlador... es el mismo problema.
+	</p>
+	
+	
+	<!-- parameters() -->
+	<h3>parameters()</h3>
+	<p>
+		Este metodo perite configurar los parametros que se pasan por las rutas.
+	</p>
+	<p>
+		Recibe un array asociativo cuya clave es el nombre del recurso principal, y cuyo valor es el nombre que deseamos asignar a los parametros que se pasan por las rutas de ese recurso:
+	</p>
+	<!-- code -->
+	<code>
+		Route::resource('cursos', CourseController::class)-><strong>parameters(['cursos' => 'course'])</strong>->names('courses');
+	</code> <br><br>
+
+	<img src="routeParameters.png" height="250">
+
+	<p>
+		De esta forma ya tenemos rutas independientes de la URL y la mision esta completada!
+	</p>
+	<p>
+		Ademas incluso podriamos cambiar el nombre de las urls sin nesecidad de modificar las rutas!
+	</p>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 20</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Eliminar Registros</h1>
+	<h4 class="enlace-volver"><a href="../capitulo5.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ruta destroy -->
+	<h3>Ruta destroy</h3>
+	<p>
+		Laravel recomienda que cuando eliminamos un registro lo hagamos mediante el metodo delete.
+	</p>
+	<!-- code -->
+	<code>
+		Route::delete('/cursos/{course}', 'destroy')->name('courses.destroy');
+	</code>
+	
+	
+	<!-- Metodo destroy -->
+	<h3>Metodo destroy</h3>
+	<p>El metodo destroy sencillamente elimina un registro:</p>
+	<!-- code -->
+	<code>
+		public function destroy(Course $course) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Eliminar registro</strong> <br>&nbsp;&nbsp;&nbsp;
+			$course->delete(); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return redirect()->route('courses.index'); <br>
+		}
+	</code>
+	
+	
+	<!-- Boton Eliminar -->
+	<h3>Boton Eliminar</h3>
+	<p>
+		Creamos el boton en la interfaz para el usuario:
+	</p>
+	<!-- code -->
+	<code>
+		&lt;form action="{{route('courses.destroy', $course)}}" method='post'&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			@csrf <br><br>&nbsp;&nbsp;&nbsp;
+	
+			@method('delete') <br><br>&nbsp;&nbsp;&nbsp;
+	
+			&lt;button type="submit"&gt;Eliminar&lt;/button&gt; <br>
+		&lt;/form&gt;
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

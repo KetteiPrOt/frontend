@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 6</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Tablas</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Clase Schema -->
+	<h3>Clase <em>Schema</em></h3>
+	<p>
+		Esquema [<em>Schema</em>] es una Clase que representa la estructura de la <em>Base de Datos</em> en las Migraciones.
+	</p>
+	<p>En consecuencia puedo usar esta Clase para <strong>alterar la estructura</strong> de la <em>Base de Datos</em></p>
+	
+
+	<!-- Metodo create() -->
+	<h3>Metodo <em>create()</em></h3>
+	<p>
+		Este es un metodo estatico de la Clase <em>Schema</em> el cual sirve para <strong>crear una tabla</strong> en la <em>Base de Datos</em>.
+	</p>
+	<p>
+		Recibe <strong>dos parametros</strong>: Primero el <strong>nombre de la tabla</strong> que va a crear. Segundo una <strong>funcion</strong> que va a crear las columnas de las tablas.
+	</p>
+	<p>
+		Esta <strong>funcion</strong> recibe como parametro un objeto llamado <code>$table</code>, de Clase <em>Blueprint</em>, que representa la tabla y tiene los metodos para <strong>crear las columnas</strong> que deseemos dentro de la <strong>funcion</strong>.
+	</p>
+	<!-- code -->
+	<code>
+		Schema::create('courses', function (Blueprint $table) { <br>&nbsp;&nbsp;&nbsp;
+            $table->id(); <br>&nbsp;&nbsp;&nbsp;
+            $table->string('name', 100); <br>&nbsp;&nbsp;&nbsp;
+            $table->text('description'); <br>&nbsp;&nbsp;&nbsp;
+            $table->string('image_url'); <br>&nbsp;&nbsp;&nbsp;
+            $table->timestamps(); // create columns: create_at update_at <br>
+        });
+	</code>
+
+	<p>
+		Para ver todos los metodos que <strong>crean las columnas</strong> revisa la seccion Crear Columnas
+	</p>
+
+
+	<!-- Propiedades de la tabla -->
+	<h3>Propiedades de la tabla</h3>
+	<p>
+		El objeto llamado <code>$table</code>, de Clase <em>Blueprint</em>, que representa la tabla tambien tiene proiedades para configurar la creacion de la tabla.
+	</p>
+	<p>
+		La propiedad <strong>engine</strong> especifica el motor de almecenamiento usado por MySQL para la tabla.
+	</p>
+	<p>
+		La propiedad <strong>charset</strong> especifica el set de caracteres usado por la tabla.
+	</p>
+	<p>
+		La propiedad <strong>collation</strong> especifica la colacion de caracteres usada por la tabla.
+	</p>
+	<!-- code -->
+	<code>
+		Schema::create('users', function (Blueprint $table) { <br>&nbsp;&nbsp;&nbsp;
+			$table->engine = 'InnoDB'; <br>&nbsp;&nbsp;&nbsp;
+			$table->charset = 'utf8mb4'; <br>&nbsp;&nbsp;&nbsp;
+    		$table->collation = 'utf8mb4_unicode_ci'; <br><br>&nbsp;&nbsp;&nbsp;
+		 
+			// ... <br>
+		});
+	</code>
+
+
+	<!-- Metodo hasTable() -->
+	<h3>Metodo <em>hasTable()</em></h3>
+	<p>Este metodo verifica si existe una <strong>tabla</strong> en la <em>Base de Datos</em>.</p>
+	<p>
+		Recibe como parametro el nombre de la tabla y retorna <strong>verdadero</strong> en caso de que exista, o <strong>falso</strong> en caso de que no exista.
+	</p>
+	<!-- code -->
+	<code>
+		if (Schema::hasTable('courses')) { <br>&nbsp;&nbsp;&nbsp;
+			// ... <br>
+		}
+	</code>
+
+
+	<!-- Metodo hasColumn() -->
+	<h3>Metodo <em>hasColumn()</em></h3>
+	<p>
+		Este metodo verifica si existe una <strong>columna</strong> en una tabla de la <em>Base de Datos</em>.
+	</p>
+	<p>
+		Recibe como parametros: primero el <strong>nombre de la tabla</strong>, y despues el de <strong>la columna</strong>. Retorna verdadero en caso de que exista la columna, o falso en caso de que no exista.
+	</p>
+	<!-- code -->
+	<code>
+		if (Schema::hasColumn('courses', 'instructor')) { <br>&nbsp;&nbsp;&nbsp;
+			// ... <br>
+		}
+	</code>
+
+
+	<!-- Metodo table() -->
+	<h3>Metodo <em>table()</em></h3>
+	<p>
+		Este es un metodo estatico de la Clase <em>Schema</em> el cual sirve para <strong>modificar una tabla</strong> en la <em>Base de Datos</em>.
+	</p>
+	<p>
+		Recibe <strong>dos parametros</strong>: Primero el <strong>nombre de la tabla</strong> que va a modificar. Segundo una <strong>funcion</strong> que va a realizar las modificaciones.
+	</p>
+	<p>
+		Esta <strong>funcion</strong> recibe como parametro un objeto llamado <code>$table</code>, de Clase <em>Blueprint</em>, que representa la tabla y tiene tanto los metodos como las propiedades para <strong>modificar la tabla</strong> dentro de la <strong>funcion</strong>.
+	</p>
+	<!-- code -->
+	<code>
+		Schema::table('courses', function (Blueprint $table) { <br>&nbsp;&nbsp;&nbsp;
+            $table->integer('votes'); <br>
+        });
+	</code>
+
+
+	<!-- Metodo rename() -->
+	<h3>Metodo <em>rename()</em></h3>
+	<p>
+		Este es un metodo estatico de la Clase <em>Schema</em> el cual sirve para <strong>renombrar una tabla</strong> en la <em>Base de Datos</em>.
+	</p>
+	<p>
+		Recibe como primer parametro el <strong>nombre actual</strong> de la tabla y como segundo parametro el <strong>nuevo nombre</strong> de la tabla.
+	</p>
+	<!-- code -->
+	<code>Schema::rename($from, &to);</code>
+
+	<p>
+		<strong>Importante:</strong> antes de renombrar una tabla debes asegurarte de que todas sus Claves Externas no tendran conflictos a causa de asignar el nombre de la tabla por convencion.
+	</p>
+
+
+	<!-- Metodo drop() -->
+	<h3>Metodo <em>drop()</em></h3>
+	<p>
+		Este es un metodo estatico de la Clase <em>Schema</em> el cual sirve para <strong>eliminar una tabla</strong> en la <em>Base de Datos</em>. Recive como parametro el nombre de la tabla.
+	</p>
+	<!-- code -->
+	<code>Schema::drop($table_name);</code>
+
+	<p>Tambien existe la variante <em>dropIfExist()</em>, que se ejecutara solo si la tabla existe:</p>
+	<!-- code -->
+	<code>Schema::dropIfExist($table_name);</code>
+	
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 29</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Plantillas de Jetstream</h1>
+	<h4 class="enlace-volver"><a href="../capitulo7.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ruta dashboard -->
+	<h3>Ruta dashboard</h3>
+	<p>
+		Esta ruta esta controlada por el Middleware 'auth:sanctum', quien verificara si un usuario tiene la sesion iniciada para acceder. Si no la tiene entonces lo redireccionara a la pagina de login.
+	</p>
+	<!-- code -->
+	<code>
+		Route::middleware([ <br>&nbsp;&nbsp;&nbsp;
+			<strong>'auth:sanctum'</strong>, <br>&nbsp;&nbsp;&nbsp;
+			config('jetstream.auth_session'), <br>&nbsp;&nbsp;&nbsp;
+			<strong>'verified'</strong> <br>
+		])->group(function () { <br>&nbsp;&nbsp;&nbsp;
+			Route::get('/dashboard', function () { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return view('dashboard'); <br>&nbsp;&nbsp;&nbsp;
+			})->name('dashboard'); <br>
+		});
+	</code>
+	
+	
+	<!-- Plantillas Principales -->
+	<h3>Plantillas Principales</h3>
+	<p>
+		Hasta Laravel 7 usabaamos el sistema de plantillas Blade para extender de los documentos ubicados en la carpeta /resourses/views/layouts/, ahora usamos los componentes de Blade para esta labor.
+	</p>
+	<p>
+		Centremonos en la plantilla views/layouts/app.blade.php y sus nuevos metodos.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- app()->getLocale() -->
+	<h3>app()->getLocale()</h3>
+	<p>
+		Establece el idioma del atributo HTML lang
+	</p>
+	<p>
+		Accede a la configuracion de la aplicacion (/config/app.php) con el metodo app() y recupera el valor del idioma en la llave 'locale' del arreglo con getLocale().
+	</p>
+	<!-- code -->
+	<code>
+		&lt;html lang="{{ str_replace('_', '-', app()->getLocale()) }}"&gt; <br>&nbsp;&nbsp;&nbsp;
+			... <br>
+		&lt;/html&gt;
+	</code>
+	
+	
+	<!-- config() -->
+	<h3>config()</h3>
+	<p>
+		Accede a la configuracion de la aplicacion, en este caso esta accediendo al nombre establecido finalmente en el archivo .env
+	</p>
+	<!-- code -->
+	<code>
+		&lt;title&gt;{{ config('app.name', 'Laravel') }}&lt;/title&gt;
+	</code>
+	
+	
+	<!-- Drirectiva @vite -->
+	<h3>Drirectiva @vite</h3>
+	<p>
+		Esta directiva invoca a Vite para que carge en el documento estilos almacenados en la carpeta resourses.
+	</p>
+	<!-- code -->
+	<code>@vite(['resources/css/app.css', 'resources/js/app.js'])</code>
+
+
+	<!-- Directiva @auth -->
+	<h3>Directiva @auth</h3>
+	<p>
+		Esta directiva de Blade sirve para establcer un condicional en caso de que el usuario este o no este autentificado:
+	</p>
+	<!-- code -->
+	<code>
+		@auth <br>&nbsp;&nbsp;&nbsp;
+			... <br>
+		@else <br>&nbsp;&nbsp;&nbsp;
+			... <br>
+		@endauth
+	</code>
+	
+	
+	<!-- Modificar plantillas -->
+	<h3>Modificar plantillas</h3>
+	<p>
+		Lo demas es navegar a traves de los componentes Blade, manipular los estilos de tailwind, y trabajar con Livewire.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="mx-3">
+        
+    <!-- Border Width -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Border Width
+    </h3>
+    <!-- Example -->
+    <div class="flex items-start mt-3">
+        <div class="border-0 border-black rounded mr-3 p-1 bg-blue-400">
+            .border-0
+        </div>
+        <div class="border border-black rounded mr-3 p-1 bg-blue-400">
+            .border
+        </div>
+        <div class="border-2 border-black rounded mr-3 p-1 bg-blue-400">
+            .border-2
+        </div>
+        <div class="border-4 border-black rounded mr-3 p-1 bg-blue-400">
+            .border-4
+        </div>
+        <div class="border-8 border-black rounded mr-3 p-1 bg-blue-400">
+            .border-8
+        </div>
+    </div>
+
+    <p>
+        Controla <em>top/right/bottom/left</em>:
+    </p>
+    <!-- example -->
+    <div class="flex items-start mt-3">
+        <div class="border-x-4 border-black rounded mr-3 p-1 bg-blue-400">
+            .border-x-4
+        </div>
+        <div class="border-y-4 border-black rounded mr-3 p-1 bg-blue-400">
+            .border-y-4
+        </div>
+    </div>
+    <div class="flex items-start mt-3">
+        <div class="border-t-4 border-black rounded mr-3 p-1 bg-blue-400">
+            .border-t-4
+        </div>
+        <div class="border-r-4 border-black rounded mr-3 p-1 bg-blue-400">
+            .border-r-4
+        </div>
+        <div class="border-b-4 border-black rounded mr-3 p-1 bg-blue-400">
+            .border-b-4
+        </div>
+        <div class="border-l-4 border-black rounded mr-3 p-1 bg-blue-400">
+            .border-l-4
+        </div>
+    </div>
+    
+    
+    <!-- Border Style -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Border Style
+    </h3>
+    <!-- Example -->
+    <div class="flex my-3">
+        <div class="mr-3">
+            <div class="border-solid border-4 border-black rounded mr-3 p-1 bg-blue-400">
+                .border-solid
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="border-dotted border-4 border-black rounded mr-3 p-1 bg-blue-400">
+                .border-dotted
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="border-double border-4 border-black rounded mr-3 p-1 bg-blue-400">
+                .border-double
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="border-hidden border-4 border-black rounded mr-3 p-1 bg-blue-400">
+                .border-hidden
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="border-none border-4 border-black rounded mr-3 p-1 bg-blue-400">
+                .border-none
+            </div>
+        </div>
+    </div>
+
+    <p>
+        Controla <em>border-color</em>.
+    </p>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <div class="border-red-400 border-4 rounded mr-3 p-1">
+                .border-red-400
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="border-blue-400 border-4 rounded mr-3 p-1">
+                .border-blue-400
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="border-green-400 border-4 rounded mr-3 p-1">
+                .border-green-400
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="border-yellow-400 border-4 rounded mr-3 p-1">
+                .border-yellow-400
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Border Radius -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Border Radius
+    </h3>
+    <!-- Example -->
+    <div class="flex my-3">
+        <div class="mr-3">
+            <div class="rounded-none border-4 border-black mr-3 p-1">
+                .rounded-none
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="rounded-sm border-4 border-black mr-3 p-1">
+                .rounded-sm
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="rounded border-4 border-black mr-3 p-1">
+                .rounded
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="rounded-md border-4 border-black mr-3 p-1">
+                .rounded-md
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="rounded-lg border-4 border-black mr-3 p-1">
+                .rounded-lg
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="rounded-xl border-4 border-black mr-3 p-1">
+                .rounded-xl
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="rounded-2xl border-4 border-black mr-3 p-1">
+                .rounded-2xl
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="rounded-3xl border-4 border-black mr-3 p-1">
+                .rounded-3xl
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="rounded-full border-4 border-black mr-3 p-1">
+                .rounded-full
+            </div>
+        </div>
+    </div>
+
+    <p>
+        Redondear Lados
+    </p>
+    <!-- Example -->
+    <div class="flex my-3">
+        <div class="mr-3">
+            <div class="rounded-t-3xl border-4 border-black mr-3 p-1">
+                .rounded-t-3xl
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="rounded-r-3xl border-4 border-black mr-3 p-1">
+                .rounded-r-3xl
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="rounded-b-3xl border-4 border-black mr-3 p-1">
+                .rounded-b-3xl
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="rounded-l-3xl border-4 border-black mr-3 p-1">
+                .rounded-l-3xl
+            </div>
+        </div>
+    </div>
+
+    <p>
+        Redonderar Aristas
+    </p>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <div class="rounded-tl-3xl border-4 border-black mr-3 p-1">
+                .rounded-tl-3xl
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="rounded-tr-3xl border-4 border-black mr-3 p-1">
+                .rounded-tr-3xl
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="rounded-bl-3xl border-4 border-black mr-3 p-1">
+                .rounded-bl-3xl
+            </div>
+        </div>
+        <div class="mr-3">
+            <div class="rounded-br-3xl border-4 border-black mr-3 p-1">
+                .rounded-br-3xl
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Padding -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Padding
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class=" mr-3">
+            <p>.p-0</p>
+            <div class="p-0 border-2 rounded border-black bg-blue-400">
+                <img class="w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+        <div class=" mr-3">
+            <p>.p-3</p>
+            <div class="p-3 border-2 rounded border-black bg-blue-400">
+                <img class="w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+        <div class=" mr-36">
+            <p>.p-5</p>
+            <div class="p-5 border-2 rounded border-black bg-blue-400">
+                <img class="w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+        <div class=" mr-3">
+            <p>.px-3</p>
+            <div class="px-3 border-2 rounded border-black bg-blue-400">
+                <img class="w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+        <div class=" mr-3">
+            <p>.py-3</p>
+            <div class="py-3 border-2 rounded border-black bg-blue-400">
+                <img class="w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+    </div>
+    <div class="flex mt-3">
+        <div class=" mr-3">
+            <p>.pt-3</p>
+            <div class="pt-3 border-2 rounded border-black bg-blue-400">
+                <img class="w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+        <div class=" mr-3">
+            <p>.pr-3</p>
+            <div class="pr-3 border-2 rounded border-black bg-blue-400">
+                <img class="w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+        <div class=" mr-3">
+            <p>.pb-3</p>
+            <div class="pb-3 border-2 rounded border-black bg-blue-400">
+                <img class="w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+        <div class=" mr-3">
+            <p>.pl-3</p>
+            <div class="pl-3 border-2 rounded border-black bg-blue-400">
+                <img class="w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Margin -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Margin
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class=" mr-3">
+            <p>.m-0</p>
+            <div class="border-2 rounded border-black bg-pink-400">
+                <img class="m-0 w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+        <div class=" mr-3">
+            <p>.m-3</p>
+            <div class="border-2 rounded border-black bg-pink-400">
+                <img class="m-3 w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+        <div class=" mr-36">
+            <p>.m-5</p>
+            <div class="border-2 rounded border-black bg-pink-400">
+                <img class="m-5 w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+        <div class=" mr-3">
+            <p>.mx-3</p>
+            <div class="border-2 rounded border-black bg-pink-400">
+                <img class="mx-3 w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+        <div class=" mr-3">
+            <p>.my-3</p>
+            <div class="border-2 rounded border-black bg-pink-400">
+                <img class="my-3 w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+    </div>
+    <div class="flex mt-3">
+        <div class=" mr-3">
+            <p>.mt-3</p>
+            <div class="border-2 rounded border-black bg-pink-400">
+                <img class="mt-3 w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+        <div class=" mr-3">
+            <p>.mr-3</p>
+            <div class="border-2 rounded border-black bg-pink-400">
+                <img class="mr-3 w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+        <div class=" mr-3">
+            <p>.mb-3</p>
+            <div class="border-2 rounded border-black bg-pink-400">
+                <img class="mb-3 w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+        <div class=" mr-3">
+            <p>.ml-3</p>
+            <div class="border-2 rounded border-black bg-pink-400">
+                <img class="ml-3 w-32" src="../../media/elaina.jpg">
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Box Sizing -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Box Sizing
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.box-content .w-32 .pl-32 (by default)</p>
+            <div class="box-content border-2 rounded border-black bg-blue-400 text-white">
+                Final Width: 64
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.box-border .w-32 .pl-32</p>
+            <div class="box-border border-2 rounded border-black bg-blue-400 text-white">
+                Final Width: 32
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- // -->
+    <h3 class="text-3xl mt-5 mb-2">
+        //
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3"></div>
+    </div>
+
+</body>
+</html>

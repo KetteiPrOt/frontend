@@ -90,6 +90,303 @@
 			<p class="enLinea">Texto</p>
 			<img src="../media/icon1.svg" class="iconoNicolas verticalArriba">
 		</div>
+
+
+		<!-- object-fit -->
+		<h3>object-fit</h3>
+		<p>
+			Esta propiedad controla la forma en la que se muestran las imagenes.
+		</p>
+		<p>
+			Lo hace de forma similar a como la propiedad <em>background-size</em> controla como se muestran <strong>las imagenes de fondo</strong> en los elementos.
+		</p>
+
+		<style>
+			.image {
+				display: inline-block;
+				width: 100%;
+				height: 300px;
+				border: 1px solid black;
+				border-radius: 3px;
+				margin: 0 auto;
+			}
+
+			.fill { object-fit: fill; }
+
+			.contain { object-fit: contain; }
+
+			.cover { object-fit: cover; }
+
+			.object-none { object-fit: none; }
+		</style>
+		<p>[fill] (por defecto) La imagen se deforma para rellenar las dimensiones del elemento.</p>
+		<!-- image -->
+		<img class="image fill" src="../media/img1.jpg">
+
+		<p>[contain] La imagen es contenida completamente dentro del elemento.</p>
+		<!-- image -->
+		<img class="image contain" src="../media/img1.jpg">
+
+		<p>
+			[cover] La imagen cubre totalmente el ancho y alto del elemento. Su ubicacion, que actualmente esta centrada, se puede ajustar con <em>object-position</em>.
+		</p>
+		<!-- image -->
+		<img class="image cover" src="../media/img1.jpg">
+
+		<p>
+			[none] La imagen se coloca en su tamanio original, ya no toma relevancia la dimension del elemento HTML que la contiene.
+		</p>
+		<!-- image -->
+		<img style="height: 120px;" class="image object-none" src="../media/img1.jpg">
+
+
+		<!-- object-position -->
+		<h3>object-position</h3>
+		<p>
+			Controla la ubicacion de la imagen cuando se usa en conjunto con <em>object-fit</em>, de forma similar a la propiedad <em>background-position</em> con <em>background-size</em>.
+		</p>
+
+		<style>
+			.p-center { object-position: center; }
+
+			.p-right { object-position: right;}
+
+			.p-left { object-position: left;}
+
+			.p-top { object-position: top;}
+
+			.p-bottom { object-position: bottom;}
+		</style>
+		<p>[center] (por defecto) Ubica la imagen en el centro.</p>
+		<!-- image -->
+		<img class="image contain p-center" src="../media/img1.jpg">
+		<img class="image cover p-center" src="../media/img1.jpg">
+
+		<p>[right] Ubica la imagen a la derecha.</p>
+		<!-- image -->
+		<img class="image contain p-right" src="../media/img1.jpg">
+
+		<p>[left] Ubica la imagen a la izquierda.</p>
+		<!-- image -->
+		<img class="image contain p-left" src="../media/img1.jpg">
+
+		<p>[top] Ubica la imagen arriba.</p>
+		<!-- image -->
+		<img class="image cover p-top" src="../media/img1.jpg">
+
+		<p>[bottom] Ubica la imagen aabajo.</p>
+		<!-- image -->
+		<img class="image cover p-bottom" src="../media/img1.jpg">
+
+		<!-- code -->
+		<style>
+			.image-frame {
+				width: 360px;
+				height: 260px;
+				border: 1px solid black;
+				border-radius: 5px;
+
+				object-fit: none;
+			}
+
+			.object-left-top { object-position: left top; }
+
+			.object-left-bottom { object-position: left bottom; }
+
+			.object-right-bottom { object-position: right top; }
+
+			.object-right-top { object-position: right bottom; }
+		</style>
+		<p>
+			[left top] Esquina superior izquierda, <em>object-fit</em> debe tener valor de <em>none</em>.
+		</p>
+		<!-- image -->
+		<img class="image-frame object-left-top" src="../media/img1.jpg">
+
+		<p>
+			[left bottom] Esquina inferior izquierda, <em>object-fit</em> debe tener valor de <em>none</em>.
+		</p>
+		<!-- image -->
+		<img class="image-frame object-left-bottom" src="../media/img1.jpg">
+
+		<p>
+			[right bottom] Esquina inferior derecha, <em>object-fit</em> debe tener valor de <em>none</em>.
+		</p>
+		<!-- image -->
+		<img class="image-frame object-right-bottom" src="../media/img1.jpg">
+
+		<p>
+			[right top] Esquina superior derecha, <em>object-fit</em> debe tener valor de <em>none</em>.
+		</p>
+		<!-- image -->
+		<img class="image-frame object-right-top" src="../media/img1.jpg">
+		
+
+		<!-- cursor -->
+		<h3>cursor</h3>
+		<p>
+			Establece como se ve el cursor del usuario sobre un elemento.
+		</p>
+		<!-- code -->
+		<style>
+			.flex { display: flex; }
+
+			.mr-3 { margin-right: 15px; }
+
+			.element {
+				text-align: center;
+				background-color: skyblue;
+				width: 100px; height: 100px;
+				border: 1px solid black;
+				border-radius: 5px;
+			}
+
+			.cursor-auto { cursor: auto; }
+
+			.cursor-default { cursor: default; }
+
+			.cursor-pointer { cursor: pointer; }
+
+			.cursor-text { cursor: text; }
+
+			.cursor-wait { cursor: wait; }
+
+			.cursor-move { cursor: move; }
+
+			.cursor-help { cursor: help; }
+
+			.cursor-not-allowed { cursor: not-allowed; }
+		</style>
+
+		<p>
+			[auto] (valor por defecto) Muestra el cursor segun el elemento HTML
+		</p>
+		<div class="element cursor-auto">
+			Auto
+		</div>
+		<div class="flex">
+			<div class="mr-3">
+				<p>
+					[default] Muestra el cursor por defecto.
+				</p>
+				<div class="element cursor-default">
+					Default
+				</div>
+			</div>
+			<div class="mr-3">
+				<p>
+					[pointer] Muestra el puntero de click
+				</p>
+				<div class="element cursor-pointer">
+					Pointer
+				</div>
+			</div>
+			<div class="mr-3">
+				<p>
+					[text] Muestra el puntero de texto
+				</p>
+				<div class="element cursor-text">
+					Text
+				</div>
+			</div>
+			<div class="mr-3">
+				<p>
+					[wait] Muestra el puntero de carga
+				</p>
+				<div class="element cursor-wait">
+					Wait
+				</div>
+			</div>
+			<div class="mr-3">
+				<p>
+					[move] Muestra el puntero de mover
+				</p>
+				<div class="element cursor-move">
+					Move
+				</div>
+			</div>
+			<div class="mr-3">
+				<p>
+					[help] Muestra el puntero de ayuda
+				</p>
+				<div class="element cursor-help">
+					Help
+				</div>
+			</div>
+			<div class="mr-3">
+				<p>
+					[not-allowed] Muestra el puntero de restringido
+				</p>
+				<div class="element cursor-not-allowed">
+					Not Allowed
+				</div>
+			</div>
+		</div>
+		
+		
+		<!-- user-select -->
+		<h3>user-select</h3>
+		<p>
+			Establece como el usuario selecciona texto del elemento.
+		</p>
+		<!-- code -->
+		<style>
+			.text-container {
+				padding: 5px;
+				border: 1px solid black;
+				border-radius: 10px;
+			}
+
+			.select-auto { user-select: auto; }
+
+			.select-text { user-select: text; }
+
+			.select-none { user-select: none; }
+
+			.select-all { user-select: all; }
+		</style>
+
+		<p>
+			[auto] (valor por defecto) Establece el valor segun el elemento HTML
+		</p>
+		<span class="text-container select-auto">
+			Lorem ipsum dolor sit amet.
+		</span>
+
+		<div class="flex">
+			<div class="mr-3">
+				<p>
+					[text] Selecciona el texto normalmente.
+				</p>
+				<span class="text-container select-text">
+					Lorem ipsum dolor sit amet.
+				</span>
+			</div>
+			<div class="mr-3">
+				<p>
+					[none] No permite seleccionar el texto.
+				</p>
+				<span class="text-container select-none">
+					Lorem ipsum dolor sit amet.
+				</span>
+			</div>
+			<div class="mr-3">
+				<p>
+					[all] Selecciona todo en un click.
+				</p>
+				<span class="text-container select-all">
+					Lorem ipsum dolor sit amet.
+				</span>
+			</div>
+		</div>
+		
+		
+		<!--  -->
+		<h3></h3>
+		<p></p>
+		<!-- code -->
+		<code></code>
+
 	</section>
 </body>
 </html>

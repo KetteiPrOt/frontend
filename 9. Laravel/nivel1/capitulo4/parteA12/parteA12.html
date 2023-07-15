@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 12</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Seeders</h1>
+	<h4 class="enlace-volver"><a href="../capitulo4.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que son -->
+	<h3>Que son</h3>
+	<p>
+		Los <em>sembradores</em> son estucturas de laravel que se encargan de llenar de datos la <em>Base de Datos</em>. Principalmente estos suelen ser datos de prueba. Ubicacion:
+	</p>
+	<!-- code -->
+	<code>/database/seeders/DatabaseSeeder.php</code>
+
+	<p>Para ejecutar el <em>seeder</em> principal usa el comando:</p>
+	<!-- code -->
+	<code>php artisan db:seed</code>
+
+
+	<!-- Insertar registros -->
+	<h3>Insertar registros</h3>
+	<p>En el seeder podemos insertar registros en una tabla <em>usando</em> su modelo:</p>
+	<!-- code -->
+	<code>
+		use App\Models\Course; <br><br>
+
+		class DatabaseSeeder extends Seeder <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			public function run(): void <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$course1 = new Course; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$course1->name = 'PHP'; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$course1->description = 'The best PHP course'; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$course1->image_url = 'https://www.img.com/1.jpg'; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$course1->save(); <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+	
+	
+	<!-- Crear seeder -->
+	<h3>Crear seeder</h3>
+	<p>Para crear un nuevo archivo seeder usamos:</p>
+	<!-- code -->
+	<code>php artisan make:seeder <em>seeder_name</em></code>
+
+	<p>Para un seeder que rellene la tabla <em>Courses</em> su nombre seria <em>CourseSeeder</em></p>
+	<p>
+		Ahora en este nuevo seeder podemos guardar todos los registros de la tabla Course.
+	</p>
+	<!-- code -->
+	<code>
+		use App\Models\Course; <br><br>
+
+		class CourseSeeder extends Seeder <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			public function run(): void <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$course1 = new Course; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$course1->name = 'PHP'; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$course1->description = 'The best PHP course'; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$course1->image_url = 'https://www.img.com/1.jpg'; <br><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+				$course1->save(); <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+	
+	
+	<!-- LLamar seeder -->
+	<h3>LLamar seeder</h3>
+	<p>
+		Ahora para poder usar nuestro nuevo seeder mediante el comando debemos llamarlo en el seeder principal.
+	</p>
+	<p>
+		Lo llamamos con el metodo <em>call()</em> de la Clase Seeder, usando el Namespace (No hace falta usar la clase):
+	</p>
+	<!-- code -->
+	<code>
+		use App\Models\Course; <br><br>
+
+		class DatabaseSeeder extends Seeder <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			public function run(): void <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$this->call(CourseSeeder::class); <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+	
+	
+	<!-- Reiniciar y sembrar -->
+	<h3>Reiniciar y sembrar</h3>
+	<p>
+		Con este comando podemos eliminar las tablas, volverlas a migrar, y sembrar la base de datos a la vez
+	</p>
+	<!-- code -->
+	<code>php artisan migrate:fresh --seed</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

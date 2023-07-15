@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 1</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Instalacion e inicio</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Guias y Documentacion -->
+	<h3>Guias y Documentacion</h3>
+	<p>
+		Puedes ver las guias de instalacion de diferentes frameworks y ambientes en la <a href="https://tailwindcss.com/">pagina oficial</a> de Tailwind.
+	</p>
+	<p>
+		Yo voy a seguir la <a href="https://tailwindcss.com/docs/guides/laravel">guia de Laravel</a>. Al parecer si instalas Breeze o Jetstream ya se instala tailwind.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Directivas de Tailwind -->
+	<h3>Directivas de Tailwind</h3>
+	<p>
+		En el archivo <em>.../resources/css/app.css</em> vamos a definir las partes de Tailwind que Vite debe compilar en las paginas de nuestro proyecto:
+	</p>
+	<!-- code -->
+	<code>
+		@tailwind base; <br>
+		@tailwind components; <br>
+		@tailwind utilities;
+	</code>
+	
+	
+	<!-- Servidor de Vite -->
+	<h3>Servidor de Vite</h3>
+	<p>
+		No olvides encender el servidor de Vite para poder visualizar Tailwind:
+	</p>
+	<!-- code -->
+	<code>npm run dev</code>
+
+	<p>
+		Ya podemos usar Tailwind en el proyecto simplemente incluyendo la directiva Vite en cada vista donde queramos:
+	</p>
+	<!-- code -->
+	<code>@vite('resources/css/app.css')</code>
+	
+	
+	<!-- Desde CDN -->
+	<h3>Desde CDN</h3>
+	<p>
+		Adicionalmente tambien podemos cargar Tailwind desde una CDN (<em>Content Distribution Network</em>) unsando el script de la <a href="https://tailwindcss.com/docs/installation/play-cdn">pagina oficial</a>.
+	</p>
+	<p>
+		La CDN esta diseniada para propositos de desarrollo, por lo que no es la mejor manera de usar Tailwind en un ambiente de Produccion.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Como funcina Tailwind -->
+	<h3>Como funcina Tailwind</h3>
+	<p>
+		Es una libreria que tiene cientos de Clases predefinidas a modo de "Utilidades" que mapean casi todas las propiedades de CSS.
+	</p>
+	<p>
+		Con Tailwind no tenemos que preocuparnos por inventar nombres de Clases para elementos tan abstractos como un contenedor Flexbox, sino que simplemente usamos la Clase <em>.flex</em>:
+	</p>
+	<!-- code -->
+	<code>
+		div.flex
+	</code>
+
+	<p>
+		Del mismo modo podemos agregar todas las demas propiedades CSS que nesecitemos directamente en el atributo <em>class="..."</em> de los elementos HTML.
+	</p>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

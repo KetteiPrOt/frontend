@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 25</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Formulario de Contacto</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Crear Controlador -->
+	<h3>Crear Controlador</h3>
+	<p>
+		Para administrar el formulario vamos a crear un controlador. El controlador se va a llamar <em>ContactUsController</em>:
+	</p>
+	<!-- code -->
+	<code>php artisan make:controller ContactUsController</code>
+
+	<p>
+		Vamos a tener dos metodos en este Controlador: el metodo <em>index()</em> [que mostrara el formulario], y el metodo <em>store()</em> [que procesara el formulario y enviara el correo electronico].
+	</p>
+	<!-- code -->
+	<code>
+		public function index() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			echo 'Este metodo mostrara el formulario'; <br>
+		} <br><br>
+
+		public function store() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			echo 'Este metodo procesara el formulario y enviara el correo'; <br>
+		}
+	</code>
+	
+	
+	<!-- Crear Ruta -->
+	<h3>Crear Ruta</h3>
+	<p>
+		Ahora podemos crear las rutas con las que el usuario va a acceder al formulario y enviarlo:
+	</p>
+	<!-- code -->
+	<code>
+		Route::controller(ContactUsController::class)->group(function () { <br>&nbsp;&nbsp;&nbsp;
+			Route::get('contactanos', 'index')->name('contacUs.index'); <br>&nbsp;&nbsp;&nbsp;
+			Route::post('contactanos', 'store')->name('contactUs.store'); <br>
+		});
+	</code>
+	
+	
+	<!-- Crear vista -->
+	<h3>Crear vista</h3>
+	<p>Ahora creamos la vista del formulario en una carpeta llamada contactUs:</p>
+	<!-- code -->
+	<code>views/contactUs/index.blade.php</code>
+
+	<p>Esta ocasion vamos a enviar 3 campos: nombre, email, y el mensaje</p>
+
+	
+	<!-- Pasar informacion -->
+	<h3>Pasar informacion</h3>
+	<p>
+		Para pasar la informacion del formulario a la Clase Mailable mediante el metodo store(), vamos a usar el constructor de la clase Mailable:
+	</p>
+	<p>
+		Vamos a entregarle el array con la informacion del formulario al contructor de la clase Mailable:
+	</p>
+	<!-- code -->
+	<code>
+		public function store(Request $request) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Enviar correo</strong> <br>&nbsp;&nbsp;&nbsp;
+			$correo = new ContacttUsMailable($request->all()); <br>&nbsp;&nbsp;&nbsp;
+			Mail::to('sd.kettei@gmail.com')->send($correo); <br><br>&nbsp;&nbsp;&nbsp;
+
+			echo 'Mensaje Enviado!'; <br>
+		}
+	</code>
+	
+	
+	<!-- Mostrar en la vista -->
+	<h3>Mostrar en la vista</h3>
+	<p>
+		Ahora que se la hemos entregado al constructor, el la va a guardar (el array con la informacion del formulario) en una propiedad de la clase.
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Clase Mailable</strong> <br>
+		public $contactInfo; <br><br>
+		
+		public function __construct($contactInfo) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$this->contactInfo = $contactInfo; <br>
+		}
+	</code>
+
+	<p>Una vez hecho esto ya podemos usar la informacion en la vista del email:</p>
+	<!-- code -->
+	<code>
+		<strong>// Vista contactUs.blade.php</strong> <br><br>
+
+		&lt;ul&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;li&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;strong&gt;Nombre:&lt;/strong&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>{{$contactInfo['name']}}</strong> <br>&nbsp;&nbsp;&nbsp;
+			&lt;/li&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;li&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;strong&gt;Correo:&lt;/strong&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>{{$contactInfo['email']}}</strong> <br>&nbsp;&nbsp;&nbsp;
+			&lt;/li&gt; <br>&nbsp;&nbsp;&nbsp;
+			&lt;li&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;strong&gt;Mensaje:&lt;/strong&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>{{$contactInfo['message']}}</strong> <br>&nbsp;&nbsp;&nbsp;
+			&lt;/li&gt; <br>
+		&lt;/ul&gt;
+	</code>
+	
+	
+	<!-- Validar informacion -->
+	<h3>Validar informacion</h3>
+	<p>
+		Para validar la informacion que llega del formulario simplemente usa un form request.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Retornar a la vista -->
+	<h3>Retornar a la vista</h3>
+	<p>
+		Quiero que cuando el mensaje se envie, el controlador me retorne a la vista y le muestre al usuario "Mensaje Enviado!".
+	</p>
+	<p>
+		Entonces le pedimos al controlador que nos redireccione, pero tambien le enviamos un mensaje de sesion.
+	</p>
+	<p>
+		Para enviar un mensaje de sesion le encadenamos el metodo with() que va a crear un mensaje de sesion en una variable. Primero recibe el nombre de la variable, y despues el contenido:
+	</p>
+	<!-- code -->
+	<code>
+		return redirect()->route('contactUs.index')->with('success', 'Mensaje Enviado!');
+	</code>
+	
+	
+	<!-- Mostrar Mensaje de Sesion -->
+	<h3>Mostrar Mensaje de Sesion</h3>
+	<p>
+		Ahora vamos a mostrar el mensaje de sesion en la vista, solo lo haremos si existe la variable de sesion llamada "success".
+	</p>
+	<p>Para acceder a la variable de sesion en la vista usamos el metodo session() y le pasamos el nombre:</p>
+	<!-- code -->
+	<code>session('success')</code>
+
+	<p>
+		Entonces para mostrar el mesaje al final del formulario usamos un simple condicional:
+	</p>
+	<!-- code -->
+	<code>
+		@if(session('success')) <br>&nbsp;&nbsp;&nbsp;
+			&lt;div class="text-form text-success"&gt; <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				{{session('success')}} <br>&nbsp;&nbsp;&nbsp;
+			&lt;/div&gt; <br>
+        @endif
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

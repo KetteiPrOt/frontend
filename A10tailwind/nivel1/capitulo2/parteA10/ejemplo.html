@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="px-3">
+
+    <!-- Transition -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Transition
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.transition-all</p>
+            <div class="
+                bg-blue-300
+                w-32 h-32 border rounded border-black
+                flex justify-center items-center
+                hover:bg-red-500 hover:text-white
+                transition-all
+            "></div>
+        </div>
+    </div>
+
+
+    <!-- Transition Duration -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Transition Duration
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.duration-150 (by default)</p>
+            <div class="
+                bg-blue-300
+                w-32 h-32 border rounded border-black mx-auto
+                flex justify-center items-center
+                hover:bg-red-500 hover:text-white
+                transition-all duration-150
+            "></div>
+        </div>
+        <div class="mr-3">
+            <p>.duration-300</p>
+            <div class="
+                bg-blue-300
+                w-32 h-32 border rounded border-black
+                flex justify-center items-center
+                hover:bg-red-500 hover:text-white
+                transition-all duration-300
+            "></div>
+        </div>
+        <div class="mr-3">
+            <p>.duration-500</p>
+            <div class="
+                bg-blue-300
+                w-32 h-32 border rounded border-black
+                flex justify-center items-center
+                hover:bg-red-500 hover:text-white
+                transition-all duration-500
+            "></div>
+        </div>
+        <div class="mr-3">
+            <p>.duration-700</p>
+            <div class="
+                bg-blue-300
+                w-32 h-32 border rounded border-black
+                flex justify-center items-center
+                hover:bg-red-500 hover:text-white
+                transition-all duration-700
+            "></div>
+        </div>
+        <div class="mr-3">
+            <p>.duration-1000</p>
+            <div class="
+                bg-blue-300
+                w-32 h-32 border rounded border-black
+                flex justify-center items-center
+                hover:bg-red-500 hover:text-white
+                transition-all duration-1000
+            "></div>
+        </div>
+    </div>
+
+
+    <!-- Transition Timing Function -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Transition Timing Function
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.ease-linear</p>
+            <div class="
+                bg-blue-300
+                w-32 h-32 border rounded border-black mt-2
+                flex justify-center items-center
+                hover:bg-red-500 hover:text-white hover:scale-110
+                transition-all duration-700 ease-linear 
+            ">Hello World!</div>
+        </div>
+        <div class="mr-3">
+            <p>.ease-in</p>
+            <div class="
+                bg-blue-300
+                w-32 h-32 border rounded border-black mt-2
+                flex justify-center items-center
+                hover:bg-red-500 hover:text-white hover:scale-110
+                transition-all duration-700 ease-in 
+            ">Hello World!</div>
+        </div>
+        <div class="mr-3">
+            <p>.ease-out</p>
+            <div class="
+                bg-blue-300
+                w-32 h-32 border rounded border-black mt-2
+                flex justify-center items-center
+                hover:bg-red-500 hover:text-white hover:scale-110
+                transition-all duration-700 ease-out 
+            ">Hello World!</div>
+        </div>
+        <div class="mr-3">
+            <p>.ease-in-out (by default)</p>
+            <div class="
+                bg-blue-300
+                w-32 h-32 border rounded border-black mt-2 mx-auto
+                flex justify-center items-center
+                hover:bg-red-500 hover:text-white hover:scale-110
+                transition-all duration-700 ease-in-out 
+            ">Hello World!</div>
+        </div>
+    </div>
+
+
+    <!-- Transition Delay -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Transition Delay
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.delay-0 (by default)</p>
+            <div class="
+                bg-blue-300
+                w-32 h-32 border rounded border-black mt-2 mx-auto
+                flex justify-center items-center
+                hover:bg-red-500 hover:text-white hover:scale-110
+                transition-all duration-700 delay-0
+            ">Hello World!</div>
+        </div>
+        <div class="mr-3">
+            <p>.delay-75</p>
+            <div class="
+                bg-blue-300
+                w-32 h-32 border rounded border-black mt-2 mx-auto
+                flex justify-center items-center
+                hover:bg-red-500 hover:text-white hover:scale-110
+                transition-all duration-700 delay-75
+            ">Hello World!</div>
+        </div>
+        <div class="mr-3">
+            <p>.delay-300</p>
+            <div class="
+                bg-blue-300
+                w-32 h-32 border rounded border-black mt-2 mx-auto
+                flex justify-center items-center
+                hover:bg-red-500 hover:text-white hover:scale-110
+                transition-all duration-700 delay-300
+            ">Hello World!</div>
+        </div>
+        <div class="mr-3">
+            <p>.delay-700</p>
+            <div class="
+                bg-blue-300
+                w-32 h-32 border rounded border-black mt-2 mx-auto
+                flex justify-center items-center
+                hover:bg-red-500 hover:text-white hover:scale-110
+                transition-all duration-700 delay-700
+            ">Hello World!</div>
+        </div>
+    </div>
+
+
+    <!-- Animation -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Animation
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.animation-spin</p>
+            <button
+                class="
+                    bg-blue-500
+                    font-semibold text-white leading-6 text-sm
+                    px-4 py-2 rounded-md shadow mt-3
+                    inline-flex items-center
+                    transition ease-in-out duration-150
+                    hover:bg-blue-400 cursor-not-allowed
+                "
+                type="button" disabled=""
+            >
+                <!-- Animated Element -->
+                <svg
+                    class="
+                        text-white h-5 w-5 -ml-1 mr-3
+                        animate-spin
+                    "
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                >
+                    <circle
+                        class="opacity-25"
+                        cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"
+                    ></circle>
+                    <path
+                        class="opacity-75"
+                        fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                </svg>
+                Processing...
+            </button>
+        </div>
+        <div class="mr-3">
+            <p>.animation-ping</p>
+            <div class="relative mt-3">
+                <button
+                    class="
+                        bg-white
+                        text-blue-500 text-sm font-semibold leading-6
+                        px-4 py-2 ring-1 ring-slate-900/10 rounded-md shadow
+                        inline-flex items-center
+                        transition ease-in-out duration-150
+                        dark:bg-slate-800 dark:ring-slate-200/20 cursor-not-allowed
+                    "
+                    type="button" disabled=""
+                >Transactions</button>
+                <span class="
+                    h-3 w-3 -mt-1 -mr-1 top-0 right-0
+                    flex absolute
+                ">
+                    <!-- Animated Element -->
+                    <span class="
+                        bg-blue-400
+                        inline-flex absolute h-full w-full rounded-full opacity-75
+                        animate-ping
+                    "></span>
+                    <span class="
+                        bg-blue-500 rounded-full
+                        relative inline-flex h-3 w-3
+                    "></span>
+                </span>
+            </div>
+        </div>
+        <div class="mr-3 w-64">
+            <p>.animate-pulse</p>
+            <div class="
+                bg-white dark:bg-slate-800 
+                max-w-xs w-full h-28 p-4 ring-1 ring-slate-900/5 rounded-lg shadow-lg 
+            ">
+                <!-- Animated Element -->
+                <div class="flex space-x-4 animate-pulse">
+                    <div class="rounded-full bg-slate-200 dark:bg-slate-700 h-10 w-10"></div>
+                    <div class="flex-1 space-y-6 py-1">
+                        <div class="h-2 bg-slate-200 dark:bg-slate-700 rounded"></div>
+                        <div class="space-y-3">
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="h-2 bg-slate-200 dark:bg-slate-700 rounded col-span-2"></div>
+                            <div class="h-2 bg-slate-200 dark:bg-slate-700 rounded col-span-1"></div>
+                        </div>
+                        <div class="h-2 bg-slate-200 dark:bg-slate-700 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+        <div class="mr-3">
+            <p>.animate-bounce</p>
+            <div class="w-full h-full flex justify-center items-center">
+                <!-- Animated Element -->
+                <div
+                    class="
+                        animate-bounce 
+                        bg-white p-2 w-10 h-10 ring-1 ring-slate-900/5 shadow-lg rounded-full 
+                        flex items-center justify-center
+                        dark:bg-slate-800 dark:ring-slate-200/20
+                    "
+                >
+                    <svg 
+                        class="w-6 h-6 text-blue-500"
+                        fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"
+                    >
+                        <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- // -->
+    <h3 class="text-3xl mt-5 mb-2">
+        //
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3"></div>
+    </div>
+
+</body>
+</html>

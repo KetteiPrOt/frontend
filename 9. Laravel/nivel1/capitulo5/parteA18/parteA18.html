@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 18</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Form Request</h1>
+	<h4 class="enlace-volver"><a href="../capitulo5.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que son? -->
+	<h3>Que son?</h3>
+	<p>Son clases que contienen logica de validacion de formularios. Ubicacion:</p>
+	<!-- code -->
+	<code>/app/Http/Request/</code>
+	<p>
+		Para crearlos usa el comando:
+	</p>
+	<!-- code -->
+	<code>php artisan make:request <em>request_name</em></code>
+
+	<p>
+		El nombre de un form request que va a validar un formulario administrado por el metodo store() en la tabla courses seria: "StoreCourse"
+	</p>
+	
+	
+	<!-- Estructura -->
+	<h3>Estructura</h3>
+	<p>Contienen dos metodos: authorize() y rules()</p>
+	<p>
+		authorize() Es donde vamos a verificar que el usuario tiene autorizacion para enviar el formulario. Retorna true o false
+	</p>
+	<p>
+		rules() Es donde vamos a especificar las reglas de validacion
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Implementacion -->
+	<h3>Implementacion</h3>
+	<p>
+		Para implementarlo en el controlador debemos <em>usarlo</em> con su Namespace, despues en el metodo donde vamos a ejecutarlo (en este caso store) cambiamos la clase Request por la de nuestro form request
+	</p>
+	<!-- code -->
+	<code>
+		public function store(StoreCourse $request) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			... <br>
+		}
+	</code>
+
+	<p>
+		Solo haciendo esto funciona exactamente igual que antes, simplemente que haora va a ejecutar las validaciones de nuestra clase StoreCourse antes de guardar el registro
+	</p>
+	
+	
+	<!-- Personalizar atributos -->
+	<h3>Personalizar atributos</h3>
+	<p>
+		Podemos personalizar atributos agregando un metodo llamda attributes a nuestro form request
+	</p>
+	<p>
+		Este metodo retorna un array asociativo que contiene los nombres originales como claves y los nuevos como valor:
+	</p>
+	<!-- code -->
+	<code>
+		public function attributes(): array <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return [ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				'name' => 'nombre', <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				'description' => 'descripcion', <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				'image_url' => 'imagen', <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				'teacher' => 'profesor' <br>&nbsp;&nbsp;&nbsp;
+			]; <br>
+		}
+	</code>
+	
+	
+	<!-- Personalizar mensajes -->
+	<h3>Personalizar mensajes</h3>
+	<p>
+		Tambien se puede personalizar totalmente los mensajes agregando un metodo messages()
+	</p>
+	<p>
+		Funciona casi igual que el anterior, solo que en cada input debemos indicar a cual validacion deseamos personalizar usando un punto:
+	</p>
+	<!-- code -->
+	<code>
+		public function messages(): array <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return [ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				'name.required' => 'Debes ingresar un nombre', <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				'name.max' => 'Tu nombre no puede superar los 10 caracteres', <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				'name.min' => 'Tu nombre debe tener mas de 5 caracteres', <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				'description.required' => 'Debes ingresar una descripcion', <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				'image.required' => 'Es nesesario incluir una imagen', <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				'teacher.required' => 'Debes ingresar un profesor' <br>&nbsp;&nbsp;&nbsp;
+			]; <br>
+		}
+	</code>
+
+	<p>De esta forma podemos tener mensajes personalizados en cada formulario!</p>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

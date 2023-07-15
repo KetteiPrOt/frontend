@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="px-3">
+
+    <!-- Background Repeat -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Background Repeat
+    </h3>
+    <!-- code -->
+    <style>
+        .bg { background-image: url("../../media/elaina.jpg"); }
+
+        .resized-bg {
+            background-image: url("../../media/elaina.jpg");
+            background-size: 100px auto;
+        }
+    </style>
+
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.bg-repeat (by default)</p>
+            <div class="bg-repeat w-48 h-64 border-2 rounded border-black resized-bg"></div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-no-repeat</p>
+            <div class="bg-no-repeat w-48 h-64 border-2 rounded border-black resized-bg"></div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-repeat-x</p>
+            <div class="bg-repeat-x w-48 h-64 border-2 rounded border-black resized-bg"></div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-repeat-y</p>
+            <div class="bg-repeat-y w-48 h-64 border-2 rounded border-black resized-bg"></div>
+        </div>
+    </div>
+    
+    
+    <!-- Background Size -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Background Size
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="flex mt-3">
+            <div class="mr-3">
+                <p>.bg-auto (by default)</p>
+                <div class="bg-auto w-48 h-64 border-2 rounded border-black bg"></div>
+            </div>
+            <div class="mr-3">
+                <p>.bg-contain</p>
+                <div class="bg-contain w-48 h-64 border-2 rounded border-black bg"></div>
+            </div>
+            <div class="mr-3">
+                <p>.bg-cover</p>
+                <div class="bg-cover w-48 h-64 border-2 rounded border-black bg"></div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Background Attachment -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Background Attachment
+    </h3>
+    <!-- code -->
+    <style>
+        .bg-ganyu {
+            background-image: url('../../media/ganyu.jpg');
+        }
+
+        .bg-ganyu-resized {
+            background-image: url('../../media/ganyu.jpg');
+            background-size: 49.47vw auto; 
+        }
+    </style>
+
+    <p>
+        [scroll] (por defecto) El fondo esta fijado en el scroll.
+    </p>
+    <!-- Example -->
+    <div class="bg-scroll bg-ganyu bg-cover w-1/2 h-96 mb-3 rounded overflow-y-scroll">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+    
+    <p>
+        [local] El fondo esta fijado al elemento y podemos recorrerlo naturalmente con el scroll.
+    </p>
+    <!-- Example -->
+    <div class="bg-local bg-ganyu bg-cover w-1/2 h-96 mb-3 rounded overflow-y-scroll">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+
+    <p>
+        [fixed] El fondo esta fijado al viewport.
+    </p>
+    <!-- Example -->
+    <div class="bg-fixed bg-ganyu-resized bg-cover w-1/2 h-96 rounded"></div>
+
+    
+    <!-- Background Position -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Background Position
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.bg-left-top (by default)</p>
+            <div class="bg-left-top w-48 h-64 border-2 rounded border-black resized-bg bg-no-repeat"></div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-top</p>
+            <div class="bg-top w-48 h-64 border-2 rounded border-black resized-bg bg-no-repeat"></div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-right-top</p>
+            <div class="bg-right-top w-48 h-64 border-2 rounded border-black resized-bg bg-no-repeat"></div>
+        </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.bg-left</p>
+            <div class="bg-left w-48 h-64 border-2 rounded border-black resized-bg bg-no-repeat"></div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-center</p>
+            <div class="bg-center w-48 h-64 border-2 rounded border-black resized-bg bg-no-repeat"></div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-right</p>
+            <div class="bg-right w-48 h-64 border-2 rounded border-black resized-bg bg-no-repeat"></div>
+        </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.bg-left-bottom</p>
+            <div class="bg-left-bottom w-48 h-64 border-2 rounded border-black resized-bg bg-no-repeat"></div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-bottom</p>
+            <div class="bg-bottom w-48 h-64 border-2 rounded border-black resized-bg bg-no-repeat"></div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-right-bottom</p>
+            <div class="bg-right-bottom w-48 h-64 border-2 rounded border-black resized-bg bg-no-repeat"></div>
+        </div>
+    </div>
+    
+    
+    <!-- Opacity -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Opacity
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.opacity-0</p>
+            <div class="opacity-0 text-center w-32 h-32 p-2 border-2 rounded border-black bg-red-500">
+                Hello World!
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.opacity-25</p>
+            <div class="opacity-25 text-center w-32 h-32 p-2 border-2 rounded border-black bg-red-500">
+                Hello World!
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.opacity-50</p>
+            <div class="opacity-50 text-center w-32 h-32 p-2 border-2 rounded border-black bg-red-500">
+                Hello World!
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.opacity-75</p>
+            <div class="opacity-75 text-center w-32 h-32 p-2 border-2 rounded border-black bg-red-500">
+                Hello World!
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.opacity-100</p>
+            <div class="opacity-100 text-center w-32 h-32 p-2 border-2 rounded border-black bg-red-500">
+                Hello World!
+            </div>
+        </div>
+    </div>
+
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.opacity-10</p>
+            <div class="opacity-10 text-center w-32 h-32 p-2 border-2 rounded border-black bg-red-500">
+                Hello World!
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.opacity-30</p>
+            <div class="opacity-30 text-center w-32 h-32 p-2 border-2 rounded border-black bg-red-500">
+                Hello World!
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.opacity-40</p>
+            <div class="opacity-40 text-center w-32 h-32 p-2 border-2 rounded border-black bg-red-500">
+                Hello World!
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.opacity-60</p>
+            <div class="opacity-60 text-center w-32 h-32 p-2 border-2 rounded border-black bg-red-500">
+                Hello World!
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.opacity-80</p>
+            <div class="opacity-80 text-center w-32 h-32 p-2 border-2 rounded border-black bg-red-500">
+                Hello World!
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Visibility -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Visibility
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.visible</p>
+            <div class="opacity-80 text-center w-32 h-32 p-2 border-2 rounded border-black bg-blue-300 text-white">
+                Element 1
+            </div>
+            <div class="visible opacity-80 text-center w-32 h-32 p-2 border-2 rounded border-black bg-red-400 text-white">
+                Element 2
+            </div>
+            <div class="opacity-80 text-center w-32 h-32 p-2 border-2 rounded border-black bg-blue-300 text-white">
+                Element 3
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.invisible</p>
+            <div class="opacity-80 text-center w-32 h-32 p-2 border-2 rounded border-black bg-blue-300 text-white">
+                Element 1
+            </div>
+            <div class="invisible opacity-80 text-center w-32 h-32 p-2 border-2 rounded border-black bg-red-400 text-white">
+                Element 2
+            </div>
+            <div class="opacity-80 text-center w-32 h-32 p-2 border-2 rounded border-black bg-blue-300 text-white">
+                Element 3
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Oveflow -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Oveflow
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-10 mb-16">
+            <p>.overflow-visible (by default)</p>
+            <div class="overflow-visible text-center w-32 h-32 p-2 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quam ex ab, eum architecto
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.overflow-hidden</p>
+            <div class="overflow-hidden text-center w-32 h-32 p-2 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quam ex ab, eum architecto
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.overflow-scroll</p>
+            <div class="overflow-scroll text-center w-32 h-32 p-2 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quam ex ab, eum architecto
+            </div>
+        </div>
+        
+        <div class="mr-3">
+            <p>.overflow-y-hidden</p>
+            <div class="overflow-y-hidden text-center w-32 h-32 p-2 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quam ex ab, eum architecto
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.overflow-y-scroll</p>
+            <div class="overflow-y-scroll text-center w-32 h-32 p-2 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quam ex ab, eum architecto
+            </div>
+        </div>
+    </div>
+
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.overflow-x-visible</p>
+            <div class="overflow-x-visible whitespace-nowrap text-center w-32 h-32 p-2 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet consectetur
+            </div>
+            <p>.overflow-x-hidden</p>
+            <div class="overflow-x-hidden whitespace-nowrap text-center w-32 h-32 p-2 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet consectetur
+            </div>
+        </div>
+        <div class="mr-3">
+            <p class="invisible">Hidden Element</p>
+            <div class="invisible whitespace-nowrap text-center w-32 h-32 p-2 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet consectetur
+            </div>
+            <p>.overflow-x-scroll</p>
+            <div class="overflow-x-scroll whitespace-nowrap text-center w-32 h-32 p-2 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet consectetur
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Word Break -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Word Break
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-64">
+            <p>.break-normal (by default)</p>
+            <div class="break-normal text-center w-32 p-2 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet consecteturoooooooooooooooooooooooooooooooooooooo adipisicing elit. Ipsam laborum perferendis
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.break-words</p>
+            <div class="break-words text-center w-32 p-2 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet consecteturoooooooooooooooooooooooooooooooooooooo adipisicing elit. Ipsam laborum perferendis
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Text Overflow -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Text Overflow
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.text-clip .overflow-hidden (by default)</p>
+            <div class="text-clip overflow-hidden text-center w-32 p-2 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet consecteturoooooooooooooooooooooooooooooooooooooo adipisicing elit. Ipsam laborum perferendis
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.text-ellipsis .overflow-hidden</p>
+            <div class="text-ellipsis overflow-hidden text-center w-32 p-2 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet consecteturoooooooooooooooooooooooooooooooooooooo adipisicing elit. Ipsam laborum perferendis
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.truncate</p>
+            <div class="truncate text-center w-32 p-2 border-2 rounded border-black bg-blue-300">
+                Lorem ipsum dolor sit amet consecteturoooooooooooooooooooooooooooooooooooooo adipisicing elit. Ipsam laborum perferendis
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Box Shadow -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Box Shadow
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3 bg-gray-100">
+        <div class="mr-3">
+            <p>.shadow-none (by default)</p>
+            <div class="shadow-none text-center w-32 h-32 p-2 m-3 rounded bg-white">
+                Element
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.shadow-sm</p>
+            <div class="shadow-sm text-center w-32 h-32 p-2 m-3 rounded bg-white">
+                Element
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.shadow</p>
+            <div class="shadow text-center w-32 h-32 p-2 m-3 rounded bg-white">
+                Element
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.shadow-md</p>
+            <div class="shadow-md text-center w-32 h-32 p-2 m-3 rounded bg-white">
+                Element
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.shadow-lg</p>
+            <div class="shadow-lg text-center w-32 h-32 p-2 m-3 rounded bg-white">
+                Element
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.shadow-xl</p>
+            <div class="shadow-xl text-center w-32 h-32 p-2 m-3 rounded bg-white">
+                Element
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.shadow-2xl</p>
+            <div class="shadow-2xl text-center w-32 h-32 p-2 m-3 rounded bg-white">
+                Element
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.shadow-inner </p>
+            <div class="shadow-inner text-center w-32 h-32 p-2 m-3 border rounded bg-white">
+                Element
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Box Shadow Color -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Box Shadow Color
+    </h3>
+     <!-- Example -->
+     <div class="flex mt-3 bg-gray-100">
+        <div class="mr-3">
+            <p>.shadow-red-400</p>
+            <div class="shadow-red-400 shadow-lg text-center w-32 h-32 p-2 m-3 rounded bg-white">
+                Element
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.shadow-blue-400</p>
+            <div class="shadow-blue-400 shadow-lg text-center w-32 h-32 p-2 m-3 rounded bg-white">
+                Element
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.shadow-yellow-400</p>
+            <div class="shadow-yellow-400 shadow-lg text-center w-32 h-32 p-2 m-3 rounded bg-white">
+                Element
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.shadow-green-400</p>
+            <div class="shadow-green-400 shadow-lg text-center w-32 h-32 p-2 m-3 rounded bg-white">
+                Element
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Linear Gradient -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Linear Gradient
+    </h3>
+    <p>
+        Color: [.from-red-400 .to-blue-400]
+    </p>
+
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.bg-gradient-to-r</p>
+            <div class="bg-gradient-to-r from-red-400 to-blue-400 w-48 h-48 p-2 border-2 rounded border-black">
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-gradient-to-l</p>
+            <div class="bg-gradient-to-l from-red-400 to-blue-400 w-48 h-48 p-2 border-2 rounded border-black">
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-gradient-to-t</p>
+            <div class="bg-gradient-to-t from-red-400 to-blue-400 w-48 h-48 p-2 border-2 rounded border-black">
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-gradient-to-b</p>
+            <div class="bg-gradient-to-b from-red-400 to-blue-400 w-48 h-48 p-2 border-2 rounded border-black">
+            </div>
+        </div>
+    </div>
+
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.bg-gradient-to-tr</p>
+            <div class="bg-gradient-to-tr from-red-400 to-blue-400 w-48 h-48 p-2 border-2 rounded border-black">
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-gradient-to-br</p>
+            <div class="bg-gradient-to-br from-red-400 to-blue-400 w-48 h-48 p-2 border-2 rounded border-black">
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-gradient-to-tl</p>
+            <div class="bg-gradient-to-tl from-red-400 to-blue-400 w-48 h-48 p-2 border-2 rounded border-black">
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.bg-gradient-to-bl</p>
+            <div class="bg-gradient-to-bl from-red-400 to-blue-400 w-48 h-48 p-2 border-2 rounded border-black">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Outline Style -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Outline Style
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3 p-5 border-2 rounded border-black">
+            <p>.outline</p>
+            <div class="outline outline-4 outline-black flex justify-center items-center text-white bg-blue-400 w-32 h-32 mx-auto mt-3 rounded">
+                Element
+            </div>
+        </div>
+        <div class="mr-3 p-5 border-2 rounded border-black">
+            <p>.outline-dashed</p>
+            <div class="outline-dashed outline-4 outline-black flex justify-center items-center text-white bg-blue-400 w-32 h-32 mx-auto mt-3 rounded">
+                Element
+            </div>
+        </div>
+        <div class="mr-3 p-5 border-2 rounded border-black">
+            <p>.outline-dotted</p>
+            <div class="outline-dotted outline-4 outline-black flex justify-center items-center text-white bg-blue-400 w-32 h-32 mx-auto mt-3 rounded">
+                Element
+            </div>
+        </div>
+        <div class="mr-3 p-5 border-2 rounded border-black">
+            <p>.outline-double</p>
+            <div class="outline-double outline-4 outline-red-700 flex justify-center items-center text-white bg-blue-400 w-32 h-32 mx-auto mt-3 rounded">
+                Element
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Outline Width -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Outline Width
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3 p-5 border-2 rounded border-black">
+            <p>.outline-0 (by default)</p>
+            <div class="outline-0 outline outline-black flex justify-center items-center text-white bg-blue-400 w-32 h-32 mx-auto mt-3 rounded">
+                Element
+            </div>
+        </div>
+        <div class="mr-3 p-5 border-2 rounded border-black">
+            <p>.outline-1</p>
+            <div class="outline-1 outline outline-black flex justify-center items-center text-white bg-blue-400 w-32 h-32 mx-auto mt-3 rounded">
+                Element
+            </div>
+        </div>
+        <div class="mr-3 p-5 border-2 rounded border-black">
+            <p>.outline-2</p>
+            <div class="outline-2 outline outline-black flex justify-center items-center text-white bg-blue-400 w-32 h-32 mx-auto mt-3 rounded">
+                Element
+            </div>
+        </div>
+        <div class="mr-3 p-5 border-2 rounded border-black">
+            <p>.outline-4</p>
+            <div class="outline-4 outline outline-black flex justify-center items-center text-white bg-blue-400 w-32 h-32 mx-auto mt-3 rounded">
+                Element
+            </div>
+        </div>
+        <div class="mr-3 p-5 border-2 rounded border-black">
+            <p>.outline-8</p>
+            <div class="outline-8 outline outline-black flex justify-center items-center text-white bg-blue-400 w-32 h-32 mx-auto mt-3 rounded">
+                Element
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Outline Offset -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Outline Offset
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3 p-5 border-2 rounded border-black">
+            <p>.outline-offset-0 (by default)</p>
+            <div class="outline-offset-0 outline outline-black flex justify-center items-center text-white bg-blue-400 w-32 h-32 mx-auto mt-3 rounded">
+                Element
+            </div>
+        </div>
+        <div class="mr-3 p-5 border-2 rounded border-black">
+            <p>.outline-offset-1</p>
+            <div class="outline-offset-1 outline outline-black flex justify-center items-center text-white bg-blue-400 w-32 h-32 mx-auto mt-3 rounded">
+                Element
+            </div>
+        </div>
+        <div class="mr-3 p-5 border-2 rounded border-black">
+            <p>.outline-offset-2</p>
+            <div class="outline-offset-2 outline outline-black flex justify-center items-center text-white bg-blue-400 w-32 h-32 mx-auto mt-3 rounded">
+                Element
+            </div>
+        </div>
+        <div class="mr-3 p-5 border-2 rounded border-black">
+            <p>.outline-offset-4</p>
+            <div class="outline-offset-4 outline outline-black flex justify-center items-center text-white bg-blue-400 w-32 h-32 mx-auto mt-3 rounded">
+                Element
+            </div>
+        </div>
+        <div class="mr-3 p-5 border-2 rounded border-black">
+            <p>.outline-offset-8</p>
+            <div class="outline-offset-8 outline outline-black flex justify-center items-center text-white bg-blue-400 w-32 h-32 mx-auto mt-3 rounded">
+                Element
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Border Collapse -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Border Collapse
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.border-collapse (by default)</p>
+            <table class="border-collapse">
+                <thead>
+                    <tr>
+                        <th class="border-2 border-black p-2">Name</th> <th class="border-2 border-black p-2">Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-2 border-black p-2">Joel</td> <td class="border-2 border-black p-2">?</td>
+                    </tr>
+                    <tr>
+                        <td class="border-2 border-black p-2">Elaina</td> <td class="border-2 border-black p-2">?</td>
+                    </tr>
+                    <tr>
+                        <td class="border-2 border-black p-2">Rapthalia</td> <td class="border-2 border-black p-2">?</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mr-3">
+            <p>.border-separate</p>
+            <table class="border-separate">
+                <thead>
+                    <tr>
+                        <th class="border-2 border-black p-2">Name</th> <th class="border-2 border-black p-2">Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-2 border-black p-2">Joel</td> <td class="border-2 border-black p-2">?</td>
+                    </tr>
+                    <tr>
+                        <td class="border-2 border-black p-2">Elaina</td> <td class="border-2 border-black p-2">?</td>
+                    </tr>
+                    <tr>
+                        <td class="border-2 border-black p-2">Rapthalia</td> <td class="border-2 border-black p-2">?</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    
+    <!-- List Style Type -->
+    <h3 class="text-3xl mt-5 mb-2">
+        List Style Type
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-10">
+            <p>.list-none (by default)</p>
+            <ul class="list-none">
+                <li>Element</li>
+                <li>Element</li>
+                <li>Element</li>
+            </ul>
+        </div>
+        <div class="mr-10">
+            <p>.list-disc</p>
+            <ul class="list-disc">
+                <li>Element</li>
+                <li>Element</li>
+                <li>Element</li>
+            </ul>
+        </div>
+        <div class="mr-10">
+            <p>.list-decimal</p>
+            <ul class="list-decimal">
+                <li>Element</li>
+                <li>Element</li>
+                <li>Element</li>
+            </ul>
+        </div>
+    </div>
+    
+    
+    <!-- List Style Position -->
+    <h3 class="text-3xl mt-5 mb-2">
+        List Style Position
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3 pl-16">
+        <div class="mr-16">
+            <p>.list-outside (by default)</p>
+            <ul class="list-disc list-outside border border-black">
+                <li>Element</li>
+                <li>Element</li>
+                <li>Element</li>
+            </ul>
+        </div>
+        <div class="mr-16">
+            <p>.list-inside</p>
+            <ul class="list-disc list-inside border border-black">
+                <li>Element</li>
+                <li>Element</li>
+                <li>Element</li>
+            </ul>
+        </div>
+    </div>
+    
+    
+    <!-- List Style Image -->
+    <h3 class="text-3xl mt-5 mb-2">
+        List Style Image
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-10">
+            <p>.list-image-none .list-inside</p>
+            <ul class="list-disc list-image-none list-inside">
+                <li>Element</li>
+                <li>Element</li>
+                <li>Element</li>
+            </ul>
+        </div>
+        <div class="mr-10">
+            <p>.list-image-[url(media/check.png)] .list-inside</p>
+            <ul class="list-disc list-image-[url(media/check.png)] list-inside">
+                <li>Element</li>
+                <li>Element</li>
+                <li>Element</li>
+            </ul>
+        </div>
+    </div>
+    
+    
+    <!-- // -->
+    <h3 class="text-3xl mt-5 mb-2">
+        //
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3"></div>
+    </div>
+
+</body>
+</html>

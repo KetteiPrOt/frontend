@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 27</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Compilacion con Vite</h1>
+	<h4 class="enlace-volver"><a href="../capitulo7.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que es? -->
+	<h3>Que es?</h3>
+	<p>
+		Desarrollar en Vite es un poco diferente a hacerlo con Webpack, porque Vite no es un paquete. Mas bien es una canalizacion de herramientas preconfiguradas que usan Rollup para la configuracion y un servidor local para el desarrollo.
+	</p>
+	<p>
+		Para instalar Vite en un nuevo proyecto de Laravel simplemente debemos usar el comando:
+	</p>
+	<!-- code -->
+	<code>npm install</code>
+
+	<!-- History -->
+	<h4>History</h4>
+	<p>
+		Vite is a modern frontend build tool that provides an extremely fast development environment and bundles your code for production. When building applications with Laravel, you will typically use Vite to bundle your application's CSS and JavaScript files into production ready assets.
+	</p>
+	<p>
+		Laravel integrates seamlessly with Vite by providing an official plugin and Blade directive to load your assets for development and production.
+	</p>
+	<p>
+		Before transitioning to Vite, new Laravel applications utilized Mix, which is powered by webpack, when bundling assets. Vite focuses on providing a faster and more productive experience when building rich JavaScript applications. If you are developing a Single Page Application (SPA), including those developed with tools like Inertia, Vite will be the perfect fit.
+	</p>
+	
+	
+	<!-- Levantar servidor -->
+	<h3>Levantar servidor</h3>
+	<p>
+		Debido a que Vite compila los assets de CSS y JS usando un servidor local, debemos levantarlo en la terminal con el comando:
+	</p>
+	<!-- code -->
+	<code>npm run dev</code>
+
+	<p>
+		Hecho esto el servidor se mantendra a la escucha para actualizar cualquier cambio en nuestro codigo CSS y JS (siempre y cuando no lo tumbemos matando la terminal xd), es decir los assets.
+	</p>
+	
+	
+	<!-- Archivo vite.config.js -->
+	<h3>Archivo vite.config.js</h3>
+	<p>
+		Este archivo, que se encuentra directamente en el directorio raiz del proyecto, contiene la configuracion de Vite.
+	</p>
+	<p>
+		El un objeto tenemos la llave "input" que contiene un arreglo. Este arreglo contiene todas las entradas que Vite estara a la escucha para compilar desde la carpeta resourses hasta la carpeta public.
+	</p>
+	<!-- code -->
+	<code>
+		input: [ <br>&nbsp;&nbsp;&nbsp;
+			'resources/css/app.css', <br>&nbsp;&nbsp;&nbsp;
+			'resources/js/app.js', <br>
+		]
+	</code>
+	
+	
+	<!-- Directiva @vite -->
+	<h3>Directiva @vite</h3>
+	<p>
+		Este directiva de Blade permite incluir los archivos compilador en las vistas:
+	</p>
+	<!-- code -->
+	<code>
+		&lt;!-- Scripts --&gt; <br>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+	</code>
+	
+	
+	<!-- Pasar a produccion -->
+	<h3>Pasar a produccion</h3>
+	<p>
+		Como hemos visto Vite requiere que tengamos un servidor local corriendo cuando estamos en un entorno de desarrollo local. Entonces, como sera cuando los pasemos a produccion?
+	</p>
+	<p>
+		Cuando este en produccion Vite no esperara que tengamos un servidor corriendo para que compile los assets, lo que espera esque ya tengamos los assets compilador en algun lado para entregarselos al cliente.
+	</p>
+	<p>
+		Con el objetivo de lograr esto cuando un proyecto este listo para subirlo a produccion, debemos ejecutar el siguiente comando:
+	</p>
+	<!-- code -->
+	<code>npm run build</code>
+
+	<p>
+		Este comando va a crear una carpeta build dentro de la carpeta public con los assets. y el archivo manifest.js que sirve para enrutar los assets.
+	</p>
+	<p>Con esto el proyecto esta listo para ir a produccion!</p>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

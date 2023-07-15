@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 1</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Rutas [web.php]</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Crear nuevo proyecto -->
+	<h3>Crear nuevo proyecto</h3>
+	<p>Para crear un nuevo proyecto usamos el comando:</p>
+	<!-- code -->
+	<code>
+		composer create-project laravel/laravel <em>proyect_name</em>
+	</code>
+
+	<!-- Archivo web.php -->
+	<h3>Archivo web.php</h3>
+	<p>
+		Para que un usuario pueda acceder a una aplicacion web y sus funcionalidades, primero es nesesario que exista una direccion o serie de direcciones que se lo permitan.
+	</p>
+	<p>
+		En este archivo creo las direcciones URI o rutas disponibles de la aplicacion, y una respuesta para cada una de ellas.
+	</p>
+	<p>Ubicacion:</p>
+	<!-- code -->
+	<code>/routes/web.php</code>
+
+
+	<!-- Crear una ruta -->
+	<h3>Crear una ruta</h3>
+	<p>
+		Defino las rutas usando metodos estaticos de la Clase <em>Route</em> a los que llamare <strong>Metodos HTTP</strong>. Estos metodos responden y son homonimos a los Verbos HTTP.
+	</p>
+	<p>Los metodos disponibles son:</p>
+	<!-- code -->
+	<code>
+		Route::get(); <br>
+		Route::post(); <br>
+		Route::put(); <br>
+		Route::patch(); <br>
+		Route::delete(); <br>
+		Route::options();
+	</code>
+
+	<p>
+		Para crear una ruta que responda a varios Verbos HTTP uso el metodo <em>match()</em>, cuyo primer argumento es un arreglo con los verbos deseados.
+	</p>
+	<!-- code -->
+	<code>
+		Route::match(['get', 'post', 'patch' ... ], '/route_path', function () { ... });
+	</code>
+
+
+	<!-- Metodos HTTP -->
+	<h3>Metodos HTTP</h3>
+	<p>
+		Estos metodos [excepto el metodo <em>match()</em>] reciben <strong>dos argumentos</strong>:
+	</p>
+	<p>
+		<strong>El primero</strong> es una cadena de texto la cual contiene la ruta que deseamos crear. <strong>El segundo</strong> es la respuesta que vamos a dar cuando un usuario acceda a la ruta con el Verbo HTTP correspondiente.
+	</p>
+	<p>La respuesta mas sencilla que le puedo dar es ejecutar una funcion.</p>
+	<!-- code -->
+	<code>
+		Route::get('/cursos', function () {  <br><br>&nbsp;&nbsp;&nbsp;
+
+			return 'Bienvenido a la pagina de cursos!'; <br><br>
+
+		});
+	</code>
+
+	<p>
+		Para dar respuestas mucho mas complejas puedo ejecutar un Controlador o <em>Controller</em> el cual se encargara de administrar esta ruta. Aqui usare uno llamado <em>UserController</em> como ejemplo.
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Incluir el controlador en la ejecucion (Puedes hacerlo al incio del archivo)</strong> <br>
+		use App\Http\Controllers\UserController; <br><br>
+
+		<strong>// Asignar el controlador a la ruta correspondiente</strong> <br>
+		Route::get('/usuario', UserController::class);
+	</code>
+
+	<p>
+		El controlador se ejecuta pasandole su Namespace [contenido en la propiedad estatica <em>class</em>] al Metodo HTTP.
+	</p>
+	<p>
+		Hecho esto, cuando un usuario acceda a la ruta el controlador respondera ejecutando su metodo <em>__invoke()</em> en caso de que este definido, si no lo esta dara un error.
+	</p>
+	<p>
+		Para que el controlador responda ejecutando otro metodo, debemos entregarle el <strong>nombre del metodo</strong> deseado como una cadena de texto junto al <strong>Namespace del controlador</strong>, guardados <strong>en un arreglo</strong>.
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Incluir el controlador en la ejecucion (Puedes hacerlo al incio del archivo)</strong> <br>
+		use App\Http\Controllers\UserController; <br><br>
+
+		<strong>// Asignar el controlador y metodo a la ruta correspondiente</strong> <br>
+		Route::get('/usuario', [UserController::class, 'showUserPage']);
+	</code>
+
+
+	<!-- Parametros por ruta -->
+	<h3>Parametros por ruta</h3>
+	<p>
+		El Verbo HTTP GET solicita informacion al servidor y para ello tambien (opcionalmente) le entrega informacion sobre lo que nesecita a traves de la ruta o URI.
+	</p>
+	<p>
+		Puedo capturar estos parametros o variables, encerrando en corchetes una seccion de la cadena de texto que representa la ruta o URI (a esta seccion le llamare <strong>Nombre del Parametro</strong>) especifico que se trata de uno de ellos.
+	</p>
+	<p>
+		Por ejemplo para capturar el nombre de un curso:
+	</p>
+	<!-- code -->
+	<code>'/cursos/<strong>{courseName}</strong>/description'</code>
+
+	<p>Para usar este dato en la aplicacion le paso como argumento una variable, nombrada igual que el Nombre del Parametro (en este caso <em>courseName</em>), a la funcion de respuesta</p>
+	<!-- code -->
+	<code>
+		Route::get( <br> &nbsp;&nbsp;&nbsp;
+			'/cursos/<strong>{courseName}</strong>/description', <br><br> &nbsp;&nbsp;&nbsp;
+
+			function ($courseName) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return 'Aqui esta la descripcion del curso <strong>$courseName</strong>!'; <br> &nbsp;&nbsp;&nbsp;
+			} <br>
+		);
+	</code>
+
+	<p>Si la ruta es administrada por un controlador entonces el metodo que se ejecutara como respuesta es el que debe recibir como argumento la variable que contiene el dato de la URI.</p>
+	<!-- code -->
+	<code>
+		<strong>// Incluir el controlador en la ejecucion (Puedes hacerlo al incio del archivo)</strong> <br>
+		use App\Http\Controllers\CourseController; <br><br>
+
+		<strong>// Asignar el controlador y metodo a la ruta correspondiente</strong> <br>
+		Route::get( <br> &nbsp;&nbsp;&nbsp;
+			'/cursos/<strong>{courseName}</strong>/description', <br><br> &nbsp;&nbsp;&nbsp;
+
+			[CourseController::class, 'showCourseDescription'] <br>
+		);
+	</code>
+
+
+	<!-- Parametro opcional -->
+	<h3>Parametro opcional</h3>
+	<p>Aveces nesecitare recibir un parametro por ruta de forma opcional.</p>
+	<p>
+		Para lograr esto basta con agregar un signo de interrogacion (?) al final del Nombre del Parametro (ver seccion de arriba) y darle un valor por defecto al argumento de la funcion o metodo que se ejecutara como respuesta.
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Incluir el controlador en la ejecucion (Puedes hacerlo al incio del archivo)</strong> <br>
+		use App\Http\Controllers\PackageController; <br><br>
+
+		<strong>// Asignar la ruta y la respuesta correspondiente</strong> <br>
+		Route::get( <br> &nbsp;&nbsp;&nbsp;
+			'/descargas/{package}/<strong>{version?}</strong>', <br><br> &nbsp;&nbsp;&nbsp;
+
+			function ($package, $version = '1.0.0') { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				... <br> &nbsp;&nbsp;&nbsp;
+			} <br>
+		);
+	</code>
+
+	<p>Estos parametros opcionales solo los puedo usar al final. Porque si los agrego en medio ocurre que la ruta solo funciona si el usuario los incluye al hacer la peticion, haciendo que dejen de ser opcionales.</p>
+
+
+	<!-- Agrupar Rutas -->
+	<h3>Agrupar Rutas</h3>
+	<p>
+		Aveces nesecito que muchas rutas sean administradas por un mismo controlador.
+	</p>
+	<p>
+		En estos casos conviene agrupar estas rutas para no escribir el Namespace del controlador un monton de veces.
+	</p>
+	<p>
+		Para indicar el controlador usamos el <strong>metodo estatico <em>controller()</em></strong> de la Clase <em>Route</em>. A este metodo le pasamos el <strong>Namespace del controlador</strong> el cual deseamos que administre las rutas.
+	</p>
+	<p>Aqui voy a usar como ejemplo un controlador llamado <em>CourseController</em>.</p>
+	<!-- code -->
+	<code>Route::controller(CourseController::class)</code>
+
+	<p>Este metodo retorna un Objeto. Este Objeto tiene el metodo <em>group()</em> que vamos a usar para agregar las rutas que seran administradas por el controlador.</p>
+	<!-- code -->
+	<code>Route::controller(CourseController::class)->group()</code>
+
+	<p>
+		El metodo <em>group()</em> recibe como parametro una funcion la cual definira las rutas usando los Metodos HTTP de la Clase <em>Route</em>.
+	</p>
+	<p>La diferencia esque ahora ya no hace falta especificar el controlador, solo la ruta y (si deseeamos) el metodo que la administrara.</p>
+	<!-- code -->
+	<code>
+		Route::controller(CourseController::class)->group(function() { <br>&nbsp;&nbsp;&nbsp;
+			Route::get('/cursos', 'index'); <br>&nbsp;&nbsp;&nbsp;
+			Route::get('/cursos/crear', 'create'); <br>&nbsp;&nbsp;&nbsp;
+			Route::get('/cursos/{curso}', 'show'); <br>
+		});
+	</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

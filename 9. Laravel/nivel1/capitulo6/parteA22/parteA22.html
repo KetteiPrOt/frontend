@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 22</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Generar URLs Amigables</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que son? -->
+	<h3>Que son?</h3>
+	<p>
+		Para mejorar el posicionamiento seria mejor que en lugar de que las urls se muestren con el id del registro, lo hagan con el nombre del elemento:
+	</p>
+	<!-- code -->
+	<code>
+		http://laravel.test/cursos/6 <br><br>
+
+		http://laravel.test/cursos/nombre-curso
+	</code>
+	
+	
+	<!-- Columna slug -->
+	<h3>Columna slug</h3>
+	<p>
+		Agregamos el campo slug a la tabla courses mediante la migracion que crea la misma tabla:
+	</p>
+	<!-- code -->
+	<code>
+		Schema::create('courses', function (Blueprint $table) { <br><br>&nbsp;&nbsp;&nbsp;
+
+			... <br><br>&nbsp;&nbsp;&nbsp;
+
+            $table->string('slug'); <br><br>&nbsp;&nbsp;&nbsp;
+
+			... <br><br>
+
+        });
+	</code>
+
+	<p>
+		En este campo vamos a almacenar el nombre del registro que se va a mostrar en la url (en este caso separado por guiones).
+	</p>
+	
+	
+	<!-- Configurar la Factory -->
+	<h3>Configurar la Factory</h3>
+	<p>
+		Como hemos alterado la tabla, tambien debemos modificar la factory.
+	</p>
+	<p>
+		Aqui vamos a usar un support de Laravel, la clase Str y su metodo statico slug(). El metodo slug() convierte una cadena a minusculas y reemplaza sus espaciados por cualquier caracter que le indiquemos
+	</p>
+	<!-- code -->
+	<code>
+		<strong>use Illuminate\Support\Str;</strong> <br><br>
+
+		class CourseFactory extends Factory <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			public function definition(): array <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>// Genera un nombre aleatorio de 3 palabras</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				$name = $this->faker->word() . ' ' . $this->faker->word() . ' ' . $this->faker->word(); <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>// Rellena las columnas</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return [ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					'name' => $name, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					<strong>'slug' => Str::slug($name, '-')</strong>, <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					'description' => $this->faker->paragraph(), <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					'image_url' => $this->faker->sentence(), <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					'teacher' => $this->faker->randomElement(['Profesor1', 'Profesor2', 'Profesor3']) <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				]; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}	
+	</code>
+
+	<p>Ahora solo debes refrescar la base de datos (ten cuidado con el archivo de la carpeta schema no te meta la pata).</p>
+	
+	
+	<!-- getRouteKeyName() -->
+	<h3>getRouteKeyName()</h3>
+	<p>
+		Este es el metodo que se encarga de recuperar el id cuando pasamos un registro por mediante el metodo route(). Se encuantra dentro de la clase Model en la linea 2035:
+	</p>
+	<!-- code -->
+	<code>
+		public function getRouteKeyName() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return $this->getKeyName(); <br>	
+		}
+	</code>
+
+	<p>
+		Voy a modificar este metodo para que en lugar de usar el id use el campo slug:
+	</p>
+	<!-- code -->
+	<code>
+		public function getRouteKeyName() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			// return $this->getKeyName(); <br>&nbsp;&nbsp;&nbsp;
+			return 'slug'; <br>
+		}
+	</code>
+
+	<p>
+		Hacer esto es muy mala practica. No deberiamos modificar el codigo que viene por defecto en el framework.
+	</p>
+	<p>
+		En lugar de hacer esa imprudencia lo que haremos sera reescribir ese metodo heredado solo en el modelo en el que lo nesesitamos, seria nuestro modelo:
+	</p>
+	<!-- code -->
+	<code>
+		class Course extends Model <br>
+		{ <br><br>&nbsp;&nbsp;&nbsp;
+
+			... <br><br>&nbsp;&nbsp;&nbsp;
+
+			/* Rewrite Methods */ <br>&nbsp;&nbsp;&nbsp;
+			public function getRouteKeyName() <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				return 'slug'; <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+
+	<p>Con eso ya tendriamos URLs amigables en nuestra aplicacion!</p>
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

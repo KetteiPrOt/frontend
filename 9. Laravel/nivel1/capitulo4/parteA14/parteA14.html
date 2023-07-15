@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 14</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Mutadores y Accesores</h1>
+	<h4 class="enlace-volver"><a href="../capitulo4.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que son los Mutadores -->
+	<h3>Que son los Mutadores</h3>
+	<p>Sirven para controlar como se almacena la informacion en la base de datos.</p>
+	<p>
+		Por ejemplo si un usuario manda su nombre asi: "JoEl MeRO", con los mutadores podemos hacer que automaticamente se almacene en letras misnuscula como "joel mero" y asi cuidar mejor la informacion.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Crear un mutador -->
+	<h3>Crear un mutador</h3>
+	<p>
+		Los mutadores se crean en los modelos como metodos. Para crearlos debemos usar la Clase <em>Attribute</em>:
+	</p>
+	<!-- code -->
+	<code>use Illuminate\Database\Eloquent\Casts\Attribute;</code>
+
+	<p>
+		Despues debemos crear el metodo con el nombre de la columna que deseamos vigilar al momento de insertar datos, aqui voy a proteger la columna "name":
+	</p>
+	<!-- code -->
+	<code>
+		protected function name(): Attribute <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return new Attribute(); <br>
+		}
+	</code>
+
+	<p>
+		Como parametro "set" de la instancia <em>Attribute</em> hay que pasar una funcion que recibira el valor insertado para modificarlo y lo retornara en su forma correcta para guardarlo en la base de datos:
+	</p>
+	<!-- code -->
+	<code>
+		protected function name(): Attribute <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return new Attribute( <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				set: function ($value) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					return strtolower($value); <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				} <br>&nbsp;&nbsp;&nbsp;
+			); <br>
+		}
+	</code>
+
+	<p>Ahora cuando se inserte un nombre en la tabla courses siempre se almacenara en minusculas.</p>
+	
+	
+	<!-- Que son los Accesores -->
+	<h3>Que son los Accesores</h3>
+	<p>
+		Los accesores hacen lo contrario a los mutadores, es decir en lugar de cuidar como se guarda la informacion, estos cuidan como sale cuando la informacion se retira de la base de datos.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Crear un Accesor -->
+	<h3>Crear un Accesor</h3>
+	<p>
+		Se crean exactamente igual que un mutador, solo que e lugar de pasar el parametro "set" debemos pasar el parametro "get":
+	</p>
+	<!-- code -->
+	<code>
+		protected function name (): Attribute <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return new Attribute( <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>get:</strong> function ($value) { <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					return ucwords($value); <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				} <br>&nbsp;&nbsp;&nbsp;
+			); <br>
+		}
+	</code>
+
+	<p>
+		Ahora cada vez que se obtenga un valor dde la columna name se le aplicara la funcion <em>ucwords()</em>.
+	</p>
+
+	<p>Se puede abreviar la escritura usando las funciones flecha:</p>
+	<!-- code -->
+	<code>
+		protected function name (): Attribute <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return new Attribute( <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				set: fn($value) => strtolower($value), <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				get: fn($value) => ucwords($value) <br>&nbsp;&nbsp;&nbsp;
+			); <br>
+		}
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

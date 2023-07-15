@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 34</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Relacion One To One</h1>
+	<h4 class="enlace-volver"><a href="../capitulo9.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Nuevo Proyecto -->
+	<h3>Nuevo Proyecto</h3>
+	<p>
+		Para las explicaciones de esta seccion voy a trabajar en el nuevo proyecto "blog.test".
+	</p>
+	<!-- code -->
+	<code>http://blog.test</code>
+	
+	
+	<!-- Modelo Logico modificado -->
+	<h3>Modelo Logico modificado</h3>
+	<p>
+		Como el diagrama anterior resultante era para fines demostrativos, lo he modificado con el objetivo de que cumpla una funcion mas practica.
+	</p>
+	<p>
+		He eliminado la tabla <em>address</em> porque no era nesesaria para nuestro sistema de blog, y he agregado las tablas <em>permission_role</em> y <em>permissions</em> para crear un sistema de permisos en los roles.
+	</p>
+	<!-- image -->
+	<img src="media/logicModel1.png" width="750"> <br>
+	<img src="media/logicModel2.png" width="750">
+	
+
+	<!-- Crear Tabla Users -->
+	<h3>Crear Tabla Users</h3>
+	<p>
+		Ahora vamos a empezar a crear las tablas usando las migraciones. Empezaremos por las mas sencillas: las que tienen una relacion 1:1.
+	</p>
+	
+	
+	<!-- Entidades debiles -->
+	<h3>Entidades debiles</h3>
+	<p>
+		Si nos centramos en la tabla <em>users</em> vemos que esta tiene una relacion 1:1 con la tabla <em>profiles</em>. Entonces cual de las dos deberiamos crear primero? La que no dependa o no tenga una clave externa de otra tabla, esta se le conoce como "entidad fuerte" (en este caso <em>users</em>) y a la otra dependiente como "entidad debil" (<em>profiles</em>).
+	</p>
+	<p>
+		Entonces voy a crear la tabla <em>users</em>. La migracion
+	</p>
+	<!-- code -->
+	<code>php artisan make:migration create_users_table</code>
+
+	<p>Las columnas:</p>
+	<!-- code -->
+	<code>
+		$table->id(); <br>
+		$table->string('name'); <br>
+		$table->string('email')->unique(); <br>
+		$table->timestamps();
+	</code>
+	
+	
+	<!-- Tabla profiles -->
+	<h3>Tabla <em>profiles</em></h3>
+	<!-- code -->
+	<code>php artisan make:migration create_profiles_table</code> <br><br>
+
+	<code>
+		$table->id(); <br>
+		$table->text('biography'); <br>
+		$table->string('title', 45); <br>
+		$table->string('website', 150); <br>
+		$table->foreignId('user_id') <br>
+		->unique() <br>
+		->constrained() <br>
+		->onDelete('cascade') <br>
+		->onUpdate('cascade'); <br>
+		$table->timestamps();
+	</code>
+	
+	
+	<!-- hasOne() -->
+	<h3>hasOne()</h3>
+	<p>
+		Este metodo permite recuperar un registro relacionado de otra tabla:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Modelo User</strong> <br>
+		use App\Models\Profile;<br><br>
+
+		public function profile() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Recupera el perfil asociado al usuario</strong> <br>&nbsp;&nbsp;&nbsp;
+			return $this->hasOne(Profile::class); <br>
+		}
+	</code>
+
+	<p>
+		Para acceder al perfil de un usuario debemos hacerlo como si fuera una propiedad, porque este metodo genera propiedades dinamicas:
+	</p>
+	<!-- code -->
+	<code>
+		$user = User::find(1);
+		$user->profile;
+	</code>
+
+	<p>
+		Esto lo hace por eficiencia, ya que asi se cargan todas las relaciones al inicio de manera anticipada y acceder despues es mas rapido.
+	</p>
+	
+	
+	<!-- belongsTo() -->
+	<h3>belongsTo()</h3>
+	<p>
+		Este metodo recupera un el registro al que esta asciada la clave externa.
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Modelo Profile</strong> <br>
+		use App\Models\User;<br><br>
+
+		public function user() <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Recupera el usuario asociado al perfil</strong> <br>&nbsp;&nbsp;&nbsp;
+			return $this->belongsTo(User::class); <br>
+		}
+	</code>
+	<p>
+		Para acceder al usuario de un perfil debemos hacerlo como si fuera una propiedad, porque este metodo genera propiedades dinamicas:
+	</p>
+	<!-- code -->
+	<code>
+		$profile = Profile::find(1);
+		$profile->user;
+	</code>
+
+	<p>
+		Esto lo hace por eficiencia, ya que asi se cargan todas las relaciones al inicio de manera anticipada y acceder despues es mas rapido.
+	</p>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

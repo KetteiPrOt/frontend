@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="px-3">
+
+    <!-- Display Grid -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Display Grid
+    </h3>
+    <div class="flex mt-3">
+        <!-- Example 1 -->
+        <div class="mr-3">
+            <p>
+                .block
+            </p>
+            <div class="
+                block
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+            </div>
+        </div>
+        <!-- Example 2 -->
+        <div class="mr-3">
+            <p>
+                .grid
+            </p>
+            <div class="
+                grid
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Grid Template Colums -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Grid Template Colums
+    </h3>
+    <div class="flex mt-3">
+        <!-- Example 1 -->
+        <div class="mr-3">
+            <p>
+                .grid-cols-none (by default)
+            </p>
+            <div class="
+                grid
+                grid-cols-none
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+            </div>
+        </div>
+        <!-- Example 2 -->
+        <div class="mr-3">
+            <p>
+                .grid-cols-2
+            </p>
+            <div class="
+                grid
+                grid-cols-2
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+            </div>
+        </div>
+        <!-- Example 3 -->
+        <div class="mr-3">
+            <p>
+                .grid-cols-3
+            </p>
+            <div class="
+                grid
+                grid-cols-3
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Grid Template Rows -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Grid Template Rows
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <!-- Example 1 -->
+        <div class="mr-3">
+            <p>
+                .grid-rows-none (by default)
+            </p>
+            <div class="
+                grid
+                grid-rows-none
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+            </div>
+        </div>
+        <!-- Example 2 -->
+        <div class="mr-3">
+            <p>
+                .grid-rows-2
+            </p>
+            <div class="
+                grid
+                grid-rows-2
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+            </div>
+        </div>
+        <!-- Example 2 -->
+        <div class="mr-3">
+            <p>
+                .grid-rows-2 .grid-cols-2
+            </p>
+            <div class="
+                grid
+                grid-rows-2 grid-cols-2
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Grid Gap -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Grid Gap
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <!-- Example 1 -->
+        <div class="mr-3">
+            <p>
+                .gap-10
+            </p>
+            <div class="
+                grid gap-10
+                grid-rows-2 grid-cols-3
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+            </div>
+        </div>
+        <!-- Example 2 -->
+        <div class="mr-3">
+            <p>
+                .gap-y-10
+            </p>
+            <div class="
+                grid gap-y-10
+                grid-rows-2 grid-cols-3
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+            </div>
+        </div>
+        <!-- Example 3 -->
+        <div class="mr-3">
+            <p>
+                .gap-x-10
+            </p>
+            <div class="
+                grid gap-x-10
+                grid-rows-2 grid-cols-3
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Grid Column Start / End -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Grid Column Start / End
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <!-- Example 1 -->
+        <div class="mr-3">
+            <p>
+                Sin clase (by default)
+            </p>
+            <div class="
+                grid
+                grid-rows-2 grid-cols-3
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+            </div>
+        </div>
+        <!-- Example 2 -->
+        <div class="mr-3">
+            <p>
+                .col-span-2
+            </p>
+            <div class="
+                grid
+                grid-rows-2 grid-cols-3
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    col-span-2
+                    bg-pink-400
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+            </div>
+        </div>        
+        <!-- Example 3 -->
+        <div class="mr-3">
+            <p>
+                .col-span-full
+            </p>
+            <div class="
+                grid
+                grid-rows-2 grid-cols-3
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    col-span-full
+                    bg-pink-400
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Grid Row Start / End -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Grid Row Start / End
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <!-- Example 1 -->
+        <div class="mr-3">
+            <p>
+                Sin clase (by default)
+            </p>
+            <div class="
+                grid
+                grid-rows-3 grid-cols-3
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 7</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 8</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 9</div>
+            </div>
+        </div>
+        <!-- Example 2 -->
+        <div class="mr-3">
+            <p>
+                .row-span-2
+            </p>
+            <div class="
+                grid
+                grid-rows-3 grid-cols-3
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    row-span-2
+                    bg-pink-400
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 7</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 8</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 9</div>
+            </div>
+        </div>
+        <!-- Example 2 -->
+        <div class="mr-3">
+            <p>
+                .row-span-full
+            </p>
+            <div class="
+                grid
+                grid-rows-3 grid-cols-3
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    row-span-full
+                    bg-pink-400
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 7</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 8</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 9</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Grid Auto Flow -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Grid Auto Flow
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <!-- Example 1 -->
+        <div class="mr-3">
+            <p>
+                .grid-flow-row (by default)
+            </p>
+            <div class="
+                grid grid-flow-row
+                grid-rows-3 grid-cols-3
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 7</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 8</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 9</div>
+            </div>
+        </div>
+        <!-- Example 2 -->
+        <div class="mr-3">
+            <p>
+                .grid-flow-col
+            </p>
+            <div class="
+                grid grid-flow-col
+                grid-rows-3 grid-cols-3
+                bg-blue-300
+                w-96 h-96 border rounded border-black mx-auto
+            ">
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 1</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 2</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 3</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 4</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 5</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 6</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 7</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 8</div>
+                <div class="
+                    bg-pink-300
+                    border rounded border-black
+                ">Element 9</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- // -->
+    <h3 class="text-3xl mt-5 mb-2">
+        //
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3"></div>
+    </div>
+
+
+    <!-- // -->
+    <h3 class="text-3xl mt-5 mb-2">
+        //
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3"></div>
+    </div>
+
+
+    <!-- // -->
+    <h3 class="text-3xl mt-5 mb-2">
+        //
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3"></div>
+    </div>
+
+</body>
+</html>

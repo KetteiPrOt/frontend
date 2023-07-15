@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 17</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Validar formularios</h1>
+	<h4 class="enlace-volver"><a href="../capitulo5.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Sobre el token csrf -->
+	<h3>Sobre el token csrf</h3>
+	<p>
+		Cuando se envia informacion desde un formulario hacia una ruta diferente a la que esta establecido, este no se va a procesar gracias al token (va a salir un mensaje de error token caducado).
+	</p>
+	<p>
+		Esto es porque Laravel guarda un registro de los tokens y entonces cada formulario solo se puede enviar y recibir desde las rutas que especifica el desarrollador.
+	</p>
+	<p>
+		Otra cosa que debes saber esque los token tienen un tiempo de vida que se acaba despues de unsa horas.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- validate() -->
+	<h3>validate()</h3>
+	<p>
+		El objeto $request que contiene los datos del formulario tambien tiene este metodo que permite validar los datos que llegan
+	</p>
+	<p>
+		Para validar que los datos tengan informacion debemos pasarle un arreglo cuyas claves literales seran los nombres de los campos, y sus valores seran todos 'required'.
+	</p>
+	<p>De esta forma todos los campos seran requeridos:</p>
+	<!-- code -->
+	<code>
+		// Validar datos <br>
+        $request->validate([ <br>&nbsp;&nbsp;&nbsp;
+            'name' => 'required', <br>&nbsp;&nbsp;&nbsp;
+            'description' => 'required', <br>&nbsp;&nbsp;&nbsp;
+            'img_url' => 'required', <br>&nbsp;&nbsp;&nbsp;
+            'teacher' => 'required' <br>
+        ]);
+	</code>
+
+	<p>Cuando algun campo se envie vacio no se continuara ejecutando el codigo y volvera al formulario.</p>
+
+	<p>Para agregar mas reglas de validacion usamos el simbolo |</p>
+	<!-- code -->
+	<code>'name' => 'required|max:10|min:5'</code>
+	
+	
+	<!-- Mostrar errores -->
+	<h3>Mostrar errores</h3>
+	<p>
+		Debemos mostrar los errores en el formulario cuando falla la validacion
+	</p>
+	<p>
+		Usar la directiva de blade @error y la variable $message donde queremos que se muestre el error en la plantilla
+	</p>
+	<p>
+		La directiva recibe como parametro el nombre del campo sobre el que debe informar:
+	</p>
+	<!-- code -->
+	<code>
+		@error('name')
+			{{$message}}
+		@enderror
+	</code>
+	
+	
+	<!-- Cambiar a espaniol -->
+	<h3>Cambiar a espaniol</h3>
+	<p>
+		Para que los errores se muestren en espaniol al usuario debemos traducir laravel al espaniol.
+	</p>
+	<p>
+		Es muy sencillo hacerlo con el paquete laravel-lang. Ejecutarmos los siguientes comandos:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Instalamos la dependencia laravel-lang</strong> <br>
+		composer require laravel-lang/lang --dev <br><br>
+
+		<strong>// Instalamos el publisher de laravel-lang</strong> <br>
+		composer require laravel-lang/publisher laravel-lang/lang laravel-lang/attributes --dev <br><br>
+		
+		<strong>// Agregamos el idioma espaniol</strong> <br>
+		php artisan lang:add es
+	</code>
+
+	<p>
+		Despues en el archivo <code>/config/app.php</code> buscamos la clave literal "locale" y cambiamos "en" por "es" para completar la configuracion del idioma:
+	</p>
+	<!-- code -->
+	<code>
+		... <br>
+		'locale' => 'es', <br>
+		...    
+	</code>
+
+	<p>En este archivo puedes personlaizar los nombres de los campos del paquete laravel-lang:</p>
+	<!-- code -->
+	<code>\vendor\laravel-lang\attributes\source\validation.php</code>
+	
+	
+	<!-- Recuperar informacion -->
+	<h3>Recuperar informacion</h3>
+	<p>
+		Cuando la validacion falla tambien es buana idea recuperar la informacion de modo que el usuario no tenga que volverla a llenar
+	</p>
+	<p>
+		Para esto usamos el metodo old() en los atributos value del los inputs:
+	</p>
+	<!-- code -->
+	<code>
+		&lt;input name="name" type="text" id="name" <br>&nbsp;&nbsp;&nbsp;
+			value="{{old("name")}}" <br>
+		&gt;
+	</code>
+
+	<p>
+		El metodo old() permite establecer un valor por defecto que tendra el input, solo debemos pasarselo como segundo parametro, perfecto para el formulario de edicion:
+	</p>
+	<!-- code -->
+	<code>
+		&lt;input name="name" type="text" id="name" <br>&nbsp;&nbsp;&nbsp;
+			value="{{old("name"), $course->name}}" <br>
+		&gt;
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

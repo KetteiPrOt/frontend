@@ -6,131 +6,1060 @@
 	<title>Pseudoelementos y clases</title>	
 	<link rel="icon" href="../../../media/book.ico">
 	<link rel="stylesheet" href="../styles.css">
+	<style>
+		h3 {
+			margin-top: 50px;
+		}
+	</style>
 </head>
 <body>
-	<!-- Pseudoelementos y clases -->
-	<section>
-		<h2>Pseudoelementos y clases</h2>
-		<h4><a href="../index.html">Volver al indice</a></h4>
+	<h2>Pseudoelementos y clases</h2>
+	<h4><a href="../index.html">Volver al indice</a></h4>
 
+	<!-- :root -->
+	<h3>:root</h3>
+	<p>
+		Selecciona la raiz del documento (en este caso html), aqui se crean variables css globales.
+	</p>
+	<!-- code -->
+	<code>
+		:root { --variable1: valor1; --variable2: valor2; --variable3: valor3;... }
+	</code>
+
+
+	<br><br><hr>
+	<!-- Pseudo Clases -->
+	<h2>Pseudo Clases</h2>
+	<div>
 		<!-- :hover -->
 		<h3>:hover</h3>
-		<p>Sirve para establecer nuevos estilos al momento de poner el mouse sobre el elemento.</p>
+		<p>
+			Establece nuevos estilos al momento de poner el mouse sobre el elemento.
+		</p>
+		<!-- code -->
 		<style>
-			.elemento {
-				background: skyblue;
-				width: 200px;
-				height: 200px;
+			.element {
+				background-color: skyblue;
+				width: 150px; height: 75px;
+				border: 1px solid black;
+				border-radius: 5px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.element-hover:hover { background-color: red; }
+		</style>
+
+		<div class="element element-hover">:hover</div>
+		
+		
+		<!-- :focus -->
+		<h3>:focus</h3>
+		<p>
+			Establece nuevos estilos al momento de enfocar el elemento. Por ejemplo, esto ocurre al escribir en un <em>input</em>.
+		</p>
+		<!-- code -->
+		<style>
+			.input-text { background-color: skyblue; border-radius: 5px; }
+
+			.input-text:focus { background-color: red; }
+		</style>
+
+		<input type="text" class="input-text">
+		
+		
+		<!-- :active -->
+		<h3>:active</h3>
+		<p>
+			Establece nuevos estilos cuando un elemento esta siendo 'activado', es decir, en el evento <em>mousedown</em> de JavaScript.
+		</p>
+		<!-- code -->
+		<style>
+			.link { color: black; }
+
+			.link:active {
+				color: white;
+				background-color: blue;
+			}
+
+			.button:active {
+				color: white;
+				background-color: blue;
+				border-color: black;
+				border-radius: 5px;
+			}
+		</style>
+
+		<a class="link" href="#">Enlace</a> <button class="button">Boton</button>
+		
+		
+		<!-- :visited -->
+		<h3>:visited</h3>
+		<p>
+			Establece nuevos estilos cuando un enlace ya ha sido visitado.
+		</p>
+		<!-- code -->
+		<style>
+			.link-visited:visited {
+				color: green;
+				text-decoration: none;
+			}
+		</style>
+
+		<a href="#d" class="link-visited">Link</a>
+		<a href="#e" class="link-visited">Link</a>
+		<a href="#f" class="link-visited">Link</a>
+		
+		
+		<!-- ::selection -->
+		<h3>::selection</h3>
+		<p>
+			Establece nuevos estilos para el texto del elemento que es seleccionado.
+		</p>
+		<!-- code -->
+		<style>
+			.selection-pink {
+				display: inline;
+				padding: 10px;
 				border: 1px solid black;
 				border-radius: 5px;
 			}
 
-			.elemento:hover {
-				background: red;
+			.selection-pink::selection {
+				color: white;
+				background-color: red;
 			}
 		</style>
-		<div class="elemento"></div>
 
-		<!-- :root -->
-		<h3>:root</h3>
-		<p>Sirve para seleccionar la raiz del documento (en este caso html), aqui se crean variables css globales.</p>
-		<code>:root { --variable1: valor1; --variable2: valor2; --variable3: valor3;... }</code>
+		<p class="selection-pink">
+			Lorem ipsum, dolor sit amet consectetur adipisicing elit. At, necessitatibus!
+		</p>
+	</div>
 
-		<!-- :visited -->
-		<h3>:visited</h3>
-		<p>Sirve para alterar el estilo de los enlaces que ya han sido visitados.</p>
-		<style>
-			/*Orden para estilizar enlaces*/
-			/* :link — :visited — :hover — :active */
-			.enlace:visited {
-				color: hotpink;
-			}
-		</style>
-		<a href="#" class="enlace">Hola Mundo!</a>
-		<a href="https://google.com" class="enlace">google</a>
-		<a href="https://youtube.com" class="enlace">youtube</a>
-		<a href="https://facebook.com" class="enlace">facebook</a>
 
-		<!-- :active -->
-		<h3>:active</h3>
-		<p>Cambia el estilo de enlaces al momento de hacerles click.</p>
-		<style>
-			/*Orden para estilizar enlaces*/
-			/* :link — :visited — :hover — :active */
-			.enlace:active {
-				background: yellow;
-			}
-		</style>
-		<a href="#" class="enlace">Hola Mundo!</a>
-		<a href="https://google.com" class="enlace">google</a>
-		<a href="https://youtube.com" class="enlace">youtube</a>
-		<a href="https://facebook.com" class="enlace">facebook</a>
-
-		<!-- ::placeholder -->
-		<h3>::placeholder</h3>
-		<p>Cambia el estilo del placeholder de los inputs.</p>
-		<style>
-			.inputAlterado::placeholder {
-				color: purple;
-				text-decoration: underline;
-			}
-		</style>
-		<input type="text" placeholder="Input normal">
-		<input type="text" placeholder="Color morado y subrayado" class="inputAlterado">
-
-		<!-- :focus -->
-		<h3>:focus</h3>
-		<p>Cambia el estilo de los elementos al hacerles focus (enfocarlos). Por ejemplo al escribir en un input.</p>
-		<style>
-			.enfocarInput:focus {
-				width: 500px;
-			}
-		</style>
-		<input type="text" placeholder="Haz click para focus" class="enfocarInput">
-
+	<br><br><hr>
+	<!-- Pseudo Elemento -->
+	<h2>Pseudo Elemento</h2>
+	<div>
 		<!-- :before -->
 		<h3>:before</h3>
-		<p>Crea un pseudoelemento antes del elemento seleccionado.</p>
+		<p>
+			Crea un pseudoelemento antes del elemento seleccionado.
+		</p>
+		<!-- code -->
 		<style>
-			.elemento2 {
-				background: skyblue;
-				text-align: center;
-				width: 400px;
-				height: 20px;
+			.element-before {
+				color: white;
+				background-color: blue;
+				width: 150px; height: 75px;
 				border: 1px solid black;
-				margin: 0 auto;
+				border-radius: 5px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 			}
 
-			.elemento2:before {
-				content: '<---Pseudoelemento--->';
-				color: red;
+			.element-before:before {
+				content: '';
+				background-color: red;
+				width: 75px; height: 50px;
+				position: absolute;
+				opacity: .5;
+				border-radius: 5px;
 			}
 		</style>
-		<p class="elemento2"><---Elemento---></p>
 
+		<div class="element-before">:before</div>
+		
+		
 		<!-- :after -->
 		<h3>:after</h3>
-		<p>Crea un pseudoelemento despues de elemento seleccionado.</p>
+		<p>
+			Crea un pseudoelemento despues del elemento seleccionado.
+		</p>
+		<!-- code -->
 		<style>
-			.elemento3 {
-				background: skyblue;
-				text-align: center;
-				width: 400px;
-				height: 20px;
+			.element-after {
+				color: white;
+				background-color: blue;
+				width: 150px; height: 75px;
 				border: 1px solid black;
-				margin: 0 auto;
+				border-radius: 5px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 			}
 
-			.elemento3:after {
-				content: '<---Pseudoelemento--->';
-				color: red;
+			.element-after:after {
+				content: '';
+				background-color: red;
+				width: 75px; height: 50px;
+				position: absolute;
+				opacity: .5;
+				border-radius: 5px;
 			}
 		</style>
-		<p class="elemento3"><---Elemento---></p>
+
+		<div class="element-after">:after</div>
+		
+		
+		<!-- ::placeholder -->
+		<h3>:placeholder</h3>
+		<p>
+			Establece estilos para el <em>placeholder</em> de los inputs.
+		</p>
+		<!-- code -->
+		<style>
+			.input-placeholder { padding: 10px; }
+
+			.input-placeholder::placeholder {
+				color: red;
+				font-size: 18px;
+			}
+		</style>
+
+		<input placeholder="...placeholder" class="input-placeholder" type="text">
+		
+		
+		<!-- ::marker -->
+		<h3>::marker</h3>
+		<p>
+			Establece estilo para las vinietas de las listas. Este funciona como un pseudo elemento <em>:before</em>, y se le puede alterar con propiedades de texto.
+		</p>
+		<!-- code -->
+		<style>
+			.list-marker::marker {
+				content: '✝ ';
+				color: red;
+				font-size: 1.25em;
+			}
+		</style>
+
+		<ul>
+			<li class="list-marker">Element 1</li>
+			<li class="list-marker">Element 2</li>
+			<li class="list-marker">Element 3</li>
+		</ul>
+	</div>
 
 
+	<br><br><hr>
+	<!-- Estado del Padre -->
+	<h2>Estado del Padre</h2>
+	<div>
+		<!-- :first-child -->
+		<h3>:first-child</h3>
+		<p>
+			Establece estilos solo para el primer elemento hijo de un grupo de elementos seleccionados.
+		</p>
+		<!-- code -->
+		<code>.parent p:first-child { color: red; }</code> <br><br>
+		<style>
+			.parent {
+				display: inline-block;
+				padding: 10px;
+				border: 1px solid black;
+				border-radius: 5px;
+			}
+
+			.parent-first p:first-child { color: red; }
+		</style>
+
+		<div class="parent parent-first">
+			<p>Lorem ipsum dolor sit amet.</p>
+			<p>Lorem ipsum dolor sit amet.</p>
+			<p>Lorem ipsum dolor sit amet.</p>
+		</div>
 
 
-	</section>
+		<!-- :last-child -->
+		<h3>:last-child</h3>
+		<p>
+			Establece estilos solo para el ultimo elemento hijo de un grupo de elementos seleccionados.
+		</p>
+		<!-- code -->
+		<code>.parent p:last-child { color: red; }</code> <br><br>
+		<style>
+			.flex { display: flex; }
+
+			.divisor {
+				margin-right: 45px;
+			}
+
+			.parent-last p:last-child { color: red; }
+		</style>
+
+		<div class="parent parent-last">
+			<p>Lorem ipsum dolor sit amet.</p>
+			<p>Lorem ipsum dolor sit amet.</p>
+			<p>Lorem ipsum dolor sit amet.</p>
+		</div>
+		
+		
+		<!-- :nth-child(odd/even/function) -->
+		<h3>:nth-child(odd/even/function)</h3>
+		<p>
+			Recibe el termino general de una susecion aritmetica, y utiliza los terminos de la serie para determinar a que elementos hijos seleccionados le aplicara estilos.
+		</p>
+		<p>
+			Utiliza todos los elementos hijos para la cuenta, pero solo aplicara los estilos a quienes sean parte del conjunto seleccionado (en los ejemplos de abajo, los elementos <em>p</em>).
+		</p> <br>
+
+		<p>
+			[odd] Palabre clave la cual refiere a la serie <code>a<sub>n</sub> = {2n+1} = {1, 3, 5, 7...}</code> (elementos impares).
+		</p>
+		<!-- code -->
+		<code>.parent-odd p:nth-child(odd) { color: red; }</code> <br><br>
+		<style>
+			.parent-odd p:nth-child(odd) { color: red; }
+		</style>
+		
+		<div class="flex">
+			<!-- Example 1 -->
+			<div class="divisor">
+				<div class="parent parent-odd">
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+				</div>
+			</div>
+			<!-- Example 2 -->
+			<div>
+				<div class="parent parent-odd">
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<span>Elemento no seleccionado, pero contado [span]</span>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+				</div>
+			</div>
+		</div>
+		
+		<p>
+			[even] Palabre clave la cual refiere a la serie <code>a<sub>n</sub> = {2n} = {2, 4, 6, 8...}</code> (elementos pares).
+		</p>
+		<!-- code -->
+		<code>.parent-even p:nth-child(even) { color: red; }</code> <br><br>
+		<style>
+			.parent-even p:nth-child(even) { color: red; }
+		</style>
+
+		<div class="flex">
+			<!-- Example 1 -->
+			<div class="divisor">
+				<div class="parent parent-even">
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+				</div>
+			</div>
+			<!-- Example 2 -->
+			<div>
+				<div class="parent parent-even">
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<span>Elemento no seleccionado, pero contado [span]</span>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+				</div>
+			</div>
+		</div>
+
+		<p>
+			[3n] Notacion funcional de la serie <code>a<sub>n</sub> = {3n} = {3, 6, 9, 12...}</code> (cada 3 elementos).
+		</p>
+		<!-- code -->
+		<code>.parent-3n p:nth-child(3n) { color: red; }</code> <br><br>
+		<style>
+			.parent-3n p:nth-child(3n) { color: red; }
+		</style>
+
+		<div class="flex">
+			<!-- Example 1 -->
+			<div class="divisor">
+				<div class="parent parent-3n">
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+				</div>
+			</div>
+			<!-- Example 2 -->
+			<div>
+				<div class="parent parent-3n">
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<span>Elemento no seleccionado, pero contado [span]</span>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<span>Elemento no seleccionado, pero contado [span]</span>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- :nth-of-type(odd/even/function) -->
+		<h3>:nth-of-type(odd/even/function)</h3>
+		<p>
+			Funciona muy similar a la anterior, con la diferencia de que esta no utiliza a los elementos que no pertenecientes al conjunto de los seleccionados, los ignora totalmente.
+		</p>
+
+		<p>
+			[odd]
+		</p>
+		<!-- code -->
+		<code>.parent-odd p:nth-of-type(odd) { color: red; }</code> <br>
+		<style>
+			.parent-type-odd p:nth-of-type(odd) { color: red; }
+		</style>
+
+		<div class="flex">
+			<!-- Example 1 -->
+			<div class="divisor">
+				<p>Sin hijos metidos.</p>
+				<div class="parent parent-type-odd">
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+				</div>
+			</div>
+			<!-- Example 2 -->
+			<div>
+				<p>Con hijos entrometidos</p>
+				<div class="parent parent-type-odd">
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<span>Elemento no seleccionado, ni contado [span]</span>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+				</div>
+			</div>
+		</div>
+
+		<p>[even]</p>
+		<!-- code -->
+		<code>.parent-type-even p:nth-of-type(even) { color: red; }</code> <br><br>
+		<style>
+			.parent-type-even p:nth-of-type(even) { color: red; }
+		</style>
+
+		<div class="flex">
+			<!-- Example 1 -->
+			<div class="divisor">
+				<div class="parent parent-type-even">
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+				</div>
+			</div>
+			<!-- Example 2 -->
+			<div>
+				<div class="parent parent-type-even">
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<span>Elemento no seleccionado, ni contado [span]</span>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+				</div>
+			</div>
+		</div>
+
+		<p>[3n]</p>
+		<!-- code -->
+		<code>.parent-type-3n p:nth-of-type(3n) { color: red; }</code> <br><br>
+		<style>
+			.parent-type-3n p:nth-of-type(3n) { color: red; }
+		</style>
+
+		<div class="flex">
+			<!-- Example 1 -->
+			<div class="divisor">
+				<div class="parent parent-type-3n">
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+				</div>
+			</div>
+			<!-- Example 2 -->
+			<div class="divisor">
+				<div class="parent parent-type-3n">
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<span>Elemento no seleccionado, ni contado [span]</span>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<span>Elemento no seleccionado, ni contado [span]</span>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+					<p>Elemento seleccionado [p]</p>
+				</div>
+			</div>
+		</div>
+		
+		
+		<!-- :empty -->
+		<h3>:empty</h3>
+		<p>
+			Establece estilos cuando el elemento esta totalmente vacio (no elementos, texto, ni <em>blackspaces</em>).
+		</p>
+		<!-- code -->
+		<code>.element-empty:empty { background-color: red; }</code> <br><br>
+		<style>
+			.mr-3 { margin-right: 15px; }
+
+			.element-empty:empty { background-color: red; }
+		</style>
+
+		<div class="flex">
+			<div class="element mr-3 element-empty"></div>
+			<div class="element mr-3 element-empty">
+				<p>Lorem</p>
+			</div>
+			<div class="element mr-3 element-empty">
+				<p>Lorem Lorem</p>
+			</div>
+		</div>
+		
+		
+		<!-- :only -->
+		<h3>:only</h3>
+		<p>
+			Establece estilos en un hijo cuando este es el unico que esta en el elemento padre.
+		</p>
+		<!-- code -->
+		<code>.parent-only .element-only:only-child { background-color: red; }</code> <br><br>
+		<style>
+			.p-5 { padding: 10px; }
+
+			.border {
+				border: 1px solid black;
+				border-radius: 5px;
+			}
+
+			.parent-only .element-only:only-child { background-color: red; }
+		</style>
+
+		<!-- Example 1 -->
+		<div class="parent-only flex border p-5">
+			<div class="element mr-3 element-only">
+				Element 1
+			</div>
+		</div>
+		<!-- Example 2 -->
+		<div class="flex border p-5">
+			<div class="element mr-3 element-only">
+				Element 1
+			</div>
+			<div class="element mr-3 element-only">
+				Element 2
+			</div>
+		</div>
+		<!-- Example 3 -->
+		<div class="flex border p-5">
+			<div class="element mr-3 element-only">
+				Element 1
+			</div>
+			<div class="element mr-3 element-only">
+				Element 2
+			</div>
+			<div class="element mr-3 element-only">
+				Element 3
+			</div>
+		</div>
+
+
+		<!--  -->
+		<h3></h3>
+		<p></p>
+		<!-- code -->
+		<code></code>
+	</div>
+
+
+	<br><br><hr>
+	<!-- Estado de Formularios -->
+	<h2>Estado de Formularios</h2>
+	<div>
+		<!-- :invalid -->
+		<h3>:invalid</h3>
+		<p>
+			Establece estilos para los inputs cuando son invalidos
+		</p>
+		<!-- code -->
+		<style>
+			.input-invalid:invalid {
+				color: red;
+				outline-color: red;
+				border: 1px solid red;
+				border-radius: 5px;
+			}
+		</style>
+
+		<div class="flex">
+			<!-- Example 1 -->
+			<form class="mr-3">
+				<label>Email: </label>
+				<input value="example@edu.com" type="email" required class="input-invalid border">
+				<button type="submit">
+					Send
+				</button>
+			</form>
+			<!-- Example 2 -->
+			<form>
+				<label>Email: </label>
+				<input value="eXaMPLee" type="email" required class="input-invalid border">
+				<button type="submit">
+					Send
+				</button>
+			</form>
+		</div>
+
+
+		<!-- :required -->
+		<h3>:required</h3>
+		<p>
+			Establece estilos para los inputs que son requeridos
+		</p>
+		<!-- code -->
+		<code>
+			.parent-required input:required { color: red; ... }
+		</code> <br><br>
+		<style>
+			.mt-3 { margin-top: 10px; }
+
+			.block { display: block; }
+
+			.mx-auto { margin-right: auto; margin-left: auto; }
+
+			.parent-required input:required {
+				color: red;
+				border: 1px solid red;
+				border-radius: 5px;
+			}
+		</style>
+
+		<div class="flex">
+			<!-- Example -->
+			<form class="parent-required border p-5">
+				<table>
+					<tbody>
+						<tr>
+							<td>
+								<label>Input: </label>
+							</td>
+							<td>
+								<input value="normal" class="border">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Input: </label>
+							</td>
+							<td>
+								<input required value="required" class="border">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Input: </label>
+							</td>
+							<td>
+								<input required value="required" class="border">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="block mt-3 mx-auto" type="submit">Enviar</button>
+			</form>
+		</div>
+
+
+		<!-- :read-only -->
+		<h3>:read-only</h3>
+		<p>
+			Establece estilos para los inputs que son de solo lectura
+		</p>
+		<!-- code -->
+		<code>.parent-read-only input:read-only { opacity: .7; ... }</code> <br><br>
+		<style>
+			.parent-read-only input:read-only {
+				opacity: .7;
+				outline: none;
+			}
+		</style>
+
+		<div class="flex">
+			<!-- Example -->
+			<form class="parent-read-only border p-5">
+				<table>
+					<tbody>
+						<tr>
+							<td>
+								<label>Input: </label>
+							</td>
+							<td>
+								<input value="normal" class="border">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Input: </label>
+							</td>
+							<td>
+								<input readonly value="readonly" class="border">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Input: </label>
+							</td>
+							<td>
+								<input readonly value="readonly" class="border">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="block mt-3 mx-auto" type="submit">Enviar</button>
+			</form>
+		</div>
+
+
+		<!-- :disabled -->
+		<h3>:disabled</h3>
+		<p>
+			Establece estilos para los inputs que estan desabilitados.
+		</p>
+		<!-- code -->
+		<code>.parent-disabled input:disabled { color: red; ... }</code> <br><br>
+		<style>
+			.parent-disabled input:disabled {
+				color: red;
+				border: 1px solid red;
+				border-radius: red;
+				opacity: .8;
+			}
+		</style>
+
+		<div class="flex">
+			<!-- Example -->
+			<form class="parent-disabled border p-5">
+				<table>
+					<tbody>
+						<tr>
+							<td>
+								<label>Input: </label>
+							</td>
+							<td>
+								<input value="normal" class="border">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Input: </label>
+							</td>
+							<td>
+								<input disabled value="disabled" class="border">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Input: </label>
+							</td>
+							<td>
+								<input disabled value="disabled" class="border">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="block mt-3 mx-auto" type="submit">Enviar</button>
+			</form>
+		</div>
+
+
+		<!-- :enabled -->
+		<h3>:enabled</h3>
+		<p>
+			Establece estilos para los inputs que estan habilitados.
+		</p>
+		<!-- code -->
+		<code>.parent-enabled input:enabled { color: green; ... }</code> <br><br>
+		<style>
+			.parent-enabled input:enabled {
+				color: green;
+				border: 1px solid green;
+				border-radius: green;
+				opacity: .8;
+			}
+		</style>
+
+		<div class="flex">
+			<!-- Example -->
+			<form class="parent-enabled border p-5">
+				<table>
+					<tbody>
+						<tr>
+							<td>
+								<label>Input: </label>
+							</td>
+							<td>
+								<input value="normal" class="border">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Input: </label>
+							</td>
+							<td>
+								<input disabled value="disabled" class="border">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Input: </label>
+							</td>
+							<td>
+								<input disabled value="disabled" class="border">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="block mt-3 mx-auto" type="submit">Enviar</button>
+			</form>
+		</div>
+
+
+		<!-- :indeterminate -->
+		<h3>:indeterminate</h3>
+		<p>
+			Establece estilos para inputs de tipo <em>checkbox</em> o <em>radio</em> en estado indeterminado
+		</p>
+		<!-- code -->
+		<code>.parent-indeterminate input:indeterminate { border: 1px solid red; }</code> <br><br>
+		<style>
+			.text-red { color: red; }
+
+			.parent-checkbox input {
+				appearance: none;
+				width: 15px;
+				height: 15px;
+				border: 1px solid black;
+				border-radius: 5px;
+				cursor: pointer;
+				background-image: none;
+				background-size: 10px 10px;
+				background-position: center;
+				vertical-align: middle;
+			}
+
+			.parent-indeterminate input:indeterminate {
+				border: 1px solid red;
+			}
+
+			.parent-indeterminate input:checked {
+				background-image: url('../media/check-mark.png');
+			}
+		</style>
+
+		<div class="flex">
+			<!-- Example -->
+			<form class="parent-checkbox parent-indeterminate border p-5">
+				<input
+					type="checkbox"
+					id="check1"
+				>
+				<script>
+					let check1 = document.getElementById("check1");
+					check1.indeterminate = true;
+				</script>
+				<label for="check1">Checkbox [indeterminate]</label> <br><br>
+				
+				<input
+					type="checkbox"
+					id="check2"
+					checked
+				>
+				<label for="check2">Checkbox [checked]</label> <br><br>
+
+				<input
+					type="checkbox"
+					id="check3"
+					checked
+				>
+				<label for="check3">Checkbox [checked]</label>
+
+				<button class="block mt-3 mx-auto" type="submit">Enviar</button>
+			</form>
+		</div>
+
+
+		<!-- :checked -->
+		<h3>:checked</h3>
+		<p>
+			Establece estilos para inputs de tipo <em>checkbox</em> o <em>radio</em> en estado chekeado
+		</p>
+		<!-- code -->
+		<code>.parent-indeterminate input:checked { border: 1px solid red; ... }</code> <br><br>
+		<style>
+			.parent-checked input:checked {
+				background-image: url('../media/check-mark.png');
+				border: 1px solid red;
+			}
+		</style>
+
+		<div class="flex">
+			<!-- Example -->
+			<form class="parent-checkbox parent-checked border p-5">
+				<input
+					type="checkbox"
+					id="check1"
+				>
+				<script>
+					let check1 = document.getElementById("check1");
+					check1.indeterminate = true;
+				</script>
+				<label for="check1">Checkbox [indeterminate]</label> <br><br>
+				
+				<input
+					type="checkbox"
+					id="check2"
+					checked
+				>
+				<label for="check2">Checkbox [checked]</label> <br><br>
+
+				<input
+					type="checkbox"
+					id="check3"
+					checked
+				>
+				<label for="check3">Checkbox [checked]</label>
+
+				<button class="block mt-3 mx-auto" type="submit">Enviar</button>
+			</form>
+		</div>
+
+
+		<!-- :default -->
+		<h3>:default</h3>
+		<p>
+			Establece estilos para los elementos que estan seleccionados por defecto.
+		</p>
+		<p>
+			Por ejemplo, inputs de tipo radio y tipo checkbox con el atributo <em>checked</em>, o elementos <em>option</em> con el atributo <em>selected</em>
+		</p>
+		<!-- code -->
+		<code></code> <br><br>
+		<style>
+			.parent-default input:default {
+				outline: 2px solid red;
+			}
+		</style>
+
+		<div class="flex">
+			<!-- Example -->
+			<form class="parent-default border p-5">
+				<!-- Select -->
+				<table>
+					<tbody>
+						<tr>
+							<td>
+								<label>
+									Select Element:
+								</label>
+							</td>
+							<td>
+								<select>
+									<option value="">no delected</option>
+									<option selected value="">default</option>
+									<option value="">no delected</option>
+									<option value="">no delected</option>
+								</select>
+							</td>
+						</tr>
+					</tbody>
+				</table> <br>
+
+				<!-- Radio -->
+				<input
+					type="radio"
+					id="radio1"
+					name="checkedRadio"
+					checked
+				>
+				<label for="radio1">Radio1 [checked]</label>
+				
+				<input
+					type="radio"
+					id="radio2"
+					name="checkedRadio"
+				>
+				<label for="radio2">Radio2</label> <br><br>
+
+				<!-- Checkbox -->
+				<input
+					type="checkbox"
+					id="check10"
+					checked
+				>
+				<label for="check10">Checkbox [default]</label> <br>
+
+				<input
+					type="checkbox"
+					id="check11"
+				>
+				<label for="check11">Checkbox</label> <br>
+
+				<!-- Button -->
+				<button class="block mt-3 mx-auto" type="submit">Enviar</button>
+			</form>
+		</div>
+	</div>	
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+		
 </body>
 </html>

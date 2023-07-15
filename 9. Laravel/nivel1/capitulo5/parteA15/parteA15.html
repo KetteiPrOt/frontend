@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 15</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Listar y leer registros</h1>
+	<h4 class="enlace-volver"><a href="../capitulo5.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Paginacion -->
+	<h3>Paginacion</h3>
+	<p>
+		Las personas nunca van a leer por ejemplo 55000 registros, por esdo debemos paginarlos.
+	</p>
+	
+	
+	<!-- paginate() -->
+	<h3>paginate()</h3>
+	<p>Este metodo pagina los registros, por defecto de 15 en 15.</p>
+	<!-- code -->
+	<code>
+		$courses = Course::paginate(); <br><br>
+
+        return view('courses.index', compact('courses'));
+	</code>
+
+	<p>
+		Si queremos aceder a alguna pagina debemos pasar por la url el dato <em>page</em> con el numero de la pagina que deseeamos ver
+	</p>
+	<!-- code -->
+	<code>laravel.test/cursos?page=2</code>
+
+
+	<!-- Paginacion de Tailwind -->
+	<h3>Paginacion de Tailwind</h3>
+	<p>
+		Puedes usar los estilos de la paginacion de tailwind simplemente incluyendo su cnd en el archivo y ya tendras lista la paginacion
+	</p>
+	<!-- code -->
+	<code>https://cdn.tailwindcss.com</code>
+	
+	
+	<!-- Usar bootstrap -->
+	<h3>Usar bootstrap</h3>
+	<p>Laravel por defecto usa tailwind para la paginacion, pero pueddes usar bootstrap modificando el archivo:</p>
+	<!-- code -->
+	<code>app/Providers/AppServiceProvider.php</code>
+
+	<p>
+		En este archivo debes usar la clase:
+	</p>
+	<!-- code -->
+	<code>use Illuminate\Pagination\Paginator;</code>
+
+	<p>Y en el metodo boot() usar el metodo estatico useBootstrap() de la clase Paginator</p>
+	<!-- code -->
+	<code>
+		public function boot(): void <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			Paginator::useBootstrap(); <br>
+		}
+	</code>
+	
+	
+	<!-- Nombrar Rutas -->
+	<h3>Nombrar Rutas</h3>
+	<p>
+		Por el bien de simplificar la labor de crear la navegacion en nustra aplicacion podemos asignar nombres alternativos a las rutas de navegacion con el metodo <strong>name()</strong> en el archivo de rutas:
+	</p>
+	<!-- code -->
+	<code>
+		Route::get('/cursos', 'index')-><strong>name('courses.index');</strong> <br>
+		Route::get('/cursos/crear', 'create')-><strong>name('courses.create');</strong>
+	</code>
+
+	<p>
+		Ahora podemos invocar las URLs de estas rutas en las vistas blade usando el metodo <strong>route()</strong>
+	</p>
+	<!-- code -->
+	<code>
+		&lt;a href="{{<strong>route('courses.index')</strong>}}"&gt;Principal&lt;/a&gt; &lt;br&gt; <br>
+		&lt;a href="{{<strong>route('courses.create')</strong>}}"&gt;Crear registro&lt;/a&gt;
+	</code>
+	
+	
+	<!-- Rutas con Parametros -->
+	<h3>Rutas con Parametros</h3>
+	<p>Pero lo anterior se hace diferente cuando hablamos de rutas con parametros</p>
+	<p>
+		Aqui como la ruta espera un parametro debemos pasarselo por el metodo <strong>route()</strong> como segundo parametro:
+	</p>
+	<!-- code -->
+	<code>
+		&lt;a href="{{route('courses.show', $course->id)}}">
+			{{$course->name}}
+		&lt;/a&gt;
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

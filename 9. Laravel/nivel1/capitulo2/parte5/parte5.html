@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 5</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Crear Migraciones</h1>
+	<h4 class="enlace-volver"><a href="../capitulo2.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Configurar la Base de Datos -->
+	<h3>Configurar la <em>Base de Datos</em></h3>
+	<p>
+		La informacion de la conexion a que hacemos a la <em>Base de Datos</em> esta declarada en el archivo <code>database.php</code>. Ubicacion:
+	</p>
+	<!-- code -->
+	<code>/config/database.php</code>
+
+	<p>
+		En este archivo mucha informacion (nombres, credenciales, etc) esta siendo retornada por la funcion <em>env()</em>.
+	</p>
+	<p>
+		Esta funcion recibe como primer argumento el <strong>nombre de una constante</strong> cuyo valor buscara en el archivo <code>.env</code>. Ubicacion:
+	</p>
+	<!-- code -->
+	<code>/.env</code>
+
+	<p>Si en el archivo encuentra la constante entonces la funcion retornara su valor, si no la encuentra retornara el valor del <strong>segundo argumento</strong> que es opcional.</p>
+
+	<p>
+		El objetivo de definir la informacion de las credenciales en el archivo <code>.env</code> es que, cuando subamos el proyecto a un repositorio publico, este configurado para no subir este archivo en el fichero <code>.gitignore</code>.
+	</p>
+	<p>De esta forma protegemos las credenciales al no volverlas publicas. En el archivo <code>.env</code> configuramos las credenciales y el puerto de la conexion:</p>
+	<!-- code -->
+	<code>
+		DB_CONNECTION=mysql <br>
+		DB_HOST=127.0.0.1 <br>
+		DB_PORT=3306 <br>
+		DB_DATABASE=laravel_app <br>
+		DB_USERNAME=root <br>
+		DB_PASSWORD=
+	</code>
+
+
+	<!-- Carpeta migrations -->
+	<h3>Carpeta migrations</h3>
+	<p>Dentro de esta carpeta se encuentran las migraciones. Ubicacion:</p>
+	<!-- code -->
+	<code>/database/migrations/</code>
+
+	<p>
+		Las Migraciones [<em>Migrations</em>] son estructuras de Laravel que cumplen la funcion de guardar un <strong>historial de cambios</strong> en la estructura de la <em>Base de Datos</em> del proyecto.
+	</p>
+	<p>
+		Esto es muy util especialmente cuando trabaje en proyectos con mas desarrolladores y nesecitemos tener la <em>Base de Datos</em> sincronizada.
+	</p>
+
+
+	<!-- Metodos up() y down() -->
+	<h3>Metodos <em>up()</em> y <em>down()</em></h3>
+	<p>
+		Todas las migraciones tienen estos dos metodos. El metodo <em>up()</em> <strong>ejecuta</strong> la migracion, y el metodo <em>down()</em> la <strong>revierte</strong>.
+	</p>
+	<p>
+		Usando estos metodos puedo hacer <strong>cambios reversibles</strong> en la estructura de la <em>Base de Datos</em>, y guardar el <strong>historial de cambios</strong> como si de Git se tratase.
+	</p>
+
+
+	<!-- Crear Migraciones -->
+	<h3>Crear Migraciones</h3>
+	<p>Cuando creas una migracion debemos darle un nombre que describa lo que hace.</p>
+	<p>
+		Por ejemplo una migracion que <strong>crea una tabla</strong> llamada <em>users</em> tendra el nombre:
+	</p>
+	<!-- code -->
+	<code>create_users_table</code>
+
+	<p>
+		Otra migracion que <strong>agrega una columna</strong> llamada <em>instructor</em> a esa misma tabla se llamara:
+	</p>
+	<!-- code -->
+	<code>add_instructor_to_users_table</code>
+
+	<p>
+		Una migracion que <strong>cambia las propiedades</strong> de la tabla <em>courses</em> (en este caso modifica una columna) se nombrara:
+	</p>
+	<!-- code -->
+	<code>change_properties_to_courses_table</code>
+
+	<p>Asi para cada caso un nombre distinto [<em>migration_name</em>] se coloca en el comando que uso para <strong>crear migraciones</strong> automaticamente:</p>
+	<!-- code -->
+	<code>php <em>artisan</em> make:migration <em>migration_name</em></code>
+
+
+	<!-- Levantar Migraciones -->
+	<h3>Levantar Migraciones</h3>
+	<p>Este comando ejecuta el metodo <em>up()</em> de todas las migraciones.</p>
+	<!-- code -->
+	<code>php <em>artisan</em> migrate</code>
+
+	<p>
+		Cuando ejecutamos este comando al grupo de migraciones que levantamos en cada ocasion se le etiqueta con un lote [<em>batch</em>] que empieza en 1, 2, 3... por cada vez que lo hagamos.
+	</p>
+	<p>
+		Al usar las migraciones, dentro de la <em>Base de Datos</em> se crea automaticamente una tabla llamada <em>migrations</em> que guarda el <strong>historial y los lotes</strong> de las migraciones.
+	</p>
+
+	<p>Para ver el historial de migraciones y los lotes directamente en la terminal usa el comando <strong>status</strong>:</p>
+	<!-- code -->
+	<code>php <em>artisan</em> migrate:status</code>
+
+	<p>Para ver las <strong>sentencias SQL</strong> que van a ejecutar las migraciones usa el <em>flag</em> <code>--pretend</code>:</p>
+	<!-- code -->
+	<code>php <em>artisan</em> migrate --pretend</code>
+
+
+	<!-- Revertir Migraciones -->
+	<h3>Revertir Migraciones</h3>
+	<p>
+		Para ejecutar el metodo <em>down()</em> de todas las migraciones del <strong>ultimo lote</strong> usa el comando <strong>rollback</strong>:
+	</p>
+	<!-- code -->
+	<code>php <em>artisan</em> migrate:rollback</code>
+
+	<p>
+		Este comando tembien borrara el todas las migraciones del ultimo lote registradas en la tabla <em>migrations</em>.
+	</p>
+	<p>
+		Si deseas revertir solo un <strong>cierto numero</strong> de migraciones usa el <em>flag</em> <code>--step</code>. Este comando revierte las 3 ultimas migraciones:
+	</p>
+	<!-- code -->
+	<code>php <em>artisan</em> migrate:rollback --step=3</code>
+
+	<p>
+		Si deseas revertir solo un <strong>cierto lote</strong> de migraciones usa el <em>flag</em> <code>--batch</code>. Este comando revierte el lote 2 de migraciones:
+	</p>
+	<!-- code -->
+	<code>php <em>artisan</em> migrate:rollback --batch=2</code>
+
+	<p>
+		Si deseas revertir <strong>todas las migraciones</strong> comando <strong>reset</strong>:
+	</p>
+	<!-- code -->
+	<code>php <em>artisan</em> migrate:reset</code>
+
+	
+	<!-- Refrescar la Base de Datos -->
+	<h3>Refrescar la <em>Base de Datos</em></h3>
+	<p>Este comando <strong>revierte</strong> todas las migraciones de la <em>Base de Datos</em> y las <strong>vuelve a levantar</strong>:</p>
+	<!-- code -->
+	<code>php <em>artisan</em> migrate:refresh</code>
+
+	<p>Si tambien deseeas ejecutar todas las <em>seeds</em> de la <em>Base de Datos</em> usa el <em>flag</em> <code>--seed</code>:</p>
+	<!-- code -->
+	<code>php <em>artisan</em> migrate:refresh --seed</code>
+
+	<p>
+		Si deseas revertir y volver a levantar solo un <strong>cierto numero</strong> de migraciones usa el <em>flag</em> <code>--step</code>. Este comando refresca las ultimas 5 migraciones:
+	</p>
+	<!-- code -->
+	<code>php artisan migrate:refresh --step=5</code>
+
+	
+	<!-- Reinciar la Base de Datos -->
+	<h3>Reinciar la <em>Base de Datos</em></h3>
+	<p>
+		Este comando <strong>elimina todas las tablas</strong> de la <em>Base de Datos</em> y ejecuta todas las migraciones. Debe ser usado con precaucion ya que al eliminar las tablas se puede <strong>perder informacion</strong>
+	</p>
+	<!-- code -->
+	<code>php artisan migrate:fresh</code>
+
+	<p>Si tambien deseeas ejecutar todas las <em>seeds</em> de la <em>Base de Datos</em> usa el <em>flag</em> <code>--seed</code>:</p>
+	<!-- code -->
+	<code>php <em>artisan</em> migrate:fresh --seed</code>
+
+
+	<!-- Verter migraciones -->
+	<h3>Verter migraciones</h3>
+	<p>
+		Probablemente valla a tener cientos de migraciones en la carpeta <code>.../migrations/</code>, por ello existe este comando para <strong>compactarlas todas</strong> en un solo archivo SQL:
+	</p>
+	<!-- code -->
+	<code>php <em>artisan</em> schema:dump</code>
+
+	<p>El archivo se guarda en la carpeta <code>schema</code>. Ubicacion:</p>
+	<!-- code -->
+	<code>/database/schema/mysql-schema.sql</code>
+
+	<p>
+		<small>
+			Nota: la primera vez que lo use tuve que agregar la ruta <code>C:\xampp\mysql\bin</code> a la variable de sistema <em>path</em> de mi windows 11, porque la terminal no reconocia el comando.
+		</small>
+	</p>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

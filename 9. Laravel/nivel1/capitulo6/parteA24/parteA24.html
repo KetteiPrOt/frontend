@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 24</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Enviar Emails</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Como hacerlo? -->
+	<h3>Como hacerlo?</h3>
+	<p>
+		Debemos conectarnos con algun provedor de correos electronicos, Laravel esta configurado para poder conectarnos con cualquier proveedor basado en servidores SMTP (simple mail transfer protocol).
+	</p>
+	<p>
+		Un ejemplo de quien se basa en este protocolo es @gmail, entonces podrias usar perfectamente tu cuenta de google para tu proyecto Laravel.
+	</p>
+	<p>
+		Adicionalmente (y tambien recomendado) tambien es posible conectarse a proveedores basados en APIs.
+	</p>
+	
+	
+	<!-- Archivo mail.php -->
+	<h3>Archivo mail.php</h3>
+	<p>
+		Aqui se encuentra toda la configuracion para enviar correos desde laravel. Ubicacion:
+	</p>
+	<!-- code -->
+	<code>/config/mail.php</code>
+
+	<p>
+		Primero debemos especificar (en el archivo .env) si vamos a conectarnos a un proveedor SMTP o a uno basado en API:
+	</p>
+	<!-- code -->
+	<code>
+		'default' => env('MAIL_MAILER', 'smtp'),
+	</code>
+	
+	
+	<!-- Credenciales -->
+	<h3>Credenciales</h3>
+	<p>
+		Ademas del tipo de proveedor debemos especificarle las creedenciales con las cuales se debe conectar a este proveedor:
+	</p>
+	<!-- code -->
+	<code>
+		'smtp' => [ <br>&nbsp;&nbsp;&nbsp;
+            'transport' => 'smtp', <br>&nbsp;&nbsp;&nbsp;
+            'host' => env('MAIL_HOST', <br>&nbsp;&nbsp;&nbsp; 'smtp.mailgun.org'), <br>&nbsp;&nbsp;&nbsp;
+            'port' => env('MAIL_PORT', <br>&nbsp;&nbsp;&nbsp; 587), <br>&nbsp;&nbsp;&nbsp;
+            'encryption' => env('MAIL_ENCRYPTION', <br>&nbsp;&nbsp;&nbsp; 'tls'), <br>&nbsp;&nbsp;&nbsp;
+            'username' => env('MAIL_USERNAME'), <br>&nbsp;&nbsp;&nbsp;
+            'password' => env('MAIL_PASSWORD'), <br>&nbsp;&nbsp;&nbsp;
+            'timeout' => null, <br>&nbsp;&nbsp;&nbsp;
+            'local_domain' => env('MAIL_EHLO_DOMAIN'), <br>
+        ],
+	</code>
+
+	<p>
+		Podemos usar mailtrap para hacer pruebas en entornos de desarrollo.
+	</p>
+	<!-- code -->
+	<code>
+		MAIL_MAILER=smtp <br>
+		MAIL_HOST=sandbox.smtp.mailtrap.io <br>
+		MAIL_PORT=2525 <br>
+		MAIL_USERNAME=c68c8433e30952 <br>
+		MAIL_PASSWORD=53d3efefd277d9 <br>
+		MAIL_ENCRYPTION=tls
+	</code>
+	
+	
+	<!-- Remitente -->
+	<h3>Remitente</h3>
+	<p>
+		Se configura en el archivo mail.php
+	</p>
+	<!-- code -->
+	<code>
+		'from' => [ <br>&nbsp;&nbsp;&nbsp;
+			'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'), <br>&nbsp;&nbsp;&nbsp;
+			'name' => env('MAIL_FROM_NAME', 'Example'), <br>
+		],
+	</code>
+	
+	
+	<!-- Crear mailable -->
+	<h3>Crear mailable</h3>
+	<p>
+		Ya configurada la aplicacion, podemos crear un mailable para enviar los correos con el comando:
+	</p>
+	<!-- code -->
+	<code>php artisan make:mail <em>mail_name</em></code>
+
+	<p>El nombre este caso sera ContactUsMailable. Nos va a crear una nueva carpeta (Mail) y un archivo:</p>
+	<!-- code -->
+	<code>
+		/app/Mail/ContactUsMailable.php
+	</code>
+
+	<p>En este archivo se puede especificar el contenido del correo electronico.</p>
+	
+	
+	<!-- Asunto -->
+	<h3>Asunto</h3>
+	<p>
+		El asunto se especifica en el metodo envelope():
+	</p>
+	<!-- code -->
+	<code>
+		public function envelope(): Envelope <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return new Envelope( <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>subject: 'Informacion requerida'</strong>, <br>&nbsp;&nbsp;&nbsp;
+			); <br>
+		}
+	</code>
+	
+	
+	<!-- Contenido -->
+	<h3>Contenido</h3>
+	<p>
+		Para el contenido del email debemos entregarle una vista, en este caso le pasare una vista llamda contactUs:
+	</p>
+	<!-- code -->
+	<code>views/emails/contactUs.blade.php</code>
+	
+	
+	<!-- Ruta de envio -->
+	<h3>Ruta de envio</h3>
+	<p>
+		Ahora para enviar el correo nesecitamos una ruta. Asi que en el archivo de rutas importamos la clase <strong>ContactUsMailable</strong> y la clase <strong>Mail</strong>
+	</p>
+	<!-- code -->
+	<code>
+		use App\Mail\ContacttUsMailable; <br>
+		use Illuminate\Support\Facades\Mail;
+	</code>
+
+	<p>Ahora creamos la ruta y enviamos el correo:</p>
+	<!-- code -->
+	<code>
+		Route::get('contactanos', function () { <br>&nbsp;&nbsp;&nbsp;
+			$correo = new ContacttUsMailable; <br><br>&nbsp;&nbsp;&nbsp;
+		
+			Mail::to('sd.kettei@gmail.com')->send($correo); <br><br>
+
+			echo 'Mensaje Enviado!'; <br>
+		});
+	</code>
+
+	<p>Y con eso ya hemos enviado el correo electronico!</p>
+	
+	
+	<!-- Usar Propiedades -->
+	<h3>Usar Propiedades</h3>
+	<p>
+		Cualquier propiedad que agregemos a la clase Mailable podra ser accedida en la vista del email como una variable:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Clase ContactUsMailable</strong> <br>
+		public $contactInfo = 'Esta es la informacion de contacto'; <br><br>
+
+		<strong>// Vista contactUs</strong> <br>
+		{{$contactInfo}}
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

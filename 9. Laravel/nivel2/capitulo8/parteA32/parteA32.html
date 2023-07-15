@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 32</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+	<style>
+		.conceptual-diagram {
+			width: 1000px; vertical-align: top;
+		}
+	</style>
+</head>
+<body>
+	<h1 class="titulo-principal">Modelo Logico</h1>
+	<h4 class="enlace-volver"><a href="../capitulo8.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Nuevo Ejemplo -->
+	<h3>Nuevo Ejemplo</h3>
+	<p>
+		He creado un nuevo ejemplo mas elaborado de reglas de negocio al que hicimos en la parte anterior para poder explicar mejor algunos conceptos, y he resaltado las entidades:
+	</p>
+	<ul>
+		<li>
+			Los <mark>usuarios</mark> van a poder registrarse en la plataforma, y necesitamos almacenar su nombre, email y dirección.
+		</li>
+		<li>
+			La plataforma nos debe permitir poder asignar un <mark>rol</mark> a los usuarios registrados.
+		</li>
+		<li>
+			Los usuarios con un rol, deben poder guardar información sobre su biografía, título y website en un <mark>perfil</mark> para creadores.
+		</li>
+		<li>
+			Los usuarios con el rol de editor van a poder escribir posts.
+		</li>
+		<li>
+			la información que debes almacenar sobre los <mark>posts</mark> es categoría, título, body y una o más etiquetas.
+		</li>
+		<li>
+			Los post van a poder ser <mark>comentados</mark>, y debemos poder almacenar el mensaje, así como el nombre de la persona que lo escribió.
+		</li>
+		<li>
+			Las personas con el rol de player van a poder subir videos.
+		</li>
+		<li>
+			Lo que debemos almacenar del <mark>video</mark> es el título del video, descripción, la url donde está almacenada, y etiquetas las cuales pueden ser uno o más.
+		</li>
+		<li>
+			Los videos van a poder ser comentados, y debemos poder almacenar tanto el mensaje como el nombre de la persona que lo escribió.
+		</li>
+		<li>
+			Las <mark>etiquetas</mark> que se utilicen tanto para los posts como para los videos, deben sacarlo de una lista de etiquetas ya definidas.
+		</li>
+		<li>
+			El usuario debe poder subir una <mark>imagen</mark> como foto de perfil de manera opcional.
+		</li>
+		<li>
+			Se puede subir una imagen de portada para los post de manera opcional.
+		</li>
+	</ul>
+
+	<p>
+		El modelo conceptual del nuevo ejemplo seria el siguiente:
+	</p>
+	<!-- image -->
+	<img src="diaw1.png" class="conceptual-diagram"> <br>
+	<img src="diaw2.png" class="conceptual-diagram">
+
+	<p>
+		Ahora que ya tenemos todo el diagrama entida relacion listo ya podemos pasar al modelo logico.
+	</p>
+	
+	
+	<!-- Que es el Modelo Logico? -->
+	<h3>Que es el Modelo Logico?</h3>
+	<p>
+		El modelo logico consiste en pasar el esbozo o borrador que creamos a un esquema de tablas, donde vamos a especificar los tipos de datos y relaciones en las entidades y atributos.
+	</p>
+	<p>
+		Utilizando la analogia de una arquitecto al que le piden construir una casa, el modelo conceptual seria un esbozo o borrador del proyecto y el modelo logico serian los planos ya listos a partir de los cuales se va a construir la casa. La ultima etapa del disenio de la base de datos (El modelo fisico) es, al igual que en la metafora se construye la casa, crear la base de datos con codigo SQL.
+	</p>
+	<p>
+		Para diseniar el modelo logico podemos usar My SQL Workbench.
+	</p>
+	<!-- code -->
+	<code></code>
+
+
+	<!-- Relacion 1:1 -->
+	<h3>Relacion 1:1</h3>
+	<p>
+		Cuando se presenta esta relacion entre dos tablas A 1:1 B basta con incluir una Clave Externa en la B para hacer referencia a elementos de la tabla A, y la clave externa no se puede repetir porque un elemento de la tabla A solo puede estar relacionado con un elemento de la tabla B.
+	</p>
+	<p>
+		Por convencion las claves externas en laravel son el nombre de la tabla externa en singular mas "_id". Por ejemplo, la clave externa de la tabla "users" seria: "user_id"
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Relacion 1:n -->
+	<h3>Relacion 1:n</h3>
+	<p>
+		Cuando se presenta esta relacion entre dos tablas A 1:n B basta con incluir una Clave Externa en la B para hacer referencia a elementos de la tabla A... en este caso la clave externa se puede repetir porque un elemento de la tabla A puede estar relacionado con muchos elementos de la tabla B.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Relacion n:n -->
+	<h3>Relacion n:n</h3>
+	<p>
+		Aqui debemos hacer uso de una tabla "pivote" en la cual vamos a guardar muchas correspondencias entre las dos tablas.
+	</p>
+	<p>
+		En laravel la convencion para crear estas tablas es juntar los dos nombres en orden alfabetico y en singular. Por ejemplo, para la relacion "users" n:n "roles", la tabla pivote seria: "role_user"
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Relacion 1:1 Polimorfica -->
+	<h3>Relacion 1:1 Polimorfica</h3>
+	<p>
+		Este tipo de relacion se da en nuestro ejemplo si nos centramos en las tres entidades Users, Images, y Posts... ya que no nos es posible relacionar las tablas como hasta ahora lo hemos hecho porque si agregamos una relacion de A (users) 1:1 B (images), luego <strong>no podemos</strong> relacionar de 1:1 una tercera tabla C (posts) con B. Que podemos hacer?
+	</p>
+	<!-- image -->
+	<img src="badTables.png" height="150">
+
+	<p>
+		Podemos hacer uso de una relacion polimorfica. Esta nos indica que en la tabla B (images) vamos a colocar dos campos, <strong>el primero</strong> que llevara el nombre de la misma tabla en singular con terminacion "able_id" (images -> imageable_id), y en este campo vamos a colocar los ids tanto de la tabla A (users, los usuarios), como de la tabla C (posts, los posts).
+	</p>
+	<!-- image -->
+	<img src="imageable_id.png" height="100">
+
+	<p>
+		Bien ya puedo relacionar las tres tablas, pero... como identifico si un id del campo imageable_id es de la tabla A (users) o la tabla C (posts)? Para eso es <strong>el segundo campo</strong> que llevara el mismo nombre de la tabla en singular pero con terminacion "_type" (images -> imageable_type). Aqui es donde vamos a indicar a cual de las dos tablas pertenece.
+	</p>
+	<p>
+		Ahora que deberia colocar en este campo? Laravel recomienda colocar el Namespace del modelo encargado de administrar esas entidades o tablas... para la entidad posts seria el modelo <em>Post</em>, y para users el modelo <em>User</em>.
+	</p>
+	<img src="imageable_type.png" height="100">
+	
+	
+	<!-- Clave Primaria Compuesta -->
+	<h3>Clave Primaria Compuesta</h3>
+	<p>
+		Todo bien aqui, pero ahora en esta tabla no hay restriccion para que agregemos el mismo id las veces que queramos en el campo <em>imageable_id</em>:
+	</p>
+	<!-- image -->
+	<img src="badImageable_id.png" height="100">
+
+	<p>
+		Entonces debemos hacer uso de una Clave Primaria Compuesta. Cuando se usa este tipo de Claves Primarias? Cuando un unico campo <strong>no es suficiente para identificar a un registro</strong>... pecisamente en nuestro caso que estamos usando dos campos.
+	</p>
+	<p>
+		Entonces aqui la clave primaria va a estar formada por el contenido de ambos campos <em>imageable_id</em> e <em>imageable_type</em>, por lo que un registro con el <strong>mismo contenido en ambos campos</strong> no se podra repetir mas de una vez. Hasta aqui el Modelo Logico nos queda asi:
+	</p>
+	<!-- image -->
+	<img src="polimorficRelation.png" height="500">
+
+
+	<!-- Relacion 1:n Polimorfica -->
+	<h3>Relacion 1:n Polimorfica</h3>
+	<p>
+		Las entidades Posts, Comments, y Videos, poseen casi el mismo tipo de relacion, solo que aqui es de 1:n en lugar de 1:1. Se definen casi igual, solamente que aqui si se puede repetir la Clave Primaria Compuesta:
+	</p>
+	<!-- image -->
+	<img src="oneToMuchPolimorfic.png" height="100"> <br><br>
+	<img src="oneToMuchLogicModel.png" height="150">
+
+	
+	<!-- Relacion n:n Polimorfica -->
+	<h3>Relacion n:n Polimorfica</h3>
+	<p>
+		Las entidades Posts, Tags, y Videos, presentan el mismo tipo de relacion solo que de muchos a muchos... entonces vamos a combinar la tabla pivote con lo que aprendimos de relaciones polimorficas:
+	</p>
+	<!-- image -->
+	<img src="muchToMuchPolimorfic.png" height="200"> <br><br>
+	<img src="muchToMuchLogicModel.png" height="250">
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

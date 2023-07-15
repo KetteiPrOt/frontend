@@ -12,3 +12,7 @@ ul li strong a {
 }
 
 h2 { text-align: center; }
+
+.list-title {
+	opacity: 0.8;
+}

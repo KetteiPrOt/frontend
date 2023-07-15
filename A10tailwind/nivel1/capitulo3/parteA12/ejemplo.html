@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="px-3">
+
+    <!-- Grow -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Grow
+    </h3>
+    <p>
+        Usa la clase <em>.grow</em> para conseguir que un elemento abarque todo el espacio disponible.
+    </p>
+    <!-- Example -->
+    <div class="flex w-1/2 bg-pink-400 border-2 border-solid rounded border-black p-3 mt-3">
+        <div class="bg-blue-400 rounded p-3 text-white">
+            Element 1
+        </div>
+        <div class="grow bg-blue-700 rounded p-3 text-white">
+            Element 2 [.grow]
+        </div>
+        <div class="bg-blue-400 rounded p-3 text-white">
+            Element 3
+        </div>
+    </div>
+
+    <p>
+		La clase clase <em>.grow-0</em> previene este comportamiento.
+	</p>
+    <!-- Example -->
+    <div class="flex w-1/2 bg-pink-400 border-2 border-solid rounded border-black p-3 mt-3">
+        <div class="grow bg-blue-700 rounded p-3 text-white">
+            Element 1 [.grow]
+        </div>
+        <div class="grow-0 bg-blue-400 rounded p-3 text-white">
+            Element 2 [.grow-0]
+        </div>
+        <div class="grow bg-blue-700 rounded p-3 text-white">
+            Element 3 [.grow]
+        </div>
+    </div>
+
+    <p>
+        <span class="font-black italic">Importante:</span> Aplicar estas clases provocara que se ignore cualquier propiedad de alineacion horizontal establecida en el elemento padre (<em>justify-?</em>).
+    </p>
+    
+    
+    <!-- Shrink -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Shrink
+    </h3>
+    <p>
+        Usa la clase <em>.shrink</em> para permitir que los elemento se encojan si es nesesario.
+    </p>
+    <!-- Example -->
+    <style>
+        .cntPadre {
+            background-color: skyblue;
+            width: 50%;
+            height: 500px;
+            border: 1px solid black;
+            margin: 0 auto;
+            /*Flexbox*/
+            display: flex;
+        }
+
+        .elHijo {
+            background-color: pink;
+            width: 50px; height: 50px;
+            border: 1px solid black;
+        }
+        
+        @keyframes encogerAncho {
+            0% { width: 50%; }
+            50% {width: 1%;}
+            100% { width: 50%; }
+        } /*width: 50%; --> width:  20%;*/
+
+        .AencogerAncho {
+            animation-name: encogerAncho;
+            animation-duration: 10s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease;
+        }
+
+        .wrap { flex-wrap: wrap; }
+
+        .ancho { width: 300px; }
+
+        .fshrink1 {
+            opacity: 0.5;
+        }
+    </style>
+    <div class="cntPadre wrap AencogerAncho">
+        <div class="elHijo ancho">1</div>
+        <div class="shrink elHijo ancho fshrink1">2</div>
+        <div class="elHijo ancho">3</div>
+        <div class="elHijo ancho">4</div>
+    </div>
+
+    <p>
+        Usa la clase <em>.shrink-0</em> para impedir que los elemento se encojan.
+    </p>
+    <style>
+        .fshrink0 {
+            opacity: 0.5;
+        }
+    </style>
+    <div class="cntPadre wrap AencogerAncho">
+        <div class="elHijo ancho">1</div>
+        <div class="shrink-0 elHijo ancho fshrink0">2</div>
+        <div class="elHijo ancho">3</div>
+        <div class="elHijo ancho">4</div>
+    </div>
+    
+    
+    <!-- Aling Self -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Aling Self
+    </h3>
+    <!-- Example -->
+    <p>
+        Al incio [.self-start] (por defecto)
+    </p>
+    <!-- Example -->
+    <div class="
+        flex
+        w-1/3
+        h-96
+        mx-auto
+        text-center
+        bg-blue-200
+        border-2
+        border-solid
+        rounded
+        border-black
+    ">
+        <div class="
+            w-20
+            h-20
+            bg-pink-200
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 1</div>
+        <div class="
+            self-start
+            w-20
+            h-20
+            bg-pink-400
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 2</div>
+        <div class="
+            w-20
+            h-20
+            bg-pink-200
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 3</div>
+        <div class="
+            w-20
+            h-20
+            bg-pink-200
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 4</div>
+    </div>
+
+    <p>
+        Al final [.self-end]
+    </p>
+    <!-- Example -->
+    <div class="
+        flex
+        w-1/3
+        h-96
+        mx-auto
+        text-center
+        bg-blue-200
+        border-2
+        border-solid
+        rounded
+        border-black
+    ">
+        <div class="
+            w-20
+            h-20
+            bg-pink-200
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 1</div>
+        <div class="
+            self-end
+            w-20
+            h-20
+            bg-pink-400
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 2</div>
+        <div class="
+            w-20
+            h-20
+            bg-pink-200
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 3</div>
+        <div class="
+            w-20
+            h-20
+            bg-pink-200
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 4</div>
+    </div>
+
+    <p>
+        En el centro [.self-center]
+    </p>
+    <!-- Example -->
+    <div class="
+        flex
+        w-1/3
+        h-96
+        mx-auto
+        text-center
+        bg-blue-200
+        border-2
+        border-solid
+        rounded
+        border-black
+    ">
+        <div class="
+            w-20
+            h-20
+            bg-pink-200
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 1</div>
+        <div class="
+            self-center
+            w-20
+            h-20
+            bg-pink-400
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 2</div>
+        <div class="
+            w-20
+            h-20
+            bg-pink-200
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 3</div>
+        <div class="
+            w-20
+            h-20
+            bg-pink-200
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 4</div>
+    </div>
+    
+    <p>
+        Estirar [.self-stretch]
+    </p>
+    <!-- Example -->
+    <div class="
+        flex
+        items-center
+        w-1/3
+        h-96
+        mx-auto
+        text-center
+        bg-blue-200
+        border-2
+        border-solid
+        rounded
+        border-black
+    ">
+        <div class="
+            w-20
+            bg-pink-200
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 1</div>
+        <div class="
+            self-stretch
+            w-20
+            bg-pink-400
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 2</div>
+        <div class="
+            w-20
+            bg-pink-200
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 3</div>
+        <div class="
+            w-20
+            bg-pink-200
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 4</div>
+    </div>
+
+    <p>
+        En la linea base del texto [.items-baseline]
+    </p>
+    <!-- Example -->
+    <div class="
+        flex
+        w-1/3
+        h-96
+        mx-auto
+        text-center
+        bg-blue-200
+        border-2
+        border-solid
+        rounded
+        border-black
+    ">
+        <div class="
+            w-auto
+            h-20
+            p-1
+            bg-pink-200
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 1</div>
+        <div class="
+            self-baseline
+            w-auto
+            h-20
+            p-1
+            bg-pink-400
+            border-2
+            border-solid
+            rounded
+            border-black
+            text-3xl
+        ">Elemento 2</div>
+        <div class="
+            self-baseline
+            w-auto
+            h-20
+            p-1
+            bg-pink-400
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 3</div>
+        <div class="
+            self-baseline
+            w-auto
+            h-20
+            p-1
+            bg-pink-400
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 4</div>
+        <div class="
+            w-auto
+            h-20
+            p-1
+            bg-pink-200
+            border-2
+            border-solid
+            rounded
+            border-black
+        ">Elemento 5</div>
+    </div>
+    
+    
+    <!-- // -->
+    <h3 class="text-3xl mt-5 mb-2">
+        //
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3"></div>
+    </div>
+
+</body>
+</html>

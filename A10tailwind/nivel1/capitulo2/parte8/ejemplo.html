@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="px-3">
+
+    <!-- Pseudo Class -->
+    <h2 class="text-3xl text-center pt-5">Pseudo Class</h2>
+    <hr><br>
+
+    <!-- hover: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        hover:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>
+                .hover:bg-red-400 <br>
+                .hover:border-green-400
+            </p>
+            <div class="hover:border-green-400 hover:bg-red-400 w-32 h-32 border-2 rounded border-black bg-blue-300"></div>
+        </div>
+    </div>
+
+
+    <!-- focus: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        focus:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>
+                .focus:outline-red-400 <br>
+                .focus:bg-blue-300
+            </p>
+            <input class="focus:outline-red-400 focus:bg-blue-300 p-1 border rounded border-black" type="text">
+        </div>
+    </div>
+
+
+    <!-- active: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        active:
+    </h3>
+    <p>
+        .active:bg-red-600 <br>
+        .active:text-white
+    </p>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <a href="#" class="active:bg-red-600 active:text-white underline mr-1">Link</a>
+            <button class="active:bg-red-600 active:text-white border rounded border-black p-1">Button</button>
+        </div>
+    </div>
+
+
+    <!-- visited: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        visited:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>
+                .visited:text-red-600
+            </p>
+            <a href="#a" class="visited:text-red-600 underline mr-1">Link a</a>&nbsp;
+            <a href="#b" class="visited:text-red-600 underline mr-1">Link b</a>&nbsp;
+            <a href="#c" class="visited:text-red-600 underline mr-1">Link c</a>&nbsp;
+            <a href="#e" class="visited:text-red-600 underline mr-1">Link e</a>&nbsp;
+            <a href="#f" class="visited:text-red-600 underline mr-1">Link f</a>&nbsp;
+        </div>
+    </div>
+
+
+    <!-- selection: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        selection:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>
+                .selection:bg-red-400 <br>
+                .selection:text-white
+            </p>
+            <p class="selection:bg-red-400 selection:text-white p-2 border rounded border-black">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, corrupti.
+            </p>
+        </div>
+    </div>
+
+
+    <!-- Pseudo Element -->
+    <h2 class="text-3xl text-center pt-5">Pseudo Element</h2>
+    <hr><br>
+
+
+    <!-- before: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        before:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>
+                before:w-16 before:h-16 <br>
+                before:bg-red-400 <br>
+                before:opacity-50 <br>
+                before:absolute
+            </p>
+            <div class="
+                before:w-16 before:h-16 before:bg-red-400 before:opacity-50 before:absolute
+                bg-blue-500 text-white 
+                flex justify-center items-center
+                w-32 h-32 border rounded border-black
+            ">
+                before:
+            </div>
+        </div>
+    </div>
+
+
+    <!-- after: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        after:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>
+                after:w-16 after:h-16 <br>
+                after:bg-red-400 <br>
+                after:opacity-50 <br>
+                after:absolute
+            </p>
+            <div class="
+                after:w-16 after:h-16 after:bg-red-400 after:opacity-50 after:absolute
+                bg-blue-500 text-white 
+                flex justify-center items-center
+                w-32 h-32 border rounded border-black
+            ">
+                after:
+            </div>
+        </div>
+    </div>
+
+
+    <!-- placeholder: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        placeholder:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.placeholder:text-blue-500</p>
+            <input class="placeholder:text-blue-500 p-1 border rounded border-black" type="text" placeholder="placeholder...">
+        </div>
+    </div>
+
+
+    <!-- marker: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        marker:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.marker:text-blue-300</p>
+            <ul class="marker:text-blue-300 list-disc list-inside">
+                <li>Element 1</li>
+                <li>Element 1</li>
+                <li>Element 1</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- Parent State -->
+    <h2 class="text-3xl text-center pt-5">Parent State</h2>
+    <hr><br>
+
+
+    <!-- first: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        first:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>p.first:text-red-400</p>
+            <div class="p-3 border rounded border-black">
+                <p class="first:text-red-400">Lorem ipsum dolor sit amet.</p>
+                <p class="first:text-red-400">Lorem ipsum dolor sit amet.</p>
+                <p class="first:text-red-400">Lorem ipsum dolor sit amet.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- last: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        last:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>p.last:text-red-400</p>
+            <div class="p-3 border rounded border-black">
+                <p class="last:text-red-400">Lorem ipsum dolor sit amet.</p>
+                <p class="last:text-red-400">Lorem ipsum dolor sit amet.</p>
+                <p class="last:text-red-400">Lorem ipsum dolor sit amet.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- odd: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        odd:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>p.odd:text-red-400</p>
+            <div class="p-3 border rounded border-black">
+                <p class="odd:text-red-400">Lorem ipsum dolor sit amet.</p>
+                <p class="odd:text-red-400">Lorem ipsum dolor sit amet.</p>
+                <p class="odd:text-red-400">Lorem ipsum dolor sit amet.</p>                
+                <p class="odd:text-red-400">Lorem ipsum dolor sit amet.</p>
+                <p class="odd:text-red-400">Lorem ipsum dolor sit amet.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- even: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        even:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>p.even:text-red-400</p>
+            <div class="p-3 border rounded border-black">
+                <p class="even:text-red-400">Lorem ipsum dolor sit amet.</p>
+                <p class="even:text-red-400">Lorem ipsum dolor sit amet.</p>
+                <p class="even:text-red-400">Lorem ipsum dolor sit amet.</p>                
+                <p class="even:text-red-400">Lorem ipsum dolor sit amet.</p>
+                <p class="even:text-red-400">Lorem ipsum dolor sit amet.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- empty: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        empty:
+    </h3>
+    <!-- Example -->
+    <p>.empty:bg-red-400</p>
+    <div class="flex mt-3">
+        <div class="empty:bg-red-400 flex justify-center items-center border rounded border-black bg-blue-300 w-32 h-32 mr-3"></div>
+        <div class="empty:bg-red-400 flex justify-center items-center border rounded border-black bg-blue-300 w-32 h-32 mr-3">
+            Lorem
+        </div>
+        <div class="empty:bg-red-400 flex justify-center items-center border rounded border-black bg-blue-300 w-32 h-32 mr-3">
+            Lorem&nbsp;Lorem
+        </div>
+    </div>
+
+
+    <!-- only: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        only:
+    </h3>
+    <!-- Example -->
+    <p>.only:bg-red-400</p>
+    <div class="flex border rounded border-black my-3">
+        <div class="only:bg-red-400 flex justify-center items-center border rounded border-black bg-blue-300 w-32 h-32 mr-3">
+            Element 1
+        </div>
+    </div>
+    <div class="flex border rounded border-black my-3">
+        <div class="only:bg-red-400 flex justify-center items-center border rounded border-black bg-blue-300 w-32 h-32 mr-3">
+            Element 1
+        </div>
+        <div class="only:bg-red-400 flex justify-center items-center border rounded border-black bg-blue-300 w-32 h-32 mr-3">
+            Element 2
+        </div>
+    </div>
+    <div class="flex border rounded border-black my-3">
+        <div class="only:bg-red-400 flex justify-center items-center border rounded border-black bg-blue-300 w-32 h-32 mr-3">
+            Element 1
+        </div>
+        <div class="only:bg-red-400 flex justify-center items-center border rounded border-black bg-blue-300 w-32 h-32 mr-3">
+            Element 2
+        </div>
+        <div class="only:bg-red-400 flex justify-center items-center border rounded border-black bg-blue-300 w-32 h-32 mr-3">
+            Element 3
+        </div>
+    </div>
+
+
+    <!-- .group-{modifier} -->
+    <h3 class="text-3xl mt-5 mb-2">
+        .group-{modifier}
+    </h3>
+    <p>.group-hover:text-white</p>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="
+            group
+            hover:bg-blue-400
+            p-4 text-center
+            border rounded border-black/0.5
+        ">
+            <h4 class="
+                group-hover:text-white
+                text-lg font-bold cursor-default
+            ">
+                /!\ New Proyect /!\
+            </h4>
+            <p class="group-hover:text-white cursor-default">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro, veniam!
+            </p>
+        </div>
+    </div>
+
+
+    <!-- .group-{modifier}/[name] -->
+    <h3 class="text-3xl mt-5 mb-2">
+        .group-{modifier}/[name]
+    </h3>
+    <p>
+        .group-hover/card:text-white <br>
+        .group-hover/objectives:bg-red-400
+    </p>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="
+            group/card
+            hover:bg-blue-400
+            p-4 text-center
+            border rounded border-black/0.5
+        ">
+            <h4 class="
+                group-hover/card:text-white
+                text-lg font-bold cursor-default
+            ">
+                /!\ New Proyect /!\
+            </h4>
+            <p class="group-hover/card:text-white cursor-default">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro, veniam!
+            </p>
+            <!-- List -->
+            <ul class="group/objectives text-center">
+                <li class="
+                    group-hover/objectives:bg-red-400
+                    border rounded border-black/0.5 ps-3 my-1
+                ">
+                    objective 1
+                </li>
+                <li class="
+                    group-hover/objectives:bg-red-400
+                    border rounded border-black/0.5 ps-3 my-1
+                ">
+                    objective 2
+                </li>
+                <li class="
+                    group-hover/objectives:bg-red-400
+                    border rounded border-black/0.5 ps-3 my-1
+                ">
+                    objective 3
+                </li>
+                <li class="
+                    group-hover/objectives:bg-red-400
+                    border rounded border-black/0.5 ps-3 my-1
+                ">
+                    objective 4
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- Sibling State -->
+    <h2 class="text-3xl text-center pt-5">Sibling State</h2>
+    <hr><br>
+
+
+    <!-- peer-{modifier} -->
+    <h3 class="text-3xl mt-5 mb-2">
+        peer-{modifier}
+    </h3>
+    <p>
+        .peer-hover:bg-red-500 .peer-hover:text-white
+    </p>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="
+            peer
+            bg-blue-300
+            w-48 h-16 border rounded border-black mr-3
+            flex justify-center items-center
+        ">
+            .peer
+        </div>
+        <div class="
+            peer-hover:bg-red-500 peer-hover:text-white
+            bg-blue-300
+            w-48 h-16 border rounded border-black mr-3
+            flex justify-center items-center
+        ">
+            .peer-{modifier}
+        </div>
+    </div>
+
+
+    <!-- peer-{modifier}/[name] -->
+    <h3 class="text-3xl mt-5 mb-2">
+        peer-{modifier}/[name]
+    </h3>
+    <p>
+        .peer-hover/relation1:bg-red-400 <br>
+        .peer-hover/relation2:bg-yellow-400 <br>
+        .peer-hover/relation3:bg-green-400
+    </p>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="
+            peer/relation1
+            bg-blue-300
+            w-48 h-16 border rounded border-black mr-3
+            flex justify-center items-center
+        ">
+            .peer/relation1
+        </div>
+        <div class="
+            peer/relation2
+            bg-blue-300
+            w-48 h-16 border rounded border-black mr-3
+            flex justify-center items-center
+        ">
+            .peer/relation2
+        </div>
+        <div class="
+            peer/relation3
+            bg-blue-300
+            w-48 h-16 border rounded border-black mr-3
+            flex justify-center items-center
+        ">
+            .peer/relation3
+        </div>
+        <div class="
+            peer-hover/relation1:bg-red-400
+            bg-blue-300
+            w-48 h-16 border rounded border-black mr-3
+            flex justify-center items-center
+        ">
+            .peer-{modifier}/relation1
+        </div>
+        <div class="
+            peer-hover/relation2:bg-yellow-400
+            bg-blue-300
+            w-48 h-16 border rounded border-black mr-3
+            flex justify-center items-center
+        ">
+            .peer-{modifier}/relation2
+        </div>
+        <div class="
+            peer-hover/relation3:bg-green-400
+            bg-blue-300
+            w-48 h-16 border rounded border-black mr-3
+            flex justify-center items-center
+        ">
+            .peer-{modifier}/relation3
+        </div>
+    </div>
+
+
+    <!-- Form States -->
+    <h2 class="text-3xl text-center pt-5">Form States</h2>
+    <hr><br>
+
+
+    <!-- invalid: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        invalid:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.invalid:text-red-400 .invalid:border-red-400</p>
+            <form>
+                <label>Email: </label>
+                <input
+                    class="
+                        invalid:text-red-400 invalid:border-red-400
+                        px-2 border border-black rounded
+                    " 
+                    value="example@edu.ec" type="email"
+                >
+                <label>Email: </label>
+                <input
+                    class="
+                        invalid:text-red-400 invalid:border-red-400
+                        px-2 border border-black rounded
+                    " 
+                    value="eXAmPLe" type="email"
+                >
+                <button class="bg-gray-200 px-2 border rounded border-black" type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- required: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        required:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.required:outline .required:outline-red-400</p>
+            <form class="p-3 border rounded">
+                <!-- Input 1 -->
+                <label>Input: </label>
+                <input
+                    class="
+                        required:outline required:outline-red-400
+                        px-2 border border-black rounded my-1
+                    " 
+                    required placeholder="required"
+                > <br>
+                <!-- Input 2 -->
+                <label>Input: </label>
+                <input
+                    class="
+                        required:outline required:outline-red-400
+                        px-2 border border-black rounded my-1
+                    " 
+                    placeholder="normal"
+                > <br>
+                <button
+                    class="bg-gray-200 block px-2 border rounded border-black mx-auto mt-1"
+                    type="submit"
+                >Send</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- read-only: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        read-only:
+    </h3>
+   <!-- Example -->
+   <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.read-only:outline .read-only:outline-red-400</p>
+            <form class="p-3 border rounded">
+                <!-- Input 1 -->
+                <label>Input: </label>
+                <input
+                    class="
+                        read-only:outline read-only:outline-red-400
+                        px-2 border border-black rounded my-1
+                    " 
+                    readonly placeholder="readonly"
+                > <br>
+                <!-- Input 2 -->
+                <label>Input: </label>
+                <input
+                    class="
+                        read-only:outline read-only:outline-red-400
+                        px-2 border border-black rounded my-1
+                    " 
+                    placeholder="normal"
+                > <br>
+                <button
+                    class="bg-gray-200 block px-2 border rounded border-black mx-auto mt-1"
+                    type="submit"
+                >Send</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- disabled -->
+    <h3 class="text-3xl mt-5 mb-2">
+        disabled
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.disabled:outline .disabled:outline-red-400</p>
+            <form class="p-3 border rounded">
+                <!-- Input 1 -->
+                <label>Input: </label>
+                <input
+                    class="
+                        disabled:outline disabled:outline-red-400
+                        px-2 border border-black rounded my-1
+                    " 
+                    disabled placeholder="disabled"
+                > <br>
+                <!-- Input 2 -->
+                <label>Input: </label>
+                <input
+                    class="
+                        disabled:outline disabled:outline-red-400
+                        px-2 border border-black rounded my-1
+                    " 
+                    placeholder="normal"
+                > <br>
+                <button
+                    class="bg-gray-200 block px-2 border rounded border-black mx-auto mt-1"
+                    type="submit"
+                >Send</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- enabled: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        enabled:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.enabled:outline .enabled:outline-green-400</p>
+            <form class="p-3 border rounded">
+                <!-- Input 1 -->
+                <label>Input: </label>
+                <input
+                    class="
+                        enabled:outline enabled:outline-green-400
+                        px-2 border border-black rounded my-1
+                    " 
+                    disabled placeholder="disabled"
+                > <br>
+                <!-- Input 2 -->
+                <label>Input: </label>
+                <input
+                    class="
+                        enabled:outline enabled:outline-green-400
+                        px-2 border border-black rounded my-1
+                    " 
+                    placeholder="normal"
+                > <br>
+                <button
+                    class="bg-gray-200 block px-2 border rounded border-black mx-auto mt-1"
+                    type="submit"
+                >Send</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- indeterminate: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        indeterminate:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.indeterminate:outline .indeterminate:outline-red-400</p>
+            <form class="p-3 border rounded">
+                <!-- Input 1 -->
+                <input
+                    class="indeterminate:outline indeterminate:outline-red-400" 
+                    name="radio-one"
+                    type="radio"
+                >
+                <label> Radio1 [indeterminate]</label>
+                <!-- Input 2 -->
+                <input
+                    class="indeterminate:outline indeterminate:outline-red-400" 
+                    name="radio-one"
+                    type="radio"
+                >
+                <label> Radio2 [indeterminate]</label> <br>
+                <!-- Input 3 -->
+                <div>
+                    <input
+                        class="
+                            indeterminate:outline indeterminate:outline-red-400
+                        "
+                        type="checkbox"
+                        checked
+                    >
+                    <label>Checkbox [checked]</label> <br>
+
+                    
+                    <input
+                        class="
+                            indeterminate:outline indeterminate:outline-red-400
+                        "
+                        type="checkbox" id="checkboxIndeterminate"
+                    >
+                    <label>Checkbox [indeterminate]</label>
+                    <script>
+                        let checkboxIndeterminate = document.getElementById('checkboxIndeterminate');
+                        checkboxIndeterminate.indeterminate = true;
+                    </script>
+                </div>
+                <button
+                    class="bg-gray-200 block px-2 border rounded border-black mx-auto mt-1"
+                    type="submit"
+                >Send</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- checked: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        checked:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.checked:outline .checked:outline-red-400</p>
+            <form class="p-3 border rounded">
+                <!-- Input 1 -->
+                <input
+                    class="checked:outline checked:outline-red-400" 
+                    name="radio-one"
+                    type="radio"
+                >
+                <label> Radio1 [normal]</label>
+                <!-- Input 2 -->
+                <input
+                    class="checked:outline checked:outline-red-400" 
+                    name="radio-one"
+                    type="radio"
+                    checked
+                >
+                <label> Radio2 [checked]</label> <br>
+                <!-- Input 3 -->
+                <div>
+                    <input
+                        class="
+                            checked:outline checked:outline-red-400
+                        "
+                        type="checkbox"
+                    >
+                    <label>Checkbox [normal]</label> <br>
+
+                    
+                    <input
+                        class="
+                            checked:outline checked:outline-red-400
+                        "
+                        type="checkbox" id="checkboxChecked"
+                        checked
+                    >
+                    <label>Checkbox [checked]</label>
+                </div>
+                <button
+                    class="bg-gray-200 block px-2 border rounded border-black mx-auto mt-1"
+                    type="submit"
+                >Send</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- default: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        default:
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.default:outline .default:outline-red-400</p>
+            <form class="p-3 border rounded">
+                <!-- Input 1 -->
+                <input
+                    class="default:outline default:outline-red-400" 
+                    name="radio-one"
+                    type="radio"
+                >
+                <label> Radio1 [normal]</label>
+                <!-- Input 2 -->
+                <input
+                    class="default:outline default:outline-red-400" 
+                    name="radio-one"
+                    type="radio"
+                    checked
+                >
+                <label> Radio2 [checked]</label> <br>
+                <!-- Input 3 -->
+                <div>
+                    <input
+                        class="
+                            default:outline default:outline-red-400
+                        "
+                        type="checkbox"
+                    >
+                    <label>Checkbox [normal]</label> <br>
+
+                    
+                    <input
+                        class="
+                            default:outline default:outline-red-400
+                        "
+                        type="checkbox" id="checkboxdefault"
+                        checked
+                    >
+                    <label>Checkbox [checked]</label>
+                </div>
+                <button
+                    class="bg-gray-200 block px-2 border rounded border-black mx-auto mt-1"
+                    type="submit"
+                >Send</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- file: -->
+    <h3 class="text-3xl mt-5 mb-2">
+        file:
+    </h3>
+    <p>
+        .file:bg-blue-500 .file:text-white ...
+    </p>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <label>Input: </label>
+            <input
+                class="
+                    file:bg-blue-500 file:text-white
+                    file:border file:rounded file:border-black
+                "
+                type="file" 
+            >
+        </div>
+    </div>
+
+
+    <!-- // -->
+    <h3 class="text-3xl mt-5 mb-2">
+        //
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3"></div>
+    </div>
+
+
+    <!-- // -->
+    <h3 class="text-3xl mt-5 mb-2">
+        //
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3"></div>
+    </div>
+
+</body>
+</html>

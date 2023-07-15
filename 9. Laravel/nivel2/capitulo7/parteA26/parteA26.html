@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 26</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Jetstream y Breeze</h1>
+	<h4 class="enlace-volver"><a href="../capitulo7.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que son? -->
+	<h3>Que son?</h3>
+	<p>
+		En muchos de nuestros proyectos vamos a nesecitar dar un servicio de autenticacion de usuarios.
+	</p>
+	<p>
+		Afortunadamente Laravel ya nos proporciona dos Kits de inicio para crear un Sistema de Autenticacion en nuestra aplicacion.
+	</p>
+	<p>
+		Estos sistemas ya traen muchas funcionalidades ya hechas como registrarse, inciar sesion, recuperar contrasenia... etc, para que nosotros podamos empezar a construir desde alli.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Instalar Breeze -->
+	<h3>Instalar Breeze</h3>
+	<p>
+		Para probar breeze he creado un nuevo proyecto de laravel: "breeze.test".
+	</p>
+	<p>
+		Breeze te brinda un sistema de autenticacion muy sencillo para tu aplicacion sin mucha complejidad. Entonces voy a instalar breeze con los siguientes comandos:
+	</p>
+	<!-- code -->
+	<code>
+		composer require laravel/breeze --dev <br><br>
+
+		php artisan breeze:install
+	</code>
+
+	<p>Estos comandos me han instalado breeze y de paso traen algunas vistas ya construidas con tailwind:</p>
+	<!-- code -->
+	<code>
+		views/ <br>&nbsp;&nbsp;&nbsp;
+			auth/ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				login.blade.php <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				register.blade.php <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				confirm-password.blade.php <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				... <br>&nbsp;&nbsp;&nbsp;
+			commponents <br>&nbsp;&nbsp;&nbsp;
+			layouts <br>&nbsp;&nbsp;&nbsp;
+			profile <br>&nbsp;&nbsp;&nbsp;
+			...
+	</code>
+
+	<p>
+		Ademas estas plantillas y componentes trabajan con sesiones, por lo que cuando instalamos breeeze debemos ejecutar las migraciones para tener las tablas nesesarias en la base de datos.
+	</p>
+	<p>Obiamente antes de migrar asegurate de configurar la conexion a un nueva base de datos.</p>
+
+	<p>
+		Breeze tambien nesecita dependencias de npm para funcionar, asi que debemos intalarlas:
+	</p>
+	<!-- code -->
+	<code>npm install</code>
+
+	<p>A continuacion vamos a ejecutar:</p>
+	<!-- code -->
+	<code>npm run dev</code>
+
+	<p>
+		Este comando va a crear un nuevo servidor de Vite (el nuevo compilador de laravel), el cual van a compilar todos los estilos y scripts que breeze nesesita en nuestro proyecto.
+	</p>
+	<!-- code -->
+	<code>
+		<strong>VITE</strong> <br><br>
+
+		Local:   http://localhost:5173/ <br>
+		➜  Network: use --host to expose <br>
+		➜  press h to show help
+	</code>
+
+	<p>
+		Si entras ahora al proyecto veras dos botones "login" y "register", que ya son funcionales. Lo unico que aun falta configurar es la recuperacion de contrasenia mediante correo electronico.
+	</p>
+	<p>
+		Para habilitarla simplemente hay que configurar nuestra aplicacion para que pueda enviar correos electronicos como ya lo hemos hecho, te lo dejo de tarea.
+	</p>
+	
+	
+	<!-- Jetstream -->
+	<h3>Jetstream</h3>
+	<p>
+		A diferencia de Breeze que esta hecho netamente con Blade y Tailwind, cuando uses Jestream debes elegir uno de los siguientes dos kits: Livewire o Inertia
+	</p>
+	<p>
+		Nesecitas un conocimiento mayor pero a cambio Jestream te agrega muchisimas mas funcionalidades en el kit de inicio para hacer autenticaciones mas complejas.
+	</p>
+	<p>
+		Por ahora solo vamos a instalarlo en un nuevo proyecto. Por cierto Jetstream tiene su propia a	<a href="https://jetstream.laravel.com/3.x/introduction.html">documentacion</a> oficial independiente de Laravel.
+	</p>
+
+
+	<!-- Instalacion de Jetstream -->
+	<h3>Instalacion de Jetstream</h3>
+	<p>
+		Primero instalamos el paquete de Jetstream. Aqui deberas elegir si usar Livewire o usar Inertia. Para trabajar con Livewire basta que conozcas Blade.
+	</p>
+	<p>
+		En cambio si deseas trabajar con Inertia deberias primero familiarizarte con algun framework de JavaScript (como React) para que puedas comprender como funciona. Aqui voy a usar Livewire.
+	</p>
+	<!-- code -->
+	<code>
+		composer require laravel/jetstream <br><br>
+
+		php artisan jetstream:install livewire <br><br>
+
+		npm install <br><br>
+
+		npm run build <br><br>
+
+		<strong>// No olvides primero configurar la conexion a una base de datos</strong> <br>
+		php artisan migrate
+	</code>
+
+	<p>
+		Hecho esto veras (al igual que breeze) los enlaces login y register, porque jetstream ya esta instalado.
+	</p>
+	<p>
+		Si exploras veras que este kit te da muchas mas funcionalidades, pero deberas aprender a usar Livewire. Si estas empezando quizas te convenga trabajar con Breeze para luego pasar a Jetstream.
+	</p>
+	
+	
+	<!-- Foto de perfil -->
+	<h3>Foto de perfil</h3>
+	<p>
+		Para habilitar la funcion de Foto de Perfil en Jetstream primero debemos ir al archivo config/jetstream.php, buscar la llave 'features' y descomentar la feature profilePhotos()
+	</p>
+	<!-- code -->
+	<code>
+		... <br><br>
+
+		'features' => [ <br>&nbsp;&nbsp;&nbsp;
+			// Features::termsAndPrivacyPolicy(), <br>&nbsp;&nbsp;&nbsp;
+			<strong>Features::profilePhotos(),</strong> <br>&nbsp;&nbsp;&nbsp;
+			// Features::api(), <br>&nbsp;&nbsp;&nbsp;
+			// Features::teams(['invitations' => true]), <br>&nbsp;&nbsp;&nbsp;
+			Features::accountDeletion(), <br>
+		], <br><br>
+
+		...
+	</code>
+	<p>
+		Despues debemos ejecutar el comando:
+	</p>
+	<!-- code -->
+	<code>php artisan storage:link</code>
+
+	<p>
+		Este comando creara un acceso directo en la carpeta /public/ hacia la carpeta donde jetstream guarda las fotos que suben los usuarios (/storage/app/public/) para que el frontend pueda acceder a las imagenes.
+	</p>
+
+	<p>
+		Ahora el problema es que el frontend esta buscando la foto en la ruta equivocada:
+	</p>
+	<!-- code -->
+	<code>
+		http://localhost/storage/profile-photos/oNSgvvNfM7G4q8Ks4oOnc3lZzU7dqPKtOu1aciD5.jpg
+	</code>
+
+	<p>
+		Para arreglar esto debemos configurar la variable de entorno <code>APP_URL</code> del archivo .env con la URL correcta de nuestra aplicacion:
+	</p>
+	<!-- code -->
+	<code>
+		APP_URL=http://jetstream.test
+	</code>
+
+	<p>Eso seria todo y ahora ya funciona!</p>
+
+	<p>
+		Tambien seria buena idea dejar definida la variable de entorno <code>FILESYSTEM_DISK</code> como public para luego poder guardar en ese disco mas cosas, no colo las imagenes:
+	</p>
+	<!-- code -->
+	<code>FILESYSTEM_DISK=public</code>
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

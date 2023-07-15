@@ -1,0 +1,57 @@
+-:hover
+:root
+:visited
+-:active
+::placeholder
+-:focus
+:before
+:after
+
+---------------------------------
+:root
+
+// Pseudo class
+:hover
+:focus
+:active
+:visited
+:selection
+
+// Pseudo Element
+:before
+:after
+:placeholder
+:marker
+
+// Parent State
+:first-child
+:last-child
+:nth-child(odd/even/function) -- :odd :even
+:nth-type(odd/even/function)
+:empty
+:only
+
+.group
+:group-{modifier}
+.group/[name]
+:group-{modifier}/[name]
+
+// Sibling State
+.peer
+:peer-{modifier} (only work in previus siblings)
+.peer/[name]
+.peer-{modifier}/[name]
+
+
+// Form States
+:invalid
+:required
+:read-only
+:disabled
+:enabled
+
+:indeterminate
+:checked
+:default
+
+:file

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 19</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Asignacion Masiva</h1>
+	<h4 class="enlace-volver"><a href="../capitulo5.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que es? -->
+	<h3>Que es?</h3>
+	<p>
+		Imagina que debes guardar un registro en la base de datos con 30 columnas.
+	</p>
+	<p>
+		De la forma en que estamos guardando los registros en los metodos store() y update() va a ser un dolor de dedos. La asignacion masiva permite guardar este tipo de registros mucho mas facil
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- create() -->
+	<h3>create()</h3>
+	<p>
+		Este es un metodo estatico del modelo que nos permite usar la asignacion masiva. El siguiente codigo hace exactamente lo mismo que ya veniamos haciendo:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>// Guardar registro</strong> <br>
+        $course = Course::create([ <br>&nbsp;&nbsp;&nbsp;
+            'name' => $request->name, <br>&nbsp;&nbsp;&nbsp;
+            'description' => $request->description, <br>&nbsp;&nbsp;&nbsp;
+            'image_url' => $request->image_url, <br>&nbsp;&nbsp;&nbsp;
+            'teacher' => $request->teacher <br>
+        ]); <br>
+        /* <br>
+        $course = new Course; <br><br>
+
+        $course->name = $request->name; <br>
+        $course->description = $request->description; <br>
+        $course->image_url = $request->image_url; <br>
+        $course->teacher = $request->teacher; <br><br>
+
+        $course->save(); <br>
+        */
+	</code>
+	
+	
+	<!-- all() -->
+	<h3>all()</h3>
+	<p>
+		El metodo all() del objeto $request puede ser usado para resumir aun mas guardar las propiedades
+	</p>
+	<!-- code -->
+	<code>
+		print_r($request->all()); <br><br>
+
+		/* <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			"_token": "abPJ6Lv15ysZHtwtnZPxMBpTk2fDyPXj8PwxgTcK", <br>&nbsp;&nbsp;&nbsp;
+			"name": "Curso de PHP avanzado", <br>&nbsp;&nbsp;&nbsp;
+			"description": "El mejor curso de PHP avanzado", <br>&nbsp;&nbsp;&nbsp;
+			"image_url": "www.img.com/1.jpg", <br>&nbsp;&nbsp;&nbsp;
+			"teacher": "Juandiego Flores" <br>
+		} <br>
+		*/
+	</code>
+
+	<p>Esta potente linea de codigo hace exactamente lo mismo que ya veniamos haciendo:</p>
+	<!-- code -->
+	<code>
+		<strong>
+			$course = Course::create($request->all());
+		</strong> <br><br>
+
+		/* <br>
+        $course = new Course; <br><br>
+
+        $course->name = $request->name; <br>
+        $course->description = $request->description; <br>
+        $course->image_url = $request->image_url; <br>
+        $course->teacher = $request->teacher; <br><br>
+
+        $course->save(); <br>
+        */
+	</code>
+
+	<p>El metodo create() va a ignorar automaticamente el atributo _token del array request</p>
+	
+	
+	<!-- Propiedad fillable -->
+	<h3>Propiedad fillable</h3>
+	<p>
+		Pero hacerlo de esta forma genera una grave falla de seguridad.
+	</p>
+	<p>
+		Al rellenar la tabla con las entradas que llegan de forma automatica, algun usuario puede deducir el nombre de una columna en nuestra tabla y llenarla sin permiso.
+	</p>
+	<p>
+		Por eso en el modelo debemos crear la propiedad protegida $fillable.
+	</p>
+	<p>
+		Esta propiedad es un array que contiene los nombres de las columnas que podran ser llenadas mediante asignacion masiva.
+	</p>
+	<!-- code -->
+	<code>
+		// Able to fill by bulk allocation <br>
+    	protected $fillable = ['name', 'description', 'image_url', 'teacher'];
+	</code>
+	
+	
+	<!-- Propiedad guarded -->
+	<h3>Propiedad guarded</h3>
+	<p>
+		Lo anterior soluciona nuestro problema. Ahora imagina que la tabla tiene 50 columnas permitidas y 1 no permitida, entonces en el modelo tendriamos que escribir las 50.
+	</p>
+	<p>
+		Para eso existe la propiedad $guarned. Es tambien un array en el modelo pero tiene el efecto contrario a fillable
+	</p>
+	<p>Esta propiedad especifica que columnas no pueden ser llenadas mediante asignacion masiva y solo tendriamos que escribir 1 columna.</p>
+	<!-- code -->
+	<code>protected $guarded = ['status'];</code>
+	
+	
+	<!-- update() -->
+	<h3>update()</h3>
+	<p>
+		Este metodo del modelo nos permite actualizar el registro, aqui tambien lo hacemos mediante asignacion masiva en el metodo update:
+	</p>
+	<!-- code -->
+	<code>
+		public function update(StoreCourse $request, Course $course) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>// Actualizar registro</strong> <br>&nbsp;&nbsp;&nbsp;
+			$course->update($request->all()); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return redirect()->route("courses.show", $course->id); <br>
+		}
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

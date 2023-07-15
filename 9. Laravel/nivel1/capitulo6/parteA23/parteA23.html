@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 23</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Agregar Navegacion</h1>
+	<h4 class="enlace-volver"><a href="../capitulo6.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- view() -->
+	<h3>view()</h3>
+	<p>
+		Este metodo solo lo vamos a usar cuando deseamos mostrar contenido estatico sin conexion a la base de datos.
+	</p>
+	<!-- code -->
+	<code>Route::view('nosotros', 'about')->name('about');</code>
+
+
+	<!-- dump() -->
+	<h3>dump()</h3>
+	<p>Este metodo sirve para mostrar un valor en documento (verter)</p>
+	<!-- code -->
+	<code>{{dump(true);}}</code>
+	
+	
+	<!-- Ruta actual -->
+	<h3>Ruta actual</h3>
+	<p>
+		Con los metodos request() y routeIs() podemos determinar cual es la ruta que esta activa actualmente.
+	</p>
+	<!-- code -->
+	<code>
+		request()->routeIs('route_name')
+	</code>
+
+	<p>
+		El metodo routeIs() recibe el nombre de la ruta y retorna true o false si esta activa o no lo esta.
+	</p>
+	
+	
+	<!-- Estilizar enlaces -->
+	<h3>Estilizar enlaces</h3>
+	<p>
+		Con lo anterior ya podemos estilizar los enlaces usando un condicional, dependiendo de cual seccion este activa:
+	</p>
+	<!-- code -->
+	<code>
+		&lt;a <br>&nbsp;&nbsp;&nbsp;
+			href="{{route('courses.index')}}" <br>&nbsp;&nbsp;&nbsp;
+			class=" <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				{{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					<strong>(request()->routeIs('courses.index') || request()->routeIs('courses.show')) ? 'active' : ''</strong> <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				}} <br>&nbsp;&nbsp;&nbsp;
+			" <br>
+		&gt;Principal&lt;/a&gt;
+	</code>
+	
+	
+	<!-- Modularizar template -->
+	<h3>Modularizar template</h3>
+	<p>
+		Vamos a mover la logica del menu de navegacion a otro archivo en la carpeta partials:
+	</p>
+	<!-- code -->
+	<code>views/layouts/partials/navigation.blade.php</code>
+
+	<p>
+		Copiamos y pegamos el menu en ese archivo, y lo incluimos en el template principal con la directiva @include():
+	</p>
+	<!-- code -->
+	<code>@include('layouts.partials.navigation')</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

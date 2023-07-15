@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="px-3">
+
+    <!-- Position -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Position
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-32">
+            <p>.static (by default)</p>
+            <div class="flex items-center justify-center w-32 h-32 border-2 rounded border-black bg-blue-300">
+                Element 1
+            </div>
+            <div class="static flex items-center justify-center box-sizing w-32 h-32 pr-1 border-2 rounded border-black bg-red-300">
+                Element 2
+            </div>
+            <div class="flex items-center justify-center w-32 h-32 border-2 rounded border-black bg-blue-300">
+                Element 3
+            </div>
+            <div class="flex items-center justify-center w-32 h-32 border-2 rounded border-black bg-blue-300">
+                Element 4
+            </div>
+        </div>
+        <div class="mr-32">
+            <p>.relative  .top-6 .left-2</p>
+            <div class="flex items-center justify-center w-32 h-32 border-2 rounded border-black bg-blue-300">
+                Element 1
+            </div>
+            <div class="relative top-6 left-2 flex items-center justify-center box-sizing w-32 h-32 pr-1 border-2 rounded border-black bg-red-300">
+                Element 2
+            </div>
+            <div class="flex items-center justify-center w-32 h-32 border-2 rounded border-black bg-blue-300">
+                Element 3
+            </div>
+            <div class="flex items-center justify-center w-32 h-32 border-2 rounded border-black bg-blue-300">
+                Element 4
+            </div>
+        </div>
+        <div class="mr-32">
+            <p>.absolute</p>
+            <div class="flex items-center justify-center w-32 h-32 border-2 rounded border-black bg-blue-300">
+                Element 1
+            </div>
+            <div class="absolute flex items-center justify-center box-sizing w-32 h-32 pr-1 border-2 rounded border-black bg-red-300">
+                Element 2
+            </div>
+            <div class="flex items-center justify-center w-32 h-32 border-2 rounded border-black bg-blue-300">
+                Element 3
+            </div>
+            <div class="flex items-center justify-center w-32 h-32 border-2 rounded border-black bg-blue-300">
+                Element 4
+            </div>
+        </div>
+        <div class="mr-32">
+            <p>.sticky .top-0</p>
+            <div class="flex items-center justify-center w-32 h-32 border-2 rounded border-black bg-blue-300">
+                Element 1
+            </div>
+            <div class="sticky top-0 flex items-center justify-center box-sizing w-32 h-32 pr-1 border-2 rounded border-black bg-red-300">
+                Element 2
+            </div>
+            <div class="flex items-center justify-center w-32 h-32 border-2 rounded border-black bg-blue-300">
+                Element 3
+            </div>
+            <div class="flex items-center justify-center w-32 h-32 border-2 rounded border-black bg-blue-300">
+                Element 4
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Top/right/bottom/left -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Top/right/bottom/left
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.top-11</p>
+            <div class="flex items-center justify-center w-48 h-48 border-2 rounded border-black bg-blue-300">
+                <div class="absolute flex items-center justify-center w-16 h-16 border-2 rounded border-dotted border-black text-sm">
+                    Element
+                </div>
+                <div class="top-11 relative flex items-center justify-center w-16 h-16 border-2 rounded border-black text-sm bg-pink-400">
+                    Element
+                </div>
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.right-11</p>
+            <div class="flex items-center justify-center w-48 h-48 border-2 rounded border-black bg-blue-300">
+                <div class="absolute flex items-center justify-center w-16 h-16 border-2 rounded border-dotted border-black text-sm">
+                    Element
+                </div>
+                <div class="right-11 relative flex items-center justify-center w-16 h-16 border-2 rounded border-black text-sm bg-pink-400">
+                    Element
+                </div>
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.bottom-11</p>
+            <div class="flex items-center justify-center w-48 h-48 border-2 rounded border-black bg-blue-300">
+                <div class="absolute flex items-center justify-center w-16 h-16 border-2 rounded border-dotted border-black text-sm">
+                    Element
+                </div>
+                <div class="bottom-11 relative flex items-center justify-center w-16 h-16 border-2 rounded border-black text-sm bg-pink-400">
+                    Element
+                </div>
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.left-11</p>
+            <div class="flex items-center justify-center w-48 h-48 border-2 rounded border-black bg-blue-300">
+                <div class="absolute flex items-center justify-center w-16 h-16 border-2 rounded border-dotted border-black text-sm">
+                    Element
+                </div>
+                <div class="left-11 relative flex items-center justify-center w-16 h-16 border-2 rounded border-black text-sm bg-pink-400">
+                    Element
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Inset -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Inset
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>.inset-11</p>
+            <div class="flex items-center justify-center w-48 h-48 border-2 rounded border-black bg-blue-300">
+                <div class="absolute flex items-center justify-center w-16 h-16 border-2 rounded border-dotted border-black text-sm">
+                    Element
+                </div>
+                <div class="inset-11 relative flex items-center justify-center w-16 h-16 border-2 rounded border-black text-sm bg-pink-400">
+                    Element
+                </div>
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.inset-x-11</p>
+            <div class="flex items-center justify-center w-48 h-48 border-2 rounded border-black bg-blue-300">
+                <div class="absolute flex items-center justify-center w-16 h-16 border-2 rounded border-dotted border-black text-sm">
+                    Element
+                </div>
+                <div class="inset-x-11 relative flex items-center justify-center w-16 h-16 border-2 rounded border-black text-sm bg-pink-400">
+                    Element
+                </div>
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>.inset-y-11</p>
+            <div class="flex items-center justify-center w-48 h-48 border-2 rounded border-black bg-blue-300">
+                <div class="absolute flex items-center justify-center w-16 h-16 border-2 rounded border-dotted border-black text-sm">
+                    Element
+                </div>
+                <div class="inset-y-11 relative flex items-center justify-center w-16 h-16 border-2 rounded border-black text-sm bg-pink-400">
+                    Element
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Display -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Display
+    </h3>
+    <!-- Example -->
+    <p>.block</p>
+    <div class="block text-center p-1 border-2 rounded border-black bg-blue-300">
+        Element
+    </div>
+    <div class="block text-center p-1 border-2 rounded border-black bg-blue-300">
+        Element
+    </div>
+    <div class="block text-center p-1 border-2 rounded border-black bg-blue-300">
+        Element
+    </div>
+
+    <p class="mt-3">.inline</p>
+    <div class="inline text-center p-1 border-2 rounded border-black bg-blue-300">
+        Element
+    </div>
+    <div class="inline text-center p-1 border-2 rounded border-black bg-blue-300">
+        Element
+    </div>
+    <div class="inline text-center p-1 border-2 rounded border-black bg-blue-300">
+        Element
+    </div>
+
+    <p class="mt-3">.inline-block .w-32 .h-32</p>
+    <div class="inline-block w-32 h-32 text-center p-1 border-2 rounded border-black bg-blue-300">
+        Element
+    </div>
+    <div class="inline-block w-32 h-32 text-center p-1 border-2 rounded border-black bg-blue-300">
+        Element
+    </div>
+    <div class="inline-block w-32 h-32 text-center p-1 border-2 rounded border-black bg-blue-300">
+        Element
+    </div>
+
+    
+    <!-- Z-Index -->
+    <h3 class="text-3xl mt-5 mb-2">
+        Z-Index
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3">
+            <p>Normal view</p>
+            <div class="z-0 relative block w-36 h-32 text-center p-1 border-2 rounded border-black bg-blue-300">
+                Element 1 .z-0
+            </div>
+            <div class="z-10 relative bottom-10 block w-32 h-32 text-center p-1 pt-12 border-2 rounded border-black bg-pink-300">
+                Element 2 .z-10
+            </div>
+        </div>
+        <div class="mr-3">
+            <p>Change z-index</p>
+            <div class="z-10 relative block w-36 h-32 text-center p-1 border-2 rounded border-black bg-blue-300">
+                Element 1 .z-10
+            </div>
+            <div class="z-0 relative bottom-10 block w-32 h-32 text-center p-1 pt-12 border-2 rounded border-black bg-pink-300">
+                Element 2 .z-0
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- // -->
+    <h3 class="text-3xl mt-5 mb-2">
+        //
+    </h3>
+    <!-- Example -->
+    <div class="flex mt-3">
+        <div class="mr-3"></div>
+    </div>
+
+</body>
+</html>

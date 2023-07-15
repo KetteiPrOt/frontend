@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 15</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Media Querys</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Ejemplos -->
+	<h3>Ejemplos</h3>
+	<p>
+		En el siguiente enlace estan los ejemplos:
+	</p>
+	<a href="ejemplo.html" target="_blank">Ejemplos</a>
+	<!-- code -->
+	<code></code>
+	
+
+	<!-- Breakpoints -->
+	<h3>Breakpoints</h3>
+	<p>
+		Tailwind maneja cinco breakpoints para crear disenios responsivos de forma similar a Bootstrap.
+	</p>
+	<!-- table -->
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Prefijo</th> <th>Ancho minimo</th> <th>CSS</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<code><em>None</em></code>
+				</td>
+				<td>
+					<code>0</code>
+				</td>
+				<td>
+					<code></code>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>sm:</code>
+				</td>
+				<td>
+					<code>640px</code>
+				</td>
+				<td>
+					<code>@media (min-width: 640px) { ... }</code>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>md:</code>
+				</td>
+				<td>
+					<code>768px</code>
+				</td>
+				<td>
+					<code>@media (min-width: 768px) { ... }</code>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>lg:</code>
+				</td>
+				<td>
+					<code>1024px</code>
+				</td>
+				<td>
+					<code>@media (min-width: 1024px) { ... }</code>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>xl:</code>
+				</td>
+				<td>
+					<code>1280px</code>
+				</td>
+				<td>
+					<code>@media (min-width: 1280px) { ... }</code>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>2xl:</code>
+				</td>
+				<td>
+					<code>1536px</code>
+				</td>
+				<td>
+					<code>@media (min-width: 1536px) { ... }</code>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+
+	<!-- First Mobile -->
+	<h3>First Mobile</h3>
+	<p>
+		Esto resulta que sea mas comodo realizar un disenio <em>first mobile</em>, y luego hacer las correcciones con los prefijos para adaptarlo a pantallas mas grandes.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+
+	<!-- Rangos -->
+	<h3>Rangos</h3>
+	<p>
+		Puedes establecer rangos de pantalla para aplicar una utilidad, usando los modificadores <code>max-*</code> junto a los prefijos de <em>breakpoints</em>. Por ejemplo:
+	</p>
+	<!-- code -->
+	<code>
+		.md:max-lg:text-left
+	</code> <br><br>
+
+	<p>Tabla de los <code>max-*</code> modificadores.</p>
+	<!-- table -->
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Modificador</th> <th>CSS</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<code>max-sm</code>
+				</td>
+				<td>
+					<code>@media not all and (min-width: 640px) { ... }</code>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>max-md</code>
+				</td>
+				<td>
+					<code>@media not all and (min-width: 768px) { ... }</code>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>max-lg</code>
+				</td>
+				<td>
+					<code>@media not all and (min-width: 1024px) { ... }</code>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>max-xl</code>
+				</td>
+				<td>
+					<code>@media not all and (min-width: 1280px) { ... }</code>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>max-2xl</code>
+				</td>
+				<td>
+					<code>@media not all and (min-width: 1536px) { ... }</code>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+	
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

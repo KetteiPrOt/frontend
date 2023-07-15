@@ -71,19 +71,103 @@
 		<style>
 			.flotarIzquierda {
 				float: left;
-				height: 300px;
+				height: 200px;
 			}
 		</style>
-		<p class="parrafo"><img class="flotarIzquierda" src="../../media/asuna.png">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, laudantium! Consequuntur fuga autem cum fugiat aliquam, natus qui sed odio non vel, tempore similique accusamus architecto quibusdam necessitatibus modi. Ullam eveniet, rem corporis, sint eos voluptate. Minus neque odit harum ipsum in consequuntur, aliquid nulla ipsa sint deleniti consectetur corrupti quia maiores. Assumenda perferendis tempora, odio sapiente labore nulla voluptatem?</p>
+		<p class="parrafo"><img class="flotarIzquierda" src="../../../media/asuna.png">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, laudantium! Consequuntur fuga autem cum fugiat aliquam, natus qui sed odio non vel, tempore similique accusamus architecto quibusdam necessitatibus modi. Ullam eveniet, rem corporis, sint eos voluptate. Minus neque odit harum ipsum in consequuntur, aliquid nulla ipsa sint deleniti consectetur corrupti quia maiores. Assumenda perferendis tempora, odio sapiente labore nulla voluptatem?</p>
 
 		<p>Flotar imagen a la derecha [right]</p>
 		<style>
 			.flotarDerecha {
 				float: right;
-				height: 300px;
+				height: 200px;
 			}
 		</style>
-		<p class="parrafo"><img class="flotarDerecha" src="../../media/asuna.png">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, laudantium! Consequuntur fuga autem cum fugiat aliquam, natus qui sed odio non vel, tempore similique accusamus architecto quibusdam necessitatibus modi. Ullam eveniet, rem corporis, sint eos voluptate. Minus neque odit harum ipsum in consequuntur, aliquid nulla ipsa sint deleniti consectetur corrupti quia maiores. Assumenda perferendis tempora, odio sapiente labore nulla voluptatem?</p>
+		<p class="parrafo"><img class="flotarDerecha" src="../../../media/asuna.png">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, laudantium! Consequuntur fuga autem cum fugiat aliquam, natus qui sed odio non vel, tempore similique accusamus architecto quibusdam necessitatibus modi. Ullam eveniet, rem corporis, sint eos voluptate. Minus neque odit harum ipsum in consequuntur, aliquid nulla ipsa sint deleniti consectetur corrupti quia maiores. Assumenda perferendis tempora, odio sapiente labore nulla voluptatem?</p>
+
+		
+		<!-- clear -->
+		<h3>clear</h3>
+		<p>
+			Impide que un elemento con la propiedad <em>float</em> se coloque a los lados.
+		</p>
+		<!-- code -->
+		<style>
+			.container {
+				width: 900px;
+				background-color: pink;
+				border: 1px solid black;
+				border-radius: 5px;
+			}
+
+			.image { 
+				border-radius: 5px;
+				margin: 3px;
+				vertical-align: top;
+			 }
+
+			.paragraph {
+				font-family: sans-serif;
+				background-color: skyblue;
+				border-radius: 5px;
+				margin: 0; padding: 5px;
+			}
+
+			.float-left { float: left; }
+
+			.float-right { float: right; }
+
+			.clear-both { clear: both; }
+
+			.clear-left { clear: left; }
+
+			.clear-right { clear: right; }
+
+			.clear-none { clear: none; }
+		</style>
+
+		<p>
+			No limpiar ni la derecha ni la izquierda [none]
+		</p>
+		<div class="container">
+			<img class="image float-left" src="../../../media/asuna.png">
+			<img class="image float-right" src="../../../media/asuna.png">
+			<p class="paragraph">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cumque, assumenda harum consequuntur veritatis tenetur omnis architecto eveniet quam tempora suscipit autem exercitationem officia itaque mollitia optio voluptatibus voluptatum error in. Recusandae, dicta possimus? Iusto minima laudantium nostrum veniam repellendus, necessitatibus similique quibusdam recusandae modi cum voluptatibus deleniti, qui quas harum aliquam porro rem quasi facere culpa placeat. Voluptate nemo quidem esse? Eligendi sit, inventore quasi voluptates rerum recusandae officiis iste soluta laboriosam incidunt quidem commodi exercitationem asperiores maxime odit adipisci quod quae sapiente qui. Rerum dicta alias nobis doloribus tenetur dolore minima illo! Autem odio velit quae ducimus reprehenderit quis? Qui voluptate ducimus maiores harum vitae nam facilis repudiandae ut deleniti, quod velit iure ratione saepe. Fuga, officiis laudantium!
+			</p>
+		</div>
+
+		<p>
+			Limpiar la izquierda [left]
+		</p>
+		<div class="container">
+			<img class="image float-left" src="../../../media/asuna.png">
+			<p class="paragraph clear-left">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cumque, assumenda harum consequuntur veritatis tenetur omnis architecto eveniet quam tempora suscipit autem exercitationem officia itaque mollitia optio voluptatibus voluptatum error in. Recusandae, dicta possimus? Iusto minima laudantium nostrum veniam repellendus, necessitatibus similique quibusdam recusandae modi cum voluptatibus deleniti, qui quas harum aliquam porro rem quasi facere culpa placeat. Voluptate nemo quidem esse? Eligendi sit, inventore quasi voluptates rerum recusandae officiis iste soluta laboriosam incidunt quidem commodi exercitationem asperiores maxime odit adipisci quod quae sapiente qui. Rerum dicta alias nobis doloribus tenetur dolore minima illo! Autem odio velit quae ducimus reprehenderit quis? Qui voluptate ducimus maiores harum vitae nam facilis repudiandae ut deleniti, quod velit iure ratione saepe. Fuga, officiis laudantium!
+			</p>
+		</div>
+
+		<p>
+			Limpiar la derecha [right]
+		</p>
+		<div class="container">
+			<img class="image float-right" src="../../../media/asuna.png">
+			<p class="paragraph clear-right">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cumque, assumenda harum consequuntur veritatis tenetur omnis architecto eveniet quam tempora suscipit autem exercitationem officia itaque mollitia optio voluptatibus voluptatum error in. Recusandae, dicta possimus? Iusto minima laudantium nostrum veniam repellendus, necessitatibus similique quibusdam recusandae modi cum voluptatibus deleniti, qui quas harum aliquam porro rem quasi facere culpa placeat. Voluptate nemo quidem esse? Eligendi sit, inventore quasi voluptates rerum recusandae officiis iste soluta laboriosam incidunt quidem commodi exercitationem asperiores maxime odit adipisci quod quae sapiente qui. Rerum dicta alias nobis doloribus tenetur dolore minima illo! Autem odio velit quae ducimus reprehenderit quis? Qui voluptate ducimus maiores harum vitae nam facilis repudiandae ut deleniti, quod velit iure ratione saepe. Fuga, officiis laudantium!
+			</p>
+		</div>
+
+		<p>
+			Limpiar la ambos [both]
+		</p>
+		<div class="container">
+			<img class="image float-right" src="../../../media/asuna.png">
+			<img class="image float-left" src="../../../media/asuna.png">
+			<p class="paragraph clear-both">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cumque, assumenda harum consequuntur veritatis tenetur omnis architecto eveniet quam tempora suscipit autem exercitationem officia itaque mollitia optio voluptatibus voluptatum error in. Recusandae, dicta possimus? Iusto minima laudantium nostrum veniam repellendus, necessitatibus similique quibusdam recusandae modi cum voluptatibus deleniti, qui quas harum aliquam porro rem quasi facere culpa placeat. Voluptate nemo quidem esse? Eligendi sit, inventore quasi voluptates rerum recusandae officiis iste soluta laboriosam incidunt quidem commodi exercitationem asperiores maxime odit adipisci quod quae sapiente qui. Rerum dicta alias nobis doloribus tenetur dolore minima illo! Autem odio velit quae ducimus reprehenderit quis? Qui voluptate ducimus maiores harum vitae nam facilis repudiandae ut deleniti, quod velit iure ratione saepe. Fuga, officiis laudantium!
+			</p>
+		</div>
+
 
 		<h3>text-decoration-line</h3>
 		<p>Permite agregar una linea decorativa al texto</p>
@@ -158,6 +242,76 @@
 		<p>Es un resumen de las tres propiedades anteriores</p>
 		<code>elemento { text-decoration: line style color }</code>
 
+
+		<!-- text-decoration-thickness -->
+		<h3>text-decoration-thickness</h3>
+		<p>
+			Controla el ancho de la decoracion establecida por la propiedad <em>text-decoration</em>.
+		</p>
+		<!-- code -->
+		<style>
+			.decoration-auto {
+				text-decoration-thickness: auto;
+			}
+
+			.decoration-from-font {
+				text-decoration-thickness: from-font;
+			}
+
+			.decoration-px {
+				text-decoration-thickness: 3px;
+			}
+		</style>
+
+		<p>
+			Valor por defecto [auto]
+		</p>
+		<p class="parrafo subrayado decoration-auto">
+			Lorem, ipsum dolor.
+		</p>
+
+		<p>
+			Toma el dato de la fuente, si no lo encuentra establece el valor <em>auto</em> [from-font]
+		</p>
+		<p class="parrafo subrayado decoration-from-font">
+			Lorem, ipsum dolor.
+		</p>
+
+		<p>
+			Valor en px [3px]
+		</p>
+		<p class="parrafo subrayado decoration-px">
+			Lorem, ipsum dolor.
+		</p>
+		
+		
+		<!-- Text Underline Offset -->
+		<h3>Text Underline Offset</h3>
+		<p>
+			Controla la distancia entre el texto y su subrayado establecido por la propiedad <em>text-decoration</em>.
+		</p>
+		<!-- code -->
+		<style>
+			.underline-auto { text-underline-offset: auto; }
+
+			.underline-px { text-underline-offset: 5px; }
+		</style>
+
+		<p>
+			Valor por defecto [auto]
+		</p>
+		<p class="parrafo subrayado underline-auto">
+			Lorem, ipsum dolor.
+		</p>
+
+		<p>
+			Dado por pixeles [5px]
+		</p>
+		<p class="parrafo subrayado underline-px">
+			Lorem, ipsum dolor.
+		</p>
+
+
 		<h3>font-family</h3>
 		<p>Permite cambiar la fuente de texto en un elemento</p>
 		<style>
@@ -213,23 +367,111 @@
 		</style>
 		<p class="parrafo estiloItalico">Lorem ipsum, dolor.</p>
 
-		<h3>white-space</h3>
-		<p>Controla la creacion de nuevas lineas de texto.</p>
-		<p>Normal (por defecto) [normal]. Crea nuevas lines para que entre todo el texto.</p>
-		<style>
-			.espacioNormal {
-				white-space: normal;
-			}
-		</style>
-		<p class="parrafo espacioNormal">Lorem ipsum, dolor, sit amet consectetur adipisicing elit. Eius dolores recusandae laboriosam exercitationem aperiam voluptatibus tempora, voluptates quasi molestias, vero vitae necessitatibus eveniet veritatis porro?</p>
 
-		<p>No espaciar [nowrap]. Impide que se cree nuevas lineas de texto, obligandolo a que se acomode en una sola.</p>
+		<!-- white-space -->
+		<h3>white-space</h3>
+		<p>
+			Define como se trataran los saltos de linea y espacios en el codigo, al renderizar el texto.
+		</p>
+		<!-- code -->
 		<style>
-			.espaciadoNo {
-				white-space: nowrap;
+			.mx-auto { margin: 0 auto; }
+
+			.mb-3 { margin-bottom: 10px; }
+
+			.text-blue {
+				color: blue;
+				font-size: 15px;
 			}
+
+			.whitespace-normal {white-space: normal; }
+
+			.whitespace-nowrap {white-space: nowrap; }
+
+			.whitespace-pre {white-space: pre; }
+
+			.whitespace-pre-line {white-space: pre-line; }
+
+			.whitespace-pre-wrap {white-space: pre-wrap; }
+
+			.whitespace-break-spaces {white-space: break-spaces; }
 		</style>
-		<p class="parrafo espaciadoNo">Lorem ipsum, dolor, sit amet consectetur adipisicing elit. Eius dolores recusandae laboriosam exercitationem aperiam voluptatibus tempora, voluptates quasi molestias</p>
+
+		<p>
+			[normal] El texto se envuelve y los espacios y saltos de linea se colapsan.
+		</p>
+<div class="container mx-auto">
+<div class="whitespace-normal">Hey everyone!
+
+It's almost 2022       and we still don't know if there       is aliens living among us, or do we? Maybe the person writing this is an alien.
+
+You will never know.</div>
+</div>
+
+		<p>
+			[nowrap] El texto no se envuelve y los espacios y saltos de linea se colapsan.
+		</p>
+<div class="container mx-auto">
+<div class="whitespace-nowrap">Hey everyone!
+
+It's almost 2022       and we still don't know if there       is aliens living among us, or do we? Maybe the person writing this is an alien.
+
+You will never know.</div>
+</div>
+
+		<p>
+			[pre] Preserva los espacios y saltos de linea del elemento. <strong>El texto no se envuelve</strong>.
+		</p>
+<div class="container mx-auto">
+<div class="whitespace-pre">Hey everyone!
+
+It's almost 2022       and we still don't know if there       is aliens living among us, or do we? Maybe the person writing this is an alien.
+
+You will never know.</div>
+</div>
+
+		<p>
+			[pre-line] Preserva los saltos de linea, pero no los espacios del elemento. El texto se envuelve.
+		</p>
+<div class="container mx-auto">
+<div class="whitespace-pre-line">Hey everyone!
+
+It's almost 2022       and we still don't know if there       is aliens living among us, or do we? Maybe the person writing this is an alien.
+
+You will never know.</div>
+</div>
+
+		<p>
+			[pre-wrap] Preserva los saltos de linea, pero no los espacios del elemento. <strong>El texto se envuelve</strong>.
+		</p>
+<div class="container mx-auto">
+<div class="whitespace-pre-wrap">Hey everyone!
+
+It's almost 2022       and we still don't know if there       is aliens living among us, or do we? Maybe the person writing this is an alien.
+
+You will never know.</div>
+</div>
+
+		<p>
+			[break-spaces] Igual que el anterior, pero aqui las tabulaciones no se quedan "colgando" ignoradas cuando rompen una linea para envolver el texto, sino que se pasan a la siguiente linea
+		</p>
+<div class="container mx-auto mb-3">
+<p>Con <em>pre-wrap</em>:</p>
+<div class="whitespace-pre-wrap">Hey everyone!
+
+It's almost 2022       and we still don't know if there loremloremloremloremloremloremloremloremloremloremloremloremlorem<span class="text-blue">-----&gt;</span>lorem       is <span class="text-blue">&lt;------</span> aliens living among us, or do we? Maybe the person writing this is an alien.
+
+You will never know.</div>
+</div>
+
+<div class="container mx-auto">
+<p>Con <em>break-spaces</em>:</p>
+<div class="whitespace-break-spaces">Hey everyone!
+
+It's almost 2022       and we still don't know if there loremloremloremloremloremloremloremloremloremloremloremloremlorem<span class="text-blue">-----&gt;</span>lorem       is <span class="text-blue">&lt;------</span> aliens living among us, or do we? Maybe the person writing this is an alien.
+
+You will never know.</div>
+</div>
 
 		<h3>writing-mode</h3>
 		<p>Controla la direccion en la que se escribe el texto.</p>

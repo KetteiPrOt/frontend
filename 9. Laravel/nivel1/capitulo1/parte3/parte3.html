@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 3</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Vistas [<em>Views</em>]</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Carpeta views -->
+	<h3>Carpeta views</h3>
+	<p>
+		En esta carpeta vamos a crear y almacenar las vistas. Ubicacion:
+	</p>
+	<!-- code -->
+	<code>/resourses/views/</code>
+
+
+	<!-- Sistema Blade -->
+	<h3>Sistema Blade</h3>
+	<p>Es un motor de plantillas HTML el cual me ahorrara mucho trabajo.</p>
+	<p>
+		Blade trabaja con <strong>directivas</strong> que realizan diferentes acciones con el codigo HTML.
+	</p>
+	<p>Las vistas que usen el Sistema Blade deben tener la extension de archivo <code>.blade.php</code>.</p>
+	
+	
+	<!-- @yield() -->
+	<h3>@yield()</h3>
+	<p>
+		Esta directiva establece una <strong>seccion</strong> en el documento HTML que cumple la funcion de ser una plantilla.
+	</p>
+	<p>
+		Despues esta <strong>seccion</strong> podra ser rellenada con <strong>datos mas especificos</strong> que vengan de otro documento HTML creando un documento final, donde me he ahorrado escribir el codigo de la plantilla.
+	</p>
+	<p>
+		Esta directiva recibe como parametro el nombre de la <strong>seccion</strong>.
+	</p>
+	<!-- code -->
+	<code>@yield("title")</code>
+
+
+	<!-- @extends() -->
+	<h3>@extends()</h3>
+	<p>
+		Esta directiva va al incio del documento HTML e indica que este es una extension de otro documento HTML, el cual cumple la funcion de ser una <strong>plantilla</strong>.
+	</p>
+	<p>
+		Recibe como argumento la <strong>direccion</strong> (<em>path</em>) de la <strong>plantilla</strong> dentro de la carpeta <code>...views/</code>. Este <em>path</em> lo esribo con la sintaxis especial de Blade.
+	</p>
+	<p>
+		En esta sintaxis reemplazo los slash (/) por puntos (.), y omito las extensiones de archivo. Por ejemplo si la vista es <code>/views/layouts/template.blade.php</code> en Blade seria:
+	</p>	
+	<!-- code -->
+	<code>@extends("layouts.template")</code>
+
+
+	<!-- @section() -->
+	<h3>@section()</h3>
+	<p>Esta directiva se coloca en los documentos que extienden las <strong>plantillas</strong>.</p>
+	<p>
+		La uso para inciar contenido de una <em>seccion</em>. Esta <em>seccion</em> contendra informacion mas especifica que servira para rellenar la plantilla y hacerla funcional.
+	</p>
+	<p>
+		Recibe como parametro el <strong>nombre de la <em>seccion</em></strong> que le corresponde rellenar en la <strong>plantilla</strong>.
+	</p>
+	<p>
+		Despues de esta linea coloco todo el contenido que deseo rellenar en la <em>seccion</em>, hasta cerrar la seccion con la directiva <em>@endsection()</em>.
+	</p>
+	<!-- code -->
+	<code>@section("content")</code>
+
+	<p>
+		<strong>Opcionalmente como segundo parametro</strong> recibe una cadena de texto la cual sera el contenido de la <em>seccion</em> en caso de pasarsela. Cuando haga esto no es nesesario que use la directiva <em>@endsection()</em>.
+	</p>
+	<!-- code -->
+	<code>@section("title", "Pagina Principal")</code>
+
+
+	<!-- @endsection() -->
+	<h3>@endsection()</h3>
+	<p>Esta directiva cierra una seccion. No recibe ningun parametro.</p>
+	<!-- code -->
+	<code>
+		@section("content") <br><br>&nbsp;&nbsp;&nbsp;
+
+			... <br><br>
+		
+		@endsection()
+	</code>
+	
+
+	<!-- @foreach -->
+	<h3>@foreach</h3>
+	<p>Crea un bucle foreach, sus parametros funcionan igual que en php</p>
+	<!-- code -->
+	<code>
+		@foreach ($array as $value) <br>&nbsp;&nbsp;&nbsp;
+			... <br>
+		@endforeach
+	</code>
+	
+	
+	<!-- Insertar Variable -->
+	<h3>Insertar Variable</h3>
+	<p>Para insertar una variable php en una plantilla blade usamos los simbolos:</p>
+	<!-- code -->
+	<code>{{$variable}}</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

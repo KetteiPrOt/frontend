@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 11</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Otras consultas</h1>
+	<h4 class="enlace-volver"><a href="../capitulo3.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- where() -->
+	<h3>where()</h3>
+	<p>Recibe el nombre de la columna donde aplicar el filtro y valor a buscar.</p>
+	<!-- code -->
+	<code>
+		$course = DB::table('courses')->where('name', 'JS')->get(); <br>
+		<strong>
+			// Object ( <br>
+			//&nbsp;&nbsp;&nbsp;&nbsp;[id] => 4 <br>
+			//&nbsp;&nbsp;&nbsp;&nbsp;[name] => JS <br>
+			//&nbsp;&nbsp;&nbsp;&nbsp;[description] => The best JS course <br>
+			//&nbsp;&nbsp;&nbsp;&nbsp;[image_url] => https://www.img.com/4.jpg <br>
+			//&nbsp;&nbsp;&nbsp;&nbsp;[teacher] => <br>
+			//&nbsp;&nbsp;&nbsp;&nbsp;[created_at] => 2023-05-09 00:01:00 <br>
+			//&nbsp;&nbsp;&nbsp;&nbsp;[updated_at] => 2023-05-09 00:01:00 <br>
+			// )
+		</strong>
+	</code>
+
+	<p>Adicionalmente soporta otro parametro, el operador de comparacion:</p>
+	<!-- code -->
+	<code>
+		$course = DB::table('courses') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ->select('name', 'id') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ->where('id', '&lt;', '4') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                       ->get(); <br><br>
+
+		<strong>
+			// Object (  <br>&nbsp;&nbsp;&nbsp;
+			// 	[items:protected] => Array ( <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+			// 		[0] => Object ( [name] => PHP [id] => 1 ) <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+			// 		[1] => Object ( [name] => HTML [id] => 2 ) <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+			// 		[2] => Object ( [name] => CSS [id] => 3 ) <br>&nbsp;&nbsp;&nbsp;
+			// 	) <br>
+			// )
+		</strong>
+	</code>
+
+	<p>Incluso puedes usar <strong><em>LIKE</em></strong> como operador de comparacion.</p>
+	
+	
+	<!-- orderBy() -->
+	<h3>orderBy()</h3>
+	<p>Ordena los resultados de la consulta segun el contenido de una columna.</p>
+	<p>
+		Recibe como segundo parametro para odenarlos de forma ascendente <em>asc</em>, o de forma descendente <em>desc</em>
+	</p>
+	<!-- code -->
+	<code>
+		$courses = DB::table('courses')->select('name', 'id') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+				->orderBy('name', 'asc') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+				->get(); <br><br>
+
+		print_r($courses); <br><br>
+
+		<strong>
+			// Object (  <br>
+			//&nbsp;&nbsp;[items:protected] => Array (  <br>
+			//&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;	[0] => Object ( [name] => CSS [id] => 3 ) <br>
+			//&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;	[1] => Object ( [name] => HTML [id] => 2 ) <br>
+			//&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;	[2] => Object ( [name] => JavaScript [id] => 5 ) <br>
+			//&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;	[3] => Object ( [name] => JS [id] => 4 ) <br>
+			//&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;	[4] => Object ( [name] => PHP [id] => 1 ) <br>
+			//&nbsp;&nbsp;) <br>
+			// )
+		</strong>
+	</code>
+	
+	
+	<!-- groupBy() -->
+	<h3>groupBy()</h3>
+	<p>
+		Agrupa las filas iguales de cualquier columna para que la consulta solo retorne resultados distintos en esa fila en caso de que se repitan.
+	</p>
+	<!-- code -->
+	<code>\
+		$courses = DB::table('courses')->select('name', 'id') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+				->groupBy('name') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+				->get(); <br><br>
+
+		print_r($courses);
+	</code>
+	
+	
+	<!-- limit() y offset() -->
+	<h3>limit() y offset()</h3>
+	<p>
+		Puedes usar estos metodos para limitar el numero de resultados en la consulta. Representan los valores de la clausula <code>LIMIT</code>
+	</p>
+	<!-- code -->
+	<code>
+		$users = DB::table('users') <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                ->offset(10) <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                ->limit(5) <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                ->get();
+	</code>
+
+
+	<!-- take() -->
+	<h3>take()</h3>
+	<p>
+		Podemos indica cuantos registros debe tener como maximo la consulta usando este metodo:
+	</p>
+	<!-- code -->
+	<code>
+		$users = DB::table('users')->take(5)->get();
+		// Trae solo 5 registros de la tabla
+	</code>
+	
+	
+	<!-- insert() -->
+	<h3>insert()</h3>
+	<p>Recibe un arreglo con los nombres de las columnas y sus valores</p>
+	<!-- code -->
+	<code>
+		DB::table('users')->insert([ <br>&nbsp;&nbsp;&nbsp; 
+			'email' => 'kayla@example.com', <br>&nbsp;&nbsp;&nbsp; 
+			'votes' => 0 <br>
+		]);
+	</code>
+	
+	
+	<!-- update() -->
+	<h3>update()</h3>
+	<p>Al igual que el metodo insert() acepta una arreglo con las columnas y sus nuevos valores.</p>
+	<!-- code -->
+	<code>
+		$affected = DB::table('users') <br>&nbsp;&nbsp;&nbsp; 
+              ->where('id', 1) <br>&nbsp;&nbsp;&nbsp; 
+              ->update(['votes' => 1]);
+	</code>
+	
+	
+	<!-- delete() -->
+	<h3>delete()</h3>
+	<p>Elimina un conjunto de registros.</p>
+	<!-- code -->
+	<code>
+		$deleted = DB::table('users')->delete(); <br><br>
+ 
+		$deleted = DB::table('users')->where('votes', '>', 100)->delete();
+	</code>
+
+
+	<!-- truncate() -->
+	<h3>truncate()</h3>
+	<p>Elimina todos los registros de una tabla y reinicia su ID</p>
+	<!-- code -->
+	<code>DB::table('users')->truncate();</code>
+	
+	
+	<!-- Mas metodos... -->
+	<h3>Mas metodos...</h3>
+	<p>
+		En la <a href="https://laravel.com/docs/10.x/queries">documentacion</a> hay muhos mas metodos para hacer cosas mucho mas increibles!
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+/*--- Completed
+Day 6/06: Create Dev Enviroment
+Day 7/06: Class 1; vid 1
+Day 8/06: Class 2.1; vid 2
+Day 9/06: Class 2.2; vid 2
+Day 10/06: Class 3; vid 3
+Day 11/06: Class 4; vid 4
+Day 12/06: Class 5; vid 5
+Day 13/06: Class 6; vid 7
+Day 14/06: Class 7; vid 8
+/*--- Pending
+Day 15/06: Class 8; vid 9
+Day 16/06: Class 9; vid 10
+/*--- New
+Day 17/06: Class 10; vid 11
+Day 18/06: Class 11; vid 13
+Day 19/06: Class 12.1; vid 14
+Day 20/06: Class 12.2; vid 14
+Day 21/06: Class 13; vid 15
+Day 22/06: Extra Class 1; vid 16
+Day 23/06: Extra Class 2; vid 17

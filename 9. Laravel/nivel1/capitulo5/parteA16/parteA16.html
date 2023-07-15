@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 16</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Actualizar y agregar registros</h1>
+	<h4 class="enlace-volver"><a href="../capitulo5.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Crear formulario -->
+	<h3>Crear formulario</h3>
+	<p>
+		Para recibir los datos creamos un formulario en la vista create.blade.php
+	</p>
+	<p>
+		A este formulario le indicamos la ruta que vamos a usar para manejar los datos enviados:
+	</p>
+	<!-- code -->
+	<code>&lt;form action="data_route" method="post"&gt; ... &lt;/form&gt;</code>
+	
+	
+	<!-- Crear Ruta -->
+	<h3>Crear Ruta</h3>
+	<p>Ahora creamos la ruta en el archivo de rutas administrada por el metodo store()</p>
+	<!-- code -->
+	<code>Route::post('/cursos', 'store')->name('courses.store');</code>
+	
+	
+	<!-- Token csrf -->
+	<h3>Token csrf</h3>
+	<p>
+		Como medida de seguridad laravel exige que al enviar informacion mediante el metodo POST se envie tambien un token csrf.
+	</p>
+	<p>
+		Puedes enviar este token automaticamente con blade usando dentro del formulario la directiva:
+	</p>
+	<!-- code -->
+	<code>@csrf</code>
+	
+	
+	<!-- Procesar solicitud -->
+	<h3>Procesar solicitud</h3>
+	<p>
+		Ahora que hemos enviado la informacion podemos recibirla en el controlador con el metodo store()
+	</p>
+	<p>
+		Este metodo recibira un objeto de clase Request, cuyo metodo all() contiene toda la informacion del formulario:
+	</p>
+	<!-- code -->
+	<code>
+		public function store(Request $request) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return $request->all(); <br>&nbsp;&nbsp;&nbsp;
+			<strong>
+				// {"_token":"btNo9nGyVlL9yN9CA7rrvafprTWQCWKepXFyzmyd","name":"d","description":"d","image_url":"d","teacher":"d"}
+			</strong> <br>
+		}
+	</code>
+
+	<p>Los datos especificos de la solicitud estan guardados como propiedades del objeto request:</p>
+	<!-- code -->
+	<code>
+		$request->name; <br>
+		$request->description; <br>
+		$request->image_url; <br>
+		$request->teacher;
+	</code>
+
+
+	<!-- Almacenar registro -->
+	<h3>Almacenar registro</h3>
+	<p>De esta forma ya podemos guardarlos en el la base de datos usando el modelo:</p>
+	<!-- code -->
+	<code>
+		$course = new Course; <br><br>
+
+        $course->name = $request->name; <br>
+        $course->description = $request->description; <br>
+        $course->image_url = $request->image_url; <br>
+        $course->teacher = $request->teacher; <br><br>
+
+        $course->save();
+	</code>
+	
+	
+	<!-- Redireccionar pagina -->
+	<h3>Redireccionar pagina</h3>
+	<p>
+		Una vez hemos guardado el registro podemos mostrarlo redireccionando a la vista show.blade.php con el metodo redirect() y nuestro metodo show()
+	</p>
+	<!-- code -->
+	<code>
+		public function store(Request $request) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$course = new Course; <br><br>&nbsp;&nbsp;&nbsp;
+
+			... <br><br>&nbsp;&nbsp;&nbsp;
+
+			$course->save(); <br><br>&nbsp;&nbsp;&nbsp;
+
+			// return $request->all(); <br>&nbsp;&nbsp;&nbsp;
+			return redirect()->route("courses.show", $course->id); <br>
+		}
+	</code>
+	
+	
+	<!-- Editar registro -->
+	<h3>Editar registro</h3>
+	<p>
+		Primero creamos una ruta llamada courses.edit, la cual va a ser administrada por el metodo edit() y va a recibir el parametro course:
+	</p>
+	<!-- code -->
+	<code>Route::get('/cursos/{course}/editar', 'edit')->name('courses.edit');</code>
+
+	<p>Agregamos el enlace al final de la vista show para movernos hacia la ruta courses.edit</p>
+	<!-- code -->
+	<code>
+		&lt;a href="{{route("courses.edit", $course)}}"&gt; <br>&nbsp;&nbsp;&nbsp;
+			Editar registro <br>
+		&lt;/a&gt;
+	</code>
+
+	<p>En el controlador recuperamos el registro de la siguiente forma:</p>
+	<!-- code -->
+	<code>
+		public function edit(Course $course) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			print_r($course->name); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return; <br>
+		}
+	</code>
+
+	<p>
+		Esta es una sintaxis equivalente a como recuperamos el registro en el metodo show(), ahora podemos darselo a la vista edit():
+	</p>
+	<!-- code -->
+	<code>
+		public function edit(Course $course) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return view("courses.edit", compact("course")); <br>
+		}
+	</code>
+	
+	
+	<!-- Vista edit -->
+	<h3>Vista edit</h3>
+	<p>En esta vista creamos el formulario que muestre los valores actuales y permita editar el registro.</p>
+	<p>
+		Laravel recomienda que cuando actualizemos un registro lo hagamos mediante el metodo put, asi que debemos usar la directiva blade @method dentro el formulario:
+	</p>
+	<!-- code -->
+	<code>
+		&lt;form action="{{route('courses.update', $course->id)}}" method="post"&gt; <br><br>&nbsp;&nbsp;&nbsp;
+
+			@csrf <br><br>&nbsp;&nbsp;&nbsp;
+
+			<strong>@method('put')</strong> <br><br>&nbsp;&nbsp;&nbsp;
+
+				... <br><br>
+
+		&lt;/form&gt;
+	</code>
+	
+	
+	<!-- Procesar edicion -->
+	<h3>Procesar edicion</h3>
+	<p>Para procesar el formualrio vamos a usar la ruta put course.update</p>
+	<!-- code -->
+	<code>Route::put('/cursos/{course}', 'update')->name('courses.update');</code>
+
+	<p>
+		Asi que en el controladore creamos el metodo update(), donde vamos a recuperar la nueva informacion del registro y actualizarla en la base de datos
+	</p>
+	<!-- code -->
+	<code>
+		public function update(Request $request, Course $course) <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			$course->name = $request->name; <br>&nbsp;&nbsp;&nbsp;
+			$course->description = $request->description; <br>&nbsp;&nbsp;&nbsp;
+			$course->image_url = $request->image_url; <br>&nbsp;&nbsp;&nbsp;
+			$course->teacher = $request->teacher; <br><br>&nbsp;&nbsp;&nbsp;
+
+			$course->save(); <br><br>&nbsp;&nbsp;&nbsp;
+
+			return redirect()->route("courses.show", $course->id); <br>
+		}
+	</code>
+
+	<p>Y toma ay esta tu CRUD xd</p>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

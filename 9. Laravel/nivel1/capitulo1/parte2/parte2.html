@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 2</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Controladores [<em>Controller</em>]</h1>
+	<h4 class="enlace-volver"><a href="../capitulo1.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Crear un controlador -->
+	<h3>Crear un controlador</h3>
+	<p>PHP artisan me ayuda con la creacion automatica e un controlador desde la terminal:</p>
+	<!-- code -->
+	<code>php <em>artisan</em> make:controller <strong>controller_name</strong></code>
+
+	<p>
+		Ejemplos del <em>controller_name</em>: <em>UserController</em>, <em>CourseController</em>, <em>HomeController</em>...
+	</p>
+
+
+	<!-- Metodo __invoke() -->
+	<h3>Metodo <em>__invoke()</em></h3>
+	<p>
+		Este metodo se ejecuta cuando no le hemos especificado ningun otro metodo a la ruta, es el metodo por defecto (los controladores con estos metodos se llaman "controladores invocables").
+	</p>
+	<!-- code -->
+	<code>
+		public function __invoke() { ... }
+	</code>
+
+
+	<!-- Crear Metodos -->
+	<h3>Crear Metodos</h3>
+	<p>
+		Los controladores son clases encargadas de administrar las peticiones de usuarios, para ello utilizan metodos.
+	</p>
+	<p>
+		Aqui hay tres rutas de ejemplo y tres metodos de un controlador que responden a cada una de ellas:
+	</p>
+	<!-- code -->
+	<table class="tabla">
+		<thead>
+			<tr>
+				<th>Ruta</th> <th>Metodo</th> <th>Descripcion</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>/courses</td> <td>index()</td> <td>Es la pagina principal</td>
+			</tr>
+			<tr>
+				<td>/courses/create</td> <td>create()</td> <td>Es donde se pueden crear nuevos elementos</td>
+			</tr>
+			<tr>
+				<td>/courses/{course}</td> <td>show()</td> <td>Es donde podemos visializar elementos</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<!-- Metodo view() -->
+	<h3>Metodo <em>view()</em></h3>
+	<p>
+		Uso este metodo para que el controlador retorne una vista. Recibe <strong>dos argumentos</strong>:
+	</p>
+	<p>
+		Primero la <strong>direccion de la vista</strong> o camino (<em>path</em>) dentro de la carpeta <code>/resourses/views/</code>. Este <em>path</em> lo esribo con la sintaxis de Blade, por ejemplo si la vista es <code>/views/layouts/template.blade.php</code> en Blade seria:
+	</p>
+	<!-- code -->
+	<code>"layouts.template"</code>
+
+	<p>
+		El segundo (opcionalmente) son los <strong>datos que deseo incluir</strong> en la vista. Estos datos deben ser entregados en un arreglo compacto, el cual puedo crear con la funcion <em>compact()</em>.
+	</p>
+	<!-- code -->
+	<code>
+		$anime = "Sword Art Online"; <br><br>
+
+		return view("video.seeAnime", compact("anime"));
+	</code>
+
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

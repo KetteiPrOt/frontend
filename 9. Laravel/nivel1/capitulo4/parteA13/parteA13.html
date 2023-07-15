@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 13</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Factory's</h1>
+	<h4 class="enlace-volver"><a href="../capitulo4.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Para que sirven -->
+	<h3>Para que sirven</h3>
+	<p>
+		Se van a encargar de llenar nuestra base de datos con datos de prueba, solo debemos indicarle con que tipo y la cantidad de informacion que deseamos llenar.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Crear Factory -->
+	<h3>Crear Factory</h3>
+	<p>
+		Usamos el comando:
+	</p>
+	<!-- code -->
+	<code>php artisan make:factory <em>factory_name</em></code>
+
+	<p>
+		El <em>factory_name</em> de una Factory que va a rellenar la tabla courses seria <em>CourseFactory</em>, y solo deberiamos <em>usar</em> el modelo y definir la propiedad model con su Namespace:
+	</p>
+	<!-- code -->
+	<code>
+		<strong>use App\Models\Course;</strong> <br><br>
+
+		class CourseFactory extends Factory <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			<strong>protected $model = Course::class;</strong> <br><br>&nbsp;&nbsp;&nbsp;
+
+			public function definition(): array <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				... <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+	
+	
+	<!-- definition() -->
+	<h3>definition()</h3>
+	<p>
+		Aqui vamos a retornar un arreglo que contenga todas las columnas no genericas de la tabla.
+	</p>
+	<!-- code -->
+	<code>
+		public function definition(): array <br>
+		{ <br>&nbsp;&nbsp;&nbsp;
+			return [ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				'name', <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				'description', <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				'image_url', <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				'teacher' <br>&nbsp;&nbsp;&nbsp;
+			]; <br>
+		}
+	</code>
+	
+	
+	<!-- Propiedad faker -->
+	<h3>Propiedad faker</h3>
+	<p>
+		Usando las columnas como claves literales del arreglo, vamos a usar el metodo faker() de la Clase Factory como los valores:
+	</p>
+	<!-- code -->
+	<code>
+		return [ <br>&nbsp;&nbsp;&nbsp;
+            'name' => $this->faker, <br>&nbsp;&nbsp;&nbsp;
+            'description' => $this->faker, <br>&nbsp;&nbsp;&nbsp;
+            'image_url' => $this->faker, <br>&nbsp;&nbsp;&nbsp;
+            'teacher' => $this->faker <br>
+        ];
+	</code>
+	
+	
+	<!-- word() -->
+	<h3>word()</h3>
+	<p>Rellena las filas con una palabra:</p>
+	<!-- code -->
+	<code>
+		return [ <br>&nbsp;&nbsp;&nbsp;
+            'name' => $this->faker->word(), <br>&nbsp;&nbsp;&nbsp;
+			... <br>
+        ];
+	</code>
+
+
+	<!-- paragraph() -->
+	<h3>paragraph()</h3>
+	<p>Rellena las filas con parrafos:</p>
+	<!-- code -->
+	<code>
+		return [ <br>&nbsp;&nbsp;&nbsp;
+			... <br>&nbsp;&nbsp;&nbsp;
+            'description' => $this->faker->paragraph(), <br>&nbsp;&nbsp;&nbsp;
+			... <br>
+        ];
+	</code>
+	
+	
+	<!-- sentence() -->
+	<h3>sentence()</h3>
+	<p>Rellena las filas con oraciones:</p>
+	<!-- code -->
+	<code>
+		return [ <br>&nbsp;&nbsp;&nbsp;		
+			... <br>&nbsp;&nbsp;&nbsp;
+            'image_url' => $this->faker->sentence(), <br>&nbsp;&nbsp;&nbsp;
+			... <br>
+        ];
+	</code>
+
+
+	<!-- randomElement() -->
+	<h3>randomElement()</h3>
+	<p>Rellena de forma aleatroria con datos que le pasemos mediante un arreglo:</p>
+	<!-- code -->
+	<code>
+		return [ <br>&nbsp;&nbsp;&nbsp;
+			... <br>&nbsp;&nbsp;&nbsp;
+            'teacher' => $this->faker->randomElement(['Profesor1', 'Profesor2', 'Profesor3']) <br>
+        ];
+	</code>
+
+
+	<!-- Documentacion de Faker -->
+	<h3>Documentacion de Faker</h3>
+	<p>
+		La documentacion completa con todos los metodos de la libreria Faker se encuentra <a href="https://fakerphp.github.io/">aqui ;)</a>.
+	</p>
+
+
+	<!-- Usar la Factory -->
+	<h3>Usar la Factory</h3>
+	<p>
+		Para usar nuestra fabrica debemos <em>usar</em> el modelo en nuestro seeder y llamar al metodo <em>factory()</em>
+	</p>
+	<p>El metodo factory() recibe el numero de filas que deseamos agregar, finalmente acabamos con el metodo <em>create()</em></p>
+	<!-- code -->
+	<code>
+		class DatabaseSeeder extends Seeder { <br>&nbsp;&nbsp;&nbsp;
+			public function run(): void <br>&nbsp;&nbsp;&nbsp;
+			{ <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+				Course::factory(50)->create(); <br>&nbsp;&nbsp;&nbsp;
+			} <br>
+		}
+	</code>
+
+	<p>Ahora la tabla se rellenara con datos de prueba al ejecutar el seeder.</p>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>

@@ -121,7 +121,7 @@
 			didactica del apartado,	no le des importancia*/
 			.cajaPosicionamiento {
 				background-color: skyblue;
-				width: 30%;
+				width: 450px;
 				height: 250px;
 				border: 3px solid black;
 				border-radius: 5px;
@@ -132,7 +132,7 @@
 				height: 100px;
 				border: 3px dashed black;
 				border-radius: 5px;
-				margin-left: 147px;
+				margin-left: 173px;
 				margin-top: 67px;
 				position: absolute;
 			}
@@ -201,6 +201,42 @@
 			<div class="marcadorPosicion"></div>
 			<div class="elementoMover izquierda">Elemento</div>
 		</div>
+
+
+		<!-- inset -->
+		<h3>inset</h3>
+		<p>
+			Abreviacion de las anteriores propiedades: <em>top/left</em>.
+		</p>
+
+		<style>
+			.i-top { inset: 50px 0; }
+
+			.i-left { inset: 0 50px; }
+
+			.inset { inset: 50px; }
+		</style>
+		<p>[50px 0] Controla <em>top</em>.</p>
+		<!-- code -->
+		<div class="cajaPosicionamiento">
+			<div class="marcadorPosicion"></div>
+			<div class="elementoMover i-top">Elemento</div>
+		</div>
+
+		<p>[0 50px] Controla <em>left</em>.</p>
+		<!-- code -->
+		<div class="cajaPosicionamiento">
+			<div class="marcadorPosicion"></div>
+			<div class="elementoMover i-left">Elemento</div>
+		</div>
+
+		<p>[50px] Controla <em>top/left</em>.</p>
+		<!-- code -->
+		<div class="cajaPosicionamiento">
+			<div class="marcadorPosicion"></div>
+			<div class="elementoMover inset">Elemento</div>
+		</div>
+
 
 		<h3>display</h3>
 		<p>Controla la manera en la que se organizan en pantalla los elementos</p>

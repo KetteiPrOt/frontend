@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 30</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Middlewares</h1>
+	<h4 class="enlace-volver"><a href="../capitulo8.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que son? -->
+	<h3>Que son?</h3>
+	<p>
+		Los middlewares proporcionan un mecanismo conveniente para filtrar solicitudes HTTP. Por ejemplo, si un usuario no esta autentificado, un middlewire se encargara de detener la solicitud y redirigir al usuario a la pagina login.
+	</p>
+	<p>
+		Otro ejemplo es la proteccion con tokens csrf.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!-- Crear Middelware -->
+	<h3>Crear Middelware</h3>
+	<p>
+		Para crear un middleware usamos el siguiente comando:
+	</p>
+	<!-- code -->
+	<code>php artisan make:middleware <em>middleware_name</em></code>
+
+	<p>
+		Voy a crear uno que verifique la edad, asi que le llamare <em>CheckAge</em>. Enotnces se ha creado el siguiente archivo:
+	</p>
+	<!-- code -->
+	<code>/app/Http/Middleware/CheckAge.php</code>
+	
+
+	<!-- Registrar Middleware -->
+	<h3>Registrar Middleware</h3>
+	<p>
+		Ahora que hemos creado un Middleware debemos registrarlo en el nucleo de la aplicacion para que cumpla su funcion de filtrar las peticiones HTTP.
+	</p>
+	<p>
+		Vamos al archivo <code>/app/Http/Kernel.php</code> y alli vamos a la ultima propiedad "$middlewareAliases", donde vamos a registrar nuestro middleware.
+	</p>
+	<p>
+		Primero le damos un nombre identificativo o alias y despues le damos como valor el namespace de la clase:
+	</p>
+	<!-- code -->
+	<code>'age' => App\Http\Middleware\CheckAge::class,</code>
+
+	<p>
+		De esta manera ya le hemos indicado a laravel que esta clase es un Middleware.
+	</p>
+	
+	
+	<!-- Usar Middleware -->
+	<h3>Usar Middleware</h3>
+	<p>
+		Ahora para hacer que filtre las solicitudes de una ruta debemos usar el metodo <em>middleware()</em> y parasarle el alias del Middleware:
+	</p>
+	<!-- code -->
+	<code>
+		Route::get('/adultos', function () { <br>&nbsp;&nbsp;&nbsp;
+			echo 'Has ingresado!'; <br>
+		})-><strong>middleware('age')</strong>;
+	</code>
+	
+	
+	<!-- Filtrar Solicitudes -->
+	<h3>Filtrar Solicitudes</h3>
+	<p>
+		En nuestro Middleware vamos a encontrar el metodo <em>handle()</em> que recibe el parametro <em>$request</em> (la solicitud HTTP) y el parametro <em>$next</em> de Clase <em>Clousure</em> (Cierre).
+	</p>
+	<p>
+		Entonces en base a lo que definamos en el metodo handle() podremos interceptar la solicitud HTTP y decidir que hacer con ella.
+	</p>
+	<!-- code -->
+	<code></code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+</body>
+</html>
