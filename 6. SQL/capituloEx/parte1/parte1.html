@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Parte 1</title>
+	<link rel="icon" href="../../../media/book.ico">
+	<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+	<h1 class="titulo-principal">Tablas Temporales</h1>
+	<h4 class="enlace-volver"><a href="../capituloX.html">Volver al capitulo</a></h4>
+	<hr>
+
+	<!-- Que son? -->
+	<h3>Que son?</h3>
+	<p>
+		Es una tabla solo visible para la sesion actual, no puede ser vista ni tampoco, consultada por procesos o consultas fuera de la sesion en la que se declara.
+	</p>
+	<p>
+		Solo estan disponibles para la conexion actual y son invisibles para otras conexiones.
+	</p>
+
+	<!-- Usos -->
+	<h4>Usos</h4>
+	<p>
+		Las tablas temporales se usan en:
+	</p>
+	<style>
+		.mb-3 li { margin-bottom: 10px; }
+	</style>
+	<ol class="mb-3">
+		<li>
+			<strong>Procesamiento intermedio:</strong>
+			almacenan resultados intermedios de una consulta compleja antes de que se procesen y se vuelvan a insertar en una tabla permanente.
+		</li>
+		<li>
+			<strong>Manipulación de datos:</strong> 
+			permiten almacenar y manipular datos antes de que se inserten en una tabla permanente. Esto es útil para tareas como la eliminación de duplicados, la limpieza de datos y la realización de cálculos complejos.
+		</li>
+		<li>
+			<strong>Almacenamiento temporal de resultados:</strong>
+			Permiten almacenar resultados de una consulta que se usarán en otra parte de la aplicación o en otra consulta.
+		</li>
+		<li>
+			<strong>Almacenamiento temporal de datos en transacciones:</strong> 
+			Almacenan datos en una transacción antes de que se confirmen o se reviertan los cambios.
+		</li>
+	</ol>
+	<!-- codigo -->
+	<code></code>
+
+	<!-- Tipos de Tabla Temporal -->
+	<h3>Tipos de Tabla Temporal</h3>
+	<p>
+		Existen dos tipos: tablas temporales de sesion, y tablas temporales de transaccion.
+	</p>
+	<p>
+		Las <strong>tablas de sesion</strong> se crean en la sesion actual y se eliminan una vez que termina la sesion o se corta la conexion con la base de datos.
+	</p>
+	<p>
+		Las <strong>tablas de transaccion</strong> estan asociadas a una transaccion, se crean al inicio de esta transaccion y se eliminan automaticamente al finalizarla. Esto permite recuperar el estado inicial de los datos si algo falla en la transaccion.
+	</p>
+	<!-- codigo -->
+	<code></code>
+
+
+	<!-- Crear una tabla temporal -->
+	<h3>Crear una tabla temporal</h3>
+	<p>
+		Las <strong>tablas de sesion</strong> crear similar a una tabla normal:
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>CREATE TEMPORARY TABLE</strong> temp_table_name ( <br>&nbsp;&nbsp;&nbsp;
+			column1 data_type, <br>&nbsp;&nbsp;&nbsp;
+			column2 data_type, <br>&nbsp;&nbsp;&nbsp;
+			... <br>
+		);
+	</code>
+
+	<p>
+		En las <strong>tablas de transaccion</strong> es nesesario usar el motor InnoDB que es compatible con las transacciones:
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>CREATE TEMPORARY TABLE</strong> temp_table_name ( <br>&nbsp;&nbsp;&nbsp;
+			column1 data_type, <br>&nbsp;&nbsp;&nbsp;
+			column2 data_type, <br>&nbsp;&nbsp;&nbsp;
+			... <br>
+		) <strong>ENGINE=InnoDB</strong>;
+	</code>
+
+
+	<!-- Agregar Indices -->
+	<h3>Agregar Indices</h3>
+	<p>
+		Lo hacemos despues de crear la tabla:
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>CREATE TEMPORARY TABLE</strong> temp_table ( <br>&nbsp;&nbsp;&nbsp;
+			... <br>
+		); <br><br>
+
+		<strong>CREATE INDEX</strong> index_name <strong>ON</strong> temp_table (column1, column2, ...);
+	</code>
+
+
+	<!-- Crear con datos prexistentes -->
+	<h3>Crear con datos prexistentes</h3>
+	<p>
+		Podemos crear una tabla temporal que contentga los datos de una consulta <strong>SELECT</strong>:
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>CREATE TEMPORARY TABLE</strong> nombre_tabla_temporal 
+			<strong>AS</strong> (<strong>SELECT</strong> * <strong>FROM</strong> nombre_tabla_existente);
+	</code>
+
+	<p>
+		Imagino que tambien podemos hacer una copia de otra tabla con <strong>LIKE</strong>:
+	</p>
+	<!-- codigo -->
+	<code>
+		<strong>CREATE TEMPORARY TABLE</strong> nombre_tabla_temporal 
+			<strong>LIKE</strong> nombre_tabla_existente;
+	</code>
+	
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- codigo -->
+	<code></code>
+
+</body>
+</html>

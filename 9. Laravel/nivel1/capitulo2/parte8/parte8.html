@@ -198,7 +198,10 @@
 				<td>$table->restrictOnDelete();</td> <td>->onDelete('restrict');</td>
 			</tr>
 			<tr>
-				<td>$table->nullOnDelete();</td> <td>->onDelete('null');</td>
+				<td>$table->nullOnDelete();</td> <td>->onDelete('set null');</td>
+			</tr>
+			<tr>
+				<td>$table->noActionOnDelete();</td> <td>->onDelete('no action');</td>
 			</tr>
 		</tbody>
 	</table>

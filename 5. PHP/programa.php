@@ -1,7 +1,7 @@
 <?php
     declare(strict_types = 1);
 
-    $variable = "Information of variable";
+    $variable = 'Hola mundo';
 ?>
 
 <!DOCTYPE html>

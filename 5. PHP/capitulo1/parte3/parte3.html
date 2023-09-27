@@ -75,6 +75,26 @@
 	</table>
 
 
+	<!-- Fusion de null -->
+	<h3>Fusion de null</h3>
+	<p>
+		Sirve como aliciente sintactico para el cuando comunmente se nesecita usar un operador tenario con la funcion <code>isset()</code>.
+	</p>
+	<p>
+		Entonces esto:
+	</p>
+	<!-- code -->
+	<code>
+		$userName = $_GET['user'] ?? 'nadie';
+	</code>
+
+	<p>Equivale a esto:</p>
+	<!-- code -->
+	<code>
+		$userName = isset($_GET['user']) ? $_GET['user'] : 'nadie';
+	</code>
+
+
 	<!-- Operadores Aritmeticos -->
 	<h3>Operadores Aritmeticos</h3>
 	<table class="tabla">
