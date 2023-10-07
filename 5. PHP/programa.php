@@ -1,7 +1,7 @@
 <?php
     declare(strict_types = 1);
 
-    $variable = 'Hola mundo';
+    $variable['key'] = 'Value';
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
 <body>
     <p>
         <?php
-            echo $variable;
+            echo $variable['key'];
         ?>
     </p>
 </body>
