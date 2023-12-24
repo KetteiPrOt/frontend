@@ -1,0 +1,52 @@
+* { font-family: sans-serif; }
+
+h1 { text-align: center; }
+
+h2 {
+	text-align: center;
+	margin-top: 70px;
+	color: rgb(95.625, 95.625, 255);
+}
+
+h3 { margin-top: 75px; }
+
+h3::before { content: '/* ---- '; }
+
+h3::after { content: ' ---- */'; }
+
+p {
+	line-height: 30px;
+	width: 40%;
+	margin-right: 10px;
+}
+
+code,
+code > em,
+code > strong { font-family: monospace; }
+
+code { color: rgb(150, 0, 0); }
+
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+table td, table th {
+	border: 1px solid black;
+	padding: 10px;
+	font-family: sans-serif;
+}
+
+.return {
+    display: block;
+    text-align: center;
+}
+
+.index-list a {
+	color: black;
+	text-decoration: none;
+}
+
+.block { display: block; }
+
+.inline-block { display: inline-block; }

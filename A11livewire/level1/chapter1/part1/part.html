@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Livewire</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+	<h1>
+        Capítulo 1
+		<br>
+		Parte 1
+        <br>
+        <span id="c1p1"></span>
+    </h1>
+	
+	<a class="return" href="../chapter.html">Volver al capitulo</a>
+
+	<hr>
+
+	<cite>"Haste un favor a ti mismo, y simplifica tu vida."</cite>
+
+	<!-- ¿Qué es Laravel Livewire? -->
+	<h3>¿Qué es Laravel Livewire?</h3>
+	<p class="inline-block">
+		Es un framework para construir poderosos frontends que se sienten dinamicos, modernos, y vivos justo como cuando son construidos con freameworks modernos de JavaScript como Vue y React.
+	</p>
+	<p class="inline-block">
+		La misión de Livewire es construir con eficiencia y disfrutar del desarrollo de aplicaciones web con Laravel sacándole el máximo. Cualquier parte del desarrollo web que puede ser hecha mas fácil, nosotros hemos intentado o estamos intentando hacerla.
+	</p>
+
+
+	<!-- ¿Qué puedo hacer con Livewire? -->
+	<h3>¿Qué puedo hacer con Livewire?</h3>
+
+	<h4>Formularios</h4>
+	<p>
+		Crear formularios poderosos es una de las mayores fortalezas de Livewire. Tareas que de otro modo serían difíciles, como la validación en tiempo real y la carga de archivos, se simplifican muchísimo.
+	</p>
+
+	<h4>Tablas</h4>
+	<p>
+		Mostrar datos de aplicaciones dentro de tablas es posiblemente la necesidad más común al crear aplicaciones web. Livewire es perfecto para esta tarea. Mostrar datos, paginar, filtrar y ordenar son trabajos muy sencillos con Livewire.
+	</p>
+
+	<h4>Graficos</h4>
+	<p>
+		Mostrar gráficos de fuentes de datos en tiempo real se vuelve trivial en Livewire. Conecte una fuente de datos a su biblioteca de gráficos favorita y deje que Livewire la mantenga activa en la página.
+	</p>
+
+	<h4>Subida de imagenes</h4>
+	<p>
+		Manejar la carga de archivos e imágenes es tradicionalmente una tarea difícil. Livewire se encarga de todo: validación, cargas temporales, vista previa de imágenes; todo.
+	</p>
+
+	<h4>Carga peresoza</h4>
+	<p>
+		En lugar de retrasar la carga de una página completa para un solo componente con una gran consulta de base de datos, Livewire hace que sea increíblemente fácil mostrar un indicador de carga y cargar lentamente el componente en la página.
+	</p>
+
+	<h4>Mucho más</h4>
+	<p>
+		Livewire tiene innumerables funciones que facilitan la creación de interfaces. Si encuentra algo que no puede hacer en Livewire, es casi seguro que puede hacerlo en Alpine, que hemos creado para desbloquear posibilidades ilimitadas.
+	</p>
+
+	<!-- Instalar Livewire-->
+	<h3>Instalar Livewire</h3>
+	<p>
+		Se puede instalar junto con Breeze siguiendo los pasos de la instalación de Breeze.
+	</p>
+	<p>
+		Alternativamente, se puede instalar con el comando:
+	</p>
+	<!-- code -->
+	<code class="block">composer require livewire/livewire</code>
+
+	<p class="inline-block">
+		Si se intala con este comando, debe asegurarse que el proyecto <strong>no contenga previamente instalado Alpine</strong>. De otra manera Livewire no va a funcionar, porque Alpine será cargado dos veces.
+	</p>
+	<p class="inline-block">
+		En el caso de que hayas instalado el kit de inicio "Blade con Alpine", debes remover Alpine de <code>resources/js/app.js</code>
+	</p>
+
+	<!-- Crear un componente -->
+	<h3>Crear un componente</h3>
+	<p>
+		Livewire proporciona un práctico comando <code>Artisan</code> para generar nuevos componentes rápidamente. Ejecute el siguiente comando para crear un nuevo componente:
+	</p>
+	<!-- code -->
+	<code>php artisan make:livewire <em>component_name</em></code>
+
+	<p>
+		Por ejemplo con un <code><em>component_name</em></code> igual a <code>counter</code> el comando genera los siguientes archivos: 
+	</p>
+	<!-- code -->
+	<code>
+		<strong>CLASS:</strong> app/Livewire/Counter.php
+		<br>
+		<strong>VIEW:</strong> resources/views/livewire/counter.blade.php
+	</code>
+
+	<!-- Ejemplo de un contador -->
+	<h3>Ejemplo de un contador</h3>
+	<p>
+		Vamos a crear un contador con livewire. Primero se escribiremos la clase <code>app/Livewire/Counter.php</code>:
+	</p>
+	<!-- image -->
+	<img src="media/counter_class.png">
+
+	<p>
+		A continuación, escribimos la vista <code>resources/views/livewire/counter.blade.php</code> que funcionará como el HTML del componente. Es importante que los componentes tengan <strong>un solo elemento como raíz y se recomienda que este sea un <code>div</code></strong>, si hay mas de un elemento como raíz se lanzará un error. Además, los comentarios HTML también cuentan como elementos, por lo que deben ser colocados dentro del elemento raíz.
+	</p>
+	<!-- image -->
+	<img src="media/counter_view.png">
+
+	<p>
+		Registramos una ruta para acceder a nuestro componente.
+	</p>
+	<!-- image -->
+	<img src="media/counter_route.png">
+
+	<p>
+		Por último, nesecitamos una plantilla HTML en la cual renderizar el componente. Por defecto, Livewire buscará la plantilla <code>resources/views/components/layouts/app.blade.php</code>. Si esta no existe en el proyecto la puedes generar con el comando:
+	</p>
+	<!-- code -->
+	<code>php artisan livewire:layout</code>
+
+	<p>
+		El componente será renderizado en la variable <code>$slot</code>.
+	</p>
+	<!-- image -->
+	<img class="block" src="media/livewire_default_layout.png">
+
+	<p class="inline-block">
+		Quizas notaste que no hay assets de JavaScript ni CSS proveidos por Livewire. Esto es porque Livewire 3 automaticamente inyecta cualquier asset frontend que nesecite.
+	</p>
+	<p>
+		Ahora si, el componente esta listo ¡Puedes usarlo visitando la ruta <code>/counter</code>!
+	</p>
+	<!-- image -->
+	<img src="media/counter_in_action.png">
+
+	<p>
+		Esta es la magia de Livewire, <strong>¡Compoenentes dinamicos en el frontend sin dejar PHP!</strong>
+	</p>
+
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+	<script src="../../../script.js"></script>
+</body>
+</html>
