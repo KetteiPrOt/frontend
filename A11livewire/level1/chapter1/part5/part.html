@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Livewire</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+	<h1>
+        Capítulo 1
+		<br>
+		Parte 5
+        <br>
+        <span id="c1p5"></span>
+    </h1>
+	
+	<a class="return" href="../chapter.html">Volver al capitulo</a>
+
+	<hr>
+
+	<cite>"Haste un favor a ti mismo, y simplifica tu vida."</cite>
+	
+	<!-- Comunicación entre componentes -->
+	<h3>Comunicación entre componentes</h3>
+	<p>
+		Imagina que tenemos un componente relacionado con otro en la misma página. Por ejemplo un componente encargado de mostrar Post <code>show-post</code>, y otro encargado de crear Post <code>create-post</code>.
+	</p>
+	<p>
+		Si creamos un Post con el componente <code>create-post</code>, es nesesario que quien se encarga de mostrar los Post se actualice ya que estamos en la misma pagina. Por defecto, <code>show-post</code> no se va a enterar que un Post fue creado por el otro componente. Para lograr que se entere debemos <strong>emitir un evento desde el componente <code>create-post</code></strong>.
+	</p>
+	
+	<!-- Método dispatch() -->
+	<h3>Método dispatch()</h3>
+	<p>
+		En Livewire 2, Livewire tenía dos métodos PHP diferentes para desencadenar eventos:
+	</p>
+	<!-- code -->
+	<code>
+		emit() <br>
+		dispatchBrowserEvent()
+	</code>
+
+	<p>
+		Livewire 3 ha unificado estos dos metodos en uno solo:
+	</p>
+	<!-- code -->
+	<code>dispatch()</code>
+
+	<p>
+		Un evento <strong>se desencadena con el metodo <code>dispatch()</code></strong>, que recibe el nombre del evento emitido:
+	</p>
+	<!-- image -->
+	<img src="media/event_basic_dispatching.png">
+
+	<p>
+		Una vez emitido un evento, este debe <strong>ser escuchado</strong> por el otro componente de la siguiente forma:
+	</p>
+	<!-- image -->
+	<img src="media/event_basic_listening.png">
+
+
+	<!-- Escuchar evento desde un script -->
+	<h3>Escuchar evento desde un script</h3>
+	<p>
+		En cualquier componente de livewire podemos escuchar los eventos mediante el objeto <code>$wire</code> que se hace disponible en una etiqueta script que se encuentre dentro de la directiva blade <code>@script</code>.
+	</p>
+	<!-- image -->
+	<img src="media/listening_event_in_script.png">
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+	<script src="../../../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Livewire</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+	<h1>
+        Capítulo 1
+		<br>
+		Parte 4
+        <br>
+        <span id="c1p4"></span>
+    </h1>
+	
+	<a class="return" href="../chapter.html">Volver al capitulo</a>
+
+	<hr>
+
+	<cite>"Haste un favor a ti mismo, y simplifica tu vida."</cite>
+	
+	<!-- Acción magica $set -->
+	<h3>Acción mágica $set</h3>
+	<p>
+		Livewire proporciona un conjunto de acciones "mágicas" que le permiten realizar tareas comunes en sus componentes sin definir métodos personalizados. Estas acciones mágicas se pueden utilizar dentro de los detectores de eventos definidos en sus plantillas Blade (Directivas HTML).
+	</p>
+	<p>
+		Por ejemplo, la acción <code>$set</code> se puede usar junto con la directiva HTML <code>wire:click</code> para establecer el valor de un atributo de la Clase del componente cuando el usuario hace click en un elemento de la vista.
+	</p>
+	<!-- code -->
+	<code>wire:click="$set('attribute', 'value')"</code>
+
+	<!-- Directiva wire:submit -->
+	<h3>Directiva wire:submit</h3>
+	<p>
+		Livewire facilita el manejo de envíos de formularios a través de la directiva wire:submit. Al agregar wire:submit a un elemento <code>form</code>, Livewire interceptará el envío del formulario, evitará el manejo predeterminado del navegador y llamará a cualquier método del componente Livewire.
+	</p>
+	<!-- code -->
+	<code>wire:submit="save"</code>
+	
+	<!-- Directiva wire:model -->
+	<h3>Directiva wire:model</h3>
+	<p>
+		Es casi igual a la directiva wire:model.live, con la diferencia de que el valor del input se sincronizará con el servidor solo cuando un boton de tipo "submit" sea clickeado.
+	</p>
+	<!-- code -->
+	<code>wire:model="content"</code>
+	
+	<!--  -->
+	<h3></h3>
+	<p></p>
+	<!-- code -->
+	<code></code>
+
+	<script src="../../../script.js"></script>
+</body>
+</html>

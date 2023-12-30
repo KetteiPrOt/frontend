@@ -4,7 +4,10 @@ let chaptersText = [
 
 let partsText = [
     'Introducción',
-    'Renderizar componentes'
+    'Renderizar componentes',
+    'Vinculación de datos',
+    'Métodos magicos',
+    'Eventos y oyentes'
 ];
 
 let chapter, part;
