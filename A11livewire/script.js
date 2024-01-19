@@ -1,13 +1,9 @@
 let chaptersText = [
-    'nombreCapitulo1'
+    'Componentes'
 ];
 
 let partsText = [
-    'Introducción',
-    'Renderizar componentes',
-    'Vinculación de datos',
-    'Métodos magicos',
-    'Eventos y oyentes'
+    'Creando componentes'
 ];
 
 let chapter, part;
