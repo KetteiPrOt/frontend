@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Livewire</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+	<h1>
+        Capítulo 2
+		<br>
+		Parte 1
+        <br>
+        <span id="c2p1"></span>
+    </h1>
+	
+	<a class="return" href="../chapter.html">Volver al capitulo</a>
+
+	<cite>"Haste un favor a ti mismo, y simplifica tu vida."</cite>
+	
+	<hr>
+
+	<!-- Inicializando propiedades -->
+	<h3>Inicializando propiedades</h3>
+	<p>
+		Puedes establecer valores iniciales para las propiedades dentro del método mount() del componente.
+	</p>
+	<p>
+		Considera el siguiente ejemplo:
+	</p>
+	<!-- img -->
+	<img src="media/1.png">
+
+	<p>
+		En este ejemplo, definimos un arreglo de <em>$todos</em> vacio y lo inicializamos con todos en el metodo <em>mount()</em>. Ahora, cuando el componente se procesa por primera vez, se muestran al usuario todas las tareas entregadas en el método. Estas también podrían venir de la base de datos.
+	</p>
+
+	<!-- Asignación masiva -->
+	<h3>Asignación masiva</h3>
+	<p>
+		A veces, inicializar muchas propiedades en el método <em>mount()</em> puede parecer verboso. Para ayudar con esto, Livewire proporciona una manera conveniente de asignar múltiples propiedades a la vez mediante el método <em>fill()</em>. Al pasar un arreglo asociativo de nombres de propiedades y sus respectivos valores, puede establecer varias propiedades simultáneamente y reducir las líneas repetitivas de código en <em>mount()</em>.
+	</p>
+	<p>
+		Por ejemplo:
+	</p>
+	<!-- img -->
+	<img src="media/2.png">
+
+	<!-- Enlace de datos -->
+	<h3>Enlace de datos</h3>
+	<p>
+		Livewire admite el enlace de datos bidireccional a través del atributo HTML <em>wire:model</em>. Esto le permite sincronizar fácilmente datos entre las propiedades de los componentes y las entradas HTML, manteniendo sincronizados la interfaz de usuario y el estado del componente.
+	</p>
+	<p>
+		Usemos la directiva wire:model para vincular la propiedad <em>$todo</em> en un componente <em>TodoList</em> a un elemento de entrada básico:
+	</p>
+	<!-- img -->
+	<img src="media/3.png">
+	<br>
+	<!-- img -->
+	<img src="media/4.png">
+	
+	<p>
+		Esto solo es un vistazo superficial del uso de <em>wire:model</em>.
+	</p>
+
+	<!-- Resetando propiedades -->
+	<h3>Resetando propiedades</h3>
+	<p>
+		A veces, es posible que necesite restablecer las propiedades a su estado inicial después de que el usuario realice una acción. En estos casos, Livewire proporciona el método <em>reset()</em> que acepta uno o más nombres de propiedades y restablece sus valores a su estado inicial.
+	</p>
+	<!-- img -->
+	<img src="media/5.png">
+
+	<!-- reset() no funciona con valores establecidos en mount() -->
+	<h4>reset() no funciona con valores establecidos en mount()</h4>
+	<p>
+		<em>reset()</em> restablecerá una propiedad a su estado antes de que se llamara al método <em>mount()</em>. Si inicializó la propiedad en <em>mount()</em> con un valor diferente, deberá restablecer la propiedad manualmente.
+	</p>
+
+	<script src="../../../script.js"></script>
+</body>
+</html>

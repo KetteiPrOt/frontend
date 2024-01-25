@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Livewire</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+	<h1>
+        Capítulo 1
+		<br>
+		Parte 6
+        <br>
+        <span id="c1p6"></span>
+    </h1>
+	
+	<a class="return" href="../chapter.html">Volver al capitulo</a>
+
+	<cite>"Haste un favor a ti mismo, y simplifica tu vida."</cite>
+	
+	<hr>
+
+	<p>
+		Hay muchos casos en que las utilidades integradas en Livewire y Alpine no son suficientes para lograr tus objetivos dentro de los componentes.
+	</p>
+	<p>
+		Afortunadamente, Livewire proporciona muchos puntos de extensión y herramientas útiles para interactuar con JavaScript personalizado. Puedes obtener información de la referencia exhaustiva en la página de documentación de JavaScript. Pero por ahora, aquí hay algunas formas útiles de usar tu propio JavaScript dentro de sus componentes Livewire.
+	</p>
+
+	<!-- Ejecutando Scripts -->
+	<h3>Ejecutando Scripts</h3>
+	<p>
+		Livewire proporciona una útil directiva <em>@script</em> que, al envolver un elemento <em>script</em>, ejecutará el JavaScript dado cuando tu componente se inicialice en la página.
+	</p>
+	<p>
+		Aquí hay un ejemplo de un <em>@script</em> simple que usa <em>setInterval()</em> de JavaScript para actualizar el componente cada dos segundos:
+	</p>
+	<!-- img -->
+	<img src="media/1.png">
+
+	<p>
+		Notarás que estamos usando un objeto llamado <em>$wire</em> dentro del script para controlar el componente. Livewire automáticamente hace que este objeto esté disponible dentro de cualquier <em>@script</em>. Si no está familiarizado con <em>$wire</em>, puede obtener más información sobre <em>$wire</em> en documentación que esta después. Para que te hagas una idea:
+	</p>
+	<ul>
+		<li>Accediendo a propiedades desde JavaScript</li>
+		<li>Llamar a acciones de Livewire desde JS/Alpine</li>
+		<li>La referencia del objeto $wire</li>
+	</ul>
+
+	<!-- Cargando assets -->
+	<h3>Cargando assets</h3>
+	<p>
+		Además de los <em>@script</em> únicos, Livewire proporciona una útil utilidad <em>@assets</em> para cargar fácilmente cualquier dependencia script/estilo en la página.
+	</p>
+	<p>
+		También garantiza que los assets proporcionados se carguen solo una vez por página del navegador, a diferencia de <em>@script</em>, que se ejecuta cada vez que se inicializa una nueva instancia del componente Livewire.
+	</p>
+	<p>
+		Aquí hay un ejemplo del uso de <em>@assets</em> para cargar una biblioteca de selección de fechas llamada Pikaday e inicializarla dentro del componente usando <em>@script</em>:
+	</p>
+	<!-- img -->
+	<img src="media/2.png">
+
+	<!-- Usando @script y @assets dentro de plantillas Blade -->
+	<h4 style="color: red;">Usando @script y @assets dentro de plantillas Blade</h4>
+	<p>
+		Si estas utilizando componentes Blade para extraer partes del marcado, también puede usar <em>@script</em> y <em>@assets</em> dentro de ellos; incluso si hay varios componentes Blade dentro del mismo componente Livewire. Sin embargo, <em>@script</em> y <em>@assets</em> actualmente solo se admiten en el contexto de un componente Livewire, lo que significa que si usas el componente Blade determinado fuera de Livewire por completo, esos scripts y assets no se cargarán en la página.
+	</p>
+
+	<script src="../../../script.js"></script>
+</body>
+</html>

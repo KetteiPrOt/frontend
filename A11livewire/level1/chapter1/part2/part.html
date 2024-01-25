@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Livewire</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+	<h1>
+        Capítulo 1
+		<br>
+		Parte 2
+        <br>
+        <span id="c1p2"></span>
+    </h1>
+	
+	<a class="return" href="../chapter.html">Volver al capitulo</a>
+
+	<cite>"Haste un favor a ti mismo, y simplifica tu vida."</cite>
+	
+	<hr>
+
+	<p>
+		Los componentes Livewire tienen propiedades que almacenan datos y se puede acceder a ellas fácilmente desde la clase del componente y la vista Blade. Esta sección analiza los conceptos básicos para agregar una propiedad a un componente y usarlo en tu aplicación.
+	</p>
+
+	<p>
+		Para agregar una propiedad a un componente Livewire, declara una propiedad pública en la clase del componente. Por ejemplo, creemos una propiedad <em>$title</em> en el componente <em>CreatePost</em>:
+	</p>
+	<!-- img -->
+	<img src="media/1.png">
+
+	<!-- Accediendo a propiedades en la vista -->
+	<h3>Accediendo a propiedades en la vista</h3>
+	<p>
+		Las propiedades del componente se ponen automáticamente a disposición de la vista Blade. Puedes hacer referencia a ellas utilizando la sintaxis estándar de Blade. Aquí mostraremos el valor de la propiedad <em>$title</em>:
+	</p>
+	<!-- img -->
+	<img src="media/2.png">
+
+	<!-- Compartiendo datos adicionales con la vista -->
+	<h3>Compartiendo datos adicionales con la vista</h3>
+	<p>
+		Además de acceder a las propiedades desde la vista, puedes pasar datos explícitamente a la vista desde el método <em>render()</em>, como lo harias normalmente desde un controlador. Esto puede resultar útil cuando desea pasar datos adicionales sin almacenarlos primero como una propiedad, porque las propiedades tienen implicaciones específicas de rendimiento y seguridad.
+	</p>
+	<p>
+		Para pasar datos a la vista en el método <em>render()</em>, puedes usar el método <em>with()</em> en la instancia de la vista. Por ejemplo, digamos que deseas pasar el nombre del autor de la publicación a la vista. En este caso, el autor de la publicación es el usuario actualmente autenticado:
+	</p>
+	<!-- img -->
+	<img src="media/3.png">
+
+	<p>
+		Ahora puedes acceder a la propiedad <em>$author</em> en la vista Blade:
+	</p>
+	<!-- img -->
+	<img src="media/4.png">
+
+	<!-- Agregando wire:key a los bucles foreach -->
+	<h3>Agregando wire:key a los bucles foreach</h3>
+	<p>
+		Al iterara sobre datos en una plantilla Livewire usando <em>@foreach</em>, debes agregar un atributo único <em>wire:key</em> al elemento raíz representado por el bucle.
+	</p>
+	<p>
+		Sin un atributo <em>wire:key</em> presente dentro de un bucle Blade, Livewire no podrá hacer coincidir correctamente los elementos antiguos con sus nuevas posiciones cuando el bucle cambie. Esto puede causar muchos problemas difíciles de diagnosticar en tu aplicación.
+	</p>
+	<p>
+		Por ejemplo, si estas iterando sobre un array de posts, debes establecer el ID del post en el atributo <em>wire:key</em>:
+	</p>
+	<!-- img -->
+	<img src="media/5.png">
+
+	<!-- Enlazando inputs con propiedades -->
+	<h3>Enlazando inputs con propiedades</h3>
+	<p>
+		Una de las características más poderosas de Livewire es el "enlace de datos": la capacidad de mantener automáticamente las propiedades sincronizadas con las entradas del formulario en la página.
+	</p>
+	<p>
+		Vamos a enlazar la propiedad <em>$title</em> del componente <em>CreatePost</em> a un input tipo texto usando la directiva <em>wire:model</em>
+	</p>
+	<!-- img -->
+	<img src="media/6.png">
+
+	<p>
+		Cualquier cambio que hagas en el input será automaticamente sincronizado con la propiedad <em>$title</em> en tu componente de Livewire. Las propiedades Livewire son extremadamente poderosas y un importante concepto a entender.
+	</p>
+
+	<script src="../../../script.js"></script>
+</body>
+</html>

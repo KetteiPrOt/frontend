@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Livewire</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+	<h1>
+        Capítulo 1
+		<br>
+		Parte 3
+        <br>
+        <span id="c1p3"></span>
+    </h1>
+	
+	<a class="return" href="../chapter.html">Volver al capitulo</a>
+
+	<cite>"Haste un favor a ti mismo, y simplifica tu vida."</cite>
+	
+	<hr>
+
+	<p>
+		Las acciones son métodos dentro de tu componente Livewire que manejan las interacciones del usuario o realizan tareas específicas. Suelen ser útiles para responder a clics en botones o envíos de formularios en una página.
+	</p>
+	<p>
+		Para aprender más sobre las acciones, agreguemos la acción <em>save</em> al componente <em>CreatePost</em>:
+	</p>
+	<!-- img -->
+	<img src="media/1.png">
+
+	<p>
+		A continuación, llamemos a la acción <em>save</em> desde la vista Blade del componente agregando la directiva <em>wire:submit</em> al elemento <em>form</em>:
+	</p>
+	<!-- img -->
+	<img src="media/2.png">
+
+	<p>
+		Cuando se haga click en el boton "Save", el metodo <em>save()</em> en tu componente livewire será ejecutado y tu componente se re-renderizará.
+	</p>
+
+	<script src="../../../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Livewire</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+	<h1>
+        Capítulo 3
+		<br>
+		Parte 3
+        <br>
+        <span id="c2p3"></span>
+    </h1>
+	
+	<a class="return" href="../chapter.html">Volver al capitulo</a>
+
+	<cite>"Haste un favor a ti mismo, y simplifica tu vida."</cite>
+	
+	<hr>
+
+	<p>
+		Debido a que las propiedades de Livewire también están disponibles en el navegador a través de JavaScript, puede acceder y manipular sus representaciones de JavaScript desde AlpineJS.
+	</p>
+	<p>
+		Alpine es una biblioteca JavaScript liviana que se incluye con Livewire. Alpine proporciona una forma de crear interacciones ligeras en sus componentes Livewire sin realizar viajes de ida y vuelta completos al servidor.
+	</p>
+	<p>
+		Internamente, el frontend de Livewire está construida sobre Alpine. De hecho, cada componente Livewire es en realidad un componente Alpine debajo del capó. Esto significa que puede utilizar Alpine libremente dentro de sus componentes Livewire.
+	</p>
+	<p>
+		El resto de esta página asume una familiaridad básica con Alpine. Si no está familiarizado con Alpine, consulte la documentación de Alpine.
+	</p>
+
+	<!-- Accediendo a propiedades -->
+	<h3>Accediendo a propiedades</h3>
+	<p>
+		Livewire expone un objeto mágico $wire a Alpine. Puede acceder al objeto $wire desde cualquier expresión Alpine dentro de su componente Livewire.
+	</p>
+	<p>
+		El objeto $wire puede tratarse como una versión JavaScript de su componente Livewire. Tiene las mismas propiedades y métodos que la versión PHP de su componente, pero también contiene algunos métodos dedicados para realizar funciones específicas en su plantilla.
+	</p>
+	<p>
+		Por ejemplo, podemos usar $wire para mostrar un recuento de caracteres en vivo del campo de entrada de tareas pendientes:
+	</p>
+	<!-- img -->
+	<img src="media/1.png">
+
+	<p>
+		A medida que el usuario escribe en el campo, la longitud de caracteres de la tarea actual que se está escribiendo se mostrará y se actualizará en vivo en la página, todo sin enviar una solicitud de red al servidor.
+	</p>
+	<p>
+		Si lo prefieres, puedes usar el método .get() más explícito para lograr lo mismo:
+	</p>
+	<!-- img -->
+	<img src="media/2.png">
+
+	<!-- Manipulando propiedades -->
+	<h3>Manipulando propiedades</h3>
+	<p>
+		De manera similar, puede manipular las propiedades de su componente Livewire en JavaScript usando $wire.
+	</p>
+	<p>
+		Por ejemplo, agreguemos un botón "Borrar" al componente TodoList para permitir al usuario restablecer el campo de entrada usando solo JavaScript:
+	</p>
+	<!-- img -->
+	<img src="media/3.png">
+
+	<p>
+		Después de que el usuario haga clic en "Borrar", la entrada se restablecerá a una cadena vacía, sin enviar una solicitud de red al servidor.
+	</p>
+	<p>
+		En la solicitud posterior, el valor del lado del servidor de $todo se actualizará y sincronizará.
+	</p>
+	<p>
+		Si lo prefiere, también puede utilizar el método .set() más explícito para configurar las propiedades del lado del cliente. Sin embargo, debe tener en cuenta que el uso de .set() de forma predeterminada activa inmediatamente una solicitud de red y sincroniza el estado con el servidor. Si eso es lo que desea, entonces esta es una API excelente:
+	</p>
+	<!-- code -->
+	<code>x-on:click="$wire.set('todo', '')"</code>
+
+	<p>
+		Para actualizar la propiedad sin enviar una solicitud de red al servidor, puede pasar un tercer parámetro bool. Esto aplazará la solicitud de red y, en una solicitud posterior, el estado se sincronizará en el lado del servidor:
+	</p>
+	<!-- code -->
+	<code>x-on:click="$wire.set('todo', '', false)"</code>
+
+	<script src="../../../script.js"></script>
+</body>
+</html>

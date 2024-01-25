@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Livewire</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+	<h1>
+        Capítulo 1
+		<br>
+		Parte 4
+        <br>
+        <span id="c1p4"></span>
+    </h1>
+	
+	<a class="return" href="../chapter.html">Volver al capitulo</a>
+
+	<cite>"Haste un favor a ti mismo, y simplifica tu vida."</cite>
+	
+	<hr>
+
+	<p>
+		Hay dos maneras de renderizar un componente en una página:
+	</p>
+	<ol>
+		<li>Incluyendolo en una vista Blade existente</li>
+		<li>Asignandolo directamente a la ruta como un componente de pagina completa</li>
+	</ol>
+	<p>
+		Intentemos poner en práctica la primera forma, ya que es más simple que la segunda.
+	</p>
+	<p>
+		Puedes incluir tu componente Livewire en las plantillas Blade usando la sintaxis <em>livewire:component-name</em>:
+	</p>
+	<!-- code -->
+	<code>
+		&lt;livewire:component-name /&gt; <br>
+		&lt;livewire:directory.component-name /&gt;
+	</code>
+
+	<!-- Pasando datos dentro de componentes -->
+	<h3>Pasando datos dentro de componentes</h3>
+	<p>
+		Para pasar datos externos a un componente Livewire, puedes utilizar atributos en la etiqueta del componente. Esto es útil cuando deseas inicializar un componente con datos específicos.
+	</p>
+	<!-- img -->
+	<img src="media/1.png">
+
+	<p>
+		Ahora puedes acceder a este dato desde la vista Blade con la variable <em>$title</em>:
+	</p>
+	<!-- img -->
+	<img src="media/2.png">
+
+	<p>
+		Si necesitas pasar valores dinámicos o variables a un componente, puedes escribir expresiones PHP en los atributos del componente anteponiendo el atributo con dos puntos:
+	</p>
+	<!-- code -->
+	<code>&lt;livewire:create-post :title="$initialTitle" /&gt;</code>
+
+	<p>
+		El acceso en la vista Blade al dato de <em>$initialTitle</em> se realiza exactamente igual a cuando no se colocan los dos puntos (con la variable <em>$title</em>).
+	</p>
+
+	<p>
+		Los datos pasados a componentes son recibidos a traves del lifecycle hook <em>mount()</em> como parámetros del método. En este caso, para asignar el parámetro <em>$title</em> a una propiedad, podrías escribir un método <em>mount()</em> como el siguiente:
+	</p>
+	<!-- img -->
+	<img src="media/3.png">
+
+	<p>
+		De esta forma ya no es nesesario incluir el atributo <em>value="{{$title}}"</em> en el input del formulario para darle un valor inicial, porque este se sincronizará automáticamente con la propiedad <em>$title</em> del componente gracias a la directiva <em>wire:model="title"</em>
+	</p>
+	<!-- img -->
+	<img src="media/4.png">
+
+	<p>
+		Puedes pensar en el método mount() como un constructor de clases. Se ejecuta en la carga inicial del componente, pero no en solicitudes posteriores dentro de una página.
+	</p>
+	<p>
+		Para reducir el código repetitivo en tus componentes, también puedes omitir el método mount() y Livewire establecerá automáticamente cualquier propiedad en su componente con nombres que coincidan con los valores pasados.
+	</p>
+	<p>
+		De forma que omitirlo en este caso resulta un comportamiento exactamente igual porque tanto el atributo HTML, como la propiedad del componente tienen el mismo nombre (<em>title</em>):
+	</p>
+	<!-- img -->
+	<img src="media/5.png">
+
+	<script src="../../../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Livewire</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+	<h1>
+        Capítulo 1
+		<br>
+		Parte 5
+        <br>
+        <span id="c1p5"></span>
+    </h1>
+	
+	<a class="return" href="../chapter.html">Volver al capitulo</a>
+
+	<cite>"Haste un favor a ti mismo, y simplifica tu vida."</cite>
+	
+	<hr>
+
+	<p>
+		Livewire te permite asignar componentes directamente a una ruta de tu aplicación Laravel. Estos se denominan "componentes de página completa". Puedes usarlos para crear páginas independientes con lógica y vistas, completamente encapsuladas dentro de un componente Livewire.
+	</p>
+	<p>
+		Para crear un componente de página completa, define una ruta en el archivo <em>route/web.php</em> y use el método <em>Route::get()</em> para asignar el componente directamente a una URL específica. Por ejemplo, imaginemos que desea representar el componente <em>CreatePost</em> en la ruta dedicada: <em>/posts/create</em>.
+	</p>
+	<p>
+		Puedes lograr esto agregando la siguiente línea al archivo <em>route/web.php</em>:
+	</p>
+	<!-- code -->
+	<code>
+		use App\Livewire\CreatePost; <br><br>
+ 
+		Route::get('/posts/create', CreatePost::class);
+	</code>
+
+	<p>
+		Ahora, cuando visites la ruta <em>/posts/create</em> en el navegador, el componente <em>CreatePost</em> se representará como un componente de página completa.
+	</p>
+
+	<!-- Archivos layout -->
+	<h3>Archivos layout</h3>
+	<p>
+		Recuerda que los componentes de página completa utilizarán el diseño de su aplicación, generalmente definido en el archivo <em>resources/views/components/layouts/app.blade.php</em>.
+	</p>
+	<p>
+		Puedes crear este archivo si aún no existe ejecutando el siguiente comando:
+	</p>
+	<!-- code -->
+	<code>php artisan livewire:layout</code>
+
+	<p>
+		Este comando generará un archivo llamado <em>resources/views/components/layouts/app.blade.php</em>.
+	</p>
+	<p>
+		Asegúrate de haber creado un archivo Blade en esta ubicación y de haber incluido un marcador de posición <em>{{ $slot }}</em>:
+	</p>
+	<!-- img -->
+	<img src="media/1.png">
+
+	<!-- Configuración global del layout -->
+	<h4>Configuración global del layout</h4>
+	<p>
+		Para usar un diseño personalizado en todos tus componentes, puedes configurar la clave de diseño en <em>config/livewire.php</em> en la ruta de su diseño personalizado, en relación con <em>resources/views</em>. Por ejemplo:
+	</p>
+	<!-- code -->
+	<code>'layout' => 'layouts.app',</code>
+
+	<p>
+		De esta forma Livewire representará los componentes de página completa dentro del archivo de diseño: <em>resources/views/layouts/app.blade.php</em>.
+	</p>
+
+	<!-- Configuración de layout por componente -->
+	<h4>Configuración de layout por componente</h4>
+	<p>
+		Para usar un diseño diferente para un componente específico, puede colocar el atributo <em>#[Layout]</em> de Livewire encima del método <em>render()</em> del componente, pasándole la ruta de vista relativa de su diseño personalizado:
+	</p>
+	<!-- code -->
+	<code>use Livewire\Attributes\Layout;</code> <br><br>
+
+	<!-- img -->
+	<img src="media/2.png">
+
+	<p>
+		O si lo prefires, puedes usar este atributo encima de la declaración de la Clase.
+	</p>
+	<!-- img -->
+	<img src="media/3.png">
+
+	<p>
+		Los atributos de PHP sólo admiten valores literales. Si necesitas pasar un valor dinámico, o prefieres esta sintaxis alternativa, puede usar el método <em>fluent ->layout()</em> en el método <em>render()</em> del componente:
+	</p>
+	<!-- img -->
+	<img src="media/4.png">
+
+	<p>
+		Alternativamente, Livewire admite el uso de archivos de diseño Blade tradicionales con <em>@extends</em>.
+	</p>
+	<p>
+		Dado el siguiente archivo de layout:
+	</p>
+	<!-- img -->
+	<img src="media/5.png">
+
+	<p>
+		Puedes configurar Livewire para que haga referencia a él usando <em>->extends()</em> en lugar de <em>->layout()</em>:
+	</p>
+	<!-- img -->
+	<img src="media/6.png">
+
+	<p>
+		Si necesitas configurar una <em>@section</em> para el componente, también puedes configurarlo con el método <em>->section()</em>:
+	</p>
+	<!-- img -->
+	<img src="media/7.png">
+
+	<!-- Estableciendo el título de la página -->
+	<h3>Estableciendo el título de la página</h3>
+	<p>
+		Asignar títulos únicos en cada página de tu aplicación es util tanto para los usuarios como para los motores de búsqueda.
+	</p>
+	<p>
+		Primero asegurate que tu layout tiene un título dinámico.
+	</p>
+	<!-- img -->
+	<img src="media/8.png">
+
+	<p>
+		Después, encima del método render() de tu componente Livewire, agrega el atributo <em>#[Title]</em> pasandole el título de tu página:
+	</p>
+	<!-- img -->
+	<img src="media/9.png">
+
+	<p>
+		Si prefires, puedes usar este atributo encima de la declaración de la Clase.
+	</p>
+	<p>
+		Además, si nesecitas un título dinámico puedes usar el método <em>->title()</em>:
+	</p>
+	<!-- img -->
+	<img src="media/10.png">
+
+	<!-- Estableciendo slots adicionales en el layout -->
+	<h3>Estableciendo slots adicionales en el layout</h3>
+	<p>
+		Si tu archivo de layout tiene más slots aparte del <em>$slot</em> genérico, como por ejemplo un slot <em>$header</em>:
+	</p>
+	<!-- img -->
+	<img src="media/11.png">
+	<p>
+		Puedes incluirlos en la vista del componente de Livewire, fuera del elemento raiz del componente:
+	</p>
+	<!-- img -->
+	<img src="media/12.png">
+
+	<!-- Accediendo a los parametros de la ruta -->
+	<h3>Accediendo a los parametros de la ruta</h3>
+	<p>
+		Cuando trabajas con componentes de página completa, quizas nesecites acceder a los parametros de la ruta en el componente.
+	</p>
+	<p>
+		Definamos una ruta que muestra un post usando su id:
+	</p>
+	<!-- code -->
+	<code>Route::get('post/{id}', ShowPost::class);</code>
+
+	<p>
+		Ahora actualicemos el componente para aceptar el parametro en el método <em>mount()</em>:
+	</p>
+	<!-- img -->
+	<img src="media/13.png">
+
+	<!-- Usando el route model binding -->
+	<h3>Usando el route model binding</h3>
+	<p>
+		El emparejamiento de modelo en las rutas de Laravel permite resolver automaticamente modelos de Eloquent en las rutas. Es decir que los puedes recibir igual que en un controlador:
+	</p>
+	<!-- img -->
+	<img src="media/14.png">
+
+	<p>
+		Y como ya sabes, en este caso puedes omitir el método <em>mount()</em> para evitar el repetitivo:
+	</p>
+	<!-- img -->
+	<img src="media/15.png">
+
+	<!-- Modificando la respuesta -->
+	<h3>Modificando la respuesta</h3>
+	<p>
+		En algunos escenarios podrías querer modificar la respueta y establecer una cabezera HTTP (header) personalizado. Puedes enganchar al objeto de respuesta llamando el método <em>response()</em> en la vista y usando una clausula para modificarlo:
+	</p>
+	<!-- code -->
+	<code>use Illuminate\Http\Response;</code> <br>
+	
+	<!-- img -->
+	<img src="media/16.png">
+
+	<p>
+		Ahora podemos ver el header en el navegador:
+	</p>
+	<!-- img -->
+	<img src="media/17.png">
+	
+
+	<script src="../../../script.js"></script>
+</body>
+</html>

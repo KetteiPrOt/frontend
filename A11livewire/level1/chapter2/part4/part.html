@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Livewire</title>
+	<link rel="icon" href="../../../../media/book.ico">
+	<link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+	<h1>
+        Capítulo 4
+		<br>
+		Parte 4
+        <br>
+        <span id="c2p4"></span>
+    </h1>
+	
+	<a class="return" href="../chapter.html">Volver al capitulo</a>
+
+	<cite>"Haste un favor a ti mismo, y simplifica tu vida."</cite>
+	
+	<hr>
+
+	<p>
+		Si bien las propiedades de Livewire son una característica poderosa, existen algunas consideraciones de seguridad que debe tener en cuenta antes de usarlas.
+	</p>
+	<p>
+		En resumen, trate siempre las propiedades públicas como entradas del usuario, como si fueran entradas solicitadas desde un punto final tradicional. En vista de esto, es esencial validar y autorizar las propiedades antes de conservarlas en una base de datos, tal como lo haría cuando trabaja con la entrada de una solicitud en un controlador.
+	</p>
+
+	<!-- No confies en los valores de las propiedades -->
+	<h3>No confies en los valores de las propiedades</h3>
+	<p>
+		Para demostrar cómo descuidar la autorización y validación de propiedades puede introducir agujeros de seguridad en su aplicación, el siguiente componente UpdatePost es vulnerable a ataques:
+	</p>
+	<!-- img -->
+	<img src="media/1.png"> <br><br>
+	<!-- img -->
+	<img src="media/2.png">
+
+	<p>
+		A primera vista, este componente puede parecer completamente bueno. Pero veamos cómo un atacante podría usar el componente para hacer cosas no autorizadas en su aplicación.
+	</p>
+	<p>
+		Debido a que almacenamos la identificación de la publicación como una propiedad pública en el componente, se puede manipular en el cliente de la misma manera que las propiedades de título y contenido.
+	</p>
+	<p>
+		No importa que no hayamos escrito una entrada con wire:model="id". Un usuario malintencionado puede cambiar fácilmente la vista a lo siguiente utilizando las herramientas DevTools de su navegador:
+	</p>
+	<!-- img -->
+	<img src="media/3.png">
+
+	<p>
+		Ahora el usuario malintencionado puede actualizar la entrada de identificación a la ID de un modelo de publicación diferente. Cuando se envía el formulario y se llama a update(), Post::findOrFail() devolverá y actualizará una publicación de la que el usuario no es propietario.
+	</p>
+	<p>
+		Para prevenir estos ataques podemos usar una de estas estrategias:
+	</p>
+	<ul>
+		<li>Autorizar el input.</li>
+		<li>Bloquear las actualizaciones de las propiedades.</li>
+	</ul>
+
+	<!-- Autorizando el input -->
+	<h4>Autorizando el input</h4>
+	<p>
+		Debido a que $id se puede manipular en el lado del cliente con algo como wire:model, al igual que en un controlador, podemos usar la autorización de Laravel para asegurarnos de que el usuario actual pueda actualizar la publicación:
+	</p>
+	<!-- img -->
+	<img src="media/4.png">
+
+	<p>
+		Si un usuario malintencionado muta la propiedad $id, la autorización agregada la detectará y generará un error.
+	</p>
+
+	<!-- Bloqueando la propiedad -->
+	<h4>Bloqueando la propiedad</h4>
+	<p>
+		Livewire también le permite "bloquear" propiedades para evitar que se modifiquen en el lado del cliente. Puede "bloquear" una propiedad para que no pueda ser manipulada por el lado del cliente utilizando el atributo #[Locked]:
+	</p>
+	<!-- img -->
+	<img src="media/5.png">
+
+	<p>
+		Ahora, si un usuario intenta modificar $id en la interfaz, se generará un error.
+	</p>
+	<p>
+		Al usar #[Locked], puede asumir que esta propiedad no será manipulada en ningún lugar fuera de la clase de su componente.
+	</p>
+	<p>
+		Para más información consulta la <a href="https://livewire.laravel.com/docs/locked">documentación de bloqueo de propiedades</a>.
+	</p>
+
+	<!-- Modelos Eloquent y bloqueo -->
+	<h4>Modelos Eloquent y bloqueo</h4>
+	<p>
+		Cuando se asigna un modelo de Eloquent a una propiedad de componente Livewire, Livewire bloqueará automáticamente la propiedad y se asegurará de que el ID no se cambie, para que usted esté a salvo de este tipo de ataques:
+	</p>
+	<!-- img -->
+	<img src="media/6.png">
+
+	<!-- Las propiedades exponen información del sistema al navegador -->
+	<h3>Las propiedades exponen información del sistema al navegador</h3>
+	<p>
+		Otra cosa esencial que hay que recordar es que las propiedades de Livewire se serializan o "deshidratan" antes de enviarlas al navegador. Esto significa que sus valores se convierten a un formato que puede enviarse por la red y ser entendido por JavaScript (formato JSON). Este formato puede exponer información sobre su aplicación al navegador, incluidos los nombres y nombres de clase de sus propiedades.
+	</p>
+	<p>
+		Por ejemplo, supongamos que tiene un componente Livewire que define una propiedad pública llamada $post. Esta propiedad contiene una instancia de un modelo Post de su base de datos. En este caso, el valor deshidratado de esta propiedad enviada a través del cable podría verse así:
+	</p>
+	<!-- img -->
+	<img src="media/7.png">
+
+	<p>
+		Como puede ver, el valor deshidratado de la propiedad $post incluye el nombre de clase del modelo (App\Models\Post), así como el ID y cualquier relación que se haya cargado ansiosamente con el método with().
+	</p>
+	<p>
+		Si no desea exponer el nombre de clase del modelo, puede usar la funcionalidad "morphMap" de Laravel de un service provider para asignar un alias a un nombre de clase del modelo:
+	</p>
+	<!-- img -->
+	<img src="media/8.png">
+
+	<p>
+		Ahora, cuando el modelo Eloquent esté "deshidratado" (serializado), el nombre de la clase original no será expuesto, solo el alias "post":
+	</p>
+	<!-- img -->
+	<img src="media/9.png">
+
+	<!-- Restriccioens Eloquent que no son preservadas entre consultas -->
+	<h3>Restriccioens Eloquent que no son preservadas entre consultas</h3>
+	<p>
+		Normalmente, Livewire puede preservar y recrear propiedades del lado del servidor entre solicitudes; sin embargo, existen ciertos escenarios en los que conservar los valores es imposible entre solicitudes.
+	</p>
+	<p>
+		Por ejemplo, al almacenar colecciones de Eloquent como propiedades de Livewire, las restricciones de consulta adicionales como select(...) no se volverán a aplicar en solicitudes posteriores.
+	</p>
+	<p>
+		Para demostrarlo, considere el siguiente componente ShowTodos con una restricción select() aplicada a la colección Todos Eloquent:
+	</p>
+	<!-- img -->
+	<img src="media/10.png">
+
+	<p>
+		Cuando este componente se carga inicialmente, la propiedad $todos se establecerá en una colección Eloquent de los "To Do" del usuario; sin embargo, sólo se habrán consultado y cargado en cada uno de los modelos los campos de título y contenido de cada fila de la base de datos.
+	</p>
+	<p>
+		Cuando Livewire hidrata el JSON de esta propiedad nuevamente en PHP en una solicitud posterior, la restricción de selección se habrá perdido.
+	</p>
+	<p>
+		Para garantizar la integridad de las consultas de Eloquent, le recomendamos que utilice <a href="https://livewire.laravel.com/docs/computed-properties">propiedades calculadas</a> en lugar de propiedades normales.
+	</p>
+	<p>
+		Las propiedades calculadas son métodos en su componente marcados con el atributo #[Computed]. Se puede acceder a ellos como una propiedad dinámica que no se almacena como parte del estado del componente, sino que se evalúa sobre la marcha.
+	</p>
+	<p>
+		Aquí esta el ejemplo de arriba reescrito usando una propiedad calculada:
+	</p>
+	<!-- img -->
+	<img src="media/11.png">
+
+	<p>
+		Así es como accedería a los "To Do" desde la vista Blade:
+	</p>
+	<!-- img -->
+	<img src="media/12.png">
+
+	<p>
+		Observe que dentro de sus vistas, solo puede acceder a las propiedades calculadas en el objeto $this de esta manera: $this->todos.
+	</p>
+	<p>
+		También puedes acceder a los "To Do" desde dentro de tu clase. Por ejemplo, si tuvieras una acción markAllAsComplete():
+	</p>
+	<!-- img -->
+	<img src="media/13.png">
+
+	<p>
+		Quizás se pregunte por qué no simplemente llamar a $this->todos() como método directamente donde lo necesita. ¿Por qué utilizar #[Computed] en primer lugar?
+	</p>
+	<p>
+		La razón es que las propiedades calculadas tienen una ventaja de rendimiento, ya que se almacenan en caché automáticamente después de su primer uso durante una única solicitud. Esto significa que puede acceder libremente a $this->todos dentro de su componente y tener la seguridad de que el método real solo se llamará una vez, para no ejecutar una consulta costosa varias veces en la misma solicitud.
+	</p>
+	<p>
+		Para más información visita la <a href="https://livewire.laravel.com/docs/computed-properties">documentación de las propeidades calculadas</a>.
+	</p>
+
+	<script src="../../../script.js"></script>
+</body>
+</html>

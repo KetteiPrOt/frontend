@@ -18,9 +18,9 @@
 	
 	<a class="return" href="../chapter.html">Volver al capitulo</a>
 
-	<hr>
-
 	<cite>"Haste un favor a ti mismo, y simplifica tu vida."</cite>
+	
+	<hr>
 
 	<p>
 		Un componente Livewire es es una simple clase PHP que extiende <code>Livewire\Component</code>. Puedes crear archivos de componentes a mano, o usar el comando:
@@ -34,11 +34,71 @@
 	<!-- code -->
 	<code>php artisan make:livewire <em>component-name</em></code>
 
-	<!--  -->
-	<h3></h3>
-	<p></p>
+	<p>
+		Al correr el comando, Livewire creará dos nuevos archivos en tu aplicación. El primero será la clase del componente: <code>app/Livewire/ComponentName.php</code>
+	</p>
+	<!-- img -->
+	<img src="media/1.png">
+
+	<p>
+		El segundo será la vista Blade del componente: <code>resources/views/livewire/component-name.php</code>
+	</p>
+	<!-- img -->
+	<img src="media/2.png">
+
+	<p>
+		Puedes usar la sintaxis de <em>namespaces</em> o de puntos para crear los componentes en directorios anidados.
+	</p>
 	<!-- code -->
-	<code></code>
+	<code>
+		php artisan make:livewire <em>Directory\\ComponentName</em> <br>
+		php artisan make:livewire <em>diretory.component-name</em>
+	</code>
+
+	<!-- Componentes en linea -->
+	<h3>Componentes en linea</h3>
+	<p>
+		Si tu componente es bastante pequeño, es posible que prefieras crear un componente en linea. Los componentes en linea son componentes Livewire de un solo archivo cuya plantilla de vista está contenida directamente en el método <em>render()</em> en lugar de un archivo separado:
+	</p>
+	<!-- img -->
+	<img src="media/3.png">
+
+	<p>
+		Puedes crearlos agregando el indicador <em>--inline</em> al comando <em>make:livewire</em>
+	</p>
+	<!-- code -->
+	<code>php artisan make:livewire <em>ComponentName</em> --inline</code>
+
+	<!-- Omitiendo el método render -->
+	<h3>Omitiendo el método render</h3>
+	<p>
+		Para reducir el texto repetitivo en tus componentes, puedes omitir completamente el método <em>reder()</em> y Livewire usará su propio método <em>render()</em> subyacente, que devuelve una vista con el nombre convencional correspondiente al componente:
+	</p>
+	<!-- img -->
+	<img src="media/4.png">
+
+	<!-- Personalización de talones de componentes -->
+	<h3>Personalización de talones de componentes</h3>
+	<p>
+		Puede personalizar los archivos (o talones {<em>stubs</em>}) que utiliza Livewire para generar nuevos componentes ejecutando el siguiente comando:
+	</p>
+	<!-- code -->
+	<code>php artisan livewire:stubs</code>
+
+	<p>
+		Esto creará cuatro nuevos archivos en tu aplicación:
+	</p>
+	<!-- code -->
+	<code>
+		stubs/livewire.stub <em>— used for generating new components</em> <br>
+		stubs/livewire.inline.stub <em>— used for generating inline components</em> <br>
+		stubs/livewire.test.stub <em>— used for generating test files</em> <br>
+		stubs/livewire.view.stub <em>— used for generating component views</em>
+	</code>
+
+	<p>
+		Aunque estos archivos se encuentran en tu aplicación, aún puedes usar el comando Artisan <em>make:livewire</em> y Livewire usará automáticamente tus talones personalizados al generar archivos.
+	</p>
 
 	<script src="../../../script.js"></script>
 </body>
