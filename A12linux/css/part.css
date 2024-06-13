@@ -1,0 +1,19 @@
+h4 {
+    margin: 50px 0 0 0;
+}
+
+p {
+    max-width: 600px;
+}
+
+pre {
+    background-color: black;
+    max-width: 1200px;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: scroll;
+}
+
+code {
+    color: white;
+}
