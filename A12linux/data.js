@@ -21,7 +21,8 @@ const chapters = [
                 themes: [
                     'man',
                     'clear',
-                    'sudo'
+                    'sudo',
+                    'history'
                 ]
             },
             // p2
@@ -39,7 +40,30 @@ const chapters = [
             {
                 name: 'Comandos básicos para archivos',
                 themes: [
-                    'find'
+                    'find',
+                    'cp',
+                    'mv',
+                    'rm',
+                    'wget',
+                    'head',
+                    'tail',
+                    'grep',
+                    'cat',
+                    'wc',
+                    'less',
+                    'touch',
+                    'chmod',
+                    'unzip',
+                    './',
+                    'kill',
+                    'shred'
+                ]
+            },
+            // p4
+            {
+                name: 'Otros comandos básicos',
+                themes: [
+                    'alias'
                 ]
             }
         ]

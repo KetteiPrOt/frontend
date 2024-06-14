@@ -22,16 +22,315 @@
 
 <h3 id="part"></h3>
 
-<!-- Theme_01 -->
-<h4>Theme_01</h4>
+<!-- find -->
+<h4>find</h4>
 <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt impedit hic odio placeat ad possimus facere cum? Ipsum in sed rem nisi. Blanditiis quos doloremque voluptates repellendus quo, harum deleniti.
+    Sirve para buscar archivos y directorios en el sistema.
 </p>
 <!-- code -->
 <pre><code>
-function y(x) {
-    return x + 1;
-}
+find <i>directory_path</i> <i>search_parameter</i>
+
+find <i>/path/directory</i> <i>-name file_name.txt</i>
+
+find <i>.</i> <i>-name file_name.txt</i> <span class="opacity-50">// busca en el directorio actual</span>
+
+find <i>./parent_dir/directory</i> <i>-name file_name.txt</i>
+</code></pre>
+<p>
+    Hay varios parametros de busqueda que se pueden usar, e incluso combinar con operadores lógicos:
+</p>
+<!-- table -->
+<table>
+    <tr>
+        <th>Parámetro</th>
+        <th>Descripción</th>
+    </tr>
+    <tr>
+        <td><code>-name</code></td>
+        <td>Filtrar por nombre de archivo</td>
+    </tr>
+    <tr>
+        <td><code>-iname</code></td>
+        <td>Ignora mayusculas y minusculas</td>
+    </tr>
+    <tr>
+        <td><code>-type</code></td>
+        <td>
+            Filtrar por tipo de elemento<br>
+            (<code>f</code> para archivos, <code>d</code> para directorios)
+        </td>
+    </tr>
+    <tr>
+        <td><code>-size, -empty</code></td>
+        <td>Filtra por tamaño de archivo</td>
+    </tr>
+    <tr>
+        <td><code>-ctime, -mtime, -atime</code></td>
+        <td>Filtrar por marca de tiempo</td>
+    </tr>
+    <tr>
+        <td><code>-user, -group</code></td>
+        <td>Filtrar por propietario y grupo</td>
+    </tr>
+    <tr>
+        <td><code>-perm</code></td>
+        <td>Filtrar por derechos de archivo</td>
+    </tr>
+</table>
+<p>
+    <a href="https://www.ionos.com/es-us/digitalguide/servidores/configuracion/comando-linux-find/">Guia detallada de su uso</a>.
+</p>
+
+<!-- cp -->
+<h4>cp</h4>
+<p>
+    Sirve para copiar archivos y directorios de un lugar a otro.
+</p>
+<!-- code -->
+<pre><code>
+cp ./dir/file_to_copy.txt /path/file_copied.txt
+
+cp ./empty_dir /path/empty_dir_copy
+
+cp -r ./directory /path/directory_copy <span class="opacity-50">// copia recursivamente los archivos en su interior con -r</span>
+</code></pre>
+
+<!-- mv -->
+<h4>mv</h4>
+<p>
+    Sirve para mover archivos y directorios de un lugar a otro, tendrás que usarlo escribiendo lo que quieres mover y a dónde, de forma que desaparezca de donde estaba antes.
+</p>
+<!-- code -->
+<pre><code>
+mv ./file.txt /path/file.txt
+
+mv ./dir /path/dir
+</code></pre>
+
+<!-- rm -->
+<h4>rm</h4>
+<p>
+    Elimina archivos y, usando la opcion <code>-r</code> (<i>recursive</i>), también directorios junto a todo su contenido.
+</p>
+<!-- code -->
+<pre><code>
+rm ./file.txt
+
+rm -r ./directory
+</code></pre>
+
+<!-- wget -->
+<h4>wget</h4>
+<p>
+    Sirve para descargar y recuperar contenidos de Internet (World Wide Web Get). Admite descargas a través de FTP, SFTP, HTTP y HTTPS. <a href="https://www.hostinger.es/tutoriales/usar-comando-wget/">Guía detallada.</a>
+</p>
+<!-- code -->
+<pre><code>
+wget https://www.domain.com/uri/file.html <span class="opacity-50">// descarga file.html y lo almacena en el directorio actual</span>
+
+wget -O file_renamed.zip https://www.domain.com/file.zip <span class="opacity-50">// cambia de nombre al archivo descargado con -O</span>
+
+wget -P /path/directory https://www.domain.com/file.zip <span class="opacity-50">// almacena file.zip en directory con -P</span>
+</code></pre>
+
+<!-- head -->
+<h4>head</h4>
+<p>
+    Muestra las 10 primeras líneas de un archivo, para poder identificarlo bien.
+</p>
+<!-- code -->
+<pre><code>
+head ./file.txt
+
+head -n <i>lines_number</i> ./file.txt
+</code></pre>
+<p>
+    Puedes usar este comando para tomar la salida de otro comando y ver solo las primeras lineas de la misma.
+</p>
+<!-- code -->
+<pre><code>
+<i>command</i> | head -n <i>lines_number</i>
+</code></pre>
+
+<!-- tail -->
+<h4>tail</h4>
+<p>
+    Muestra las 10 últimas líneas de un archivo, para poder identificarlo bien.
+</p>
+<!-- code -->
+<pre><code>
+tail ./file.txt
+
+tail -n <i>lines_number</i> ./file.txt
+</code></pre>
+<p>
+    Puedes usar este comando para tomar la salida de otro comando y ver solo las últimas lineas de la misma.
+</p>
+<!-- code -->
+<pre><code>
+<i>command</i> | tail -n <i>lines_number</i>
+</code></pre>
+
+<!-- grep -->
+<h4>grep</h4>
+<p>
+    Busca patrones dentro de un archivo, e imprimirá la línea o líneas que la contengan. Muy útil para encontrar lineas específicas en archivos de configuración.
+</p>
+<!-- code -->
+<pre><code>
+grep <i>options</i> <i>pattern</i> <i>file</i>
+
+grep searched_word file.txt
+
+grep searched_word ./* <span class="opacity-50">// search in all file of the current directory</span>
+</code></pre>
+<p>
+    Entre las opciones más usadas tenemos:
+</p>
+<!-- table -->
+ <table>
+    <tr>
+        <th>Opción</th>
+        <th>Descripción</th>
+    </tr>
+    <tr>
+        <td>-i</td>
+        <td>la búsqueda no distinguirá entre mayúsculas y minúsculas</td>
+    </tr>
+    <tr>
+        <td>-c</td>
+        <td>solo mostrará la cuenta de coincidencias</td>
+    </tr>
+    <tr>
+        <td>-r</td>
+        <td>habilita la búsqueda recursiva en el directorio actual</td>
+    </tr>
+    <tr>
+        <td>-n</td>
+        <td>muestra el número de línea de las coincidencias</td>
+    </tr>
+    <tr>
+        <td>-v</td>
+        <td>muestra las líneas que no coinciden con el patrón que hemos buscado</td>
+    </tr>
+ </table>
+
+<!-- cat -->
+<h4>cat</h4>
+<p>
+    Sirve para visualizar, unir (cat => concat) y crear archivos.
+</p>
+<!-- code -->
+<pre><code>
+cat file.txt <span class="opacity-50">// muestra el contenido del archivo</span>
+
+cat -n file.txt <span class="opacity-50">// muestra el número de línea</span>
+
+cat > file.txt <span class="opacity-50">// escribir el archivo file.txt y escribir su contenido</span>
+
+cat >> file.txt <span class="opacity-50">// agrega contenido al archivo file.txt</span>
+
+cat source.txt > file.txt <span class="opacity-50">// escribir el archivo file.txt con el contenido de source.txt</span>
+
+cat source_1.txt source_2.txt source_3.txt > new_file.txt
+
+cat source.txt >> file.txt <span class="opacity-50">// agrega el contenido de source.txt al archivo file.txt</span>
+
+cat *.txt <span class="opacity-50">// muestra el contenido de todos los archivos .txt</span>
+
+cat *.txt | more <span class="opacity-50">// usa more para verlo de menos a más</span>
+</code></pre>
+
+<!-- wc -->
+<h4>wc</h4>
+<p>
+    Cuenta el número de palabras de un archivo (Word Count).
+</p>
+<!-- code -->
+<pre><code>
+wc <i>file</i>
+<span class="opacity-50">lines_count words_count characters_count file_name</span>
+</code></pre>
+
+<!-- less -->
+<h4>less</h4>
+<p>
+    Reduce la cantidad de contenido de un archivo que se ve, para verlo una página a la vez y que sea más fácil de leer.
+</p>
+<!-- code -->
+<pre><code>
+less <i>file</i>
+</code></pre>
+
+<!-- touch -->
+<h4>touch</h4>
+<p>
+    El comando touch de Linux se usa principalmente para crear archivos vacíos y cambiar marcas de tiempo de archivos o carpetas. La información de marca de tiempo de los archivos consta de tres atributos: tiempo de acceso, tiempo de modificación y tiempo de cambio. <a href="https://www.hostinger.es/tutoriales/usar-comando-touch-linux-ejemplos#:~:text=El%20comando%20touch%20de%20Linux%20se%20usa%20principalmente%20para%20crear,modificaci%C3%B3n%20y%20tiempo%20de%20cambio.">Guía detallada.</a>
+</p>
+<!-- code -->
+<pre><code>
+touch <i>options</i> <i>file</i>
+</code></pre>
+    
+<!-- chmod -->
+<h4>chmod</h4>
+<p>
+    Permite cambiar el modo de un archivo, pudiendo añadir o quitar el modo r (lectura), w (escritura) o x (ejecución).
+</p>
+<!-- code -->
+<pre><code>
+chmod <i>options</i> <i>permissions</i> <i>file_or_dir</i>
+</code></pre>
+
+<!-- unzip -->
+<h4>unzip</h4>
+<p>
+    Te permite descomprimir un archivo comprimido en formato zip. Después del comando tendrás que escribir el nombre del archivo.
+</p>
+<!-- code -->
+<pre><code>
+unzip <i>file_zipped</i>
+</code></pre>
+
+<!-- ./ -->
+<h4>./</h4>
+<p>
+    Si escribes este comando seguido de un nombre de archivo, ejecutarás ese archivo con el programa compatible que tengas instalado.
+</p>
+<!-- code -->
+<pre><code>
+./executable
+</code></pre>
+
+<!-- kill -->
+<h4>kill</h4>
+<p>
+    Si hay algún programa que no te responde, con el comando kill seguido del nombre del programa puedes forzar su cierre.
+</p>
+<!-- code -->
+<pre><code>
+kill <i>program</i>
+</code></pre>
+
+<!-- shred -->
+<h4>shred</h4>
+<p>
+    Este comando seguido del nombre de un archivo borrará el contenido de este archivo de forma repetida para que sea casi imposible de recuperarlo. No solo lo borras, también lo destrozas para que no se recupere.
+</p>
+<!-- code -->
+<pre><code>
+shred <i>file</i>
+</code></pre>
+
+<!--  -->
+<h4></h4>
+<p>
+    //
+</p>
+<!-- code -->
+<pre><code>
+
 </code></pre>
 
 </body>
