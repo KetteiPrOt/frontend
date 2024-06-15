@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebDev</title>
+    <link rel="stylesheet" href="../../css/part.css">
+    <link rel="stylesheet" href="../../css/utilities.css">
+    <script src="../../data.js" defer></script>
+    <script src="../chapter.js" defer></script>
+    <script src="parts.js" defer></script>
+</head>
+<body>
+
+<a href="../index.html">
+    Volver a las partes
+</a>
+
+<h1 data-type="part" data-number="1" id="title"></h1>
+
+<h2 id="chapter"></h2>
+
+<p>
+    La informacion de este capítulo <a href="https://computernewage.com/2015/06/27/conoce-la-estructura-de-permisos-de-linux-al-detalle/#tipos-permisos">ha sido consultada</a> del Blog de Computer New Age.
+</p>
+
+<h3 id="part"></h3>
+
+<!-- Como funciona -->
+<h4>Como funciona</h4>
+<p>
+    Todos los archivos y directorios en Linux tienen asociado un conjunto de permisos que definen las posibilidades de lectura, escritura y ejecución que se aplican al usuario propietario, al grupo propietario, y al resto del mundo.
+</p>
+
+<!-- Usuarios -->
+<h4>Usuarios</h4>
+<p>
+    Cada usuario se identifica por un User ID o UID. Todos los usuarios en Linux suelen estar registrados en el archivo <i>/etc/passwd</i>. Principalmente hay tres tipos de usuarios:
+</p>
+<ul>
+    <li>
+        <strong>Root/Admin:</strong> (UID = 0), que es el único que tiene privilegios sobre todo el sistema, y el responsable de las tareas de administración del sistema (como instalación y desinstalación de software).
+    </li>
+    <li>
+        <strong>Usuarios del sistema:</strong> usuarios especiales que van vinculados a ciertos servicios, y que pueden asumir ciertos privilegios relativos a este servicio. Se crean automáticamente en la instalación del sistema o de ciertas aplicaciones. Algunos ejemplos de estos usuarios son bin, mail, apache etc.
+    </li>
+    <li>
+        <strong>Usuarios estandar:</strong> son las cuentas de usuarios individuales. Cada usuario estándar posee su directorio personal dentro de /home. Allí se almacenan todos sus archivos personales, además de las preferencias de varias aplicaciones, archivos temporales, etc.
+    </li>
+</ul>
+
+<!-- Grupos -->
+<h4>Grupos</h4>
+<p>
+    Para simplificar la gestión, Linux agrupa todos los usuarios dentro de grupos. De este modo, a la hora de especificar ciertos permisos sobre un conjunto de cuentas, se pueden establecer de una sola vez sobre el grupo. Cada grupo se identifica por un Group ID o GUID y quedan registrados en el archivo <i>/etc/group</i>.
+</p>
+<p>
+    Cada usuario pertenece por defecto a un grupo homónimo, conocido como "grupo principal de usuario" o <strong>"grupo primario"</strong>. Además, un mismo usuario puede estar dentro de otros grupos, que serían los <strong>"grupos secundarios"</strong>.
+</p>
+
+<!--  -->
+<h4></h4>
+<p>
+    //
+</p>
+<!-- code -->
+<pre><code>
+f(x): void
+</code></pre>
+
+</body>
+</html>

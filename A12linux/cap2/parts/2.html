@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebDev</title>
+    <link rel="stylesheet" href="../../css/part.css">
+    <link rel="stylesheet" href="../../css/utilities.css">
+    <script src="../../data.js" defer></script>
+    <script src="../chapter.js" defer></script>
+    <script src="parts.js" defer></script>
+</head>
+<body>
+
+<a href="../index.html">
+    Volver a las partes
+</a>
+
+<h1 data-type="part" data-number="2" id="title"></h1>
+
+<h2 id="chapter"></h2>
+
+<h3 id="part"></h3>
+
+<!-- Niveles de permisos -->
+<h4>Niveles de permisos</h4>
+<p>
+    En cada archivo o directorio hay tres niveles de permisos:
+</p>
+<ul>
+    <li>
+        <strong>Permisos del Usuario:</strong> son los que se otorgan al usuario propietario del archivo/directorio.
+    </li>
+    <li>
+        <strong>Permisos del Grupo:</strong> son los que se otorgan a los usuarios que pertenecen al grupo propietario del archivo/directorio.
+    </li>
+    <li>
+        <strong>Permisos de otros:</strong> son lo que se otorgan a los usuarios que no entran en ninguno de los niveles anteriores.
+    </li>
+</ul>
+
+<!-- Lectura, escritura, y ejecución -->
+<h4>Lectura, escritura, y ejecución</h4>
+<p>
+    Existen tres tipos de permisos aplicados a archivos y directorios:
+</p>
+<!-- table -->
+ <table>
+    <tr>
+        <th>Permiso</th>
+        <th>En archivo</th>
+        <th>En directorio</th>
+    </tr>
+    <tr>
+        <td>Lectura</td>
+        <td>Permite leer el contenido</td>
+        <td>Permite visualizar su contenido</td>
+    </tr>
+    <tr>
+        <td>Escritura</td>
+        <td>Permite modificar el contenido</td>
+        <td>Permite agregar o quitar archivos/directorios internos</td>
+    </tr>
+    <tr>
+        <td>Ejecución</td>
+        <td>Permite ejecutarlo en el sistema</td>
+        <td>Permite ingresar a su interior</td>
+    </tr>
+ </table>
+
+<!-- Permisos especiales -->
+<h4>Permisos especiales</h4>
+<p>
+    Existen tres bits de permisos especiales que tratan de determinar ciertos tipos de privilegios que no quedan cubiertos con los anteriores.
+</p>
+<ul>
+    <li>
+        <strong>setuid</strong>: se puede asignar a archivos ejecutables, y para otorgar la posibilidad de que el proceso vinculado al archivo pueda adquirir los permisos del propietario en el momento de su ejecución. Normalmente se utiliza para que un usuario normal pueda ejecutar un cierto ejecutable con permisos elevados. Un claro ejemplo lo tenemos en su.
+    </li>
+    <li>
+        <strong>setgid</strong>: de forma análoga al caso de setuid, lo que determina es que el proceso se pueda ejecutar con los privilegios del grupo al que pertenece el fichero.
+    </li>
+    <li>
+        <strong>sticky bit</strong>: se puede asociar a directorios en los que tienen acceso varios usuarios con permisos de escritura, y básicamente permite evitar que un usuario pueda borrar archivos de otro, dentro del mismo directorio.
+    </li>
+</ul>
+
+<!--  -->
+<h4></h4>
+<p>
+    //
+</p>
+<!-- code -->
+<pre><code>
+function y(x) {
+    return x + 1;
+}
+</code></pre>
+
+</body>
+</html>

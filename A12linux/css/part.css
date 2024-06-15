@@ -1,9 +1,13 @@
+:root {
+    --text-max-width: 600px;
+}
+
 h4 {
     margin: 50px 0 0 0;
 }
 
 p {
-    max-width: 600px;
+    max-width: var(--text-max-width);
 }
 
 pre {
@@ -25,4 +29,8 @@ table {
 th, td {
     border: 1px solid black;
     padding: 5px;
+}
+
+ul {
+    max-width: var(--text-max-width);
 }

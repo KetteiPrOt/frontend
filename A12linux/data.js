@@ -63,10 +63,53 @@ const chapters = [
             {
                 name: 'Otros comandos básicos',
                 themes: [
-                    'alias'
+                    'alias',
+                    'unalias',
+                    'htop',
+                    'ps',
+                    'ping',
+                    'echo',
+                    'passwd',
+                    'whoami',
+                    'uname',
+                    'neofetch',
+                    'whatis',
+                    'exit',
+                    'shutdown'
                 ]
             }
         ]
-    }
-    // chN
+    },
+    // ch2
+    {
+        name: 'Arquitectura de permisos',
+        parts: [
+            // p1
+            {
+                name: 'Usuarios y Grupos',
+                themes: [
+                    'Como funciona',
+                    'Usuarios',
+                    'Grupos'
+                ]
+            },
+            // p2
+            {
+                name: 'Tipos de permisos',
+                themes: [
+                    'Niveles de permisos',
+                    'Lectura, escritura, y ejecución',
+                    'Permisos especiales'
+                ]
+            },
+            // p3
+            {
+                name: 'Representación de permisos',
+                themes: [
+                    '...'
+                ]
+            }
+        ]
+    },
 ];
+// SMro
