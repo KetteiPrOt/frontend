@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebDev</title>
+    <link rel="stylesheet" href="../../css/part.css">
+    <link rel="stylesheet" href="../../css/utilities.css">
+    <script src="../../data.js" defer></script>
+    <script src="../chapter.js" defer></script>
+    <script src="parts.js" defer></script>
+</head>
+<body>
+
+<a href="../index.html">
+    Volver a las partes
+</a>
+
+<h1 data-type="part" data-number="2" id="title"></h1>
+
+<h2 id="chapter"></h2>
+
+<h3 id="part"></h3>
+
+<p>
+    La información de esta parte pertenece al <a href="https://www.youtube.com/watch?v=WWiic_r7O3Y">curso de Python 2024 para principiantes</a> de Programador X
+</p>
+
+<!-- Comentarios -->
+<h4>Comentarios</h4>
+<p>
+    Los comentarios en una línea o multilínea.
+</p>
+<!-- code -->
+<pre><code>
+"""
+Comentario
+Multilínea
+"""
+# Comentario en una sola línea
+</code></pre>
+
+<!-- Variables -->
+<h4>Variables</h4>
+<p>
+    Se declaran e inicializan en una misma línea:
+</p>
+<!-- code -->
+<pre><code>
+variable = 'Contenido'
+print(variable) <span class="opacity-50"># Contenido</span>
+</code></pre>
+
+<!-- Constantes -->
+<h4>Constantes</h4>
+<p>
+    No hay constantes propias en el lenguaje, pero es una convención escribirlas como variables en mayusculas.
+</p>
+<!-- code -->
+<pre><code>
+PI = 3.1415926
+</code></pre>
+
+<!-- Tipos de datos básicos -->
+<h4>Tipos de datos básicos</h4>
+<ul>
+    <li>
+        <strong>int</strong>. Representan los números enteros.
+    </li>
+    <li>
+        <strong>float</strong>. Representan los números decimales.
+    </li>
+    <li>
+        <strong>complex</strong>. Representan los números complejos.
+    </li>
+    <li>
+        <strong>str</strong>. Representan texto como cadenas de caracteres.
+    </li>
+    <li>
+        <strong>bool</strong>. Representan un valor booleano (True/False).
+    </li>
+    <li>
+        <strong>None</strong>. Representa la ausencia de un valor en variables no inicializadas.
+    </li>
+</ul>
+<!-- code -->
+<pre><code>
+str = 'Contenido'
+int = 10
+float = 3.45
+bool_1 = True
+bool_0 = False
+</code></pre>
+
+<!-- Secuencias -->
+<h4>Secuencias</h4>
+<p>
+    Las secuencias de Python son estructuras de datos capacez de almacenar una colección de elementos.
+</p>
+<p>
+    Las principales con Listas, Tuplas, y Rangos.
+</p>
+<p>
+    El largo de una secuencia se puede obtener con la función <code>len()</code>.
+</p>
+<!-- code -->
+<pre><code>
+sequence = [1, 2, 3, 4, 5]
+print(len(sequence)) <span class="opacity-50"># 5</span>
+</code></pre>
+
+<!-- Listas -->
+<h4>Listas</h4>
+<p>
+    Las listas representan una colección ordenada de elementos que <strong>puede</strong> ser modificada.
+</p>
+<!-- code -->
+<pre><code>
+lista = ['1er elemento', '2do elemento', '3er elemento']
+
+print(lista) <span class="opacity-50"># ['1er elemento', '2do elemento', '3er elemento']</span>
+print(lista[0]) <span class="opacity-50"># 1er elemento</span>
+</code></pre>
+
+<!-- Tuplas -->
+<h4>Tuplas</h4>
+<p>
+    Las listas representan una colección ordenada de elementos que <strong>no puede</strong> ser modificada.
+</p>
+<!-- code -->
+<pre><code>
+tupla = ('1er elemento', '2do elemento', '3er elemento')
+
+print(tupla) <span class="opacity-50"># ('1er elemento', '2do elemento', '3er elemento')</span>
+print(tupla[0]) <span class="opacity-50"># 1er elemento</span>
+</code></pre>
+
+<!-- Rangos -->
+<h4>Rangos</h4>
+<p>
+    Son una secuencia de números enteros. Toma tres argumentos: valor inicial (incluido), valor final (no incluido), y paso.
+</p>
+<!-- code -->
+<pre><code>
+range = range(1)
+
+print(range[0]); <span class="opacity-50"># 1</span>
+</code></pre>
+<p>
+    Si solo se recibe el primer argumento, entonces se crea un rango <code>[0, 1, 2, 3, ... N]</code> sea N el primer argumento.
+</p>
+
+<!-- Diccionarios -->
+<h4>Diccionarios</h4>
+<p>
+    Es una estrutura de datos de tipo mapa.
+</p>
+<p>
+    Los diccionarios (dict) de Python permiten almacenar un conjunto de datos como pares clave-valor, donde cada valor es accesible a través de una clave única.
+</p>
+<!-- code -->
+<pre><code>
+dictionary = {
+    'key1': 'value1',
+    'key2': 'value2',
+    'keyN': 'valueN'
+}
+
+print(dictionary['key1']) <span class="opacity-50"># value1</span>
+</code></pre>
+<p>
+    Son útiles para almacenar y acceder a datos de manera eficiente.
+</p>
+
+<!-- Conjunto -->
+<h4>Conjunto</h4>
+<p>
+    Es una estructura de datos que almacena una colección desordenada de elementos no repetidos.
+</p>
+<p>
+    Puedes crearla a partir de otras estructuras con la función <code>set()</code>, o declararlas usando corchetes.
+</p>
+<!-- code -->
+<pre><code>
+list = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4]
+
+set_0 = set(list)
+print(set_0) <span class="opacity-50"># {1, 2, 3, 4, 5, 6}</span>
+
+set_1 = {'a', 'b', 'c', 'd'}
+</code></pre>
+
+<!--  -->
+<h4></h4>
+<p>
+    //
+</p>
+<!-- code -->
+<pre><code>
+f(x): void
+</code></pre>
+
+</body>
+</html>

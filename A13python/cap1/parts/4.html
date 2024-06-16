@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebDev</title>
+    <link rel="stylesheet" href="../../css/part.css">
+    <link rel="stylesheet" href="../../css/utilities.css">
+    <script src="../../data.js" defer></script>
+    <script src="../chapter.js" defer></script>
+    <script src="parts.js" defer></script>
+</head>
+<body>
+
+<a href="../index.html">
+    Volver a las partes
+</a>
+
+<h1 data-type="part" data-number="4" id="title"></h1>
+
+<h2 id="chapter"></h2>
+
+<h3 id="part"></h3>
+
+<!-- Identación -->
+<h4>Identación</h4>
+<p>
+    En Python la identación genera bloques, de forma análoga a los '{}' en otros lenguajes como PHP o JS.
+</p>
+<!-- code -->
+<pre><code>
+if condition:
+    # code block 1
+    # code block 1
+else:
+    # code block 2
+    # code block 2
+# main block
+# main block
+</code></pre>
+<p>
+    Hasta un solo espacio se considerará para la creación de un bloque. Significa que esto funciona exactamente igual al código de arriba:
+</p>
+<!-- code -->
+<pre><code>
+if condition:
+    # code block 1
+    # code block 1
+else:
+ # code block 2
+ # code block 2
+# main block
+# main block
+</code></pre>
+
+<!-- Condicional -->
+<h4>Condicional</h4>
+<p>
+    Evalúa una condicion para decidir que bloque de código ejecutar.
+</p>
+<!-- code -->
+<pre><code>
+a = 3; c = 2
+
+if a == c:
+    print(f'{a} es igual a {c}')
+elif a > c:
+    print(f'{a} es mayor a {c}')
+else:
+    print(f'{a} es menor a {c}')
+
+<span class="opacity-50"># 3 es mayor a 2</span>
+</code></pre>
+
+<!-- Bucle for -->
+<h4>Bucle for</h4>
+<p>
+    Se usa principalmente para iterar sobre una secuencia.
+</p>
+<!-- code -->
+<pre><code>
+list = ['element 1', 'element 2', 'element 3', 'element 4']
+
+for element in list:
+    print(element)
+<span class="opacity-50">"""
+element 1
+element 2
+element 3
+element 4
+"""</span>
+
+for number in range(5):
+    print(number)
+<span class="opacity-50">"""
+0
+1
+2
+3
+4
+"""</span>
+</code></pre>
+<p>
+    Tenemos la palabra clave <code>break</code> para detener el bucle, y <code>continue</code> para saltarnos una iteración.
+</p>
+<!-- code -->
+<pre><code>
+for number in range(10):
+    if number == 6:
+        break
+    print(number)
+<span class="opacity-50">"""
+0
+1
+2
+3
+4
+5
+"""</span>
+
+for number in range(10):
+    if number == 6:
+        continue
+    print(number)
+<span class="opacity-50">"""
+0
+1
+2
+3
+4
+5
+7
+8
+9
+"""</span>
+</code></pre>
+
+<!-- Bucle while -->
+<h4>Bucle while</h4>
+<p>
+    Se usa para iterar un bloque de código mietras se cumpla una condición.
+</p>
+<!-- code -->
+<pre><code>
+count = 0
+while count &lt; 5:
+    print(count)
+    count += 1
+
+<span class="opacity-50">"""
+0
+1
+2
+3
+4
+"""</span>
+</code></pre>
+
+<!-- try except -->
+<h4>try except</h4>
+<p>
+    Se usa para intentar ejecutar un bloque código y controlar una excepción que podría surgir dentro de él.
+</p>
+<!-- code -->
+<pre><code>
+a = input('Ingrese un número A ')
+b = input('Ingrese un número B ')
+
+c = int(a) / int(b)
+print(f'La división A / B  es igual a {c}')
+
+try:
+    c = int(a) / int(b) <span class="opacity-50"># could throw ValueError or ZeroDivisionError</span>
+    print(f'La división A / B  es igual a {c}')
+except ValueError:
+    print('Un número ingresado no es válido')
+except ZeroDivisionError:
+    print('No puedes dividir por cero')
+except Exception:
+    <span class="opacity-50"># general error handling</span>
+    print('Ha ocurrido un error')
+</code></pre>
+
+<!--  -->
+<h4></h4>
+<p>
+    //
+</p>
+<!-- code -->
+<pre><code>
+f(x): int
+</code></pre>
+
+</body>
+</html>
