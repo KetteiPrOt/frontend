@@ -81,12 +81,65 @@ const chapters = [
         parts: [
             // p1
             {
-                name: 'Principios de la POO',
+                name: 'Introducción a la POO',
                 themes: [
                     'Paradigma',
                     'Crear instancias',
                     'Diccionarios como objetos',
-                    'Crear clases'
+                    'Crear clases',
+                    'Herencia',
+                    'Atributos y métodos privados',
+                    'Decoradores',
+                    '@property',
+                    '@property.setter',
+                    '@property.deleter'
+                ]
+            },
+            // p2
+            {
+                name: 'Decoradores',
+                themes: [
+                    'Decoradores',
+                    '@property',
+                    '@property.setter',
+                    '@property.deleter'
+                ]
+            },
+            // p3
+            {
+                name: 'Abstracción',
+                themes: [
+                    'Principio',
+                    '¿Qué es una clase abstracta?',
+                    'abstract base class',
+                    'Implementación de clases abstractas'
+                ]
+            },
+            // p4
+            {
+                name: 'Métodos especiales',
+                themes: [
+                    '__init__',
+                    '__str__',
+                    '__repr__',
+                    'Sobrecarga de operadores',
+                    '__add__',
+                    '__sub__',
+                ]
+            },
+            // p5
+            {
+                name: 'SOLID',
+                themes: [
+                    'Single Responsibility',
+                    'Errores comunes',
+                    'Open/Closed',
+                    'Errores comunes',
+                    'Liskov\'s substitution',
+                    'Interface segregation',
+                    'Dependency inversion',
+                    'Ejemplo',
+                    'Crítica y conclusión'
                 ]
             },
         ]

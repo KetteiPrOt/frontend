@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebDev</title>
+    <link rel="stylesheet" href="../../css/part.css">
+    <link rel="stylesheet" href="../../css/utilities.css">
+    <script src="../../data.js" defer></script>
+    <script src="../chapter.js" defer></script>
+    <script src="parts.js" defer></script>
+</head>
+<body>
+
+<a href="../index.html">
+    Volver a las partes
+</a>
+
+<h1 data-type="part" data-number="0" id="title"></h1>
+
+<h2 id="chapter"></h2>
+
+<h3 id="part"></h3>
+
+<!-- __init__ -->
+<h4>__init__</h4>
+<p>
+    Es el constructor que construye el objeto al instanciar la clase.
+</p>
+<!-- code -->
+<pre><code>
+class Person():
+    def __init__(self, name):
+        self.name = name
+</code></pre>
+
+<!-- __str__ -->
+<h4>__str__</h4>
+<p>
+    Define como se muestra el objeto como cadena de texto.
+</p>
+<!-- code -->
+<pre><code>
+class Person():
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return f'Hola, soy {self.name}'
+    
+joel = Person('Joel')
+print(joel) <span class="opacity-50"># Hola, soy Joel</span>
+</code></pre>
+
+<!-- __repr__ -->
+<h4>__repr__</h4>
+<p>
+    Retorna una representación del objeto usando la función <code>repr()</code>. El objeto puede ser reconstruido pasandole la representación a la función <code>eval()</code>.
+</p>
+<!-- code -->
+<pre><code>
+class Person():
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __repr__(self):
+        return f'Person("{self.name}", {self.age})'
+    
+    def __str__(self):
+        return f'Hola, soy {self.name} y tengo {self.age} años'
+    
+object = Person('Joel', 19)
+representation = repr(object)
+rebuilded = eval(representation)
+print(rebuilded) <span class="opacity-50"># Hola, soy Joel y tengo 19 años</span>
+</code></pre>
+
+<!-- Sobrecarga de operadores -->
+<h4>Sobrecarga de operadores</h4>
+<p>
+    Si cada cosa es instancia de una clase (incluso los números), entonces tiene que haber una forma de definir como se comportan los objetos cuando se utilizan los operadores (+, -, *, /, >, &lt;, ==) para jugar con ellos.
+</p>
+<p>
+    Para realizar esta definición se utilizan los métodos especiales.
+</p>
+<!-- img -->
+<div class="w-full overflow-x-scroll">
+    <img class="" src="media/operators-overload.jpg" alt="Métodos de sobrecarga de operadores">
+</div>
+
+<!-- __add__ -->
+<h4>__add__</h4>
+<p>
+    Sobrecarga del operador suma (+).
+</p>
+<!-- code -->
+<pre><code>
+class Money():
+    def __init__(self, amount):
+        self.__amount = amount
+
+    @property
+    def amount(self): return self.__amount
+
+    def __add__(self, other):
+        summation = self.amount + other.amount
+        return Money(summation)
+
+moneyBag = Money(50)
+moneyBox = Money(20)
+
+money = moneyBag + moneyBox
+
+print(money.amount) <span class="opacity-50"># 70</span>
+</code></pre>
+
+<!-- __sub__ -->
+<h4>__sub__</h4>
+<p>
+    Sobrecarga del operador resta (-).
+</p>
+<!-- code -->
+<pre><code>
+class Money():
+    def __init__(self, amount):
+        self.__amount = amount
+
+    @property
+    def amount(self): return self.__amount
+
+    def __sub__(self, other):
+        summation = self.amount - other.amount
+        return Money(summation)
+
+moneyBag = Money(50)
+moneyBox = Money(20)
+
+money = moneyBag - moneyBox
+
+print(money.amount) <span class="opacity-50"># 30</span>
+</code></pre>
+
+<!--  -->
+<h4></h4>
+<p>
+    //
+</p>
+<!-- code -->
+<pre><code>
+f(x): int
+</code></pre>
+
+</body>
+</html>

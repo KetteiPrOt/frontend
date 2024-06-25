@@ -5,3 +5,11 @@
 .italic {
     text-emphasis: italic;
 }
+
+.w-full {
+    width: 100%;
+}
+
+.overflow-x-scroll {
+    overflow-x: scroll;
+}

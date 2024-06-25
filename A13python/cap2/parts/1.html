@@ -93,11 +93,148 @@ print(object['method_1'](3)) <span class="opacity-50"># 6</span>
 <!-- Crear clases -->
 <h4>Crear clases</h4>
 <p>
-    //
+    Todas las clases deben definirse con el método constructor (<code>__init__</code>), y todo método de la clase debe recibir como primer parámetro la variable <code>self</code> que es equivalente a <code>this</code> en otros lenguajes.
 </p>
 <!-- code -->
 <pre><code>
-f(x): int
+class Persona:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def speak(self, text):
+        print(f'Mi nombre es {self.name}')
+        print(text)
+
+joel = Persona('Joel', 19)
+joel.speak('Lorem ipsum')
+</code></pre>
+<p>
+    Las clases tambien pueden definir atributos cuando se escriben.
+</p>
+<!-- code -->
+<pre><code>
+class Persona:
+    name = 'Joel'
+
+joel = Persona()
+print(joel.name)
+</code></pre>
+
+<!-- Herencia -->
+<h4>Herencia</h4>
+<p>
+    La herencia en su forma más simple se realiza con la palabra clave <code>pass</code>.
+</p>
+<!-- code -->
+<pre><code>
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+class Employeer(Person):
+    pass
+
+    def greet(self):
+        print(f'Hola, soy {self.name}.')
+
+joel = Employeer('Joel')
+joel.greet() <span class="opacity-50"># Hola, soy Joel</span>
+</code></pre>
+<p>
+    Pero para pasar más parámetros al constructor de la función hay que usar la función <code>super()</code>.
+</p>
+<!-- code -->
+<pre><code>
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+class Employeer(Person):
+    def __init__(self, name, role):
+        super().__init__(name)
+        self.role = role
+
+    def greet(self):
+        print(f'Hola, soy {self.name} y mi cargo es {self.role}.')
+
+joel = Employeer('Joel', 'Web Developer')
+joel.greet() <span class="opacity-50"># Hola, soy Joel y mi cargo es Web Developer.</span>
+</code></pre>
+
+<!-- Herencia múltiple -->
+<h4>Herencia múltiple</h4>
+<p>
+    Python admite la herencia múltiple. Al realizarse, es nesesario hacer referencia directa a cada clase padre.
+</p>
+<!-- code -->
+<pre><code>
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+class Executer():
+    def __init__(self, skill):
+        self.skill = skill
+
+class Employeer(Person, Exception):
+    def __init__(self, name, skill):
+        Person.__init__(self, name)
+        Executer.__init__(self, skill)
+
+    def greet(self):
+        print(f'Hola, soy un ejecutor. Mi nombre es {self.name} y  mi habilidad es {self.skill}.')
+
+joel = Employeer('Joel', 'Furioso')
+joel.greet() <span class="opacity-50"># Hola, soy un ejecutor. Mi nombre es Joel y  mi habilidad es Furioso.</span>
+</code></pre>
+
+<!-- Atributos y métodos privados -->
+<h4>Atributos y métodos privados</h4>
+<p>
+    Por convención, los atributos privados se escriben con un "_" como prefijo. No dejan de ser atributos normales a nivel de lenguaje, pero no deberían ser accedidos ni modificados fuera de la clase.
+</p>
+<!-- code -->
+<pre><code>
+class Man:
+    _gender = 'male'
+
+    def __init__(self, name):
+        self.name = name
+
+joel = Man('Joel')
+print(joel._gender)
+</code></pre>
+
+<p>
+    Pero si deseamos declarar un atributo realmente privado a nivel de lenguaje, entonces es tan simple como precederlo por dos "_"
+</p>
+<!-- code -->
+<pre><code>
+class Man:
+    __gender = 'male'
+
+    def __init__(self, name):
+        self.name = name
+
+joel = Man('Joel')
+print(joel.__gender) <span class="opacity-50"># AttributeError</span>
+</code></pre>
+
+<p>
+    La misma lógica se aplica a los métodos privados.
+</p>
+<!-- code -->
+<pre><code>
+class Man:
+    def __init__(self, name):
+        self.name = name
+
+    def __privateMethod():
+        print('Private Method Called')
+
+joel = Man('Joel')
+print(joel.__privateMethod()) <span class="opacity-50"># AttributeError</span>
 </code></pre>
 
 <!--  -->
