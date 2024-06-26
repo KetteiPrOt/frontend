@@ -144,5 +144,21 @@ const chapters = [
             },
         ]
     },
+    // ch3
+    {
+        name: 'Conceptos intermedios',
+        parts: [
+            // p1
+            {
+                name: 'Módulos',
+                themes: [
+                    'Crear un módulo',
+                    'Importar módulo',
+                    'Usar objetos',
+                    'Importar objetos',
+                    'Navegar entre directorios'
+                ]
+            },
+        ]
+    }
 ];
-// SMro
