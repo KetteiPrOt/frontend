@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebDev</title>
+    <link rel="stylesheet" href="../../css/part.css">
+    <link rel="stylesheet" href="../../css/utilities.css">
+    <script src="../../data.js" defer></script>
+    <script src="../chapter.js" defer></script>
+    <script src="parts.js" defer></script>
+</head>
+<body>
+
+<a href="../index.html">
+    Volver a las partes
+</a>
+
+<h1 data-type="part" data-number="1" id="title"></h1>
+
+<h2 id="chapter"></h2>
+
+<p>
+    La información de este capítulo proviene de la documentación oficial de Flask.
+</p>
+
+<h3 id="part"></h3>
+
+<!-- Entorno virtual -->
+<h4>Entorno virtual</h4>
+<p>
+    Utilice un entorno virtual para gestionar las dependencias de su proyecto, tanto en desarrollo como en producción.
+</p>
+<p>
+    ¿Qué problema resuelve un entorno virtual? Cuantos más proyectos de Python tenga, más probable será que necesite trabajar con diferentes versiones de las bibliotecas de Python, o incluso con el propio Python. Las versiones más nuevas de bibliotecas para un proyecto pueden interrumpir la compatibilidad en otro proyecto.
+</p>
+<p>
+    Los entornos virtuales son grupos independientes de bibliotecas de Python, una para cada proyecto. Los paquetes instalados para un proyecto no afectarán a otros proyectos ni a los paquetes del sistema operativo.
+</p>
+<p>
+    Python viene incluido con el módulo venv para crear entornos virtuales.
+</p>
+<!-- code -->
+<pre><code>
+<span class="opacity-50"># Create VE</span>
+py -3 -m venv .venv
+<span class="opacity-50"># Activate VE</span>
+.venv\Scripts\activate
+<span class="opacity-50"># Within the activated environment install Flask</span>
+pip install Flask
+</code></pre>
+
+<!-- Aplicación mínima -->
+<h4>Aplicación mínima</h4>
+<!-- code -->
+<pre><code>
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return "&lt;p>Hello, World!&lt;/p>"
+</code></pre>
+<ol>
+    <li>Primero importamos la clase Flask. Una instancia de esta clase será nuestra aplicación WSGI.</li>
+    <li>A continuación creamos una instancia de esta clase. El primer argumento es el nombre del módulo o paquete de la aplicación. __name__ es un atajo conveniente para esto que es apropiado para la mayoría de los casos. Esto es necesario para que Flask sepa dónde buscar recursos como plantillas y archivos estáticos.</li>
+    <li>Luego usamos el decorador route() para decirle a Flask qué URL debería activar nuestra función.</li>
+    <li>La función devuelve el mensaje que queremos mostrar en el navegador del usuario. El tipo de contenido predeterminado es HTML, por lo que el navegador representará el HTML de la cadena.</li>
+</ol>
+
+<!-- Servir aplicación -->
+<h4>Servir aplicación</h4>
+<p>
+    Guarda la aplicación en el directorio raíz con cualquier nombre (menos 'flask') como 'myapp', y sirvela con el comando:
+</p>
+<!-- code -->
+<pre><code>
+flask --app myapp run
+<span class="opacity-50"># si tu archivo se llama 'app' no es nesesario usar la opción '--app &lt;route>', basta con 'flask run'</span>
+</code></pre>
+<p>
+    Esto servirá la aplicación localmente en http://127.0.0.1:5000/
+</p>
+<p>
+    Si tiene el depurador deshabilitado o confía en los usuarios de su red, puede hacer que el servidor esté disponible públicamente simplemente agregando --host=0.0.0.0 a la línea de comando:
+</p>
+<!-- code -->
+<pre><code>
+flask run --host=0.0.0.0
+</code></pre>
+<p>
+    Esto servirá la aplicación para su red con su IP privada xxx.xxx.xxx.xxx en http://xxx.xxx.xxx.xxx:5000/
+</p>
+
+<!-- Modo debug -->
+<h4>Modo debug</h4>
+<p>
+    El comando flask run puede hacer más que simplemente iniciar el servidor de desarrollo. Al habilitar el modo de depuración, el servidor se recargará automáticamente si el código cambia y mostrará un depurador interactivo en el navegador si ocurre un error durante una solicitud.
+</p>
+<p>
+    Para habilitarlo usa la opción <code>--debug</code> en <code>flask run</code>.
+</p>
+<!-- code -->
+<pre><code>
+flask run --debug
+</code></pre>
+<p>
+    El depurador permite ejecutar código Python arbitrario desde el navegador. Está protegido por un PIN, pero aún representa un riesgo importante para la seguridad. No ejecute el servidor de desarrollo ni el depurador en un entorno de producción.
+</p>
+
+<!-- Escape manual HTML -->
+<h4>Escape manual HTML</h4>
+<p>
+    Al devolver HTML (el tipo de respuesta predeterminado en Flask), se debe escapar cualquier valor proporcionado por el usuario representado en la salida para protegerlo de ataques de inyección. Las plantillas HTML renderizadas con Jinja, que se presentarán más adelante, harán esto automáticamente.
+</p>
+<p>
+    escape(), que se muestra aquí, se puede utilizar manualmente. Se omite en la mayoría de los ejemplos por motivos de brevedad, pero siempre debe tener en cuenta cómo utiliza datos que no son de confianza.
+</p>
+<!-- code -->
+<pre><code>
+from markupsafe import escape
+
+@app.route("/&lt;name>")
+def hello(name):
+    return f"Hello, {escape(name)}!"
+</code></pre>
+
+<!-- Rutas -->
+<h4>Rutas</h4>
+<p>
+    Las aplicaciones web modernas utilizan URL significativas para ayudar a los usuarios. Es más probable que a los usuarios les guste una página y regresen si la página utiliza una URL significativa que puedan recordar y usar para visitarla directamente.
+</p>
+<p>
+    Usa el decorador <code>route()</code> para enlazar una función con una ruta.
+</p>
+<!-- code -->
+<pre><code>
+@app.route('/')
+def index():
+    return 'Index Page'
+
+@app.route('/hello')
+def hello():
+    return 'Hello, World'
+</code></pre>
+
+<!-- Rutas variables -->
+<h4>Rutas variables</h4>
+<p>
+    Puede agregar secciones variables a una URL marcando las secciones con &lt;variable_name>. Luego, su función recibe &lt;variable_name> como argumento de palabra clave. Opcionalmente, puede utilizar un convertidor para especificar el tipo de argumento como &lt;converter:variable_name>.
+</p>
+<!-- code -->
+<pre><code>
+from markupsafe import escape
+
+@app.route('/user/&lt;username>')
+def show_user_profile(username):
+    <span class="opacity-50"># show the user profile for that user</span>
+    return f'User {escape(username)}'
+
+@app.route('/post/&lt;int:post_id>')
+def show_post(post_id):
+    <span class="opacity-50"># show the post with the given id, the id is an integer</span>
+    return f'Post {post_id}'
+
+@app.route('/path/&lt;path:subpath>')
+def show_subpath(subpath):
+    <span class="opacity-50"># show the subpath after /path/</span>
+    return f'Subpath {escape(subpath)}'
+</code></pre>
+<p>
+    Convertidores de tipo:
+</p>
+<!-- table -->
+<table>
+    <tr>
+        <th>Tipo</th>
+        <th>Descripción</th>
+    </tr>
+    <tr>
+        <td>string</td>
+        <td>(default) accepts any text without a slash</td>
+    </tr>
+    <tr>
+        <td>int</td>
+        <td>accepts positive integers</td>
+    </tr>
+    <tr>
+        <td>float</td>
+        <td>accepts positive floating point values</td>
+    </tr>
+    <tr>
+        <td>path</td>
+        <td>like string but also accepts slashes</td>
+    </tr>
+    <tr>
+        <td>uuid</td>
+        <td>accepts UUID strings</td>
+    </tr>
+</table>
+
+<!-- URL únicas/Comportamiento de redirección -->
+<h4>URL únicas/Comportamiento de redirección</h4>
+<p>
+    Las dos reglas siguientes difieren en el uso de una barra diagonal al final.
+</p>
+<!-- code -->
+<pre><code>
+@app.route('/projects/')
+def projects():
+    return 'The project page'
+
+@app.route('/about')
+def about():
+    return 'The about page'
+</code></pre>
+<p>
+    La URL canónica para el punto final del 'proyects' tiene una barra diagonal. Es similar a una carpeta en un sistema de archivos. Si accede a la URL sin una barra diagonal (/projects), Flask lo redirecciona a la URL canónica con la barra final (/projects/).
+</p>
+<p>
+    La URL canónica para el endpoint 'about' no tiene una barra diagonal. Es similar al nombre de ruta de un archivo. Acceder a la URL con una barra diagonal (/about/) produce un error 404 "No encontrado". Esto ayuda a mantener las URL únicas para estos recursos, lo que ayuda a los motores de búsqueda a evitar indexar la misma página dos veces.
+</p>
+
+<!-- Generación de URLs -->
+<h4>Generación de URLs</h4>
+<p>
+    Para obtener una URL de una función específica, utilice la función url_for(). Acepta el nombre de la función como primer argumento y cualquier número de variables como argumentos, cada una de las cuales corresponde a una parte variable de la URL. Las variables que no estén en la URL se agregan a como parámetros de consulta (query string).
+</p>
+<!-- code -->
+<pre><code>
+url_for(&lt;function_name>, &lt;key> =  &lt;value>)
+</code></pre>
+<p>
+    Por ejemplo, aquí usamos url_for() para obtener las URL de varias funciones.
+</p>
+<!-- code -->
+<pre><code>
+from flask import url_for
+
+@app.route('/')
+def index():
+    return 'index'
+
+@app.route('/login')
+def login():
+    return 'login'
+
+@app.route('/user/&lt;username>')
+def profile(username):
+    return f'{username}\'s profile'
+
+@app.route('/query-urls')
+def query_urls():
+    return f'''
+        {url_for('index')} &lt;br> <span class="opacity-50"># /</span>
+        {url_for('login')} &lt;br> <span class="opacity-50"># /login</span>
+        {url_for('login', search='value')} &lt;br> <span class="opacity-50"># /login?search=value</span>
+        {url_for('profile', username='John Doe')} &lt;br> <span class="opacity-50"># /user/John%20Doe</span>
+    '''
+</code></pre>
+
+<!--  -->
+<h4></h4>
+<p>
+    //
+</p>
+<!-- code -->
+<pre><code>
+f(x): int
+</code></pre>
+
+</body>
+</html>

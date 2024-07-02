@@ -160,5 +160,52 @@ const chapters = [
                 ]
             },
         ]
+    },
+    // ch4
+    {
+        name: 'Introducción a Flask',
+        parts: [
+            // p1
+            {
+                name: 'Overview 1',
+                themes: [
+                    'Instalar en entorno virtual',
+                    'Aplicación mínima',
+                    'Servir aplicación',
+                    'Modo debug',
+                    'Escape manual HTML',
+                    'Rutas',
+                    'Rutas Variables',
+                    'URL únicas/Comportamiento de redirección',
+                    'Generación de URLs'
+                ]
+            },
+            // p2
+            {
+                name: 'Overview 2',
+                themes: [
+                    'Métodos HTTP',
+                    'Archivos estáticos',
+                    'Renderización de plantillas',
+                    'Accediendo a la request data',
+                    'Subida de archivos',
+                    'Cookies',
+                    'Redirecciones y errores',
+                    'Sobre las respuestas',
+                    'API con JSON'
+                ]
+            },
+            // p3
+            {
+                name: 'Overview 3',
+                themes: [
+                    'Sesiones',
+                    'Flashing de mensajes',
+                    'Log de aplicación',
+                    'Extensiones',
+                    'Despliege'
+                ]
+            },
+        ]
     }
 ];

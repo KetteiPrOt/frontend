@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebDev</title>
+    <link rel="stylesheet" href="../../css/part.css">
+    <link rel="stylesheet" href="../../css/utilities.css">
+    <script src="../../data.js" defer></script>
+    <script src="../chapter.js" defer></script>
+    <script src="parts.js" defer></script>
+</head>
+<body>
+
+<a href="../index.html">
+    Volver a las partes
+</a>
+
+<h1 data-type="part" data-number="2" id="title"></h1>
+
+<h2 id="chapter"></h2>
+
+<h3 id="part"></h3>
+
+<!-- Métodos HTTP -->
+<h4>Métodos HTTP</h4>
+<p>
+    Las aplicaciones web utilizan diferentes métodos HTTP al acceder a las URL. De forma predeterminada, una ruta solo responde a solicitudes GET. Puede utilizar el argumento <code>methods</code> del decorador route() para manejar diferentes métodos HTTP.
+</p>
+<!-- code -->
+<pre><code>
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        return do_the_login()
+    else:
+        return show_the_login_form()
+</code></pre>
+<p>
+    El ejemplo anterior mantiene todos los métodos de la ruta dentro de una función, lo que puede resultar útil si cada parte utiliza algunos datos comunes.
+</p>
+<p>
+    También puede separar diferentes métodos HTTP en diferentes funciones. Flask proporciona un atajo para decorar dichas rutas con get(), post(), etc. para cada método HTTP común.
+</p>
+<!-- code -->
+<pre><code>
+@app.get('/login')
+def login_get():
+    return show_the_login_form()
+
+@app.post('/login')
+def login_post():
+    return do_the_login()
+</code></pre>
+<p>
+    Si GET está presente, Flask agrega automáticamente soporte para el método HEAD y maneja las solicitudes HEAD de acuerdo con HTTP RFC. Asimismo, OPTIONS se implementa automáticamente para usted.
+</p>
+
+<!-- Archivos estáticos -->
+<h4>Archivos estáticos</h4>
+<p>
+    Las aplicaciones web dinámicas también necesitan archivos estáticos. Generalmente de ahí provienen los archivos CSS y JavaScript. Lo ideal es que su servidor web esté configurado para servirlos por usted, pero durante el desarrollo, Flask también puede hacerlo. Simplemente cree una carpeta llamada estática en su paquete o al lado de su módulo y estará disponible en /static en la aplicación.
+</p>
+<p>
+    Para generar URL para archivos estáticos, utilice el nombre de punto final 'estático' especial:
+</p>
+<!-- code -->
+<pre><code>
+url_for('static', filename='style.css')
+</code></pre>
+
+<!-- Renderización de plantillas -->
+<h4>Renderización de plantillas</h4>
+<p>
+    Generar HTML desde Python no es divertido y, de hecho, bastante engorroso porque tienes que escapar el HTML por tu cuenta para mantener la aplicación segura. Por eso, Flask configura el motor de plantillas Jinja2 automáticamente.
+</p>
+<p>
+    Las plantillas se pueden utilizar para generar cualquier tipo de archivo de texto. Para aplicaciones web, generará principalmente páginas HTML, pero también puede generar rebajas, texto sin formato para correos electrónicos y cualquier otra cosa.
+</p>
+<p>
+    Para renderizar una plantilla puedes usar el método render_template(). Todo lo que tienes que hacer es proporcionar el nombre de la plantilla y las variables que deseas pasar al motor de plantillas como argumentos de palabras clave. Aquí hay un ejemplo simple de cómo renderizar una plantilla:
+</p>
+<!-- code -->
+<pre><code>
+from flask import render_template
+
+@app.route('/hello/')
+@app.route('/hello/&lt;name>')
+def hello(name=None):
+    return render_template('hello.html', person=name)
+</code></pre>
+<p>
+    Flask buscará plantillas en la carpeta de plantillas. Entonces, si su aplicación es un módulo, esta carpeta está al lado de ese módulo, si es un paquete, en realidad está dentro de su paquete:
+</p>
+<!-- code -->
+<pre><code>
+<span class="opacity-50"># module</span>
+/application.py
+/templates
+    /hello.html
+
+<span class="opacity-50"># package</span>
+/application
+    /__init__.py
+    /templates
+        /hello.html
+</code></pre>
+<p>
+    Para las plantillas, puede utilizar todo el poder de las plantillas Jinja2. Dirígete a la documentación oficial de la plantilla Jinja2 para obtener más información. Aquí hay una plantilla de ejemplo:
+</p>
+<!-- code -->
+<pre><code>
+&lt;!doctype html>
+&lt;title>Hello from Flask&lt;/title>
+{% if person %}
+    &lt;h1>Hello {{ person }}!&lt;/h1>
+{% else %}
+    &lt;h1>Hello, World!&lt;/h1>
+{% endif %}
+</code></pre>
+<p>
+    Dentro de las plantillas también tienes acceso a los objetos config, request, session y g, así como a las funciones url_for() y get_flashed_messages().
+</p>
+<p>
+    Las plantillas son especialmente útiles si se utiliza la herencia. Si desea saber cómo funciona, consulte Herencia de plantillas. Básicamente, la herencia de plantillas permite mantener ciertos elementos en cada página (como encabezado, navegación y pie de página).
+</p>
+<p>
+    El escape automático está habilitado, por lo que si la variable <code>user</code> contiene HTML, se escapará automáticamente. Si puede confiar en una variable y sabe que será HTML seguro (por ejemplo, porque proviene de un módulo que convierte el marcado wiki a HTML), puede marcarlo como seguro usando la clase Markup o usando el filtro <code>|safe</code> en la plantilla. Dirígete a la documentación de Jinja 2 para ver más ejemplos.
+</p>
+<p>
+    Aquí hay una introducción básica a cómo funciona la clase Markup:
+</p>
+<!-- code -->
+<pre><code>
+from markupsafe import Markup
+>>> Markup('&lt;strong>Hello %s!&lt;/strong>') % '&lt;blink>hacker&lt;/blink>'
+<span class="opacity-50"># Markup('&lt;strong>Hello &lt;blink&gt;hacker&lt;/blink&gt;!&lt;/strong>')</span>
+>>> Markup.escape('&lt;blink>hacker&lt;/blink>')
+<span class="opacity-50"># Markup('&amp;lt;blink&amp;gt;hacker&amp;lt;/blink&amp;gt;')</span>
+>>> Markup('&lt;em>Marked up&lt;/em> &raquo; HTML').striptags()
+<span class="opacity-50"># 'Marked up » HTML'</span>
+</code></pre>
+
+<!-- Accediendo a la request data -->
+<h4>Accediendo a la request data</h4>
+<p>
+    Para las aplicaciones web es crucial reaccionar a los datos que un cliente envía al servidor. En Flask, esta información la proporciona el objeto global <code>request</code>. Este objeto está documentado en la sección API y no lo cubriremos aquí en detalle, a continuación se ofrece una descripción general amplia de algunas de las operaciones más comunes.
+</p>
+<p>
+    El método de solicitud actual está disponible utilizando el atributo <code>method</code>. Para acceder a los datos del formulario (datos transmitidos en una solicitud POST o PUT) puede utilizar el atributo <code>form</code>. Aquí hay un ejemplo completo de los dos atributos mencionados anteriormente.
+</p>
+<!-- code -->
+<pre><code>
+from flask import request
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if valid_login(request.form['username'],
+                        request.form['password']):
+            return log_the_user_in(request.form['username'])
+        else:
+            error = 'Invalid username/password'
+    <span class="opacity-50"># the code below is executed if the request method</span>
+    <span class="opacity-50"># was GET or the credentials were invalid</span>
+    return render_template('login.html', error=error)
+</code></pre>
+<p>
+    ¿Qué pasa si la clave no existe en el atributo <code>form</code>? En ese caso, se genera un KeyError especial. Puede detectarlo como un KeyError estándar, pero si no lo hace, se mostrará una página de error HTTP 400 Bad Request. Entonces, en muchas situaciones no es necesario lidiar con ese problema.
+</p>
+<p>
+    Para acceder a los parámetros enviados en la URL (?key=value), puede utilizar el atributo <code>args</code>:
+</p>
+<!-- code -->
+<pre><code>
+queryParameter = request.args.get('key', 'default value')
+</code></pre>
+<p>
+    Recomendamos acceder a los parámetros de URL con get o atrapando el KeyError porque los usuarios pueden cambiar la URL y presentarles una página de solicitud 400 incorrecta, en ese caso.
+</p>
+
+<!-- Subida de archivos -->
+<h4>Subida de archivos</h4>
+<p>
+    Puede manejar archivos cargados con Flask fácilmente. Sólo asegúrese de no olvidar configurar el atributo enctype="multipart/form-data" en su formulario HTML; de lo contrario, el navegador no transmitirá sus archivos en absoluto.
+</p>
+<p>
+    Los archivos cargados se almacenan en la memoria o en una ubicación temporal en el sistema de archivos. Puede acceder a esos archivos mirando el atributo <code>files</code> en el objeto <code>request</code>. Cada archivo cargado se almacena en ese diccionario. Se comporta como un objeto de archivo estándar de Python, pero también tiene un método save() que le permite almacenar ese archivo en el sistema de archivos del servidor. Aquí hay un ejemplo simple que muestra cómo funciona:
+</p>
+<!-- code -->
+<pre><code>
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        f = request.files['the_file']
+        f.save('/var/www/uploads/uploaded_file.txt')
+    ...
+</code></pre>
+
+<!-- Cookies -->
+<h4>Cookies</h4>
+<p>
+    Para acceder a las cookies puede utilizar el atributo cookies. Para configurar cookies puede utilizar el método set_cookie del objeto <code>request</code>. El atributo de cookies de los objetos de solicitud es un diccionario con todas las cookies que transmite el cliente. Si desea utilizar sesiones, no utilice las cookies directamente, sino que utilice las sesiones en Flask que le añaden algo de seguridad además de las cookies.
+</p>
+<!-- code -->
+<pre><code>
+@app.route('/')
+def index():
+    username = request.cookies.get('username')
+    # use cookies.get(key) instead of cookies[key] to not get a
+    # KeyError if the cookie is missing.
+</code></pre>
+<p>
+    Creando cookies:
+</p>
+<!-- code -->
+<pre><code>
+from flask import make_response
+
+@app.route('/')
+def index():
+    resp = make_response(render_template(...))
+    resp.set_cookie('username', 'the username')
+    return resp
+</code></pre>
+<p>
+    Tenga en cuenta que las cookies se configuran en objetos de respuesta. Dado que normalmente solo devuelve cadenas de las funciones de vista, Flask las convertirá en objetos de respuesta por usted. Si desea hacer eso explícitamente, puede usar la función make_response() y luego modificarla.
+</p>]
+<p>
+    A veces es posible que desee configurar una cookie en un punto donde el objeto de respuesta aún no existe. Esto es posible utilizando el patrón Deferred Request Callbacks.
+</p>
+
+<!-- Redirecciones y errores -->
+<h4>Redirecciones y errores</h4>
+<p>
+    Para redirigir a un usuario a otro punto final, utilice la función de redirect(); Para cancelar una solicitud antes de tiempo con un código de error, use la función abort():
+</p>
+<!-- code -->
+<pre><code>
+from flask import abort, redirect, url_for
+
+@app.route('/')
+def index():
+    return redirect(url_for('login'))
+
+@app.route('/login')
+def login():
+    abort(401)
+    this_is_never_executed()
+</code></pre>
+<p>
+    De forma predeterminada, se muestra una página de error en blanco y negro para cada código de error. Si desea personalizar la página de error, puede utilizar el decorador errorhandler():
+</p>
+<!-- code -->
+<pre><code>
+from flask import render_template
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('errors/404.html'), 404
+</code></pre>
+<p>
+    Tenga en cuenta el 404 después de la llamada a render_template(). Esto le dice a Flask que el código de estado de esa página debe ser 404, lo que significa no encontrado. Por defecto se supone 200, lo que se traduce en: todo salió bien.
+</p>
+
+<!-- Sobre las respuestas -->
+<h4>Sobre las respuestas</h4>
+<p>
+    El valor de retorno de una función de vista se convierte automáticamente en un objeto de respuesta. Si el valor de retorno es una cadena, se convierte en un objeto de respuesta con la cadena como cuerpo de respuesta, un código de estado 200 OK y un tipo MIME de texto/html. Si el valor de retorno es un dict o una lista, se llama a jsonify() para producir una respuesta. La lógica que aplica Flask para convertir valores de retorno en objetos de respuesta es la siguiente:
+</p>
+<ol>
+    <li>Si se devuelve un objeto de respuesta del tipo correcto, se devuelve directamente desde la vista.</li>
+    <li>Si es una cadena, se crea un objeto de respuesta con esos datos y los parámetros predeterminados.</li>
+    <li>Si se trata de un iterador o generador que devuelve cadenas o bytes, se trata como una respuesta de transmisión.</li>
+    <li>Si es un dictado o una lista, se crea un objeto de respuesta usando jsonify().</li>
+    <li>Si se devuelve una tupla, los elementos de la tupla pueden proporcionar información adicional. Estas tuplas deben tener el formato (respuesta, estado), (respuesta, encabezados) o (respuesta, estado, encabezados). El valor de estado anulará el código de estado y los encabezados pueden ser una lista o un diccionario de valores de encabezado adicionales.</li>
+    <li>Si nada de eso funciona, Flask asumirá que el valor de retorno es una aplicación WSGI válida y la convertirá en un objeto de respuesta.</li>
+</ol>
+<p>
+    Si desea obtener el objeto de respuesta resultante dentro de la vista, puede usar la función make_response(). Imagina esta función igual al apartado anterior:
+</p>
+<!-- code -->
+<pre><code>
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('error.html'), 404
+</code></pre>
+<p>
+    Sólo necesita envolver la expresión de retorno con make_response() y obtener el objeto de respuesta para modificarlo, luego devolverlo:
+</p>
+<!-- code -->
+<pre><code>
+from flask import make_response
+
+@app.errorhandler(404)
+def not_found(error):
+    resp = make_response(render_template('error.html'), 404)
+    resp.headers['X-Something'] = 'A value'
+    return resp
+</code></pre>
+
+<!-- API con JSON -->
+<h4>API con JSON</h4>
+<p>
+    Un formato de respuesta común al escribir una API es JSON. Es fácil empezar a escribir una API de este tipo con Flask. Si devuelve un dictado o una lista desde una vista, se convertirá en una respuesta JSON.
+</p>
+<!-- code -->
+<pre><code>
+@app.route("/me")
+def me_api():
+    user = get_current_user()
+    return {
+        "username": user.username,
+        "theme": user.theme,
+        "image": url_for("user_image", filename=user.image),
+    }
+
+@app.route("/users")
+def users_api():
+    users = get_all_users()
+    return [user.to_json() for user in users]
+</code></pre>
+<p>
+    Este es un atajo para pasar los datos a la función jsonify(), que serializará cualquier tipo de datos JSON admitido. Eso significa que todos los datos del dict o la lista deben ser serializables en JSON.
+</p>
+<p>
+    Para tipos complejos, como modelos de bases de datos, primero querrá utilizar una biblioteca de serialización para convertir los datos a tipos JSON válidos. Hay muchas bibliotecas de serialización y extensiones de Flask API mantenidas por la comunidad que admiten aplicaciones más complejas.
+</p>
+
+<!--  -->
+<h4></h4>
+<p>
+    //
+</p>
+<!-- code -->
+<pre><code>
+f(x): int
+</code></pre>
+
+</body>
+</html>
