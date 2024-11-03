@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebDev</title>
+    <link rel="stylesheet" href="../../css/part.css">
+    <link rel="stylesheet" href="../../css/utilities.css">
+    <script src="../../data.js" defer></script>
+    <script src="../chapter.js" defer></script>
+    <script src="parts.js" defer></script>
+</head>
+<body>
+
+<a href="../index.html">
+    Volver a las partes
+</a>
+
+<h1 data-type="part" data-number="2" id="title"></h1>
+
+<h2 id="chapter"></h2>
+
+<h3 id="part"></h3>
+
+<!-- Guardar salida -->
+<h4>Guardar salida</h4>
+<p>
+    Para guardar la salida del comando <code>echo</code> se puede usar el símbolo '>', seguido del nombre del archivo de destino. Esto escibirá los datos allí.
+</p>
+<!-- code -->
+<pre><code>
+    echo 'Hello World!' > file.txt;
+</code></pre>
+<p>
+    Funciona igual que con el comando <code>cat</code>. Si usas dos '>', entonces agrega la información al archivo en lugar de escribirla.
+</p>
+
+<!-- Entrada de texto -->
+<h4>Entrada de texto</h4>
+<p>
+    Usando el comando <code>cat</code> podemos crear facilmente un script que reciba entrada por teclado.
+</p>
+<!-- code -->
+<pre><code>
+    cat > file.txt;
+</code></pre>
+<p>
+    Al ejecutar el programa podemos ingresar texto por la consola.
+</p>
+
+<!-- Comentarios -->
+<h4>Comentarios</h4>
+<p>
+    Se agregan de la siguiente forma.
+</p>
+<!-- code -->
+<pre><code>
+    <span class="c"># Este es un comentario</span>
+    <span class="c">
+    : 'Este es
+    un comentario
+    de varias
+    lineas'
+    </span>
+</code></pre>
+
+<!--  -->
+<h4></h4>
+<p>
+    //
+</p>
+<!-- code -->
+<pre><code>
+function y(x) {
+    return x + 1;
+}
+</code></pre>
+
+</body>
+</html>

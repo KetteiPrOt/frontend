@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebDev</title>
+    <link rel="stylesheet" href="../../css/part.css">
+    <link rel="stylesheet" href="../../css/utilities.css">
+    <script src="../../data.js" defer></script>
+    <script src="../chapter.js" defer></script>
+    <script src="parts.js" defer></script>
+</head>
+<body>
+
+<a href="../index.html">
+    Volver a las partes
+</a>
+
+<h1 data-type="part" data-number="1" id="title"></h1>
+
+<h2 id="chapter"></h2>
+
+<p>
+    La informacion de este capítulo ha sido obtenida del <a href="https://www.youtube.com/watch?v=H4ayPYcZEfI">curso de bash scripting</a> de Fazt.
+</p>
+
+<h3 id="part"></h3>
+
+<!-- Ver shells disponibles -->
+<h4>Ver shells disponibles</h4>
+<p>
+    El archivo <code>/etc/shells</code> contiene los shells instalados en el sistema. Lo puedes ver con <code>cat</code>.
+</p>
+<!-- code -->
+<pre><code>
+    cat /etc/shells;
+    <span class="c"># Muestra los shells disponibles</span>
+</code></pre>
+
+<!-- Ver shell activo -->
+<h4>Ver shell activo</h4>
+<p>
+    La variable <code>$SHELL</code> contiene el Shell actualmente activo. Puedes verlo con <code>echo</code>.
+</p>
+<!-- code -->
+<pre><code>
+    echo $SHELL;
+    <span class="c"># /bin/bash</span>
+</code></pre>
+
+<!-- #! <path_shell> -->
+<h4>#! &lt;path_shell></h4>
+<p>
+    La primera línea de todos los scripts indica cual Shell será usado para ejecutarlo. Ejemplo:
+</p>
+<!-- code -->
+<pre><code>
+    <span class="c">#! /bin/bash</span>
+    echo 'Hello World!';
+</code></pre>
+
+<!--  -->
+<h4></h4>
+<p>
+    //
+</p>
+<!-- code -->
+<pre><code>
+f(x): void
+</code></pre>
+
+</body>
+</html>

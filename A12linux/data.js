@@ -111,5 +111,27 @@ const chapters = [
             }
         ]
     },
+    // ch3
+    {
+        name: 'Bash Scripting',
+        parts: [
+            // p1
+            {
+                name: 'Intro',
+                themes: [
+                    'Ver shells disponibles',
+                    'Ver shell activo',
+                    '#! <path_shell>',
+                    'Hola Mundo!',
+                ]
+            },
+            // p2
+            {
+                name: 'Guardar salida',
+                themes: [
+                    ''
+                ]
+            }
+        ]
+    },
 ];
-// SMro
